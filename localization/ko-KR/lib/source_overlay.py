@@ -30,6 +30,16 @@ _RAW_OPEN = re.compile(rb'(?P<prefix>u8R|uR|UR|LR|R)"(?P<delimiter>[^ ()\\\t\r\n
 
 
 @dataclass(frozen=True)
+class LiteralComponent:
+    start: int
+    end: int
+    decoded: str
+    prefix: str
+    kind: str
+    line: int
+
+
+@dataclass(frozen=True)
 class Literal:
     path: str
     start: int
@@ -39,6 +49,7 @@ class Literal:
     function: str
     line: int
     occurrence_index: int = 0
+    components: tuple[LiteralComponent, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -48,6 +59,13 @@ class ParseRecoveryEvidence:
     source_commit: str
     file_sha256: str
     recovery_sha256: str
+    reason: str
+
+
+@dataclass(frozen=True)
+class InternalLiteralEvidence:
+    path: str
+    sha256: str
     reason: str
 
 
@@ -78,12 +96,17 @@ class RawDelimiterCollision(ValueError):
     pass
 
 
+class UnsafeNulEncoding(ValueError):
+    pass
+
+
 def format_signature(value: str) -> tuple[str, ...]:
     tokens = re.findall(
         r"%(?:[-+0 #]*\d*(?:\.\d+)?[hlLzjt]*[diuoxXfFeEgGaAcspn%])|\{\d+\}|\^x[0-9A-Fa-f]{6}",
         value,
     )
     tokens.extend("<NL>" for _ in range(value.count("\n")))
+    tokens.extend("<NUL>" for _ in range(value.count("\0")))
     return tuple(sorted(tokens))
 
 
@@ -108,14 +131,15 @@ def _decode_escape_text(
         if cursor + 1 >= len(value):
             raise UnsupportedEscape("\\<EOF>", start, end, line, function)
         marker = value[cursor + 1]
-        if (
-            allow_legacy_nul
-            and marker == "0"
-            and (cursor + 2 >= len(value) or value[cursor + 2] not in "01234567")
-        ):
-            output.append("\0")
-            cursor += 2
-            continue
+        if marker in "01234567":
+            octal_end = cursor + 2
+            while octal_end < len(value) and value[octal_end] in "01234567":
+                octal_end += 1
+            if marker == "0" and octal_end == cursor + 2:
+                output.append("\0")
+                cursor += 2
+                continue
+            raise UnsupportedEscape(value[cursor:octal_end], start, end, line, function)
         if marker in simple:
             output.append(simple[marker])
             cursor += 2
@@ -195,7 +219,12 @@ def _decode_literal(
 
 
 def _normalized_policy_path(value: str) -> str | None:
-    if not value or value != value.replace("\\", "/") or value.startswith("/"):
+    if (
+        not value
+        or value != value.replace("\\", "/")
+        or value.startswith("/")
+        or re.match(r"^[A-Za-z]:", value)
+    ):
         return None
     parts = value.split("/")
     if any(part in {"", ".", ".."} for part in parts):
@@ -266,6 +295,48 @@ def validate_parse_recovery_allowlist(value: Any) -> tuple[ParseRecoveryEvidence
                 reason,
             )
         )
+    if details:
+        raise PolicyValidationError(details)
+    return tuple(rows)
+
+
+def validate_internal_literal_allowlist(
+    value: Any,
+) -> tuple[InternalLiteralEvidence, ...]:
+    if not isinstance(value, list):
+        raise PolicyValidationError(["internalLiteralAllowlist must be an array"])
+    required = {"path", "sha256", "reason"}
+    details: list[str] = []
+    rows: list[InternalLiteralEvidence] = []
+    identities: dict[tuple[str, str], list[int]] = {}
+    for index, row in enumerate(value):
+        label = f"internalLiteralAllowlist[{index}]"
+        if not isinstance(row, dict):
+            details.append(f"{label} must be an object")
+            continue
+        if set(row) != required:
+            details.append(f"{label} must contain exactly path, sha256, reason")
+            continue
+        path = row["path"]
+        sha256 = row["sha256"]
+        reason = row["reason"]
+        if not isinstance(path, str) or _normalized_policy_path(path) is None:
+            details.append(f"{label}.path must be a normalized relative path")
+            continue
+        if not isinstance(sha256, str) or re.fullmatch(r"[0-9A-F]{64}", sha256) is None:
+            details.append(f"{label}.sha256 must be uppercase SHA-256")
+            continue
+        if not isinstance(reason, str) or not reason.strip():
+            details.append(f"{label}.reason must be nonblank")
+            continue
+        identities.setdefault((path, sha256), []).append(index)
+        rows.append(InternalLiteralEvidence(path, sha256, reason.strip()))
+    for identity, indexes in sorted(identities.items()):
+        if len(indexes) > 1:
+            details.append(
+                "duplicate internalLiteralAllowlist identity "
+                f"{identity[0]} {identity[1]} at indexes {indexes}"
+            )
     if details:
         raise PolicyValidationError(details)
     return tuple(rows)
@@ -472,6 +543,7 @@ def scan_cpp_literals(
                     continue
                 line = text.count(b"\n", 0, node.start_byte) + 1
                 decoded_parts: list[str] = []
+                components: list[LiteralComponent] = []
                 prefix = ""
                 for index, child in enumerate(literal_nodes):
                     child_line = text.count(b"\n", 0, child.start_byte) + 1
@@ -483,6 +555,16 @@ def scan_cpp_literals(
                         allow_legacy_nul=allow_legacy_nul,
                     )
                     decoded_parts.append(decoded)
+                    components.append(
+                        LiteralComponent(
+                            child.start_byte,
+                            child.end_byte,
+                            decoded,
+                            child_prefix,
+                            "raw" if child.type == "raw_string_literal" else "regular",
+                            child_line,
+                        )
+                    )
                     if index == 0:
                         prefix = child_prefix
                 rows.append(
@@ -495,6 +577,7 @@ def scan_cpp_literals(
                         function,
                         line,
                         occurrence_index,
+                        tuple(components),
                     )
                 )
                 continue
@@ -516,6 +599,16 @@ def scan_cpp_literals(
                     function,
                     line,
                     occurrence_index,
+                    (
+                        LiteralComponent(
+                            node.start_byte,
+                            node.end_byte,
+                            decoded,
+                            prefix,
+                            "raw" if node.type == "raw_string_literal" else "regular",
+                            line,
+                        ),
+                    ),
                 )
             )
         except UnsupportedEscape as error:
@@ -546,11 +639,12 @@ def _excluded_paths(policy: dict[str, Any]) -> set[str]:
     }
 
 
-def _allowlisted_hashes(policy: dict[str, Any]) -> set[str]:
+def _allowlisted_identities(
+    rows: tuple[InternalLiteralEvidence, ...],
+) -> set[tuple[str, str]]:
     return {
-        str(row.get("sha256", "")).upper()
-        for row in policy.get("internalLiteralAllowlist", [])
-        if isinstance(row, dict) and str(row.get("reason", "")).strip()
+        (row.path, row.sha256)
+        for row in rows
     }
 
 
@@ -567,13 +661,16 @@ def _issue(code: str, literal: Literal, **extra: Any) -> dict[str, Any]:
 
 
 def _regular_literal(prefix: str, target: str) -> bytes:
-    escaped = (
-        target.replace("\\", "\\\\")
-        .replace('"', '\\"')
-        .replace("\r", "\\r")
-        .replace("\n", "\\n")
-        .replace("\t", "\\t")
-    )
+    escaped_parts: list[str] = []
+    escapes = {"\\": "\\\\", '"': '\\"', "\r": "\\r", "\n": "\\n", "\t": "\\t"}
+    for index, character in enumerate(target):
+        if character == "\0":
+            if index + 1 < len(target) and target[index + 1] in "01234567":
+                raise UnsafeNulEncoding(target[index : index + 2])
+            escaped_parts.append("\\0")
+        else:
+            escaped_parts.append(escapes.get(character, character))
+    escaped = "".join(escaped_parts)
     return f'{prefix}"{escaped}"'.encode("utf-8")
 
 
@@ -598,7 +695,12 @@ def _raw_literal(prefix: str, target: str, original: bytes, source_text: bytes) 
     return f'{prefix}"{delimiter}({target}){delimiter}"'.encode("utf-8")
 
 
-def _replacement_bytes(literal: Literal, target: str, original: bytes, source_text: bytes) -> bytes:
+def _replacement_bytes(
+    literal: Literal | LiteralComponent,
+    target: str,
+    original: bytes,
+    source_text: bytes,
+) -> bytes:
     if literal.prefix.endswith("R"):
         return _raw_literal(literal.prefix, target, original, source_text)
     return _regular_literal(literal.prefix, target)
@@ -631,19 +733,49 @@ def _resolve_mapping(
     return row if isinstance(row, dict) else None
 
 
+def _validated_component_targets(
+    literal: Literal, row: dict[str, Any], target: str
+) -> list[str] | None:
+    values = row.get("components")
+    if values is None:
+        return None
+    if not isinstance(values, list) or len(values) != len(literal.components):
+        return []
+    sources = [component.get("source") for component in values]
+    targets = [component.get("target") for component in values]
+    if (
+        any(not isinstance(value, str) for value in [*sources, *targets])
+        or sources != [component.decoded for component in literal.components]
+        or "".join(sources) != literal.decoded
+        or "".join(targets) != target
+    ):
+        return []
+    return targets
+
+
 def _write_report(report_path: Path, report: dict[str, Any]) -> None:
     report_path.parent.mkdir(parents=True, exist_ok=True)
     report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="")
 
 
 def _mapping_row_is_well_formed(row: Any) -> bool:
-    return (
+    base_is_valid = (
         isinstance(row, dict)
         and isinstance(row.get("target"), str)
         and isinstance(row.get("status"), str)
         and isinstance(row.get("provenance"), str)
         and isinstance(row.get("formatSignature"), list)
         and all(isinstance(token, str) for token in row["formatSignature"])
+    )
+    if not base_is_valid or "components" not in row:
+        return base_is_valid
+    components = row["components"]
+    return isinstance(components, list) and all(
+        isinstance(component, dict)
+        and set(component) == {"source", "target"}
+        and isinstance(component["source"], str)
+        and isinstance(component["target"], str)
+        for component in components
     )
 
 
@@ -657,12 +789,15 @@ def _strings_are_utf8_encodable(values: list[str]) -> bool:
 
 
 def _mapping_row_strings(row: dict[str, Any]) -> list[str]:
-    return [
+    values = [
         row["target"],
         row["status"],
         row["provenance"],
         *row["formatSignature"],
     ]
+    for component in row.get("components", []):
+        values.extend((component["source"], component["target"]))
+    return values
 
 
 def _safe_report_text(value: Any) -> str:
@@ -810,6 +945,9 @@ def _run_overlay(
         parse_recovery_allowlist = validate_parse_recovery_allowlist(
             policy.get("parseRecoveryAllowlist")
         )
+        internal_literal_allowlist = validate_internal_literal_allowlist(
+            policy.get("internalLiteralAllowlist")
+        )
     except PolicyValidationError as error:
         report["issues"].extend(
             {"code": "INVALID_POLICY_DOCUMENT", "detail": detail}
@@ -818,7 +956,7 @@ def _run_overlay(
         _write_report(report_path, report)
         return report
     excluded = _excluded_paths(policy)
-    allowed = _allowlisted_hashes(policy)
+    allowed = _allowlisted_identities(internal_literal_allowlist)
     originals: dict[Path, bytes] = {}
     plans: dict[Path, list[tuple[int, int, bytes]]] = {}
     used_recovery_evidence: set[ParseRecoveryEvidence] = set()
@@ -864,7 +1002,10 @@ def _run_overlay(
         report["displayLiterals"] += len(literals)
         for literal in literals:
             digest = hashlib.sha256(literal.decoded.encode("utf-8")).hexdigest().upper()
-            if digest in allowed or not _HAN.search(literal.decoded):
+            if (literal.path, digest) in allowed:
+                report["intentional"] += 1
+                continue
+            if not _HAN.search(literal.decoded):
                 continue
             row = _resolve_mapping(literal, entries, contexts)
             if row is None:
@@ -893,18 +1034,49 @@ def _run_overlay(
                     )
                 )
                 continue
-            original = text[literal.start : literal.end]
-            if _is_concatenated_literal(original):
-                report["issues"].append(_issue("UNSAFE_CONCATENATED_LITERAL", literal))
+            component_targets = _validated_component_targets(literal, row, target)
+            if len(literal.components) > 1 and component_targets is None:
+                report["issues"].append(_issue("INVALID_COMPONENT_PLAN", literal))
+                continue
+            if component_targets == []:
+                report["issues"].append(_issue("INVALID_COMPONENT_PLAN", literal))
                 continue
             try:
-                replacement = _replacement_bytes(literal, target, original, text)
+                if component_targets is None:
+                    original = text[literal.start : literal.end]
+                    replacements = [
+                        (
+                            literal.start,
+                            literal.end,
+                            _replacement_bytes(literal, target, original, text),
+                        )
+                    ]
+                else:
+                    replacements = []
+                    for component, component_target in zip(
+                        literal.components, component_targets, strict=True
+                    ):
+                        original = text[component.start : component.end]
+                        replacements.append(
+                            (
+                                component.start,
+                                component.end,
+                                _replacement_bytes(
+                                    component, component_target, original, text
+                                ),
+                            )
+                        )
             except RawDelimiterCollision as error:
                 report["issues"].append(
                     _issue("RAW_DELIMITER_COLLISION", literal, delimiter=str(error))
                 )
                 continue
-            plans.setdefault(path, []).append((literal.start, literal.end, replacement))
+            except UnsafeNulEncoding as error:
+                report["issues"].append(
+                    _issue("UNSAFE_NUL_ENCODING", literal, sequence=str(error))
+                )
+                continue
+            plans.setdefault(path, []).extend(replacements)
             report["reused"] += 1
             report[status] += 1
 

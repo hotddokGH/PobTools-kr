@@ -59,6 +59,7 @@ class Alignment:
     target: str
     occurrence_index: int
     line: int
+    components: tuple[tuple[str, str], ...] = ()
 
 
 @dataclass(frozen=True)
@@ -80,13 +81,31 @@ class OfficialEvidenceError(ValueError):
         self.issues = issues
 
 
-def _entry(target: str, status: str, provenance: str, source: str) -> dict[str, Any]:
-    return {
+def _component_document(
+    components: tuple[tuple[str, str], ...],
+) -> list[dict[str, str]]:
+    return [
+        {"source": component_source, "target": component_target}
+        for component_source, component_target in components
+    ]
+
+
+def _entry(
+    target: str,
+    status: str,
+    provenance: str,
+    source: str,
+    components: tuple[tuple[str, str], ...] = (),
+) -> dict[str, Any]:
+    row = {
         "target": target,
         "status": status,
         "provenance": provenance,
         "formatSignature": list(format_signature(source)),
     }
+    if components:
+        row["components"] = _component_document(components)
+    return row
 
 
 def _target(value: Any) -> str | None:
@@ -95,6 +114,97 @@ def _target(value: Any) -> str | None:
     if isinstance(value, dict) and isinstance(value.get("target"), str):
         return value["target"]
     return None
+
+
+def _aligned_component_plan(
+    upstream: Literal, current: Literal
+) -> tuple[tuple[str, str], ...] | None:
+    if len(upstream.components) <= 1 and len(current.components) <= 1:
+        return ()
+    if len(upstream.components) != len(current.components):
+        return None
+    plan = tuple(
+        (source.decoded, target.decoded)
+        for source, target in zip(upstream.components, current.components, strict=True)
+    )
+    if (
+        "".join(source for source, _ in plan) != upstream.decoded
+        or "".join(target for _, target in plan) != current.decoded
+        or any(
+            format_signature(source) != format_signature(target)
+            for source, target in plan
+        )
+    ):
+        return None
+    return plan
+
+
+def _manual_component_plan(
+    value: dict[str, Any], upstream: Literal, target: str
+) -> tuple[tuple[str, str], ...] | None:
+    raw_components = value.get("components")
+    if raw_components is None:
+        return () if len(upstream.components) <= 1 else None
+    if not isinstance(raw_components, list) or len(raw_components) != len(upstream.components):
+        return None
+    if any(
+        not isinstance(component, dict)
+        or set(component) != {"source", "target"}
+        or not isinstance(component["source"], str)
+        or not isinstance(component["target"], str)
+        for component in raw_components
+    ):
+        return None
+    plan = tuple(
+        (component["source"], component["target"])
+        for component in raw_components
+    )
+    if (
+        [source for source, _ in plan]
+        != [component.decoded for component in upstream.components]
+        or "".join(source for source, _ in plan) != upstream.decoded
+        or "".join(component_target for _, component_target in plan) != target
+    ):
+        return None
+    return plan
+
+
+def _manual_override_component_plan(
+    value: dict[str, Any],
+    source: str,
+    target: str,
+    context_inventories: dict[str, tuple[list[Literal], list[Literal]]],
+) -> tuple[tuple[str, str], ...] | None:
+    upstream_matches: list[tuple[str, Literal, list[Literal]]] = []
+    for path, (upstream_literals, current_literals) in sorted(
+        context_inventories.items()
+    ):
+        for upstream in upstream_literals:
+            if upstream.decoded == source:
+                current_matches = [
+                    current
+                    for current in current_literals
+                    if current.function == upstream.function
+                    and current.decoded == target
+                ]
+                upstream_matches.append((path, upstream, current_matches))
+    if not upstream_matches:
+        return None if "components" in value else ()
+    if "components" not in value:
+        return (
+            None
+            if any(len(upstream.components) > 1 for _, upstream, _ in upstream_matches)
+            else ()
+        )
+    plans: set[tuple[tuple[str, str], ...]] = set()
+    for _, upstream, current_matches in upstream_matches:
+        if not current_matches:
+            return None
+        plan = _manual_component_plan(value, upstream, target)
+        if plan is None:
+            return None
+        plans.add(plan)
+    return next(iter(plans)) if len(plans) == 1 else None
 
 
 def _issue_sort_key(row: dict[str, Any]) -> tuple[Any, ...]:
@@ -148,6 +258,7 @@ def migrate(
     alignment_issue_rows = [dict(issue) for issue in alignment_issues]
     failed_contexts: set[tuple[str, str, str, int]] = set()
     failed_sources: set[str] = set()
+    context_inventories = context_inventories or {}
 
     for source, target in sorted(official.items()):
         if not isinstance(source, str) or not isinstance(target, str):
@@ -185,12 +296,30 @@ def migrate(
                     }
                 )
                 continue
+            component_plan = _manual_override_component_plan(
+                value if isinstance(value, dict) else {},
+                source,
+                target,
+                context_inventories,
+            )
+            if component_plan is None:
+                issues.append(
+                    {
+                        "code": "INVALID_REVIEWED_OVERRIDE_COMPONENTS",
+                        "source": source,
+                        "target": target,
+                    }
+                )
+                continue
             accepted_entries[source] = _entry(
-                target, "reviewed", "manual-reviewed-override", source
+                target,
+                "reviewed",
+                "manual-reviewed-override",
+                source,
+                component_plan,
             )
 
     reviewed_contexts: set[tuple[str, str, str, int]] = set()
-    context_inventories = context_inventories or {}
     override_contexts = overrides.get("contexts", []) if isinstance(overrides, dict) else []
     if isinstance(override_contexts, list):
         prepared_contexts: list[dict[str, Any]] = []
@@ -315,6 +444,7 @@ def migrate(
                     }
                 )
                 continue
+            upstream_literal = upstream_identity_matches[0]
             if accepted_entries.get(source, {}).get("status") == "official":
                 continue
             if not HANGUL.search(target):
@@ -366,6 +496,19 @@ def migrate(
                     }
                 )
                 continue
+            component_plan = _manual_component_plan(value, upstream_literal, target)
+            if component_plan is None:
+                issues.append(
+                    {
+                        "code": "INVALID_REVIEWED_CONTEXT_COMPONENTS",
+                        "path": path,
+                        "function": function,
+                        "source": source,
+                        "occurrenceIndex": occurrence_index,
+                        "target": target,
+                    }
+                )
+                continue
             key = (path, function, source, occurrence_index)
             reviewed_contexts.add(key)
             contexts.append(
@@ -378,6 +521,11 @@ def migrate(
                     "status": "reviewed",
                     "provenance": "manual-reviewed-context",
                     "formatSignature": list(format_signature(source)),
+                    **(
+                        {"components": _component_document(component_plan)}
+                        if component_plan
+                        else {}
+                    ),
                 }
             )
 
@@ -412,6 +560,7 @@ def migrate(
                 )
 
     candidates: dict[str, list[Alignment]] = defaultdict(list)
+    official_component_rows: dict[str, list[Alignment]] = defaultdict(list)
     for row in sorted(
         alignments,
         key=lambda item: (
@@ -422,7 +571,8 @@ def migrate(
             item.target,
         ),
     ):
-        if row.source in accepted_entries:
+        if accepted_entries.get(row.source, {}).get("status") == "official":
+            official_component_rows[row.source].append(row)
             continue
         if (
             row.path,
@@ -451,21 +601,49 @@ def migrate(
             continue
         candidates[row.source].append(row)
 
+    for source, rows in sorted(official_component_rows.items()):
+        target = accepted_entries[source]["target"]
+        component_plans = {row.components for row in rows}
+        if all(row.target == target for row in rows) and len(component_plans) == 1:
+            component_plan = next(iter(component_plans))
+            if component_plan:
+                accepted_entries[source]["components"] = _component_document(
+                    component_plan
+                )
+            continue
+        for row in rows:
+            issues.append(
+                _alignment_issue(
+                    "COMPONENT_ALIGNMENT_REQUIRED",
+                    row,
+                    acceptedTarget=target,
+                )
+            )
+
     for source, rows in sorted(candidates.items()):
         targets = {row.target for row in rows}
+        component_plans = {row.components for row in rows}
         if (
             len(targets) == 1
+            and len(component_plans) == 1
             and source not in failed_sources
             and source not in {key[2] for key in reviewed_contexts}
         ):
             accepted_entries[source] = _entry(
-                next(iter(targets)), "reviewed", "current-ko-baseline", source
+                next(iter(targets)),
+                "reviewed",
+                "current-ko-baseline",
+                source,
+                next(iter(component_plans)),
             )
             continue
         by_context: dict[tuple[str, str, int], list[Alignment]] = defaultdict(list)
         for row in rows:
             by_context[(row.path, row.function, row.occurrence_index)].append(row)
-        if any(len({row.target for row in values}) != 1 for values in by_context.values()):
+        if any(
+            len({(row.target, row.components) for row in values}) != 1
+            for values in by_context.values()
+        ):
             first = rows[0]
             issues.append(
                 _alignment_issue(
@@ -479,6 +657,7 @@ def migrate(
             if (path, function, source, occurrence_index) in failed_contexts:
                 continue
             target = values[0].target
+            component_plan = values[0].components
             contexts.append(
                 {
                     "path": path,
@@ -489,6 +668,11 @@ def migrate(
                     "status": "reviewed",
                     "provenance": "current-ko-baseline",
                     "formatSignature": list(format_signature(source)),
+                    **(
+                        {"components": _component_document(component_plan)}
+                        if component_plan
+                        else {}
+                    ),
                 }
             )
 
@@ -542,6 +726,9 @@ def migrate(
         "DUPLICATE_REVIEWED_CONTEXT",
         "AMBIGUOUS_REVIEWED_CONTEXT_TARGET",
         "AMBIGUOUS_REVIEWED_CONTEXT_SOURCE",
+        "INVALID_REVIEWED_CONTEXT_COMPONENTS",
+        "INVALID_REVIEWED_OVERRIDE_COMPONENTS",
+        "COMPONENT_ALIGNMENT_REQUIRED",
     }
     report = {
         "counts": {
@@ -565,20 +752,53 @@ def _decoded_literal(node: Any, text: bytes, function: str) -> Literal:
             for child in node.named_children
             if child.type in {"string_literal", "raw_string_literal"}
         ]
-        decoded = "".join(
-            source_overlay._decode_literal(
-                child, text, function, line, allow_legacy_nul=True
-            )[0]
-            for child in children
+        components: list[source_overlay.LiteralComponent] = []
+        for child in children:
+            child_line = text.count(b"\n", 0, child.start_byte) + 1
+            decoded, prefix = source_overlay._decode_literal(
+                child, text, function, child_line, allow_legacy_nul=True
+            )
+            components.append(
+                source_overlay.LiteralComponent(
+                    child.start_byte,
+                    child.end_byte,
+                    decoded,
+                    prefix,
+                    "raw" if child.type == "raw_string_literal" else "regular",
+                    child_line,
+                )
+            )
+        return Literal(
+            "",
+            node.start_byte,
+            node.end_byte,
+            "".join(component.decoded for component in components),
+            components[0].prefix,
+            function,
+            line,
+            components=tuple(components),
         )
-        prefix = source_overlay._decode_literal(
-            children[0], text, function, line, allow_legacy_nul=True
-        )[1]
-        return Literal("", node.start_byte, node.end_byte, decoded, prefix, function, line)
     decoded, prefix = source_overlay._decode_literal(
         node, text, function, line, allow_legacy_nul=True
     )
-    return Literal("", node.start_byte, node.end_byte, decoded, prefix, function, line)
+    component = source_overlay.LiteralComponent(
+        node.start_byte,
+        node.end_byte,
+        decoded,
+        prefix,
+        "raw" if node.type == "raw_string_literal" else "regular",
+        line,
+    )
+    return Literal(
+        "",
+        node.start_byte,
+        node.end_byte,
+        decoded,
+        prefix,
+        function,
+        line,
+        components=(component,),
+    )
 
 
 def _unit_for_literal(node: Any) -> Any:
@@ -691,6 +911,7 @@ def _structural_groups(
                             function,
                             literal.line,
                             occurrence_by_span[(literal.start, literal.end)],
+                            literal.components,
                         )
                     )
             return
@@ -781,6 +1002,25 @@ def align_file_literals(
                 ]
                 if len(viable) == 1:
                     candidate = viable[0]
+                    component_plan = _aligned_component_plan(upstream_row, candidate)
+                    if component_plan is None:
+                        issues.append(
+                            _alignment_issue(
+                                "COMPONENT_ALIGNMENT_REQUIRED",
+                                Alignment(
+                                    path.as_posix(),
+                                    function,
+                                    upstream_row.decoded,
+                                    candidate.decoded,
+                                    occurrence_index,
+                                    upstream_row.line,
+                                ),
+                            )
+                        )
+                        handled_spans.add(
+                            (function, upstream_row.start, upstream_row.end)
+                        )
+                        continue
                     alignments.append(
                         Alignment(
                             path=path.as_posix(),
@@ -789,6 +1029,7 @@ def align_file_literals(
                             target=candidate.decoded,
                             occurrence_index=occurrence_index,
                             line=upstream_row.line,
+                            components=component_plan,
                         )
                     )
                     handled_spans.add((function, upstream_row.start, upstream_row.end))
@@ -821,6 +1062,7 @@ def align_file_literals(
             if identity in handled_spans:
                 continue
             handled_spans.add(identity)
+            component_plan = _aligned_component_plan(upstream_row, current_row)
             alignment = Alignment(
                 path=path.as_posix(),
                 function=function,
@@ -828,8 +1070,11 @@ def align_file_literals(
                 target=current_row.decoded,
                 occurrence_index=occurrence_index,
                 line=upstream_row.line,
+                components=component_plan or (),
             )
-            if not HANGUL.search(current_row.decoded):
+            if component_plan is None:
+                issues.append(_alignment_issue("COMPONENT_ALIGNMENT_REQUIRED", alignment))
+            elif not HANGUL.search(current_row.decoded):
                 issues.append(_alignment_issue("CURRENT_NOT_HANGUL", alignment))
             elif format_signature(upstream_row.decoded) != format_signature(current_row.decoded):
                 issues.append(

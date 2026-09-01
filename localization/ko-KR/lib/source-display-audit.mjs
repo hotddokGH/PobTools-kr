@@ -16,69 +16,201 @@ function lineAt(text, index) {
   return line;
 }
 
-function scanStringLiterals(text) {
-  const literals = [];
+function normalizedPolicyPath(value) {
+  if (typeof value !== 'string' || !value || value.includes('\\') || value.startsWith('/')
+    || /^[A-Za-z]:/u.test(value)) return undefined;
+  const parts = value.split('/');
+  if (parts.some((part) => !part || part === '.' || part === '..')) return undefined;
+  return value;
+}
+
+export function validateInternalLiteralAllowlist(value) {
+  const rows = value === undefined ? [] : value;
+  const issues = [];
+  const identities = new Map();
+  if (!Array.isArray(rows)) {
+    return { rows: [], issues: [{ code: 'INVALID_POLICY_DOCUMENT', detail: 'internalLiteralAllowlist must be an array' }] };
+  }
+  const validated = [];
+  rows.forEach((row, index) => {
+    const label = `internalLiteralAllowlist[${index}]`;
+    if (row === null || typeof row !== 'object' || Array.isArray(row)
+      || Object.keys(row).sort().join(',') !== 'path,reason,sha256') {
+      issues.push({ code: 'INVALID_POLICY_DOCUMENT', detail: `${label} has an invalid shape` });
+      return;
+    }
+    const path = normalizedPolicyPath(row.path);
+    if (path === undefined) {
+      issues.push({ code: 'INVALID_POLICY_DOCUMENT', detail: `${label}.path must be a normalized relative path` });
+      return;
+    }
+    if (typeof row.sha256 !== 'string' || !/^[0-9A-F]{64}$/u.test(row.sha256)) {
+      issues.push({ code: 'INVALID_POLICY_DOCUMENT', detail: `${label}.sha256 must be uppercase SHA-256` });
+      return;
+    }
+    if (typeof row.reason !== 'string' || !row.reason.trim()) {
+      issues.push({ code: 'INVALID_POLICY_DOCUMENT', detail: `${label}.reason must be nonblank` });
+      return;
+    }
+    const identity = `${path}\0${row.sha256}`;
+    if (identities.has(identity)) {
+      issues.push({
+        code: 'INVALID_POLICY_DOCUMENT',
+        detail: `${label} duplicates row ${identities.get(identity)} consumer identity`,
+      });
+      return;
+    }
+    identities.set(identity, index);
+    validated.push({ path, sha256: row.sha256, reason: row.reason.trim() });
+  });
+  return { rows: validated, issues };
+}
+
+function unsupportedEscape(escape, index, end) {
+  return { code: 'UNSUPPORTED_ESCAPE', escape, index, end };
+}
+
+function decodeRegularContent(value, start, end) {
+  let output = '';
+  let cursor = 0;
+  const simple = new Map([['\\', '\\'], ['"', '"'], ['n', '\n'], ['r', '\r'], ['t', '\t']]);
+  while (cursor < value.length) {
+    if (value[cursor] !== '\\') {
+      output += value[cursor];
+      cursor += 1;
+      continue;
+    }
+    if (cursor + 1 >= value.length) throw unsupportedEscape('\\<EOF>', start, end);
+    const marker = value[cursor + 1];
+    if (/[0-7]/u.test(marker)) {
+      let escapeEnd = cursor + 2;
+      while (escapeEnd < value.length && /[0-7]/u.test(value[escapeEnd])) escapeEnd += 1;
+      if (marker === '0' && escapeEnd === cursor + 2) {
+        output += '\0';
+        cursor += 2;
+        continue;
+      }
+      throw unsupportedEscape(value.slice(cursor, escapeEnd), start, end);
+    }
+    if (simple.has(marker)) {
+      output += simple.get(marker);
+      cursor += 2;
+      continue;
+    }
+    if (marker === 'x') {
+      let escapeEnd = cursor + 2;
+      while (escapeEnd < value.length && /[0-9A-Fa-f]/u.test(value[escapeEnd])) escapeEnd += 1;
+      const digits = value.slice(cursor + 2, escapeEnd);
+      if (digits.length !== 2) throw unsupportedEscape(value.slice(cursor, escapeEnd), start, end);
+      output += String.fromCodePoint(Number.parseInt(digits, 16));
+      cursor = escapeEnd;
+      continue;
+    }
+    const width = marker === 'u' ? 4 : marker === 'U' ? 8 : 0;
+    const digits = width ? value.slice(cursor + 2, cursor + 2 + width) : '';
+    if (width && digits.length === width && /^[0-9A-Fa-f]+$/u.test(digits)) {
+      try {
+        output += String.fromCodePoint(Number.parseInt(digits, 16));
+      } catch {
+        throw unsupportedEscape(`\\${marker}${digits}`, start, end);
+      }
+      cursor += 2 + width;
+      continue;
+    }
+    throw unsupportedEscape(value.slice(cursor, Math.min(value.length, cursor + 2 + width)), start, end);
+  }
+  return output;
+}
+
+function literalComponentAt(text, index) {
+  const rawMatch = /^(?:u8R|uR|UR|LR|R)"([^ ()\\\t\r\n]{0,16})\(/u.exec(text.slice(index));
+  if (rawMatch) {
+    const contentStart = index + rawMatch[0].length;
+    const terminator = `)${rawMatch[1]}"`;
+    const close = text.indexOf(terminator, contentStart);
+    if (close < 0) return { error: { code: 'UNTERMINATED_LITERAL', index }, end: text.length };
+    return { value: text.slice(contentStart, close), start: index, end: close + terminator.length };
+  }
+  const regularMatch = /^(?:u8|u|U|L)?"/u.exec(text.slice(index));
+  if (!regularMatch) return undefined;
+  const contentStart = index + regularMatch[0].length;
+  let cursor = contentStart;
+  while (cursor < text.length) {
+    if (text[cursor] === '\\' && cursor + 1 < text.length) cursor += 2;
+    else if (text[cursor] === '"') {
+      const end = cursor + 1;
+      const encoded = text.slice(contentStart, cursor);
+      try {
+        return { value: decodeRegularContent(encoded, index, end), start: index, end };
+      } catch (error) {
+        return { error, start: index, end };
+      }
+    } else cursor += 1;
+  }
+  return { error: { code: 'UNTERMINATED_LITERAL', index }, start: index, end: text.length };
+}
+
+function afterSeparators(text, index) {
+  let cursor = index;
+  while (cursor < text.length) {
+    if (/\s/u.test(text[cursor])) cursor += 1;
+    else if (text.startsWith('//', cursor)) {
+      const newline = text.indexOf('\n', cursor + 2);
+      cursor = newline < 0 ? text.length : newline + 1;
+    } else if (text.startsWith('/*', cursor)) {
+      const close = text.indexOf('*/', cursor + 2);
+      cursor = close < 0 ? text.length : close + 2;
+    } else break;
+  }
+  return cursor;
+}
+
+function scanStringExpressions(text) {
+  const expressions = [];
   let index = 0;
   while (index < text.length) {
-    if (text.startsWith('//', index)) {
-      const newline = text.indexOf('\n', index + 2);
-      index = newline < 0 ? text.length : newline + 1;
-      continue;
-    }
-    if (text.startsWith('/*', index)) {
-      const close = text.indexOf('*/', index + 2);
-      index = close < 0 ? text.length : close + 2;
-      continue;
-    }
-    if (text.startsWith('R"', index)) {
-      const open = text.indexOf('(', index + 2);
-      if (open < 0) break;
-      const delimiter = text.slice(index + 2, open);
-      const terminator = `)${delimiter}"`;
-      const close = text.indexOf(terminator, open + 1);
-      if (close < 0) break;
-      literals.push({ value: text.slice(open + 1, close), index });
-      index = close + terminator.length;
+    if (text.startsWith('//', index) || text.startsWith('/*', index)) {
+      index = afterSeparators(text, index);
       continue;
     }
     if (text[index] === "'") {
       index += 1;
       while (index < text.length) {
         if (text[index] === '\\' && index + 1 < text.length) index += 2;
-        else if (text[index] === "'") {
-          index += 1;
-          break;
-        } else index += 1;
+        else if (text[index] === "'") { index += 1; break; }
+        else index += 1;
       }
       continue;
     }
-    if (text[index] !== '"') {
-      index += 1;
-      continue;
+    const first = literalComponentAt(text, index);
+    if (first === undefined) { index += 1; continue; }
+    const expression = { value: first.value ?? '', index, end: first.end, error: first.error };
+    let next = afterSeparators(text, first.end);
+    while (!expression.error) {
+      const component = literalComponentAt(text, next);
+      if (component === undefined) break;
+      if (component.error) expression.error = component.error;
+      else expression.value += component.value;
+      expression.end = component.end;
+      next = afterSeparators(text, component.end);
     }
-
-    const start = index;
-    index += 1;
-    let value = '';
-    while (index < text.length) {
-      if (text[index] === '\\' && index + 1 < text.length) {
-        value += text.slice(index, index + 2);
-        index += 2;
-      } else if (text[index] === '"') {
-        index += 1;
-        break;
-      } else {
-        value += text[index];
-        index += 1;
-      }
-    }
-    literals.push({ value, index: start });
+    expressions.push(expression);
+    index = expression.end;
   }
-  return literals;
+  return expressions;
 }
 
 export function auditSourceText(text, policy, file = '<memory>') {
   const normalizedFile = String(file).replaceAll('\\', '/');
+  const validation = validateInternalLiteralAllowlist(policy?.internalLiteralAllowlist);
+  if (validation.issues.length) {
+    return {
+      displayLiterals: 0,
+      koreanDisplayLiterals: 0,
+      allowedInternalLiterals: 0,
+      issues: validation.issues,
+    };
+  }
   const excluded = (policy?.excludedPaths ?? []).find((row) =>
     String(row?.path ?? '').replaceAll('\\', '/') === normalizedFile && String(row?.reason ?? '').trim());
   if (excluded) {
@@ -91,14 +223,22 @@ export function auditSourceText(text, policy, file = '<memory>') {
       issues: [],
     };
   }
-  const allowed = new Map((policy?.internalLiteralAllowlist ?? []).map((row) => [row.sha256, row.reason]));
+  const allowed = new Map(validation.rows.map((row) => [`${row.path}\0${row.sha256}`, row.reason]));
   const issues = [];
   let displayLiterals = 0;
   let koreanDisplayLiterals = 0;
   let allowedInternalLiterals = 0;
 
-  for (const literal of scanStringLiterals(String(text))) {
+  for (const literal of scanStringExpressions(String(text))) {
     displayLiterals += 1;
+    if (literal.error) {
+      issues.push({
+        ...literal.error,
+        file,
+        line: lineAt(text, literal.index),
+      });
+      continue;
+    }
     if (HANGUL.test(literal.value)) koreanDisplayLiterals += 1;
     if (MACHINE_MARKER.test(literal.value)) {
       issues.push({
@@ -111,7 +251,7 @@ export function auditSourceText(text, policy, file = '<memory>') {
     }
     if (!HAN.test(literal.value)) continue;
     const sha256 = literalSha256(literal.value);
-    const reason = String(allowed.get(sha256) ?? '').trim();
+    const reason = String(allowed.get(`${normalizedFile}\0${sha256}`) ?? '').trim();
     if (reason) {
       allowedInternalLiterals += 1;
       continue;
@@ -145,6 +285,17 @@ function sourceFiles(engineRoot) {
 }
 
 export function scanSourceDisplay({ engineRoot, policy, overlayReport = undefined }) {
+  const policyValidation = validateInternalLiteralAllowlist(policy?.internalLiteralAllowlist);
+  if (policyValidation.issues.length) {
+    return {
+      filesScanned: 0,
+      displayLiterals: 0,
+      koreanDisplayLiterals: 0,
+      allowedInternalLiterals: 0,
+      excludedFiles: 0,
+      issues: policyValidation.issues,
+    };
+  }
   const files = sourceFiles(engineRoot);
   const report = {
     filesScanned: files.length,

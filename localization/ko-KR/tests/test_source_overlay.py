@@ -53,20 +53,23 @@ class SourceOverlayTests(unittest.TestCase):
     def read(self, relative):
         return (self.root / relative).read_text(encoding="utf-8", newline="")
 
-    def entry(self, target, status, signature=None, provenance="manual"):
-        return {
+    def entry(self, target, status, signature=None, provenance="manual", components=None):
+        row = {
             "target": target,
             "status": status,
             "provenance": provenance,
             "formatSignature": [] if signature is None else signature,
         }
+        if components is not None:
+            row["components"] = components
+        return row
 
     def mapping(self, entries, contexts=None):
         path = self.root / "source-literal-mapping.json"
         path.write_text(
             json.dumps(
                 {"schemaVersion": 2, "entries": entries, "contexts": contexts or []},
-                ensure_ascii=False,
+                ensure_ascii=True,
             ),
             encoding="utf-8",
         )
@@ -83,12 +86,12 @@ class SourceOverlayTests(unittest.TestCase):
             **overrides,
         }
 
-    def write_policy(self, rows):
+    def write_policy(self, rows, internal=...):
         self.policy.write_text(
             json.dumps(
                 {
                     "excludedPaths": [],
-                    "internalLiteralAllowlist": [],
+                    "internalLiteralAllowlist": [] if internal is ... else internal,
                     "parseRecoveryAllowlist": rows,
                 }
             ),
@@ -131,12 +134,230 @@ class SourceOverlayTests(unittest.TestCase):
         self.assertEqual([row.decoded for row in rows], ["設定 更新"])
         self.assertEqual(source.encode("utf-8")[rows[0].start : rows[0].end], b'u8"\xe8\xa8\xad\xe5\xae\x9a " "\xe6\x9b\xb4\xe6\x96\xb0"')
 
+    def test_scans_immutable_ordered_components_for_regular_raw_and_mixed_prefixes(self):
+        cases = {
+            "comment": 'void Draw(){ Label(u8"設定" /* keep */ u8"更新"); }',
+            "mixed": 'void Draw(){ Label(u8"設定" L"更新"); }',
+            "raw": 'void Draw(){ Label(R"tag(設定)tag" "更新"); }',
+        }
+        expected = {
+            "comment": [("設定", "u8", "regular"), ("更新", "u8", "regular")],
+            "mixed": [("設定", "u8", "regular"), ("更新", "L", "regular")],
+            "raw": [("設定", "R", "raw"), ("更新", "", "regular")],
+        }
+        for name, source in cases.items():
+            with self.subTest(name=name):
+                row = scan_cpp_literals(Path("host/ui.cpp"), source.encode("utf-8"))[0]
+                self.assertEqual(
+                    [(part.decoded, part.prefix, part.kind) for part in row.components],
+                    expected[name],
+                )
+                self.assertEqual(row.decoded, "".join(part.decoded for part in row.components))
+                self.assertEqual(
+                    [source.encode("utf-8")[part.start : part.end].decode("utf-8") for part in row.components],
+                    [
+                        token
+                        for token in (
+                            ['u8"設定"', 'u8"更新"']
+                            if name == "comment"
+                            else ['u8"設定"', 'L"更新"']
+                            if name == "mixed"
+                            else ['R"tag(設定)tag"', '"更新"']
+                        )
+                    ],
+                )
+                with self.assertRaises((AttributeError, TypeError)):
+                    row.components[0].decoded = "變更"
+
+    def test_apply_replaces_each_component_without_touching_interstitial_bytes(self):
+        original = (
+            'void Draw(){ Label(u8"設定" /* keep */ L"更新"); }\r\n'
+            'void Raw(){ Label(R"tag(設定)tag"  "更新"); }\r\n'
+        )
+        self.write("host/ui.cpp", original, newline="")
+        components = [
+            {"source": "設定", "target": "설정"},
+            {"source": "更新", "target": "업데이트"},
+        ]
+        mapping = self.mapping(
+            {
+                "設定更新": self.entry(
+                    "설정업데이트", "reviewed", components=components
+                )
+            }
+        )
+
+        report = apply_overlay(self.root, mapping, self.policy, self.report)
+
+        self.assertEqual(report["issues"], [])
+        expected = (
+            'void Draw(){ Label(u8"설정" /* keep */ L"업데이트"); }\r\n'
+            'void Raw(){ Label(R"tag(설정)tag"  "업데이트"); }\r\n'
+        )
+        self.assertEqual((self.root / "host/ui.cpp").read_bytes(), expected.encode("utf-8"))
+
+    def test_component_plan_mismatches_block_all_files(self):
+        bad_plans = {
+            "missing": None,
+            "count": [{"source": "設定", "target": "설정업데이트"}],
+            "order": [
+                {"source": "更新", "target": "업데이트"},
+                {"source": "設定", "target": "설정"},
+            ],
+            "joined-target": [
+                {"source": "設定", "target": "설정"},
+                {"source": "更新", "target": "갱신"},
+            ],
+        }
+        original = 'void Draw(){ Label(u8"設定" /* keep */ u8"更新"); }'
+        valid = 'void Other(){ Label(u8"新增"); }'
+        for name, components in bad_plans.items():
+            with self.subTest(name=name):
+                self.write("host/ui.cpp", original)
+                self.write("host/other.cpp", valid)
+                mapping = self.mapping(
+                    {
+                        "設定更新": self.entry(
+                            "설정업데이트", "reviewed", components=components
+                        ),
+                        "新增": self.entry("추가", "reviewed"),
+                    }
+                )
+                report = apply_overlay(self.root, mapping, self.policy, self.report)
+                self.assertEqual(report["issues"][0]["code"], "INVALID_COMPONENT_PLAN")
+                self.assertEqual(self.read("host/ui.cpp"), original)
+                self.assertEqual(self.read("host/other.cpp"), valid)
+
+    def test_component_encoding_and_raw_delimiter_failures_are_transactional(self):
+        cases = {
+            "encoding": (
+                'void Draw(){ Label(u8"設定" u8"更新"); }',
+                [
+                    {"source": "設定", "target": "설정"},
+                    {"source": "更新", "target": "\ud800"},
+                ],
+                "INVALID_MAPPING_ENCODING",
+            ),
+            "raw-delimiter": (
+                'void Draw(){ Label(R"tag(設定)tag" "更新"); }',
+                [
+                    {"source": "設定", "target": '끝 )tag" 충돌'},
+                    {"source": "更新", "target": "업데이트"},
+                ],
+                "RAW_DELIMITER_COLLISION",
+            ),
+        }
+        for name, (original, components, code) in cases.items():
+            with self.subTest(name=name):
+                self.write("host/ui.cpp", original)
+                target = "".join(row["target"] for row in components)
+                mapping = self.mapping(
+                    {"設定更新": self.entry(target, "reviewed", components=components)}
+                )
+                report = apply_overlay(self.root, mapping, self.policy, self.report)
+                self.assertEqual(report["issues"][0]["code"], code)
+                self.assertEqual(self.read("host/ui.cpp"), original)
+
+    def test_internal_literal_allowlist_requires_exact_path_and_expression_hash(self):
+        source = (
+            'void Draw(){ auto json = u8R"json({"key":")json" /* gap */ '
+            'u8"設定" R"json("})json"; }'
+        )
+        decoded = '{"key":"設定"}'
+        digest = hashlib.sha256(decoded.encode("utf-8")).hexdigest().upper()
+        mapping = self.mapping({})
+
+        for relative, allowed_path, allowed_digest, expected_code in (
+            ("host/fixture.cpp", "host/fixture.cpp", digest, None),
+            ("host/other.cpp", "host/fixture.cpp", digest, "MISSING_MAPPING"),
+            ("host/wrong-hash.cpp", "host/wrong-hash.cpp", "0" * 64, "MISSING_MAPPING"),
+        ):
+            with self.subTest(relative=relative):
+                self.write(relative, source)
+                self.write_policy(
+                    [],
+                    [
+                        {
+                            "path": allowed_path,
+                            "sha256": allowed_digest,
+                            "reason": "exact synthetic JSON parser fixture",
+                        }
+                    ],
+                )
+                report = apply_overlay(self.root, mapping, self.policy, self.report)
+                if expected_code is None:
+                    self.assertEqual(report["issues"], [])
+                    self.assertEqual(report["intentional"], 1)
+                else:
+                    self.assertIn(expected_code, {row["code"] for row in report["issues"]})
+
+    def test_internal_allowlist_does_not_hide_a_different_expression_in_same_file(self):
+        allowed = '{"key":"設定"}'
+        source = (
+            'void Draw(){ auto internal = u8R"json({"key":")json" u8"設定" '
+            'R"json("})json"; Label(u8"更新" "顯示"); }'
+        )
+        self.write("host/fixture.cpp", source)
+        self.write_policy(
+            [],
+            [
+                {
+                    "path": "host/fixture.cpp",
+                    "sha256": hashlib.sha256(allowed.encode("utf-8")).hexdigest().upper(),
+                    "reason": "exact synthetic JSON parser fixture",
+                }
+            ],
+        )
+
+        report = apply_overlay(self.root, self.mapping({}), self.policy, self.report)
+
+        self.assertEqual(report["intentional"], 1)
+        self.assertEqual(
+            [(row["code"], row["source"]) for row in report["issues"]],
+            [("MISSING_MAPPING", "更新顯示")],
+        )
+
+    def test_malformed_or_duplicate_internal_allowlist_blocks_before_scanning(self):
+        valid = {
+            "path": "host/fixture.cpp",
+            "sha256": "A" * 64,
+            "reason": "reviewed internal fixture",
+        }
+        invalid_lists = [
+            None,
+            {},
+            ["not-an-object"],
+            [{key: value for key, value in valid.items() if key != "path"}],
+            [{**valid, "path": 7}],
+            [{**valid, "path": "host\\fixture.cpp"}],
+            [{**valid, "path": "C:/host/fixture.cpp"}],
+            [{**valid, "sha256": 7}],
+            [{**valid, "sha256": "a" * 64}],
+            [{**valid, "sha256": "BAD"}],
+            [{**valid, "reason": "   "}],
+            [{**valid, "extra": True}],
+            [valid, dict(valid)],
+        ]
+        original = 'void Draw(){ Label(u8"設定"); }'
+        mapping = self.mapping({"設定": self.entry("설정", "reviewed")})
+        for rows in invalid_lists:
+            with self.subTest(rows=rows):
+                self.write("host/fixture.cpp", original)
+                self.write_policy([], rows)
+                report = apply_overlay(self.root, mapping, self.policy, self.report)
+                self.assertTrue(report["issues"])
+                self.assertEqual(
+                    {row["code"] for row in report["issues"]},
+                    {"INVALID_POLICY_DOCUMENT"},
+                )
+                self.assertEqual(self.read("host/fixture.cpp"), original)
+
     def test_apply_blocks_concatenation_with_interstitial_comment(self):
         original = 'void Draw(){ ImGui::Text(u8"設定" /* keep */ u8"更新"); }'
         self.write("host/ui.cpp", original)
         mapping = self.mapping({"設定更新": self.entry("설정 업데이트", "reviewed")})
         report = apply_overlay(self.root, mapping, self.policy, self.report)
-        self.assertEqual(report["issues"][0]["code"], "UNSAFE_CONCATENATED_LITERAL")
+        self.assertEqual(report["issues"][0]["code"], "INVALID_COMPONENT_PLAN")
         self.assertEqual(self.read("host/ui.cpp"), original)
 
     def test_apply_blocks_concatenation_with_mixed_prefixes(self):
@@ -144,7 +365,7 @@ class SourceOverlayTests(unittest.TestCase):
         self.write("host/ui.cpp", original)
         mapping = self.mapping({"設定更新": self.entry("설정 업데이트", "reviewed")})
         report = apply_overlay(self.root, mapping, self.policy, self.report)
-        self.assertEqual(report["issues"][0]["code"], "UNSAFE_CONCATENATED_LITERAL")
+        self.assertEqual(report["issues"][0]["code"], "INVALID_COMPONENT_PLAN")
         self.assertEqual(self.read("host/ui.cpp"), original)
 
     def test_format_signature_counts_decoded_newlines(self):
@@ -152,6 +373,49 @@ class SourceOverlayTests(unittest.TestCase):
             format_signature("Gain {0} %s\n^xFF00FF"),
             ("%s", "<NL>", "^xFF00FF", "{0}"),
         )
+
+    def test_format_signature_counts_exact_nul(self):
+        self.assertIn("<NUL>", format_signature("필터\0모든 파일\0\0"))
+
+    def test_exact_nul_wide_table_round_trips_semantically(self):
+        original = 'void Draw(){ auto table = L"篩選器\\0所有檔案\\0\\0"; }'
+        self.write("host/ui.cpp", original)
+        source = "篩選器\0所有檔案\0\0"
+        target = "필터\0모든 파일\0\0"
+        mapping = self.mapping(
+            {source: self.entry(target, "reviewed", ["<NUL>", "<NUL>", "<NUL>"])}
+        )
+
+        report = apply_overlay(self.root, mapping, self.policy, self.report)
+
+        self.assertEqual(report["issues"], [])
+        changed = (self.root / "host/ui.cpp").read_bytes()
+        self.assertIn('L"필터\\0모든 파일\\0\\0"'.encode("utf-8"), changed)
+        rescanned = scan_cpp_literals(Path("host/ui.cpp"), changed)
+        self.assertEqual(rescanned[0].decoded, target)
+
+    def test_octal_and_extended_nul_escapes_are_rejected_transactionally(self):
+        for escape in (r"\1", r"\00", r"\07", r"\01"):
+            with self.subTest(escape=escape):
+                original = f'void Draw(){{ Label(u8"設定{escape}"); }}'
+                self.write("host/ui.cpp", original)
+                mapping = self.mapping({})
+                report = apply_overlay(self.root, mapping, self.policy, self.report)
+                self.assertEqual(report["issues"][0]["code"], "UNSUPPORTED_ESCAPE")
+                self.assertEqual(report["issues"][0]["escape"], escape)
+                self.assertEqual(self.read("host/ui.cpp"), original)
+
+    def test_nul_followed_by_octal_digit_cannot_be_encoded(self):
+        original = 'void Draw(){ Label(u8"設定\\0X"); }'
+        self.write("host/ui.cpp", original)
+        mapping = self.mapping(
+            {"設定\0X": self.entry("설정\0" + "7", "reviewed", ["<NUL>"])}
+        )
+
+        report = apply_overlay(self.root, mapping, self.policy, self.report)
+
+        self.assertEqual(report["issues"][0]["code"], "UNSAFE_NUL_ENCODING")
+        self.assertEqual(self.read("host/ui.cpp"), original)
 
     def test_apply_replaces_by_byte_offset_without_corrupting_utf8_or_crlf(self):
         original = '/* 前置 */\r\nvoid Draw(){ ImGui::Text(u8"設定"); }\r\n'

@@ -822,6 +822,176 @@ class SourceMigrationTests(unittest.TestCase):
             ["첫 설정", "둘째 설정"],
         )
 
+    def test_same_structure_concatenation_emits_ordered_component_plan(self):
+        path = Path("host/components.cpp")
+        upstream = (
+            'void Draw(){ Label(u8"設定" /* keep */ L"更新"); }'
+        ).encode("utf-8")
+        current = (
+            'void Draw(){ Label(u8"설정" /* keep */ L"업데이트"); }'
+        ).encode("utf-8")
+
+        alignments, issues = migration.align_file_literals(path, upstream, current)
+        result = migration.migrate(
+            legacy={"entries": {}},
+            overrides={"entries": {}},
+            official={},
+            alignments=alignments,
+        )
+
+        self.assertEqual(issues, [])
+        self.assertEqual(result.report["issues"], [])
+        self.assertEqual(
+            result.accepted["entries"]["設定更新"]["components"],
+            [
+                {"source": "設定", "target": "설정"},
+                {"source": "更新", "target": "업데이트"},
+            ],
+        )
+
+        official = migration.migrate(
+            legacy={"entries": {}},
+            overrides={"entries": {}},
+            official={"設定更新": "설정업데이트"},
+            alignments=alignments,
+        )
+        self.assertEqual(official.report["issues"], [])
+        self.assertEqual(official.accepted["entries"]["設定更新"]["status"], "official")
+        self.assertEqual(
+            official.accepted["entries"]["設定更新"]["components"],
+            [
+                {"source": "設定", "target": "설정"},
+                {"source": "更新", "target": "업데이트"},
+            ],
+        )
+
+    def test_split_or_merged_concatenation_requires_explicit_review(self):
+        path = Path("host/components.cpp")
+        upstream = 'void Draw(){ Label(u8"設定" u8"更新"); }'.encode("utf-8")
+        current = 'void Draw(){ Label(u8"설정 및 업데이트"); }'.encode("utf-8")
+
+        alignments, issues = migration.align_file_literals(path, upstream, current)
+
+        self.assertEqual(alignments, [])
+        self.assertEqual(
+            [(row["code"], row["source"], row["occurrenceIndex"]) for row in issues],
+            [("COMPONENT_ALIGNMENT_REQUIRED", "設定更新", 0)],
+        )
+
+    def test_manual_context_components_validate_against_exact_inventories(self):
+        path = "host/components.cpp"
+        upstream_text = 'void Draw(){ Label(u8"設定" L"更新"); }'.encode("utf-8")
+        current_text = 'void Draw(){ Label(u8"설정" L"업데이트"); }'.encode("utf-8")
+        inventory = {
+            path: (
+                migration.source_overlay.scan_cpp_literals(Path(path), upstream_text),
+                migration.source_overlay.scan_cpp_literals(Path(path), current_text),
+            )
+        }
+        base = {
+            "path": path,
+            "function": "Draw",
+            "source": "設定更新",
+            "target": "설정업데이트",
+            "occurrenceIndex": 0,
+        }
+        valid_components = [
+            {"source": "設定", "target": "설정"},
+            {"source": "更新", "target": "업데이트"},
+        ]
+
+        accepted = migration.migrate(
+            legacy={"entries": {}},
+            overrides={
+                "entries": {},
+                "contexts": [{**base, "components": valid_components}],
+            },
+            official={},
+            context_inventories=inventory,
+        )
+
+        self.assertEqual(accepted.report["issues"], [])
+        self.assertEqual(
+            accepted.accepted["contexts"][0]["components"], valid_components
+        )
+
+        invalid_components = [
+            None,
+            valid_components[:1],
+            [valid_components[1], valid_components[0]],
+            [valid_components[0], {"source": "更新", "target": "갱신"}],
+        ]
+        for components in invalid_components:
+            with self.subTest(components=components):
+                row = dict(base)
+                if components is not None:
+                    row["components"] = components
+                result = migration.migrate(
+                    legacy={"entries": {}},
+                    overrides={"entries": {}, "contexts": [row]},
+                    official={},
+                    context_inventories=inventory,
+                )
+                self.assertEqual(result.accepted["contexts"], [])
+                self.assertEqual(
+                    [issue["code"] for issue in result.report["issues"]],
+                    ["INVALID_REVIEWED_CONTEXT_COMPONENTS"],
+                )
+
+    def test_manual_global_components_validate_against_exact_inventories(self):
+        path = "host/components.cpp"
+        upstream_text = 'void Draw(){ Label(u8"設定" L"更新"); }'.encode("utf-8")
+        current_text = 'void Draw(){ Label(u8"설정" L"업데이트"); }'.encode("utf-8")
+        inventory = {
+            path: (
+                migration.source_overlay.scan_cpp_literals(Path(path), upstream_text),
+                migration.source_overlay.scan_cpp_literals(Path(path), current_text),
+            )
+        }
+        components = [
+            {"source": "設定", "target": "설정"},
+            {"source": "更新", "target": "업데이트"},
+        ]
+
+        accepted = migration.migrate(
+            legacy={"entries": {}},
+            overrides={
+                "entries": {
+                    "設定更新": {
+                        "target": "설정업데이트",
+                        "components": components,
+                    }
+                }
+            },
+            official={},
+            context_inventories=inventory,
+        )
+        self.assertEqual(accepted.report["issues"], [])
+        self.assertEqual(
+            accepted.accepted["entries"]["設定更新"]["components"], components
+        )
+
+        for value in (
+            {"target": "설정업데이트"},
+            {"target": "설정업데이트", "components": components[:1]},
+            {
+                "target": "설정업데이트",
+                "components": [components[1], components[0]],
+            },
+        ):
+            with self.subTest(value=value):
+                result = migration.migrate(
+                    legacy={"entries": {}},
+                    overrides={"entries": {"設定更新": value}},
+                    official={},
+                    context_inventories=inventory,
+                )
+                self.assertEqual(result.accepted["entries"], {})
+                self.assertEqual(
+                    [issue["code"] for issue in result.report["issues"]],
+                    ["INVALID_REVIEWED_OVERRIDE_COMPONENTS"],
+                )
+
     def test_alignment_requires_han_hangul_and_equal_format_signature(self):
         result = migration.migrate(
             legacy={"entries": {}},

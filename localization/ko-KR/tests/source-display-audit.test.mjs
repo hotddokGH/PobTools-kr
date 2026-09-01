@@ -16,8 +16,128 @@ test('Korean literal and a hashed internal parser fixture are accepted', () => {
   assert.equal(auditSourceText('ImGui::Button(u8"설정");', { internalLiteralAllowlist: [] }).issues.length, 0);
   const fixture = '稀有度';
   assert.equal(auditSourceText(`const char* fixture = u8"${fixture}";`, {
-    internalLiteralAllowlist: [{ sha256: literalSha256(fixture), reason: 'reverse parser fixture' }],
-  }).issues.length, 0);
+    internalLiteralAllowlist: [{
+      path: 'host/fixture.cpp',
+      sha256: literalSha256(fixture),
+      reason: 'reverse parser fixture',
+    }],
+  }, 'host/fixture.cpp').issues.length, 0);
+});
+
+test('semantic adjacent regular and raw literals use exact path plus decoded-expression hash', () => {
+  const text = 'auto json = u8R"json({"key":")json" /* keep */ L"設定" R"json("})json";';
+  const decoded = '{"key":"設定"}';
+  const policy = {
+    internalLiteralAllowlist: [{
+      path: 'host/atlas_diff.cpp',
+      sha256: literalSha256(decoded),
+      reason: 'exact synthetic JSON parser fixture',
+    }],
+  };
+
+  const allowed = auditSourceText(text, policy, 'host/atlas_diff.cpp');
+  const wrongPath = auditSourceText(text, policy, 'host/other.cpp');
+
+  assert.equal(allowed.displayLiterals, 1);
+  assert.equal(allowed.allowedInternalLiterals, 1);
+  assert.deepEqual(allowed.issues, []);
+  assert.equal(wrongPath.issues[0].code, 'CHINESE_SOURCE_DISPLAY');
+  assert.equal(wrongPath.issues[0].literal, decoded);
+});
+
+test('prefixes and supported escapes do not change semantic expression identity', () => {
+  const decoded = '設定\0A更新\n';
+  const text = 'auto value = u8"\\u8A2D\\u5B9A\\0\\x41" /* gap */ L"更新\\n";';
+  const report = auditSourceText(text, {
+    internalLiteralAllowlist: [{
+      path: 'host/fixture.cpp',
+      sha256: literalSha256(decoded),
+      reason: 'decoded expression identity',
+    }],
+  }, 'host/fixture.cpp');
+
+  assert.equal(report.displayLiterals, 1);
+  assert.equal(report.allowedInternalLiterals, 1);
+  assert.deepEqual(report.issues, []);
+});
+
+test('an allowlisted expression does not hide different visible text in the same file', () => {
+  const policy = {
+    internalLiteralAllowlist: [{
+      path: 'host/fixture.cpp',
+      sha256: literalSha256('設定更新'),
+      reason: 'one exact expression',
+    }],
+  };
+  const report = auditSourceText(
+    'auto internal = u8"設定" "更新"; ImGui::Text(u8"更新" "顯示");',
+    policy,
+    'host/fixture.cpp',
+  );
+
+  assert.equal(report.allowedInternalLiterals, 1);
+  assert.deepEqual(report.issues.map((row) => [row.code, row.literal]), [
+    ['CHINESE_SOURCE_DISPLAY', '更新顯示'],
+  ]);
+});
+
+test('unsupported octal escapes are deterministic audit issues', () => {
+  for (const escape of ['\\1', '\\00', '\\07', '\\01']) {
+    const report = auditSourceText(`auto value = u8"設定${escape}";`, {
+      internalLiteralAllowlist: [],
+    }, 'host/fixture.cpp');
+    assert.equal(report.issues[0].code, 'UNSUPPORTED_ESCAPE');
+    assert.equal(report.issues[0].escape, escape);
+  }
+});
+
+test('malformed and duplicate internal literal policy rows fail before scanning', () => {
+  const valid = {
+    path: 'host/fixture.cpp',
+    sha256: 'A'.repeat(64),
+    reason: 'reviewed internal fixture',
+  };
+  const invalidLists = [
+    null,
+    {},
+    ['not-an-object'],
+    [{ sha256: valid.sha256, reason: valid.reason }],
+    [{ ...valid, path: 7 }],
+    [{ ...valid, path: 'host\\fixture.cpp' }],
+    [{ ...valid, path: 'C:/host/fixture.cpp' }],
+    [{ ...valid, sha256: 7 }],
+    [{ ...valid, sha256: 'a'.repeat(64) }],
+    [{ ...valid, sha256: 'BAD' }],
+    [{ ...valid, reason: '   ' }],
+    [{ ...valid, extra: true }],
+    [valid, { ...valid }],
+  ];
+  for (const rows of invalidLists) {
+    const report = auditSourceText('ImGui::Text(u8"設定");', {
+      internalLiteralAllowlist: rows,
+    }, 'host/fixture.cpp');
+    assert.deepEqual(new Set(report.issues.map((row) => row.code)), new Set(['INVALID_POLICY_DOCUMENT']));
+    assert.equal(report.displayLiterals, 0);
+  }
+});
+
+test('scanSourceDisplay validates internal policy once before reading source text', () => {
+  const root = mkdtempSync(join(tmpdir(), 'source-display-policy-'));
+  try {
+    mkdirSync(join(root, 'host'));
+    writeFileSync(join(root, 'host', 'one.cpp'), 'Label(u8"設定");', 'utf8');
+    writeFileSync(join(root, 'host', 'two.cpp'), 'Label(u8"更新");', 'utf8');
+    const report = scanSourceDisplay({
+      engineRoot: root,
+      policy: { internalLiteralAllowlist: [{ sha256: 'A'.repeat(64), reason: 'missing path' }] },
+    });
+    assert.equal(report.filesScanned, 0);
+    assert.equal(report.displayLiterals, 0);
+    assert.equal(report.issues.length, 1);
+    assert.equal(report.issues[0].code, 'INVALID_POLICY_DOCUMENT');
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
 });
 
 test('leaked machine-translation markers are rejected', () => {
