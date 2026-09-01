@@ -44,7 +44,7 @@
 - Consumes: upstream tag `v1.1.0` at commit `baf07d41d2df524d4330a58b411826339c93fac1`; verified preview directory `../PobTools-ko-test`; preserved distribution `../PobTools-1.1.0`.
 - Produces: Git-tracked Korean source baseline and SHA-256 manifest consumed by every later task.
 
-- [ ] **Step 1: Hash the untouched distribution and verify the current preview tests**
+- [x] **Step 1: Hash the untouched distribution and verify the current preview tests**
 
 Run from `PobTools-ko-test`:
 
@@ -64,7 +64,7 @@ pwsh -NoProfile -File .\tests\Test-OfficialTerms.ps1
 
 Expected: both tests print `PASS`; the JSON contains one record for every original file.
 
-- [ ] **Step 2: Create the dedicated source repository and branch**
+- [x] **Step 2: Create the dedicated source repository and branch**
 
 ```powershell
 $koParent = Resolve-Path '..'
@@ -76,7 +76,7 @@ git -C $koSource rev-parse HEAD
 
 Expected: HEAD is `baf07d41d2df524d4330a58b411826339c93fac1` and branch is `ko/complete-localization`.
 
-- [ ] **Step 3: Import only the verified Korean assets and development evidence**
+- [x] **Step 3: Import only the verified Korean assets and development evidence**
 
 Use `Copy-Item -LiteralPath` for files and explicit source/destination directories. Do not copy `translate_misses.log`, `PobTools/cache`, personal INI state other than the release template, `node_modules`, or `MalgunGothic-TestOnly.ttf`; retain `package.json` and `package-lock.json` so `npm ci` reconstructs development dependencies.
 
@@ -93,7 +93,7 @@ Create `localization/ko-KR/README.md` with these exact invariants:
 - Public runtime configuration: `Game=poe1`, `Locale=ko-KR`, `UpdateTranslations=0`
 ```
 
-- [ ] **Step 4: Save the baseline hash manifest**
+- [x] **Step 4: Save the baseline hash manifest**
 
 Write `reports/baseline/original-distribution.sha256.json` as:
 
@@ -109,7 +109,7 @@ Write `reports/baseline/original-distribution.sha256.json` as:
 
 The file list must be ordinally sorted by `/`-normalized relative path.
 
-- [ ] **Step 5: Run imported contracts from the source layout**
+- [x] **Step 5: Run imported contracts from the source layout**
 
 Modify the two imported PowerShell tests so `$runtimeRoot` resolves to `pob-zh-engine/dist` and `$reportRoot` resolves to repository `reports/official-terms`. Run:
 
@@ -120,7 +120,7 @@ pwsh -NoProfile -File .\tests\ko-KR\Test-OfficialTerms.ps1
 
 Expected: both print `PASS` from `PobTools-ko-source`.
 
-- [ ] **Step 6: Commit the source baseline**
+- [x] **Step 6: Commit the source baseline**
 
 ```powershell
 git add pob-zh-engine/dist/Data/launcher/ko-KR pob-zh-engine/dist/Data/poe1/ko-KR pob-zh-engine/dist/Fonts/NotoSansKR-Variable.ttf pob-zh-engine/dist/Fonts/OFL-NotoSansKR.txt localization reports tests
@@ -137,13 +137,14 @@ git commit -m "chore: establish Korean localization baseline"
 - Create: `localization/ko-KR/audit-display-closure.mjs`
 - Create: `localization/ko-KR/display-policy.json`
 - Create: `localization/ko-KR/tests/locale-audit.test.mjs`
-- Create at runtime: `reports/display-closure/locale-audit.json`
+- Create locally at runtime: `reports/display-closure/locale-audit.json` (ignored because unresolved payloads are large)
+- Create: `reports/display-closure/locale-audit-summary.json`
 
 **Interfaces:**
 - Consumes: runtime dictionary roots `pob-zh-engine/dist/Data/poe1/{zh-rTW,ko-KR}` and `display-policy.json`.
 - Produces: `formatSignature(text) -> string[]`; `auditLocale({referenceRoot,targetRoot,policy}) -> AuditReport`; process exit `1` when `issues.length > 0`.
 
-- [ ] **Step 1: Write failing unit tests for format and locale closure**
+- [x] **Step 1: Write failing unit tests for format and locale closure**
 
 Create `localization/ko-KR/tests/locale-audit.test.mjs`:
 
@@ -181,7 +182,7 @@ test('auditEntries rejects a damaged placeholder signature', () => {
 });
 ```
 
-- [ ] **Step 2: Run the tests and verify RED**
+- [x] **Step 2: Run the tests and verify RED**
 
 ```powershell
 node --test .\localization\ko-KR\tests\locale-audit.test.mjs
@@ -189,7 +190,7 @@ node --test .\localization\ko-KR\tests\locale-audit.test.mjs
 
 Expected: FAIL with `ERR_MODULE_NOT_FOUND` for `format-signature.mjs` or `locale-audit.mjs`.
 
-- [ ] **Step 3: Implement format extraction and entry auditing**
+- [x] **Step 3: Implement format extraction and entry auditing**
 
 `format-signature.mjs` must export:
 
@@ -218,15 +219,15 @@ UNEXPLAINED_LITERAL
 
 Treat Han code points as Chinese display only when the target value contains `\p{Script=Han}`. Treat exact English identity as unresolved unless `literalAllowlist[dictionary][key]` is a non-empty reason or `excluded[dictionary][key]` is a non-empty reason. Do not reject Korean values that legitimately contain ASCII tokens alongside Hangul.
 
-- [ ] **Step 4: Run unit tests and verify GREEN**
+- [x] **Step 4: Run unit tests and verify GREEN**
 
 ```powershell
 node --test .\localization\ko-KR\tests\locale-audit.test.mjs
 ```
 
-Expected: 3 tests, 3 pass, 0 fail.
+Expected: 5 tests, 5 pass, 0 fail, including the Chinese-target and compact-summary regression cases added during implementation.
 
-- [ ] **Step 5: Add the real CLI and a minimal policy**
+- [x] **Step 5: Add the real CLI and a minimal policy**
 
 `audit-display-closure.mjs` must:
 
@@ -257,15 +258,15 @@ Start `display-policy.json` with empty per-dictionary maps and documented produc
 }
 ```
 
-- [ ] **Step 6: Run the real audit and verify the expected RED baseline**
+- [x] **Step 6: Run the real audit and verify the expected RED baseline**
 
 ```powershell
 node .\localization\ko-KR\audit-display-closure.mjs
 ```
 
-Expected: exit `1`; `reports/display-closure/locale-audit.json` lists unresolved current dictionary entries. This failure is the gate later translation tasks must close.
+Expected: exit `1`; local `reports/display-closure/locale-audit.json` lists unresolved current dictionary entries and tracked `locale-audit-summary.json` records compact counts. This failure is the gate later translation tasks must close.
 
-- [ ] **Step 7: Commit the audit gate**
+- [x] **Step 7: Commit the audit gate**
 
 ```powershell
 git add localization/ko-KR reports/display-closure

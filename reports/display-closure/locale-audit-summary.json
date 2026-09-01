@@ -1,0 +1,69 @@
+{
+  "total": 111806,
+  "resolved": 42785,
+  "excluded": 0,
+  "issues": 69021,
+  "issueCodes": {
+    "MISSING_KEY": 68934,
+    "UNRESOLVED_ENGLISH": 81,
+    "FORMAT_MISMATCH": 6
+  },
+  "dictionaries": [
+    {
+      "dictionary": "tags",
+      "total": 1171,
+      "resolved": 294,
+      "excluded": 0,
+      "issues": 877
+    },
+    {
+      "dictionary": "items",
+      "total": 6781,
+      "resolved": 4279,
+      "excluded": 0,
+      "issues": 2502
+    },
+    {
+      "dictionary": "gems",
+      "total": 2610,
+      "resolved": 1229,
+      "excluded": 0,
+      "issues": 1381
+    },
+    {
+      "dictionary": "ui",
+      "total": 22652,
+      "resolved": 14175,
+      "excluded": 0,
+      "issues": 8477
+    },
+    {
+      "dictionary": "stats",
+      "total": 61304,
+      "resolved": 14542,
+      "excluded": 0,
+      "issues": 46762
+    },
+    {
+      "dictionary": "passives",
+      "total": 11548,
+      "resolved": 3262,
+      "excluded": 0,
+      "issues": 8286
+    },
+    {
+      "dictionary": "uniques",
+      "total": 1960,
+      "resolved": 1246,
+      "excluded": 0,
+      "issues": 714
+    },
+    {
+      "dictionary": "monsters",
+      "total": 3780,
+      "resolved": 3758,
+      "excluded": 0,
+      "issues": 22
+    }
+  ]
+}

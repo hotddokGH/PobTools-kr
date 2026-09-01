@@ -146,6 +146,7 @@ secrets.json
 # --- Misc --------------------------------------------------
 node_modules/
 localization/ko-KR/official-terms/.cache/
+reports/display-closure/locale-audit.json
 **/__pycache__/
 graphify-out/
 image/

@@ -1,0 +1,10 @@
+{
+  "literalAllowlist": {
+    "ui": {
+      "Path of Building": "upstream product name",
+      "PoB": "standard product abbreviation",
+      "DPS": "standard game-community acronym"
+    }
+  },
+  "excluded": {}
+}
