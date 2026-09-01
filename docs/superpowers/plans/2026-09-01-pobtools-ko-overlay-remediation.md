@@ -14,7 +14,7 @@
 
 - PoE1 only.
 - Upstream source is exactly `baf07d41d2df524d4330a58b411826339c93fac1`.
-- Reviewed Korean evidence is exactly `ba33ed80de67d8301baad930456131d581df6ae1`.
+- Reviewed Korean evidence is exactly commit `2997715df0d6257192107d799a9f414b54e6c02b` and its `pob-zh-engine` tree `6c113669065ed84d160fb186ce3dfa2701e839cb`; `ba33ed80de67d8301baad930456131d581df6ae1` is not a Korean source reference and must be rejected.
 - Accepted statuses remain exactly `official`, `reviewed`, and `intentional`; `suggested` never satisfies the overlay.
 - The overlay remains transactional: any mapping, policy, parse, escape, signature, or replacement issue means zero source writes.
 - Compatibility patch ownership remains exactly the six paths and five behavioral contracts already specified by Task 4 of `2026-09-01-pobtools-ko-maintenance-automation.md`.
@@ -303,7 +303,7 @@ git commit -m "feat: preserve structured Korean source literals"
 - Modify: `reports/maintenance/source-migration.json`
 
 **Interfaces:**
-- Consumes: exact blocker inventory from upstream `baf07d41...`, Korean evidence from `ba33ed80...`, Task 2 schema-v2/component/NUL/policy contracts, and pinned official PoE1 evidence.
+- Consumes: exact blocker inventory from upstream `baf07d41...`, Korean evidence from commit `2997715...` / engine tree `6c113669...`, Task 2 schema-v2/component/NUL/policy contracts, and pinned official PoE1 evidence.
 - Produces: a complete explicit reviewed remediation asset; two path-and-hash fixture decisions; deterministic canonical artifacts with zero migration blockers; a clean upstream overlay and source audit with zero issues.
 
 - [ ] **Step 1: Capture the exact pre-remediation blocker report deterministically**
@@ -320,7 +320,8 @@ Create `test_overlay_remediation.py` with tests that load the blocker report and
 {
   "schemaVersion": 1,
   "upstreamCommit": "baf07d41d2df524d4330a58b411826339c93fac1",
-  "localizedCommit": "ba33ed80de67d8301baad930456131d581df6ae1",
+  "localizedCommit": "2997715df0d6257192107d799a9f414b54e6c02b",
+  "localizedEngineTree": "6c113669065ed84d160fb186ce3dfa2701e839cb",
   "entries": [],
   "contexts": [],
   "internalFixtures": []

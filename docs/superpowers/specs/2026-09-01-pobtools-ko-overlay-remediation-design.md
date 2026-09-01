@@ -10,7 +10,7 @@ Make the Korean source overlay expressive enough to reproduce the pinned PoE1 ba
 
 ## Evidence That Requires the Change
 
-The exact detached upstream baseline is `baf07d41d2df524d4330a58b411826339c93fac1`. The reviewed Korean reference snapshot is `ba33ed80de67d8301baad930456131d581df6ae1`.
+The exact detached upstream baseline is `baf07d41d2df524d4330a58b411826339c93fac1`. The reviewed Korean reference snapshot is the automation-start commit `2997715df0d6257192107d799a9f414b54e6c02b`, whose `pob-zh-engine` tree is `6c113669065ed84d160fb186ce3dfa2701e839cb`. That engine tree is byte-identical through the remediation-plan commit; the earlier candidate `ba33ed80de67d8301baad930456131d581df6ae1` is explicitly rejected because its engine source is not the completed Korean snapshot.
 
 Task 4 preflight found 68 blocking overlay occurrences:
 
@@ -135,7 +135,7 @@ The two reviewed Windows filter-table mappings must preserve the original prefix
 The 38 unique missing identities are reviewed individually against:
 
 - upstream source from `baf07d41d2df524d4330a58b411826339c93fac1`;
-- Korean reference source from `ba33ed80de67d8301baad930456131d581df6ae1`;
+- Korean reference source from commit `2997715df0d6257192107d799a9f414b54e6c02b`, with exact engine tree `6c113669065ed84d160fb186ce3dfa2701e839cb`;
 - official PoE1 identities already validated by the pinned official manifests and hashes.
 
 Each accepted row records `manual-reviewed-remediation` or the existing official provenance. Repeated sources use schema-v2 contextual rows. Split, merged, and reordered expressions receive explicit Korean wording appropriate to the baseline expression order; no ordinal fallback is permitted.
