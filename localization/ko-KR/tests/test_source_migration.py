@@ -80,7 +80,9 @@ class SourceMigrationTests(unittest.TestCase):
         )
         return manifest, english, korean, accepted
 
-    def write_runtime_identity_fixture(self, root: Path) -> tuple[Path, Path]:
+    def write_runtime_identity_fixture(
+        self, root: Path
+    ) -> tuple[Path, Path, Path, dict[str, str]]:
         report_root = root / "reports" / "official-terms"
         accepted_reports = {
             "BaseItemTypes": report_root / "accepted.json",
@@ -149,7 +151,18 @@ class SourceMigrationTests(unittest.TestCase):
             ),
             encoding="utf-8",
         )
-        return runtime_root / "ko-KR" / "items.json", provenance_path
+        trusted_hashes = {
+            dictionary: hashlib.sha256(
+                (runtime_root / "zh-rTW" / f"{dictionary}.json").read_bytes()
+            ).hexdigest().upper()
+            for dictionary in migration.DICTIONARIES
+        }
+        return (
+            runtime_root / "ko-KR" / "items.json",
+            runtime_root / "zh-rTW" / "items.json",
+            provenance_path,
+            trusted_hashes,
+        )
 
     def test_reviewed_override_beats_machine_suggestion(self):
         result = migration.migrate(
@@ -290,6 +303,67 @@ class SourceMigrationTests(unittest.TestCase):
             [row["code"] for row in result.report["issues"]],
             ["UNMAPPED_ALIGNMENT"],
         )
+
+    def test_explicit_reviewed_context_resolves_one_failed_occurrence(self):
+        source = "發現新賽季天賦樹 "
+        result = migration.migrate(
+            legacy={"entries": {}},
+            overrides={
+                "entries": {},
+                "contexts": [
+                    {
+                        "path": "host/passive_tree_update.cpp",
+                        "function": "PassiveTreeUpdater::doCheck",
+                        "source": source,
+                        "target": "새 시즌 패시브 스킬 트리 ",
+                    }
+                ],
+            },
+            official={},
+            alignments=[
+                migration.Alignment(
+                    "host/timeless_jewel_ui.cpp",
+                    "Frame",
+                    source,
+                    "새 시즌 패시브 트리 ",
+                    3,
+                    440,
+                )
+            ],
+            alignment_issues=[
+                {
+                    "code": "UNMAPPED_ALIGNMENT",
+                    "path": "host/passive_tree_update.cpp",
+                    "function": "PassiveTreeUpdater::doCheck",
+                    "line": 340,
+                    "occurrenceIndex": 7,
+                    "sources": [source],
+                    "currentCandidates": [],
+                }
+            ],
+        )
+
+        self.assertEqual(
+            [
+                (row["path"], row["function"], row["target"], row["provenance"])
+                for row in result.accepted["contexts"]
+            ],
+            [
+                (
+                    "host/passive_tree_update.cpp",
+                    "PassiveTreeUpdater::doCheck",
+                    "새 시즌 패시브 스킬 트리 ",
+                    "manual-reviewed-context",
+                ),
+                (
+                    "host/timeless_jewel_ui.cpp",
+                    "Frame",
+                    "새 시즌 패시브 트리 ",
+                    "current-ko-baseline",
+                ),
+            ],
+        )
+        self.assertEqual(result.report["issues"], [])
 
     def test_alignment_requires_han_hangul_and_equal_format_signature(self):
         result = migration.migrate(
@@ -507,6 +581,47 @@ class SourceMigrationTests(unittest.TestCase):
             ],
         )
 
+    def test_checked_in_map_resolves_both_real_season_tree_contexts(self):
+        mapping = json.loads(
+            (LOCALE_ROOT / "source-translations.json").read_text(encoding="utf-8")
+        )
+        source = "發現新賽季天賦樹 "
+        probes = [
+            migration.source_overlay.Literal(
+                "host/passive_tree_update.cpp",
+                0,
+                0,
+                source,
+                "u8",
+                "PassiveTreeUpdater::doCheck",
+                340,
+            ),
+            migration.source_overlay.Literal(
+                "host/timeless_jewel_ui.cpp",
+                0,
+                0,
+                source,
+                "u8",
+                "Frame",
+                440,
+            ),
+        ]
+
+        resolved = [
+            migration.source_overlay._resolve_mapping(
+                literal, mapping["entries"], mapping["contexts"]
+            )
+            for literal in probes
+        ]
+
+        self.assertEqual(
+            [(row["target"], row["status"]) for row in resolved],
+            [
+                ("새 시즌 패시브 스킬 트리 ", "reviewed"),
+                ("새 시즌 패시브 트리 ", "reviewed"),
+            ],
+        )
+
     def test_single_viable_hangul_candidate_ignores_legacy_non_hangul_alias(self):
         upstream = (
             'void Load(){ map.emplace(u8"深淵珠寶", "Abyss Jewels"); }'
@@ -650,16 +765,18 @@ class SourceMigrationTests(unittest.TestCase):
     def test_runtime_official_identity_is_derived_from_accepted_evidence(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
-            self.write_runtime_identity_fixture(root)
+            _, _, _, trusted_hashes = self.write_runtime_identity_fixture(root)
 
-            identities = migration.load_official_runtime_identity(root)
+            identities = migration.load_official_runtime_identity(
+                root, trusted_reference_hashes=trusted_hashes
+            )
 
         self.assertEqual(identities, {"聖甲蟲：深淵": "심연 갑충석"})
 
     def test_runtime_official_target_tamper_is_blocked(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
-            items_path, _ = self.write_runtime_identity_fixture(root)
+            items_path, _, _, trusted_hashes = self.write_runtime_identity_fixture(root)
             document = json.loads(items_path.read_text(encoding="utf-8"))
             document["entries"]["Abyss Scarab"] = "변조된 갑충석"
             items_path.write_text(
@@ -667,7 +784,9 @@ class SourceMigrationTests(unittest.TestCase):
             )
 
             with self.assertRaises(migration.OfficialEvidenceError) as raised:
-                migration.load_official_runtime_identity(root)
+                migration.load_official_runtime_identity(
+                    root, trusted_reference_hashes=trusted_hashes
+                )
 
         self.assertIn(
             "OFFICIAL_DERIVED_TARGET_MISMATCH",
@@ -677,7 +796,7 @@ class SourceMigrationTests(unittest.TestCase):
     def test_runtime_official_provenance_layer_tamper_is_blocked(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
-            _, provenance_path = self.write_runtime_identity_fixture(root)
+            _, _, provenance_path, trusted_hashes = self.write_runtime_identity_fixture(root)
             document = json.loads(provenance_path.read_text(encoding="utf-8"))
             document["dictionaries"]["items"]["Abyss Scarab"]["layer"] = "manual-pob-ui"
             provenance_path.write_text(
@@ -685,7 +804,9 @@ class SourceMigrationTests(unittest.TestCase):
             )
 
             with self.assertRaises(migration.OfficialEvidenceError) as raised:
-                migration.load_official_runtime_identity(root)
+                migration.load_official_runtime_identity(
+                    root, trusted_reference_hashes=trusted_hashes
+                )
 
         self.assertIn(
             "OFFICIAL_DERIVED_PROVENANCE_MISMATCH",
@@ -695,7 +816,7 @@ class SourceMigrationTests(unittest.TestCase):
     def test_runtime_official_provenance_identity_tamper_is_blocked(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
-            _, provenance_path = self.write_runtime_identity_fixture(root)
+            _, _, provenance_path, trusted_hashes = self.write_runtime_identity_fixture(root)
             document = json.loads(provenance_path.read_text(encoding="utf-8"))
             document["dictionaries"]["items"]["Abyss Scarab"]["source"] = (
                 "BaseItemTypes:Metadata/Items/Scarabs/AnotherScarab"
@@ -705,10 +826,80 @@ class SourceMigrationTests(unittest.TestCase):
             )
 
             with self.assertRaises(migration.OfficialEvidenceError) as raised:
-                migration.load_official_runtime_identity(root)
+                migration.load_official_runtime_identity(
+                    root, trusted_reference_hashes=trusted_hashes
+                )
 
         self.assertIn(
             "OFFICIAL_DERIVED_PROVENANCE_MISMATCH",
+            {row["code"] for row in raised.exception.issues},
+        )
+
+    def test_runtime_official_traditional_chinese_source_substitution_is_blocked(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            _, chinese_path, _, trusted_hashes = self.write_runtime_identity_fixture(root)
+            document = json.loads(chinese_path.read_text(encoding="utf-8"))
+            document["entries"]["Abyss Scarab"] = "全部替換"
+            chinese_path.write_text(
+                json.dumps(document, ensure_ascii=False), encoding="utf-8"
+            )
+
+            with self.assertRaises(migration.OfficialEvidenceError) as raised:
+                migration.load_official_runtime_identity(
+                    root, trusted_reference_hashes=trusted_hashes
+                )
+
+        self.assertIn(
+            "OFFICIAL_REFERENCE_HASH_MISMATCH",
+            {row["code"] for row in raised.exception.issues},
+        )
+        result = migration.migrate(
+            legacy={"entries": {}},
+            overrides={"entries": {"全部替換": "모두 교체"}},
+            official={},
+        )
+        self.assertEqual(result.accepted["entries"]["全部替換"]["target"], "모두 교체")
+        self.assertEqual(result.accepted["entries"]["全部替換"]["status"], "reviewed")
+
+    def test_runtime_official_traditional_chinese_key_reassignment_is_blocked(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            _, chinese_path, _, trusted_hashes = self.write_runtime_identity_fixture(root)
+            document = json.loads(chinese_path.read_text(encoding="utf-8"))
+            source = document["entries"].pop("Abyss Scarab")
+            document["entries"]["Other English Key"] = source
+            chinese_path.write_text(
+                json.dumps(document, ensure_ascii=False), encoding="utf-8"
+            )
+
+            with self.assertRaises(migration.OfficialEvidenceError) as raised:
+                migration.load_official_runtime_identity(
+                    root, trusted_reference_hashes=trusted_hashes
+                )
+
+        self.assertIn(
+            "OFFICIAL_REFERENCE_HASH_MISMATCH",
+            {row["code"] for row in raised.exception.issues},
+        )
+
+    def test_runtime_official_traditional_chinese_source_collision_is_blocked(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            _, chinese_path, _, trusted_hashes = self.write_runtime_identity_fixture(root)
+            document = json.loads(chinese_path.read_text(encoding="utf-8"))
+            document["entries"]["Other English Key"] = "聖甲蟲：深淵"
+            chinese_path.write_text(
+                json.dumps(document, ensure_ascii=False), encoding="utf-8"
+            )
+
+            with self.assertRaises(migration.OfficialEvidenceError) as raised:
+                migration.load_official_runtime_identity(
+                    root, trusted_reference_hashes=trusted_hashes
+                )
+
+        self.assertIn(
+            "OFFICIAL_REFERENCE_HASH_MISMATCH",
             {row["code"] for row in raised.exception.issues},
         )
 

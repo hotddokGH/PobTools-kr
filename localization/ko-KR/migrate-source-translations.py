@@ -37,6 +37,16 @@ HAN = re.compile(
 HANGUL = re.compile(r"[가-힣]")
 SOURCE_SUFFIXES = frozenset({".cpp", ".h"})
 DICTIONARIES = ("tags", "items", "gems", "ui", "stats", "passives", "uniques", "monsters")
+TRUSTED_ZH_REFERENCE_HASHES = {
+    "tags": "BF43C0CD0A0AB7EED1B5E7D2AB192FA1844C1D08E86B08DF83B860C9F2730BF3",
+    "items": "4766379F2A3BD0DD8DFE4D6F8133E676CBE78D2CA09F92C3BADB5E28A676522D",
+    "gems": "B8E1C839B03BBC7D23E4030797477D92536F224D9202B5E76E45EADFD91B7F97",
+    "ui": "CBBE60B7E26C131127713B5A7E2FADF222203B2C8C66ED61E1A7759D6DF785C6",
+    "stats": "A78A893E027FA93518841621DF1AEE082D3CCE1512909523CF20E9C65CD99B3A",
+    "passives": "92C9B7F034537FC25E630BEED69D94B1D208E7A79B66757E28EFE684B5D960AC",
+    "uniques": "86F473E66445896C9AE9C187549D106D68F3046A2915A84D6658C976981B63A0",
+    "monsters": "DE92D3D9FFA7F362419A618C1AB398DEEDA8F64E45A5667D16DD8C47FFD3A132",
+}
 
 
 @dataclass(frozen=True)
@@ -122,19 +132,6 @@ def migrate(
     alignment_issue_rows = [dict(issue) for issue in alignment_issues]
     failed_contexts: set[tuple[str, str, str]] = set()
     failed_sources: set[str] = set()
-    for issue in alignment_issue_rows:
-        issue_sources: list[str] = []
-        if isinstance(issue.get("source"), str):
-            issue_sources.append(issue["source"])
-        if isinstance(issue.get("sources"), list):
-            issue_sources.extend(
-                source for source in issue["sources"] if isinstance(source, str)
-            )
-        for source in issue_sources:
-            failed_sources.add(source)
-            failed_contexts.add(
-                (str(issue.get("path", "")), str(issue.get("function", "")), source)
-            )
 
     for source, target in sorted(official.items()):
         if not isinstance(source, str) or not isinstance(target, str):
@@ -176,6 +173,101 @@ def migrate(
                 target, "reviewed", "manual-reviewed-override", source
             )
 
+    reviewed_contexts: set[tuple[str, str, str]] = set()
+    override_contexts = overrides.get("contexts", []) if isinstance(overrides, dict) else []
+    if isinstance(override_contexts, list):
+        for value in sorted(
+            override_contexts,
+            key=lambda row: (
+                str(row.get("path", "")) if isinstance(row, dict) else "",
+                str(row.get("function", "")) if isinstance(row, dict) else "",
+                str(row.get("source", "")) if isinstance(row, dict) else "",
+            ),
+        ):
+            if not isinstance(value, dict) or not all(
+                isinstance(value.get(field), str)
+                for field in ("path", "function", "source", "target")
+            ):
+                issues.append({"code": "INVALID_REVIEWED_CONTEXT"})
+                continue
+            path = value["path"].replace("\\", "/")
+            function = value["function"]
+            source = value["source"]
+            target = value["target"]
+            if accepted_entries.get(source, {}).get("status") == "official":
+                continue
+            if format_signature(source) != format_signature(target):
+                issues.append(
+                    {
+                        "code": "FORMAT_SIGNATURE_MISMATCH",
+                        "path": path,
+                        "function": function,
+                        "source": source,
+                        "provenance": "manual-reviewed-context",
+                        "sourceSignature": list(format_signature(source)),
+                        "targetSignature": list(format_signature(target)),
+                    }
+                )
+                continue
+            key = (path, function, source)
+            if key in reviewed_contexts:
+                issues.append(
+                    {
+                        "code": "INVALID_REVIEWED_CONTEXT",
+                        "path": path,
+                        "function": function,
+                        "source": source,
+                    }
+                )
+                continue
+            reviewed_contexts.add(key)
+            contexts.append(
+                {
+                    "path": path,
+                    "function": function,
+                    "source": source,
+                    "target": target,
+                    "status": "reviewed",
+                    "provenance": "manual-reviewed-context",
+                    "formatSignature": list(format_signature(source)),
+                }
+            )
+
+    filtered_alignment_issues: list[dict[str, Any]] = []
+    for issue in alignment_issue_rows:
+        path = str(issue.get("path", "")).replace("\\", "/")
+        function = str(issue.get("function", ""))
+        source = issue.get("source")
+        if isinstance(source, str) and (path, function, source) in reviewed_contexts:
+            continue
+        sources = issue.get("sources")
+        if isinstance(sources, list):
+            remaining = [
+                source
+                for source in sources
+                if isinstance(source, str)
+                and (path, function, source) not in reviewed_contexts
+            ]
+            if not remaining:
+                continue
+            issue = {**issue, "sources": remaining}
+        filtered_alignment_issues.append(issue)
+    alignment_issue_rows = filtered_alignment_issues
+
+    for issue in alignment_issue_rows:
+        issue_sources: list[str] = []
+        if isinstance(issue.get("source"), str):
+            issue_sources.append(issue["source"])
+        if isinstance(issue.get("sources"), list):
+            issue_sources.extend(
+                source for source in issue["sources"] if isinstance(source, str)
+            )
+        for source in issue_sources:
+            failed_sources.add(source)
+            failed_contexts.add(
+                (str(issue.get("path", "")), str(issue.get("function", "")), source)
+            )
+
     candidates: dict[str, list[Alignment]] = defaultdict(list)
     for row in sorted(
         alignments,
@@ -188,6 +280,8 @@ def migrate(
         ),
     ):
         if row.source in accepted_entries:
+            continue
+        if (row.path, row.function, row.source) in reviewed_contexts:
             continue
         if not HAN.search(row.source):
             issues.append(_alignment_issue("UPSTREAM_NOT_HAN", row))
@@ -211,7 +305,11 @@ def migrate(
 
     for source, rows in sorted(candidates.items()):
         targets = {row.target for row in rows}
-        if len(targets) == 1 and source not in failed_sources:
+        if (
+            len(targets) == 1
+            and source not in failed_sources
+            and source not in {key[2] for key in reviewed_contexts}
+        ):
             accepted_entries[source] = _entry(
                 next(iter(targets)), "reviewed", "current-ko-baseline", source
             )
@@ -1163,7 +1261,11 @@ def _accepted_official_by_dictionary(
     }
 
 
-def load_official_runtime_identity(repository_root: Path) -> dict[str, str]:
+def load_official_runtime_identity(
+    repository_root: Path,
+    *,
+    trusted_reference_hashes: dict[str, str] | None = None,
+) -> dict[str, str]:
     provenance = json.loads(
         (repository_root / "reports/display-closure/provenance.json").read_text(encoding="utf-8")
     )
@@ -1181,9 +1283,20 @@ def load_official_runtime_identity(repository_root: Path) -> dict[str, str]:
             corrected_by_dictionary[str(row.get("dictionary", "stats"))].add(row["source"])
     candidates: dict[str, set[str]] = defaultdict(set)
     issues: list[dict[str, str]] = []
+    trusted_hashes = trusted_reference_hashes or TRUSTED_ZH_REFERENCE_HASHES
     for dictionary in DICTIONARIES:
         chinese_path = locale_root / "zh-rTW" / f"{dictionary}.json"
         korean_path = locale_root / "ko-KR" / f"{dictionary}.json"
+        expected_hash = trusted_hashes.get(dictionary, "")
+        if not expected_hash or not _matches_manifest_sha256(chinese_path, expected_hash):
+            issues.append(
+                _evidence_issue(
+                    "OFFICIAL_REFERENCE_HASH_MISMATCH",
+                    chinese_path,
+                    f"{dictionary} Traditional Chinese reference differs from pinned bytes",
+                )
+            )
+            continue
         chinese = json.loads(chinese_path.read_text(encoding="utf-8"))["entries"]
         korean = json.loads(korean_path.read_text(encoding="utf-8"))["entries"]
         dictionary_provenance = provenance["dictionaries"][dictionary]

@@ -5,10 +5,10 @@
   "upstreamHanSources": 1381,
   "counts": {
     "official": 113,
-    "reviewed": 1252,
+    "reviewed": 1253,
     "suggested": 1499,
     "ambiguous": 8,
-    "unmapped": 35
+    "unmapped": 34
   },
   "issues": [
     {
@@ -807,17 +807,6 @@
       "occurrenceIndex": 42,
       "sources": [
         "简体"
-      ],
-      "currentCandidates": []
-    },
-    {
-      "code": "UNMAPPED_ALIGNMENT",
-      "path": "host/passive_tree_update.cpp",
-      "function": "PassiveTreeUpdater::doCheck",
-      "line": 340,
-      "occurrenceIndex": 7,
-      "sources": [
-        "發現新賽季天賦樹 "
       ],
       "currentCandidates": []
     },

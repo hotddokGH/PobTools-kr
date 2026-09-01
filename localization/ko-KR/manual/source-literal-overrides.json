@@ -30,5 +30,13 @@
     "翻譯資料包內容驗證失敗": "번역 데이터 패키지 내용 검증에 실패했습니다",
     "過濾器「儲存並關閉」失敗：": "필터 '저장 후 닫기' 실패: ",
     "讀取失敗：": "읽기 실패: "
-  }
+  },
+  "contexts": [
+    {
+      "path": "host/passive_tree_update.cpp",
+      "function": "PassiveTreeUpdater::doCheck",
+      "source": "發現新賽季天賦樹 ",
+      "target": "새 시즌 패시브 스킬 트리 "
+    }
+  ]
 }
