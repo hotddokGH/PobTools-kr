@@ -3,6 +3,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { formatSignature } from './lib/format-signature.mjs';
 import { mergeLayers, reflowLineBreaks } from './lib/merge-layers.mjs';
+import { deriveUnambiguousPatterns } from './lib/official-patterns.mjs';
 
 const localeRoot = dirname(fileURLToPath(import.meta.url));
 const repositoryRoot = dirname(dirname(localeRoot));
@@ -111,15 +112,33 @@ const officialByDictionary = {
 };
 
 const manualDocument = readJson(join(localeRoot, 'manual', 'pob-ui.json'));
+const machineDocument = readJson(join(localeRoot, 'manual', 'machine-fallback.json'));
+const machineOverrides = readJson(join(localeRoot, 'manual', 'machine-fallback-overrides.json'));
+const runtimeInventory = readJson(join(localeRoot, 'runtime-inventory.json'));
 const dynamicDocument = readJson(join(localeRoot, 'manual', 'dynamic-patterns.json'));
 const policy = readJson(join(localeRoot, 'display-policy.json'));
 if (dynamicDocument.patch !== patch) throw new Error(`unexpected dynamic pattern patch: ${dynamicDocument.patch}`);
+if (machineDocument.inventorySha256 !== runtimeInventory.sha256) {
+  throw new Error('machine fallback inventory hash does not match current runtime inventory');
+}
+const unresolvedMachineRows = runtimeInventory.entries.filter((key) => (
+  !Object.hasOwn(machineDocument.entries, key) && !Object.hasOwn(machineOverrides.entries, key)
+));
+if (unresolvedMachineRows.length > 0) {
+  throw new Error(`runtime machine fallback has ${unresolvedMachineRows.length} unresolved rows`);
+}
+const derivedOfficialPatterns = deriveUnambiguousPatterns({ rows: reports.stats.report.rows, patch });
+const officialStatDictionaries = new Set(dynamicDocument.officialStatDictionaries ?? []);
 
 const sourceFiles = {
   tags: [`official PoE patch ${patch}: RePoE English/Korean mods.min.json`],
   items: [`official PoE patch ${patch}: English/Korean BaseItemTypes.datc64`],
   gems: [`official PoE patch ${patch}: English/Korean ActiveSkills.datc64 and BaseItemTypes.datc64`],
-  ui: [`official PoE patch ${patch}: client strings, stat descriptions and exact game names`, 'manual PoB-only UI: localization/ko-KR/manual/pob-ui.json'],
+  ui: [
+    `official PoE patch ${patch}: client strings, stat descriptions and exact game names`,
+    'manual PoB-only UI: localization/ko-KR/manual/pob-ui.json',
+    'machine-assisted PoB-only UI fallback: Helsinki-NLP/opus-mt-tc-big-en-ko (CC-BY-4.0)',
+  ],
   stats: [`official PoE patch ${patch}: RePoE English/Korean stat_translations.min.json`],
   passives: [`official PoE patch ${patch}: passive names, client strings and stat descriptions`],
   uniques: [`official PoE patch ${patch}: RePoE English/Korean uniques.min.json`],
@@ -132,16 +151,34 @@ mkdirSync(dirname(provenancePath), { recursive: true });
 const provenance = {
   locale: 'ko-KR',
   patch,
-  precedence: ['official-exact', 'official-structural-pattern', 'manual-pob-ui', 'intentional-literal'],
+  precedence: [
+    'official-exact',
+    'official-structural-pattern',
+    'manual-pob-ui',
+    'reviewed-machine-override',
+    'machine-assisted-pob-ui',
+    'intentional-literal',
+  ],
   dictionaries: {},
   conflicts: {},
+  structuralConflicts: derivedOfficialPatterns.conflicts,
 };
 
 for (const dictionary of ['tags', 'items', 'gems', 'ui', 'stats', 'passives', 'uniques', 'monsters']) {
   const referenceDocument = readJson(join(referenceRoot, `${dictionary}.json`));
+  const referenceEntries = { ...referenceDocument.entries };
+  if (dictionary === 'ui') {
+    for (const key of runtimeInventory.entries) referenceEntries[key] = true;
+  }
   const official = officialByDictionary[dictionary];
-  const patterns = dynamicDocument.patterns.filter((entry) => (entry.dictionary ?? 'stats') === dictionary);
-  const correctedSources = new Set(patterns.map((entry) => entry.source));
+  const reviewedPatterns = dynamicDocument.patterns.filter((entry) => (entry.dictionary ?? 'stats') === dictionary);
+  const correctedSources = new Set(reviewedPatterns.map((entry) => entry.source));
+  const patterns = officialStatDictionaries.has(dictionary)
+    ? [
+      ...reviewedPatterns,
+      ...derivedOfficialPatterns.patterns.filter((entry) => !correctedSources.has(entry.source)),
+    ]
+    : reviewedPatterns;
   const officialExact = {};
   const uncorrectedFormatMismatches = [];
 
@@ -169,10 +206,22 @@ for (const dictionary of ['tags', 'items', 'gems', 'ui', 'stats', 'passives', 'u
 
   const result = mergeLayers({
     dictionary,
-    reference: referenceDocument.entries,
+    reference: referenceEntries,
     officialExact,
     officialPatterns: patterns,
-    manual: dictionary === 'ui' ? manualDocument.entries : {},
+    fallbackLayers: dictionary === 'ui' ? [
+      { layer: 'manual-pob-ui', source: 'manual/pob-ui.json', entries: manualDocument.entries },
+      {
+        layer: 'reviewed-machine-override',
+        source: 'manual/machine-fallback-overrides.json',
+        entries: machineOverrides.entries,
+      },
+      {
+        layer: 'machine-assisted-pob-ui',
+        source: 'manual/machine-fallback.json',
+        entries: machineDocument.entries,
+      },
+    ] : [],
     literals: policy.literalAllowlist?.[dictionary] ?? {},
   });
 
@@ -184,7 +233,7 @@ for (const dictionary of ['tags', 'items', 'gems', 'ui', 'stats', 'passives', 'u
   writeFileSync(join(targetRoot, `${dictionary}.json`), `${JSON.stringify(output, null, 2)}\n`, 'utf8');
   provenance.dictionaries[dictionary] = result.provenance;
   provenance.conflicts[dictionary] = official.conflicts;
-  console.log(`${dictionary}.json: ${Object.keys(result.entries).length}/${Object.keys(referenceDocument.entries).length}`);
+  console.log(`${dictionary}.json: ${Object.keys(result.entries).length}/${Object.keys(referenceEntries).length}`);
 }
 
 writeFileSync(provenancePath, `${JSON.stringify(provenance, null, 2)}\n`, 'utf8');

@@ -1,0 +1,17 @@
+{
+  "source": "reviewed overrides for offline Marian rejection rows",
+  "entries": {
+    "* Arcanist brand giving brand skill flag to gems breaking stuff": "* 비전술사 낙인이 젬에 낙인 스킬 플래그를 부여해 발생하던 문제 수정",
+    "        - If you have a set named ^4Leveling^7, it will not match to": "        - ^4레벨링^7이라는 세트가 있으면 다음 항목과 일치하지 않습니다",
+    "* Fix Femurs of the Saints": "* 성자의 대퇴골 수정",
+    "^7\t  The most important ones (such as increased life from tree) are still present, however.": "^7\t  하지만 패시브 트리의 생명력 증가처럼 가장 중요한 항목은 그대로 유지됩니다.",
+    "^7\t* Blade Flurry's per-stage damage multiplier no longer applies to Decay": "^7\t* 질풍의 칼날 단계별 피해 배율이 더 이상 부패에 적용되지 않음",
+    "^7\t* Have you been hit by Fire/Cold/Lightning Recently?": "^7\t* 최근 화염/냉기/번개 피해에 피격되었습니까?",
+    "^7        * CWDT": "^7        * 피격 시 시전 보조(CWDT)",
+    "^7    * Flameblast's per-stage damage multiplier no longer applies to Decay": "^7    * 화염 폭발 단계별 피해 배율이 더 이상 부패에 적용되지 않음",
+    "^7  * Update Tattoos": "^7  * 문신 업데이트",
+    "^7Additionally, the handling of secondary effects (bleed, poison, ignite, shock, and freeze) has been improved.": "^7또한 보조 효과(출혈, 중독, 점화, 감전, 동결) 처리 방식이 개선되었습니다.",
+    "^7GitHub page: ^x4040FFhttps://github.com/PathOfBuildingCommunity/PathOfBuilding": "^7GitHub 페이지: ^x4040FFhttps://github.com/PathOfBuildingCommunity/PathOfBuilding",
+    "^7however from this point some new features may only be available for 3.0 builds.": "^7하지만 이 시점부터 일부 새로운 기능은 3.0 빌드에서만 사용할 수 있습니다."
+  }
+}

@@ -78,13 +78,21 @@ function compileStructuralPattern(pattern, dictionary) {
   };
 }
 
-function applyStructuralPatterns(key, patterns, dictionary) {
-  const prepared = patterns.map((pattern) => compileStructuralPattern(pattern, dictionary));
+function prepareStructuralPatterns(patterns, dictionary) {
+  const index = new Map();
+  for (const pattern of patterns) {
+    const prepared = compileStructuralPattern(pattern, dictionary);
+    if (!index.has(prepared.structure)) index.set(prepared.structure, []);
+    index.get(prepared.structure).push(prepared);
+  }
+  return index;
+}
+
+function applyStructuralPatterns(key, patternIndex, dictionary) {
   const structure = normalizeStructuralText(key);
   const matches = [];
 
-  for (const pattern of prepared) {
-    if (pattern.structure !== structure) continue;
+  for (const pattern of patternIndex.get(structure) ?? []) {
     const match = pattern.expression.exec(key);
     if (!match) continue;
     const value = pattern.target.replace(PLACEHOLDER_PATTERN, (placeholder, index) => (
@@ -120,6 +128,12 @@ function assertValidTranslation(dictionary, key, value) {
   if (JSON.stringify(sourceSignature) !== JSON.stringify(targetSignature)) {
     throw new Error(`format mismatch: ${dictionary}/${key}`);
   }
+  if (/\p{Script=Han}/u.test(value)) {
+    throw new Error(`Han display text: ${dictionary}/${key}`);
+  }
+  if (/ZXQPH|QXZ/u.test(value)) {
+    throw new Error(`unrestored machine marker: ${dictionary}/${key}`);
+  }
 }
 
 export function mergeLayers({
@@ -128,14 +142,27 @@ export function mergeLayers({
   officialExact = {},
   officialPatterns = {},
   manual = {},
+  fallbackLayers,
   literals = {},
 }) {
   const entries = {};
   const provenance = {};
   const structuralPatterns = Array.isArray(officialPatterns) ? officialPatterns : null;
+  const structuralPatternIndex = structuralPatterns
+    ? prepareStructuralPatterns(structuralPatterns, dictionary)
+    : null;
+  const preparedFallbackLayers = fallbackLayers ?? [{
+    layer: 'manual-pob-ui',
+    source: 'manual/pob-ui.json',
+    entries: manual,
+  }];
 
-  if (structuralPatterns) {
-    for (const pattern of structuralPatterns) compileStructuralPattern(pattern, dictionary);
+  for (const fallback of preparedFallbackLayers) {
+    if (!fallback || typeof fallback.layer !== 'string' || !fallback.layer
+      || typeof fallback.source !== 'string' || !fallback.source
+      || !fallback.entries || typeof fallback.entries !== 'object') {
+      throw new Error(`invalid fallback layer: ${dictionary}`);
+    }
   }
 
   for (const key of Object.keys(reference).sort((left, right) => left.localeCompare(right, 'en'))) {
@@ -150,7 +177,7 @@ export function mergeLayers({
       value = exact.value;
       record = { layer: 'official-exact', source: exact.source };
     } else if (structuralPatterns) {
-      const structural = applyStructuralPatterns(key, structuralPatterns, dictionary);
+      const structural = applyStructuralPatterns(key, structuralPatternIndex, dictionary);
       if (structural) {
         value = structural.value;
         record = structural.provenance;
@@ -160,13 +187,20 @@ export function mergeLayers({
       record = { layer: 'official-structural-pattern', source: officialPatterns[key].source };
     }
 
-    if (value === undefined && Object.hasOwn(manual, key)) {
-      value = manual[key];
-      record = { layer: 'manual-pob-ui', source: 'manual/pob-ui.json' };
-    } else if (value === undefined && Object.hasOwn(literals, key)) {
+    if (value === undefined) {
+      for (const fallback of preparedFallbackLayers) {
+        if (!Object.hasOwn(fallback.entries, key)) continue;
+        value = fallback.entries[key];
+        record = { layer: fallback.layer, source: fallback.source };
+        break;
+      }
+    }
+
+    if (value === undefined && Object.hasOwn(literals, key)) {
       value = key;
       record = { layer: 'literal', source: literals[key] };
-    } else if (value === undefined) {
+    }
+    if (value === undefined) {
       continue;
     }
 

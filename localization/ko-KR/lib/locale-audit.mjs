@@ -76,6 +76,30 @@ export function auditEntries({ dictionary, reference, target, policy }) {
   };
 }
 
+export function auditRuntimeEntries({ inventory, dictionaries, loadOrder, policy }) {
+  const target = {};
+  for (const dictionary of loadOrder) {
+    for (const [key, value] of Object.entries(dictionaries[dictionary] ?? {})) {
+      if (!hasOwn(target, key)) target[key] = value;
+    }
+  }
+
+  const literalAllowlist = {};
+  const excluded = {};
+  for (const rows of Object.values(policy?.literalAllowlist ?? {})) Object.assign(literalAllowlist, rows);
+  for (const rows of Object.values(policy?.excluded ?? {})) Object.assign(excluded, rows);
+  const reference = Object.fromEntries(inventory.map((key) => [key, true]));
+  return auditEntries({
+    dictionary: 'runtime',
+    reference,
+    target,
+    policy: {
+      literalAllowlist: { runtime: literalAllowlist },
+      excluded: { runtime: excluded },
+    },
+  });
+}
+
 function readJson(path) {
   return JSON.parse(readFileSync(path, 'utf8'));
 }
@@ -106,6 +130,28 @@ export function auditLocale({ referenceRoot, targetRoot, policy }) {
   }
 
   return { total, resolved, excluded, dictionaries, issues };
+}
+
+export function auditRuntimeLocale({ inventory, targetRoot, policy }) {
+  const meta = readJson(join(targetRoot, 'meta.json'));
+  const dictionaries = {};
+  for (const file of meta.load_order) {
+    const dictionary = basename(file, '.json');
+    dictionaries[dictionary] = readJson(join(targetRoot, file)).entries ?? {};
+  }
+  const result = auditRuntimeEntries({
+    inventory,
+    dictionaries,
+    loadOrder: meta.load_order.map((file) => basename(file, '.json')),
+    policy,
+  });
+  return {
+    total: result.total,
+    resolved: result.resolved,
+    excluded: result.excluded,
+    dictionaries: [result],
+    issues: result.issues,
+  };
 }
 
 export function summarizeAudit(report) {

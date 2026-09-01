@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { formatSignature } from '../lib/format-signature.mjs';
-import { auditEntries, summarizeAudit } from '../lib/locale-audit.mjs';
+import { auditEntries, auditRuntimeEntries, summarizeAudit } from '../lib/locale-audit.mjs';
 
 test('formatSignature preserves printf, numbered placeholders, newlines and colour tags', () => {
   assert.deepEqual(
@@ -56,4 +56,19 @@ test('summarizeAudit keeps counts without copying issue payloads', () => {
     issueCodes: { MISSING_KEY: 1 },
     dictionaries: [{ dictionary: 'ui', total: 2, resolved: 1, excluded: 0, issues: 1 }],
   });
+});
+
+test('runtime audit accepts a key resolved by any loaded dictionary', () => {
+  const report = auditRuntimeEntries({
+    inventory: ['Build', 'Maximum Life'],
+    dictionaries: {
+      tags: { 'Maximum Life': '최대 생명력' },
+      ui: { Build: '빌드' },
+    },
+    loadOrder: ['tags', 'ui'],
+    policy: { literalAllowlist: {}, excluded: {} },
+  });
+  assert.equal(report.total, 2);
+  assert.equal(report.resolved, 2);
+  assert.deepEqual(report.issues, []);
 });

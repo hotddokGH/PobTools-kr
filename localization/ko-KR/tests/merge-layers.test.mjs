@@ -33,6 +33,28 @@ test('manual text may fill PoB-only UI when no official row exists', () => {
   assert.equal(result.provenance['Full DPS'].layer, 'manual-pob-ui');
 });
 
+test('reviewed UI overrides machine fallback and each layer keeps its provenance', () => {
+  const result = mergeLayers({
+    dictionary: 'ui',
+    reference: { Build: true, 'Long help text': true },
+    officialExact: {},
+    officialPatterns: {},
+    fallbackLayers: [
+      { layer: 'manual-pob-ui', source: 'manual/pob-ui.json', entries: { Build: '빌드' } },
+      {
+        layer: 'machine-assisted-pob-ui',
+        source: 'manual/machine-fallback.json',
+        entries: { Build: '구축', 'Long help text': '긴 도움말' },
+      },
+    ],
+    literals: {},
+  });
+  assert.equal(result.entries.Build, '빌드');
+  assert.equal(result.provenance.Build.layer, 'manual-pob-ui');
+  assert.equal(result.entries['Long help text'], '긴 도움말');
+  assert.equal(result.provenance['Long help text'].layer, 'machine-assisted-pob-ui');
+});
+
 test('official structural patterns expand signed decimals and ranges', () => {
   assert.equal(
     normalizeStructuralText('+12.5 to 18% increased maximum Life\n^xFF00FFLimited'),

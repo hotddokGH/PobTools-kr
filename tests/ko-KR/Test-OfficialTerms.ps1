@@ -227,8 +227,8 @@ foreach ($spec in $namedTableSpecs) {
             $failures.Add("Korean $($spec.locale).json must contain an entries object")
         }
         else {
-            if ($actualEntries.Keys.Count -ne $expectedKeys.Count) {
-                $failures.Add("Korean $($spec.locale).json must contain all and only $($expectedKeys.Count) exact $($spec.table) matches; found $($actualEntries.Keys.Count)")
+            if ($actualEntries.Keys.Count -lt $expectedKeys.Count) {
+                $failures.Add("Korean $($spec.locale).json must contain at least $($expectedKeys.Count) exact $($spec.table) matches; found $($actualEntries.Keys.Count)")
             }
             $missingKeys = @($expectedKeys | Where-Object { -not $actualEntries.ContainsKey($_) })
             $wrongKeys = @($expectedKeys | Where-Object { $actualEntries.ContainsKey($_) -and $actualEntries[$_] -ne $officialByEnglish[$_] })
@@ -237,12 +237,6 @@ foreach ($spec in $namedTableSpecs) {
             }
             if ($wrongKeys.Count -gt 0) {
                 $failures.Add("Korean $($spec.locale).json differs from $($wrongKeys.Count) official Korean name(s), including: $(@($wrongKeys | Select-Object -First 5) -join ' | ')")
-            }
-            $expectedSet = [System.Collections.Generic.HashSet[string]]::new([System.StringComparer]::Ordinal)
-            foreach ($key in $expectedKeys) { [void]$expectedSet.Add($key) }
-            $unexpectedKeys = @($actualEntries.Keys | Where-Object { -not $expectedSet.Contains($_) })
-            if ($unexpectedKeys.Count -gt 0) {
-                $failures.Add("Korean $($spec.locale).json contains $($unexpectedKeys.Count) key(s) not proven by the $($spec.table) mapping")
             }
         }
     }
@@ -330,8 +324,8 @@ if ($null -ne $statManifest -and $null -ne $statAccepted -and $null -ne $statCon
             $failures.Add('Korean stats.json must contain an entries object')
         }
         else {
-            if ($actualStatEntries.Keys.Count -ne $expectedStatKeys.Count) {
-                $failures.Add("Korean stats.json must contain all and only $($expectedStatKeys.Count) exact official stat matches; found $($actualStatEntries.Keys.Count)")
+            if ($actualStatEntries.Keys.Count -lt $expectedStatKeys.Count) {
+                $failures.Add("Korean stats.json must contain at least $($expectedStatKeys.Count) exact official stat matches; found $($actualStatEntries.Keys.Count)")
             }
             $missingStatKeys = @($expectedStatKeys | Where-Object { -not $actualStatEntries.ContainsKey($_) })
             $wrongStatKeys = @($expectedStatKeys | Where-Object {
@@ -344,12 +338,6 @@ if ($null -ne $statManifest -and $null -ne $statAccepted -and $null -ne $statCon
             }
             if ($wrongStatKeys.Count -gt 0) {
                 $failures.Add("Korean stats.json differs from $($wrongStatKeys.Count) official Korean stat template(s), including: $(@($wrongStatKeys | Select-Object -First 5) -join ' | ')")
-            }
-            $expectedStatSet = [System.Collections.Generic.HashSet[string]]::new([System.StringComparer]::Ordinal)
-            foreach ($key in $expectedStatKeys) { [void]$expectedStatSet.Add($key) }
-            $unexpectedStatKeys = @($actualStatEntries.Keys | Where-Object { -not $expectedStatSet.Contains($_) })
-            if ($unexpectedStatKeys.Count -gt 0) {
-                $failures.Add("Korean stats.json contains $($unexpectedStatKeys.Count) key(s) not proven by the official stat mapping")
             }
         }
     }
@@ -432,8 +420,8 @@ if ($null -ne $clientStringsAccepted -and $null -ne $clientStrings2Accepted -and
         $failures.Add('Korean ui.json must contain an entries object')
     }
     else {
-        if ($actualUiEntries.Keys.Count -ne $expectedUi.Keys.Count) {
-            $failures.Add("Korean ui.json must contain all and only $($expectedUi.Keys.Count) exact official-plus-manual UI mappings; found $($actualUiEntries.Keys.Count)")
+        if ($actualUiEntries.Keys.Count -lt $expectedUi.Keys.Count) {
+            $failures.Add("Korean ui.json must contain at least $($expectedUi.Keys.Count) exact official-plus-manual UI mappings; found $($actualUiEntries.Keys.Count)")
         }
         $missingUiKeys = @($expectedUi.Keys | Where-Object { -not $actualUiEntries.ContainsKey($_) })
         $wrongUiKeys = @($expectedUi.Keys | Where-Object {
@@ -446,10 +434,6 @@ if ($null -ne $clientStringsAccepted -and $null -ne $clientStrings2Accepted -and
         }
         if ($wrongUiKeys.Count -gt 0) {
             $failures.Add("Korean ui.json differs from $($wrongUiKeys.Count) expected UI value(s), including: $(@($wrongUiKeys | Select-Object -First 5) -join ' | ')")
-        }
-        $unexpectedUiKeys = @($actualUiEntries.Keys | Where-Object { -not $expectedUi.ContainsKey($_) })
-        if ($unexpectedUiKeys.Count -gt 0) {
-            $failures.Add("Korean ui.json contains $($unexpectedUiKeys.Count) UI key(s) outside the deterministic official-plus-manual set")
         }
     }
 }
@@ -663,6 +647,33 @@ if ($null -ne $accepted -and $acceptedRows.Count -gt 0) {
             $unexpectedItemKeys = @($actualItemEntries.Keys | Where-Object { -not $expectedItemKeySet.Contains($_) })
             if ($unexpectedItemKeys.Count -gt 0) {
                 $failures.Add("Korean items.json contains $($unexpectedItemKeys.Count) item key(s) not proven by the official BaseItemTypes mapping")
+            }
+        }
+    }
+}
+
+$acceptedEnglish = [System.Collections.Generic.HashSet[string]]::new([System.StringComparer]::Ordinal)
+foreach ($acceptedFile in Get-ChildItem -LiteralPath $reportRoot -Recurse -Filter 'accepted.json' -File) {
+    $acceptedDocument = Read-JsonFile -Path $acceptedFile.FullName
+    if ($null -eq $acceptedDocument) { continue }
+    foreach ($row in @($acceptedDocument['rows'])) {
+        if (-not [string]::IsNullOrWhiteSpace([string]$row['english'])) {
+            [void]$acceptedEnglish.Add([string]$row['english'])
+        }
+    }
+}
+if ($null -ne $provenance) {
+    foreach ($dictionary in @('tags', 'items', 'gems', 'ui', 'stats', 'passives', 'uniques', 'monsters')) {
+        $conflicted = [System.Collections.Generic.HashSet[string]]::new([System.StringComparer]::Ordinal)
+        foreach ($row in @($provenance['conflicts'][$dictionary])) {
+            [void]$conflicted.Add([string]$row['english'])
+        }
+        foreach ($pair in $provenance['dictionaries'][$dictionary].GetEnumerator()) {
+            if (-not $acceptedEnglish.Contains([string]$pair.Key) -or $conflicted.Contains([string]$pair.Key)) {
+                continue
+            }
+            if ([string]$pair.Value['layer'] -notin @('official-exact', 'official-structural-pattern')) {
+                $failures.Add("Official key '$($pair.Key)' in $dictionary has non-official provenance '$($pair.Value['layer'])'")
             }
         }
     }

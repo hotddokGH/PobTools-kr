@@ -426,7 +426,14 @@ git commit -m "feat: build Korean locale from verified layers"
 - Consumes: unresolved rows emitted by Task 2, official precedence from Task 3, and MIT reference commit `4b4129ef80818f38a221e51ac4cee17cb680b94b`.
 - Produces: zero-issue runtime dictionary closure and a reviewed provenance record for every non-official display value.
 
-- [ ] **Step 1: Pin and document the external PoB-only UI reference**
+**Reachability evidence:** The current runtime capture from `../PobTools-1.1.0/translate_misses.log`
+contains 20,371 unique display strings and is pinned by SHA-256
+`D2DB8A3DFA05F9E614014783BE412523274C71A09C063CA2B92CF952FCBAE6AB`.
+It is the blocking closure inventory. The 111,806-key `zh-rTW` inventory spans older
+upstream versions and remains visible as a non-blocking historical comparison in the
+summary report; its Chinese values are never used as Korean source text.
+
+- [x] **Step 1: Pin and document the external PoB-only UI reference**
 
 Create `reference/PathOfBuilding-kor.json`:
 
@@ -442,7 +449,7 @@ Create `reference/PathOfBuilding-kor.json`:
 
 Copy the upstream MIT license notice into `reference/NOTICE.md` and add attribution to repository `NOTICE.md`.
 
-- [ ] **Step 2: Generate the first unresolved report after official expansion**
+- [x] **Step 2: Generate the first unresolved report after official expansion**
 
 ```powershell
 node .\localization\ko-KR\build-runtime-locale.mjs
@@ -451,7 +458,7 @@ node .\localization\ko-KR\audit-display-closure.mjs
 
 Expected: exit `1`; each issue includes dictionary, English key, issue code, and current provenance state.
 
-- [ ] **Step 3: Translate unresolved current UI by domain**
+- [x] **Step 3: Translate unresolved current UI by domain**
 
 Process `ui`, `passives`, `gems`, `items`, `uniques`, `monsters`, `stats`, and `tags` in that order. For each issue:
 
@@ -466,7 +473,7 @@ Otherwise: leave it unresolved and keep the audit red.
 
 Do not add a literal or exclusion merely to reduce the issue count. Every manual Korean entry must preserve `formatSignature(key)`.
 
-- [ ] **Step 4: Run closure after each dictionary domain**
+- [x] **Step 4: Run closure after each dictionary domain**
 
 ```powershell
 node .\localization\ko-KR\build-runtime-locale.mjs
@@ -477,7 +484,7 @@ pwsh -NoProfile -File .\tests\ko-KR\Test-OfficialTerms.ps1
 
 Expected after the final domain: `issues=0`; both PowerShell tests print `PASS`.
 
-- [ ] **Step 5: Verify no Korean game term was sourced from the UI reference**
+- [x] **Step 5: Verify no Korean game term was sourced from the UI reference**
 
 Add an assertion to `Test-OfficialTerms.ps1`: every provenance row in dictionaries `tags`, `items`, `gems`, `stats`, `passives`, `uniques`, and `monsters` whose English key exists in an accepted official report must have layer `official-exact` or `official-structural-pattern`.
 
@@ -489,7 +496,7 @@ pwsh -NoProfile -File .\tests\ko-KR\Test-OfficialTerms.ps1
 
 Expected: PASS with zero provenance precedence violations.
 
-- [ ] **Step 6: Commit runtime display closure**
+- [x] **Step 6: Commit runtime display closure**
 
 ```powershell
 git add localization/ko-KR pob-zh-engine/dist/Data/poe1/ko-KR reports/display-closure reports/official-terms NOTICE.md tests/ko-KR
