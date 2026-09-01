@@ -16,6 +16,10 @@ import tree_sitter_cpp
 
 
 ACCEPTED_STATUSES = frozenset({"official", "reviewed", "intentional"})
+PINNED_SOURCE_COMMITS = {
+    "upstream": "baf07d41d2df524d4330a58b411826339c93fac1",
+    "localized": "ba33ed80de67d8301baad930456131d581df6ae1",
+}
 _HAN = re.compile(
     r"[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF"
     r"\U00020000-\U0002FA1F\U00030000-\U000323AF]"
@@ -35,6 +39,22 @@ class Literal:
     function: str
     line: int
     occurrence_index: int = 0
+
+
+@dataclass(frozen=True)
+class ParseRecoveryEvidence:
+    path: str
+    source_role: str
+    source_commit: str
+    file_sha256: str
+    recovery_sha256: str
+    reason: str
+
+
+class PolicyValidationError(ValueError):
+    def __init__(self, details: list[str]):
+        super().__init__("; ".join(details))
+        self.details = details
 
 
 class UnsupportedEscape(ValueError):
@@ -67,7 +87,15 @@ def format_signature(value: str) -> tuple[str, ...]:
     return tuple(sorted(tokens))
 
 
-def _decode_escape_text(value: str, *, start: int, end: int, line: int, function: str) -> str:
+def _decode_escape_text(
+    value: str,
+    *,
+    start: int,
+    end: int,
+    line: int,
+    function: str,
+    allow_legacy_nul: bool = False,
+) -> str:
     output: list[str] = []
     cursor = 0
     simple = {"\\": "\\", '"': '"', "n": "\n", "r": "\r", "t": "\t"}
@@ -80,6 +108,14 @@ def _decode_escape_text(value: str, *, start: int, end: int, line: int, function
         if cursor + 1 >= len(value):
             raise UnsupportedEscape("\\<EOF>", start, end, line, function)
         marker = value[cursor + 1]
+        if (
+            allow_legacy_nul
+            and marker == "0"
+            and (cursor + 2 >= len(value) or value[cursor + 2] not in "01234567")
+        ):
+            output.append("\0")
+            cursor += 2
+            continue
         if marker in simple:
             output.append(simple[marker])
             cursor += 2
@@ -121,7 +157,14 @@ def _function_name(node: Node, text: bytes) -> str:
     return text[declarator.start_byte : declarator.end_byte].decode("utf-8")
 
 
-def _decode_literal(node: Node, text: bytes, function: str, line: int) -> tuple[str, str]:
+def _decode_literal(
+    node: Node,
+    text: bytes,
+    function: str,
+    line: int,
+    *,
+    allow_legacy_nul: bool = False,
+) -> tuple[str, str]:
     raw = text[node.start_byte : node.end_byte]
     if node.type == "raw_string_literal":
         match = _RAW_OPEN.fullmatch(raw[: raw.find(b"(") + 1])
@@ -145,99 +188,156 @@ def _decode_literal(node: Node, text: bytes, function: str, line: int) -> tuple[
             end=node.end_byte,
             line=line,
             function=function,
+            allow_legacy_nul=allow_legacy_nul,
         ),
         (match.group("prefix") or b"").decode("ascii"),
     )
 
 
-def _is_benign_macro_recovery(node: Node, text: bytes) -> bool:
-    if (
-        node.is_missing
-        and node.type == "type_identifier"
-        and node.parent is not None
-        and node.parent.type == "enum_specifier"
-        and text[node.parent.start_byte : node.start_byte].strip() == b"enum"
-        and re.match(rb"\s*:", text[node.end_byte : node.end_byte + 16]) is not None
-    ):
-        return True
-    if (
-        node.is_missing
-        and node.type == "type_identifier"
-        and node.parent is not None
-        and node.parent.type == "compound_literal_expression"
-        and text[node.parent.start_byte : node.parent.end_byte].lstrip().startswith(b"{")
-    ):
-        return True
-    line_start = text.rfind(b"\n", 0, node.start_byte) + 1
-    line_end = text.find(b"\n", node.end_byte)
-    if line_end < 0:
-        line_end = len(text)
-    line = text[line_start:line_end].strip()
-    token = text[node.start_byte : node.end_byte].strip()
-    if node.is_error:
-        line_prefix = text[line_start:node.start_byte].strip()
+def _normalized_policy_path(value: str) -> str | None:
+    if not value or value != value.replace("\\", "/") or value.startswith("/"):
+        return None
+    parts = value.split("/")
+    if any(part in {"", ".", ".."} for part in parts):
+        return None
+    return value
+
+
+def validate_parse_recovery_allowlist(value: Any) -> tuple[ParseRecoveryEvidence, ...]:
+    if not isinstance(value, list):
+        raise PolicyValidationError(["parseRecoveryAllowlist must be an array"])
+    required = {
+        "path",
+        "sourceRole",
+        "sourceCommit",
+        "fileSha256",
+        "recoverySha256",
+        "reason",
+    }
+    rows: list[ParseRecoveryEvidence] = []
+    details: list[str] = []
+    seen: dict[tuple[str, str, str], int] = {}
+    for index, row in enumerate(value):
+        if not isinstance(row, dict) or set(row) != required:
+            details.append(f"parseRecoveryAllowlist[{index}] has an invalid shape")
+            continue
+        path = row["path"]
+        source_role = row["sourceRole"]
+        source_commit = row["sourceCommit"]
+        file_sha256 = row["fileSha256"]
+        recovery_sha256 = row["recoverySha256"]
+        reason = row["reason"]
+        if not isinstance(path, str) or _normalized_policy_path(path) is None:
+            details.append(f"parseRecoveryAllowlist[{index}].path is invalid")
+            continue
         if (
-            re.fullmatch(rb"\*\[[^\]\r\n]+\]", token) is not None
-            and re.search(rb"\bnew\s+[A-Za-z_][A-Za-z0-9_:]*$", line_prefix)
-            is not None
+            not isinstance(source_role, str)
+            or source_role not in PINNED_SOURCE_COMMITS
+            or not isinstance(source_commit, str)
+            or source_commit != PINNED_SOURCE_COMMITS.get(source_role)
         ):
-            return True
+            details.append(f"parseRecoveryAllowlist[{index}] has invalid source evidence")
+            continue
         if (
-            token in {b"void", b"int", b"char", b"bool", b"float", b"double"}
-            and re.match(rb"[A-Z][A-Z0-9_]*(?:\s|\()", line_prefix) is not None
+            not isinstance(file_sha256, str)
+            or re.fullmatch(r"[0-9A-F]{64}", file_sha256) is None
+            or not isinstance(recovery_sha256, str)
+            or re.fullmatch(r"[0-9A-F]{64}", recovery_sha256) is None
         ):
-            return True
-        if (
-            token == b"*"
-            and node.parent is not None
-            and node.parent.type == "field_expression"
-            and (
-                text[max(0, node.start_byte - 2) : node.start_byte] == b"->"
-                or text[max(0, node.start_byte - 1) : node.start_byte] == b"."
+            details.append(f"parseRecoveryAllowlist[{index}] has an invalid SHA-256")
+            continue
+        if not isinstance(reason, str) or not reason.strip():
+            details.append(f"parseRecoveryAllowlist[{index}].reason is blank")
+            continue
+        key = (path, source_role, source_commit)
+        if key in seen:
+            details.append(
+                f"parseRecoveryAllowlist[{index}] duplicates row {seen[key]} consumer identity"
             )
-        ):
-            return True
-        if token.startswith(b"#") or re.fullmatch(rb"[A-Z][A-Z0-9_]*", token) is not None:
-            return True
-        suffix = text[node.end_byte:line_end]
-        return (
-            re.fullmatch(rb'(?:u8|u|U|L)?R?".*"', token, flags=re.DOTALL)
-            is not None
-            and re.match(
-                rb'\s+[A-Z][A-Z0-9_]*(?:\s*;|\s+(?:u8|u|U|L)?R?")',
-                suffix,
+            continue
+        seen[key] = index
+        rows.append(
+            ParseRecoveryEvidence(
+                path,
+                source_role,
+                source_commit,
+                file_sha256,
+                recovery_sha256,
+                reason,
             )
-            is not None
         )
-    if not node.is_missing or node.type != ";":
-        return False
-    if line.endswith(b"\\"):
-        return True
-    if re.fullmatch(rb"[A-Z][A-Z0-9_]*\s*\(.*\)", line) is not None:
-        return True
-    previous_end = max(0, line_start - 1)
-    previous_start = text.rfind(b"\n", 0, previous_end) + 1
-    previous_line = text[previous_start:previous_end].strip()
-    if re.fullmatch(rb"[A-Z][A-Z0-9_]*\s*\(.*\)", previous_line) is not None:
-        return True
-    if node.parent is not None and node.parent.type == "expression_statement":
-        parent_first_line = text[
-            node.parent.start_byte : node.start_byte
-        ].lstrip().split(b"\n", 1)[0].strip()
-        if re.fullmatch(rb"[A-Z][A-Z0-9_]*\s*\(.*\)", parent_first_line) is not None:
-            return True
-    suffix = text[node.end_byte:line_end].strip()
+    if details:
+        raise PolicyValidationError(details)
+    return tuple(rows)
+
+
+def _ordered_recovery_nodes(tree: Any) -> list[Node]:
+    rows: list[Node] = []
+    pending = [tree.root_node]
+    while pending:
+        node = pending.pop()
+        if node.is_error or node.is_missing or node.type == "ERROR":
+            rows.append(node)
+        pending.extend(reversed(node.children))
+    if tree.root_node.has_error and not rows:
+        rows.append(tree.root_node)
+    return rows
+
+
+def _recovery_sha256(nodes: list[Node]) -> str:
+    fingerprint = [
+        [
+            node.start_byte,
+            node.end_byte,
+            node.type,
+            node.parent.type if node.parent is not None else "",
+            bool(node.is_error),
+            bool(node.is_missing),
+        ]
+        for node in nodes
+    ]
+    payload = json.dumps(
+        fingerprint, ensure_ascii=True, separators=(",", ":")
+    ).encode("ascii")
+    return hashlib.sha256(payload).hexdigest().upper()
+
+
+def _recovery_identity(row: ParseRecoveryEvidence) -> tuple[str, str, str, str, str]:
     return (
-        suffix.endswith(b";")
-        and re.match(
-            rb'(?:(?:u8|u|U|L)?R?"|[A-Z][A-Z0-9_]*(?:\s*\(|\s*;))',
-            suffix,
-        )
-        is not None
+        row.path,
+        row.source_role,
+        row.source_commit,
+        row.file_sha256,
+        row.recovery_sha256,
     )
 
 
-def scan_cpp_literals(path: Path, text: bytes) -> list[Literal]:
+def recovery_evidence_report(
+    rows: set[ParseRecoveryEvidence],
+) -> dict[str, Any]:
+    identities = [
+        {
+            "path": row.path,
+            "sourceRole": row.source_role,
+            "sourceCommit": row.source_commit,
+            "fileSha256": row.file_sha256,
+            "recoverySha256": row.recovery_sha256,
+        }
+        for row in sorted(rows, key=_recovery_identity)
+    ]
+    return {"useCount": len(identities), "identities": identities}
+
+
+def scan_cpp_literals(
+    path: Path,
+    text: bytes,
+    *,
+    parse_recovery_allowlist: tuple[ParseRecoveryEvidence, ...] = (),
+    source_role: str = "",
+    source_commit: str = "",
+    used_recovery_evidence: set[ParseRecoveryEvidence] | None = None,
+    allow_legacy_nul: bool = False,
+) -> list[Literal]:
     """Return semantic C++ string values with byte offsets into *text*."""
     tree = _PARSER.parse(text)
     normalized_path = path.as_posix()
@@ -262,18 +362,29 @@ def scan_cpp_literals(path: Path, text: bytes) -> list[Literal]:
         for occurrence_index, node in enumerate(sorted(nodes, key=lambda value: value.start_byte)):
             occurrence_by_span[(function_scope, node.start_byte, node.end_byte)] = occurrence_index
 
+    recovery_nodes = _ordered_recovery_nodes(tree)
+    relevant_evidence = [
+        row
+        for row in parse_recovery_allowlist
+        if row.path == normalized_path
+        and row.source_role == source_role
+        and row.source_commit == source_commit
+    ]
+    file_sha256 = hashlib.sha256(text).hexdigest().upper()
+    recovery_sha256 = _recovery_sha256(recovery_nodes)
+    matching_evidence = [
+        row
+        for row in relevant_evidence
+        if row.file_sha256 == file_sha256
+        and row.recovery_sha256 == recovery_sha256
+    ]
     problem_nodes: list[Node] = []
-    saw_recovery_node = False
-    pending = [tree.root_node]
-    while pending:
-        node = pending.pop()
-        if node.is_error or node.is_missing or node.type == "ERROR":
-            saw_recovery_node = True
-            if not _is_benign_macro_recovery(node, text):
-                problem_nodes.append(node)
-        pending.extend(reversed(node.children))
-    if tree.root_node.has_error and not saw_recovery_node:
-        problem_nodes.append(tree.root_node)
+    if recovery_nodes or relevant_evidence:
+        if len(matching_evidence) == 1 and recovery_nodes:
+            if used_recovery_evidence is not None:
+                used_recovery_evidence.add(matching_evidence[0])
+        else:
+            problem_nodes = recovery_nodes or [tree.root_node]
     if problem_nodes:
         problems: list[dict[str, Any]] = []
         for problem in sorted(
@@ -291,6 +402,12 @@ def scan_cpp_literals(path: Path, text: bytes) -> list[Literal]:
                     problem.start_byte == problem.end_byte
                     and node.start_byte <= problem.start_byte <= node.end_byte
                 )
+                or (
+                    problem.parent is not None
+                    and problem.parent.type != "translation_unit"
+                    and node.start_byte >= problem.parent.start_byte
+                    and node.end_byte <= problem.parent.end_byte
+                )
             ]
             if matching_candidates:
                 for node, function, function_scope in matching_candidates:
@@ -300,6 +417,8 @@ def scan_cpp_literals(path: Path, text: bytes) -> list[Literal]:
                             "line": text.count(b"\n", 0, problem.start_byte) + 1,
                             "startByte": problem.start_byte,
                             "endByte": problem.end_byte,
+                            "fileSha256": file_sha256,
+                            "recoverySha256": recovery_sha256,
                             "occurrenceIndex": occurrence_by_span[
                                 (function_scope, node.start_byte, node.end_byte)
                             ],
@@ -319,6 +438,8 @@ def scan_cpp_literals(path: Path, text: bytes) -> list[Literal]:
                         "line": text.count(b"\n", 0, problem.start_byte) + 1,
                         "startByte": problem.start_byte,
                         "endByte": problem.end_byte,
+                        "fileSha256": file_sha256,
+                        "recoverySha256": recovery_sha256,
                     }
                 )
         unique_problems = {
@@ -354,7 +475,13 @@ def scan_cpp_literals(path: Path, text: bytes) -> list[Literal]:
                 prefix = ""
                 for index, child in enumerate(literal_nodes):
                     child_line = text.count(b"\n", 0, child.start_byte) + 1
-                    decoded, child_prefix = _decode_literal(child, text, function, child_line)
+                    decoded, child_prefix = _decode_literal(
+                        child,
+                        text,
+                        function,
+                        child_line,
+                        allow_legacy_nul=allow_legacy_nul,
+                    )
                     decoded_parts.append(decoded)
                     if index == 0:
                         prefix = child_prefix
@@ -372,7 +499,13 @@ def scan_cpp_literals(path: Path, text: bytes) -> list[Literal]:
                 )
                 continue
             line = text.count(b"\n", 0, node.start_byte) + 1
-            decoded, prefix = _decode_literal(node, text, function, line)
+            decoded, prefix = _decode_literal(
+                node,
+                text,
+                function,
+                line,
+                allow_legacy_nul=allow_legacy_nul,
+            )
             rows.append(
                 Literal(
                     normalized_path,
@@ -544,6 +677,7 @@ def _new_report(files: list[Path]) -> dict[str, Any]:
         "official": 0,
         "reviewed": 0,
         "intentional": 0,
+        "parseRecoveryEvidence": {"useCount": 0, "identities": []},
         "issues": [],
     }
 
@@ -658,11 +792,36 @@ def _run_overlay(
         _write_report(report_path, report)
         return report
 
-    policy = json.loads(policy_path.read_text(encoding="utf-8"))
+    try:
+        policy = json.loads(policy_path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError) as error:
+        report["issues"].append(
+            {"code": "INVALID_POLICY_DOCUMENT", "detail": str(error)}
+        )
+        _write_report(report_path, report)
+        return report
+    if not isinstance(policy, dict):
+        report["issues"].append(
+            {"code": "INVALID_POLICY_DOCUMENT", "detail": "root must be an object"}
+        )
+        _write_report(report_path, report)
+        return report
+    try:
+        parse_recovery_allowlist = validate_parse_recovery_allowlist(
+            policy.get("parseRecoveryAllowlist")
+        )
+    except PolicyValidationError as error:
+        report["issues"].extend(
+            {"code": "INVALID_POLICY_DOCUMENT", "detail": detail}
+            for detail in error.details
+        )
+        _write_report(report_path, report)
+        return report
     excluded = _excluded_paths(policy)
     allowed = _allowlisted_hashes(policy)
     originals: dict[Path, bytes] = {}
     plans: dict[Path, list[tuple[int, int, bytes]]] = {}
+    used_recovery_evidence: set[ParseRecoveryEvidence] = set()
 
     for path in files:
         relative = path.relative_to(source_root).as_posix()
@@ -671,7 +830,14 @@ def _run_overlay(
         text = path.read_bytes()
         originals[path] = text
         try:
-            literals = scan_cpp_literals(Path(relative), text)
+            literals = scan_cpp_literals(
+                Path(relative),
+                text,
+                parse_recovery_allowlist=parse_recovery_allowlist,
+                source_role="upstream",
+                source_commit=PINNED_SOURCE_COMMITS["upstream"],
+                used_recovery_evidence=used_recovery_evidence,
+            )
         except CppParseError as error:
             for problem in error.problems:
                 report["issues"].append(
@@ -742,6 +908,9 @@ def _run_overlay(
             report["reused"] += 1
             report[status] += 1
 
+    report["parseRecoveryEvidence"] = recovery_evidence_report(
+        used_recovery_evidence
+    )
     if not report["issues"] and write_sources:
         for path, replacements in plans.items():
             output = originals[path]

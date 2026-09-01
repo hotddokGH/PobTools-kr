@@ -1,3 +1,4 @@
+import hashlib
 import json
 import sys
 import tempfile
@@ -8,17 +9,35 @@ from pathlib import Path
 LIB_ROOT = Path(__file__).resolve().parents[1] / "lib"
 sys.path.insert(0, str(LIB_ROOT))
 
-from source_overlay import apply_overlay, format_signature, scan_cpp_literals
+import source_overlay
+from source_overlay import CppParseError, apply_overlay, format_signature, scan_cpp_literals
 
 
 class SourceOverlayTests(unittest.TestCase):
+    PINNED_UPSTREAM = "baf07d41d2df524d4330a58b411826339c93fac1"
+    RECOVERY_FIXTURE = (
+        'enum : int { Value = 1 };\nvoid Draw(){ Label(u8"設定"); }'
+    )
+    RECOVERY_FILE_SHA256 = (
+        "25AC04BAF01FF1257D4F3343B76064F3471C6638744B6FE30CE2E110EAA87575"
+    )
+    RECOVERY_FINGERPRINT_SHA256 = (
+        "E8ADBC953EFC45BA69E3646DAC65FE5C00D6BF7436AC3F0BA0EC9C6C2D702340"
+    )
+
     def setUp(self):
         self.temporary = tempfile.TemporaryDirectory()
         self.root = Path(self.temporary.name)
         self.policy = self.root / "source-display-policy.json"
         self.report = self.root / "overlay-report.json"
         self.policy.write_text(
-            json.dumps({"excludedPaths": [], "internalLiteralAllowlist": []}),
+            json.dumps(
+                {
+                    "excludedPaths": [],
+                    "internalLiteralAllowlist": [],
+                    "parseRecoveryAllowlist": [],
+                }
+            ),
             encoding="utf-8",
         )
 
@@ -52,6 +71,29 @@ class SourceOverlayTests(unittest.TestCase):
             encoding="utf-8",
         )
         return path
+
+    def recovery_row(self, **overrides):
+        return {
+            "path": "host/reviewed.cpp",
+            "sourceRole": "upstream",
+            "sourceCommit": self.PINNED_UPSTREAM,
+            "fileSha256": self.RECOVERY_FILE_SHA256,
+            "recoverySha256": self.RECOVERY_FINGERPRINT_SHA256,
+            "reason": "reviewed anonymous typed enum parser recovery",
+            **overrides,
+        }
+
+    def write_policy(self, rows):
+        self.policy.write_text(
+            json.dumps(
+                {
+                    "excludedPaths": [],
+                    "internalLiteralAllowlist": [],
+                    "parseRecoveryAllowlist": rows,
+                }
+            ),
+            encoding="utf-8",
+        )
 
     def test_scans_prefixes_raw_strings_comments_and_function_context(self):
         source = (
@@ -203,21 +245,155 @@ class SourceOverlayTests(unittest.TestCase):
         self.assertEqual(self.read("host/bad.cpp"), malformed)
         self.assertEqual(self.read("host/good.cpp"), valid)
 
-    def test_valid_macro_and_cpp_recovery_forms_are_not_parse_errors(self):
-        source = (
-            '#define VERSION "1"\n'
-            'enum : int { Value = 1 };\n'
-            'void Draw(){ std::string value = "v" VERSION; '
-            'auto selected = object->*member; '
-            'for (const char* text : { "設定", "更新" }) Use(text); }'
+    def test_unreviewed_recovery_shapes_block_every_file_transactionally(self):
+        malformed_sources = {
+            "regular": 'void Draw(){ auto value = "設定" BROKEN; }',
+            "raw": 'void Draw(){ auto value = R"(設定)" BROKEN; }',
+            "x-macro": 'BROKEN(u8"設定")',
+            "anonymous-enum": (
+                'enum : int { BROKEN }; void Draw(){ Label(u8"設定"); }'
+            ),
+            "sg-prefix": (
+                'SG_BROKEN static void Draw(){ Label(u8"設定"); }'
+            ),
+        }
+        valid = 'void Draw(){ Label(u8"更新"); }'
+        mapping = self.mapping(
+            {
+                "設定": self.entry("설정", "reviewed"),
+                "更新": self.entry("업데이트", "reviewed"),
+            }
         )
+
+        for name, malformed in malformed_sources.items():
+            with self.subTest(shape=name):
+                self.write("host/bad.cpp", malformed)
+                self.write("host/good.cpp", valid)
+
+                report = apply_overlay(self.root, mapping, self.policy, self.report)
+
+                self.assertIn(
+                    "CPP_PARSE_ERROR", {issue["code"] for issue in report["issues"]}
+                )
+                bad_issues = [
+                    issue
+                    for issue in report["issues"]
+                    if issue.get("path") == "host/bad.cpp"
+                ]
+                if name != "anonymous-enum":
+                    self.assertIn(0, {issue.get("occurrenceIndex") for issue in bad_issues})
+                self.assertEqual(self.read("host/bad.cpp"), malformed)
+                self.assertEqual(self.read("host/good.cpp"), valid)
+
+    def test_exact_reviewed_recovery_evidence_allows_scanning_and_is_reported(self):
+        original = self.RECOVERY_FIXTURE
+        self.write("host/reviewed.cpp", original, newline="")
+        self.write_policy([self.recovery_row()])
+        mapping = self.mapping({"設定": self.entry("설정", "reviewed")})
+
+        report = apply_overlay(self.root, mapping, self.policy, self.report)
+
+        self.assertEqual(report["issues"], [])
+        self.assertEqual(
+            report["parseRecoveryEvidence"],
+            {
+                "useCount": 1,
+                "identities": [
+                    {
+                        "path": "host/reviewed.cpp",
+                        "sourceRole": "upstream",
+                        "sourceCommit": self.PINNED_UPSTREAM,
+                        "fileSha256": self.RECOVERY_FILE_SHA256,
+                        "recoverySha256": self.RECOVERY_FINGERPRINT_SHA256,
+                    }
+                ],
+            },
+        )
+        self.assertIn("설정", self.read("host/reviewed.cpp"))
+
+    def test_reviewed_recovery_file_hash_mismatch_blocks_all_writes(self):
+        mutated = self.RECOVERY_FIXTURE.replace("Value", "Changed")
+        valid = 'void Draw(){ Label(u8"更新"); }'
+        self.write("host/reviewed.cpp", mutated, newline="")
+        self.write("host/good.cpp", valid)
+        self.write_policy([self.recovery_row()])
+        mapping = self.mapping(
+            {
+                "設定": self.entry("설정", "reviewed"),
+                "更新": self.entry("업데이트", "reviewed"),
+            }
+        )
+
+        report = apply_overlay(self.root, mapping, self.policy, self.report)
+
+        self.assertEqual(report["issues"][0]["code"], "CPP_PARSE_ERROR")
+        self.assertEqual(self.read("host/reviewed.cpp"), mutated)
+        self.assertEqual(self.read("host/good.cpp"), valid)
+
+    def test_recovery_fingerprint_mismatch_blocks_even_with_matching_file_hash(self):
+        changed_shape = 'BROKEN(u8"設定")'
+        changed_file_hash = hashlib.sha256(changed_shape.encode("utf-8")).hexdigest().upper()
+        self.write("host/reviewed.cpp", changed_shape, newline="")
+        self.write_policy([self.recovery_row(fileSha256=changed_file_hash)])
+        mapping = self.mapping({"設定": self.entry("설정", "reviewed")})
+
+        report = apply_overlay(self.root, mapping, self.policy, self.report)
+
+        self.assertEqual(report["issues"][0]["code"], "CPP_PARSE_ERROR")
+        self.assertEqual(self.read("host/reviewed.cpp"), changed_shape)
+
+    def test_wrong_recovery_path_hash_or_fingerprint_never_matches(self):
+        wrong_rows = [
+            self.recovery_row(path="host/other.cpp"),
+            self.recovery_row(fileSha256="0" * 64),
+            self.recovery_row(recoverySha256="0" * 64),
+        ]
+        mapping = self.mapping({"設定": self.entry("설정", "reviewed")})
+        for row in wrong_rows:
+            with self.subTest(row=row):
+                self.write("host/reviewed.cpp", self.RECOVERY_FIXTURE, newline="")
+                self.write_policy([row])
+
+                report = apply_overlay(self.root, mapping, self.policy, self.report)
+
+                self.assertEqual(report["issues"][0]["code"], "CPP_PARSE_ERROR")
+                self.assertEqual(self.read("host/reviewed.cpp"), self.RECOVERY_FIXTURE)
+
+    def test_malformed_or_duplicate_recovery_policy_blocks_before_scanning(self):
+        invalid_lists = [
+            None,
+            {},
+            ["not-an-object"],
+            [self.recovery_row(reason="   ")],
+            [self.recovery_row(fileSha256="a" * 64)],
+            [self.recovery_row(recoverySha256="not-a-hash")],
+            [self.recovery_row(sourceRole="other")],
+            [self.recovery_row(sourceCommit="0" * 40)],
+            [{**self.recovery_row(), "extra": True}],
+            [self.recovery_row(), self.recovery_row()],
+        ]
+        original = self.RECOVERY_FIXTURE
+        mapping = self.mapping({"設定": self.entry("설정", "reviewed")})
+        for rows in invalid_lists:
+            with self.subTest(rows=rows):
+                self.write("host/reviewed.cpp", original, newline="")
+                self.write_policy(rows)
+
+                report = apply_overlay(self.root, mapping, self.policy, self.report)
+
+                self.assertEqual(
+                    {issue["code"] for issue in report["issues"]},
+                    {"INVALID_POLICY_DOCUMENT"},
+                )
+                self.assertEqual(report["displayLiterals"], 0)
+                self.assertEqual(self.read("host/reviewed.cpp"), original)
+
+    def test_valid_file_without_recovery_needs_no_policy_row(self):
+        source = 'void Draw(){ Label(u8"設定"); }'
 
         rows = scan_cpp_literals(Path("host/ui.cpp"), source.encode("utf-8"))
 
-        self.assertEqual(
-            [row.decoded for row in rows],
-            ["v", "設定", "更新"],
-        )
+        self.assertEqual([row.decoded for row in rows], ["設定"])
 
     def test_apply_is_transactional_when_any_row_is_unreviewed(self):
         original = 'void Draw(){ ImGui::Text(u8"設定"); ImGui::Text(u8"更新"); }'

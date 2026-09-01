@@ -1048,6 +1048,107 @@ class SourceMigrationTests(unittest.TestCase):
                 self.assertTrue(expected_identities <= identities)
                 self.assertEqual(len(identities), len(issues))
 
+    def test_real_pinned_recovery_inventories_require_only_exact_policy_rows(self):
+        expected_paths = {
+            "host/app_update.cpp",
+            "host/atlas_tree_data.h",
+            "host/error_log.cpp",
+            "host/filter_preview.h",
+            "host/host_main.cpp",
+            "host/launcher_ui.cpp",
+            "host/passive_tree_data.h",
+            "host/passive_tree_view.h",
+            "host/pob_launch.cpp",
+            "host/window_dock.cpp",
+            "ui_api.cpp",
+            "ui_main.cpp",
+        }
+        policy = json.loads(
+            (LOCALE_ROOT / "source-display-policy.json").read_text(encoding="utf-8")
+        )
+        evidence = migration.source_overlay.validate_parse_recovery_allowlist(
+            policy["parseRecoveryAllowlist"]
+        )
+        excluded = migration._excluded_paths()
+        used = set()
+        blocked_without_evidence = set()
+
+        for repository_path in migration._upstream_paths(migration.PINNED_UPSTREAM):
+            relative = repository_path.removeprefix("pob-zh-engine/")
+            if relative in excluded:
+                continue
+            sources = {
+                "upstream": migration._git_bytes(
+                    ["show", f"{migration.PINNED_UPSTREAM}:{repository_path}"]
+                ),
+                "localized": (
+                    migration.REPOSITORY_ROOT / "pob-zh-engine" / relative
+                ).read_bytes(),
+            }
+            for role, text in sources.items():
+                commit = migration.source_overlay.PINNED_SOURCE_COMMITS[role]
+                try:
+                    migration.source_overlay.scan_cpp_literals(Path(relative), text)
+                except migration.source_overlay.CppParseError:
+                    blocked_without_evidence.add((role, relative))
+                except migration.source_overlay.UnsupportedEscape:
+                    pass
+                try:
+                    migration.source_overlay.scan_cpp_literals(
+                        Path(relative),
+                        text,
+                        parse_recovery_allowlist=evidence,
+                        source_role=role,
+                        source_commit=commit,
+                        used_recovery_evidence=used,
+                    )
+                except migration.source_overlay.UnsupportedEscape:
+                    pass
+
+        self.assertEqual(len(evidence), 24)
+        self.assertEqual(len(used), 24)
+        self.assertEqual(
+            blocked_without_evidence,
+            {(role, path) for role in ("upstream", "localized") for path in expected_paths},
+        )
+        self.assertEqual(
+            {(row.source_role, row.path) for row in used},
+            blocked_without_evidence,
+        )
+
+    def test_alignment_uses_exact_recovery_evidence_for_both_source_roles(self):
+        path = Path("host/reviewed.cpp")
+        source = (
+            'enum : int { Value = 1 };\nvoid Draw(){ Label(u8"設定"); }'
+        ).encode("utf-8")
+        file_sha256 = hashlib.sha256(source).hexdigest().upper()
+        recovery_sha256 = (
+            "E8ADBC953EFC45BA69E3646DAC65FE5C00D6BF7436AC3F0BA0EC9C6C2D702340"
+        )
+        raw_rows = [
+            {
+                "path": path.as_posix(),
+                "sourceRole": role,
+                "sourceCommit": migration.source_overlay.PINNED_SOURCE_COMMITS[role],
+                "fileSha256": file_sha256,
+                "recoverySha256": recovery_sha256,
+                "reason": f"reviewed {role} anonymous typed enum recovery",
+            }
+            for role in ("upstream", "localized")
+        ]
+        evidence = migration.source_overlay.validate_parse_recovery_allowlist(raw_rows)
+        used = set()
+
+        migration.align_file_literals(
+            path,
+            source,
+            source,
+            parse_recovery_allowlist=evidence,
+            used_recovery_evidence=used,
+        )
+
+        self.assertEqual({row.source_role for row in used}, {"upstream", "localized"})
+
     def test_real_season_tree_source_emits_exact_context_targets(self):
         source = "發現新賽季天賦樹 "
         passive, passive_issues = migration.align_file_literals(

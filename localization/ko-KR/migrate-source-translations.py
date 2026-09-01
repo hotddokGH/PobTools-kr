@@ -29,6 +29,7 @@ from source_overlay import Literal, format_signature  # noqa: E402
 
 
 PINNED_UPSTREAM = "baf07d41d2df524d4330a58b411826339c93fac1"
+PINNED_LOCALIZED = "ba33ed80de67d8301baad930456131d581df6ae1"
 OFFICIAL_PATCH = "3.29.3.2"
 HAN = re.compile(
     r"[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF"
@@ -555,13 +556,6 @@ def migrate(
     return MigrationResult(accepted=accepted, suggestions=suggestions, report=report)
 
 
-def _sanitize_legacy_null_escapes(text: bytes) -> bytes:
-    # The one-time baseline contains C++ ``\0`` escapes.  Task 2 deliberately
-    # rejects unsupported escapes for writes; migration only needs a decoded,
-    # read-only structural inventory, so normalize the unambiguous zero escape.
-    return re.sub(rb"\\0(?![0-7])", rb"\\u0000", text)
-
-
 def _decoded_literal(node: Any, text: bytes, function: str) -> Literal:
     line = text.count(b"\n", 0, node.start_byte) + 1
     if node.type == "concatenated_string":
@@ -571,11 +565,18 @@ def _decoded_literal(node: Any, text: bytes, function: str) -> Literal:
             if child.type in {"string_literal", "raw_string_literal"}
         ]
         decoded = "".join(
-            source_overlay._decode_literal(child, text, function, line)[0] for child in children
+            source_overlay._decode_literal(
+                child, text, function, line, allow_legacy_nul=True
+            )[0]
+            for child in children
         )
-        prefix = source_overlay._decode_literal(children[0], text, function, line)[1]
+        prefix = source_overlay._decode_literal(
+            children[0], text, function, line, allow_legacy_nul=True
+        )[1]
         return Literal("", node.start_byte, node.end_byte, decoded, prefix, function, line)
-    decoded, prefix = source_overlay._decode_literal(node, text, function, line)
+    decoded, prefix = source_overlay._decode_literal(
+        node, text, function, line, allow_legacy_nul=True
+    )
     return Literal("", node.start_byte, node.end_byte, decoded, prefix, function, line)
 
 
@@ -639,12 +640,28 @@ def _normalized_unit(unit: Any, text: bytes, function: str) -> _StructuralUnit:
     return _StructuralUnit(tokens=tokens, literals=literals)
 
 
-def _structural_groups(path: Path, original: bytes) -> dict[tuple[str, tuple[Any, ...], int], list[Literal]]:
-    text = _sanitize_legacy_null_escapes(original)
+def _structural_groups(
+    path: Path,
+    original: bytes,
+    *,
+    parse_recovery_allowlist: tuple[source_overlay.ParseRecoveryEvidence, ...] = (),
+    source_role: str = "",
+    source_commit: str = "",
+    used_recovery_evidence: set[source_overlay.ParseRecoveryEvidence] | None = None,
+) -> dict[tuple[str, tuple[Any, ...], int], list[Literal]]:
+    text = original
     tree = source_overlay._PARSER.parse(text)
     occurrence_by_span = {
         (row.start, row.end): row.occurrence_index
-        for row in source_overlay.scan_cpp_literals(path, text)
+        for row in source_overlay.scan_cpp_literals(
+            path,
+            text,
+            parse_recovery_allowlist=parse_recovery_allowlist,
+            source_role=source_role,
+            source_commit=source_commit,
+            used_recovery_evidence=used_recovery_evidence,
+            allow_legacy_nul=True,
+        )
     }
     groups: dict[tuple[str, tuple[Any, ...], int], list[Literal]] = defaultdict(list)
     seen_units: set[tuple[int, int, str]] = set()
@@ -683,20 +700,54 @@ def _structural_groups(path: Path, original: bytes) -> dict[tuple[str, tuple[Any
     return groups
 
 
-def _context_inventory(path: Path, original: bytes) -> list[Literal]:
+def _context_inventory(
+    path: Path,
+    original: bytes,
+    *,
+    parse_recovery_allowlist: tuple[source_overlay.ParseRecoveryEvidence, ...] = (),
+    source_role: str = "",
+    source_commit: str = "",
+    used_recovery_evidence: set[source_overlay.ParseRecoveryEvidence] | None = None,
+) -> list[Literal]:
     rows: dict[tuple[str, int, int], Literal] = {}
-    for values in _structural_groups(path, original).values():
+    for values in _structural_groups(
+        path,
+        original,
+        parse_recovery_allowlist=parse_recovery_allowlist,
+        source_role=source_role,
+        source_commit=source_commit,
+        used_recovery_evidence=used_recovery_evidence,
+    ).values():
         for row in values:
             rows[(row.function, row.start, row.end)] = row
     return sorted(rows.values(), key=lambda row: (row.function, row.start, row.end))
 
 
 def align_file_literals(
-    path: Path, upstream_text: bytes, current_text: bytes
+    path: Path,
+    upstream_text: bytes,
+    current_text: bytes,
+    *,
+    parse_recovery_allowlist: tuple[source_overlay.ParseRecoveryEvidence, ...] = (),
+    used_recovery_evidence: set[source_overlay.ParseRecoveryEvidence] | None = None,
 ) -> tuple[list[Alignment], list[dict[str, Any]]]:
     """Align literals only when a structural fingerprint has one ordered match."""
-    upstream = _structural_groups(path, upstream_text)
-    current = _structural_groups(path, current_text)
+    upstream = _structural_groups(
+        path,
+        upstream_text,
+        parse_recovery_allowlist=parse_recovery_allowlist,
+        source_role="upstream",
+        source_commit=PINNED_UPSTREAM,
+        used_recovery_evidence=used_recovery_evidence,
+    )
+    current = _structural_groups(
+        path,
+        current_text,
+        parse_recovery_allowlist=parse_recovery_allowlist,
+        source_role="localized",
+        source_commit=PINNED_LOCALIZED,
+        used_recovery_evidence=used_recovery_evidence,
+    )
     alignments: list[Alignment] = []
     issues: list[dict[str, Any]] = []
     occurrence_by_span = {
@@ -821,8 +872,11 @@ def _upstream_paths(upstream_ref: str) -> list[str]:
     return sorted(paths)
 
 
-def _excluded_paths() -> set[str]:
-    policy = json.loads((LOCALE_ROOT / "source-display-policy.json").read_text(encoding="utf-8"))
+def _excluded_paths(policy: dict[str, Any] | None = None) -> set[str]:
+    if policy is None:
+        policy = json.loads(
+            (LOCALE_ROOT / "source-display-policy.json").read_text(encoding="utf-8")
+        )
     return {
         str(row.get("path", "")).replace("\\", "/")
         for row in policy.get("excludedPaths", [])
@@ -1680,7 +1734,16 @@ def run_migration(
         raise ValueError("pinned upstream ref resolved to an unexpected commit")
 
     localized_root = localized_root.resolve()
-    excluded = _excluded_paths()
+    policy = json.loads(
+        (LOCALE_ROOT / "source-display-policy.json").read_text(encoding="utf-8")
+    )
+    if not isinstance(policy, dict):
+        raise source_overlay.PolicyValidationError(["policy root must be an object"])
+    parse_recovery_allowlist = source_overlay.validate_parse_recovery_allowlist(
+        policy.get("parseRecoveryAllowlist")
+    )
+    excluded = _excluded_paths(policy)
+    used_recovery_evidence: set[source_overlay.ParseRecoveryEvidence] = set()
     alignments: list[Alignment] = []
     alignment_issues: list[dict[str, Any]] = []
     context_inventories: dict[str, tuple[list[Literal], list[Literal]]] = {}
@@ -1703,15 +1766,40 @@ def run_migration(
             continue
         current_text = current_path.read_bytes()
         file_alignments, file_issues = align_file_literals(
-            Path(relative), upstream_text, current_text
+            Path(relative),
+            upstream_text,
+            current_text,
+            parse_recovery_allowlist=parse_recovery_allowlist,
+            used_recovery_evidence=used_recovery_evidence,
         )
         alignments.extend(file_alignments)
         alignment_issues.extend(file_issues)
         context_inventories[relative] = (
-            _context_inventory(Path(relative), upstream_text),
-            _context_inventory(Path(relative), current_text),
+            _context_inventory(
+                Path(relative),
+                upstream_text,
+                parse_recovery_allowlist=parse_recovery_allowlist,
+                source_role="upstream",
+                source_commit=PINNED_UPSTREAM,
+                used_recovery_evidence=used_recovery_evidence,
+            ),
+            _context_inventory(
+                Path(relative),
+                current_text,
+                parse_recovery_allowlist=parse_recovery_allowlist,
+                source_role="localized",
+                source_commit=PINNED_LOCALIZED,
+                used_recovery_evidence=used_recovery_evidence,
+            ),
         )
-        for rows in _structural_groups(Path(relative), upstream_text).values():
+        for rows in _structural_groups(
+            Path(relative),
+            upstream_text,
+            parse_recovery_allowlist=parse_recovery_allowlist,
+            source_role="upstream",
+            source_commit=PINNED_UPSTREAM,
+            used_recovery_evidence=used_recovery_evidence,
+        ).values():
             upstream_sources.update(row.decoded for row in rows if HAN.search(row.decoded))
 
     legacy = json.loads(
@@ -1747,6 +1835,9 @@ def run_migration(
         "upstreamRef": PINNED_UPSTREAM,
         "filesScanned": files_scanned,
         "upstreamHanSources": len(upstream_sources),
+        "parseRecoveryEvidence": source_overlay.recovery_evidence_report(
+            used_recovery_evidence
+        ),
         **result.report,
     }
     result = MigrationResult(result.accepted, result.suggestions, report)
