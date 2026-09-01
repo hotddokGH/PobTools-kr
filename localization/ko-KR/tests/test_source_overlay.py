@@ -45,7 +45,10 @@ class SourceOverlayTests(unittest.TestCase):
     def mapping(self, entries, contexts=None):
         path = self.root / "source-literal-mapping.json"
         path.write_text(
-            json.dumps({"entries": entries, "contexts": contexts or []}, ensure_ascii=False),
+            json.dumps(
+                {"schemaVersion": 1, "entries": entries, "contexts": contexts or []},
+                ensure_ascii=False,
+            ),
             encoding="utf-8",
         )
         return path
@@ -147,6 +150,33 @@ class SourceOverlayTests(unittest.TestCase):
         self.assertEqual(report["issues"][0]["code"], "SUGGESTION_ONLY")
         self.assertEqual(self.read("host/ui.cpp"), original)
 
+    def test_unused_rows_with_unaccepted_statuses_block_all_writes(self):
+        original = 'void Draw(){ ImGui::Text(u8"設定"); }'
+        self.write("host/ui.cpp", original)
+        mapping = self.mapping(
+            {
+                "設定": self.entry("설정", "reviewed"),
+                "未使用": self.entry("미사용", "suggested"),
+            },
+            contexts=[
+                {
+                    "path": "host/unused.cpp",
+                    "function": "Unused",
+                    "source": "未使用文脈",
+                    "target": "미사용 문맥",
+                    "status": "draft",
+                    "provenance": "manual-context",
+                    "formatSignature": [],
+                }
+            ],
+        )
+        report = apply_overlay(self.root, mapping, self.policy, self.report)
+        self.assertEqual(
+            [issue["code"] for issue in report["issues"]],
+            ["SUGGESTION_ONLY", "STATUS_REJECTED"],
+        )
+        self.assertEqual(self.read("host/ui.cpp"), original)
+
     def test_context_override_wins_and_preserves_signature(self):
         mapping = self.mapping(
             {"開啟 %s": self.entry("%s 열기", "reviewed", ["%s"])},
@@ -206,6 +236,32 @@ class SourceOverlayTests(unittest.TestCase):
         self.assertEqual(json.loads(self.report.read_text(encoding="utf-8")), report)
         self.assertEqual(self.read("host/ui.cpp"), original)
 
+    def test_mapping_schema_requires_version_one_entries_and_contexts(self):
+        original = 'void Draw(){ ImGui::Text(u8"設定"); }'
+        invalid_documents = [
+            {},
+            {"schemaVersion": 2, "entries": {}, "contexts": []},
+            {"schemaVersion": 1, "contexts": []},
+            {"schemaVersion": 1, "entries": {}},
+            {"schemaVersion": 1, "entries": [], "contexts": []},
+            {"schemaVersion": 1, "entries": {}, "contexts": {}},
+        ]
+        for document in invalid_documents:
+            with self.subTest(document=document):
+                self.write("host/ui.cpp", original)
+                mapping = self.root / "source-literal-mapping.json"
+                mapping.write_text(
+                    json.dumps(document, ensure_ascii=False), encoding="utf-8"
+                )
+                report = apply_overlay(self.root, mapping, self.policy, self.report)
+                self.assertEqual(
+                    report["issues"][0]["code"], "INVALID_MAPPING_DOCUMENT"
+                )
+                self.assertEqual(
+                    json.loads(self.report.read_text(encoding="utf-8")), report
+                )
+                self.assertEqual(self.read("host/ui.cpp"), original)
+
     def test_malformed_global_entry_writes_blocking_report(self):
         original = 'void Draw(){ ImGui::Text(u8"設定"); }'
         self.write("host/ui.cpp", original)
@@ -223,6 +279,24 @@ class SourceOverlayTests(unittest.TestCase):
         )
         report = apply_overlay(self.root, mapping, self.policy, self.report)
         self.assertEqual(report["issues"][0]["code"], "INVALID_CONTEXT_ENTRY")
+        self.assertEqual(self.read("host/ui.cpp"), original)
+
+    def test_unused_surrogate_target_writes_encoding_issue_without_mutation(self):
+        original = 'void Draw(){ ImGui::Text(u8"設定"); }'
+        self.write("host/ui.cpp", original)
+        mapping = self.root / "source-literal-mapping.json"
+        document = {
+            "schemaVersion": 1,
+            "entries": {
+                "設定": self.entry("설정", "reviewed"),
+                "未使用": self.entry("\ud800", "reviewed"),
+            },
+            "contexts": [],
+        }
+        mapping.write_text(json.dumps(document), encoding="utf-8")
+        report = apply_overlay(self.root, mapping, self.policy, self.report)
+        self.assertEqual(report["issues"][0]["code"], "INVALID_MAPPING_ENCODING")
+        self.assertEqual(json.loads(self.report.read_text(encoding="utf-8")), report)
         self.assertEqual(self.read("host/ui.cpp"), original)
 
 

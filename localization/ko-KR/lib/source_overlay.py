@@ -303,6 +303,28 @@ def _mapping_row_is_well_formed(row: Any) -> bool:
     )
 
 
+def _strings_are_utf8_encodable(values: list[str]) -> bool:
+    try:
+        for value in values:
+            value.encode("utf-8")
+    except UnicodeEncodeError:
+        return False
+    return True
+
+
+def _mapping_row_strings(row: dict[str, Any]) -> list[str]:
+    return [
+        row["target"],
+        row["status"],
+        row["provenance"],
+        *row["formatSignature"],
+    ]
+
+
+def _safe_report_text(value: Any) -> str:
+    return str(value).encode("utf-8", errors="backslashreplace").decode("utf-8")
+
+
 def _new_report(files: list[Path]) -> dict[str, Any]:
     return {
         "filesScanned": len(files),
@@ -337,8 +359,28 @@ def _run_overlay(
         )
         _write_report(report_path, report)
         return report
-    entries = mapping.get("entries", {})
-    contexts = mapping.get("contexts", [])
+    if type(mapping.get("schemaVersion")) is not int or mapping["schemaVersion"] != 1:
+        report["issues"].append(
+            {
+                "code": "INVALID_MAPPING_DOCUMENT",
+                "field": "schemaVersion",
+                "detail": "schemaVersion must equal 1",
+            }
+        )
+    for field in ("entries", "contexts"):
+        if field not in mapping:
+            report["issues"].append(
+                {
+                    "code": "INVALID_MAPPING_DOCUMENT",
+                    "field": field,
+                    "detail": f"{field} is required",
+                }
+            )
+    if report["issues"]:
+        _write_report(report_path, report)
+        return report
+    entries = mapping["entries"]
+    contexts = mapping["contexts"]
     if not isinstance(entries, dict) or not isinstance(contexts, list):
         report["issues"].append(
             {
@@ -351,7 +393,16 @@ def _run_overlay(
     for source, row in sorted(entries.items(), key=lambda item: str(item[0])):
         if not isinstance(source, str) or not _mapping_row_is_well_formed(row):
             report["issues"].append(
-                {"code": "INVALID_MAPPING_ENTRY", "source": str(source)}
+                {"code": "INVALID_MAPPING_ENTRY", "source": _safe_report_text(source)}
+            )
+        elif not _strings_are_utf8_encodable([source, *_mapping_row_strings(row)]):
+            report["issues"].append(
+                {"code": "INVALID_MAPPING_ENCODING", "location": f"entries[{source!r}]"}
+            )
+        elif row["status"] not in ACCEPTED_STATUSES:
+            code = "SUGGESTION_ONLY" if row["status"] == "suggested" else "STATUS_REJECTED"
+            report["issues"].append(
+                {"code": code, "location": f"entries[{source!r}]"}
             )
     context_fields = ("path", "function", "source")
     for index, row in enumerate(contexts):
@@ -360,6 +411,17 @@ def _run_overlay(
             or any(not isinstance(row.get(field), str) for field in context_fields)
         ):
             report["issues"].append({"code": "INVALID_CONTEXT_ENTRY", "index": index})
+        elif not _strings_are_utf8_encodable(
+            [*(row[field] for field in context_fields), *_mapping_row_strings(row)]
+        ):
+            report["issues"].append(
+                {"code": "INVALID_MAPPING_ENCODING", "location": f"contexts[{index}]"}
+            )
+        elif row["status"] not in ACCEPTED_STATUSES:
+            code = "SUGGESTION_ONLY" if row["status"] == "suggested" else "STATUS_REJECTED"
+            report["issues"].append(
+                {"code": code, "location": f"contexts[{index}]"}
+            )
     if report["issues"]:
         _write_report(report_path, report)
         return report
