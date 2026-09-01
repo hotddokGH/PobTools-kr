@@ -15,6 +15,16 @@ function Test-SameOrDescendant([string]$candidate, [string]$ancestor) {
         $candidate.StartsWith($ancestor + [IO.Path]::DirectorySeparatorChar, [StringComparison]::OrdinalIgnoreCase)
 }
 
+function Remove-PreviewArtifact([string]$path) {
+    if (-not (Test-Path -LiteralPath $path)) {
+        return
+    }
+    if (-not (Test-Path -LiteralPath $path -PathType Leaf)) {
+        throw "Preview artifact path must be a file: $path"
+    }
+    Remove-Item -LiteralPath $path -Force
+}
+
 if (-not (Test-Path -LiteralPath $install -PathType Container)) {
     throw "InstallRoot does not exist: $install"
 }
@@ -28,10 +38,16 @@ if ((Test-SameOrDescendant $output $install) -or (Test-SameOrDescendant $install
     throw "InstallRoot and OutputRoot must not overlap: $install; $output"
 }
 
+Remove-PreviewArtifact $zip
+Remove-PreviewArtifact "$zip.sha256.json"
 if (Test-Path -LiteralPath $output) { Remove-Item -LiteralPath $output -Recurse -Force }
 New-Item -ItemType Directory -Path $output | Out-Null
 Get-ChildItem -LiteralPath $install -Force | ForEach-Object {
     Copy-Item -LiteralPath $_.FullName -Destination $output -Recurse -Force
+}
+$poe2Path = Join-Path $output 'Data/poe2'
+if (Test-Path -LiteralPath $poe2Path) {
+    Remove-Item -LiteralPath $poe2Path -Recurse -Force
 }
 foreach ($slot in 'launcher','poe1') {
     $slotPath = Join-Path $output "Data/$slot"

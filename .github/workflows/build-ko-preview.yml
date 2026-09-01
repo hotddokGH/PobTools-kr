@@ -29,8 +29,29 @@ jobs:
       - name: Assemble and test
         shell: pwsh
         run: |
+          $PSNativeCommandUseErrorActionPreference = $false
+          $zip = 'pob-zh-engine/PobTools-Korean-preview.zip'
+          $manifest = "$zip.sha256.json"
+          function Remove-PreviewArtifacts {
+            foreach ($artifact in @($zip, $manifest)) {
+              if (-not (Test-Path -LiteralPath $artifact)) { continue }
+              if (-not (Test-Path -LiteralPath $artifact -PathType Leaf)) {
+                throw "Preview artifact path must be a file: $artifact"
+              }
+              Remove-Item -LiteralPath $artifact -Force
+            }
+          }
+          Remove-PreviewArtifacts
           pwsh -NoProfile -File localization/ko-KR/Assemble-KoreanPackage.ps1 -InstallRoot pob-zh-engine/install-ko -OutputRoot pob-zh-engine/dist-ko -ZipPath pob-zh-engine/PobTools-Korean-preview.zip
+          if ($LASTEXITCODE -ne 0) {
+            Remove-PreviewArtifacts
+            exit $LASTEXITCODE
+          }
           pwsh -NoProfile -File tests/ko-KR/Test-KoreanPackage.ps1 -PackageRoot pob-zh-engine/dist-ko
+          if ($LASTEXITCODE -ne 0) {
+            Remove-PreviewArtifacts
+            exit $LASTEXITCODE
+          }
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: PobTools-Korean-preview

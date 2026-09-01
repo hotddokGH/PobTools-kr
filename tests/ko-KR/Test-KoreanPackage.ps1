@@ -30,7 +30,7 @@ Require-File 'Fonts/OFL-NotoSansKR.txt' 1
 Require-File 'pob-zh.ini' 1
 Require-File 'LICENSE' 1
 Require-File 'NOTICE.md' 1
-foreach ($forbidden in 'tools','reports','tests','node_modules','cache','logs','translate_misses.log','MalgunGothic-TestOnly.ttf') {
+foreach ($forbidden in 'Data/poe2','tools','reports','tests','node_modules','cache','logs','translate_misses.log','MalgunGothic-TestOnly.ttf') {
     if (Test-Path -LiteralPath (Join-Path $root $forbidden)) { $failures.Add("forbidden $forbidden") }
 }
 Get-ChildItem -LiteralPath $root -Recurse -Filter '*.json' | ForEach-Object {
