@@ -17,7 +17,11 @@ Release/
 # pob-zh-engine build tree (CMake) and deployment bundle
 pob-zh-engine/build/
 pob-zh-engine/build-ko/
+pob-zh-engine/install-ko/
+pob-zh-engine/dist-ko/
 pob-zh-engine/vcpkg/
+pob-zh-engine/PobTools-Korean-preview.zip
+pob-zh-engine/PobTools-Korean-preview.zip.sha256.json
 pob-zh-engine/tests/translate_test_out.txt
 pob-zh-engine/tests/display_colour_test_out.txt
 
