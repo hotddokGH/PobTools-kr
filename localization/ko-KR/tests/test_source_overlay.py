@@ -342,6 +342,20 @@ class SourceOverlayTests(unittest.TestCase):
         self.assertEqual(report["issues"][0]["code"], "CPP_PARSE_ERROR")
         self.assertEqual(self.read("host/reviewed.cpp"), changed_shape)
 
+    def test_recovery_evidence_rejects_normalized_line_endings(self):
+        crlf_source = self.RECOVERY_FIXTURE.replace("\n", "\r\n")
+        self.write("host/reviewed.cpp", crlf_source, newline="")
+        self.write_policy([self.recovery_row()])
+        mapping = self.mapping({"設定": self.entry("설정", "reviewed")})
+
+        report = apply_overlay(self.root, mapping, self.policy, self.report)
+
+        self.assertEqual(report["issues"][0]["code"], "CPP_PARSE_ERROR")
+        self.assertNotEqual(
+            report["issues"][0]["fileSha256"], self.RECOVERY_FILE_SHA256
+        )
+        self.assertEqual(self.read("host/reviewed.cpp"), crlf_source)
+
     def test_wrong_recovery_path_hash_or_fingerprint_never_matches(self):
         wrong_rows = [
             self.recovery_row(path="host/other.cpp"),

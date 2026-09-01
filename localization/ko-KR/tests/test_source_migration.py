@@ -6,6 +6,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 
 LOCALE_ROOT = Path(__file__).resolve().parents[1]
@@ -26,6 +27,9 @@ migration = load_migration_module()
 
 
 class SourceMigrationTests(unittest.TestCase):
+    CORRECTED_LOCALIZED_COMMIT = "2997715df0d6257192107d799a9f414b54e6c02b"
+    CORRECTED_LOCALIZED_TREE = "6c113669065ed84d160fb186ce3dfa2701e839cb"
+
     def align_real_file(self, relative: str):
         upstream = migration._git_bytes(
             ["show", f"{migration.PINNED_UPSTREAM}:pob-zh-engine/{relative}"]
@@ -1049,6 +1053,14 @@ class SourceMigrationTests(unittest.TestCase):
                 self.assertEqual(len(identities), len(issues))
 
     def test_real_pinned_recovery_inventories_require_only_exact_policy_rows(self):
+        self.assertEqual(migration.PINNED_LOCALIZED, self.CORRECTED_LOCALIZED_COMMIT)
+        self.assertEqual(migration.PINNED_LOCALIZED_TREE, self.CORRECTED_LOCALIZED_TREE)
+        self.assertEqual(
+            migration._git_bytes(
+                ["rev-parse", f"{migration.PINNED_LOCALIZED}:pob-zh-engine"]
+            ).decode("ascii").strip(),
+            self.CORRECTED_LOCALIZED_TREE,
+        )
         expected_paths = {
             "host/app_update.cpp",
             "host/atlas_tree_data.h",
@@ -1069,21 +1081,37 @@ class SourceMigrationTests(unittest.TestCase):
         evidence = migration.source_overlay.validate_parse_recovery_allowlist(
             policy["parseRecoveryAllowlist"]
         )
+        evidence_by_role_path = {
+            (row.source_role, row.path): row for row in evidence
+        }
         excluded = migration._excluded_paths()
         used = set()
         blocked_without_evidence = set()
 
-        for repository_path in migration._upstream_paths(migration.PINNED_UPSTREAM):
+        upstream_paths = migration._source_paths(migration.PINNED_UPSTREAM, "upstream")
+        localized_paths = migration._source_paths(
+            migration.PINNED_LOCALIZED, "localized"
+        )
+        self.assertEqual(upstream_paths, localized_paths)
+        included_paths = [
+            path
+            for path in upstream_paths
+            if path.removeprefix("pob-zh-engine/") not in excluded
+        ]
+        self.assertEqual(len(included_paths) * 2, 320)
+
+        for repository_path in included_paths:
             relative = repository_path.removeprefix("pob-zh-engine/")
-            if relative in excluded:
-                continue
             sources = {
                 "upstream": migration._git_bytes(
                     ["show", f"{migration.PINNED_UPSTREAM}:{repository_path}"]
                 ),
-                "localized": (
-                    migration.REPOSITORY_ROOT / "pob-zh-engine" / relative
-                ).read_bytes(),
+                "localized": migration._git_bytes(
+                    [
+                        "show",
+                        f"{migration.PINNED_LOCALIZED}:pob-zh-engine/{relative}",
+                    ]
+                ),
             }
             for role, text in sources.items():
                 commit = migration.source_overlay.PINNED_SOURCE_COMMITS[role]
@@ -1093,6 +1121,12 @@ class SourceMigrationTests(unittest.TestCase):
                     blocked_without_evidence.add((role, relative))
                 except migration.source_overlay.UnsupportedEscape:
                     pass
+                policy_row = evidence_by_role_path.get((role, relative))
+                if policy_row is not None:
+                    self.assertEqual(
+                        policy_row.file_sha256,
+                        hashlib.sha256(text).hexdigest().upper(),
+                    )
                 try:
                     migration.source_overlay.scan_cpp_literals(
                         Path(relative),
@@ -1115,6 +1149,128 @@ class SourceMigrationTests(unittest.TestCase):
             {(row.source_role, row.path) for row in used},
             blocked_without_evidence,
         )
+
+    def test_run_migration_ignores_localized_root_content_and_eol_drift(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            foreign_root = root / "foreign-source"
+            foreign_file = foreign_root / "host/app_update.cpp"
+            foreign_file.parent.mkdir(parents=True)
+            pinned = migration._git_bytes(
+                [
+                    "show",
+                    f"{migration.PINNED_LOCALIZED}:pob-zh-engine/host/app_update.cpp",
+                ]
+            )
+            drifted = pinned.replace(b"\n", b"\r\n") + b"BROKEN checkout-only source\r\n"
+            foreign_file.write_bytes(drifted)
+            self.assertNotEqual(drifted, pinned)
+            self.assertIn(b"\r\n", drifted)
+
+            def run(name, localized_root):
+                output_root = root / name
+                return migration.run_migration(
+                    upstream_ref=migration.PINNED_UPSTREAM,
+                    localized_root=localized_root,
+                    output=output_root / "accepted.json",
+                    suggestions=output_root / "suggestions.json",
+                    report_path=output_root / "report.json",
+                )
+
+            baseline = run("baseline", migration.REPOSITORY_ROOT / "pob-zh-engine")
+            foreign = run("foreign", foreign_root)
+
+        self.assertEqual(foreign.accepted, baseline.accepted)
+        self.assertEqual(foreign.suggestions, baseline.suggestions)
+        self.assertEqual(foreign.report, baseline.report)
+        self.assertEqual(foreign.report["parseRecoveryEvidence"]["useCount"], 24)
+
+    def test_wrong_localized_ref_blocks_before_accepted_outputs(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            accepted = root / "accepted.json"
+            suggestions = root / "suggestions.json"
+            report = root / "report.json"
+
+            with self.assertRaisesRegex(ValueError, "localized ref"):
+                migration.run_migration(
+                    upstream_ref=migration.PINNED_UPSTREAM,
+                    localized_ref="0" * 40,
+                    localized_root=root / "irrelevant-source",
+                    output=accepted,
+                    suggestions=suggestions,
+                    report_path=report,
+                )
+
+            self.assertFalse(accepted.exists())
+            self.assertFalse(suggestions.exists())
+
+    def test_missing_pinned_ref_or_blob_is_a_deterministic_validation_error(self):
+        missing = subprocess.CalledProcessError(128, ["git"])
+        with patch.object(migration, "_git_bytes", side_effect=missing):
+            with self.assertRaisesRegex(ValueError, "pinned localized ref is unavailable"):
+                migration._validate_pinned_source_ref(
+                    migration.PINNED_LOCALIZED,
+                    migration.PINNED_LOCALIZED,
+                    "localized",
+                )
+            with self.assertRaisesRegex(ValueError, "pinned localized Git blob is unavailable"):
+                migration._git_source_bytes(
+                    migration.PINNED_LOCALIZED,
+                    "pob-zh-engine/host/app_update.cpp",
+                    "localized",
+                )
+
+    def test_localized_engine_tree_mismatch_is_rejected(self):
+        wrong_tree = b"0" * 40 + b"\n"
+        with patch.object(
+            migration,
+            "_git_bytes",
+            side_effect=[
+                (self.CORRECTED_LOCALIZED_COMMIT + "\n").encode("ascii"),
+                wrong_tree,
+            ],
+        ):
+            with self.assertRaisesRegex(ValueError, "localized engine tree"):
+                migration._validate_pinned_source_ref(
+                    self.CORRECTED_LOCALIZED_COMMIT,
+                    self.CORRECTED_LOCALIZED_COMMIT,
+                    "localized",
+                    expected_tree=self.CORRECTED_LOCALIZED_TREE,
+                )
+
+    def test_checkout_only_recovery_row_cannot_validate_a_pinned_blob(self):
+        relative = "host/app_update.cpp"
+        repository_path = f"pob-zh-engine/{relative}"
+        pinned = migration._git_bytes(
+            ["show", f"{migration.PINNED_LOCALIZED}:{repository_path}"]
+        )
+        checkout = (migration.REPOSITORY_ROOT / repository_path).read_bytes()
+        checkout_only = (
+            checkout
+            if checkout != pinned
+            else pinned.replace(b"\n", b"\r\n") + b"checkout drift\r\n"
+        )
+        self.assertNotEqual(pinned, checkout_only)
+        policy = json.loads(
+            (LOCALE_ROOT / "source-display-policy.json").read_text(encoding="utf-8")
+        )
+        row = next(
+            dict(value)
+            for value in policy["parseRecoveryAllowlist"]
+            if value["sourceRole"] == "localized" and value["path"] == relative
+        )
+        row["fileSha256"] = hashlib.sha256(checkout_only).hexdigest().upper()
+        evidence = migration.source_overlay.validate_parse_recovery_allowlist([row])
+
+        with self.assertRaises(migration.source_overlay.CppParseError):
+            migration.source_overlay.scan_cpp_literals(
+                Path(relative),
+                pinned,
+                parse_recovery_allowlist=evidence,
+                source_role="localized",
+                source_commit=migration.PINNED_LOCALIZED,
+            )
 
     def test_alignment_uses_exact_recovery_evidence_for_both_source_roles(self):
         path = Path("host/reviewed.cpp")

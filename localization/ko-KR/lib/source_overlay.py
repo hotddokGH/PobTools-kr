@@ -18,7 +18,7 @@ import tree_sitter_cpp
 ACCEPTED_STATUSES = frozenset({"official", "reviewed", "intentional"})
 PINNED_SOURCE_COMMITS = {
     "upstream": "baf07d41d2df524d4330a58b411826339c93fac1",
-    "localized": "ba33ed80de67d8301baad930456131d581df6ae1",
+    "localized": "2997715df0d6257192107d799a9f414b54e6c02b",
 }
 _HAN = re.compile(
     r"[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF"

@@ -29,7 +29,8 @@ from source_overlay import Literal, format_signature  # noqa: E402
 
 
 PINNED_UPSTREAM = "baf07d41d2df524d4330a58b411826339c93fac1"
-PINNED_LOCALIZED = "ba33ed80de67d8301baad930456131d581df6ae1"
+PINNED_LOCALIZED = "2997715df0d6257192107d799a9f414b54e6c02b"
+PINNED_LOCALIZED_TREE = "6c113669065ed84d160fb186ce3dfa2701e839cb"
 OFFICIAL_PATCH = "3.29.3.2"
 HAN = re.compile(
     r"[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF"
@@ -853,10 +854,16 @@ def _git_bytes(arguments: list[str]) -> bytes:
     return subprocess.check_output(["git", *arguments], cwd=REPOSITORY_ROOT)
 
 
-def _upstream_paths(upstream_ref: str) -> list[str]:
-    names = _git_bytes(
-        ["ls-tree", "-r", "--name-only", upstream_ref, "--", "pob-zh-engine"]
-    ).decode("utf-8").splitlines()
+def _source_paths(source_ref: str, source_role: str) -> list[str]:
+    try:
+        raw_names = _git_bytes(
+            ["ls-tree", "-r", "--name-only", source_ref, "--", "pob-zh-engine"]
+        )
+    except subprocess.CalledProcessError as error:
+        raise ValueError(
+            f"pinned {source_role} Git tree is unavailable: {source_ref}"
+        ) from error
+    names = raw_names.decode("utf-8").splitlines()
     paths = {
         name
         for name in names
@@ -870,6 +877,43 @@ def _upstream_paths(upstream_ref: str) -> list[str]:
         )
     }
     return sorted(paths)
+
+
+def _validate_pinned_source_ref(
+    source_ref: str,
+    expected: str,
+    source_role: str,
+    *,
+    expected_tree: str | None = None,
+) -> None:
+    if source_ref != expected:
+        raise ValueError(f"{source_role} ref must be pinned to {expected}")
+    try:
+        resolved = _git_bytes(["rev-parse", "--verify", f"{source_ref}^{{commit}}"])
+    except subprocess.CalledProcessError as error:
+        raise ValueError(f"pinned {source_role} ref is unavailable: {source_ref}") from error
+    if resolved.decode("ascii").strip() != expected:
+        raise ValueError(f"pinned {source_role} ref resolved to an unexpected commit")
+    if expected_tree is not None:
+        try:
+            resolved_tree = _git_bytes(["rev-parse", f"{source_ref}:pob-zh-engine"])
+        except subprocess.CalledProcessError as error:
+            raise ValueError(
+                f"pinned {source_role} engine tree is unavailable: {source_ref}"
+            ) from error
+        if resolved_tree.decode("ascii").strip() != expected_tree:
+            raise ValueError(
+                f"pinned {source_role} engine tree resolved to an unexpected object"
+            )
+
+
+def _git_source_bytes(source_ref: str, repository_path: str, source_role: str) -> bytes:
+    try:
+        return _git_bytes(["show", f"{source_ref}:{repository_path}"])
+    except subprocess.CalledProcessError as error:
+        raise ValueError(
+            f"pinned {source_role} Git blob is unavailable: {repository_path}"
+        ) from error
 
 
 def _excluded_paths(policy: dict[str, Any] | None = None) -> set[str]:
@@ -1704,6 +1748,7 @@ def validate_output_paths(output: Path, suggestions: Path, report: Path) -> None
 def run_migration(
     *,
     upstream_ref: str,
+    localized_ref: str = PINNED_LOCALIZED,
     localized_root: Path,
     output: Path,
     suggestions: Path,
@@ -1727,13 +1772,16 @@ def run_migration(
         }
         write_json(report_path, failure_report)
         raise OfficialEvidenceError(evidence_issues)
-    if upstream_ref != PINNED_UPSTREAM:
-        raise ValueError(f"upstream ref must be pinned to {PINNED_UPSTREAM}")
-    resolved = _git_bytes(["rev-parse", "--verify", f"{upstream_ref}^{{commit}}"])
-    if resolved.decode("ascii").strip() != PINNED_UPSTREAM:
-        raise ValueError("pinned upstream ref resolved to an unexpected commit")
+    _validate_pinned_source_ref(upstream_ref, PINNED_UPSTREAM, "upstream")
+    _validate_pinned_source_ref(
+        localized_ref,
+        PINNED_LOCALIZED,
+        "localized",
+        expected_tree=PINNED_LOCALIZED_TREE,
+    )
 
-    localized_root = localized_root.resolve()
+    # localized_root remains a CLI compatibility input. It deliberately never
+    # supplies C++ bytes; those come only from the immutable Git objects above.
     policy = json.loads(
         (LOCALE_ROOT / "source-display-policy.json").read_text(encoding="utf-8")
     )
@@ -1749,22 +1797,17 @@ def run_migration(
     context_inventories: dict[str, tuple[list[Literal], list[Literal]]] = {}
     upstream_sources: set[str] = set()
     files_scanned = 0
-    for repository_path in _upstream_paths(upstream_ref):
+    upstream_paths = _source_paths(upstream_ref, "upstream")
+    localized_paths = _source_paths(localized_ref, "localized")
+    if upstream_paths != localized_paths:
+        raise ValueError("pinned upstream and localized source inventories differ")
+    for repository_path in upstream_paths:
         relative = repository_path.removeprefix("pob-zh-engine/")
         if relative in excluded:
             continue
         files_scanned += 1
-        upstream_text = _git_bytes(["show", f"{upstream_ref}:{repository_path}"])
-        current_path = localized_root / Path(relative)
-        if (
-            not current_path.is_file()
-            or not current_path.resolve().is_relative_to(localized_root)
-        ):
-            alignment_issues.append(
-                {"code": "CURRENT_PATH_MISSING", "path": relative, "function": "", "source": ""}
-            )
-            continue
-        current_text = current_path.read_bytes()
+        upstream_text = _git_source_bytes(upstream_ref, repository_path, "upstream")
+        current_text = _git_source_bytes(localized_ref, repository_path, "localized")
         file_alignments, file_issues = align_file_literals(
             Path(relative),
             upstream_text,
