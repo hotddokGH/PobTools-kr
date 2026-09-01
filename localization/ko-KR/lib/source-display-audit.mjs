@@ -144,7 +144,7 @@ function sourceFiles(engineRoot) {
   return files.sort((left, right) => left.localeCompare(right, 'en'));
 }
 
-export function scanSourceDisplay({ engineRoot, policy }) {
+export function scanSourceDisplay({ engineRoot, policy, overlayReport = undefined }) {
   const files = sourceFiles(engineRoot);
   const report = {
     filesScanned: files.length,
@@ -161,6 +161,13 @@ export function scanSourceDisplay({ engineRoot, policy }) {
     report.allowedInternalLiterals += result.allowedInternalLiterals;
     if (result.excludedFile) report.excludedFiles += 1;
     report.issues.push(...result.issues);
+  }
+  if (overlayReport !== undefined) {
+    if (!Array.isArray(overlayReport?.issues)) {
+      report.issues.push({ code: 'INVALID_OVERLAY_REPORT' });
+    } else {
+      report.issues.push(...overlayReport.issues.map((issue) => ({ ...issue })));
+    }
   }
   return report;
 }
