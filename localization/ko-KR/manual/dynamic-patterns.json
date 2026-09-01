@@ -1,0 +1,47 @@
+{
+  "patch": "3.29.3.2",
+  "patterns": [
+    {
+      "dictionary": "ui",
+      "source": "Are you sure you want to gift-wrap:\n{0}?",
+      "target": "{0}에 선물 포장을\n하시겠습니까?",
+      "identity": "ClientStrings:ApplyGiftWrapConfirmationNoGiftMessage",
+      "patch": "3.29.3.2"
+    },
+    {
+      "dictionary": "ui",
+      "source": "Hide Filtered Ground Items",
+      "target": "바닥에 떨어진 필터 적용 아이템 숨기기",
+      "identity": "ClientStrings:OptionsHideFilteredGroundItemsLabel",
+      "patch": "3.29.3.2"
+    },
+    {
+      "dictionary": "ui",
+      "source": "Path of Exile's customer support team is available 24 hours a day, 7 days a week. If you experience abuse or harassment while playing Path of Exile, you can report the abusive players by right-clicking their name in the chat window, and the support team will investigate the issue.\r\n\r\nIf you have a question or problem, try searching the Path of Exile forums to see if someone else has had a similar experience that has been resolved before you contact support. If you cannot find a resolution to the problem you are facing, please email support@grindinggear.com.\r\n\r\nIf you're experiencing payment or microtransaction problems or account issues, please email support@grindinggear.com. Someone will be in contact with you as soon as they can. We aim to have an extremely quick response time, but rest assured if there's any delay we're working to respond as soon as we can.\r\n\r\nIf you're experiencing technical issues, please try searching the Technical Support section of the Path of Exile forums for possible solutions.",
+      "target": "패스 오브 엑자일을 플레이하는 도중 타인에 의해 불편을 겪으셨다면, 채팅창에서 위반한 플레이어의 이름을 우클릭하여 신고할 수 있습니다.\r\n\r\n게임 이용 중 궁금하신 내용은 다음게임 패스 오브 엑자일 FAQ를 이용해주시기 바라며, 문의 유형에 따라 고객센터가 구분되오니 문의 접수 시 아래 내용을 참고해주시기 바랍니다.\r\n\r\n다음게임 고객센터에서는 홈페이지 이벤트, 다음게임 계정, 청약철회 및 환불, 설치 및 실행, 게임 한글화 관련 문의를 도와드릴 수 있습니다.\r\n\r\n게임 내용과 게임 내 이벤트 문의는 GGG 고객센터(support@grindinggear.com)로 자세히 접수해 주세요. 한글과 영문 모두 사용할 수 있습니다.",
+      "identity": "ClientStrings:TutorialPanelCustomerSupportContent1",
+      "patch": "3.29.3.2"
+    },
+    {
+      "dictionary": "ui",
+      "source": "{1}\r\nCreated by {0}",
+      "target": "{0} 님이\r\n{1} 생성",
+      "identity": "ClientStrings:InstanceChooserHeistArea",
+      "patch": "3.29.3.2"
+    },
+    {
+      "dictionary": "stats",
+      "source": "If you've Attacked Recently, you and nearby Allies have {0}% Chance to Block Attack Damage",
+      "target": "최근 4초 이내 공격한 경우 자신 및 주변 동료들의 공격 피해 막기 확률 {0}%",
+      "identity": "stat-descriptions:you_and_allies_additional_block_%_if_have_attacked_recently#212FA2F49361168642C59820BD03B38466FA5DF825209743CE156969C6D73FCB",
+      "patch": "3.29.3.2"
+    },
+    {
+      "dictionary": "stats",
+      "source": "If you've Cast a Spell Recently, you and nearby Allies have {0}% Chance to Block Spell Damage",
+      "target": "최근 4초 이내 주문을 시전한 경우 자신 및 주변 동료들의 주문 피해 막기 확률 {0}%",
+      "identity": "stat-descriptions:you_and_allies_additional_spell_block_%_if_cast_spell_recently#212FA2F49361168642C59820BD03B38466FA5DF825209743CE156969C6D73FCB",
+      "patch": "3.29.3.2"
+    }
+  ]
+}

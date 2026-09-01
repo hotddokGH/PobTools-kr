@@ -1,7 +1,8 @@
 $ErrorActionPreference = 'Stop'
 
 $toolRoot = $PSScriptRoot
-$projectRoot = Split-Path -Parent (Split-Path -Parent $toolRoot)
+$repositoryRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $toolRoot))
+$projectRoot = $repositoryRoot
 $reportRoot = Join-Path $projectRoot 'reports\official-terms'
 $englishPath = Join-Path $toolRoot 'tables\English\BaseItemTypes.json'
 $koreanPath = Join-Path $toolRoot 'tables\Korean\BaseItemTypes.json'

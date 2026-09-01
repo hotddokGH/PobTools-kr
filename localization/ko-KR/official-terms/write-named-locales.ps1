@@ -1,7 +1,9 @@
 $ErrorActionPreference = 'Stop'
 
 $toolRoot = $PSScriptRoot
-$projectRoot = Split-Path -Parent (Split-Path -Parent $toolRoot)
+$repositoryRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $toolRoot))
+$runtimeRoot = Join-Path $repositoryRoot 'pob-zh-engine\dist'
+$projectRoot = $repositoryRoot
 $reportRoot = Join-Path $projectRoot 'reports\official-terms\tables'
 
 $specs = @(
@@ -12,8 +14,8 @@ $specs = @(
 
 foreach ($spec in $specs) {
     $acceptedPath = Join-Path $reportRoot ("$($spec.table)\accepted.json")
-    $referencePath = Join-Path $projectRoot ("Data\poe1\zh-rTW\$($spec.locale).json")
-    $targetPath = Join-Path $projectRoot ("Data\poe1\ko-KR\$($spec.locale).json")
+    $referencePath = Join-Path $runtimeRoot ("Data\poe1\zh-rTW\$($spec.locale).json")
+    $targetPath = Join-Path $runtimeRoot ("Data\poe1\ko-KR\$($spec.locale).json")
     foreach ($requiredPath in @($acceptedPath, $referencePath)) {
         if (-not (Test-Path -LiteralPath $requiredPath -PathType Leaf)) {
             throw "Required input is missing: $requiredPath"

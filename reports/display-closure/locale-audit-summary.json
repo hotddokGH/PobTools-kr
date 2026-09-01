@@ -1,12 +1,11 @@
 {
   "total": 111806,
-  "resolved": 42785,
+  "resolved": 42791,
   "excluded": 0,
-  "issues": 69021,
+  "issues": 69015,
   "issueCodes": {
     "MISSING_KEY": 68934,
-    "UNRESOLVED_ENGLISH": 81,
-    "FORMAT_MISMATCH": 6
+    "UNRESOLVED_ENGLISH": 81
   },
   "dictionaries": [
     {
@@ -33,16 +32,16 @@
     {
       "dictionary": "ui",
       "total": 22652,
-      "resolved": 14175,
+      "resolved": 14179,
       "excluded": 0,
-      "issues": 8477
+      "issues": 8473
     },
     {
       "dictionary": "stats",
       "total": 61304,
-      "resolved": 14542,
+      "resolved": 14544,
       "excluded": 0,
-      "issues": 46762
+      "issues": 46760
     },
     {
       "dictionary": "passives",

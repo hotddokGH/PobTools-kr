@@ -1,10 +1,12 @@
 $ErrorActionPreference = 'Stop'
 
 $toolRoot = $PSScriptRoot
-$projectRoot = Split-Path -Parent (Split-Path -Parent $toolRoot)
+$repositoryRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $toolRoot))
+$runtimeRoot = Join-Path $repositoryRoot 'pob-zh-engine\dist'
+$projectRoot = $repositoryRoot
 $acceptedPath = Join-Path $projectRoot 'reports\official-terms\accepted.json'
-$referencePath = Join-Path $projectRoot 'Data\poe1\zh-rTW\items.json'
-$targetPath = Join-Path $projectRoot 'Data\poe1\ko-KR\items.json'
+$referencePath = Join-Path $runtimeRoot 'Data\poe1\zh-rTW\items.json'
+$targetPath = Join-Path $runtimeRoot 'Data\poe1\ko-KR\items.json'
 
 foreach ($requiredPath in @($acceptedPath, $referencePath)) {
     if (-not (Test-Path -LiteralPath $requiredPath -PathType Leaf)) {

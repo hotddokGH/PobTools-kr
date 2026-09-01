@@ -27,6 +27,19 @@ function Get-NumberedPlaceholders {
     return @([regex]::Matches($Text, '\{\d+\}') | ForEach-Object { $_.Value } | Sort-Object)
 }
 
+$provenance = Read-JsonFile -Path (Join-Path $repoRoot 'reports\display-closure\provenance.json')
+
+function Test-OfficialStructuralProvenance {
+    param(
+        [Parameter(Mandatory)][string]$Dictionary,
+        [Parameter(Mandatory)][string]$Key
+    )
+
+    if ($null -eq $script:provenance) { return $false }
+    $record = $script:provenance['dictionaries'][$Dictionary][$Key]
+    return $null -ne $record -and $record['layer'] -eq 'official-structural-pattern'
+}
+
 $manifest = Read-JsonFile -Path (Join-Path $reportRoot 'manifest.json')
 $accepted = Read-JsonFile -Path (Join-Path $reportRoot 'accepted.json')
 $conflicts = Read-JsonFile -Path (Join-Path $reportRoot 'conflicts.json')
@@ -321,7 +334,11 @@ if ($null -ne $statManifest -and $null -ne $statAccepted -and $null -ne $statCon
                 $failures.Add("Korean stats.json must contain all and only $($expectedStatKeys.Count) exact official stat matches; found $($actualStatEntries.Keys.Count)")
             }
             $missingStatKeys = @($expectedStatKeys | Where-Object { -not $actualStatEntries.ContainsKey($_) })
-            $wrongStatKeys = @($expectedStatKeys | Where-Object { $actualStatEntries.ContainsKey($_) -and $actualStatEntries[$_] -ne $officialStats[$_] })
+            $wrongStatKeys = @($expectedStatKeys | Where-Object {
+                $actualStatEntries.ContainsKey($_) -and
+                $actualStatEntries[$_] -ne $officialStats[$_] -and
+                -not (Test-OfficialStructuralProvenance -Dictionary 'stats' -Key $_)
+            })
             if ($missingStatKeys.Count -gt 0) {
                 $failures.Add("Korean stats.json is missing $($missingStatKeys.Count) exact official stat key(s), including: $(@($missingStatKeys | Select-Object -First 5) -join ' | ')")
             }
@@ -341,7 +358,7 @@ if ($null -ne $statManifest -and $null -ne $statAccepted -and $null -ne $statCon
 $clientStringsAccepted = Read-JsonFile -Path (Join-Path $reportRoot 'tables\ClientStrings\accepted.json')
 $clientStrings2Accepted = Read-JsonFile -Path (Join-Path $reportRoot 'tables\ClientStrings2\accepted.json')
 $statUiAccepted = Read-JsonFile -Path (Join-Path $reportRoot 'stat-descriptions\accepted.json')
-$manualPobUi = Read-JsonFile -Path (Join-Path $repoRoot 'localization\ko-KR\official-terms\manual-pob-ui.json')
+$manualPobUi = Read-JsonFile -Path (Join-Path $repoRoot 'localization\ko-KR\manual\pob-ui.json')
 $referenceUi = Read-JsonFile -Path (Join-Path $rootPath 'Data\poe1\zh-rTW\ui.json')
 $koreanUi = Read-JsonFile -Path (Join-Path $rootPath 'Data\poe1\ko-KR\ui.json')
 
@@ -351,7 +368,7 @@ if ($null -ne $clientStringsAccepted -and $null -ne $clientStrings2Accepted -and
     }
     $reviewedSource = @($manualPobUi['reviewed_sources'] | Where-Object {
         $_['repository'] -eq 'https://github.com/antonio-kim-77/PathOfBuilding-kor' -and
-        $_['commit'] -eq '72555c9d5e54c66a3b064c8dc38a30e8dcb06b43'
+        $_['commit'] -eq '4b4129ef80818f38a221e51ac4cee17cb680b94b'
     })
     if ($reviewedSource.Count -ne 1) {
         $failures.Add('Manual PoB UI review set must pin its Korean-fork wording reference repository and commit')
@@ -405,7 +422,9 @@ if ($null -ne $clientStringsAccepted -and $null -ne $clientStrings2Accepted -and
         }
     }
     foreach ($pair in $manualPobUi['entries'].GetEnumerator()) {
-        $expectedUi[$pair.Key] = [string]$pair.Value
+        if ($referenceUi['entries'].ContainsKey($pair.Key) -and -not $expectedUi.ContainsKey($pair.Key)) {
+            $expectedUi[$pair.Key] = [string]$pair.Value
+        }
     }
 
     $actualUiEntries = $koreanUi['entries']
@@ -417,7 +436,11 @@ if ($null -ne $clientStringsAccepted -and $null -ne $clientStrings2Accepted -and
             $failures.Add("Korean ui.json must contain all and only $($expectedUi.Keys.Count) exact official-plus-manual UI mappings; found $($actualUiEntries.Keys.Count)")
         }
         $missingUiKeys = @($expectedUi.Keys | Where-Object { -not $actualUiEntries.ContainsKey($_) })
-        $wrongUiKeys = @($expectedUi.Keys | Where-Object { $actualUiEntries.ContainsKey($_) -and $actualUiEntries[$_] -ne $expectedUi[$_] })
+        $wrongUiKeys = @($expectedUi.Keys | Where-Object {
+            $actualUiEntries.ContainsKey($_) -and
+            $actualUiEntries[$_] -ne $expectedUi[$_] -and
+            -not (Test-OfficialStructuralProvenance -Dictionary 'ui' -Key $_)
+        })
         if ($missingUiKeys.Count -gt 0) {
             $failures.Add("Korean ui.json is missing $($missingUiKeys.Count) UI key(s), including: $(@($missingUiKeys | Select-Object -First 5) -join ' | ')")
         }

@@ -1,7 +1,8 @@
 $ErrorActionPreference = 'Stop'
 
 $toolRoot = $PSScriptRoot
-$projectRoot = Split-Path -Parent (Split-Path -Parent $toolRoot)
+$repositoryRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $toolRoot))
+$projectRoot = $repositoryRoot
 $reportRoot = Join-Path $projectRoot 'reports\official-terms\tables'
 $config = Get-Content -LiteralPath (Join-Path $toolRoot 'config.json') -Raw -Encoding UTF8 | ConvertFrom-Json -AsHashtable
 $clientLogPath = 'C:\Daum Games\Path of Exile\logs\KakaoClient.txt'

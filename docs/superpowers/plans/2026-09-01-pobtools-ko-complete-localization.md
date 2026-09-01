@@ -292,7 +292,7 @@ git commit -m "test: add Korean display closure gate"
 - Consumes: exact official mapping reports, normalized official stat templates, reviewed manual UI, reference English keys, and `display-policy.json`.
 - Produces: `mergeLayers({reference,officialExact,officialPatterns,manual,literals}) -> {entries,provenance,conflicts}` and eight deterministic runtime dictionaries.
 
-- [ ] **Step 1: Write failing precedence and conflict tests**
+- [x] **Step 1: Write failing precedence and conflict tests**
 
 Create `merge-layers.test.mjs`:
 
@@ -333,7 +333,7 @@ test('manual text may fill PoB-only UI when no official row exists', () => {
 });
 ```
 
-- [ ] **Step 2: Run the merge tests and verify RED**
+- [x] **Step 2: Run the merge tests and verify RED**
 
 ```powershell
 node --test .\localization\ko-KR\tests\merge-layers.test.mjs
@@ -341,7 +341,7 @@ node --test .\localization\ko-KR\tests\merge-layers.test.mjs
 
 Expected: FAIL with `ERR_MODULE_NOT_FOUND` for `merge-layers.mjs`.
 
-- [ ] **Step 3: Implement strict layer precedence**
+- [x] **Step 3: Implement strict layer precedence**
 
 Implement this exact precedence in `mergeLayers`:
 
@@ -355,7 +355,7 @@ unresolved
 
 Require every selected value to be non-empty and every provenance record to contain `layer` and `source`. Throw on official conflicts, conflicting same-layer values, or format signature mismatch.
 
-- [ ] **Step 4: Run merge tests and verify GREEN**
+- [x] **Step 4: Run merge tests and verify GREEN**
 
 ```powershell
 node --test .\localization\ko-KR\tests\merge-layers.test.mjs
@@ -363,7 +363,7 @@ node --test .\localization\ko-KR\tests\merge-layers.test.mjs
 
 Expected: 3 tests, 3 pass, 0 fail.
 
-- [ ] **Step 5: Refactor existing official scripts to the source layout**
+- [x] **Step 5: Refactor existing official scripts to the source layout**
 
 Replace hard-coded distribution-root assumptions with these two roots:
 
@@ -375,7 +375,7 @@ report root     = <repository>/reports/official-terms
 
 Keep all pinned hashes, tool version `15.2.0`, patch `3.29.3.2`, stable-ID joins, and conflict exclusions unchanged. Run the current official contracts after moving the scripts.
 
-- [ ] **Step 6: Implement structural pattern matching for official stat text**
+- [x] **Step 6: Implement structural pattern matching for official stat text**
 
 Store each entry in `dynamic-patterns.json` as:
 
@@ -390,7 +390,7 @@ Store each entry in `dynamic-patterns.json` as:
 
 Normalize only decimal numbers, signed numbers, ranges, numbered placeholders, color tags, and line breaks. A pattern applies only when the normalized English text and official structural identity both match. Reject patterns whose source and target format signatures differ.
 
-- [ ] **Step 7: Build all eight dictionaries twice and prove determinism**
+- [x] **Step 7: Build all eight dictionaries twice and prove determinism**
 
 ```powershell
 node .\localization\ko-KR\build-runtime-locale.mjs
@@ -402,7 +402,7 @@ Compare-Object $koFirst.Hash $koSecond.Hash
 
 Expected: `Compare-Object` emits no rows; official and locale tests pass.
 
-- [ ] **Step 8: Commit the deterministic builder**
+- [x] **Step 8: Commit the deterministic builder**
 
 ```powershell
 git add localization/ko-KR pob-zh-engine/dist/Data/poe1/ko-KR reports/official-terms reports/display-closure/provenance.json tests/ko-KR

@@ -192,7 +192,7 @@ if ($null -ne $poe1Metadata) {
         'Import/Export Build' = '빌드 가져오기/내보내기'
         'Save' = '저장'
         'Open' = '열기'
-        'New' = '새로 만들기'
+        'New' = '신규'
         'Exit' = '종료'
     }
 }

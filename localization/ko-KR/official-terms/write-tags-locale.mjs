@@ -4,10 +4,11 @@ import { fileURLToPath } from 'node:url';
 
 const scriptPath = fileURLToPath(import.meta.url);
 const toolRoot = dirname(scriptPath);
-const projectRoot = dirname(dirname(toolRoot));
+const projectRoot = dirname(dirname(dirname(toolRoot)));
+const runtimeRoot = join(projectRoot, 'pob-zh-engine', 'dist');
 const acceptedPath = join(projectRoot, 'reports', 'official-terms', 'mod-names', 'accepted.json');
-const referencePath = join(projectRoot, 'Data', 'poe1', 'zh-rTW', 'tags.json');
-const targetPath = join(projectRoot, 'Data', 'poe1', 'ko-KR', 'tags.json');
+const referencePath = join(runtimeRoot, 'Data', 'poe1', 'zh-rTW', 'tags.json');
+const targetPath = join(runtimeRoot, 'Data', 'poe1', 'ko-KR', 'tags.json');
 
 const acceptedReport = JSON.parse(readFileSync(acceptedPath, 'utf8'));
 const reference = JSON.parse(readFileSync(referencePath, 'utf8'));

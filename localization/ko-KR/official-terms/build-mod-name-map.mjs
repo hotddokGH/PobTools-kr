@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 
 const scriptPath = fileURLToPath(import.meta.url);
 const toolRoot = dirname(scriptPath);
-const projectRoot = dirname(dirname(toolRoot));
+const projectRoot = dirname(dirname(dirname(toolRoot)));
 const sourceRoot = join(toolRoot, 'names');
 const reportRoot = join(projectRoot, 'reports', 'official-terms', 'mod-names');
 const sources = JSON.parse(readFileSync(join(sourceRoot, 'mod-sources.json'), 'utf8'));

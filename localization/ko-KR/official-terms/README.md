@@ -33,12 +33,12 @@ node .\build-mod-name-map.mjs
 node .\write-tags-locale.mjs
 ```
 
-From the distribution root:
+From the repository root:
 
 ```powershell
-pwsh -NoProfile -File .\tests\Test-OfficialTerms.ps1
+pwsh -NoProfile -File .\tests\ko-KR\Test-OfficialTerms.ps1
 ```
 
 Do not replace conflicts or unmatched rows with guessed translations.
 
-`manual-pob-ui.json` contains separately reviewed PoB-only interface text. Its external wording reference is pinned in the file and in the distribution `NOTICE.md`; official PoE terminology always takes priority and is corrected against the patch reports before use.
+`../manual/pob-ui.json` contains separately reviewed PoB-only interface text. Its external wording reference is pinned in the file and in `NOTICE.md`; official PoE terminology always takes priority and is corrected against the patch reports before use.

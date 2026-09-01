@@ -272,7 +272,7 @@
   "reviewed_sources": [
     {
       "repository": "https://github.com/antonio-kim-77/PathOfBuilding-kor",
-      "commit": "72555c9d5e54c66a3b064c8dc38a30e8dcb06b43",
+      "commit": "4b4129ef80818f38a221e51ac4cee17cb680b94b",
       "scope": "PoB-only UI wording reference",
       "review": "Every imported key was intersected with the PobTools UI inventory and manually reviewed; PoE terminology was corrected against official patch 3.29.3.2 reports. Unverified legacy terms were excluded."
     }

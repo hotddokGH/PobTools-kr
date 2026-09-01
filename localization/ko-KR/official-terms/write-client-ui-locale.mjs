@@ -4,12 +4,13 @@ import { fileURLToPath } from 'node:url';
 
 const scriptPath = fileURLToPath(import.meta.url);
 const toolRoot = dirname(scriptPath);
-const projectRoot = dirname(dirname(toolRoot));
+const projectRoot = dirname(dirname(dirname(toolRoot)));
+const runtimeRoot = join(projectRoot, 'pob-zh-engine', 'dist');
 const officialReportRoot = join(projectRoot, 'reports', 'official-terms');
 const reportRoot = join(officialReportRoot, 'tables');
-const referencePath = join(projectRoot, 'Data', 'poe1', 'zh-rTW', 'ui.json');
-const targetPath = join(projectRoot, 'Data', 'poe1', 'ko-KR', 'ui.json');
-const manualPath = join(toolRoot, 'manual-pob-ui.json');
+const referencePath = join(runtimeRoot, 'Data', 'poe1', 'zh-rTW', 'ui.json');
+const targetPath = join(runtimeRoot, 'Data', 'poe1', 'ko-KR', 'ui.json');
+const manualPath = join(dirname(toolRoot), 'manual', 'pob-ui.json');
 
 const reports = ['ClientStrings', 'ClientStrings2'].map((table) => ({
   table,
@@ -73,7 +74,7 @@ const output = {
     'official PoE patch 3.29.3.2: RePoE English stat_translations.min.json',
     'official PoE patch 3.29.3.2: RePoE Korean stat_translations.min.json',
     'official PoE patch 3.29.3.2: exact base item, skill, passive, monster, unique, and mod names',
-    'manual PobTools-only UI: tools/official-terms/manual-pob-ui.json',
+    'manual PobTools-only UI: localization/ko-KR/manual/pob-ui.json',
   ],
   is_base_items: false,
   entries,
