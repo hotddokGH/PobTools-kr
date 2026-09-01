@@ -436,16 +436,6 @@ def align_file_literals(
             sorted(rows.values(), key=lambda item: (item.start, item.end))
         )
     }
-    current_rows_by_function: dict[str, list[Literal]] = defaultdict(list)
-    current_seen: set[tuple[str, int, int]] = set()
-    for (function, _, _), rows in current.items():
-        for row in rows:
-            identity = (function, row.start, row.end)
-            if identity not in current_seen:
-                current_seen.add(identity)
-                current_rows_by_function[function].append(row)
-    for rows in current_rows_by_function.values():
-        rows.sort(key=lambda item: (item.start, item.end))
     handled_spans: set[tuple[str, int, int]] = set()
 
     for key, upstream_rows in sorted(
@@ -483,26 +473,6 @@ def align_file_literals(
                     )
                     handled_spans.add((function, upstream_row.start, upstream_row.end))
                     continue
-                direct_rows = current_rows_by_function.get(function, [])
-                if len(viable) == 0 and occurrence_index < len(direct_rows):
-                    candidate = direct_rows[occurrence_index]
-                    if (
-                        HANGUL.search(candidate.decoded)
-                        and format_signature(candidate.decoded)
-                        == format_signature(upstream_row.decoded)
-                    ):
-                        alignments.append(
-                            Alignment(
-                                path=path.as_posix(),
-                                function=function,
-                                source=upstream_row.decoded,
-                                target=candidate.decoded,
-                                occurrence_index=occurrence_index,
-                                line=upstream_row.line,
-                            )
-                        )
-                        handled_spans.add((function, upstream_row.start, upstream_row.end))
-                        continue
             candidates = [
                 row.decoded
                 for row in current_rows
@@ -1069,29 +1039,195 @@ def verify_official_evidence(repository_root: Path) -> list[dict[str, str]]:
     return sorted(issues, key=lambda row: (row["path"], row["code"], row["detail"]))
 
 
+def _official_identity(report_name: str, row: dict[str, Any]) -> str:
+    if row.get("id"):
+        return f"{report_name}:{row['id']}"
+    if isinstance(row.get("ids"), list):
+        joined = ",".join(str(value) for value in row["ids"])
+        return f"{report_name}:{joined}#{row.get('variantIdentity', 'no-variant')}"
+    return report_name
+
+
+def _collect_official_candidates(
+    named_reports: Iterable[tuple[str, dict[str, Any]]],
+) -> dict[str, dict[str, str]]:
+    candidates: dict[str, dict[str, set[str]]] = defaultdict(lambda: defaultdict(set))
+    for name, report in named_reports:
+        for row in report.get("rows", []):
+            if not isinstance(row, dict):
+                continue
+            english = row.get("english")
+            korean = row.get("korean")
+            if not isinstance(english, str) or not isinstance(korean, str):
+                continue
+            candidates[english][korean].add(_official_identity(name, row))
+    exact: dict[str, dict[str, str]] = {}
+    for english, values in candidates.items():
+        if len(values) != 1:
+            continue
+        korean, sources = next(iter(values.items()))
+        exact[english] = {"value": korean, "source": " | ".join(sorted(sources))}
+    return exact
+
+
+def _add_official_fallback(
+    primary: dict[str, dict[str, str]], fallback: dict[str, dict[str, str]]
+) -> dict[str, dict[str, str]]:
+    return {**fallback, **primary}
+
+
+def _accepted_official_by_dictionary(
+    repository_root: Path,
+) -> dict[str, dict[str, dict[str, str]]]:
+    report_root = repository_root / "reports/official-terms"
+    paths = {
+        "baseItems": ("BaseItemTypes", report_root / "accepted.json"),
+        "activeSkills": (
+            "ActiveSkills",
+            report_root / "tables/ActiveSkills/accepted.json",
+        ),
+        "passiveSkills": (
+            "PassiveSkills",
+            report_root / "tables/PassiveSkills/accepted.json",
+        ),
+        "monsters": (
+            "MonsterVarieties",
+            report_root / "tables/MonsterVarieties/accepted.json",
+        ),
+        "clientStrings": (
+            "ClientStrings",
+            report_root / "tables/ClientStrings/accepted.json",
+        ),
+        "clientStrings2": (
+            "ClientStrings2",
+            report_root / "tables/ClientStrings2/accepted.json",
+        ),
+        "stats": (
+            "stat-descriptions",
+            report_root / "stat-descriptions/accepted.json",
+        ),
+        "uniques": ("unique-items", report_root / "unique-items/accepted.json"),
+        "modNames": ("mod-names", report_root / "mod-names/accepted.json"),
+    }
+    reports: dict[str, tuple[str, dict[str, Any]]] = {}
+    issues: list[dict[str, str]] = []
+    for key, (name, path) in paths.items():
+        document, rows = _read_evidence_json(path)
+        issues.extend(rows)
+        if not isinstance(document, dict) or document.get("patch") != OFFICIAL_PATCH:
+            issues.append(
+                _evidence_issue(
+                    "OFFICIAL_PATCH_MISMATCH",
+                    path,
+                    "accepted report cannot bind runtime identity",
+                )
+            )
+            continue
+        reports[key] = (name, document)
+    if issues:
+        raise OfficialEvidenceError(issues)
+
+    def collect(*keys: str) -> dict[str, dict[str, str]]:
+        return _collect_official_candidates(reports[key] for key in keys)
+
+    direct = {
+        "baseItems": collect("baseItems"),
+        "activeAndItems": collect("activeSkills", "baseItems"),
+        "passives": collect("passiveSkills"),
+        "monsters": collect("monsters"),
+        "stats": collect("stats"),
+        "uniques": collect("uniques"),
+        "modNames": collect("modNames"),
+        "passiveSupplement": collect("stats", "clientStrings", "clientStrings2"),
+        "uiPrimary": collect("clientStrings", "clientStrings2", "stats"),
+        "uiSupplement": collect(
+            "baseItems",
+            "activeSkills",
+            "passiveSkills",
+            "monsters",
+            "uniques",
+            "modNames",
+        ),
+    }
+    return {
+        "tags": direct["modNames"],
+        "items": direct["baseItems"],
+        "gems": direct["activeAndItems"],
+        "ui": _add_official_fallback(direct["uiPrimary"], direct["uiSupplement"]),
+        "stats": direct["stats"],
+        "passives": _add_official_fallback(
+            direct["passives"], direct["passiveSupplement"]
+        ),
+        "uniques": direct["uniques"],
+        "monsters": direct["monsters"],
+    }
+
+
 def load_official_runtime_identity(repository_root: Path) -> dict[str, str]:
     provenance = json.loads(
         (repository_root / "reports/display-closure/provenance.json").read_text(encoding="utf-8")
     )
     locale_root = repository_root / "pob-zh-engine/dist/Data/poe1"
+    accepted = _accepted_official_by_dictionary(repository_root)
+    dynamic_path = repository_root / "localization/ko-KR/manual/dynamic-patterns.json"
+    dynamic = (
+        json.loads(dynamic_path.read_text(encoding="utf-8"))
+        if dynamic_path.is_file()
+        else {"patterns": []}
+    )
+    corrected_by_dictionary: dict[str, set[str]] = defaultdict(set)
+    for row in dynamic.get("patterns", []):
+        if isinstance(row, dict) and isinstance(row.get("source"), str):
+            corrected_by_dictionary[str(row.get("dictionary", "stats"))].add(row["source"])
     candidates: dict[str, set[str]] = defaultdict(set)
+    issues: list[dict[str, str]] = []
     for dictionary in DICTIONARIES:
-        chinese = json.loads(
-            (locale_root / "zh-rTW" / f"{dictionary}.json").read_text(encoding="utf-8")
-        )["entries"]
-        korean = json.loads(
-            (locale_root / "ko-KR" / f"{dictionary}.json").read_text(encoding="utf-8")
-        )["entries"]
+        chinese_path = locale_root / "zh-rTW" / f"{dictionary}.json"
+        korean_path = locale_root / "ko-KR" / f"{dictionary}.json"
+        chinese = json.loads(chinese_path.read_text(encoding="utf-8"))["entries"]
+        korean = json.loads(korean_path.read_text(encoding="utf-8"))["entries"]
         dictionary_provenance = provenance["dictionaries"][dictionary]
-        for english, target in korean.items():
-            if dictionary_provenance.get(english, {}).get("layer") not in {
-                "official-exact",
-                "official-structural-pattern",
-            }:
+        for english, record in accepted[dictionary].items():
+            if english in corrected_by_dictionary[dictionary] or english not in chinese:
+                continue
+            target = record["value"]
+            actual_target = korean.get(english)
+            actual_provenance = dictionary_provenance.get(english)
+            if actual_target != target:
+                issues.append(
+                    _evidence_issue(
+                        "OFFICIAL_DERIVED_TARGET_MISMATCH",
+                        korean_path,
+                        f"{dictionary}/{english} differs from accepted evidence",
+                    )
+                )
+                continue
+            expected_sources = set(record["source"].split(" | "))
+            actual_sources = (
+                set(str(actual_provenance.get("source", "")).split(" | "))
+                if isinstance(actual_provenance, dict)
+                else set()
+            )
+            if (
+                not isinstance(actual_provenance, dict)
+                or actual_provenance.get("layer") != "official-exact"
+                or actual_sources != expected_sources
+            ):
+                issues.append(
+                    _evidence_issue(
+                        "OFFICIAL_DERIVED_PROVENANCE_MISMATCH",
+                        repository_root / "reports/display-closure/provenance.json",
+                        f"{dictionary}/{english} provenance differs from accepted evidence",
+                    )
+                )
                 continue
             source = chinese.get(english)
-            if isinstance(source, str) and isinstance(target, str):
-                candidates[source].add(target)
+            if isinstance(source, str) and isinstance(actual_target, str):
+                candidates[source].add(actual_target)
+    if issues:
+        raise OfficialEvidenceError(
+            sorted(issues, key=lambda row: (row["path"], row["code"], row["detail"]))
+        )
     return {
         source: next(iter(targets))
         for source, targets in sorted(candidates.items())

@@ -4,11 +4,11 @@
   "filesScanned": 160,
   "upstreamHanSources": 1381,
   "counts": {
-    "official": 115,
-    "reviewed": 1265,
+    "official": 113,
+    "reviewed": 1252,
     "suggested": 1499,
     "ambiguous": 8,
-    "unmapped": 16
+    "unmapped": 35
   },
   "issues": [
     {
@@ -25,6 +25,17 @@
         ", 알 수 없는 항목 ",
         ", 중복 배치된 반쪽 영역 "
       ]
+    },
+    {
+      "code": "UNMAPPED_ALIGNMENT",
+      "path": "host/atlas_import.cpp",
+      "function": "ImportAtlasTreeData",
+      "line": 363,
+      "occurrenceIndex": 109,
+      "sources": [
+        "有 "
+      ],
+      "currentCandidates": []
     },
     {
       "code": "UNMAPPED_ALIGNMENT",
@@ -70,6 +81,17 @@
       ]
     },
     {
+      "code": "UNMAPPED_ALIGNMENT",
+      "path": "host/atlas_import.cpp",
+      "function": "sheetFor",
+      "line": 140,
+      "occurrenceIndex": 8,
+      "sources": [
+        "assets 資料夾內找不到圖集 "
+      ],
+      "currentCandidates": []
+    },
+    {
       "code": "ALIGNMENT_COLLISION",
       "path": "host/atlas_planner.cpp",
       "function": "importEntry",
@@ -78,9 +100,30 @@
       "source": " 點",
       "targets": [
         "포인트",
-        "포인트 남음",
-        "할당된 노드에서 이곳으로 연결할 수 없습니다."
+        "포인트 남음"
       ]
+    },
+    {
+      "code": "UNMAPPED_ALIGNMENT",
+      "path": "host/atlas_planner.cpp",
+      "function": "rebuildDiff",
+      "line": 1941,
+      "occurrenceIndex": 2,
+      "sources": [
+        "載入 "
+      ],
+      "currentCandidates": []
+    },
+    {
+      "code": "UNMAPPED_ALIGNMENT",
+      "path": "host/atlas_planner.cpp",
+      "function": "rebuildDiff",
+      "line": 1941,
+      "occurrenceIndex": 3,
+      "sources": [
+        " 失敗："
+      ],
+      "currentCandidates": []
     },
     {
       "code": "UNMAPPED_ALIGNMENT",
@@ -117,6 +160,28 @@
     },
     {
       "code": "UNMAPPED_ALIGNMENT",
+      "path": "host/atlas_planner.cpp",
+      "function": "scarabRefuseText",
+      "line": 1675,
+      "occurrenceIndex": 6,
+      "sources": [
+        "」不能同時使用"
+      ],
+      "currentCandidates": []
+    },
+    {
+      "code": "UNMAPPED_ALIGNMENT",
+      "path": "host/atlas_update.cpp",
+      "function": "AtlasUpdater::doCheck",
+      "line": 556,
+      "occurrenceIndex": 7,
+      "sources": [
+        "發現新賽季輿圖資料 "
+      ],
+      "currentCandidates": []
+    },
+    {
+      "code": "UNMAPPED_ALIGNMENT",
       "path": "host/atlas_update.cpp",
       "function": "AtlasUpdater::doCheck",
       "line": 556,
@@ -147,6 +212,39 @@
       "line": 673,
       "occurrenceIndex": 22,
       "source": " 圖集中… "
+    },
+    {
+      "code": "UNMAPPED_ALIGNMENT",
+      "path": "host/atlas_view.cpp",
+      "function": "AtlasView::Draw",
+      "line": 651,
+      "occurrenceIndex": 11,
+      "sources": [
+        "已移除 "
+      ],
+      "currentCandidates": []
+    },
+    {
+      "code": "UNMAPPED_ALIGNMENT",
+      "path": "host/atlas_view.cpp",
+      "function": "AtlasView::Draw",
+      "line": 651,
+      "occurrenceIndex": 12,
+      "sources": [
+        " 點"
+      ],
+      "currentCandidates": []
+    },
+    {
+      "code": "UNMAPPED_ALIGNMENT",
+      "path": "host/atlas_view.cpp",
+      "function": "AtlasView::Draw",
+      "line": 667,
+      "occurrenceIndex": 17,
+      "sources": [
+        "已配置 "
+      ],
+      "currentCandidates": []
     },
     {
       "code": "UNMAPPED_ALIGNMENT",
@@ -631,6 +729,17 @@
       "path": "host/filter_item_import.cpp",
       "function": "ParseGameItemText",
       "line": 360,
+      "occurrenceIndex": 35,
+      "sources": [
+        "贗品．"
+      ],
+      "currentCandidates": []
+    },
+    {
+      "code": "UNMAPPED_ALIGNMENT",
+      "path": "host/filter_item_import.cpp",
+      "function": "ParseGameItemText",
+      "line": 360,
       "occurrenceIndex": 36,
       "sources": [
         "贗品．"
@@ -660,6 +769,17 @@
       ]
     },
     {
+      "code": "UNMAPPED_ALIGNMENT",
+      "path": "host/launcher_editor.cpp",
+      "function": "Frame",
+      "line": 376,
+      "occurrenceIndex": 14,
+      "sources": [
+        " 個檔案"
+      ],
+      "currentCandidates": []
+    },
+    {
       "code": "ALIGNMENT_COLLISION",
       "path": "host/launcher_editor.cpp",
       "function": "Frame",
@@ -678,6 +798,28 @@
       "line": 71,
       "occurrenceIndex": 20,
       "source": "PoeDB 流亡編年史"
+    },
+    {
+      "code": "UNMAPPED_ALIGNMENT",
+      "path": "host/launcher_ui.cpp",
+      "function": "",
+      "line": 89,
+      "occurrenceIndex": 42,
+      "sources": [
+        "简体"
+      ],
+      "currentCandidates": []
+    },
+    {
+      "code": "UNMAPPED_ALIGNMENT",
+      "path": "host/passive_tree_update.cpp",
+      "function": "PassiveTreeUpdater::doCheck",
+      "line": 340,
+      "occurrenceIndex": 7,
+      "sources": [
+        "發現新賽季天賦樹 "
+      ],
+      "currentCandidates": []
     },
     {
       "code": "UNMAPPED_ALIGNMENT",
@@ -719,12 +861,78 @@
     },
     {
       "code": "UNMAPPED_ALIGNMENT",
+      "path": "host/section_sounds.cpp",
+      "function": "DrawReplaceRefs",
+      "line": 286,
+      "occurrenceIndex": 8,
+      "sources": [
+        "已將 "
+      ],
+      "currentCandidates": []
+    },
+    {
+      "code": "UNMAPPED_ALIGNMENT",
+      "path": "host/section_sounds.cpp",
+      "function": "DrawReplaceRefs",
+      "line": 286,
+      "occurrenceIndex": 9,
+      "sources": [
+        " 行引用替換為 "
+      ],
+      "currentCandidates": []
+    },
+    {
+      "code": "UNMAPPED_ALIGNMENT",
+      "path": "host/section_sounds.cpp",
+      "function": "DrawReplaceRefs",
+      "line": 287,
+      "occurrenceIndex": 10,
+      "sources": [
+        "（未儲存，請按「儲存」寫入）"
+      ],
+      "currentCandidates": []
+    },
+    {
+      "code": "UNMAPPED_ALIGNMENT",
+      "path": "host/timeless_jewel.cpp",
+      "function": "TJLoadBin",
+      "line": 823,
+      "occurrenceIndex": 9,
+      "sources": [
+        "找不到 "
+      ],
+      "currentCandidates": []
+    },
+    {
+      "code": "UNMAPPED_ALIGNMENT",
       "path": "host/timeless_jewel.cpp",
       "function": "TJLoadBin",
       "line": 824,
       "occurrenceIndex": 10,
       "sources": [
         ".bin/.zip(需要旁邊有 PoE1 版 POB,且該珠寶的查表檔存在)"
+      ],
+      "currentCandidates": []
+    },
+    {
+      "code": "UNMAPPED_ALIGNMENT",
+      "path": "host/timeless_jewel_abyss.cpp",
+      "function": "TJAbyssParse",
+      "line": 130,
+      "occurrenceIndex": 7,
+      "sources": [
+        "深淵查表檔屬於珠寶型別 "
+      ],
+      "currentCandidates": []
+    },
+    {
+      "code": "UNMAPPED_ALIGNMENT",
+      "path": "host/timeless_jewel_abyss.cpp",
+      "function": "TJAbyssParse",
+      "line": 131,
+      "occurrenceIndex": 8,
+      "sources": [
+        ",但要求的是 "
       ],
       "currentCandidates": []
     }

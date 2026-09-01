@@ -26,6 +26,13 @@ migration = load_migration_module()
 
 
 class SourceMigrationTests(unittest.TestCase):
+    def align_real_file(self, relative: str):
+        upstream = migration._git_bytes(
+            ["show", f"{migration.PINNED_UPSTREAM}:pob-zh-engine/{relative}"]
+        )
+        current = (migration.REPOSITORY_ROOT / "pob-zh-engine" / relative).read_bytes()
+        return migration.align_file_literals(Path(relative), upstream, current)
+
     def write_stable_evidence_fixture(self, root: Path) -> tuple[Path, Path, Path, Path]:
         english = root / "English.json"
         korean = root / "Korean.json"
@@ -72,6 +79,77 @@ class SourceMigrationTests(unittest.TestCase):
             encoding="utf-8",
         )
         return manifest, english, korean, accepted
+
+    def write_runtime_identity_fixture(self, root: Path) -> tuple[Path, Path]:
+        report_root = root / "reports" / "official-terms"
+        accepted_reports = {
+            "BaseItemTypes": report_root / "accepted.json",
+            "ActiveSkills": report_root / "tables" / "ActiveSkills" / "accepted.json",
+            "PassiveSkills": report_root / "tables" / "PassiveSkills" / "accepted.json",
+            "MonsterVarieties": report_root / "tables" / "MonsterVarieties" / "accepted.json",
+            "ClientStrings": report_root / "tables" / "ClientStrings" / "accepted.json",
+            "ClientStrings2": report_root / "tables" / "ClientStrings2" / "accepted.json",
+            "stat-descriptions": report_root / "stat-descriptions" / "accepted.json",
+            "unique-items": report_root / "unique-items" / "accepted.json",
+            "mod-names": report_root / "mod-names" / "accepted.json",
+        }
+        for name, path in accepted_reports.items():
+            path.parent.mkdir(parents=True, exist_ok=True)
+            rows = []
+            if name == "BaseItemTypes":
+                rows = [
+                    {
+                        "id": "Metadata/Items/Scarabs/ScarabAbyssNew1",
+                        "english": "Abyss Scarab",
+                        "korean": "심연 갑충석",
+                    }
+                ]
+            path.write_text(
+                json.dumps({"patch": migration.OFFICIAL_PATCH, "rows": rows}, ensure_ascii=False),
+                encoding="utf-8",
+            )
+
+        runtime_root = root / "pob-zh-engine" / "dist" / "Data" / "poe1"
+        for locale in ("zh-rTW", "ko-KR"):
+            locale_root = runtime_root / locale
+            locale_root.mkdir(parents=True, exist_ok=True)
+            for dictionary in migration.DICTIONARIES:
+                entries = {}
+                if dictionary == "items":
+                    entries = {
+                        "Abyss Scarab": (
+                            "聖甲蟲：深淵" if locale == "zh-rTW" else "심연 갑충석"
+                        )
+                    }
+                (locale_root / f"{dictionary}.json").write_text(
+                    json.dumps({"entries": entries}, ensure_ascii=False),
+                    encoding="utf-8",
+                )
+
+        provenance_path = root / "reports" / "display-closure" / "provenance.json"
+        provenance_path.parent.mkdir(parents=True, exist_ok=True)
+        provenance_path.write_text(
+            json.dumps(
+                {
+                    "patch": migration.OFFICIAL_PATCH,
+                    "dictionaries": {
+                        **{dictionary: {} for dictionary in migration.DICTIONARIES},
+                        "items": {
+                            "Abyss Scarab": {
+                                "layer": "official-exact",
+                                "source": (
+                                    "BaseItemTypes:"
+                                    "Metadata/Items/Scarabs/ScarabAbyssNew1"
+                                ),
+                            }
+                        },
+                    },
+                },
+                ensure_ascii=False,
+            ),
+            encoding="utf-8",
+        )
+        return runtime_root / "ko-KR" / "items.json", provenance_path
 
     def test_reviewed_override_beats_machine_suggestion(self):
         result = migration.migrate(
@@ -323,6 +401,74 @@ class SourceMigrationTests(unittest.TestCase):
         )
         self.assertEqual(issues, [])
 
+    def test_real_files_never_align_fragments_by_function_ordinal(self):
+        unsafe_pairs = {
+            "host/launcher_editor.cpp": (" 個檔案", "저장 실패: "),
+            "host/atlas_planner.cpp": (
+                "」不能同時使用",
+                "이 갑충석은 현재 데이터에 없습니다.",
+            ),
+            "host/atlas_import.cpp": (
+                "有 ",
+                "개 노드가 시작 노드에서 연결되지 않았습니다. 데이터 오류로 가져오기를 중단했습니다.",
+            ),
+            "host/section_sounds.cpp": (
+                "（未儲存，請按「儲存」寫入）",
+                "취소",
+            ),
+            "host/timeless_jewel.cpp": (
+                "找不到 ",
+                ".bin/.zip 파일을 찾을 수 없습니다(옆에 PoE1 POB와 해당 주얼의 조회 테이블 파일이 있어야 함).",
+            ),
+        }
+
+        for relative, unsafe_pair in unsafe_pairs.items():
+            with self.subTest(relative=relative):
+                alignments, issues = self.align_real_file(relative)
+                self.assertNotIn(
+                    unsafe_pair,
+                    {(row.source, row.target) for row in alignments},
+                )
+                blocked_sources = {
+                    source
+                    for issue in issues
+                    for source in (
+                        [issue["source"]]
+                        if isinstance(issue.get("source"), str)
+                        else issue.get("sources", [])
+                    )
+                }
+                self.assertIn(unsafe_pair[0], blocked_sources)
+
+    def test_real_files_keep_only_narrowly_provable_intended_matches(self):
+        sounds, sound_issues = self.align_real_file("host/section_sounds.cpp")
+        filters, filter_issues = self.align_real_file("host/filter_i18n.cpp")
+
+        self.assertIn(
+            ("全部替換", "모두 교체"),
+            {(row.source, row.target) for row in sounds},
+        )
+        self.assertIn(
+            ("深淵珠寶", "심연 주얼"),
+            {(row.source, row.target) for row in filters},
+        )
+        self.assertNotIn(
+            "全部替換",
+            {
+                source
+                for issue in sound_issues
+                for source in issue.get("sources", [issue.get("source")])
+            },
+        )
+        self.assertNotIn(
+            "深淵珠寶",
+            {
+                source
+                for issue in filter_issues
+                for source in issue.get("sources", [issue.get("source")])
+            },
+        )
+
     def test_real_season_tree_source_emits_exact_context_targets(self):
         source = "發現新賽季天賦樹 "
         passive, passive_issues = migration.align_file_literals(
@@ -500,6 +646,71 @@ class SourceMigrationTests(unittest.TestCase):
         self.assertFalse(suggestions.exists())
         self.assertEqual(report_document["counts"]["official"], 0)
         self.assertTrue(report_document["issues"])
+
+    def test_runtime_official_identity_is_derived_from_accepted_evidence(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            self.write_runtime_identity_fixture(root)
+
+            identities = migration.load_official_runtime_identity(root)
+
+        self.assertEqual(identities, {"聖甲蟲：深淵": "심연 갑충석"})
+
+    def test_runtime_official_target_tamper_is_blocked(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            items_path, _ = self.write_runtime_identity_fixture(root)
+            document = json.loads(items_path.read_text(encoding="utf-8"))
+            document["entries"]["Abyss Scarab"] = "변조된 갑충석"
+            items_path.write_text(
+                json.dumps(document, ensure_ascii=False), encoding="utf-8"
+            )
+
+            with self.assertRaises(migration.OfficialEvidenceError) as raised:
+                migration.load_official_runtime_identity(root)
+
+        self.assertIn(
+            "OFFICIAL_DERIVED_TARGET_MISMATCH",
+            {row["code"] for row in raised.exception.issues},
+        )
+
+    def test_runtime_official_provenance_layer_tamper_is_blocked(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            _, provenance_path = self.write_runtime_identity_fixture(root)
+            document = json.loads(provenance_path.read_text(encoding="utf-8"))
+            document["dictionaries"]["items"]["Abyss Scarab"]["layer"] = "manual-pob-ui"
+            provenance_path.write_text(
+                json.dumps(document, ensure_ascii=False), encoding="utf-8"
+            )
+
+            with self.assertRaises(migration.OfficialEvidenceError) as raised:
+                migration.load_official_runtime_identity(root)
+
+        self.assertIn(
+            "OFFICIAL_DERIVED_PROVENANCE_MISMATCH",
+            {row["code"] for row in raised.exception.issues},
+        )
+
+    def test_runtime_official_provenance_identity_tamper_is_blocked(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            _, provenance_path = self.write_runtime_identity_fixture(root)
+            document = json.loads(provenance_path.read_text(encoding="utf-8"))
+            document["dictionaries"]["items"]["Abyss Scarab"]["source"] = (
+                "BaseItemTypes:Metadata/Items/Scarabs/AnotherScarab"
+            )
+            provenance_path.write_text(
+                json.dumps(document, ensure_ascii=False), encoding="utf-8"
+            )
+
+            with self.assertRaises(migration.OfficialEvidenceError) as raised:
+                migration.load_official_runtime_identity(root)
+
+        self.assertIn(
+            "OFFICIAL_DERIVED_PROVENANCE_MISMATCH",
+            {row["code"] for row in raised.exception.issues},
+        )
 
     def test_json_writer_is_byte_deterministic(self):
         with tempfile.TemporaryDirectory() as temporary:
