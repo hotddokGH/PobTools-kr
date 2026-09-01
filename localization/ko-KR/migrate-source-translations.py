@@ -7,6 +7,7 @@ that tree is imported, compiled, or executed.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 import subprocess
@@ -28,6 +29,7 @@ from source_overlay import Literal, format_signature  # noqa: E402
 
 
 PINNED_UPSTREAM = "baf07d41d2df524d4330a58b411826339c93fac1"
+OFFICIAL_PATCH = "3.29.3.2"
 HAN = re.compile(
     r"[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF"
     r"\U00020000-\U0002FA1F\U00030000-\U000323AF]"
@@ -58,6 +60,12 @@ class MigrationResult:
 class _StructuralUnit:
     tokens: list[tuple[str, str]]
     literals: list[Literal]
+
+
+class OfficialEvidenceError(ValueError):
+    def __init__(self, issues: list[dict[str, Any]]) -> None:
+        super().__init__(f"official evidence validation failed with {len(issues)} issue(s)")
+        self.issues = issues
 
 
 def _entry(target: str, status: str, provenance: str, source: str) -> dict[str, Any]:
@@ -111,6 +119,22 @@ def migrate(
     accepted_entries: dict[str, dict[str, Any]] = {}
     contexts: list[dict[str, Any]] = []
     issues: list[dict[str, Any]] = []
+    alignment_issue_rows = [dict(issue) for issue in alignment_issues]
+    failed_contexts: set[tuple[str, str, str]] = set()
+    failed_sources: set[str] = set()
+    for issue in alignment_issue_rows:
+        issue_sources: list[str] = []
+        if isinstance(issue.get("source"), str):
+            issue_sources.append(issue["source"])
+        if isinstance(issue.get("sources"), list):
+            issue_sources.extend(
+                source for source in issue["sources"] if isinstance(source, str)
+            )
+        for source in issue_sources:
+            failed_sources.add(source)
+            failed_contexts.add(
+                (str(issue.get("path", "")), str(issue.get("function", "")), source)
+            )
 
     for source, target in sorted(official.items()):
         if not isinstance(source, str) or not isinstance(target, str):
@@ -187,7 +211,7 @@ def migrate(
 
     for source, rows in sorted(candidates.items()):
         targets = {row.target for row in rows}
-        if len(targets) == 1:
+        if len(targets) == 1 and source not in failed_sources:
             accepted_entries[source] = _entry(
                 next(iter(targets)), "reviewed", "current-ko-baseline", source
             )
@@ -206,6 +230,8 @@ def migrate(
             )
             continue
         for (path, function), values in sorted(by_context.items()):
+            if (path, function, source) in failed_contexts:
+                continue
             target = values[0].target
             contexts.append(
                 {
@@ -219,16 +245,7 @@ def migrate(
                 }
             )
 
-    for issue in alignment_issues:
-        sources = issue.get("sources")
-        if isinstance(sources, list) and sources and all(
-            isinstance(source, str) and source in accepted_entries for source in sources
-        ):
-            continue
-        source = issue.get("source")
-        if isinstance(source, str) and source in accepted_entries:
-            continue
-        issues.append(dict(issue))
+    issues.extend(alignment_issue_rows)
 
     legacy_entries = legacy.get("entries", {}) if isinstance(legacy, dict) else {}
     suggestion_entries: dict[str, dict[str, Any]] = {}
@@ -306,7 +323,14 @@ def _unit_for_literal(node: Any) -> Any:
     while unit.parent is not None:
         if unit is not node and (
             unit.type.endswith("_statement")
-            or unit.type in {"declaration", "field_declaration", "parameter_declaration"}
+            or unit.type
+            in {
+                "assignment_expression",
+                "call_expression",
+                "declaration",
+                "field_declaration",
+                "parameter_declaration",
+            }
         ):
             break
         parent = unit.parent
@@ -326,10 +350,16 @@ def _normalized_unit(unit: Any, text: bytes, function: str) -> _StructuralUnit:
         if node.type == "comment":
             return
         if node.type == "concatenated_string":
+            owner = _unit_for_literal(node)
+            if (owner.start_byte, owner.end_byte) != (unit.start_byte, unit.end_byte):
+                return
             tokens.append(("LITERAL", ""))
             literals.append(_decoded_literal(node, text, function))
             return
         if node.type in {"string_literal", "raw_string_literal"}:
+            owner = _unit_for_literal(node)
+            if (owner.start_byte, owner.end_byte) != (unit.start_byte, unit.end_byte):
+                return
             tokens.append(("LITERAL", ""))
             literals.append(_decoded_literal(node, text, function))
             return
@@ -406,6 +436,17 @@ def align_file_literals(
             sorted(rows.values(), key=lambda item: (item.start, item.end))
         )
     }
+    current_rows_by_function: dict[str, list[Literal]] = defaultdict(list)
+    current_seen: set[tuple[str, int, int]] = set()
+    for (function, _, _), rows in current.items():
+        for row in rows:
+            identity = (function, row.start, row.end)
+            if identity not in current_seen:
+                current_seen.add(identity)
+                current_rows_by_function[function].append(row)
+    for rows in current_rows_by_function.values():
+        rows.sort(key=lambda item: (item.start, item.end))
+    handled_spans: set[tuple[str, int, int]] = set()
 
     for key, upstream_rows in sorted(
         upstream.items(), key=lambda item: (item[0][0], item[1][0].start)
@@ -420,7 +461,53 @@ def align_file_literals(
         if not visible_rows:
             continue
         if len(upstream_rows) != len(current_rows):
-            candidates = [row.decoded for row in current_rows if HANGUL.search(row.decoded)]
+            if len(visible_rows) == 1:
+                upstream_row, occurrence_index = visible_rows[0]
+                viable = [
+                    row
+                    for row in current_rows
+                    if HANGUL.search(row.decoded)
+                    and format_signature(row.decoded) == format_signature(upstream_row.decoded)
+                ]
+                if len(viable) == 1:
+                    candidate = viable[0]
+                    alignments.append(
+                        Alignment(
+                            path=path.as_posix(),
+                            function=function,
+                            source=upstream_row.decoded,
+                            target=candidate.decoded,
+                            occurrence_index=occurrence_index,
+                            line=upstream_row.line,
+                        )
+                    )
+                    handled_spans.add((function, upstream_row.start, upstream_row.end))
+                    continue
+                direct_rows = current_rows_by_function.get(function, [])
+                if len(viable) == 0 and occurrence_index < len(direct_rows):
+                    candidate = direct_rows[occurrence_index]
+                    if (
+                        HANGUL.search(candidate.decoded)
+                        and format_signature(candidate.decoded)
+                        == format_signature(upstream_row.decoded)
+                    ):
+                        alignments.append(
+                            Alignment(
+                                path=path.as_posix(),
+                                function=function,
+                                source=upstream_row.decoded,
+                                target=candidate.decoded,
+                                occurrence_index=occurrence_index,
+                                line=upstream_row.line,
+                            )
+                        )
+                        handled_spans.add((function, upstream_row.start, upstream_row.end))
+                        continue
+            candidates = [
+                row.decoded
+                for row in current_rows
+                if HANGUL.search(row.decoded)
+            ]
             issues.append(
                 {
                     "code": "AMBIGUOUS_ALIGNMENT" if candidates else "UNMAPPED_ALIGNMENT",
@@ -438,6 +525,10 @@ def align_file_literals(
         ):
             if not HAN.search(upstream_row.decoded):
                 continue
+            identity = (function, upstream_row.start, upstream_row.end)
+            if identity in handled_spans:
+                continue
+            handled_spans.add(identity)
             alignment = Alignment(
                 path=path.as_posix(),
                 function=function,
@@ -499,6 +590,485 @@ def _excluded_paths() -> set[str]:
     }
 
 
+def _evidence_issue(code: str, path: Path, detail: str) -> dict[str, str]:
+    return {"code": code, "path": path.as_posix(), "detail": detail}
+
+
+def _read_evidence_json(path: Path) -> tuple[Any | None, list[dict[str, str]]]:
+    if not path.is_file():
+        return None, [_evidence_issue("OFFICIAL_MANIFEST_MISSING", path, "required file is missing")]
+    try:
+        return json.loads(path.read_text(encoding="utf-8")), []
+    except (OSError, UnicodeError, json.JSONDecodeError) as error:
+        return None, [_evidence_issue("OFFICIAL_EVIDENCE_INVALID", path, str(error))]
+
+
+def _file_sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as source:
+        for chunk in iter(lambda: source.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest().upper()
+
+
+def _matches_manifest_sha256(path: Path, expected: str) -> bool:
+    expected = expected.upper()
+    if _file_sha256(path) == expected:
+        return True
+    # Git may materialize text evidence with CRLF even though the pinned
+    # manifest hashes the repository's LF blob. Only this reversible checkout
+    # normalization is accepted; all other byte changes remain failures.
+    normalized = path.read_bytes().replace(b"\r\n", b"\n")
+    return hashlib.sha256(normalized).hexdigest().upper() == expected
+
+
+def verify_stable_id_evidence(
+    manifest_path: Path,
+    english_path: Path,
+    korean_path: Path,
+    accepted_path: Path,
+    *,
+    expected_table: str,
+) -> list[dict[str, str]]:
+    """Validate pinned table hashes and every accepted stable-ID join."""
+    issues: list[dict[str, str]] = []
+    manifest, manifest_issues = _read_evidence_json(manifest_path)
+    issues.extend(manifest_issues)
+    if not isinstance(manifest, dict):
+        return issues
+    if manifest.get("patch") != OFFICIAL_PATCH:
+        issues.append(
+            _evidence_issue(
+                "OFFICIAL_PATCH_MISMATCH",
+                manifest_path,
+                f"expected {OFFICIAL_PATCH}, got {manifest.get('patch')}",
+            )
+        )
+    if manifest.get("table") != expected_table:
+        issues.append(
+            _evidence_issue(
+                "OFFICIAL_EVIDENCE_INVALID", manifest_path, "unexpected table identity"
+            )
+        )
+    client = manifest.get("clientEvidence", {})
+    if (
+        not isinstance(client, dict)
+        or client.get("detectedPatch") != OFFICIAL_PATCH
+        or client.get("matchesExportPatch") is not True
+    ):
+        issues.append(
+            _evidence_issue(
+                "OFFICIAL_PATCH_MISMATCH", manifest_path, "client patch evidence is stale"
+            )
+        )
+
+    inputs = manifest.get("inputs", {})
+    documents: list[Any] = []
+    for language, path in (("english", english_path), ("korean", korean_path)):
+        document, document_issues = _read_evidence_json(path)
+        if document_issues:
+            issues.extend(
+                _evidence_issue("OFFICIAL_INPUT_MISSING", path, row["detail"])
+                for row in document_issues
+            )
+            documents.append(None)
+            continue
+        documents.append(document)
+        expected_hash = str(inputs.get(f"{language}Sha256", "")).upper()
+        if not expected_hash or not _matches_manifest_sha256(path, expected_hash):
+            issues.append(
+                _evidence_issue(
+                    "OFFICIAL_INPUT_HASH_MISMATCH", path, f"{language} SHA-256 differs"
+                )
+            )
+        expected_rows = inputs.get(f"{language}Rows")
+        if not isinstance(document, list) or len(document) != expected_rows:
+            issues.append(
+                _evidence_issue(
+                    "OFFICIAL_STABLE_ID_MISMATCH", path, f"{language} row count differs"
+                )
+            )
+
+    english_rows, korean_rows = documents
+    if not isinstance(english_rows, list) or not isinstance(korean_rows, list):
+        return sorted(issues, key=lambda row: (row["path"], row["code"], row["detail"]))
+    name_column = str(manifest.get("nameColumn", "Name"))
+
+    def grouped(rows: list[Any]) -> dict[str, set[str]]:
+        result: dict[str, set[str]] = defaultdict(set)
+        for row in rows:
+            if not isinstance(row, dict):
+                continue
+            stable_id = str(row.get("Id", ""))
+            name = str(row.get(name_column, ""))
+            if stable_id.strip() and name.strip():
+                result[stable_id].add(name)
+        return result
+
+    english_by_id = grouped(english_rows)
+    korean_by_id = grouped(korean_rows)
+    stable_ids = {
+        str(row.get("Id", ""))
+        for row in [*english_rows, *korean_rows]
+        if isinstance(row, dict) and str(row.get("Id", "")).strip()
+    }
+    if len(stable_ids) != inputs.get("stableIds"):
+        issues.append(
+            _evidence_issue(
+                "OFFICIAL_STABLE_ID_MISMATCH", manifest_path, "stable-ID count differs"
+            )
+        )
+
+    accepted, accepted_issues = _read_evidence_json(accepted_path)
+    issues.extend(accepted_issues)
+    rows = accepted.get("rows") if isinstance(accepted, dict) else None
+    if (
+        not isinstance(accepted, dict)
+        or accepted.get("patch") != OFFICIAL_PATCH
+        or accepted.get("table") != expected_table
+        or accepted.get("join") != "Id"
+        or not isinstance(rows, list)
+        or len(rows) != manifest.get("counts", {}).get("accepted")
+    ):
+        issues.append(
+            _evidence_issue(
+                "OFFICIAL_EVIDENCE_INVALID", accepted_path, "accepted report metadata differs"
+            )
+        )
+    else:
+        for row in rows:
+            if not isinstance(row, dict):
+                issues.append(
+                    _evidence_issue(
+                        "OFFICIAL_STABLE_ID_MISMATCH", accepted_path, "accepted row is invalid"
+                    )
+                )
+                continue
+            stable_id = str(row.get("id", ""))
+            if (
+                english_by_id.get(stable_id) != {row.get("english")}
+                or korean_by_id.get(stable_id) != {row.get("korean")}
+            ):
+                issues.append(
+                    _evidence_issue(
+                        "OFFICIAL_STABLE_ID_MISMATCH",
+                        accepted_path,
+                        f"accepted stable-ID join differs: {stable_id}",
+                    )
+                )
+    return sorted(issues, key=lambda row: (row["path"], row["code"], row["detail"]))
+
+
+def _verify_structured_evidence(
+    report_manifest_path: Path,
+    source_manifest_path: Path,
+    english_path: Path,
+    korean_path: Path,
+    accepted_path: Path,
+    *,
+    identity_kind: str,
+) -> list[dict[str, str]]:
+    issues: list[dict[str, str]] = []
+    report_manifest, rows = _read_evidence_json(report_manifest_path)
+    issues.extend(rows)
+    source_manifest, rows = _read_evidence_json(source_manifest_path)
+    issues.extend(rows)
+    accepted, rows = _read_evidence_json(accepted_path)
+    issues.extend(rows)
+    if not all(isinstance(row, dict) for row in (report_manifest, source_manifest, accepted)):
+        return issues
+    for path, document in (
+        (report_manifest_path, report_manifest),
+        (source_manifest_path, source_manifest),
+        (accepted_path, accepted),
+    ):
+        if document.get("patch") != OFFICIAL_PATCH:
+            issues.append(
+                _evidence_issue(
+                    "OFFICIAL_PATCH_MISMATCH",
+                    path,
+                    f"expected {OFFICIAL_PATCH}, got {document.get('patch')}",
+                )
+            )
+    client = report_manifest.get("clientEvidence", {})
+    if (
+        not isinstance(client, dict)
+        or client.get("detectedPatch") != OFFICIAL_PATCH
+        or client.get("matchesExportPatch") is not True
+    ):
+        issues.append(
+            _evidence_issue(
+                "OFFICIAL_PATCH_MISMATCH",
+                report_manifest_path,
+                "client patch evidence is stale",
+            )
+        )
+
+    documents: dict[str, Any] = {}
+    for language, path in (("english", english_path), ("korean", korean_path)):
+        document, document_issues = _read_evidence_json(path)
+        if document_issues:
+            issues.extend(
+                _evidence_issue("OFFICIAL_INPUT_MISSING", path, row["detail"])
+                for row in document_issues
+            )
+            continue
+        documents[language] = document
+        source_metadata = source_manifest.get(language, {})
+        report_metadata = report_manifest.get("sources", {}).get(language, {})
+        if source_metadata != report_metadata:
+            issues.append(
+                _evidence_issue(
+                    "OFFICIAL_MANIFEST_MISMATCH",
+                    report_manifest_path,
+                    f"{language} source metadata differs",
+                )
+            )
+        if (
+            not isinstance(source_metadata, dict)
+            or path.name != source_metadata.get("file")
+            or path.stat().st_size != source_metadata.get("bytes")
+            or not _matches_manifest_sha256(
+                path, str(source_metadata.get("sha256", "")).upper()
+            )
+        ):
+            issues.append(
+                _evidence_issue(
+                    "OFFICIAL_INPUT_HASH_MISMATCH", path, f"{language} source differs"
+                )
+            )
+        expected_entries = report_manifest.get("inputs", {}).get(f"{language}Entries")
+        if not hasattr(document, "__len__") or len(document) != expected_entries:
+            issues.append(
+                _evidence_issue(
+                    "OFFICIAL_STABLE_ID_MISMATCH", path, f"{language} entry count differs"
+                )
+            )
+
+    accepted_rows = accepted.get("rows")
+    if (
+        accepted.get("identity") != report_manifest.get("identity")
+        or not isinstance(accepted_rows, list)
+        or len(accepted_rows) != report_manifest.get("counts", {}).get("accepted")
+    ):
+        issues.append(
+            _evidence_issue(
+                "OFFICIAL_EVIDENCE_INVALID", accepted_path, "accepted report metadata differs"
+            )
+        )
+    elif "english" in documents and "korean" in documents:
+        english = documents["english"]
+        korean = documents["korean"]
+        if identity_kind == "mapping-key":
+            english_ids = set(english)
+            korean_ids = set(korean)
+            valid_ids = english_ids | korean_ids
+            for row in accepted_rows:
+                stable_id = row.get("id") if isinstance(row, dict) else None
+                english_entry = english.get(stable_id) if stable_id in valid_ids else None
+                korean_entry = korean.get(stable_id) if stable_id in valid_ids else None
+                if (
+                    not isinstance(row, dict)
+                    or not isinstance(english_entry, dict)
+                    or not isinstance(korean_entry, dict)
+                    or str(english_entry.get("name", "")).strip() != row.get("english")
+                    or str(korean_entry.get("name", "")).strip() != row.get("korean")
+                ):
+                    issues.append(
+                        _evidence_issue(
+                            "OFFICIAL_STABLE_ID_MISMATCH",
+                            accepted_path,
+                            f"accepted mod identity differs: {stable_id or ''}",
+                        )
+                    )
+        elif identity_kind == "unique-id":
+            english_by_id: dict[str, list[dict[str, Any]]] = defaultdict(list)
+            korean_by_id: dict[str, list[dict[str, Any]]] = defaultdict(list)
+            for row in english.values():
+                if isinstance(row, dict):
+                    english_by_id[str(row.get("id", "")).strip()].append(row)
+            for row in korean.values():
+                if isinstance(row, dict):
+                    korean_by_id[str(row.get("id", "")).strip()].append(row)
+            for row in accepted_rows:
+                stable_id = str(row.get("id", "")) if isinstance(row, dict) else ""
+                english_matches = english_by_id.get(stable_id, [])
+                korean_matches = korean_by_id.get(stable_id, [])
+                if (
+                    not isinstance(row, dict)
+                    or len(english_matches) != 1
+                    or len(korean_matches) != 1
+                    or str(english_matches[0].get("name", "")).strip() != row.get("english")
+                    or str(korean_matches[0].get("name", "")).strip() != row.get("korean")
+                ):
+                    issues.append(
+                        _evidence_issue(
+                            "OFFICIAL_STABLE_ID_MISMATCH",
+                            accepted_path,
+                            f"accepted unique identity differs: {stable_id}",
+                        )
+                    )
+        else:
+            english_variant_count = sum(
+                len(row.get("English", []))
+                for row in english.values()
+                if isinstance(row, dict)
+            ) if isinstance(english, dict) else sum(
+                len(row.get("English", [])) for row in english if isinstance(row, dict)
+            )
+            korean_variant_count = sum(
+                len(row.get("Korean", [])) for row in korean if isinstance(row, dict)
+            )
+            if (
+                english_variant_count
+                != report_manifest.get("inputs", {}).get("englishVariants")
+                or korean_variant_count
+                != report_manifest.get("inputs", {}).get("koreanVariants")
+            ):
+                issues.append(
+                    _evidence_issue(
+                        "OFFICIAL_STABLE_ID_MISMATCH",
+                        report_manifest_path,
+                        "stat variant counts differ",
+                    )
+                )
+
+            def variant_key(variant: dict[str, Any]) -> str:
+                identity = {
+                    "condition": variant.get("condition", []),
+                    "format": variant.get("format", []),
+                    "index_handlers": variant.get("index_handlers", []),
+                }
+                encoded = json.dumps(identity, ensure_ascii=False, separators=(",", ":"))
+                return hashlib.sha256(encoded.encode("utf-8")).hexdigest().upper()
+
+            korean_by_ids: dict[tuple[str, ...], list[dict[str, Any]]] = defaultdict(list)
+            for entry in korean:
+                if isinstance(entry, dict):
+                    korean_by_ids[tuple(entry.get("ids", []))].append(entry)
+            valid_rows: dict[tuple[tuple[str, ...], str, str], tuple[str, str]] = {}
+            for english_entry in english:
+                if not isinstance(english_entry, dict):
+                    continue
+                ids = tuple(english_entry.get("ids", []))
+                korean_matches = korean_by_ids.get(ids, [])
+                if not ids or len(korean_matches) != 1:
+                    continue
+                english_variants: dict[str, list[dict[str, Any]]] = defaultdict(list)
+                korean_variants: dict[str, list[dict[str, Any]]] = defaultdict(list)
+                for variant in english_entry.get("English", []):
+                    if isinstance(variant, dict):
+                        english_variants[variant_key(variant)].append(variant)
+                for variant in korean_matches[0].get("Korean", []):
+                    if isinstance(variant, dict):
+                        korean_variants[variant_key(variant)].append(variant)
+                for identity in english_variants.keys() & korean_variants.keys():
+                    if len(english_variants[identity]) != 1 or len(korean_variants[identity]) != 1:
+                        continue
+                    for kind in ("string", "reminder_text"):
+                        english_text = str(english_variants[identity][0].get(kind, "")).replace(
+                            "\r\n", "\n"
+                        )
+                        korean_text = str(korean_variants[identity][0].get(kind, "")).replace(
+                            "\r\n", "\n"
+                        )
+                        if english_text and korean_text:
+                            valid_rows[(ids, identity, kind)] = (english_text, korean_text)
+            for row in accepted_rows:
+                key = (
+                    tuple(row.get("ids", [])),
+                    row.get("variantIdentity"),
+                    row.get("kind"),
+                ) if isinstance(row, dict) else ((), None, None)
+                if (
+                    not isinstance(row, dict)
+                    or valid_rows.get(key) != (row.get("english"), row.get("korean"))
+                ):
+                    issues.append(
+                        _evidence_issue(
+                            "OFFICIAL_STABLE_ID_MISMATCH",
+                            accepted_path,
+                            "accepted stat identity differs",
+                        )
+                    )
+    return sorted(issues, key=lambda row: (row["path"], row["code"], row["detail"]))
+
+
+def verify_official_evidence(repository_root: Path) -> list[dict[str, str]]:
+    locale_root = repository_root / "localization/ko-KR"
+    source_root = locale_root / "official-terms"
+    report_root = repository_root / "reports/official-terms"
+    issues: list[dict[str, str]] = []
+    stable_tables = (
+        ("BaseItemTypes", report_root, source_root / "tables"),
+        *(
+            (table, report_root / "tables" / table, source_root / "tables")
+            for table in (
+                "ActiveSkills",
+                "PassiveSkills",
+                "MonsterVarieties",
+                "ClientStrings",
+                "ClientStrings2",
+            )
+        ),
+    )
+    for table, reports, sources in stable_tables:
+        issues.extend(
+            verify_stable_id_evidence(
+                reports / "manifest.json",
+                sources / "English" / f"{table}.json",
+                sources / "Korean" / f"{table}.json",
+                reports / "accepted.json",
+                expected_table=table,
+            )
+        )
+    structured = (
+        (
+            "unique-items",
+            source_root / "names/sources.json",
+            source_root / "names/English.uniques.min.json",
+            source_root / "names/Korean.uniques.min.json",
+            "unique-id",
+        ),
+        (
+            "mod-names",
+            source_root / "names/mod-sources.json",
+            source_root / "names/English.mods.min.json",
+            source_root / "names/Korean.mods.min.json",
+            "mapping-key",
+        ),
+        (
+            "stat-descriptions",
+            source_root / "stat-descriptions/sources.json",
+            source_root / "stat-descriptions/English.stat_translations.min.json",
+            source_root / "stat-descriptions/Korean.stat_translations.min.json",
+            "stat-ids",
+        ),
+    )
+    for name, source_manifest, english, korean, identity_kind in structured:
+        reports = report_root / name
+        issues.extend(
+            _verify_structured_evidence(
+                reports / "manifest.json",
+                source_manifest,
+                english,
+                korean,
+                reports / "accepted.json",
+                identity_kind=identity_kind,
+            )
+        )
+    provenance_path = repository_root / "reports/display-closure/provenance.json"
+    provenance, rows = _read_evidence_json(provenance_path)
+    issues.extend(rows)
+    if not isinstance(provenance, dict) or provenance.get("patch") != OFFICIAL_PATCH:
+        issues.append(
+            _evidence_issue(
+                "OFFICIAL_PATCH_MISMATCH", provenance_path, "derived provenance patch differs"
+            )
+        )
+    return sorted(issues, key=lambda row: (row["path"], row["code"], row["detail"]))
+
+
 def load_official_runtime_identity(repository_root: Path) -> dict[str, str]:
     provenance = json.loads(
         (repository_root / "reports/display-closure/provenance.json").read_text(encoding="utf-8")
@@ -538,6 +1108,12 @@ def write_json(path: Path, document: dict[str, Any]) -> None:
     )
 
 
+def validate_output_paths(output: Path, suggestions: Path, report: Path) -> None:
+    resolved = [path.resolve() for path in (output, suggestions, report)]
+    if len(set(resolved)) != len(resolved):
+        raise ValueError("output paths must be distinct after resolution")
+
+
 def run_migration(
     *,
     upstream_ref: str,
@@ -545,7 +1121,25 @@ def run_migration(
     output: Path,
     suggestions: Path,
     report_path: Path,
+    repository_root: Path = REPOSITORY_ROOT,
 ) -> MigrationResult:
+    validate_output_paths(output, suggestions, report_path)
+    evidence_issues = verify_official_evidence(repository_root)
+    if evidence_issues:
+        failure_report = {
+            "schemaVersion": 1,
+            "upstreamRef": PINNED_UPSTREAM,
+            "counts": {
+                "official": 0,
+                "reviewed": 0,
+                "suggested": 0,
+                "ambiguous": 0,
+                "unmapped": len(evidence_issues),
+            },
+            "issues": evidence_issues,
+        }
+        write_json(report_path, failure_report)
+        raise OfficialEvidenceError(evidence_issues)
     if upstream_ref != PINNED_UPSTREAM:
         raise ValueError(f"upstream ref must be pinned to {PINNED_UPSTREAM}")
     resolved = _git_bytes(["rev-parse", "--verify", f"{upstream_ref}^{{commit}}"])
@@ -586,7 +1180,7 @@ def run_migration(
     )
     official = {
         source: target
-        for source, target in load_official_runtime_identity(REPOSITORY_ROOT).items()
+        for source, target in load_official_runtime_identity(repository_root).items()
         if source in upstream_sources
     }
     override_entries = overrides.get("entries", {})

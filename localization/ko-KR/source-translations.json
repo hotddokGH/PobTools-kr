@@ -213,6 +213,12 @@
       "provenance": "current-ko-baseline",
       "formatSignature": []
     },
+    " 個檔案": {
+      "target": "저장 실패: ",
+      "status": "reviewed",
+      "provenance": "current-ko-baseline",
+      "formatSignature": []
+    },
     " 個檔沒有寫入（成功 ": {
       "target": "개 파일을 기록하지 못했습니다(성공 ",
       "status": "reviewed",
@@ -279,12 +285,6 @@
       "provenance": "current-ko-baseline",
       "formatSignature": []
     },
-    " 尺寸異常或超過 4096": {
-      "target": "의 크기가 올바르지 않거나 4096을 초과합니다.",
-      "status": "reviewed",
-      "provenance": "current-ko-baseline",
-      "formatSignature": []
-    },
     " 帶有未支援的旗標 ": {
       "target": "에 지원하지 않는 플래그 ",
       "status": "reviewed",
@@ -299,12 +299,6 @@
     },
     " 插槽、繁中詞條 ": {
       "target": "개, 한국어 능력치 ",
-      "status": "reviewed",
-      "provenance": "current-ko-baseline",
-      "formatSignature": []
-    },
-    " 是 webp 格式，目前不支援（需要 png/jpg）": {
-      "target": "은(는) 지원하지 않는 webp 형식입니다(png/jpg 필요).",
       "status": "reviewed",
       "provenance": "current-ko-baseline",
       "formatSignature": []
@@ -419,6 +413,12 @@
     },
     " 行": {
       "target": "줄",
+      "status": "reviewed",
+      "provenance": "current-ko-baseline",
+      "formatSignature": []
+    },
+    " 行引用替換為 ": {
+      "target": "(으)로 변경했습니다. 적용하려면 필터를 저장하세요.",
       "status": "reviewed",
       "provenance": "current-ko-baseline",
       "formatSignature": []
@@ -705,6 +705,12 @@
       "provenance": "current-ko-baseline",
       "formatSignature": []
     },
+    ",但要求的是 ": {
+      "target": "이지만 요청한 유형은 ",
+      "status": "reviewed",
+      "provenance": "current-ko-baseline",
+      "formatSignature": []
+    },
     ",本程式只認得版本 1": {
       "target": "은(는) 지원하지 않습니다. 버전 1만 지원합니다.",
       "status": "reviewed",
@@ -928,6 +934,12 @@
     },
     "an unreachable 最小值 rejects every seed": {
       "target": "an unreachable 최소 값은 모든 씨앗을 거절합니다.",
+      "status": "reviewed",
+      "provenance": "current-ko-baseline",
+      "formatSignature": []
+    },
+    "assets 資料夾內找不到圖集 ": {
+      "target": "이미지 시트 폴더에서 ",
       "status": "reviewed",
       "provenance": "current-ko-baseline",
       "formatSignature": []
@@ -1214,6 +1226,12 @@
     },
     "「一個都沒有」產生的是排除字串（開頭的 ! ），用來把有這些詞綴的東西藏起來。": {
       "target": "[하나도 포함하지 않음]은 선택한 속성이 붙은 아이템을 제외하는 검색 문자열을 만듭니다.",
+      "status": "reviewed",
+      "provenance": "current-ko-baseline",
+      "formatSignature": []
+    },
+    "」不能同時使用": {
+      "target": "이 갑충석은 현재 데이터에 없습니다.",
       "status": "reviewed",
       "provenance": "current-ko-baseline",
       "formatSignature": []
@@ -1642,12 +1660,6 @@
       "provenance": "current-ko-baseline",
       "formatSignature": []
     },
-    "儲存全部 (": {
-      "target": "변경 저장 (",
-      "status": "reviewed",
-      "provenance": "current-ko-baseline",
-      "formatSignature": []
-    },
     "儲存失敗：": {
       "target": "저장 실패: ",
       "status": "reviewed",
@@ -1740,6 +1752,12 @@
     },
     "全部分類": {
       "target": "모든 접두·접미어",
+      "status": "reviewed",
+      "provenance": "current-ko-baseline",
+      "formatSignature": []
+    },
+    "全部替換": {
+      "target": "모두 교체",
       "status": "reviewed",
       "provenance": "current-ko-baseline",
       "formatSignature": []
@@ -2435,12 +2453,6 @@
     },
     "圓形": {
       "target": "원",
-      "status": "reviewed",
-      "provenance": "current-ko-baseline",
-      "formatSignature": []
-    },
-    "圖集 ": {
-      "target": "이미지 시트 ",
       "status": "reviewed",
       "provenance": "current-ko-baseline",
       "formatSignature": []
@@ -3285,6 +3297,12 @@
       "provenance": "current-ko-baseline",
       "formatSignature": []
     },
+    "已將 ": {
+      "target": "개 참조를 ",
+      "status": "reviewed",
+      "provenance": "current-ko-baseline",
+      "formatSignature": []
+    },
     "已導入 ": {
       "target": "사용자 지정 영역으로 규칙 ",
       "status": "reviewed",
@@ -3321,6 +3339,12 @@
       "provenance": "current-ko-baseline",
       "formatSignature": []
     },
+    "已移除 ": {
+      "target": "포인트를 해제했습니다.",
+      "status": "reviewed",
+      "provenance": "current-ko-baseline",
+      "formatSignature": []
+    },
     "已經是最少點的接法了（": {
       "target": "이미 최소 포인트 경로입니다(",
       "status": "reviewed",
@@ -3353,6 +3377,12 @@
     },
     "已選統計": {
       "target": "선택한 능력치",
+      "status": "reviewed",
+      "provenance": "current-ko-baseline",
+      "formatSignature": []
+    },
+    "已配置 ": {
+      "target": "포인트",
       "status": "reviewed",
       "provenance": "current-ko-baseline",
       "formatSignature": []
@@ -3557,6 +3587,12 @@
     },
     "批量修改完成：": {
       "target": "일괄 수정 완료: 규칙 ",
+      "status": "reviewed",
+      "provenance": "current-ko-baseline",
+      "formatSignature": []
+    },
+    "找不到 ": {
+      "target": ".bin/.zip 파일을 찾을 수 없습니다(옆에 PoE1 POB와 해당 주얼의 조회 테이블 파일이 있어야 함).",
       "status": "reviewed",
       "provenance": "current-ko-baseline",
       "formatSignature": []
@@ -3969,12 +4005,6 @@
         "%s"
       ]
     },
-    "改寫入 ": {
-      "target": "대상 파일: ",
-      "status": "reviewed",
-      "provenance": "current-ko-baseline",
-      "formatSignature": []
-    },
     "攻擊": {
       "target": "공격",
       "status": "reviewed",
@@ -4325,6 +4355,12 @@
     },
     "月亮": {
       "target": "달",
+      "status": "reviewed",
+      "provenance": "current-ko-baseline",
+      "formatSignature": []
+    },
+    "有 ": {
+      "target": "개 노드가 시작 노드에서 연결되지 않습니다. 데이터 오류로 가져오기를 중단했습니다.",
       "status": "reviewed",
       "provenance": "current-ko-baseline",
       "formatSignature": []
@@ -4810,6 +4846,12 @@
       "provenance": "current-ko-baseline",
       "formatSignature": []
     },
+    "深淵查表檔屬於珠寶型別 ": {
+      "target": "심연 조회 테이블의 주얼 유형은 ",
+      "status": "reviewed",
+      "provenance": "current-ko-baseline",
+      "formatSignature": []
+    },
     "深淵查表檔插槽清單讀取失敗": {
       "target": "심연 조회 테이블의 주얼 슬롯 목록을 읽지 못했습니다.",
       "status": "reviewed",
@@ -4896,6 +4938,12 @@
     },
     "深淵深處機率": {
       "target": "심 깊은 곳에서 랜덤",
+      "status": "reviewed",
+      "provenance": "current-ko-baseline",
+      "formatSignature": []
+    },
+    "深淵珠寶": {
+      "target": "심연 주얼",
       "status": "reviewed",
       "provenance": "current-ko-baseline",
       "formatSignature": []
@@ -5451,8 +5499,8 @@
       "provenance": "current-ko-baseline",
       "formatSignature": []
     },
-    "發現新賽季天賦樹 ": {
-      "target": "새 시즌 패시브 트리 ",
+    "發現新賽季輿圖資料 ": {
+      "target": "새 시즌 아틀라스 데이터 ",
       "status": "reviewed",
       "provenance": "current-ko-baseline",
       "formatSignature": []
@@ -5824,6 +5872,12 @@
     },
     "第二章": {
       "target": "2장",
+      "status": "reviewed",
+      "provenance": "current-ko-baseline",
+      "formatSignature": []
+    },
+    "简体": {
+      "target": "한국어",
       "status": "reviewed",
       "provenance": "current-ko-baseline",
       "formatSignature": []
@@ -7986,6 +8040,12 @@
       "provenance": "current-ko-baseline",
       "formatSignature": []
     },
+    "（未儲存，請按「儲存」寫入）": {
+      "target": "취소",
+      "status": "reviewed",
+      "provenance": "current-ko-baseline",
+      "formatSignature": []
+    },
     "（未出現在碎片倉庫與交易站）": {
       "target": "(파편 보관함 및 거래소에 표시되지 않음)",
       "status": "reviewed",
@@ -8517,6 +8577,33 @@
       "formatSignature": []
     },
     {
+      "path": "host/passive_import.cpp",
+      "function": "sheetFor",
+      "source": " 尺寸異常或超過 4096",
+      "target": "의 크기가 올바르지 않거나 4096을 초과합니다.",
+      "status": "reviewed",
+      "provenance": "current-ko-baseline",
+      "formatSignature": []
+    },
+    {
+      "path": "host/passive_import.cpp",
+      "function": "sheetFor",
+      "source": "圖集 ",
+      "target": "이미지 시트 ",
+      "status": "reviewed",
+      "provenance": "current-ko-baseline",
+      "formatSignature": []
+    },
+    {
+      "path": "host/passive_tree_update.cpp",
+      "function": "PassiveTreeUpdater::doCheck",
+      "source": "發現新賽季天賦樹 ",
+      "target": "새 시즌 패시브 스킬 트리 ",
+      "status": "reviewed",
+      "provenance": "current-ko-baseline",
+      "formatSignature": []
+    },
+    {
       "path": "host/passive_tree_update.cpp",
       "function": "PassiveTreeUpdater::doUpdate",
       "source": "匯入 ",
@@ -8557,6 +8644,15 @@
       "function": "DrawSoundLibrary",
       "source": "資料夾內無音效檔（wav / mp3 / ogg / flac / m4a / aac）。",
       "target": "폴더에 지원되는 사운드 파일(wav / mp3 / ogg / flac / m4a / aac)이 없습니다.",
+      "status": "reviewed",
+      "provenance": "current-ko-baseline",
+      "formatSignature": []
+    },
+    {
+      "path": "host/timeless_jewel_ui.cpp",
+      "function": "Frame",
+      "source": "發現新賽季天賦樹 ",
+      "target": "새 시즌 패시브 트리 ",
       "status": "reviewed",
       "provenance": "current-ko-baseline",
       "formatSignature": []
