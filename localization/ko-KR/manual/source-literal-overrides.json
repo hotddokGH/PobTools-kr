@@ -36,7 +36,8 @@
       "path": "host/passive_tree_update.cpp",
       "function": "PassiveTreeUpdater::doCheck",
       "source": "發現新賽季天賦樹 ",
-      "target": "새 시즌 패시브 스킬 트리 "
+      "target": "새 시즌 패시브 스킬 트리 ",
+      "occurrenceIndex": 7
     }
   ]
 }

@@ -117,6 +117,19 @@ def _alignment_issue(code: str, row: Alignment, **extra: Any) -> dict[str, Any]:
     }
 
 
+def _safe_context_path(value: str) -> str | None:
+    normalized = value.replace("\\", "/")
+    parts = normalized.split("/")
+    if (
+        not normalized
+        or normalized.startswith("/")
+        or re.match(r"^[A-Za-z]:", normalized)
+        or any(part in {"", ".", ".."} for part in parts)
+    ):
+        return None
+    return normalized
+
+
 def migrate(
     *,
     legacy: dict[str, Any],
@@ -124,6 +137,7 @@ def migrate(
     official: dict[str, str],
     alignments: Iterable[Alignment] = (),
     alignment_issues: Iterable[dict[str, Any]] = (),
+    context_inventories: dict[str, tuple[list[Literal], list[Literal]]] | None = None,
 ) -> MigrationResult:
     """Apply the binding acceptance precedence without promoting suggestions."""
     accepted_entries: dict[str, dict[str, Any]] = {}
@@ -174,27 +188,123 @@ def migrate(
             )
 
     reviewed_contexts: set[tuple[str, str, str]] = set()
+    context_inventories = context_inventories or {}
     override_contexts = overrides.get("contexts", []) if isinstance(overrides, dict) else []
     if isinstance(override_contexts, list):
-        for value in sorted(
-            override_contexts,
-            key=lambda row: (
-                str(row.get("path", "")) if isinstance(row, dict) else "",
-                str(row.get("function", "")) if isinstance(row, dict) else "",
-                str(row.get("source", "")) if isinstance(row, dict) else "",
-            ),
-        ):
+        prepared_contexts: list[dict[str, Any]] = []
+        for value in override_contexts:
             if not isinstance(value, dict) or not all(
                 isinstance(value.get(field), str)
                 for field in ("path", "function", "source", "target")
-            ):
+            ) or type(value.get("occurrenceIndex")) is not int or value["occurrenceIndex"] < 0:
                 issues.append({"code": "INVALID_REVIEWED_CONTEXT"})
                 continue
-            path = value["path"].replace("\\", "/")
+            normalized_path = _safe_context_path(value["path"])
+            if normalized_path is None:
+                issues.append(
+                    {
+                        "code": "INVALID_REVIEWED_CONTEXT_PATH",
+                        "path": value["path"].replace("\\", "/"),
+                        "function": value["function"],
+                        "source": value["source"],
+                    }
+                )
+                continue
+            prepared_contexts.append({**value, "path": normalized_path})
+
+        contexts_by_consumer_identity: dict[tuple[str, str, str], list[dict[str, Any]]] = (
+            defaultdict(list)
+        )
+        for value in prepared_contexts:
+            contexts_by_consumer_identity[
+                (value["path"], value["function"], value["source"])
+            ].append(value)
+        duplicate_identities = {
+            key for key, values in contexts_by_consumer_identity.items() if len(values) != 1
+        }
+        for path, function, source in sorted(duplicate_identities):
+            issues.append(
+                {
+                    "code": "DUPLICATE_REVIEWED_CONTEXT",
+                    "path": path,
+                    "function": function,
+                    "source": source,
+                }
+            )
+
+        for value in sorted(
+            prepared_contexts,
+            key=lambda row: (
+                row["path"],
+                row["function"],
+                row["source"],
+                row["occurrenceIndex"],
+                row["target"],
+            ),
+        ):
+            path = value["path"]
             function = value["function"]
             source = value["source"]
             target = value["target"]
+            occurrence_index = value["occurrenceIndex"]
+            if (path, function, source) in duplicate_identities:
+                continue
+            if path not in context_inventories:
+                issues.append(
+                    {
+                        "code": "INVALID_REVIEWED_CONTEXT_PATH",
+                        "path": path,
+                        "function": function,
+                        "source": source,
+                    }
+                )
+                continue
+            upstream_literals, current_literals = context_inventories[path]
+            upstream_function = sorted(
+                (row for row in upstream_literals if row.function == function),
+                key=lambda row: (row.start, row.end),
+            )
+            current_function = sorted(
+                (row for row in current_literals if row.function == function),
+                key=lambda row: (row.start, row.end),
+            )
+            if not upstream_function or not current_function:
+                issues.append(
+                    {
+                        "code": "INVALID_REVIEWED_CONTEXT_FUNCTION",
+                        "path": path,
+                        "function": function,
+                        "source": source,
+                    }
+                )
+                continue
+            if (
+                occurrence_index >= len(upstream_function)
+                or upstream_function[occurrence_index].decoded != source
+                or not HAN.search(source)
+            ):
+                issues.append(
+                    {
+                        "code": "INVALID_REVIEWED_CONTEXT_SOURCE",
+                        "path": path,
+                        "function": function,
+                        "source": source,
+                        "occurrenceIndex": occurrence_index,
+                    }
+                )
+                continue
             if accepted_entries.get(source, {}).get("status") == "official":
+                continue
+            if not HANGUL.search(target):
+                issues.append(
+                    {
+                        "code": "CURRENT_NOT_HANGUL",
+                        "path": path,
+                        "function": function,
+                        "source": source,
+                        "occurrenceIndex": occurrence_index,
+                    }
+                )
                 continue
             if format_signature(source) != format_signature(target):
                 issues.append(
@@ -209,17 +319,32 @@ def migrate(
                     }
                 )
                 continue
-            key = (path, function, source)
-            if key in reviewed_contexts:
+            target_matches = [row for row in current_function if row.decoded == target]
+            if not target_matches:
                 issues.append(
                     {
-                        "code": "INVALID_REVIEWED_CONTEXT",
+                        "code": "INVALID_REVIEWED_CONTEXT_TARGET",
                         "path": path,
                         "function": function,
                         "source": source,
+                        "occurrenceIndex": occurrence_index,
+                        "target": target,
                     }
                 )
                 continue
+            if len(target_matches) != 1:
+                issues.append(
+                    {
+                        "code": "AMBIGUOUS_REVIEWED_CONTEXT_TARGET",
+                        "path": path,
+                        "function": function,
+                        "source": source,
+                        "occurrenceIndex": occurrence_index,
+                        "target": target,
+                    }
+                )
+                continue
+            key = (path, function, source)
             reviewed_contexts.add(key)
             contexts.append(
                 {
@@ -377,6 +502,13 @@ def migrate(
         "CURRENT_PATH_MISSING",
         "UNSUPPORTED_ESCAPE",
         "FORMAT_SIGNATURE_MISMATCH",
+        "INVALID_REVIEWED_CONTEXT",
+        "INVALID_REVIEWED_CONTEXT_PATH",
+        "INVALID_REVIEWED_CONTEXT_FUNCTION",
+        "INVALID_REVIEWED_CONTEXT_SOURCE",
+        "INVALID_REVIEWED_CONTEXT_TARGET",
+        "DUPLICATE_REVIEWED_CONTEXT",
+        "AMBIGUOUS_REVIEWED_CONTEXT_TARGET",
     }
     report = {
         "counts": {
@@ -513,6 +645,14 @@ def _structural_groups(path: Path, original: bytes) -> dict[tuple[str, tuple[Any
 
     walk(tree.root_node, "")
     return groups
+
+
+def _context_inventory(path: Path, original: bytes) -> list[Literal]:
+    rows: dict[tuple[str, int, int], Literal] = {}
+    for values in _structural_groups(path, original).values():
+        for row in values:
+            rows[(row.function, row.start, row.end)] = row
+    return sorted(rows.values(), key=lambda row: (row.function, row.start, row.end))
 
 
 def align_file_literals(
@@ -1261,6 +1401,58 @@ def _accepted_official_by_dictionary(
     }
 
 
+def load_trusted_zh_reference_hashes(repository_root: Path) -> dict[str, str]:
+    manifest_path = repository_root / "reports/baseline/original-distribution.sha256.json"
+    document, issues = _read_evidence_json(manifest_path)
+    expected_paths = {
+        f"Data/poe1/zh-rTW/{dictionary}.json": dictionary
+        for dictionary in DICTIONARIES
+    }
+    observed: dict[str, list[str]] = defaultdict(list)
+    if not isinstance(document, dict) or document.get("algorithm") != "SHA256":
+        issues.append(
+            _evidence_issue(
+                "OFFICIAL_REFERENCE_MANIFEST_MISMATCH",
+                manifest_path,
+                "baseline manifest must declare SHA256",
+            )
+        )
+    else:
+        rows = document.get("files")
+        if not isinstance(rows, list):
+            issues.append(
+                _evidence_issue(
+                    "OFFICIAL_REFERENCE_MANIFEST_MISMATCH",
+                    manifest_path,
+                    "baseline manifest files must be an array",
+                )
+            )
+        else:
+            for row in rows:
+                if not isinstance(row, dict):
+                    continue
+                dictionary = expected_paths.get(row.get("path"))
+                sha256 = row.get("sha256")
+                if dictionary is not None and isinstance(sha256, str):
+                    observed[dictionary].append(sha256.upper())
+    for dictionary in DICTIONARIES:
+        values = observed.get(dictionary, [])
+        expected = TRUSTED_ZH_REFERENCE_HASHES[dictionary]
+        if values != [expected]:
+            issues.append(
+                _evidence_issue(
+                    "OFFICIAL_REFERENCE_MANIFEST_MISMATCH",
+                    manifest_path,
+                    f"{dictionary} pinned baseline hash differs or is not unique",
+                )
+            )
+    if issues:
+        raise OfficialEvidenceError(
+            sorted(issues, key=lambda row: (row["path"], row["code"], row["detail"]))
+        )
+    return dict(TRUSTED_ZH_REFERENCE_HASHES)
+
+
 def load_official_runtime_identity(
     repository_root: Path,
     *,
@@ -1283,7 +1475,11 @@ def load_official_runtime_identity(
             corrected_by_dictionary[str(row.get("dictionary", "stats"))].add(row["source"])
     candidates: dict[str, set[str]] = defaultdict(set)
     issues: list[dict[str, str]] = []
-    trusted_hashes = trusted_reference_hashes or TRUSTED_ZH_REFERENCE_HASHES
+    trusted_hashes = (
+        load_trusted_zh_reference_hashes(repository_root)
+        if trusted_reference_hashes is None
+        else trusted_reference_hashes
+    )
     for dictionary in DICTIONARIES:
         chinese_path = locale_root / "zh-rTW" / f"{dictionary}.json"
         korean_path = locale_root / "ko-KR" / f"{dictionary}.json"
@@ -1399,6 +1595,7 @@ def run_migration(
     excluded = _excluded_paths()
     alignments: list[Alignment] = []
     alignment_issues: list[dict[str, Any]] = []
+    context_inventories: dict[str, tuple[list[Literal], list[Literal]]] = {}
     upstream_sources: set[str] = set()
     files_scanned = 0
     for repository_path in _upstream_paths(upstream_ref):
@@ -1408,16 +1605,24 @@ def run_migration(
         files_scanned += 1
         upstream_text = _git_bytes(["show", f"{upstream_ref}:{repository_path}"])
         current_path = localized_root / Path(relative)
-        if not current_path.is_file():
+        if (
+            not current_path.is_file()
+            or not current_path.resolve().is_relative_to(localized_root)
+        ):
             alignment_issues.append(
                 {"code": "CURRENT_PATH_MISSING", "path": relative, "function": "", "source": ""}
             )
             continue
+        current_text = current_path.read_bytes()
         file_alignments, file_issues = align_file_literals(
-            Path(relative), upstream_text, current_path.read_bytes()
+            Path(relative), upstream_text, current_text
         )
         alignments.extend(file_alignments)
         alignment_issues.extend(file_issues)
+        context_inventories[relative] = (
+            _context_inventory(Path(relative), upstream_text),
+            _context_inventory(Path(relative), current_text),
+        )
         for rows in _structural_groups(Path(relative), upstream_text).values():
             upstream_sources.update(row.decoded for row in rows if HAN.search(row.decoded))
 
@@ -1447,6 +1652,7 @@ def run_migration(
         official=official,
         alignments=alignments,
         alignment_issues=alignment_issues,
+        context_inventories=context_inventories,
     )
     report = {
         "schemaVersion": 1,

@@ -33,6 +33,15 @@ class SourceMigrationTests(unittest.TestCase):
         current = (migration.REPOSITORY_ROOT / "pob-zh-engine" / relative).read_bytes()
         return migration.align_file_literals(Path(relative), upstream, current)
 
+    def context_inventory(self, path: str, upstream_rows, current_rows):
+        def literals(rows):
+            return [
+                migration.Literal(path, index, index + 1, text, "u8", function, index + 1)
+                for index, (function, text) in enumerate(rows)
+            ]
+
+        return {path: (literals(upstream_rows), literals(current_rows))}
+
     def write_stable_evidence_fixture(self, root: Path) -> tuple[Path, Path, Path, Path]:
         english = root / "English.json"
         korean = root / "Korean.json"
@@ -306,6 +315,11 @@ class SourceMigrationTests(unittest.TestCase):
 
     def test_explicit_reviewed_context_resolves_one_failed_occurrence(self):
         source = "發現新賽季天賦樹 "
+        path = "host/passive_tree_update.cpp"
+        function = "PassiveTreeUpdater::doCheck"
+        upstream_rows = [(function, f"非目標{index}") for index in range(7)] + [
+            (function, source)
+        ]
         result = migration.migrate(
             legacy={"entries": {}},
             overrides={
@@ -316,6 +330,7 @@ class SourceMigrationTests(unittest.TestCase):
                         "function": "PassiveTreeUpdater::doCheck",
                         "source": source,
                         "target": "새 시즌 패시브 스킬 트리 ",
+                        "occurrenceIndex": 7,
                     }
                 ],
             },
@@ -341,6 +356,11 @@ class SourceMigrationTests(unittest.TestCase):
                     "currentCandidates": [],
                 }
             ],
+            context_inventories=self.context_inventory(
+                path,
+                upstream_rows,
+                [(function, "새 시즌 패시브 스킬 트리 ")],
+            ),
         )
 
         self.assertEqual(
@@ -364,6 +384,173 @@ class SourceMigrationTests(unittest.TestCase):
             ],
         )
         self.assertEqual(result.report["issues"], [])
+
+    def test_reviewed_context_without_inventory_path_is_rejected(self):
+        result = migration.migrate(
+            legacy={"entries": {}},
+            overrides={
+                "entries": {},
+                "contexts": [
+                    {
+                        "path": "host/not-real.cpp",
+                        "function": "NotReal",
+                        "source": "任意來源",
+                        "target": "임의 대상",
+                        "occurrenceIndex": 0,
+                    }
+                ],
+            },
+            official={},
+        )
+
+        self.assertEqual(result.accepted["contexts"], [])
+        self.assertEqual(
+            [row["code"] for row in result.report["issues"]],
+            ["INVALID_REVIEWED_CONTEXT_PATH"],
+        )
+
+    def test_reviewed_context_requires_exact_function_source_and_occurrence(self):
+        path = "host/a.cpp"
+        inventory = self.context_inventory(
+            path,
+            [("Draw", "設定")],
+            [("Draw", "설정")],
+        )
+        cases = [
+            ("Missing", "設定", 0, "INVALID_REVIEWED_CONTEXT_FUNCTION"),
+            ("Draw", "不存在", 0, "INVALID_REVIEWED_CONTEXT_SOURCE"),
+            ("Draw", "設定", 1, "INVALID_REVIEWED_CONTEXT_SOURCE"),
+        ]
+        for function, source, occurrence_index, expected_code in cases:
+            with self.subTest(function=function, source=source, occurrence=occurrence_index):
+                result = migration.migrate(
+                    legacy={"entries": {}},
+                    overrides={
+                        "entries": {},
+                        "contexts": [
+                            {
+                                "path": path,
+                                "function": function,
+                                "source": source,
+                                "target": "설정",
+                                "occurrenceIndex": occurrence_index,
+                            }
+                        ],
+                    },
+                    official={},
+                    context_inventories=inventory,
+                )
+
+                self.assertEqual(result.accepted["contexts"], [])
+                self.assertEqual(
+                    [row["code"] for row in result.report["issues"]],
+                    [expected_code],
+                )
+
+    def test_reviewed_context_target_must_be_unique_actual_hangul_literal(self):
+        path = "host/a.cpp"
+        base = {
+            "path": path,
+            "function": "Draw",
+            "source": "設定",
+            "occurrenceIndex": 0,
+        }
+        cases = [
+            (
+                "없는 대상",
+                [("Draw", "설정")],
+                "INVALID_REVIEWED_CONTEXT_TARGET",
+            ),
+            (
+                "設定",
+                [("Draw", "設定")],
+                "CURRENT_NOT_HANGUL",
+            ),
+            (
+                "설정",
+                [("Draw", "설정"), ("Draw", "설정")],
+                "AMBIGUOUS_REVIEWED_CONTEXT_TARGET",
+            ),
+        ]
+        for target, current_rows, expected_code in cases:
+            with self.subTest(target=target, expected_code=expected_code):
+                result = migration.migrate(
+                    legacy={"entries": {}},
+                    overrides={"entries": {}, "contexts": [{**base, "target": target}]},
+                    official={},
+                    context_inventories=self.context_inventory(
+                        path, [("Draw", "設定")], current_rows
+                    ),
+                )
+
+                self.assertEqual(result.accepted["contexts"], [])
+                self.assertEqual(
+                    [row["code"] for row in result.report["issues"]],
+                    [expected_code],
+                )
+
+    def test_reviewed_context_rejects_absolute_and_traversal_paths(self):
+        unsafe_paths = [
+            "../host/a.cpp",
+            "host/../a.cpp",
+            "/host/a.cpp",
+            "C:/host/a.cpp",
+        ]
+        for path in unsafe_paths:
+            with self.subTest(path=path):
+                result = migration.migrate(
+                    legacy={"entries": {}},
+                    overrides={
+                        "entries": {},
+                        "contexts": [
+                            {
+                                "path": path,
+                                "function": "Draw",
+                                "source": "設定",
+                                "target": "설정",
+                                "occurrenceIndex": 0,
+                            }
+                        ],
+                    },
+                    official={},
+                    context_inventories=self.context_inventory(
+                        path, [("Draw", "設定")], [("Draw", "설정")]
+                    ),
+                )
+
+                self.assertEqual(result.accepted["contexts"], [])
+                self.assertEqual(
+                    [row["code"] for row in result.report["issues"]],
+                    ["INVALID_REVIEWED_CONTEXT_PATH"],
+                )
+
+    def test_duplicate_and_conflicting_reviewed_contexts_block_identity(self):
+        path = "host/a.cpp"
+        base = {
+            "path": path,
+            "function": "Draw",
+            "source": "設定",
+            "target": "설정",
+            "occurrenceIndex": 0,
+        }
+        for rows in ([base, dict(base)], [base, {**base, "target": "환경 설정"}]):
+            with self.subTest(rows=rows):
+                result = migration.migrate(
+                    legacy={"entries": {}},
+                    overrides={"entries": {}, "contexts": rows},
+                    official={},
+                    context_inventories=self.context_inventory(
+                        path,
+                        [("Draw", "設定")],
+                        [("Draw", "설정"), ("Draw", "환경 설정")],
+                    ),
+                )
+
+                self.assertEqual(result.accepted["contexts"], [])
+                self.assertEqual(
+                    {row["code"] for row in result.report["issues"]},
+                    {"DUPLICATE_REVIEWED_CONTEXT"},
+                )
 
     def test_alignment_requires_han_hangul_and_equal_format_signature(self):
         result = migration.migrate(
@@ -772,6 +959,41 @@ class SourceMigrationTests(unittest.TestCase):
             )
 
         self.assertEqual(identities, {"聖甲蟲：深淵": "심연 갑충석"})
+
+    def test_trusted_zh_hashes_equal_committed_baseline_manifest(self):
+        self.assertEqual(
+            migration.load_trusted_zh_reference_hashes(migration.REPOSITORY_ROOT),
+            migration.TRUSTED_ZH_REFERENCE_HASHES,
+        )
+
+    def test_trusted_zh_baseline_manifest_drift_is_blocked(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            manifest = root / "reports" / "baseline" / "original-distribution.sha256.json"
+            manifest.parent.mkdir(parents=True)
+            rows = [
+                {
+                    "path": f"Data/poe1/zh-rTW/{dictionary}.json",
+                    "sha256": (
+                        "0" * 64
+                        if dictionary == "items"
+                        else migration.TRUSTED_ZH_REFERENCE_HASHES[dictionary]
+                    ),
+                }
+                for dictionary in migration.DICTIONARIES
+            ]
+            manifest.write_text(
+                json.dumps({"algorithm": "SHA256", "files": rows}),
+                encoding="utf-8",
+            )
+
+            with self.assertRaises(migration.OfficialEvidenceError) as raised:
+                migration.load_trusted_zh_reference_hashes(root)
+
+        self.assertIn(
+            "OFFICIAL_REFERENCE_MANIFEST_MISMATCH",
+            {row["code"] for row in raised.exception.issues},
+        )
 
     def test_runtime_official_target_tamper_is_blocked(self):
         with tempfile.TemporaryDirectory() as temporary:
