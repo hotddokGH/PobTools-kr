@@ -132,7 +132,7 @@ bool spawn(const std::wstring& launchLua, PROCESS_INFORMATION& pi)
 	// GetLastError, which is gone by the time anyone asks.
 	PobLog::Error("pob", "CreateProcess for the POB child failed, GetLastError=" +
 	                         std::to_string((unsigned long)GetLastError()));
-	MessageBoxW(nullptr, L"無法啟動 POB 子程序。", L"PobTools", MB_ICONERROR | MB_OK);
+	MessageBoxW(nullptr, L"POB 하위 프로세스를 시작할 수 없습니다.", L"PobTools", MB_ICONERROR | MB_OK);
 	return false;
 }
 
@@ -221,7 +221,7 @@ bool SpawnToolDetached(const std::wstring& exeDir, const wchar_t* flag, Instance
 		// and it is gone by the time anyone asks.
 		PobLog::Error("pob", "CreateProcess for the tool window failed, GetLastError=" +
 		                         std::to_string((unsigned long)GetLastError()));
-		MessageBoxW(nullptr, L"無法啟動工具視窗（子程序建立失敗）。", L"PobTools",
+		MessageBoxW(nullptr, L"도구 창을 시작할 수 없습니다(하위 프로세스 생성 실패).", L"PobTools",
 		            MB_ICONERROR | MB_OK);
 		return false;
 	}

@@ -189,7 +189,7 @@ static void TargetFileCombo(const EditorModel& model, const char* id, int& targe
 	const std::vector<int> order = FileIdxInLoadOrder(model);
 	auto label = [&](int fi) {
 		const EditorFile& f = model.files[fi];
-		if (f.order < 0) return f.name + u8"（未列入 load_order，引擎不會載入）";
+	if (f.order < 0) return f.name + u8" (load_order에 없어 엔진이 불러오지 않음)";
 		return std::to_string(f.order + 1) + ". " + f.name;
 	};
 	// highest-ranked listed file = the one that wins every collision
@@ -198,7 +198,7 @@ static void TargetFileCombo(const EditorModel& model, const char* id, int& targe
 
 	ImGui::SetNextItemWidth(230 * scale);
 	const std::string preview = (target >= 0 && target < (int)model.files.size())
-		? label(target) : std::string(u8"（選擇檔案）");
+		? label(target) : std::string(u8"(파일 선택)");
 	if (!ImGui::BeginCombo(id, preview.c_str())) return;
 	bool separated = false;
 	for (int fi : order) {
@@ -211,7 +211,7 @@ static void TargetFileCombo(const EditorModel& model, const char* id, int& targe
 		ImGui::EndDisabled();
 		if (fi == lastListed) {
 			ImGui::SameLine();
-			ImGui::TextDisabled(u8"← 最後載入，會蓋過前面");
+		ImGui::TextDisabled(u8"← 나중에 불러오는 파일의 번역이 앞선 번역을 덮어씁니다.");
 		}
 	}
 	ImGui::EndCombo();
@@ -275,7 +275,7 @@ public:
 			// Init returns false and the tab shows nothing. Without this the user
 			// sees an editor that will not open and there is no record of the
 			// dictionary folder being empty or unreadable.
-			PobLog::Error("panel", u8"翻譯編輯器找不到任何語系資料夾：" + narrow(slotRoot()));
+		PobLog::Error("panel", u8"번역 편집기에서 언어 폴더를 찾을 수 없습니다: " + narrow(slotRoot()));
 			return false;
 		}
 		{
@@ -287,7 +287,7 @@ public:
 				auto zh = std::find(locales.begin(), locales.end(), std::string("zh-rTW"));
 				li = (zh != locales.end()) ? (int)(zh - locales.begin()) : 0;
 				if (!want.empty())
-					status = u8"此語系（" + want + u8"）沒有翻譯資料，已改開 " + locales[li];
+		status = u8"이 언어 계열(" + want + u8")에는 번역 데이터가 없어 전환할 수 없습니다: " + locales[li];
 			}
 		}
 		pendingGi = gi;
@@ -302,7 +302,7 @@ public:
 	void Frame() override
 	{
 		ImGui::AlignTextToFramePadding();
-		ImGui::TextColored(PobUi::Accent(), u8"翻譯資料庫");
+	ImGui::TextColored(PobUi::Accent(), u8"번역 데이터 편집기");
 		ImGui::SameLine(0, 18 * scale);
 		// Both combos roll their own selection BACK when there are unsaved edits
 		// and hand the choice to the prompt instead. ImGui::Combo writes the new
@@ -333,13 +333,13 @@ public:
 		}
 
 		ImGui::SameLine(0, 18 * scale);
-		ImGui::TextDisabled(u8"資料範圍");
+		ImGui::TextDisabled(u8"데이터 파일");
 		ImGui::SameLine();
 		ImGui::SetNextItemWidth(180 * scale);
 		{
-			std::string preview = (fileFilter == 0) ? u8"全部檔案" : model.files[fileFilter - 1].name;
+		std::string preview = (fileFilter == 0) ? u8"모든 파일" : model.files[fileFilter - 1].name;
 			if (ImGui::BeginCombo("##filefilter", preview.c_str())) {
-				if (ImGui::Selectable(u8"全部檔案", fileFilter == 0)) { fileFilter = 0; rebuildFilter(); }
+			if (ImGui::Selectable(u8"모든 파일", fileFilter == 0)) { fileFilter = 0; rebuildFilter(); }
 				for (size_t i = 0; i < model.files.size(); i++) {
 					bool sel = (fileFilter == (int)i + 1);
 					if (ImGui::Selectable(model.files[i].name.c_str(), sel)) { fileFilter = (int)i + 1; rebuildFilter(); }
@@ -357,30 +357,30 @@ public:
 		float searchW = ImGui::GetContentRegionAvail().x - commandW;
 		if (searchW < 220 * scale) searchW = 220 * scale;
 		ImGui::SetNextItemWidth(searchW);
-		if (ImGui::InputTextWithHint("##search", u8"搜尋 key 或翻譯…", &search)) {
+	if (ImGui::InputTextWithHint("##search", u8"키 또는 번역 검색...", &search)) {
 			searchLower = to_lower_ascii(search);
 			rebuildFilter();
 		}
 
 		ImGui::SameLine();
-		if (ImGui::Button(u8"缺漏掃描")) { focusMiss = true; runScan(); }
+	if (ImGui::Button(u8"누락 번역 검사")) { focusMiss = true; runScan(); }
 		ImGui::SameLine();
 		int dirty = DirtyCount(model);
 		{
-			std::string saveLabel = dirty > 0 ? (std::string(u8"儲存全部 (") + std::to_string(dirty) + ")") : u8"儲存全部";
+	std::string saveLabel = dirty > 0 ? (std::string(u8"변경 저장 (") + std::to_string(dirty) + ")") : u8"변경 저장";
 			ImGui::BeginDisabled(dirty == 0);
 			PobUi::PushPrimaryButton();
 			if (ImGui::Button(saveLabel.c_str())) {
 				std::string err;
 				int saved = SaveAll(model, &err);
-				status = err.empty() ? (std::string(u8"已儲存 ") + std::to_string(saved) + u8" 個檔案")
-				                     : (std::string(u8"儲存失敗：") + err);
+		status = err.empty() ? (std::to_string(saved) + u8"개 파일을 저장했습니다")
+				                     : (std::string(u8"저장 실패: ") + err);
 			}
 			PobUi::PopButtonStyle();
 			ImGui::EndDisabled();
 		}
 		ImGui::SameLine();
-		if (ImGui::Button(u8"重新載入")) {
+		if (ImGui::Button(u8"적용")) {
 			if (DirtyCount(model) > 0) pending = Pending::Reload;
 			else reload();
 		}
@@ -395,17 +395,17 @@ public:
 				"[!] CJK font atlas not loaded (Fonts\\FZ_ZY.ttf missing or texture too large). Chinese cannot display/input.");
 		}
 		if (!model.localeExists) {
-			ImGui::TextColored(ImVec4(0.94f, 0.27f, 0.27f, 1.0f), u8"此語系尚無翻譯資料：%s", narrow(model.dataDir).c_str());
+		ImGui::TextColored(ImVec4(0.94f, 0.27f, 0.27f, 1.0f), u8"이 언어 계열에는 번역 데이터가 없습니다: %s", narrow(model.dataDir).c_str());
 		} else {
-			ImGui::TextDisabled(u8"%zu 個檔案  ·  顯示 %zu / %zu 筆",
+	ImGui::TextDisabled(u8"%zu개 파일 · %zu / %zu개 항목 표시",
 				model.files.size(), filtered.size(), model.entries.size());
 			if (dirty > 0) {
 				ImGui::SameLine(0, 16 * scale);
-				ImGui::TextColored(PobUi::StatusColor(PobUi::StatusTone::Warning), u8"%d 筆待儲存", dirty);
+		ImGui::TextColored(PobUi::StatusColor(PobUi::StatusTone::Warning), u8"저장 대기 중인 변경 %d개", dirty);
 			}
 			if (!status.empty()) {
 				ImGui::SameLine(0, 16 * scale);
-				PobUi::StatusTone tone = status.find(u8"失敗") == std::string::npos
+				PobUi::StatusTone tone = status.find(u8"실패") == std::string::npos
 					? PobUi::StatusTone::Success : PobUi::StatusTone::Error;
 				ImGui::TextColored(PobUi::StatusColor(tone), "%s", status.c_str());
 			}
@@ -421,7 +421,7 @@ public:
 
 		ImGuiTabItemFlags entriesFlags = focusEntries ? ImGuiTabItemFlags_SetSelected : 0;
 		focusEntries = false;
-		if (ImGui::BeginTabItem(u8"翻譯條目", nullptr, entriesFlags)) {
+		if (ImGui::BeginTabItem(u8"번역 항목", nullptr, entriesFlags)) {
 
 		// --- add a new entry --------------------------------------------------
 		// Above the table on purpose: the table is an ImGuiListClipper over 110k
@@ -443,31 +443,31 @@ public:
 			const bool inTarget = std::find(newKeyOwners.begin(), newKeyOwners.end(),
 			                                newTarget) != newKeyOwners.end();
 
-			ImGui::TextDisabled(u8"新增");
+		ImGui::TextDisabled(u8"새 항목 추가");
 			ImGui::SameLine();
 			ImGui::SetNextItemWidth(280 * scale);
 			if (focusNewKey) { ImGui::SetKeyboardFocusHere(); focusNewKey = false; }
-			ImGui::InputTextWithHint("##newkey", u8"Key（英文，需與 POB 完全相同）", &newKey);
+			ImGui::InputTextWithHint("##newkey", u8"Key(영어, POB와 동일)", &newKey);
 			ImGui::SameLine();
-			ImGui::TextDisabled(u8"寫入");
+		ImGui::TextDisabled(u8"값");
 			ImGui::SameLine();
 			TargetFileCombo(model, "##newtarget", newTarget, scale);
 			ImGui::SameLine();
 			ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x - 90 * scale);
-			const bool entered = ImGui::InputTextWithHint("##newval", u8"翻譯", &newVal,
+			const bool entered = ImGui::InputTextWithHint("##newval", u8"번역", &newVal,
 			                                              ImGuiInputTextFlags_EnterReturnsTrue);
 			ImGui::SameLine();
 			const bool canAdd = !newKey.empty() && !newVal.empty() && newTarget >= 0;
 			ImGui::BeginDisabled(!canAdd);
 			PobUi::PushPrimaryButton();
-			const bool pressed = ImGui::Button(inTarget ? u8"覆蓋" : u8"新增", ImVec2(80 * scale, 0));
+			const bool pressed = ImGui::Button(inTarget ? u8"덮어쓰기" : u8"추가", ImVec2(80 * scale, 0));
 			PobUi::PopButtonStyle();
 			ImGui::EndDisabled();
 
 			if (canAdd && (pressed || entered)) {
 				SetEntry(model, newTarget, newKey, newVal);
-				status = std::string(inTarget ? u8"已覆蓋 " : u8"已新增 ") +
-				         model.files[newTarget].name + u8"：" + newKey;
+			status = std::string(inTarget ? u8"덮어썼습니다: " : u8"추가했습니다: ") +
+			         model.files[newTarget].name + u8": " + newKey;
 				search = newKey;                       // make the new row visible
 				searchLower = to_lower_ascii(search);
 				rebuildFilter();
@@ -481,31 +481,31 @@ public:
 			if (newKey.empty()) {
 				ImGui::TextDisabled(u8" ");
 			} else if (newKeyOwners.empty()) {
-				ImGui::TextDisabled(u8"新條目");
+				ImGui::TextDisabled(u8"새 항목");
 			} else if (inTarget) {
 				std::string old;
 				for (const EditorEntry& e : model.entries)
 					if (e.fileIdx == newTarget && e.key == newKey) { old = e.value; break; }
 				ImGui::TextColored(PobUi::StatusColor(PobUi::StatusTone::Warning),
-					u8"%s 已有這個 key，將覆蓋現有翻譯：%s",
+					 u8"%s에 이미 이 키가 있습니다. 현재 번역: %s",
 					model.files[newTarget].name.c_str(), old.c_str());
 			} else {
 				std::string others;
 				for (int f : newKeyOwners) {
-					if (!others.empty()) others += u8"、";
+					if (!others.empty()) others += u8", ";
 					others += model.files[f].name;
 				}
 				const bool targetWins = (newTarget >= 0 && winner >= 0 &&
 				                         model.files[newTarget].order > model.files[winner].order);
 				if (targetWins) {
-					ImGui::TextDisabled(u8"此 key 也在 %s；引擎會採用你選的 %s",
+			ImGui::TextDisabled(u8"이 키는 %s에도 있습니다. 기록할 파일은 %s입니다.",
 						others.c_str(), model.files[newTarget].name.c_str());
 				} else {
 					ImGui::TextColored(PobUi::StatusColor(PobUi::StatusTone::Warning),
-						u8"寫進 %s 不會生效，引擎會用 %s 的版本",
+					 u8"%s에 기록해도 엔진은 나중에 불러오는 %s의 값을 사용합니다.",
 						model.files[newTarget].name.c_str(), model.files[winner].name.c_str());
 					ImGui::SameLine();
-					if (ImGui::SmallButton((std::string(u8"改寫入 ") +
+			if (ImGui::SmallButton((std::string(u8"대상 파일: ") +
 					                        model.files[winner].name).c_str()))
 						newTarget = winner;
 				}
@@ -518,9 +518,9 @@ public:
 			ImGuiTableFlags tflags = ImGuiTableFlags_ScrollY | ImGuiTableFlags_RowBg |
 				ImGuiTableFlags_BordersInnerV | ImGuiTableFlags_Resizable;
 			if (ImGui::BeginTable("##entries", 3, tflags, ImVec2(0, 0))) {
-				ImGui::TableSetupColumn(u8"來源", ImGuiTableColumnFlags_WidthFixed, 70 * scale);
-				ImGui::TableSetupColumn(u8"Key（英文）", ImGuiTableColumnFlags_WidthStretch, 0.45f);
-				ImGui::TableSetupColumn(u8"翻譯", ImGuiTableColumnFlags_WidthStretch, 0.55f);
+		ImGui::TableSetupColumn(u8"출처", ImGuiTableColumnFlags_WidthFixed, 70 * scale);
+				ImGui::TableSetupColumn(u8"Key (영어)", ImGuiTableColumnFlags_WidthStretch, 0.45f);
+				ImGui::TableSetupColumn(u8"번역", ImGuiTableColumnFlags_WidthStretch, 0.55f);
 				ImGui::TableSetupScrollFreeze(0, 1);
 				ImGui::TableHeadersRow();
 
@@ -584,7 +584,7 @@ public:
 								openBig = true;
 							}
 							if (ImGui::IsItemHovered())
-								ImGui::SetTooltip(u8"展開編輯（內容較長或有換行）");
+				ImGui::SetTooltip(u8"큰 편집 창에서 열기");
 						}
 						// The box has to keep the raw escapes so they can be
 						// edited, so the rendered form is shown separately — this
@@ -597,7 +597,7 @@ public:
 						// were each shortening that range by a line.
 						if (boxHovered && has_pob_color(e.value)) {
 							ImGui::BeginTooltip();
-							ImGui::TextDisabled(u8"顯示效果：");
+		ImGui::TextDisabled(u8"표시 결과:");
 							TextPobColored(e.value, ImGui::GetStyleColorVec4(ImGuiCol_Text));
 							ImGui::EndTooltip();
 						}
@@ -622,29 +622,29 @@ public:
 		// --- missing-string scan ---------------------------------------------
 		ImGuiTabItemFlags missFlags = focusMiss ? ImGuiTabItemFlags_SetSelected : 0;
 		focusMiss = false;
-		std::string missTabLabel = u8"缺漏掃描";
+	std::string missTabLabel = u8"누락 번역 검사";
 		if (missScanned && !misses.empty())
 			missTabLabel += " (" + std::to_string(misses.size()) + ")";
 		if (ImGui::BeginTabItem(missTabLabel.c_str(), nullptr, missFlags)) {
-			if (ImGui::Button(u8"重新掃描")) runScan();
+		if (ImGui::Button(u8"다시 검사")) runScan();
 			ImGui::SameLine();
-			ImGui::Checkbox(u8"顯示反查失敗 (REV)", &missShowReverse);
+		ImGui::Checkbox(u8"역방향 누락 포함(REV)", &missShowReverse);
 			ImGui::SameLine(0, 16 * scale);
 			int removeIdx = -1;
 			bool applyAll = false;
-			if (ImGui::Button(u8"全部補上（已填寫者）")) applyAll = true;
+		if (ImGui::Button(u8"입력된 번역 모두 반영")) applyAll = true;
 
 			if (!missScanned) {
 				ImGui::Spacing();
-				ImGui::TextDisabled(u8"按「重新掃描」讀取 translate_misses.log。");
+		ImGui::TextDisabled(u8"'다시 검사'를 눌러 translate_misses.log를 읽으세요.");
 			} else if (!missLogFound) {
 				ImGui::TextColored(ImVec4(0.94f, 0.67f, 0.27f, 1.0f),
-					u8"找不到 translate_misses.log，請先啟動一次 POB 並操作介面。");
+					u8"translate_misses.log를 찾을 수 없습니다. 먼저 POB를 실행하고 화면을 사용해 보세요.");
 			}
 
 			int shown = 0;
 			for (const MissEntry& m : misses) if (missShowReverse || !m.reverse) shown++;
-			ImGui::TextDisabled(u8"缺漏 %d 筆（共掃到 %zu）", shown, misses.size());
+			ImGui::TextDisabled(u8"누락 %d개(전체 %zu개)", shown, misses.size());
 			ImGui::Spacing();
 
 			// A table rather than a run of SameLine widgets: the English text
@@ -653,9 +653,9 @@ public:
 			ImGuiTableFlags mflags = ImGuiTableFlags_ScrollY | ImGuiTableFlags_RowBg |
 				ImGuiTableFlags_BordersInnerV | ImGuiTableFlags_Resizable;
 			if (ImGui::BeginTable("##misses", 4, mflags, ImVec2(0, 0))) {
-				ImGui::TableSetupColumn(u8"未翻譯字串", ImGuiTableColumnFlags_WidthStretch, 0.50f);
-				ImGui::TableSetupColumn(u8"寫入檔案", ImGuiTableColumnFlags_WidthFixed, 150 * scale);
-				ImGui::TableSetupColumn(u8"翻譯", ImGuiTableColumnFlags_WidthStretch, 0.50f);
+				ImGui::TableSetupColumn(u8"아직 번역되지 않은 문자열", ImGuiTableColumnFlags_WidthStretch, 0.50f);
+		ImGui::TableSetupColumn(u8"기록할 파일", ImGuiTableColumnFlags_WidthFixed, 150 * scale);
+				ImGui::TableSetupColumn(u8"번역", ImGuiTableColumnFlags_WidthStretch, 0.50f);
 				ImGui::TableSetupColumn("##act", ImGuiTableColumnFlags_WidthFixed, 64 * scale);
 				ImGui::TableSetupScrollFreeze(0, 1);
 				ImGui::TableHeadersRow();
@@ -685,12 +685,12 @@ public:
 
 					ImGui::TableSetColumnIndex(2);
 					ImGui::SetNextItemWidth(-FLT_MIN);
-					ImGui::InputTextWithHint("##mt", u8"輸入翻譯…", &missTrans[i]);
+					ImGui::InputTextWithHint("##mt", u8"번역 입력...", &missTrans[i]);
 
 					ImGui::TableSetColumnIndex(3);
 					bool canAdd = missTarget[i] >= 0 && !missTrans[i].empty();
 					ImGui::BeginDisabled(!canAdd);
-					if (ImGui::Button(u8"補上", ImVec2(-FLT_MIN, 0))) {
+			if (ImGui::Button(u8"반영", ImVec2(-FLT_MIN, 0))) {
 						SetEntry(model, missTarget[i], misses[i].text, missTrans[i]);
 						removeIdx = (int)i;
 					}
@@ -728,25 +728,25 @@ public:
 		// Opened here, at the root ID level, for the same reason as the guard
 		// below: OpenPopup inside the table's ID scope would never match this
 		// BeginPopupModal. The row only records which entry to edit.
-		if (openBig) { ImGui::OpenPopup(u8"編輯內容"); openBig = false; }
-		if (ImGui::BeginPopupModal(u8"編輯內容", nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {
+		if (openBig) { ImGui::OpenPopup(u8"내용 수정"); openBig = false; }
+		if (ImGui::BeginPopupModal(u8"내용 수정", nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {
 			if (bigIdx >= 0 && bigIdx < (int)model.entries.size()) {
 				EditorEntry& e = model.entries[bigIdx];
 				ImGui::PushTextWrapPos(760 * scale);
-				ImGui::TextDisabled(u8"Key（英文）");
+				ImGui::TextDisabled(u8"Key (영어)");
 				ImGui::TextUnformatted(e.key.c_str());
 				ImGui::PopTextWrapPos();
 				ImGui::Spacing();
-				ImGui::TextDisabled(u8"翻譯（可多行；Enter 換行）");
+		ImGui::TextDisabled(u8"번역(여러 줄 입력 가능)");
 				ImGui::InputTextMultiline("##bigval", &bigText,
 				                          ImVec2(780 * scale, 240 * scale));
 				if (has_pob_color(bigText)) {
-					ImGui::TextDisabled(u8"顯示效果：");
+		ImGui::TextDisabled(u8"표시 결과:");
 					TextPobColored(bigText, ImGui::GetStyleColorVec4(ImGuiCol_TextDisabled));
 				}
 				ImGui::Spacing();
 				PobUi::PushPrimaryButton();
-				if (ImGui::Button(u8"套用", ImVec2(110 * scale, 0))) {
+				if (ImGui::Button(u8"적용", ImVec2(110 * scale, 0))) {
 					if (bigText != e.value) {
 						e.value = bigText;
 						model.files[e.fileIdx].dirty = true;
@@ -756,7 +756,7 @@ public:
 				}
 				PobUi::PopButtonStyle();
 				ImGui::SameLine();
-				if (ImGui::Button(u8"取消", ImVec2(110 * scale, 0))) {
+				if (ImGui::Button(u8"취소", ImVec2(110 * scale, 0))) {
 					bigIdx = -1;
 					ImGui::CloseCurrentPopup();
 				}
@@ -766,34 +766,34 @@ public:
 			}
 			ImGui::EndPopup();
 		}
-		if (pending != Pending::None && !ImGui::IsPopupOpen(u8"未儲存變更"))
-			ImGui::OpenPopup(u8"未儲存變更");
+	if (pending != Pending::None && !ImGui::IsPopupOpen(u8"저장하지 않은 변경 사항"))
+		ImGui::OpenPopup(u8"저장하지 않은 변경 사항");
 
-		if (ImGui::BeginPopupModal(u8"未儲存變更", nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {
-			ImGui::Text(u8"有 %d 個檔案尚未儲存。", DirtyCount(model));
+	if (ImGui::BeginPopupModal(u8"저장하지 않은 변경 사항", nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {
+		ImGui::Text(u8"%d개 파일에 저장하지 않은 변경이 있습니다.", DirtyCount(model));
 			// Name the action: by the time the prompt appears the user may not
 			// remember which button they pressed.
 			switch (pending) {
 				case Pending::SwitchGame:
-					ImGui::TextUnformatted((std::string(u8"即將切換到 ") + kGames[pendingGi] +
-					                        u8"，未儲存的修改會遺失。").c_str());
+			ImGui::TextUnformatted((std::string(u8"게임을 ") + kGames[pendingGi] +
+			                        u8"(으)로 바꾸면 저장하지 않은 변경이 사라집니다.").c_str());
 					break;
 				case Pending::SwitchLocale:
-					ImGui::TextUnformatted((std::string(u8"即將切換到 ") + locales[pendingLi] +
-					                        u8"，未儲存的修改會遺失。").c_str());
+			ImGui::TextUnformatted((std::string(u8"언어를 ") + locales[pendingLi] +
+			                        u8"(으)로 바꾸면 저장하지 않은 변경이 사라집니다.").c_str());
 					break;
 				case Pending::Reload:
-					ImGui::TextUnformatted(u8"即將重新載入，未儲存的修改會遺失。");
+					ImGui::TextUnformatted(u8"다시 불러오면 저장되지 않은 변경 사항이 사라집니다.");
 					break;
 				default:
-					ImGui::TextUnformatted(u8"即將關閉編輯器。");
+					ImGui::TextUnformatted(u8"편집기를 닫으려고 합니다.");
 					break;
 			}
 			ImGui::Spacing();
 
 			const bool closing = (pending == Pending::Close);
 			PobUi::PushPrimaryButton();
-			if (ImGui::Button(closing ? u8"儲存並關閉" : u8"儲存後繼續")) {
+			if (ImGui::Button(closing ? u8"저장 및 종료" : u8"저장 후 계속")) {
 				std::string err;
 				if (SaveAll(model, &err)) saved_ = true;
 				if (closing) close_ = ToolCloseState::Closed; else applyPending();
@@ -804,14 +804,14 @@ public:
 			ImGui::SameLine();
 			// The only button here that throws work away.
 			PobUi::PushDangerButton();
-			if (ImGui::Button(closing ? u8"直接關閉" : u8"捨棄並繼續")) {
+			if (ImGui::Button(closing ? u8"바로 닫기" : u8"포기하고 계속하기")) {
 				if (closing) close_ = ToolCloseState::Closed; else applyPending();
 				pending = Pending::None;
 				ImGui::CloseCurrentPopup();
 			}
 			PobUi::PopButtonStyle();
 			ImGui::SameLine();
-			if (ImGui::Button(u8"取消")) {
+			if (ImGui::Button(u8"취소")) {
 				pending = Pending::None;
 				// The host asked; the user said no. Cancelled rather than Open, so
 				// whoever started the close abandons it instead of asking again.
@@ -857,7 +857,7 @@ private:
 	void noteExternal()
 	{
 		if (slotDir[gi].status == DataDirStatus::External)
-			status = u8"編輯的是外部翻譯資料夾：" + narrow(slotRoot());
+	status = u8"편집기에서 사용하는 외부 번역 폴더: " + narrow(slotRoot());
 	}
 
 	void rebuildFilter()

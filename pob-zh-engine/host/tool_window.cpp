@@ -33,7 +33,7 @@ int RunToolWindow(IToolPanel& panel, const ToolWindowDesc& desc,
                   const std::wstring& locale)
 {
 	if (!glfwInit()) {
-		MessageBoxW(nullptr, L"無法初始化 GLFW。", L"PobTools", MB_ICONERROR | MB_OK);
+		MessageBoxW(nullptr, L"GLFW를 초기화할 수 없습니다.", L"PobTools", MB_ICONERROR | MB_OK);
 		return 1;
 	}
 	glfwWindowHint(GLFW_CLIENT_API, GLFW_OPENGL_ES_API);
@@ -64,7 +64,7 @@ int RunToolWindow(IToolPanel& panel, const ToolWindowDesc& desc,
 	GLFWwindow* win = glfwCreateWindow(winW, winH, desc.titleUtf8, nullptr, nullptr);
 	if (!win) {
 		glfwTerminate();
-		MessageBoxW(nullptr, L"無法建立視窗。", L"PobTools", MB_ICONERROR | MB_OK);
+		MessageBoxW(nullptr, L"창을 만들 수 없습니다.", L"PobTools", MB_ICONERROR | MB_OK);
 		return 1;
 	}
 	if (monitor) {
@@ -162,7 +162,7 @@ int RunToolWindow(IToolPanel& panel, const ToolWindowDesc& desc,
 		// at the same point; see IToolPanel::InitError.
 		if (const char* why = panel.InitError(); why && *why) {
 			PobLog::Error("panel", std::string(panel.PanelId() ? panel.PanelId() : "?") +
-			                           u8" 面板初始化失敗：" + why);
+				                           u8"패널 초기화 실패: " + why);
 			const int n = MultiByteToWideChar(CP_UTF8, 0, why, -1, nullptr, 0);
 			std::wstring w((size_t)(n > 0 ? n - 1 : 0), L'\0');
 			if (n > 0) MultiByteToWideChar(CP_UTF8, 0, why, -1, &w[0], n);

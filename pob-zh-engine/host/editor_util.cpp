@@ -76,7 +76,7 @@ std::wstring EdFilterDialog(const std::wstring& initialDir, bool save, void* own
 	// fallback: it returns whatever is active on this thread at this instant, which
 	// is the right window today purely because nothing else on the thread has one.
 	ofn.hwndOwner = owner ? (HWND)owner : GetActiveWindow();
-	ofn.lpstrFilter = L"過濾器 (*.filter)\0*.filter\0所有檔案 (*.*)\0*.*\0\0";
+	ofn.lpstrFilter = L"필터 (*.filter)\0*.filter\0모든 파일 (*.*)\0*.*\0\0";
 	ofn.lpstrFile = buf;
 	ofn.nMaxFile = MAX_PATH;
 	ofn.lpstrDefExt = L"filter";
@@ -92,7 +92,7 @@ std::wstring EdOpenFontDialog()
 	OPENFILENAMEW ofn{};
 	ofn.lStructSize = sizeof(ofn);
 	ofn.hwndOwner = GetActiveWindow();
-	ofn.lpstrFilter = L"字型檔 (*.ttf;*.ttc;*.otf)\0*.ttf;*.ttc;*.otf\0所有檔案 (*.*)\0*.*\0\0";
+	ofn.lpstrFilter = L"글꼴 종류 (*.ttf;*.ttc;*.otf)\0*.ttf;*.ttc;*.otf\0모든 파일 (*.*)\0*.*\0\0";
 	ofn.lpstrFile = buf;
 	ofn.nMaxFile = MAX_PATH;
 	ofn.lpstrInitialDir = L"C:\\Windows\\Fonts"; // where people's fonts already are
@@ -143,6 +143,6 @@ std::string BlockSummary(const FilterFile& f, const FilterBlock& b)
 		}
 		if (++shown >= 4) { s += u8" …"; break; }
 	}
-	if (s.empty()) s = u8"（無條件）";
+	if (s.empty()) s = u8"(조건 없음)";
 	return s;
 }

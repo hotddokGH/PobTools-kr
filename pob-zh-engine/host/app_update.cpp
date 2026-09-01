@@ -95,49 +95,49 @@ static const wchar_t* kDataStampRel = L"Data\\translations_version.json";
 // 加新訊息的規矩:片語加進這份清單、用生成的常數,不要在 setPhase 現場打字面值。
 #define PT_UPD_MSGS(X)                                                          \
 	/* 檢查與結果 */                                                            \
-	X(kMsgChecking,        u8"檢查更新中…")                                     \
-	X(kMsgUpToDate,        u8"已是最新版 v")                                     \
-	X(kMsgAppFound,        u8"發現新版 v")                                       \
-	X(kMsgAppCurrent,      u8"（目前 v")                                         \
-	X(kMsgCloseParen,      u8"）")                                               \
+	X(kMsgChecking,        u8"업데이트 확인 중…")                                     \
+	X(kMsgUpToDate,        u8"최신 버전입니다 v")                                     \
+	X(kMsgAppFound,        u8"새 버전 발견 v")                                       \
+	X(kMsgAppCurrent,      u8"(현재 v")                                         \
+	X(kMsgCloseParen,      u8")")                                               \
 	/* 翻譯資料線 */                                                            \
-	X(kMsgDataFound,       u8"有新的翻譯資料 ")                                  \
-	X(kMsgDataOptedOut,    u8"（目前設定為不自動更新）")                         \
-	X(kMsgDataDownloading, u8"下載新翻譯資料 ")                                  \
-	X(kMsgDataDone,        u8"翻譯資料已更新至 ")                                \
-	X(kMsgDataEffective,   u8"（引擎下次啟動生效）")                             \
-	X(kMsgNoDataAsset,     u8"找不到對應的翻譯資料")                             \
-	X(kMsgNoDataRelease,   u8"尚無翻譯資料發佈")                                 \
-	X(kMsgDataPackBad,     u8"翻譯資料包內容驗證失敗")                           \
+	X(kMsgDataFound,       u8"새 번역 데이터 발견 ")                                  \
+	X(kMsgDataOptedOut,    u8"(현재 자동 업데이트 꺼짐)")                         \
+	X(kMsgDataDownloading, u8"새 번역 데이터 다운로드 중 ")                                  \
+	X(kMsgDataDone,        u8"번역 데이터 업데이트 완료: ")                                \
+	X(kMsgDataEffective,   u8"(다음 엔진 실행부터 적용)")                             \
+	X(kMsgNoDataAsset,     u8"해당 번역 데이터가 없습니다")                             \
+	X(kMsgNoDataRelease,   u8"아직 번역 데이터 배포본이 없습니다")                                 \
+	X(kMsgDataPackBad,     u8"번역 데이터 패키지 내용 검증에 실패했습니다")                           \
 	/* 程式主體線 */                                                            \
-	X(kMsgAppDownloading,  u8"下載主體更新 v")                                   \
+	X(kMsgAppDownloading,  u8"프로그램 업데이트 다운로드 중 v")                                   \
 	X(kMsgEllipsis,        u8"…")                                               \
-	X(kMsgStaging,         u8"解壓與驗證更新檔…")                                \
-	X(kMsgReadyRestart,    u8"更新檔就緒，即將重新啟動…")                        \
-	X(kMsgNoAppAsset,      u8"找不到對應的發佈資產")                             \
-	X(kMsgNoDiskSpace,     u8"磁碟空間不足（需 300MB）")                         \
+	X(kMsgStaging,         u8"업데이트 파일 압축 해제 및 검증 중…")                                \
+	X(kMsgReadyRestart,    u8"업데이트 준비 완료. 곧 다시 시작합니다…")                        \
+	X(kMsgNoAppAsset,      u8"해당 배포 파일을 찾을 수 없습니다")                             \
+	X(kMsgNoDiskSpace,     u8"디스크 공간이 부족합니다(300MB 필요)")                         \
 	/* 發佈簽章(信任根是編進 exe 的公鑰,不是 GitHub 上的任何資料) */          \
-	X(kMsgNoSignature,     u8"發佈缺少簽章，已拒絕安裝")                        \
-	X(kMsgSigBad,          u8"發佈簽章驗證失敗，已拒絕安裝")                    \
-	X(kMsgManifestBad,     u8"發佈清單無效或與版本不符")                        \
-	X(kMsgSizeMismatch,    u8"下載檔案大小不符")                                \
+	X(kMsgNoSignature,     u8"배포 서명이 없어 설치를 거부했습니다")                        \
+	X(kMsgSigBad,          u8"배포 서명 검증에 실패하여 설치를 거부했습니다")                    \
+	X(kMsgManifestBad,     u8"배포 목록이 잘못되었거나 버전과 일치하지 않습니다")                        \
+	X(kMsgSizeMismatch,    u8"다운로드 파일 크기가 일치하지 않습니다")                                \
 	/* 失敗與阻擋 */                                                            \
-	X(kMsgPobRunning,      u8"POB 執行中，請先關閉所有 POB 視窗")                \
-	X(kMsgHashMismatch,    u8"下載檔案雜湊值不符（下載損毀？）")                 \
-	X(kMsgBadAssetUrl,     u8"發佈資產網址無效: ")                               \
-	X(kMsgBadVersion,      u8"發佈版號無法解析: ")                               \
-	X(kMsgAssetNotUnique,  u8"發佈資產名稱不唯一: ")                             \
-	X(kMsgBadReleaseInfo,  u8"版本資訊解析失敗")                                 \
-	X(kMsgBadReleaseList,  u8"發佈清單解析失敗")                                 \
-	X(kMsgStageBad,        u8"更新暫存檔驗證失敗（可能被防毒隔離）")             \
-	X(kMsgLockFailed,      u8"無法建立更新鎖")                                   \
-	X(kMsgOtherInstance,   u8"另一個 PobTools 實例正在套用更新")                 \
-	X(kMsgApplyFailed,     u8"更新套用失敗")                                     \
-	X(kMsgRolledBack,      u8"（已還原舊版）")                                   \
-	X(kMsgCopyFailed,      u8"內容檔複製失敗: ")                                 \
-	X(kMsgReplaceFailed,   u8"內容檔替換失敗: ")                                 \
-	X(kMsgBackupFailed,    u8"備份失敗: ")                                       \
-	X(kMsgPlaceFailed,     u8"放置失敗: ")
+	X(kMsgPobRunning,      u8"POB가 실행 중입니다. 모든 POB 창을 먼저 닫으세요")                \
+	X(kMsgHashMismatch,    u8"다운로드 파일 해시가 일치하지 않습니다(파일 손상 가능)")                 \
+	X(kMsgBadAssetUrl,     u8"배포 파일 URL이 잘못되었습니다: ")                               \
+	X(kMsgBadVersion,      u8"배포 버전을 분석할 수 없습니다: ")                               \
+	X(kMsgAssetNotUnique,  u8"배포 파일 이름이 중복되었습니다: ")                             \
+	X(kMsgBadReleaseInfo,  u8"버전 정보를 분석하지 못했습니다")                                 \
+	X(kMsgBadReleaseList,  u8"배포 목록을 분석하지 못했습니다")                                 \
+	X(kMsgStageBad,        u8"임시 업데이트 파일 검증 실패(백신 격리 가능)")             \
+	X(kMsgLockFailed,      u8"업데이트 잠금을 만들 수 없습니다")                                   \
+	X(kMsgOtherInstance,   u8"다른 PobTools 인스턴스가 업데이트를 적용 중입니다")                 \
+	X(kMsgApplyFailed,     u8"업데이트 적용 실패")                                     \
+	X(kMsgRolledBack,      u8"(이전 버전으로 복원됨)")                                   \
+	X(kMsgCopyFailed,      u8"데이터 파일 복사 실패: ")                                 \
+	X(kMsgReplaceFailed,   u8"데이터 파일 교체 실패: ")                                 \
+	X(kMsgBackupFailed,    u8"백업 실패: ")                                       \
+	X(kMsgPlaceFailed,     u8"파일 배치 실패: ")
 
 #define PT_UPD_DEFINE(name, lit) static const char* const name = lit;
 PT_UPD_MSGS(PT_UPD_DEFINE)
@@ -156,8 +156,8 @@ static const char* const kUpdMsgFragments[] = {
 // 的訊息時要回來補。單獨標出來,是為了讓「還沒被結構性保護的部分」有明確邊界,
 // 而不是混在一起假裝全部都安全。
 #define PT_UPD_EXTERNAL_SEED                                                   \
-	u8"已取消回應為空連線失敗（網路無法使用？）建立 HTTP 請求 HTTPS 初始化"     \
-	u8"無法建立解壓目錄格式無效條目資訊讀取路徑非法檔案寫入失敗回滾備份"
+	u8"취소됨 응답 없음 연결 실패(네트워크 사용 불가?) HTTP 요청 생성 실패 HTTPS 초기화 실패"     \
+	u8"압축 해제 폴더 생성 실패 잘못된 형식 항목 정보 읽기 실패 잘못된 경로 파일 쓰기 실패 롤백 백업"
 static const char* const kExternalMsgSeed = PT_UPD_EXTERNAL_SEED;
 
 // Generated: the concatenation of every phrase above. Cannot drift from the
@@ -490,7 +490,7 @@ static std::string FriendlyCheckError(const std::string& err)
 	const bool rateLimited = err.find("HTTP 403") != std::string::npos ||
 	                         err.find("HTTP 429") != std::string::npos;
 	if (rateLimited)
-		return u8"GitHub 暫時限制查詢次數，請過幾分鐘再試";
+		return u8"GitHub에서 조회 횟수가 제한되어 있습니다. 잠시 후 다시 시도해 주세요.";
 	return err;
 }
 
@@ -583,7 +583,9 @@ void AppUpdater::Init(const std::wstring& exeDir)
 		st_.localVer = POBTOOLS_VERSION_STRING;
 		st_.localDataVer = ReadLocalDataVersion(exeDir_);
 	}
+#ifndef POBTOOLS_KOREAN_RELEASE
 	worker_ = std::thread(&AppUpdater::workerLoop, this);
+#endif
 }
 
 void AppUpdater::Shutdown()
@@ -600,6 +602,11 @@ void AppUpdater::Shutdown()
 
 void AppUpdater::RequestCheck(CheckReason reason)
 {
+#ifdef POBTOOLS_KOREAN_RELEASE
+	if (reason == CheckReason::UserAsked)
+		setPhase(AppUpdatePhase::Error, u8"한국어 공개판에서는 원격 업데이트를 사용할 수 없습니다");
+	return;
+#endif
 	if (!worker_.joinable()) return;
 	const bool userAsked = (reason == CheckReason::UserAsked);
 	static const long long kDay = 24ll * 3600 * 10'000'000; // FILETIME is 100ns units
@@ -614,6 +621,10 @@ void AppUpdater::RequestCheck(CheckReason reason)
 
 void AppUpdater::StartAppUpdate()
 {
+#ifdef POBTOOLS_KOREAN_RELEASE
+	setPhase(AppUpdatePhase::Error, u8"한국어 공개판에서는 원격 업데이트를 사용할 수 없습니다");
+	return;
+#endif
 	if (!worker_.joinable()) return;
 	{
 		std::lock_guard<std::mutex> lk(cmdMx_);
@@ -624,6 +635,10 @@ void AppUpdater::StartAppUpdate()
 
 void AppUpdater::StartTranslationUpdate()
 {
+#ifdef POBTOOLS_KOREAN_RELEASE
+	setPhase(AppUpdatePhase::Error, u8"한국어 공개판에서는 원격 업데이트를 사용할 수 없습니다");
+	return;
+#endif
 	if (!worker_.joinable()) return;
 	{
 		std::lock_guard<std::mutex> lk(cmdMx_);
@@ -1530,6 +1545,10 @@ int RunAppUpdateCli(const std::wstring& exeDir, bool checkOnly)
 	attach_parent_console();
 
 	AppUpdater u;
+	if (!u.RemoteUpdatesEnabled()) {
+		printf("FAIL: 한국어 공개판에서는 원격 업데이트를 사용할 수 없습니다\n");
+		return 1;
+	}
 	u.exeDir_ = exeDir;
 	u.loadState();
 	// The CLI has to honour the same opt-out as the UI, or "update from a script"
@@ -1642,6 +1661,10 @@ int RunAppFetchTest(const std::wstring& exeDir)
 {
 	attach_parent_console();
 	AppUpdater u;
+	if (!u.RemoteUpdatesEnabled()) {
+		printf("FAIL: 한국어 공개판에서는 원격 업데이트를 사용할 수 없습니다\n");
+		return 1;
+	}
 	u.exeDir_ = exeDir;
 	u.loadState();
 	std::string err;
@@ -1718,6 +1741,24 @@ int RunAppUpdateSelfTest(const std::wstring& exeDir)
 	std::wstring root = exeDir + L"PobTools\\selftest_appupd";
 	remove_dir_rec(root);
 	SHCreateDirectoryExW(nullptr, root.c_str(), nullptr);
+
+#ifdef POBTOOLS_KOREAN_RELEASE
+	// T0: the public Korean build must never start a worker, enqueue an update,
+	// or reach the network through any of the normal UI entry points.
+	{
+		AppUpdater u;
+		u.Init(exeDir);
+		u.RequestCheck(AppUpdater::CheckReason::Background);
+		u.RequestCheck(AppUpdater::CheckReason::UserAsked);
+		u.StartAppUpdate();
+		u.StartTranslationUpdate();
+		AppUpdater::Status st = u.Poll();
+		bool ok = !u.worker_.joinable() && u.cmdQ_.empty() &&
+		          st.phase == AppUpdatePhase::Error &&
+		          st.message == u8"한국어 공개판에서는 원격 업데이트를 사용할 수 없습니다";
+		check(ok, "T0 Korean release disables every remote updater entry point");
+	}
+#endif
 
 	// T1: extraction normalizes backslash entry names (Compress-Archive zips)
 	{

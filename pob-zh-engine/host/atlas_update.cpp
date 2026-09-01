@@ -30,11 +30,15 @@ static const wchar_t* kRawHost = L"raw.githubusercontent.com";
 static const wchar_t* kTagsPath = L"/repos/grindinggear/atlastree-export/tags?per_page=100";
 static const wchar_t* kRawBase = L"/grindinggear/atlastree-export/";
 
-// repoe-fork publishes the same tree with official Traditional-Chinese names
-// and stat text, keyed by the same node hashes.
+// repoe-fork publishes the same tree with localized names and stat text,
+// keyed by the same node hashes.
 static const wchar_t* kRepoeHost = L"repoe-fork.github.io";
 static const wchar_t* kRepoeVersionPath = L"/version.txt";
+#ifdef POBTOOLS_KOREAN_RELEASE
+static const wchar_t* kRepoeTcAtlasPath = L"/Korean/passive_skill_trees/Atlas.json";
+#else
 static const wchar_t* kRepoeTcAtlasPath = L"/Traditional%20Chinese/passive_skill_trees/Atlas.json";
+#endif
 
 // ---- small helpers (same conventions as atlas_import.cpp) ---------------------
 
@@ -156,7 +160,7 @@ static void AlignAtlasPointsLine(ordered_json& n)
 	if (num.empty()) return;
 	for (char c : num)
 		if (c < '0' || c > '9') return;
-	zh.push_back(std::string(u8"授予 ") + num + u8" 點地圖天賦點數");
+	zh.push_back(std::string(u8"아틀라스 패시브 스킬 포인트 ") + num + u8"포인트 획득");
 }
 
 // Numbers in a stat line, matching gen_atlas_zh.py's -?\d+(?:\.\d+)? regex.
@@ -252,14 +256,14 @@ bool GenerateAtlasZhMapping(const std::string& gggDataJson, const std::string& t
 		ggg = ordered_json::parse(gggDataJson);
 		tc = ordered_json::parse(tcAtlasJson);
 	} catch (const std::exception& e) {
-		return fail(std::string(u8"對照資料解析失敗: ") + e.what());
+		return fail(std::string(u8"비교 데이터를 분석하지 못했습니다: ") + e.what());
 	}
 
 	try {
 		if (!ggg.contains("nodes") || !ggg["nodes"].is_object())
-			return fail(u8"data.json 缺少 nodes（不是 atlastree-export 格式？）");
+			return fail(u8"data.json에 nodes 항목이 없습니다(atlastree-export 형식인지 확인하세요)." );
 		if (!tc.contains("passives") || !tc["passives"].is_object())
-			return fail(u8"繁中 Atlas.json 缺少 passives（repoe-fork schema 已變動？）");
+			return fail(u8"한국어 Atlas.json에 passives 항목이 없습니다(repoe-fork 스키마 변경 여부를 확인하세요)." );
 
 		const ordered_json& tcp = tc["passives"];
 		ordered_json outNodes;
@@ -289,9 +293,9 @@ bool GenerateAtlasZhMapping(const std::string& gggDataJson, const std::string& t
 		}
 
 		if (total == 0)
-			return fail(u8"data.json 沒有任何節點，已中止");
+			return fail(u8"data.json에 노드가 없어 취소되었습니다.");
 		if (joined == 0)
-			return fail(u8"沒有任何節點能對上繁中資料（hash 完全不合），保留舊對照");
+			return fail(u8"한국어 데이터와 일치하는 노드가 없습니다(해시 불일치). 기존 대응 데이터를 유지합니다." );
 
 		// Preserve season-official entries from the previous mapping ("fresh":
 		// zh patched from the season's own game files while repoe lagged). A
@@ -376,18 +380,18 @@ bool GenerateAtlasZhMapping(const std::string& gggDataJson, const std::string& t
 
 		SHCreateDirectoryExW(nullptr, destDir.c_str(), nullptr);
 		if (!write_file_utf8(destDir + L"atlas_tree_zh.json", out.dump()))
-			return fail(u8"寫入 atlas_tree_zh.json 失敗");
+			return fail(u8"atlas_tree_zh.json 기록에 실패했습니다." );
 
 		int pct = (int)(100.0 * joined / total + 0.5);
 		if (summary) {
-			*summary = u8"中英對照：" + std::to_string(joined) + "/" + std::to_string(total) +
-			           u8" 節點有繁中（" + std::to_string(pct) + "%）";
+			*summary = u8"한/영 대응: " + std::to_string(joined) + "/" + std::to_string(total) +
+			           u8"개 노드에 한국어 적용(" + std::to_string(pct) + u8"%)";
 			if (pct < 50)
-				*summary += u8"（覆蓋率偏低，repoe-fork 可能落後此賽季）";
+				*summary += u8"(적용률이 낮습니다. repoe-fork 데이터가 이번 시즌보다 늦을 수 있습니다.)";
 		}
 		return true;
 	} catch (const std::exception& e) {
-		return fail(std::string(u8"對照生成發生例外: ") + e.what());
+		return fail(std::string(u8"대응 데이터 생성 중 예외 발생: ") + e.what());
 	}
 }
 
@@ -502,7 +506,7 @@ void AtlasUpdater::workerLoop()
 
 bool AtlasUpdater::doCheck(std::string* err)
 {
-	setPhase(AtlasUpdatePhase::Checking, u8"檢查輿圖資料更新中…");
+	setPhase(AtlasUpdatePhase::Checking, u8"아틀라스 데이터 업데이트 확인 중...");
 
 	// newest release tag on GitHub
 	std::string tagsBody;
@@ -525,11 +529,11 @@ bool AtlasUpdater::doCheck(std::string* err)
 			}
 		}
 	} catch (const std::exception& e) {
-		if (err) *err = std::string(u8"tags 回應解析失敗: ") + e.what();
+		if (err) *err = std::string(u8"태그 응답 분석 실패: ") + e.what();
 		return false;
 	}
 	if (latestTag.empty()) {
-		if (err) *err = u8"GitHub 上找不到任何正式版 tag";
+		if (err) *err = u8"GitHub에서 공식 버전 태그를 찾을 수 없습니다.";
 		return false;
 	}
 
@@ -553,23 +557,23 @@ bool AtlasUpdater::doCheck(std::string* err)
 
 	if (latestTag != tag_) {
 		setPhase(AtlasUpdatePhase::UpdateAvailable,
-			u8"發現新賽季輿圖資料 " + latestTag + (tag_.empty() ? "" : u8"（目前 " + tag_ + u8"）"));
+			u8"새 시즌 아틀라스 데이터 " + latestTag + u8"을(를) 찾았습니다." + (tag_.empty() ? "" : u8"(현재 " + tag_ + u8")"));
 	} else if (!repoeVer.empty() && repoeVer != repoe_) {
 		// same tree, newer translations: rebuild the zh mapping in place
-		setPhase(AtlasUpdatePhase::Checking, u8"更新繁中對照資料中…");
+		setPhase(AtlasUpdatePhase::Checking, u8"한국어 대응 데이터 업데이트 중...");
 		std::string zhErr;
 		if (refreshZhMapping(latestTag, repoeVer, &zhErr)) {
 			repoe_ = repoeVer;
 			std::lock_guard<std::mutex> lk(stMx_);
 			st_.phase = AtlasUpdatePhase::UpToDate;
-			st_.message = u8"繁中對照已更新（repoe " + repoeVer + u8"）";
+			st_.message = u8"한국어 대응 데이터가 업데이트되었습니다(repoe " + repoeVer + u8").";
 			st_.zhRefreshed = true;
 		} else {
 			// keep the old mapping; retry on a future check
 			setPhase(AtlasUpdatePhase::UpToDate, "");
 		}
 	} else {
-		setPhase(AtlasUpdatePhase::UpToDate, u8"輿圖資料已是最新（" + latestTag + u8"）");
+		setPhase(AtlasUpdatePhase::UpToDate, u8"아틀라스 데이터가 최신입니다(" + latestTag + u8").");
 	}
 
 	lastCheckUtc_ = now_filetime();
@@ -608,11 +612,11 @@ bool AtlasUpdater::doUpdate(std::string* err)
 	if (latestTag_.empty() && !doCheck(err)) return false;
 	const std::string tag = latestTag_;
 	if (tag.empty()) {
-		if (err) *err = u8"沒有可更新的版本";
+		if (err) *err = u8"업데이트할 버전이 없습니다.";
 		return false;
 	}
 
-	setPhase(AtlasUpdatePhase::Downloading, u8"下載 " + tag + u8" 資料中…");
+	setPhase(AtlasUpdatePhase::Downloading, u8"아틀라스 " + tag + u8" 데이터 다운로드 중...");
 	{
 		std::lock_guard<std::mutex> lk(stMx_);
 		st_.filesDone = 0;
@@ -630,14 +634,14 @@ bool AtlasUpdater::doUpdate(std::string* err)
 		std::wstring path = std::wstring(kRawBase) + widen(tag) + L"/data.json";
 		if (!raw.GetString(path, dataJson, err, &stop_)) return false;
 		if (!write_file_utf8(cacheDir + L"data.json", dataJson))
-			{ if (err) *err = u8"寫入下載快取失敗"; return false; }
+			{ if (err) *err = u8"다운로드 캐시를 기록하지 못했습니다."; return false; }
 	}
 
 	std::set<std::string> assets;
 	try {
 		ordered_json d = ordered_json::parse(dataJson);
 		if (!d.contains("sprites") || !d["sprites"].is_object())
-			{ if (err) *err = u8"data.json 缺少 sprites 段"; return false; }
+			{ if (err) *err = u8"data.json에 sprites 항목이 없습니다."; return false; }
 		for (const auto& [cat, sec] : d["sprites"].items()) {
 			(void)cat;
 			if (!sec.is_object() || !sec.contains("0.5")) continue; // import uses zoom 0.5 only
@@ -645,7 +649,7 @@ bool AtlasUpdater::doUpdate(std::string* err)
 			if (!base.empty()) assets.insert(base);
 		}
 	} catch (const std::exception& e) {
-		if (err) *err = std::string(u8"data.json 解析失敗: ") + e.what();
+		if (err) *err = std::string(u8"data.json 분석 실패: ") + e.what();
 		return false;
 	}
 
@@ -655,7 +659,7 @@ bool AtlasUpdater::doUpdate(std::string* err)
 	}
 	int done = 0;
 	for (const std::string& base : assets) {
-		if (stop_.load()) { if (err) *err = u8"已取消"; return false; }
+		if (stop_.load()) { if (err) *err = u8"취소되었습니다."; return false; }
 		std::wstring dst = cacheDir + L"assets\\" + widen(base);
 		DWORD attr = GetFileAttributesW(dst.c_str());
 		bool cached = attr != INVALID_FILE_ATTRIBUTES && !(attr & FILE_ATTRIBUTE_DIRECTORY);
@@ -665,18 +669,18 @@ bool AtlasUpdater::doUpdate(std::string* err)
 			if (!raw.Get(path, bytes, err, &stop_)) return false;
 			std::string body((const char*)bytes.data(), bytes.size());
 			if (!write_file_utf8(dst, body))
-				{ if (err) *err = u8"寫入圖集快取失敗: " + base; return false; }
+				{ if (err) *err = u8"이미지 시트 캐시 기록 실패: " + base; return false; }
 		}
 		done++;
 		std::lock_guard<std::mutex> lk(stMx_);
 		st_.filesDone = done;
-		st_.message = u8"下載 " + tag + u8" 圖集中… " + std::to_string(done) + "/" + std::to_string((int)assets.size());
+		st_.message = u8"이미지 시트 다운로드 중: " + tag + u8" " + std::to_string(done) + "/" + std::to_string((int)assets.size());
 	}
 
 	// install the new season into its own folder (Data/atlas_versions/<tag>/) so
 	// the previous season survives side by side for the compare view.
 	std::wstring seasonDir = AtlasVersionIndex::VersionDir(exeDir_, tag);
-	setPhase(AtlasUpdatePhase::Importing, u8"匯入 " + tag + u8" 中…");
+	setPhase(AtlasUpdatePhase::Importing, u8"아틀라스 " + tag + u8" 가져오는 중...");
 	std::string sum;
 	if (!ImportAtlasTreeData(cacheDir + L"data.json", seasonDir, err, &sum)) return false;
 
@@ -693,9 +697,9 @@ bool AtlasUpdater::doUpdate(std::string* err)
 		if (repoe.GetString(kRepoeTcAtlasPath, tcJson, &zhErr, &stop_) &&
 			GenerateAtlasZhMapping(dataJson, tcJson, tag, repoeVer, seasonDir, &zhErr, &zhSum)) {
 			repoe_ = repoeVer;
-			zhNote = u8"；" + zhSum;
+			zhNote = u8"; " + zhSum;
 		} else {
-			zhNote = u8"；繁中對照暫時無法更新，沿用舊對照";
+			zhNote = u8"; 한국어 대응 데이터를 갱신하지 못해 기존 데이터를 유지합니다.";
 		}
 	}
 
@@ -716,7 +720,7 @@ bool AtlasUpdater::doUpdate(std::string* err)
 			// The files landed but the index did not: next launch the new season
 			// is on disk and invisible. Worth saying out loud -- it looks exactly
 			// like "the update did nothing".
-			PobLog::Error("atlas", u8"新賽季資料已下載，但 atlas_index.json 存檔失敗");
+			PobLog::Error("atlas", u8"새 시즌 데이터를 내려받았지만 atlas_index.json 저장에 실패했습니다." );
 		}
 		keptSeasons = (int)idx.Versions().size();
 		for (const std::string& d : dropped)
@@ -733,7 +737,7 @@ bool AtlasUpdater::doUpdate(std::string* err)
 		std::lock_guard<std::mutex> lk(stMx_);
 		st_.phase = AtlasUpdatePhase::Done;
 		st_.message = sum + zhNote +
-			(keptSeasons >= 2 ? u8"；已保留最近兩季，可用「版本比較」查看本次改版變更" : "");
+			(keptSeasons >= 2 ? u8"; 최근 두 시즌을 보관했습니다. '버전 비교'에서 변경 사항을 확인할 수 있습니다." : "");
 		st_.reloadPending = true;
 	}
 	return true;

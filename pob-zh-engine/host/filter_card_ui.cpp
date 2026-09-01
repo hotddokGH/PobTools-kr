@@ -42,7 +42,7 @@ std::string CardBlockSummaryZh(const FilterFile& f, const FilterBlock& b, const 
 		s += CardConditionZh(ln, i18n);
 		if (++n >= 5) { s += u8" …"; break; }
 	}
-	if (s.empty()) s = u8"（無條件）";
+	if (s.empty()) s = u8"조건 없음";
 	return s;
 }
 
@@ -64,9 +64,9 @@ std::string LineEn(const FilterLine& ln)
 const char* OpLabel(const char* op, bool stringList)
 {
 	if (stringList) {
-		if (!op[0]) return u8"包含";
-		if (op[0] == '=' ) return u8"絕對等於";   // "=" / "=="
-		if (op[0] == '!') return u8"不等於";
+		if (!op[0]) return u8"포함";
+	if (op[0] == '=' ) return u8"같음";   // "=" / "=="
+	if (op[0] == '!') return u8"같지 않음";
 		return op;
 	}
 	if (!op[0]) return "=";
@@ -107,8 +107,8 @@ bool CardRow(EditorShell& s, int lineIdx, const char* title, const char* tooltip
 	ImGui::SameLine(130 * s.scale);
 	drawWidgets();
 	ImGui::SameLine(ImGui::GetContentRegionMax().x - 64 * s.scale);
-	if (ImGui::SmallButton(u8"停用")) disable = true;
-	if (ImGui::IsItemHovered()) ImGui::SetTooltip(u8"以 #! 註解停用此行（檔內保留，可於右欄重新勾選恢復）");
+	if (ImGui::SmallButton(u8"비활성화")) disable = true;
+	if (ImGui::IsItemHovered()) ImGui::SetTooltip(u8"이 줄 앞에 #!을 붙여 비활성화합니다. 아래의 비활성화 목록에서 다시 복원할 수 있습니다.");
 	ImGui::PopID();
 	ImGui::Separator();
 	return disable;
@@ -122,7 +122,7 @@ void DrawBoolWidget(EditorShell& s, FilterLine& ln)
 {
 	bool isTrue = ln.values.empty() || ln.values[0].text != "False";
 	int v = isTrue ? 0 : 1;
-	const char* items[2] = { u8"是", u8"否" };
+	const char* items[2] = { u8"예", u8"아니요" };
 	ImGui::SetNextItemWidth(90 * s.scale);
 	if (ImGui::Combo("##bool", &v, items, 2)) {
 		FilterSetValueStr(ln, 0, v == 0 ? "True" : "False", false);
@@ -220,18 +220,18 @@ void DrawSoundBuiltinWidget(EditorShell& s, FilterLine& ln)
 	if (id < 1) id = 1;
 	if (id > 16) id = 16;
 	ImGui::SetNextItemWidth(130 * s.scale);
-	if (ImGui::SliderInt(u8"編號", &id, 1, 16)) { FilterSetValueInt(ln, 0, id); MarkEdited(s); }
+	if (ImGui::SliderInt(u8"번호", &id, 1, 16)) { FilterSetValueInt(ln, 0, id); MarkEdited(s); }
 	ImGui::SameLine();
 	ImGui::SetNextItemWidth(150 * s.scale);
-	if (ImGui::SliderInt(u8"音量", &vol, 0, 300)) { FilterSetValueInt(ln, 1, vol); MarkEdited(s); }
+	if (ImGui::SliderInt(u8"음량", &vol, 0, 300)) { FilterSetValueInt(ln, 1, vol); MarkEdited(s); }
 	ImGui::SameLine();
 	bool positional = (ln.keyword == "PlayAlertSoundPositional");
-	if (ImGui::Checkbox(u8"3D方位", &positional)) {
+	if (ImGui::Checkbox(u8"3D 공간", &positional)) {
 		ln.keyword = positional ? "PlayAlertSoundPositional" : "PlayAlertSound";
 		ln.dirty = true;
 		MarkEdited(s);
 	}
-	if (ImGui::IsItemHovered()) ImGui::SetTooltip(u8"PlayAlertSoundPositional：音效帶 3D 方位感");
+	if (ImGui::IsItemHovered()) ImGui::SetTooltip(u8"PlayAlertSoundPositional: 위치에 따라 들리는 3D 사운드");
 }
 
 void DrawSoundCustomWidget(EditorShell& s, FilterLine& ln)
@@ -240,9 +240,9 @@ void DrawSoundCustomWidget(EditorShell& s, FilterLine& ln)
 	ImGui::SetNextItemWidth(220 * s.scale);
 	if (ImGui::InputText("##path", &path)) { FilterSetValueStr(ln, 0, path, true); MarkEdited(s); }
 	ImGui::SameLine();
-	if (ImGui::Button(u8"播放")) PlayAudioFile(EdWiden(path));
+	if (ImGui::Button(u8"재생")) PlayAudioFile(EdWiden(path));
 	ImGui::SameLine();
-	if (ImGui::Button(u8"音效庫…")) ImGui::OpenPopup("##soundlib");
+	if (ImGui::Button(u8"사운드 라이브러리...")) ImGui::OpenPopup("##soundlib");
 	if (ImGui::BeginPopup("##soundlib")) {
 		std::string picked;
 		if (DrawSoundLibrary(picked, s.scale)) {
@@ -254,12 +254,12 @@ void DrawSoundCustomWidget(EditorShell& s, FilterLine& ln)
 	}
 	ImGui::SameLine();
 	bool optional = (ln.keyword == "CustomAlertSoundOptional");
-	if (ImGui::Checkbox(u8"可缺", &optional)) {
+	if (ImGui::Checkbox(u8"파일 없어도 무시", &optional)) {
 		ln.keyword = optional ? "CustomAlertSoundOptional" : "CustomAlertSound";
 		ln.dirty = true;
 		MarkEdited(s);
 	}
-	if (ImGui::IsItemHovered()) ImGui::SetTooltip(u8"CustomAlertSoundOptional：檔案不存在時忽略，不報錯");
+	if (ImGui::IsItemHovered()) ImGui::SetTooltip(u8"CustomAlertSoundOptional: 파일이 없어도 오류로 처리하지 않습니다.");
 }
 
 // Lines without a schema card render read-only.
@@ -273,24 +273,24 @@ void DrawRawFallbackWidget(const FilterLine& ln)
 // Shared colour tokens for MinimapIcon / PlayEffect, with swatch approximations.
 struct EffectColor { const char* token; const char* zh; ImVec4 col; };
 const EffectColor kEffectColors[] = {
-	{ "Red",    u8"紅色", { 0.90f, 0.22f, 0.21f, 1 } },
-	{ "Green",  u8"綠色", { 0.30f, 0.78f, 0.31f, 1 } },
-	{ "Blue",   u8"藍色", { 0.26f, 0.45f, 0.95f, 1 } },
-	{ "Brown",  u8"棕色", { 0.55f, 0.38f, 0.24f, 1 } },
-	{ "White",  u8"白色", { 0.95f, 0.95f, 0.95f, 1 } },
-	{ "Yellow", u8"黃色", { 0.95f, 0.85f, 0.25f, 1 } },
-	{ "Cyan",   u8"青色", { 0.25f, 0.85f, 0.90f, 1 } },
-	{ "Grey",   u8"灰色", { 0.55f, 0.55f, 0.55f, 1 } },
-	{ "Orange", u8"橙色", { 0.95f, 0.55f, 0.15f, 1 } },
-	{ "Pink",   u8"粉色", { 0.95f, 0.55f, 0.75f, 1 } },
-	{ "Purple", u8"紫色", { 0.65f, 0.35f, 0.90f, 1 } },
+	{ "Red",    u8"빨강", { 0.90f, 0.22f, 0.21f, 1 } },
+	{ "Green",  u8"초록", { 0.30f, 0.78f, 0.31f, 1 } },
+	{ "Blue",   u8"파랑", { 0.26f, 0.45f, 0.95f, 1 } },
+	{ "Brown",  u8"갈색", { 0.55f, 0.38f, 0.24f, 1 } },
+		{ "White",  u8"흰색", { 0.95f, 0.95f, 0.95f, 1 } },
+	{ "Yellow", u8"노란색", { 0.95f, 0.85f, 0.25f, 1 } },
+		{ "Cyan",   u8"청록색", { 0.25f, 0.85f, 0.90f, 1 } },
+	{ "Grey",   u8"회색", { 0.55f, 0.55f, 0.55f, 1 } },
+	{ "Orange", u8"주황색", { 0.95f, 0.55f, 0.15f, 1 } },
+	{ "Pink",   u8"분홍색", { 0.95f, 0.55f, 0.75f, 1 } },
+	{ "Purple", u8"보라색", { 0.65f, 0.35f, 0.90f, 1 } },
 };
 struct IconShape { const char* token; const char* zh; };
 const IconShape kIconShapes[] = {
-	{ "Circle", u8"圓形" }, { "Diamond", u8"鑽石" }, { "Hexagon", u8"六邊形" },
-	{ "Square", u8"方形" }, { "Star", u8"星形" }, { "Triangle", u8"三角" },
-	{ "Cross", u8"十字" }, { "Moon", u8"月亮" }, { "Raindrop", u8"雨滴" },
-	{ "Kite", u8"風箏" }, { "Pentagon", u8"五邊形" }, { "UpsideDownHouse", u8"倒屋" },
+		{ "Circle", u8"원" }, { "Diamond", u8"마름모" }, { "Hexagon", u8"육각형" },
+		{ "Square", u8"사각형" }, { "Star", u8"별" }, { "Triangle", u8"삼각형" },
+		{ "Cross", u8"십자" }, { "Moon", u8"달" }, { "Raindrop", u8"빗방울" },
+		{ "Kite", u8"연" }, { "Pentagon", u8"오각형" }, { "UpsideDownHouse", u8"뒤집힌 집" },
 };
 
 const EffectColor* FindEffectColor(const std::string& token)
@@ -373,10 +373,10 @@ bool DrawChipsAndInput(EditorShell& s, FilterLine& ln, size_t chipStart, bool tr
 	if (s_inputLine != (int)(lineKey & 0x7fffffff)) { s_input.clear(); s_cands.clear(); s_inputLine = (int)(lineKey & 0x7fffffff); }
 
 	ImGui::SetNextItemWidth(200 * s.scale);
-	bool enter = ImGui::InputTextWithHint("##manual", u8"可輸入分類/物品等，可中文",
+	bool enter = ImGui::InputTextWithHint("##manual", u8"등급·아이템 이름 등을 입력하세요. 한국어도 사용할 수 있습니다.",
 		&s_input, ImGuiInputTextFlags_EnterReturnsTrue);
 	ImGui::SameLine();
-	bool addClicked = ImGui::Button(u8"點擊增加") || enter;
+	bool addClicked = ImGui::Button(u8"추가") || enter;
 
 	// 即時搜尋清單:輸入即過濾物品庫（中/英文子字串），點擊直接加入。
 	// Enter / 點擊增加 仍走原本的精確解析+多選 popup 流程。
@@ -433,7 +433,7 @@ bool DrawChipsAndInput(EditorShell& s, FilterLine& ln, size_t chipStart, bool tr
 			}
 			ImGui::EndChild();
 		} else {
-			ImGui::TextDisabled(u8"（沒有相符物品 — 可按「點擊增加」以原文加入）");
+		ImGui::TextDisabled(u8"(항목이 없습니다. '추가'를 눌러 입력하세요.)");
 		}
 	}
 
@@ -509,9 +509,9 @@ bool DrawChipsAndInput(EditorShell& s, FilterLine& ln, size_t chipStart, bool tr
 	if (ImGui::BeginPopup("##candidates")) {
 		if (s_cands.empty()) {
 			ImGui::TextColored(ImVec4(0.95f, 0.75f, 0.25f, 1),
-				u8"找不到相符項。過濾器只認英文名稱，原文加入將無法比對物品。");
+					 u8"일치하는 항목을 찾지 못했습니다. 필터 문법에는 영어 원문이 필요하므로 아래 목록에서 선택하거나 원문 그대로 추가하세요.");
 		} else {
-			ImGui::TextDisabled(u8"多個相符項，請選擇：");
+		ImGui::TextDisabled(u8"일치하는 항목을 선택하세요:");
 		}
 		for (const LibItem& it : s_cands) {
 			std::string lbl = it.zh == it.en ? it.en : (it.zh + "  (" + it.en + ")");
@@ -526,7 +526,7 @@ bool DrawChipsAndInput(EditorShell& s, FilterLine& ln, size_t chipStart, bool tr
 			}
 		}
 		ImGui::Separator();
-		std::string rawLbl = u8"仍以原文加入：\"" + s_input + "\"";
+	std::string rawLbl = u8"입력한 원문 그대로 추가: \"" + s_input + "\"";
 		if (ImGui::Selectable(rawLbl.c_str())) {
 			if (!s_input.empty() && !FilterHasValue(ln, s_input)) {
 				FilterAddValue(ln, s_input, true);
@@ -572,8 +572,8 @@ void DrawSocketSpecWidget(EditorShell& s, FilterLine& ln, const CardSchema& cs)
 	bool ch = false;
 	int numUi = num < 0 ? 0 : num;
 	ImGui::SetNextItemWidth(110 * s.scale);
-	if (ImGui::SliderInt(u8"孔數", &numUi, 0, 6)) { num = numUi; ch = true; }
-	static const char* kColorZh[6] = { u8"紅", u8"綠", u8"藍", u8"白", u8"深淵", u8"掘獄" };
+	if (ImGui::SliderInt(u8"홈 수", &numUi, 0, 6)) { num = numUi; ch = true; }
+	static const char* kColorZh[6] = { u8"빨강", u8"초록", u8"파랑", u8"흰색", u8"심연", u8"탐광" };
 	for (int c = 0; c < 6; c++) {
 		ImGui::SameLine();
 		ImGui::PushID(c);
@@ -616,7 +616,7 @@ void DrawModListWidget(EditorShell& s, FilterLine& ln, const CardSchema& cs)
 	ImGui::SameLine();
 	int ui = hasCount ? count : 0;
 	ImGui::SetNextItemWidth(110 * s.scale);
-	if (ImGui::InputInt(u8"至少 N 條", &ui, 1, 1)) {
+	if (ImGui::InputInt(u8"최소 일치 수", &ui, 1, 1)) {
 		if (ui < 0) ui = 0;
 		if (ui > 6) ui = 6;
 		if (ui > 0 && hasCount) {
@@ -631,7 +631,7 @@ void DrawModListWidget(EditorShell& s, FilterLine& ln, const CardSchema& cs)
 		MarkEdited(s);
 		hasCount = ui > 0;
 	}
-	if (ImGui::IsItemHovered()) ImGui::SetTooltip(u8"0 = 不限；搭配運算子如 >=2 表示至少 2 條相符詞綴");
+	if (ImGui::IsItemHovered()) ImGui::SetTooltip(u8"0은 제한 없음입니다. 2 이상이면 지정한 속성 중 최소 그 수만큼 일치해야 합니다.");
 
 	DrawChipsAndInput(s, ln, hasCount ? 1 : 0, false);
 }
@@ -642,9 +642,9 @@ void DrawMinimapIconWidget(EditorShell& s, FilterLine& ln)
 	int size = FilterValueInt(ln, 0, 1);
 	if (size < 0) size = 0;
 	if (size > 2) size = 2;
-	static const char* kSizeZh[3] = { u8"大", u8"中", u8"小" };
+	static const char* kSizeZh[3] = { u8"대", u8"중간", u8"작은" };
 	ImGui::SetNextItemWidth(80 * s.scale);
-	if (ImGui::Combo(u8"大小", &size, kSizeZh, 3)) { FilterSetValueInt(ln, 0, size); MarkEdited(s); }
+	if (ImGui::Combo(u8"크기", &size, kSizeZh, 3)) { FilterSetValueInt(ln, 0, size); MarkEdited(s); }
 
 	ImGui::SameLine();
 	std::string col = ln.values.size() > 1 ? ln.values[1].text : "White";
@@ -675,19 +675,19 @@ void DrawPlayEffectWidget(EditorShell& s, FilterLine& ln)
 
 	ImGui::SameLine();
 	bool temp = ln.values.size() > 1 && ln.values[1].text == "Temp";
-	if (ImGui::Checkbox(u8"僅掉落瞬間", &temp)) {
+	if (ImGui::Checkbox(u8"일시적으로만 표시", &temp)) {
 		if (temp) FilterSetValueStr(ln, 1, "Temp", false);
 		else if (ln.values.size() > 1) { ln.values.resize(1); ln.dirty = true; }
 		MarkEdited(s);
 	}
-	if (ImGui::IsItemHovered()) ImGui::SetTooltip(u8"Temp：光柱只在掉落瞬間顯示，之後熄滅");
+	if (ImGui::IsItemHovered()) ImGui::SetTooltip(u8"빛 기둥이 잠시 표시된 뒤 사라집니다.");
 }
 
 // Dispatch one live schema card's widgets.
 void DrawCardWidgets(EditorShell& s, FilterLine& ln, const CardSchema& cs)
 {
 	switch (cs.kind) {
-		case CardKind::Toggle:       ImGui::TextDisabled(u8"已啟用"); break;
+	case CardKind::Toggle:       ImGui::TextDisabled(u8"활성화됨"); break;
 		case CardKind::Bool:         DrawBoolWidget(s, ln); break;
 		case CardKind::IntOp:        DrawIntOpWidget(s, ln, cs); break;
 		case CardKind::IntRange:     DrawIntRangeWidget(s, ln, cs); break;
@@ -758,9 +758,9 @@ bool DrawBlockCards(EditorShell& s, int blockIdx)
 	// Show/Hide toggle (header verb). Not structural: indices stay valid.
 	{
 		bool show = !b.hide;
-		if (ImGui::Checkbox(u8"顯示物品", &show)) SetBlockHide(s, b, !show);
+		if (ImGui::Checkbox(u8"아이템 표시", &show)) SetBlockHide(s, b, !show);
 		ImGui::SameLine();
-		ImGui::TextDisabled(b.hide ? u8"Hide — 此類物品將被隱藏" : u8"Show — 此類物品會顯示標籤");
+	ImGui::TextDisabled(b.hide ? u8"이 블록과 일치하는 아이템을 숨깁니다." : u8"이 블록과 일치하는 아이템을 표시합니다.");
 	}
 	ImGui::Separator();
 
@@ -792,11 +792,11 @@ bool DrawBlockCards(EditorShell& s, int blockIdx)
 			if (r.disabled) {
 				ImGui::PushID(r.li);
 				ImGui::AlignTextToFramePadding();
-				std::string t = u8"（已停用）" + FilterSchemaKeywordZh(r.parsed.keyword);
+		std::string t = u8"(비활성화됨) " + FilterSchemaKeywordZh(r.parsed.keyword);
 				ImGui::TextDisabled("%s", t.c_str());
 				if (ImGui::IsItemHovered()) ImGui::SetTooltip("%s", LineEn(r.parsed).c_str());
 				ImGui::SameLine(ImGui::GetContentRegionMax().x - 64 * s.scale);
-				bool restore = ImGui::SmallButton(u8"恢復");
+				bool restore = ImGui::SmallButton(u8"복원");
 				ImGui::PopID();
 				ImGui::Separator();
 				if (restore) { s.doc.RestoreLine(r.li); return true; }
@@ -817,9 +817,9 @@ bool DrawBlockCards(EditorShell& s, int blockIdx)
 		return false;
 	};
 
-	if (drawRows(conds, u8"條件（符合以下全部才套用）")) return true;
+	if (drawRows(conds, u8"조건(모든 조건을 만족해야 적용)")) return true;
 	ImGui::Spacing();
-	if (drawRows(acts, u8"動作（外觀 / 音效 / 提示）")) return true;
+	if (drawRows(acts, u8"동작(표시·사운드·효과)")) return true;
 	return false;
 }
 
@@ -827,11 +827,11 @@ bool DrawBlockCards(EditorShell& s, int blockIdx)
 
 bool DrawAddColumn(EditorShell& s, int blockIdx)
 {
-	ImGui::TextUnformatted(u8"過濾項增加欄");
-	ImGui::TextDisabled(u8"勾選加入該項，取消停用該項");
+		ImGui::TextUnformatted(u8"추가할 항목을 선택하세요.");
+		ImGui::TextDisabled(u8"같은 항목을 다시 선택하면 취소됩니다.");
 	ImGui::Separator();
 	if (blockIdx < 0 || blockIdx >= (int)s.model.blocks.size()) {
-		ImGui::TextDisabled(u8"（先在左側選擇一個過濾項）");
+		ImGui::TextDisabled(u8"(먼저 왼쪽에서 블록을 선택하세요.)");
 		return false;
 	}
 
@@ -847,7 +847,7 @@ bool DrawAddColumn(EditorShell& s, int blockIdx)
 			if (cs.tooltip && ImGui::IsItemHovered()) ImGui::SetTooltip("%s", cs.tooltip);
 			if (!checked && FindDisabledLine(s, blockIdx, cs) >= 0) {
 				ImGui::SameLine();
-				ImGui::TextDisabled(u8"（已停用）");
+		ImGui::TextDisabled(u8"(비활성화됨)");
 			}
 			ImGui::PopID();
 			if (!clicked) continue;

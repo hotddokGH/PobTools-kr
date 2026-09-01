@@ -88,8 +88,8 @@ std::wstring widen(const std::string& s)
 const TradeRealm kTradeRealms[] = {
 	// NOTE: the .tw site answers on the bare host; www.pathofexile.tw 301s to it,
 	// so use the canonical one and save a redirect.
-	{ u8"國際服", "www.pathofexile.com", L"www.pathofexile.com", true },
-	{ u8"台服",   "pathofexile.tw",      L"pathofexile.tw",      false },
+	{ u8"글로벌 서버", "www.pathofexile.com", L"www.pathofexile.com", true },
+	{ u8"대만 서버",   "pathofexile.tw",      L"pathofexile.tw",      false },
 };
 const int kTradeRealmCount = (int)(sizeof(kTradeRealms) / sizeof(kTradeRealms[0]));
 
@@ -276,18 +276,18 @@ struct LeagueFetch {
 const char* JewelZh(int t)
 {
 	switch (t) {
-	case 1: return u8"輝煌的虛榮 (Glorious Vanity)";
-	case 2: return u8"致命的驕傲 (Lethal Pride)";
-	case 3: return u8"殘酷的紀律 (Brutal Restraint)";
-	case 4: return u8"激進的信仰 (Militant Faith)";
-	case 5: return u8"優雅的高傲 (Elegant Hubris)";
-	case 6: return u8"英勇悲劇 (Heroic Tragedy)";
+	case 1: return u8"찬란한 허영심 (Glorious Vanity)";
+	case 2: return u8"치명적인 긍지 (Lethal Pride)";
+	case 3: return u8"잔인한 속박 (Brutal Restraint)";
+	case 4: return u8"호전적인 신념 (Militant Faith)";
+	case 5: return u8"고상한 오만 (Elegant Hubris)";
+	case 6: return u8"영웅적인 비극 (Heroic Tragedy)";
 	// Abyss jewels (3.29): one per Abyssal Lord, all seeded 100-8000.
-	case 7: return u8"潰爛復仇 (Festering Vengeance)";
-	case 8: return u8"撲滅之握 (Extinguishing Grasp)";
-	case 9: return u8"邪惡統治 (Baleful Dominion)";
-	case 10: return u8"滅亡之願 (Destructive Aspiration)";
-	case 11: return u8"重奪惡意 (Reclaimed Malevolence)";
+	case 7: return u8"짓무르는 복수 (Festering Vengeance)";
+	case 8: return u8"절망의 손아귀 (Extinguishing Grasp)";
+	case 9: return u8"사악한 통치 (Baleful Dominion)";
+	case 10: return u8"파멸적인 열망 (Destructive Aspiration)";
+	case 11: return u8"되찾은 악의 (Reclaimed Malevolence)";
 	}
 	return "?";
 }
@@ -332,16 +332,16 @@ ImVec4 stat_color(const std::string& s)
 {
 	struct KW { const char* a; const char* b; ImVec4 c; };
 	static const KW kws[] = {
-		{ "Fire",      u8"火焰",   ImVec4(0.95f, 0.45f, 0.35f, 1.0f) },
-		{ "Cold",      u8"冰冷",   ImVec4(0.45f, 0.75f, 0.95f, 1.0f) },
-		{ "Lightning", u8"閃電",   ImVec4(0.95f, 0.85f, 0.40f, 1.0f) },
-		{ "Chaos",     u8"混沌",   ImVec4(0.80f, 0.45f, 0.85f, 1.0f) },
-		{ "Physical",  u8"物理",   ImVec4(0.86f, 0.74f, 0.58f, 1.0f) },
-		{ "Life",      u8"生命",   ImVec4(0.90f, 0.45f, 0.45f, 1.0f) },
-		{ "Mana",      u8"魔力",   ImVec4(0.50f, 0.65f, 0.95f, 1.0f) },
-		{ "Energy Shield", u8"能量護盾", ImVec4(0.55f, 0.80f, 0.90f, 1.0f) },
-		{ "Attack",    u8"攻擊",   ImVec4(0.90f, 0.72f, 0.50f, 1.0f) },
-		{ "Spell",     u8"法術",   ImVec4(0.70f, 0.70f, 0.95f, 1.0f) },
+		{ "Fire",      u8"화염",   ImVec4(0.95f, 0.45f, 0.35f, 1.0f) },
+		{ "Cold",      u8"냉기",   ImVec4(0.45f, 0.75f, 0.95f, 1.0f) },
+		{ "Lightning", u8"번개",   ImVec4(0.95f, 0.85f, 0.40f, 1.0f) },
+		{ "Chaos",     u8"카오스",   ImVec4(0.80f, 0.45f, 0.85f, 1.0f) },
+		{ "Physical",  u8"물리",   ImVec4(0.86f, 0.74f, 0.58f, 1.0f) },
+		{ "Life",      u8"생명력",   ImVec4(0.90f, 0.45f, 0.45f, 1.0f) },
+		{ "Mana",      u8"마나",   ImVec4(0.50f, 0.65f, 0.95f, 1.0f) },
+		{ "Energy Shield", u8"에너지 보호막", ImVec4(0.55f, 0.80f, 0.90f, 1.0f) },
+		{ "Attack",    u8"공격",   ImVec4(0.90f, 0.72f, 0.50f, 1.0f) },
+		{ "Spell",     u8"주문",   ImVec4(0.70f, 0.70f, 0.95f, 1.0f) },
 	};
 	for (const KW& k : kws)
 		if (s.find(k.a) != std::string::npos || s.find(k.b) != std::string::npos) return k.c;
@@ -581,7 +581,7 @@ public:
 			// The panel message is deliberately short; `derr` says which file and
 			// what was wrong with it, and it exists nowhere else after this line.
 			PobLog::Error("data", "timeless_jewels.json: " + derr);
-			initErr_ = u8"無法載入 timeless_jewels.json（資料檔遺失）。";
+			initErr_ = u8"timeless_jewels.json을 불러올 수 없습니다(데이터 파일 누락).";
 			return false;
 		}
 
@@ -634,7 +634,7 @@ public:
 		const float leftW = 430.0f * scale;
 		ImGui::BeginChild("##left", ImVec2(leftW, 0), false);
 
-		ImGui::TextUnformatted(u8"軍團珠寶計算器");
+		ImGui::TextUnformatted(u8"무궁한 주얼 계산기");
 		ImGui::SameLine();
 		ImGui::TextDisabled(u8"Timeless Jewel");
 		ImGui::Separator();
@@ -648,7 +648,7 @@ public:
 		}
 
 		// --- paste a jewel from the clipboard (auto-fills jewel/conqueror/seed) ---
-		if (ImGui::Button(u8"貼上珠寶 (從遊戲複製物品)", ImVec2(-1, 0))) {
+		if (ImGui::Button(u8"주얼 붙여넣기(게임에서 아이템 복사)", ImVec2(-1, 0))) {
 			std::string txt = ReadClipboardUtf8(nullptr);
 			TJPaste pasted = TJParsePaste(*ds, txt);
 			const int foundJewel = pasted.jewelType;
@@ -663,15 +663,15 @@ public:
 			}
 			status = unsupported
 			         ? (std::string(JewelZh(foundJewel)) +
-			            u8" 尚未支援：它的效果取決於角色從插槽到起點的已配點路徑，本工具沒有角色資料")
-			         : foundJewel ? (u8"已匯入：" + std::string(JewelZh(foundJewel)) +
-			                         (foundSeed >= 0 ? u8"  種子 " + std::to_string(foundSeed) : ""))
-			                      : u8"剪貼簿中未找到珠寶資訊（請在遊戲中對珠寶 Ctrl+C）";
+			            u8"은(는) 아직 지원하지 않습니다. 효과가 주얼 홈에서 시작 노드까지의 할당 경로에 따라 달라지지만 이 도구에는 캐릭터 데이터가 없습니다.")
+			         : foundJewel ? (u8"가져오기 완료: " + std::string(JewelZh(foundJewel)) +
+			                         (foundSeed >= 0 ? u8" · 시드 " + std::to_string(foundSeed) : ""))
+			                      : u8"클립보드에서 주얼 정보를 찾지 못했습니다(게임에서 주얼에 Ctrl+C 사용).";
 			hiSig = -1;
 		}
 
 		// --- jewel type ---
-		ImGui::TextUnformatted(u8"珠寶");
+		ImGui::TextUnformatted(u8"주얼");
 		ImGui::SetNextItemWidth(-1);
 		if (ImGui::BeginCombo("##jewel", JewelZh(jewelType))) {
 			for (int t = 1; t <= kMaxJewelType; t++)
@@ -691,12 +691,12 @@ public:
 		// made, not buried in a tooltip.
 		if (TJIsAbyss(jewelType)) {
 			ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.95f, 0.70f, 0.40f, 1.0f));
-			ImGui::TextWrapped(u8"※ 深淵珠寶是 3.29 新增，目前可對照的實測樣本仍少，"
-			                   u8"結果無法像軍團珠寶那樣完整驗證，請以遊戲內實際結果為準。");
+			ImGui::TextWrapped(u8"※ 심연 주얼은 3.29에 추가되어 대조할 실측 표본이 아직 적습니다. "
+			                   u8"기존 무궁한 주얼만큼 완전하게 검증되지 않았으므로 게임 내 실제 결과를 기준으로 확인하세요.");
 			if (TJIsZorath(jewelType))
-				ImGui::TextWrapped(u8"※ 重奪惡意另外還取決於你從插槽走到職業起點的「已配點路徑」，"
-				                   u8"本工具沒有角色資料 —— 請隨意點一個插槽，用它周邊的天賦來判斷這顆種子。"
-				                   u8"單一天賦會變成什麼、以及昇華天賦的選擇，這兩項是準確的。");
+				ImGui::TextWrapped(u8"※ 되찾은 악의는 주얼 홈에서 직업 시작 노드까지의 할당 경로에도 영향을 받습니다. "
+				                   u8"이 도구에는 캐릭터 데이터가 없으므로 홈을 선택하고 주변 패시브로 시드를 판단하세요. "
+				                   u8"개별 패시브의 변환 결과와 전직 패시브 선택 결과는 정확합니다.");
 			ImGui::PopStyleColor();
 		}
 
@@ -714,12 +714,12 @@ public:
 		auto conqLabel = [&](int i) -> std::string {
 			const TJConqueror& c = (*conqs)[i];
 			std::string s = c.nameZh.empty() ? c.name : (c.nameZh + " (" + c.name + ")");
-			if (c.id.find("_v2") != std::string::npos) s += u8"  (舊版)";
+			if (c.id.find("_v2") != std::string::npos) s += u8" (이전 버전)";
 			return s;
 		};
-		ImGui::TextUnformatted(u8"征服者 (影響關鍵天賦)");
+		ImGui::TextUnformatted(u8"정복자(키스톤에 영향)");
 		ImGui::SetNextItemWidth(-1);
-		std::string curConq = conqN ? conqLabel(conquerorSel) : u8"(無)";
+		std::string curConq = conqN ? conqLabel(conquerorSel) : u8"(없음)";
 		if (ImGui::BeginCombo("##conq", curConq.c_str())) {
 			for (int i = 0; i < conqN; i++)
 				if (ImGui::Selectable(conqLabel(i).c_str(), i == conquerorSel))
@@ -730,8 +730,8 @@ public:
 		std::string tradeStatId = conqN ? (*conqs)[conquerorSel].trade : std::string();
 
 		// --- trade export settings (region + league + platform) ---
-		if (ImGui::CollapsingHeader(u8"交易站匯出設定")) {
-			ImGui::TextUnformatted(u8"區域");
+		if (ImGui::CollapsingHeader(u8"거래소 내보내기 설정")) {
+			ImGui::TextUnformatted(u8"지역");
 			ImGui::SameLine();
 			for (int r = 0; r < kTradeRealmCount; r++) {
 				if (r) ImGui::SameLine();
@@ -745,7 +745,7 @@ public:
 					saveTjUi();
 				}
 			}
-			ImGui::TextUnformatted(u8"聯盟");
+			ImGui::TextUnformatted(u8"리그");
 			ImGui::SameLine();
 			ImGui::SetNextItemWidth(180 * scale);
 			std::vector<std::string> lgList = leagues.ForPlatform(tradePlatform);
@@ -764,11 +764,11 @@ public:
 				if (ImGui::IsItemDeactivatedAfterEdit()) saveTjUi();
 			}
 			ImGui::SameLine();
-			if (leagues.running.load()) ImGui::TextDisabled(u8"取得中…");
-			else if (ImGui::SmallButton(u8"重新取得")) { leagues.done = false; leagues.start(); }
+			if (leagues.running.load()) ImGui::TextDisabled(u8"획득 중...");
+			else if (ImGui::SmallButton(u8"재획득")) { leagues.done = false; leagues.start(); }
 			// Consoles are an international-realm concept; the .tw site has none.
 			if (kTradeRealms[tradeRealm].consoles) {
-				ImGui::TextUnformatted(u8"平台");
+				ImGui::TextUnformatted(u8"플랫폼");
 				ImGui::SameLine();
 				int before = tradePlatform;
 				ImGui::RadioButton("PC", &tradePlatform, 0); ImGui::SameLine();
@@ -783,20 +783,20 @@ public:
 
 		ImGui::Separator();
 		if (ImGui::BeginTabBar("##mode")) {
-			if (ImGui::BeginTabItem(u8"選擇統計搜尋")) { mode = 0; ImGui::EndTabItem(); }
-			if (ImGui::BeginTabItem(u8"輸入種子")) { mode = 1; ImGui::EndTabItem(); }
+			if (ImGui::BeginTabItem(u8"능력치 선택 검색")) { mode = 0; ImGui::EndTabItem(); }
+			if (ImGui::BeginTabItem(u8"시드 입력")) { mode = 1; ImGui::EndTabItem(); }
 			ImGui::EndTabBar();
 		}
 
 		if (mode == 0) {
 			// stat picker collapses once a search runs, freeing space for results
 			ImGui::SetNextItemOpen(searchInputsOpen, ImGuiCond_Always);
-			searchInputsOpen = ImGui::CollapsingHeader(u8"搜尋條件（詞綴 / 權重 / 範圍）");
+			searchInputsOpen = ImGui::CollapsingHeader(u8"검색 조건(속성 / 가중치 / 범위)");
 			if (searchInputsOpen) {
 			// --- add stat ---
-			ImGui::TextUnformatted(u8"新增統計 (可輸入關鍵字篩選)");
+			ImGui::TextUnformatted(u8"능력치 추가(키워드로 필터링 가능)");
 			ImGui::SetNextItemWidth(-1);
-			ImGui::InputTextWithHint("##statfilter", u8"篩選詞綴…", &statFilter);
+			ImGui::InputTextWithHint("##statfilter", u8"속성 검색...", &statFilter);
 			ImGui::BeginChild("##statlist", ImVec2(0, 150 * scale), true);
 			int shown = 0;
 			for (const auto& t : templates) {
@@ -813,34 +813,34 @@ public:
 
 			// --- selected stats ---
 			if (!wants.empty()) {
-				ImGui::TextUnformatted(u8"已選統計");
+				ImGui::TextUnformatted(u8"선택한 능력치");
 				for (int i = 0; i < (int)wants.size(); i++) {
 					ImGui::PushID(i);
-					if (ImGui::SmallButton(u8"移除")) { wants.erase(wants.begin() + i); ImGui::PopID(); i--; continue; }
+					if (ImGui::SmallButton(u8"제거")) { wants.erase(wants.begin() + i); ImGui::PopID(); i--; continue; }
 					ImGui::SameLine();
 					ImGui::TextUnformatted(wants[i].zh.c_str());
 					ImGui::SetNextItemWidth(120 * scale);
-					ImGui::InputFloat(u8"最小值", &wants[i].minValue, 0, 0, "%.0f");
+					ImGui::InputFloat(u8"최소", &wants[i].minValue, 0, 0, "%.0f");
 					ImGui::SameLine();
 					ImGui::SetNextItemWidth(120 * scale);
-					ImGui::InputFloat(u8"權重", &wants[i].weight, 0, 0, "%.1f");
+					ImGui::InputFloat(u8"가중치", &wants[i].weight, 0, 0, "%.1f");
 					ImGui::PopID();
 				}
 			}
 
 			ImGui::SetNextItemWidth(160 * scale);
-			ImGui::InputFloat(u8"最小總權重", &minTotalWeight, 0, 0, "%.1f");
-			ImGui::Checkbox(u8"必須包含全部已選詞綴", &requireAll);
+			ImGui::InputFloat(u8"최소 총 가중치", &minTotalWeight, 0, 0, "%.1f");
+			ImGui::Checkbox(u8"선택한 속성을 모두 포함", &requireAll);
 			if (ImGui::IsItemHovered())
-				ImGui::SetTooltip(u8"關閉後只要命中任一條就算，權重高的仍排前面。\n"
-				                  u8"開啟時，只滿足其中一條的種子不會出現。");
+				ImGui::SetTooltip(u8"끄면 하나라도 일치하는 시드를 표시하며 가중치가 높은 순으로 정렬합니다.\n"
+				                  u8"켜면 선택한 속성을 모두 만족하지 않는 시드는 표시하지 않습니다.");
 			// Abyss jewels conquer keystones too, and TJAbyssInScope counts them
 			// as "big" — the label has to say so or the filter looks like it is
 			// dropping results.
-			ImGui::RadioButton(TJIsAbyss(jewelType) ? u8"只大型天賦與鑰石"
-			                                        : u8"只中型天賦 (Notables)", &scope, 1);
+			ImGui::RadioButton(TJIsAbyss(jewelType) ? u8"주요 패시브와 키스톤만"
+			                                        : u8"주요 패시브만(Notable)", &scope, 1);
 			ImGui::SameLine();
-			ImGui::RadioButton(u8"全部節點", &scope, 0);
+			ImGui::RadioButton(u8"모든 노드", &scope, 0);
 			} // searchInputsOpen
 
 			// --- search ---
@@ -856,15 +856,15 @@ public:
 				// sentence does not fit on one line in any wording — the Legion
 				// one was already running off the edge.
 				const char* hint =
-					isZorath ? u8"請先在中間樹上點擊珠寶插槽（隨意一個即可，用來決定要看哪一帶的天賦）"
-					: isAbyss ? u8"請先在中間樹上點擊珠寶插槽（深淵珠寶的結果由插槽決定，沒有半徑）"
-					          : u8"請先在中間樹上點擊珠寶插槽（搜尋只計算該插槽半徑內的節點）";
+					isZorath ? u8"가운데 트리에서 주얼 홈을 먼저 클릭하세요(아무 홈이나 선택해 확인할 패시브 영역을 정합니다)."
+					: isAbyss ? u8"가운데 트리에서 주얼 홈을 먼저 클릭하세요(심연 주얼 결과는 홈으로 결정되며 반경이 없습니다)."
+					          : u8"가운데 트리에서 주얼 홈을 먼저 클릭하세요(검색은 해당 홈 반경 안의 노드만 계산합니다).";
 				ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.95f, 0.70f, 0.40f, 1.0f));
 				ImGui::TextWrapped("%s", hint);
 				ImGui::PopStyleColor();
 			}
 			ImGui::BeginDisabled(busy || wants.empty() || selSocket < 0);
-			if (ImGui::Button(u8"搜尋此插槽", ImVec2(-1, 34 * scale))) {
+			if (ImGui::Button(u8"이 홈 검색", ImVec2(-1, 34 * scale))) {
 				if (ensureBin(jewelType)) {
 					TJSearchQuery q;
 					q.jewelType = jewelType;
@@ -873,7 +873,7 @@ public:
 					q.requireAll = requireAll;
 					for (auto& w : wants) q.wants.push_back({ w.en, w.minValue, w.weight });
 					detailSeed = -1;
-					status = u8"搜尋中…";
+					status = u8"검색 중...";
 					searchInputsOpen = false; // collapse inputs, show results
 					// Types 7-10 need no node list: their file names the conquered
 					// passives. Everything else is judged on the socket's
@@ -902,17 +902,17 @@ public:
 				}
 			}
 			ImGui::EndDisabled();
-			if (busy) { ImGui::SameLine(); ImGui::TextDisabled(u8"搜尋中…"); }
+			if (busy) { ImGui::SameLine(); ImGui::TextDisabled(u8"검색 중..."); }
 
 			if (job.done.load() && !job.running.load()) {
-				status = u8"找到 " + std::to_string(job.results.size()) + u8" 個種子";
+				status = u8"시드 " + std::to_string(job.results.size()) + u8"개 발견";
 			}
 			if (!status.empty()) ImGui::TextDisabled("%s", status.c_str());
 
 			// --- results ---
 			if (!job.results.empty() && !job.running.load()) {
 				ImGui::Separator();
-				ImGui::Checkbox(u8"依命中節點數分組（可整組一鍵交易）", &groupResults);
+				ImGui::Checkbox(u8"일치 노드 수로 그룹화(그룹 전체 거래 검색 가능)", &groupResults);
 				bool tradeOff = tradeStatId.empty() || tradeLeague.empty();
 
 				// Cross-check reminder. Only shown after the user actually opened a
@@ -922,15 +922,15 @@ public:
 				if (tradeHintShown) {
 					ImGui::Separator();
 					ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.98f, 0.78f, 0.35f, 1.0f));
-					ImGui::TextUnformatted(u8"提醒：買之前先用 Path of Building 對一次答案");
+					ImGui::TextUnformatted(u8"알림: 구매 전에 Path of Building으로 결과를 한 번 대조하세요.");
 					ImGui::PopStyleColor();
 					ImGui::TextWrapped(u8"%s",
-					    u8"1. 在交易站找到那顆珠寶，Ctrl+C 複製，貼進 POB 的物品欄。\n"
-					    u8"2. 也可以把交易站上「已鑲好這顆珠寶的整件裝備」複製進 POB。\n"
-					    u8"3. 對照 POB 算出來的天賦加成，確認與本工具列出的詞綴一致。");
+					    u8"1. 거래소에서 주얼을 찾아 Ctrl+C로 복사한 뒤 POB의 아이템 탭에 붙여넣습니다.\n"
+					    u8"2. 거래소에서 이 주얼이 장착된 장비 전체를 복사해 POB에 붙여넣어도 됩니다.\n"
+					    u8"3. POB가 계산한 패시브 보너스가 이 도구에 표시된 속성과 일치하는지 확인합니다.");
 					ImGui::TextDisabled(u8"%s",
-					    u8"本工具的轉換演算法以 POB 為規格、數值以遊戲檔為真值，"
-					    u8"兩邊理應相同。若對不上請回報，那代表其中一邊有問題。");
+					    u8"이 도구는 POB의 변환 알고리즘과 게임 데이터 값을 기준으로 하므로 결과가 같아야 합니다. "
+					    u8"일치하지 않으면 어느 한쪽에 문제가 있는 것이므로 제보해 주세요.");
 					ImGui::Separator();
 				}
 
@@ -959,27 +959,27 @@ public:
 					bool firstGroup = true;
 					for (auto& kv : groups) {
 						char hdr[128];
-						snprintf(hdr, sizeof(hdr), u8"命中 %d 個節點 · %d 個種子##grp%d",
+				snprintf(hdr, sizeof(hdr), u8"일치 노드 %d개 · 시드 %d개##grp%d",
 						         kv.first, (int)kv.second.size(), kv.first);
 						ImGuiTreeNodeFlags gf = firstGroup ? ImGuiTreeNodeFlags_DefaultOpen : 0;
 						firstGroup = false;
 						if (ImGui::CollapsingHeader(hdr, gf)) {
 							ImGui::PushID(kv.first);
 							ImGui::BeginDisabled(tradeOff);
-							if (ImGui::SmallButton(u8"交易查詢整組")) {
+				if (ImGui::SmallButton(u8"그룹 전체 거래 검색")) {
 								std::vector<int> seeds;
 								for (auto* h : kv.second) seeds.push_back(h->seed);
 								open_trade_search_multi(tradeStatId, seeds, tradeLeague, tradePlatform, tradeRealm);
 								tradeHintShown = true;
 							}
 							ImGui::EndDisabled();
-							if (kv.second.size() > 40) { ImGui::SameLine(); ImGui::TextDisabled(u8"(交易取前 40)"); }
+				if (kv.second.size() > 40) { ImGui::SameLine(); ImGui::TextDisabled(u8"(거래 검색은 상위 40개)"); }
 							ImGui::PopID();
 
 							int shown = 0;
 							for (auto* h : kv.second) {
 								if (++shown > 50) {
-									ImGui::TextDisabled(u8"… 還有 %d 個（請縮小條件）", (int)kv.second.size() - 50);
+					ImGui::TextDisabled(u8"...%d개 더 있습니다(조건을 좁혀 보세요)", (int)kv.second.size() - 50);
 									break;
 								}
 								ImGui::PushID(h->seed);
@@ -987,13 +987,13 @@ public:
 								// "weight 3" alone cannot tell "all three stats once" from
 								// "one stat three times".
 								ImGui::TextColored(ImVec4(0.98f, 0.62f, 0.30f, 1.0f),
-								                   u8"種子 %d (權重 %.0f · 詞綴 %d/%d)",
+					u8"시드 %d (가중치 %.0f · 속성 %d/%d)",
 								                   h->seed, h->weight, h->distinctWants, (int)wants.size());
 								ImGui::SameLine();
-								if (ImGui::SmallButton(u8"查看")) detailSeed = h->seed;
+								if (ImGui::SmallButton(u8"조회")) detailSeed = h->seed;
 								ImGui::SameLine();
 								ImGui::BeginDisabled(tradeOff);
-								if (ImGui::SmallButton(u8"交易")) {
+								if (ImGui::SmallButton(u8"거래")) {
 									open_trade_search(tradeStatId, h->seed, tradeLeague, tradePlatform, tradeRealm);
 									tradeHintShown = true;
 								}
@@ -1009,7 +1009,7 @@ public:
 										if (colorStats) ImGui::PushStyleColor(ImGuiCol_Text, stat_color(zh));
 										// Show what this line contributed, so the seed's rank is legible.
 										if (w->weight != 1.0)
-											ImGui::BulletText(u8"%s  [權重 %.1f]", zh.c_str(), w->weight);
+					ImGui::BulletText(u8"%s [가중치 %.1f]", zh.c_str(), w->weight);
 										else
 											ImGui::BulletText("%s", zh.c_str());
 										if (colorStats) ImGui::PopStyleColor();
@@ -1062,9 +1062,9 @@ public:
 				} else if (ImGui::BeginTable("##res", 5,
 					ImGuiTableFlags_Borders | ImGuiTableFlags_RowBg | ImGuiTableFlags_ScrollY,
 					ImVec2(0, 240 * scale))) {
-					ImGui::TableSetupColumn(u8"種子");
-					ImGui::TableSetupColumn(u8"權重");
-					ImGui::TableSetupColumn(u8"詞綴");
+					ImGui::TableSetupColumn(u8"시드");
+					ImGui::TableSetupColumn(u8"가중치");
+					ImGui::TableSetupColumn(u8"속성");
 					ImGui::TableSetupColumn(u8"");
 					ImGui::TableSetupColumn(u8"");
 					ImGui::TableHeadersRow();
@@ -1075,20 +1075,20 @@ public:
 						ImGui::TableNextColumn(); ImGui::Text("%d", h.distinctWants);
 						ImGui::TableNextColumn();
 						ImGui::PushID(h.seed);
-						if (ImGui::SmallButton(u8"查看")) detailSeed = h.seed;
+						if (ImGui::SmallButton(u8"조회")) detailSeed = h.seed;
 						ImGui::TableNextColumn();
 						ImGui::BeginDisabled(tradeOff);
-						if (ImGui::SmallButton(u8"交易")) {
+						if (ImGui::SmallButton(u8"거래")) {
 							open_trade_search(tradeStatId, h.seed, tradeLeague, tradePlatform, tradeRealm);
 							tradeHintShown = true;
 						}
 						ImGui::EndDisabled();
 						ImGui::SameLine();
-						if (ImGui::SmallButton(u8"複製")) {
+						if (ImGui::SmallButton(u8"복사")) {
 							std::string t = TJItemText(*ds, jewelType, conquerorSel, h.seed);
 							status = (!t.empty() && WriteClipboardUtf8(nullptr, t))
-							         ? u8"已複製物品文字，可在 POB 的物品欄貼上 (Ctrl+V)"
-							         : u8"複製失敗";
+							? u8"아이템 텍스트를 복사했습니다. POB의 아이템 탭에 붙여넣으세요(Ctrl+V)."
+							: u8"복사 실패";
 						}
 						ImGui::PopID();
 					}
@@ -1098,9 +1098,9 @@ public:
 		} else {
 			// --- enter seed mode ---
 			ImGui::SetNextItemWidth(200 * scale);
-			ImGui::InputText(u8"種子", &seedText);
+			ImGui::InputText(u8"시드", &seedText);
 			ImGui::SameLine();
-			if (ImGui::Button(u8"查詢")) {
+			if (ImGui::Button(u8"조회")) {
 				detailSeed = atoi(seedText.c_str());
 				if (!ensureBin(jewelType)) status = binErr;
 			}
@@ -1109,20 +1109,20 @@ public:
 		// affected node/stat list — defined here, rendered into the right sidebar
 		auto drawAffectedList = [&]() {
 		if (selSocket < 0) {
-			ImGui::TextDisabled(u8"在中間樹上點擊珠寶插槽，選擇珠寶放置位置");
+				ImGui::TextDisabled(u8"가운데 패시브 트리에서 주얼 홈을 클릭해 위치를 선택하세요.");
 		} else if (detailSeed < 0) {
-			ImGui::TextDisabled(u8"選一個種子（搜尋結果按「查看」或於「輸入種子」查詢）");
+				ImGui::TextDisabled(u8"시드를 선택하세요. 검색 결과의 '조회' 또는 '시드 입력'에서 선택할 수 있습니다.");
 		} else {
 			// "in radius" is only true for the Legion jewels. The Abyss ones
 			// name their conquered passives in the file and scatter them over
 			// the whole tree, so the same wording would describe the wrong rule.
-			ImGui::Text(TJIsZorath(jewelType) ? u8"種子 %d 對這一帶天賦的效果"
-			            : TJIsAbyss(jewelType) ? u8"種子 %d 征服的天賦"
-			                                   : u8"種子 %d 範圍內的變更",
+				ImGui::Text(TJIsZorath(jewelType) ? u8"시드 %d의 연결 패시브 효과"
+				            : TJIsAbyss(jewelType) ? u8"시드 %d가 점유한 패시브"
+				            : u8"시드 %d의 반경 내 변경",
 			            detailSeed);
 			ImGui::SameLine();
 			ImGui::BeginDisabled(tradeStatId.empty() || tradeLeague.empty());
-			if (ImGui::SmallButton(u8"交易搜尋")) {
+			if (ImGui::SmallButton(u8"거래 검색")) {
 				open_trade_search(tradeStatId, detailSeed, tradeLeague, tradePlatform, tradeRealm);
 				tradeHintShown = true;
 			}
@@ -1130,23 +1130,23 @@ public:
 			ImGui::SameLine();
 			// Hand the jewel to PoB the way PoB expects to receive items: as the
 			// game's own copy text on the clipboard.
-			if (ImGui::SmallButton(u8"複製給 POB")) {
+				if (ImGui::SmallButton(u8"POB용 복사")) {
 				std::string t = TJItemText(*ds, jewelType, conquerorSel, detailSeed);
 				status = (!t.empty() && WriteClipboardUtf8(nullptr, t))
-				         ? u8"已複製物品文字，可在 POB 的物品欄貼上 (Ctrl+V)"
-				         : u8"複製失敗";
+						? u8"아이템 텍스트를 복사했습니다. POB의 아이템 탭에 붙여넣으세요(Ctrl+V)."
+						: u8"복사 실패";
 			}
 			if (ImGui::IsItemHovered())
-				ImGui::SetTooltip(u8"複製成遊戲的物品文字格式，貼進 POB「物品」分頁即可建立這顆珠寶");
+					ImGui::SetTooltip(u8"게임 아이템 형식의 텍스트를 복사합니다. POB의 아이템 탭에 붙여넣어 주얼을 만들 수 있습니다.");
 
 			// Zorath's Ascendancy pick needs no path, so unlike everything else
 			// about this jewel it is exact. That makes it the most trustworthy
 			// thing on screen and worth its own section.
 			if (TJIsZorath(jewelType) && detailSeed >= 0 && binOk) {
-				if (ImGui::CollapsingHeader(u8"昇華天賦選擇（準確）")) {
+			if (ImGui::CollapsingHeader(u8"전직 패시브 선택(정확)")) {
 					std::map<std::string, std::vector<int>> asc;
 					if (!TJAbyssReadAscendancies(*blob, *abyssLut, detailSeed, asc)) {
-						ImGui::TextDisabled(u8"讀取失敗");
+						ImGui::TextDisabled(u8"읽기에 실패하였습니다.");
 					} else {
 						ImGui::BeginChild("##asc", ImVec2(0, 170 * scale), true);
 						for (const auto& kv : asc) {
@@ -1156,7 +1156,7 @@ public:
 								// five points and the jewel cannot rewrite one costing four
 								// or more.
 								ImGui::SameLine();
-								ImGui::TextDisabled(u8"（不受影響）");
+					ImGui::TextDisabled(u8"(영향 없음)");
 								continue;
 							}
 							for (int nid : kv.second) {
@@ -1165,7 +1165,7 @@ public:
 								TJTransform t = TJAbyssApply(*ds, m);
 								if (t.replaced) {
 									const std::string& nm = t.newNameZh.empty() ? t.newName : t.newNameZh;
-									ImGui::BulletText(u8"變為「%s」", nm.c_str());
+									ImGui::BulletText(u8"'%s'로 변경되었습니다.", nm.c_str());
 								}
 								for (size_t i = 0; i < t.lines.size(); i++) {
 									const std::string& z = (i < t.linesZh.size() && !t.linesZh[i].empty())
@@ -1180,25 +1180,25 @@ public:
 						// The Ascendancy notable's own name is not available: PobTools'
 						// tree leaves Ascendancy nodes out. What it becomes is the part
 						// being chosen, so that is what is shown.
-						ImGui::TextDisabled(u8"（本工具的樹資料不含昇華節點，只顯示它會變成什麼）");
+					ImGui::TextDisabled(u8"(이 도구의 트리 데이터에는 변환된 노드 그림이 없어, 변환 결과만 텍스트로 표시합니다.)");
 					}
 				}
 			}
 
 			// view toggle: Vilsol-style stat list vs. node-centric list
-			ImGui::RadioButton(u8"詞綴檢視", &listView, 0); ImGui::SameLine();
-			ImGui::RadioButton(u8"節點檢視", &listView, 1); ImGui::SameLine();
-			ImGui::Checkbox(u8"上色", &colorStats);
+			ImGui::RadioButton(u8"속성별 보기", &listView, 0); ImGui::SameLine();
+			ImGui::RadioButton(u8"노드별 보기", &listView, 1); ImGui::SameLine();
+			ImGui::Checkbox(u8"속성 색상 표시", &colorStats);
 
 			if (listView == 0) {
 				// ---- Vilsol-style: "(N) stat", click to highlight those N nodes ----
 				ImGui::SetNextItemWidth(120 * scale);
-				const char* sorts[] = { u8"數量", u8"字母", u8"稀有度", u8"數值" };
+				const char* sorts[] = { u8"수량", u8"이름", u8"희귀도", u8"값" };
 				ImGui::Combo("##statsort", &statSort, sorts, 4);
-				ImGui::SameLine(); ImGui::Checkbox(u8"中型/一般分欄", &splitList);
+			ImGui::SameLine(); ImGui::Checkbox(u8"주요/일반 노드 구분", &splitList);
 				if (hlStatGroup >= 0) {
 					ImGui::SameLine();
-					if (ImGui::SmallButton(u8"顯示全部")) hlStatGroup = -1;
+					if (ImGui::SmallButton(u8"모두 표시")) hlStatGroup = -1;
 				}
 				std::vector<int> order(statGroups.size());
 				for (int i = 0; i < (int)statGroups.size(); i++) order[i] = i;
@@ -1216,8 +1216,8 @@ public:
 
 				ImGui::BeginChild("##statlist2", ImVec2(0, 0), true);
 				if (statGroups.empty())
-					ImGui::TextDisabled("%s", TJIsAbyss(jewelType) ? u8"這個插槽在此種子下沒有可顯示的詞綴（或資料仍在計算）。"
-					                     : u8"此範圍內沒有受影響的詞綴（或資料仍在計算）。");
+					ImGui::TextDisabled("%s", TJIsAbyss(jewelType) ? u8"이 홈에는 해당 시드로 표시할 속성이 없습니다(또는 아직 계산 중입니다)."
+						: u8"반경 안에 적용된 속성이 없습니다(또는 아직 계산 중입니다).");
 				auto drawGroup = [&](int g, int section) { // section: -1 all, 0 notables, 1 smalls
 					int c = section == 0 ? (int)statGroups[g].notables.size()
 					      : section == 1 ? (int)statGroups[g].smalls.size() : cnt(g);
@@ -1230,11 +1230,11 @@ public:
 					if (sel) hlStatGroup = (hlStatGroup == g) ? -1 : g;
 				};
 				if (splitList) {
-					ImGui::TextColored(ImVec4(0.95f, 0.80f, 0.40f, 1.0f), u8"中型天賦 / 關鍵天賦");
+						ImGui::TextColored(ImVec4(0.95f, 0.80f, 0.40f, 1.0f), u8"주요 패시브 / 키스톤");
 					ImGui::Separator();
 					for (int g : order) drawGroup(g, 0);
 					ImGui::Spacing();
-					ImGui::TextColored(ImVec4(0.80f, 0.80f, 0.80f, 1.0f), u8"一般節點");
+					ImGui::TextColored(ImVec4(0.80f, 0.80f, 0.80f, 1.0f), u8"일반 노드");
 					ImGui::Separator();
 					for (int g : order) drawGroup(g, 1);
 				} else {
@@ -1268,8 +1268,8 @@ public:
 
 				ImGui::BeginChild("##nodelist", ImVec2(0, 0), true);
 				if (rows.empty())
-					ImGui::TextDisabled("%s", TJIsAbyss(jewelType) ? u8"這個插槽在此種子下沒有被征服的天賦（或資料仍在計算）。"
-					                     : u8"此範圍內沒有受影響的節點（或資料仍在計算）。");
+					ImGui::TextDisabled("%s", TJIsAbyss(jewelType) ? u8"이 홈에는 해당 시드가 점유한 패시브가 없습니다(또는 아직 계산 중입니다)."
+						: u8"반경 안에 적용된 노드가 없습니다(또는 아직 계산 중입니다).");
 				for (const Row& r : rows) {
 					const PtNode& n = ptData.nodes[r.idx];
 					const TJTransform& t = ptTrans.at(r.idx);
@@ -1280,7 +1280,7 @@ public:
 					                  : ImVec4(0.82f, 0.86f, 0.95f, 1.0f);
 					ImGui::PushID(r.idx);
 					ImGui::PushStyleColor(ImGuiCol_Text, nc);
-					bool sel = ImGui::Selectable((nm + u8"：").c_str(), emphNode == r.idx);
+					bool sel = ImGui::Selectable((nm + u8":").c_str(), emphNode == r.idx);
 					ImGui::PopStyleColor();
 					if (sel) { panToNode = r.idx; emphNode = r.idx; }
 					for (size_t i = 0; i < t.lines.size(); i++) {
@@ -1318,7 +1318,7 @@ public:
 				ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.85f, 0.60f, 0.20f, 0.45f));
 				ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(0.85f, 0.60f, 0.20f, 0.65f));
 				ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(0.85f, 0.60f, 0.20f, 0.85f));
-				if (ImGui::SmallButton((u8"發現新賽季天賦樹 " + ptUst.latestVer + u8"，點擊更新").c_str()))
+				if (ImGui::SmallButton((u8"새 시즌 패시브 트리 " + ptUst.latestVer + u8" 발견 — 업데이트").c_str()))
 					ptUpdater.StartUpdate();
 				ImGui::PopStyleColor(3);
 				if (ImGui::IsItemHovered())
@@ -1326,56 +1326,56 @@ public:
 			} else if (busy) {
 				ImGui::TextDisabled(u8"%s", ptUst.message.c_str());
 			} else if (ptUst.phase == PassiveUpdatePhase::Error) {
-				ImGui::TextColored(ImVec4(0.94f, 0.27f, 0.27f, 1.0f), u8"更新失敗：%s", ptUst.message.c_str());
+				ImGui::TextColored(ImVec4(0.94f, 0.27f, 0.27f, 1.0f), u8"업데이트 실패: %s", ptUst.message.c_str());
 				ImGui::SameLine();
-				if (ImGui::SmallButton(u8"重試##ptupd")) ptUpdater.StartUpdate();
+				if (ImGui::SmallButton(u8"다시 시도##ptupd")) ptUpdater.StartUpdate();
 			} else if (ptDataOk) {
 				// idle: current tree version + Chinese stat-line coverage
-				ImGui::TextDisabled(u8"樹 %s", ptData.TreeVersion().c_str());
+			ImGui::TextDisabled(u8"패시브 트리 %s", ptData.TreeVersion().c_str());
 				if (zhPct >= 0) {
 					ImGui::SameLine();
 					if (zhPct < 90) {
-						ImGui::TextColored(ImVec4(0.90f, 0.65f, 0.25f, 1.0f), u8"｜繁中 %d%%（字典待更新）", zhPct);
+				ImGui::TextColored(ImVec4(0.90f, 0.65f, 0.25f, 1.0f), u8"한국어 %d%%(번역 데이터 업데이트 필요)", zhPct);
 						if (ImGui::IsItemHovered())
-							ImGui::SetTooltip(u8"新賽季詞條在翻譯字典更新前顯示英文；更新翻譯包後重新匯入即可補齊");
+					ImGui::SetTooltip(u8"새 시즌 문구는 공식 한국어 데이터가 준비될 때까지 영어로 표시될 수 있습니다.");
 					} else {
-						ImGui::TextDisabled(u8"｜繁中 %d%%", zhPct);
+				ImGui::TextDisabled(u8"한국어 %d%%", zhPct);
 					}
 				}
 				ImGui::SameLine();
-				if (ImGui::SmallButton(u8"檢查更新##ptupd")) ptUpdater.RequestCheck(true);
+				if (ImGui::SmallButton(u8"업데이트 확인 ##ptupd")) ptUpdater.RequestCheck(true);
 			}
 		}
 
 		if (!ptTexOk) {
-			ImGui::TextWrapped(u8"天賦樹視圖無法載入：\n%s", ptErr.c_str());
+			ImGui::TextWrapped(u8"패시브 트리 보기를 불러오지 못했습니다:\n%s", ptErr.c_str());
 			ImGui::Spacing();
-			ImGui::TextDisabled(u8"（計算器其餘功能仍可使用）");
+			ImGui::TextDisabled(u8"(계산기의 나머지 기능은 사용할 수 있습니다.)");
 		} else {
 			// header: hint + selected socket + preview seed
 			const bool treeRadius = JewelUsesRadius(jewelType);
 			const bool treeAbyss = TJIsAbyss(jewelType);
 			if (selSocket < 0) {
-				ImGui::TextDisabled(u8"在樹上點擊任一珠寶插槽以選擇位置");
+			ImGui::TextDisabled(u8"패시브 트리에서 주얼 홈을 클릭해 위치를 선택하세요.");
 			} else {
 				const PtNode& sn = ptData.nodes[selSocket];
-				ImGui::Text(u8"插槽：%s", sn.nameZh.empty() ? sn.name.c_str() : sn.nameZh.c_str());
+				ImGui::Text(u8"홈: %s", sn.nameZh.empty() ? sn.name.c_str() : sn.nameZh.c_str());
 				ImGui::SameLine();
 				if (detailSeed < 0)
-					ImGui::TextDisabled(u8"｜選一個種子（搜尋結果按「查看」或輸入種子）即可預覽轉換");
+			ImGui::TextDisabled(u8"시드를 선택하세요. 검색 결과의 '조회' 또는 '시드 입력'에서 미리볼 수 있습니다.");
 				else if (TJIsZorath(jewelType))
 					// The circle is where we are looking, not what the jewel hits.
 					// Say that outright: the same ring means an area of effect for
 					// every other jewel in this window.
-					ImGui::TextDisabled(u8"｜預覽種子 %d｜圈內為判斷用，實際生效看你的配點", detailSeed);
+			ImGui::TextDisabled(u8"시드 %d의 결과는 선택한 홈 기준입니다. 실제 적용 시 패시브 할당 상태를 확인하세요.", detailSeed);
 				else if (treeAbyss)
 					// Not "in radius": these are the passives the jewel's own file
 					// names, and they are spread over the tree rather than sitting
 					// inside a circle. Saying "radius" here would describe the
 					// wrong mechanic.
-					ImGui::TextDisabled(u8"｜預覽種子 %d｜此插槽被征服的天賦以金框標示", detailSeed);
+			ImGui::TextDisabled(u8"시드 %d가 이 홈에서 점유한 패시브를 금색 테두리로 표시합니다.", detailSeed);
 				else
-					ImGui::TextDisabled(u8"｜預覽種子 %d｜半徑內受影響節點以金框標示", detailSeed);
+			ImGui::TextDisabled(u8"시드 %d의 반경 안에서 영향을 받는 노드를 금색 테두리로 표시합니다.", detailSeed);
 			}
 
 			// pick the socket's in-radius nodes to focus on. Empty selection = all.
@@ -1391,12 +1391,12 @@ public:
 					}
 					selVersion++;
 				};
-				ImGui::TextDisabled(u8"選取："); ImGui::SameLine();
-				if (ImGui::SmallButton(u8"全部")) setRange(true, 0); ImGui::SameLine();
-				if (ImGui::SmallButton(u8"中型天賦##sel")) setRange(true, 1); ImGui::SameLine();
-				if (ImGui::SmallButton(u8"一般##sel")) setRange(true, 2); ImGui::SameLine();
-				if (ImGui::SmallButton(u8"清除")) setRange(false, 0);
-				ImGui::SameLine(); ImGui::TextDisabled(u8"(點樹上節點單獨選取；未選=全部)");
+				ImGui::TextDisabled(u8"선택:"); ImGui::SameLine();
+				if (ImGui::SmallButton(u8"모두")) setRange(true, 0); ImGui::SameLine();
+				if (ImGui::SmallButton(u8"중형 패시브 ##sel")) setRange(true, 1); ImGui::SameLine();
+				if (ImGui::SmallButton(u8"일반##sel")) setRange(true, 2); ImGui::SameLine();
+				if (ImGui::SmallButton(u8"지우기")) setRange(false, 0);
+			ImGui::SameLine(); ImGui::TextDisabled(u8"(트리에서 노드를 클릭해 선택할 수도 있습니다. 선택 없음 = 전체)");
 			}
 
 			// recompute highlight + per-node transforms when the input tuple changes
@@ -1577,8 +1577,8 @@ public:
 					                       : !t.newName.empty() ? t.newName
 					                       : (n.nameZh.empty() ? n.name : n.nameZh);
 					ImGui::TextColored(ImVec4(1.0f, 0.82f, 0.35f, 1.0f), "%s", nm.c_str());
-					if (t.replaced) ImGui::TextDisabled(u8"（節點被替換）");
-					else ImGui::TextDisabled(u8"（保留原詞綴，珠寶額外加成）");
+					if (t.replaced) ImGui::TextDisabled(u8"(노드 교체)");
+				else ImGui::TextDisabled(u8"(원래 속성 유지 + 주얼 보너스 추가)");
 					ImGui::Separator();
 					// An addition leaves the node itself intact, so its own stats
 					// still apply and must be shown above what the jewel adds.
@@ -1622,7 +1622,7 @@ public:
 
 		// ---- right column: affected node / stat list (sidebar) -----------
 		ImGui::BeginChild("##right", ImVec2(0, 0), true);
-		ImGui::TextUnformatted(u8"受影響的節點 / 詞綴");
+			ImGui::TextUnformatted(u8"영향받은 노드 / 속성");
 		ImGui::Separator();
 		drawAffectedList();
 		ImGui::EndChild(); // ##right

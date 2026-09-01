@@ -484,19 +484,19 @@ PreviewItem itemFromLib(const EditorShell& s, const LibItem& li)
 void playResultSound(const EditorShell& s, const PreviewResult& r)
 {
 	g_soundNote.clear();
-	if (r.hidden) { g_soundNote = u8"（隱藏規則 — 無音效）"; return; }
+	if (r.hidden) { g_soundNote = u8"(숨김 규칙: 사운드 없음)"; return; }
 	if (!r.customSound.empty()) {
 		std::wstring file = EdWiden(r.customSound);
 		std::wstring path = (file.find(L':') != std::wstring::npos)
 			? file : (GetSoundFolder() + L"\\" + file);
 		int pct = (int)((float)std::clamp(r.customVol, 0, 300) / 300.f * (float)g_masterVol + 0.5f);
 		bool ok = PlayAudioFileVol(path, pct);
-		g_soundNote = ok ? (u8"播放 " + r.customSound)
-		                 : (u8"找不到/無法播放 " + r.customSound + u8"（確認音效檔在遊戲資料夾）");
+		g_soundNote = ok ? (u8"재생: " + r.customSound)
+		                 : (u8"찾을 수 없음: " + r.customSound + u8" (게임 폴더의 사운드 파일을 확인하세요)");
 	} else if (r.alertId > 0) {
-		g_soundNote = u8"內建音效 #" + std::to_string(r.alertId) + u8"（遊戲資產，編輯器無法試聽）";
+		g_soundNote = u8"내장 사운드 #" + std::to_string(r.alertId) + u8" (게임 내 사운드로, 에디터에서는 테스트할 수 없습니다)";
 	} else {
-		g_soundNote = u8"此規則沒有音效";
+		g_soundNote = u8"이 규칙에는 사운드가 없습니다.";
 	}
 }
 
@@ -620,7 +620,7 @@ void randomDrops(EditorShell& s)
 	if (g_autoPlay) {
 		for (const DropEntry& d : g_drops)
 			if (!d.res.hidden && !d.res.customSound.empty()) { playResultSound(s, d.res); return; }
-		g_soundNote = u8"（本批掉落沒有自訂音效規則）";
+		g_soundNote = u8"(이 드롭에는 기본 사운드 규칙이 없음)";
 	}
 }
 
@@ -628,7 +628,7 @@ void randomDrops(EditorShell& s)
 
 void DrawDropPreviewSection(EditorShell& s)
 {
-	if (!s.loaded) { ImGui::TextDisabled(u8"開啟一個 .filter 後即可預覽掉落。"); return; }
+	if (!s.loaded) { ImGui::TextDisabled(u8".filter 파일을 열면 드롭을 미리 볼 수 있습니다." ); return; }
 	if (s.doc.file() != &s.model) s.doc.Attach(&s.model);
 	if (s.rowsVersion != s.doc.structureVersion()) EdRebuildRows(s);
 
@@ -638,7 +638,7 @@ void DrawDropPreviewSection(EditorShell& s)
 	ImGui::BeginChild("##pvctrl", ImVec2(ctrlW, 0), true);
 
 	// ---- import a real item copied from the game (FilterBlade-style) ----
-	if (ImGui::CollapsingHeader(u8"從遊戲匯入物品", ImGuiTreeNodeFlags_DefaultOpen)) {
+	if (ImGui::CollapsingHeader(u8"게임 아이템 가져오기", ImGuiTreeNodeFlags_DefaultOpen)) {
 		auto pasteImport = [&s](bool append) {
 			std::string txt = ReadClipboardUtf8(s.hostHwnd);
 			g_import = ParseGameItemText(txt, s.i18n, s.library.items());
@@ -647,54 +647,54 @@ void DrawDropPreviewSection(EditorShell& s)
 			// on failure the previous canvas is kept; warnings explain below
 		};
 		PobUi::PushPrimaryButton();
-		if (ImGui::Button(u8"貼上並顯示", ImVec2((ctrlW - 30 * s.scale) * 0.5f, 0)))
+		if (ImGui::Button(u8"붙여넣고 표시", ImVec2((ctrlW - 30 * s.scale) * 0.5f, 0)))
 			pasteImport(false);
 		ImGui::SameLine();
-		if (ImGui::Button(u8"貼上並加入畫布", ImVec2(-1, 0)))
+		if (ImGui::Button(u8"붙여넣고 추가", ImVec2(-1, 0)))
 			pasteImport(true);
 		PobUi::PopButtonStyle();
 		if (ImGui::IsItemHovered())
-			ImGui::SetTooltip(u8"遊戲內對物品按 Ctrl+C，回來按這裡。\n"
-			                  u8"「加入畫布」不清空現有樣本，方便多件比較。");
+			ImGui::SetTooltip(u8"게임에서 아이템에 Ctrl+C를 누른 뒤 이 버튼을 클릭하세요.\n"
+			                  u8"'붙여넣고 추가'는 기존 샘플을 유지하므로 여러 아이템을 비교하기 편합니다.");
 
 		if (g_importTried) {
 			ImGui::PushTextWrapPos(ctrlW - 16 * s.scale);
 			if (g_import.ok) {
 				if (!g_import.name.empty())
-					ImGui::Text(u8"名稱：%s", g_import.name.c_str());
+					ImGui::Text(u8"이름: %s", g_import.name.c_str());
 				std::string zhBase = s.i18n.DisplayName(g_import.baseEn);
-				ImGui::Text(u8"基底：%s%s%s", zhBase.c_str(),
+				ImGui::Text(u8"기본: %s%s%s", zhBase.c_str(),
 					zhBase == g_import.baseEn ? "" : "  ",
 					zhBase == g_import.baseEn ? "" : ("(" + g_import.baseEn + ")").c_str());
-				static const char* kRarZh[] = { u8"普通", u8"魔法", u8"稀有", u8"傳奇" };
+				static const char* kRarZh[] = { u8"일반", u8"마법", u8"희귀", u8"고유" };
 				std::string info = kRarZh[std::clamp(g_import.item.rarity, 0, 3)];
-				info += u8" · 物等 " + std::to_string(g_import.item.itemLevel);
-				if (g_import.item.quality) info += u8" · 品質 " + std::to_string(g_import.item.quality);
-				if (!g_import.socketsRaw.empty()) info += u8" · 插槽 " + g_import.socketsRaw;
+				info += u8" · 아이템 레벨 " + std::to_string(g_import.item.itemLevel);
+				if (g_import.item.quality) info += u8" · 퀄리티 " + std::to_string(g_import.item.quality);
+				if (!g_import.socketsRaw.empty()) info += u8" · 홈 " + g_import.socketsRaw;
 				if (g_import.item.stackSize > 1) info += u8" · ×" + std::to_string(g_import.item.stackSize);
 				ImGui::TextDisabled("%s", info.c_str());
 				std::string flags;
 				auto addFlag = [&flags](bool on, const char* zh) {
-					if (on) { if (!flags.empty()) flags += u8"、"; flags += zh; }
+					if (on) { if (!flags.empty()) flags += u8", "; flags += zh; }
 				};
-				addFlag(g_import.item.corrupted, u8"已汙染");
-				addFlag(g_import.item.mirrored, u8"已鏡像");
-				addFlag(g_import.item.fractured, u8"破裂");
-				addFlag(g_import.item.synthesised, u8"追憶");
-				addFlag(!g_import.item.identified && g_import.item.rarity >= 1, u8"未鑑定");
-				addFlag(g_import.item.enchanted, u8"附魔");
-				addFlag(g_import.item.replica, u8"贗品");
-				addFlag(g_import.item.blightedMap, u8"凋落");
-				addFlag((g_import.item.influence & kInfShaper) != 0, u8"塑者");
-				addFlag((g_import.item.influence & kInfElder) != 0, u8"尊師");
-				addFlag((g_import.item.influence & kInfCrusader) != 0, u8"聖戰士");
-				addFlag((g_import.item.influence & kInfRedeemer) != 0, u8"救贖者");
-				addFlag((g_import.item.influence & kInfHunter) != 0, u8"狩獵者");
-				addFlag((g_import.item.influence & kInfWarlord) != 0, u8"總督軍");
-				addFlag(g_import.exarch, u8"灼烙");
-				addFlag(g_import.eater, u8"吞噬");
-				if (!flags.empty()) ImGui::TextDisabled(u8"狀態：%s", flags.c_str());
-				ImGui::TextDisabled(u8"區域等級沿用下方「物品屬性」的設定");
+				addFlag(g_import.item.corrupted, u8"타락");
+				addFlag(g_import.item.mirrored, u8"복제");
+				addFlag(g_import.item.fractured, u8"분열");
+				addFlag(g_import.item.synthesised, u8"결합");
+				addFlag(!g_import.item.identified && g_import.item.rarity >= 1, u8"미감정");
+				addFlag(g_import.item.enchanted, u8"인챈트");
+				addFlag(g_import.item.replica, u8"모조품");
+				addFlag(g_import.item.blightedMap, u8"역병");
+				addFlag((g_import.item.influence & kInfShaper) != 0, u8"쉐이퍼");
+				addFlag((g_import.item.influence & kInfElder) != 0, u8"엘더");
+				addFlag((g_import.item.influence & kInfCrusader) != 0, u8"성전사");
+				addFlag((g_import.item.influence & kInfRedeemer) != 0, u8"대속자");
+				addFlag((g_import.item.influence & kInfHunter) != 0, u8"사냥꾼");
+				addFlag((g_import.item.influence & kInfWarlord) != 0, u8"전쟁군주");
+				addFlag(g_import.exarch, u8"작열의 총주교");
+				addFlag(g_import.eater, u8"세계 포식자");
+				if (!flags.empty()) ImGui::TextDisabled(u8"상태: %s", flags.c_str());
+				ImGui::TextDisabled(u8"아래 '아이템 속성'의 지역 레벨 설정을 사용합니다." );
 			}
 			for (const ImportIssue& w : g_import.warnings)
 				ImGui::TextColored(ImVec4(0.95f, 0.80f, 0.30f, 1.0f), u8"※ %s", w.msg.c_str());
@@ -704,9 +704,9 @@ void DrawDropPreviewSection(EditorShell& s)
 	}
 
 	ImGui::Separator();
-	ImGui::TextUnformatted(u8"物品");
+	ImGui::TextUnformatted(u8"아이템");
 	ImGui::SetNextItemWidth(-1);
-	ImGui::InputTextWithHint("##pvsearch", u8"搜尋物品（中/英文）…", &g_search);
+	ImGui::InputTextWithHint("##pvsearch", u8"아이템 검색(한국어/영어)...", &g_search);
 	{
 		std::string lower = EdToLowerAscii(g_search);
 		ImGui::BeginChild("##pvlist", ImVec2(0, 150 * s.scale), true);
@@ -720,44 +720,44 @@ void DrawDropPreviewSection(EditorShell& s)
 					g_itemZh = it.zh;
 					showSingle(s);
 				}
-				if (++shown >= 60) { ImGui::TextDisabled(u8"…（縮小關鍵字看更多）"); break; }
+				if (++shown >= 60) { ImGui::TextDisabled(u8"...(검색어를 좁히면 더 표시됩니다)"); break; }
 			}
-			if (!shown) ImGui::TextDisabled(u8"沒有相符物品");
+			if (!shown) ImGui::TextDisabled(u8"일치하는 아이템이 없습니다.");
 		} else {
-			ImGui::TextDisabled(u8"輸入關鍵字，點擊物品即預覽");
+			ImGui::TextDisabled(u8"검색어를 입력한 뒤 아이템을 클릭해 미리 보세요." );
 		}
 		ImGui::EndChild();
 	}
 
 	if (!g_item.baseType.empty())
-		ImGui::Text(u8"目前：%s", (g_itemZh.empty() ? g_item.baseType : g_itemZh).c_str());
+		ImGui::Text(u8"현재: %s", (g_itemZh.empty() ? g_item.baseType : g_itemZh).c_str());
 
 	ImGui::Separator();
-	ImGui::TextUnformatted(u8"物品屬性");
+	ImGui::TextUnformatted(u8"아이템 속성");
 	{
-		static const char* kRar[] = { u8"普通", u8"魔法", u8"稀有", u8"傳奇" };
+		static const char* kRar[] = { u8"일반", u8"마법", u8"희귀", u8"고유" };
 		ImGui::SetNextItemWidth(120 * s.scale);
-		ImGui::Combo(u8"稀有度", &g_item.rarity, kRar, 4);
+		ImGui::Combo(u8"아이템 희귀도", &g_item.rarity, kRar, 4);
 		ImGui::SetNextItemWidth(160 * s.scale);
-		ImGui::SliderInt(u8"物品等級", &g_item.itemLevel, 1, 100);
+		ImGui::SliderInt(u8"아이템 레벨", &g_item.itemLevel, 1, 100);
 		ImGui::SetNextItemWidth(160 * s.scale);
-		ImGui::SliderInt(u8"區域等級", &g_item.areaLevel, 1, 90);
+		ImGui::SliderInt(u8"지역 레벨", &g_item.areaLevel, 1, 90);
 		ImGui::SetNextItemWidth(120 * s.scale);
-		ImGui::InputInt(u8"堆疊數量", &g_item.stackSize);
+		ImGui::InputInt(u8"중첩 개수", &g_item.stackSize);
 		g_item.stackSize = std::clamp(g_item.stackSize, 1, 100);
 		ImGui::SetNextItemWidth(120 * s.scale);
-		ImGui::SliderInt(u8"品質", &g_item.quality, 0, 30);
+		ImGui::SliderInt(u8"퀄리티", &g_item.quality, 0, 30);
 		ImGui::SetNextItemWidth(120 * s.scale);
-		ImGui::SliderInt(u8"插槽", &g_item.sockets, 0, 6);
+		ImGui::SliderInt(u8"홈", &g_item.sockets, 0, 6);
 		ImGui::SetNextItemWidth(120 * s.scale);
-		ImGui::SliderInt(u8"連結", &g_item.linkedSockets, 0, 6);
-		ImGui::Checkbox(u8"已鑑定", &g_item.identified);
+		ImGui::SliderInt(u8"연결", &g_item.linkedSockets, 0, 6);
+		ImGui::Checkbox(u8"감정됨", &g_item.identified);
 		ImGui::SameLine();
-		ImGui::Checkbox(u8"已汙染", &g_item.corrupted);
+		ImGui::Checkbox(u8"타락", &g_item.corrupted);
 		ImGui::SameLine();
-		ImGui::Checkbox(u8"破裂", &g_item.fractured);
+		ImGui::Checkbox(u8"분열", &g_item.fractured);
 	}
-	if (ImGui::Button(u8"套用屬性重新判定", ImVec2(-1, 0))) {
+	if (ImGui::Button(u8"아이템 속성 적용", ImVec2(-1, 0))) {
 		for (DropEntry& d : g_drops) {
 			// Imported items carry their REAL parsed fields — only the area
 			// level (which the text never has) follows the panel.
@@ -775,27 +775,27 @@ void DrawDropPreviewSection(EditorShell& s)
 	}
 
 	ImGui::Separator();
-	ImGui::TextUnformatted(u8"產生");
+	ImGui::TextUnformatted(u8"생성");
 	PobUi::PushPrimaryButton();
-	if (ImGui::Button(u8"顯示此物品", ImVec2((ctrlW - 30 * s.scale) * 0.5f, 0))) showSingle(s);
+	if (ImGui::Button(u8"해당 아이템 표시", ImVec2((ctrlW - 30 * s.scale) * 0.5f, 0))) showSingle(s);
 	ImGui::SameLine();
-	if (ImGui::Button(u8"隨機掉落（全類別）", ImVec2(-1, 0))) randomDrops(s);
+	if (ImGui::Button(u8"무작위 드롭(종합)", ImVec2(-1, 0))) randomDrops(s);
 	PobUi::PopButtonStyle();
 	if (ImGui::IsItemHovered())
-		ImGui::SetTooltip(u8"每個 NeverSink 類別各取樣 1-2 條不同階級的規則，物品不重複");
-	if (ImGui::Button(u8"清除", ImVec2(-1, 0))) { g_drops.clear(); g_soundNote.clear(); }
+		ImGui::SetTooltip(u8"각 NeverSink 분류에서 레벨별 규칙을 1~2개씩 사용하며 아이템은 중복되지 않습니다." );
+	if (ImGui::Button(u8"지우기", ImVec2(-1, 0))) { g_drops.clear(); g_soundNote.clear(); }
 
 	ImGui::Separator();
-	ImGui::TextUnformatted(u8"音效");
+	ImGui::TextUnformatted(u8"사운드");
 	ImGui::SetNextItemWidth(-60 * s.scale);
-	ImGui::SliderInt(u8"音量", &g_masterVol, 0, 100, "%d%%");
-	ImGui::Checkbox(u8"預覽時自動播放", &g_autoPlay);
-	if (ImGui::Button(u8"再播一次", ImVec2(120 * s.scale, 0))) {
+	ImGui::SliderInt(u8"음량", &g_masterVol, 0, 100, "%d%%");
+	ImGui::Checkbox(u8"미리보기 시 자동 재생", &g_autoPlay);
+	if (ImGui::Button(u8"다시 재생", ImVec2(120 * s.scale, 0))) {
 		for (const DropEntry& d : g_drops)
 			if (!d.res.hidden && !d.res.customSound.empty()) { playResultSound(s, d.res); break; }
 	}
 	ImGui::SameLine();
-	if (ImGui::Button(u8"停止")) StopAudio();
+	if (ImGui::Button(u8"중지")) StopAudio();
 	if (!g_soundNote.empty()) {
 		ImGui::PushTextWrapPos(ctrlW - 16 * s.scale);
 		ImGui::TextDisabled("%s", g_soundNote.c_str());
@@ -810,13 +810,13 @@ void DrawDropPreviewSection(EditorShell& s)
 	ImGui::BeginChild("##pvcanvas", ImVec2(0, 0), true);
 	ImDrawList* dl = ImGui::GetWindowDrawList();
 	if (g_drops.empty()) {
-		ImGui::TextDisabled(u8"左側搜尋並點選物品，或按「隨機掉落」。標籤樣式即當前過濾器判定結果。");
+		ImGui::TextDisabled(u8"왼쪽 검색에서 아이템을 선택하거나 '무작위 드롭'을 선택하세요. 태그는 현재 필터 판정 결과입니다.");
 	} else {
 		int nHid = 0;
 		for (const DropEntry& d : g_drops) if (d.res.hidden) nHid++;
-		ImGui::TextDisabled(u8"%d 個掉落樣本%s　· hover 看命中規則，點擊跳至編輯",
+		ImGui::TextDisabled(u8"드롭 샘플 %d개%s · 마우스를 올려 일치 규칙 확인, 클릭하면 편집으로 이동",
 			(int)g_drops.size(),
-			nHid ? (u8"（含 " + std::to_string(nHid) + u8" 個被隱藏）").c_str() : "");
+			nHid ? (u8"(숨김 " + std::to_string(nHid) + u8"개)").c_str() : "");
 		ImGui::Spacing();
 		ImFont* font = ImGui::GetFont();
 		const float baseFs = ImGui::GetFontSize();
@@ -831,12 +831,12 @@ void DrawDropPreviewSection(EditorShell& s)
 
 			ImGui::PushID(i);
 			if (r.hidden) {
-				std::string t = u8"（已隱藏） " + label;
+				std::string t = u8"(숨김) " + label;
 				float lx = cx - ImGui::CalcTextSize(t.c_str()).x * 0.5f + d.jitter * s.scale;
 				ImGui::SetCursorPosX(std::max(0.0f, lx));
 				ImGui::TextDisabled("%s", t.c_str());
 				if (ImGui::IsItemHovered()) {
-					ImGui::SetTooltip(u8"%s\n命中 Hide 規則：%s（點擊跳至該規則）", d.item.baseType.c_str(),
+					ImGui::SetTooltip(u8"%s\n일치한 숨김 규칙: %s(클릭하면 이 규칙으로 이동)", d.item.baseType.c_str(),
 						(r.blockIdx >= 0 && r.blockIdx < (int)s.rows.size()) ? s.rows[r.blockIdx].label.c_str() : "?");
 				}
 				if (ImGui::IsItemClicked()) jump = r.blockIdx;
@@ -879,21 +879,21 @@ void DrawDropPreviewSection(EditorShell& s)
 
 			if (hov) {
 				std::string tip = d.item.baseType;
-				if (d.imported) tip += u8"（匯入物品）";
+				if (d.imported) tip += u8"(가져온 아이템)";
 				if (r.matched && r.blockIdx >= 0 && r.blockIdx < (int)s.rows.size())
-					tip += u8"\n命中規則：" + s.rows[r.blockIdx].label + u8"\n字體 " + std::to_string(r.fontSize);
+					tip += u8"\n일치한 규칙: " + s.rows[r.blockIdx].label + u8"\n글자 크기: " + std::to_string(r.fontSize);
 				else
-					tip += u8"\n沒有規則命中（遊戲預設樣式）";
-				if (!r.customSound.empty()) tip += u8"\n自訂音效：" + r.customSound;
-				else if (r.alertId > 0) tip += u8"\n內建音效 #" + std::to_string(r.alertId);
+					tip += u8"\n일치한 규칙이 없습니다(게임 기본 표시 방식).";
+				if (!r.customSound.empty()) tip += u8"\n사용자 지정 사운드: " + r.customSound;
+				else if (r.alertId > 0) tip += u8"\n내장 사운드 #" + std::to_string(r.alertId);
 				if (!r.unknownConds.empty()) {
-					tip += u8"\n未模擬條件（視為不符）：";
+					tip += u8"\n지원하지 않는 조건(불일치로 처리):";
 					for (size_t k = 0; k < r.unknownConds.size() && k < 6; k++)
 						tip += (k ? ", " : "") + r.unknownConds[k];
 				}
 				for (size_t k = 0; k < d.importWarnings.size() && k < 4; k++)
 					tip += u8"\n※ " + d.importWarnings[k].msg;
-				if (r.matched) tip += u8"\n（點擊跳至該規則編輯）";
+				if (r.matched) tip += u8"\n(클릭하면 이 규칙으로 이동해 편집)";
 				ImGui::SetTooltip("%s", tip.c_str());
 			}
 			if (clicked && r.matched) jump = r.blockIdx;

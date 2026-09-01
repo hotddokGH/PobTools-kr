@@ -16,6 +16,7 @@ Release/
 
 # pob-zh-engine build tree (CMake) and deployment bundle
 pob-zh-engine/build/
+pob-zh-engine/build-ko/
 pob-zh-engine/vcpkg/
 pob-zh-engine/tests/translate_test_out.txt
 pob-zh-engine/tests/display_colour_test_out.txt
@@ -148,6 +149,7 @@ node_modules/
 localization/ko-KR/official-terms/.cache/
 reports/display-closure/locale-audit.json
 .venv-translation/
+.build-deps/
 localization/ko-KR/manual/machine-fallback-shard-*.json
 **/__pycache__/
 graphify-out/

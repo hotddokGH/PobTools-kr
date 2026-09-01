@@ -75,7 +75,7 @@ CustomZone EnsureCustomZone(FilterDocumentEditor& doc)
 	std::vector<FilterLine> ins;
 	ins.push_back(comment_line("#==============================================="));
 	ins.push_back(comment_line(std::string(kBegin) + " v=1"));
-	ins.push_back(comment_line(u8"# ===== PobTools 自訂區（最高優先，由編輯器管理）====="));
+	ins.push_back(comment_line(u8"# ===== PobTools 사용자 지정 영역(최우선, 편집기에서 관리) ====="));
 	ins.push_back(comment_line(kEnd));
 	ins.push_back(comment_line("#==============================================="));
 	ins.push_back(FilterLine{});  // blank separator (default kind is fine: raw "")
@@ -124,13 +124,13 @@ int ImportCustomRules(FilterDocumentEditor& doc, const std::string& fragment, st
 {
 	FilterFile sub = ParseFilter(fragment);
 	if (sub.blocks.empty()) {
-		if (err) *err = u8"檔案中沒有可導入的規則區塊";
+		if (err) *err = u8"파일에 입력 가능한 규칙이 없습니다.";
 		return -1;
 	}
 
 	CustomZone z = EnsureCustomZone(doc);
 	if (!z.present()) {
-		if (err) *err = u8"無法建立自訂區";
+		if (err) *err = u8"사용자 지정 영역을 만들 수 없습니다";
 		return -1;
 	}
 	FilterFile* f = doc.file();

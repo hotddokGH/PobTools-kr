@@ -177,7 +177,7 @@ void PobLog::Error(const char* feature, const std::string& msg)
 	// two writers (host + engine, or two running copies) from interleaving.
 	std::string line = Stamp() + "v" POBTOOLS_VERSION_STRING " [" + feature + "] " + flat;
 	if (times == kMaxPerIncident)
-		line += u8"（已達 " + std::to_string(kMaxPerIncident) + u8" 次上限，這一則之後不再記錄）";
+		line += u8"(최대 " + std::to_string(kMaxPerIncident) + u8"회에 도달하여 이후에는 이 항목을 기록하지 않습니다.)";
 	line += "\r\n";
 	WriteLine(dir, line);
 }

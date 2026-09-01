@@ -64,12 +64,12 @@ Tri TriRadio(const char* id, Tri v, bool removable = true)
 {
 	ImGui::PushID(id);
 	int iv = (int)v;
-	ImGui::RadioButton(u8"維持", &iv, (int)Tri::Keep);
+	ImGui::RadioButton(u8"유지", &iv, (int)Tri::Keep);
 	ImGui::SameLine();
-	ImGui::RadioButton(u8"設為", &iv, (int)Tri::Set);
+	ImGui::RadioButton(u8"설정", &iv, (int)Tri::Set);
 	if (removable) {
 		ImGui::SameLine();
-		ImGui::RadioButton(u8"停用", &iv, (int)Tri::Remove);
+		ImGui::RadioButton(u8"비활성화", &iv, (int)Tri::Remove);
 	}
 	ImGui::PopID();
 	return (Tri)iv;
@@ -155,38 +155,38 @@ void DrawBatchModal(EditorShell& s)
 	static BatchStyleOp op;
 
 	ImGui::SetNextWindowSize(ImVec2(560 * s.scale, 0));
-	if (!ImGui::BeginPopupModal(u8"批量修改###batchmodal", nullptr, ImGuiWindowFlags_AlwaysAutoResize))
+	if (!ImGui::BeginPopupModal(u8"배치 수정 ###batchmodal", nullptr, ImGuiWindowFlags_AlwaysAutoResize))
 		return;
 
 	int nSel = 0;
 	for (char c : s.batchSel) if (c) nSel++;
-	ImGui::TextDisabled(u8"將套用到已勾選的 %d 條過濾項；每欄可選「維持 / 設為 / 停用」。", nSel);
+	ImGui::TextDisabled(u8"선택한 필터 항목 %d개에 적용합니다. 각 항목에서 '유지 / 설정 / 비활성화'를 선택할 수 있습니다.", nSel);
 	ImGui::Separator();
 
 	bool any = false;
 
 	// Show/Hide
 	ImGui::AlignTextToFramePadding();
-	ImGui::TextUnformatted(u8"顯示狀態");
+	ImGui::TextUnformatted(u8"능력치 보기");
 	ImGui::SameLine(120);
 	op.showHide = TriRadio("showhide", op.showHide, false);
 	if (op.showHide == Tri::Set) {
 		ImGui::SameLine();
 		int v = op.hide ? 1 : 0;
-		const char* items[2] = { u8"顯示", u8"隱藏" };
+		const char* items[2] = { u8"표시", u8"숨기기" };
 		ImGui::SetNextItemWidth(100 * s.scale);
 		if (ImGui::Combo("##sh", &v, items, 2)) op.hide = (v == 1);
 		any = true;
 	}
 	ImGui::Separator();
 
-	ColorField(u8"文字顏色", op.textColor, op.text, any);
-	ColorField(u8"邊框顏色", op.borderColor, op.border, any);
-	ColorField(u8"背景顏色", op.bgColor, op.bg, any);
+	ColorField(u8"글자 색상", op.textColor, op.text, any);
+	ColorField(u8"테두리 색상", op.borderColor, op.border, any);
+	ColorField(u8"배경 색상", op.bgColor, op.bg, any);
 
 	// Font size
 	ImGui::AlignTextToFramePadding();
-	ImGui::TextUnformatted(u8"字體大小");
+	ImGui::TextUnformatted(u8"글자 크기");
 	ImGui::SameLine(120);
 	op.fontSize = TriRadio("fontsize", op.fontSize);
 	if (op.fontSize == Tri::Set) {
@@ -199,21 +199,21 @@ void DrawBatchModal(EditorShell& s)
 
 	// Sound
 	ImGui::AlignTextToFramePadding();
-	ImGui::TextUnformatted(u8"音效");
+	ImGui::TextUnformatted(u8"사운드");
 	ImGui::SameLine(120);
 	op.sound = TriRadio("sound", op.sound);
 	if (op.sound == Tri::Set) {
 		ImGui::SameLine();
 		int v = op.custom ? 1 : 0;
-		const char* items[2] = { u8"內建", u8"自訂" };
+		const char* items[2] = { u8"내장", u8"사용자 지정" };
 		ImGui::SetNextItemWidth(90 * s.scale);
 		if (ImGui::Combo("##sndkind", &v, items, 2)) op.custom = (v == 1);
 		ImGui::Indent(120);
 		if (op.custom) {
 			ImGui::SetNextItemWidth(240 * s.scale);
-			ImGui::InputText(u8"檔名", &op.customPath);
+			ImGui::InputText(u8"파일 이름", &op.customPath);
 			ImGui::SameLine();
-			if (ImGui::Button(u8"音效庫…")) ImGui::OpenPopup("##batchsoundlib");
+			if (ImGui::Button(u8"사운드 라이브러리...")) ImGui::OpenPopup("##batchsoundlib");
 			if (ImGui::BeginPopup("##batchsoundlib")) {
 				std::string picked;
 				if (DrawSoundLibrary(picked, s.scale)) {
@@ -224,11 +224,11 @@ void DrawBatchModal(EditorShell& s)
 			}
 		} else {
 			ImGui::SetNextItemWidth(140 * s.scale);
-			ImGui::SliderInt(u8"編號", &op.soundId, 1, 16);
+			ImGui::SliderInt(u8"번호", &op.soundId, 1, 16);
 			ImGui::SameLine();
 		}
 		ImGui::SetNextItemWidth(140 * s.scale);
-		ImGui::SliderInt(u8"音量", &op.volume, 0, 300);
+		ImGui::SliderInt(u8"음량", &op.volume, 0, 300);
 		ImGui::Unindent(120);
 	}
 	if (op.sound != Tri::Keep) any = true;
@@ -236,12 +236,12 @@ void DrawBatchModal(EditorShell& s)
 
 	// Minimap icon
 	ImGui::AlignTextToFramePadding();
-	ImGui::TextUnformatted(u8"物品圖標");
+	ImGui::TextUnformatted(u8"아이템 아이콘");
 	ImGui::SameLine(120);
 	op.minimapIcon = TriRadio("mmicon", op.minimapIcon);
 	if (op.minimapIcon == Tri::Set) {
 		ImGui::SameLine();
-		static const char* kSizeZh[3] = { u8"大", u8"中", u8"小" };
+		static const char* kSizeZh[3] = { u8"대", u8"중간", u8"작은" };
 		ImGui::SetNextItemWidth(70 * s.scale);
 		ImGui::Combo("##mmsz", &op.mmSize, kSizeZh, 3);
 		ImGui::SameLine();
@@ -256,7 +256,7 @@ void DrawBatchModal(EditorShell& s)
 
 	// Play effect
 	ImGui::AlignTextToFramePadding();
-	ImGui::TextUnformatted(u8"物品光柱");
+	ImGui::TextUnformatted(u8"아이템 빛의 기둥");
 	ImGui::SameLine(120);
 	op.playEffect = TriRadio("fx", op.playEffect);
 	if (op.playEffect == Tri::Set) {
@@ -264,26 +264,26 @@ void DrawBatchModal(EditorShell& s)
 		std::string nc = CardEffectColorCombo("##fxc", op.fxColor, s.scale);
 		if (!nc.empty()) op.fxColor = nc;
 		ImGui::SameLine();
-		ImGui::Checkbox(u8"僅掉落瞬間", &op.fxTemp);
+		ImGui::Checkbox(u8"드롭 순간에만", &op.fxTemp);
 	}
 	if (op.playEffect != Tri::Keep) any = true;
 	ImGui::Separator();
 
 	ImGui::BeginDisabled(!any || nSel == 0);
-	if (ImGui::Button(u8"套用", ImVec2(120 * s.scale, 0))) {
+	if (ImGui::Button(u8"적용", ImVec2(120 * s.scale, 0))) {
 		std::vector<int> blocks;
 		for (int i = 0; i < (int)s.batchSel.size(); i++)
 			if (s.batchSel[i]) blocks.push_back(i);
 		int touched = ApplyBatchStyle(s, blocks, op);
-		s.status = u8"批量修改完成：" + std::to_string((int)blocks.size()) + u8" 條規則、" +
-		           std::to_string(touched) + u8" 行變更（未儲存）";
+		s.status = u8"일괄 수정 완료: 규칙 " + std::to_string((int)blocks.size()) + u8"개, " +
+		           std::to_string(touched) + u8"줄 변경(저장되지 않음)";
 		s.batchMode = false;
 		op = BatchStyleOp{};
 		ImGui::CloseCurrentPopup();
 	}
 	ImGui::EndDisabled();
 	ImGui::SameLine();
-	if (ImGui::Button(u8"取消", ImVec2(120 * s.scale, 0))) {
+	if (ImGui::Button(u8"취소", ImVec2(120 * s.scale, 0))) {
 		op = BatchStyleOp{};
 		ImGui::CloseCurrentPopup();
 	}

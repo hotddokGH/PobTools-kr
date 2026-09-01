@@ -59,7 +59,7 @@ void SetSoundFolder(const std::wstring& folder)
 std::wstring BrowseSoundFolder(void* owner)
 {
 	// Shared implementation (editor_util); only the title differs.
-	return EdBrowseForFolder(L"選擇音效資料夾", GetSoundFolder(), owner);
+	return EdBrowseForFolder(L"소리 정보 폴더 선택", GetSoundFolder(), owner);
 }
 
 static void EnumFiles(const std::wstring& folder, std::vector<std::wstring>& out)
@@ -94,33 +94,33 @@ bool DrawSoundLibrary(std::string& outPickedPathUtf8, float scale)
 
 	std::string folderU = narrow(s_folder);
 	ImGui::SetNextItemWidth(340 * scale);
-	if (ImGui::InputText(u8"資料夾", &folderU)) s_folder = widen(folderU);
+	if (ImGui::InputText(u8"폴더", &folderU)) s_folder = widen(folderU);
 	ImGui::SameLine();
-	if (ImGui::Button(u8"瀏覽…")) {
+	if (ImGui::Button(u8"탐색...")) {
 		std::wstring f = BrowseSoundFolder();
 		if (!f.empty()) { s_folder = f; SetSoundFolder(f); EnumFiles(s_folder, s_files); }
 	}
 	ImGui::SameLine();
-	if (ImGui::Button(u8"重新整理")) { SetSoundFolder(s_folder); EnumFiles(s_folder, s_files); }
+	if (ImGui::Button(u8"새로고침")) { SetSoundFolder(s_folder); EnumFiles(s_folder, s_files); }
 	ImGui::Separator();
 
 	bool picked = false;
 	ImGui::BeginChild("##sndlist", ImVec2(440 * scale, 260 * scale), true);
 	if (s_files.empty()) {
-		ImGui::TextDisabled(u8"資料夾內無音效檔（wav / mp3 / ogg / flac / m4a / aac）。");
+		ImGui::TextDisabled(u8"폴더에 지원되는 사운드 파일(wav / mp3 / ogg / flac / m4a / aac)이 없습니다." );
 	}
 	for (size_t i = 0; i < s_files.size(); i++) {
 		ImGui::PushID((int)i);
 		std::wstring full = s_folder + L"\\" + s_files[i];
-		if (ImGui::Button(u8"播放")) PlayAudioFile(full);
+		if (ImGui::Button(u8"재생")) PlayAudioFile(full);
 		ImGui::SameLine();
 		ImGui::AlignTextToFramePadding();
 		ImGui::TextUnformatted(narrow(s_files[i]).c_str());
 		ImGui::SameLine(ImGui::GetContentRegionAvail().x - 56 * scale);
-		if (ImGui::SmallButton(u8"選用")) { outPickedPathUtf8 = narrow(full); picked = true; }
+		if (ImGui::SmallButton(u8"선택")) { outPickedPathUtf8 = narrow(full); picked = true; }
 		ImGui::PopID();
 	}
 	ImGui::EndChild();
-	if (ImGui::Button(u8"停止播放")) StopAudio();
+	if (ImGui::Button(u8"재생 중단")) StopAudio();
 	return picked;
 }

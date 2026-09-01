@@ -34,39 +34,39 @@ using nlohmann::ordered_json;
 static const std::vector<AtlasMechanicDef>& catalogue()
 {
 	static const std::vector<AtlasMechanicDef> kDefs = {
-		{ "Abyss", "Abyss", u8"Abyss", u8"深淵" },
-		{ "Memory", "Memories", u8"Atlas Memories", u8"輿圖記憶" },
-		{ "Bestiary", "Bestiary", u8"Bestiary", u8"獸獵" },
-		{ "Betrayal", "Jun", u8"Betrayal", u8"反叛" },
-		{ "Beyond", "Beyond", u8"Beyond", u8"超越" },
-		{ "Blight", "Blight", u8"Blight", u8"凋落" },
-		{ "Breach", "Breach", u8"Breach", u8"裂痕" },
-		{ "Conqueror", "Conqueror", u8"Conquerors", u8"征服者" },
-		{ "Delirium", "Delirium", u8"Delirium", u8"譫妄" },
-		{ "Delve", "Delve", u8"Delve", u8"掘獄" },
-		{ "Divination", "Divination", u8"Divination Cards", u8"命運卡" },
-		{ "Essence", "Essence", u8"Essence", u8"精髓" },
-		{ "Expedition", "Expedition", u8"Expedition", u8"探險" },
-		{ "Harvest", "Harvest", u8"Harvest", u8"豐收" },
-		{ "Heist", "Heist", u8"Heist", u8"劫盜" },
-		{ "Incursion", "Alva", u8"Incursion", u8"穿越" },
-		{ "Labyrinth", "Labyrinth", u8"Labyrinth", u8"帝王迷宮機率" },
-		{ "Legion", "Legion", u8"Legion", u8"戰亂" },
-		{ "Map Tier", "Map", u8"Maps", u8"地圖" },
-		{ "Mercenary", "Mercenaries", u8"Mercenaries", u8"傭兵" },
-		{ "Ritual", "Ritual", u8"Ritual", u8"祭祀" },
-		{ "Anarchy", "Anarchy", u8"Rogue Exiles", u8"盜賊流亡者" },
-		{ "Scarab", "Scarab", u8"Scarabs", u8"聖甲蟲" },
-		{ "Kalguur", "Settlers", u8"Settlers of Kalguur", u8"卡爾葛拓荒者" },
-		{ "Domination", "Domination", u8"Shrines", u8"神殿" },
-		{ "Strongbox", "Strongbox", u8"Strongboxes", u8"保險箱" },
-		{ "Synthesis", "Synthesis", u8"Synthesis", u8"追憶" },
-		{ "Tangle", "Tangle", u8"The Eater of Worlds", u8"吞噬天地" },
-		{ "CleansingFire", "CleansingFire", u8"The Searing Exarch", u8"灼烙總督" },
-		{ "ElderShaper", "ElderShaper", u8"The Shaper and Elder", u8"塑界者和尊師" },
-		{ "Torment", "Torment", u8"Torment", u8"罪魂" },
-		{ "Ultimatum", "Ultimatum", u8"Ultimatum", u8"通牒" },
-		{ "Vaal", "Vaal", u8"Vaal Side Areas", u8"瓦爾區域" },
+		{ "Abyss", "Abyss", u8"Abyss", u8"심연" },
+		{ "Memory", "Memories", u8"Atlas Memories", u8"아틀라스 기억" },
+		{ "Bestiary", "Bestiary", u8"Bestiary", u8"야수 도감" },
+		{ "Betrayal", "Jun", u8"Betrayal", u8"배신" },
+		{ "Beyond", "Beyond", u8"Beyond", u8"이계" },
+		{ "Blight", "Blight", u8"Blight", u8"역병" },
+		{ "Breach", "Breach", u8"Breach", u8"균열" },
+		{ "Conqueror", "Conqueror", u8"Conquerors", u8"정복자" },
+		{ "Delirium", "Delirium", u8"Delirium", u8"환영" },
+		{ "Delve", "Delve", u8"Delve", u8"탐광" },
+		{ "Divination", "Divination", u8"Divination Cards", u8"점술 카드" },
+		{ "Essence", "Essence", u8"Essence", u8"에센스" },
+		{ "Expedition", "Expedition", u8"Expedition", u8"탐험" },
+		{ "Harvest", "Harvest", u8"Harvest", u8"수확" },
+		{ "Heist", "Heist", u8"Heist", u8"강탈" },
+		{ "Incursion", "Alva", u8"Incursion", u8"기습" },
+		{ "Labyrinth", "Labyrinth", u8"Labyrinth", u8"미궁" },
+		{ "Legion", "Legion", u8"Legion", u8"군단" },
+		{ "Map Tier", "Map", u8"Maps", u8"지도" },
+		{ "Mercenary", "Mercenaries", u8"Mercenaries", u8"용병" },
+		{ "Ritual", "Ritual", u8"Ritual", u8"의식" },
+		{ "Anarchy", "Anarchy", u8"Rogue Exiles", u8"탈주 유배자" },
+		{ "Scarab", "Scarab", u8"Scarabs", u8"갑충석" },
+		{ "Kalguur", "Settlers", u8"Settlers of Kalguur", u8"칼구르의 정착자들" },
+		{ "Domination", "Domination", u8"Shrines", u8"성소" },
+		{ "Strongbox", "Strongbox", u8"Strongboxes", u8"금고" },
+		{ "Synthesis", "Synthesis", u8"Synthesis", u8"결합" },
+		{ "Tangle", "Tangle", u8"The Eater of Worlds", u8"세계 포식자" },
+		{ "CleansingFire", "CleansingFire", u8"The Searing Exarch", u8"작열의 총주교" },
+		{ "ElderShaper", "ElderShaper", u8"The Shaper and Elder", u8"쉐이퍼와 엘더" },
+		{ "Torment", "Torment", u8"Torment", u8"고통" },
+		{ "Ultimatum", "Ultimatum", u8"Ultimatum", u8"결전" },
+		{ "Vaal", "Vaal", u8"Vaal Side Areas", u8"바알 부가 지역" },
 	};
 	return kDefs;
 }
@@ -154,10 +154,10 @@ bool AtlasBuildMechanicMap(const std::string& dataJson, const std::string& tag,
 	try {
 		doc = ordered_json::parse(dataJson);
 	} catch (const std::exception& e) {
-		return fail(std::string(u8"data.json 解析失敗: ") + e.what());
+		return fail(std::string(u8"data.json 분석 실패: ") + e.what());
 	}
 	if (!doc.contains("nodes") || !doc["nodes"].is_object())
-		return fail(u8"data.json 缺少 nodes（不是 atlastree-export 格式？）");
+		return fail(u8"data.json에 nodes 항목이 없습니다(atlastree-export 형식인지 확인하세요)." );
 
 	// pass 1: which mechanic owns each group, and how many clusters it has
 	std::unordered_map<std::string, std::string> groupMech; // group id -> mechanic id
@@ -203,12 +203,12 @@ bool AtlasBuildMechanicMap(const std::string& dataJson, const std::string& tag,
 	}
 
 	if (out->fromCluster == 0)
-		return fail(u8"data.json 沒有任何節點能對到機制叢集，已中止");
+		return fail(u8"data.json에서 메커니즘 군집과 일치하는 노드를 찾지 못해 중단했습니다." );
 	if (out->backtestTotal > 0 && out->backtestPct() < AtlasMechanicBacktestGate()) {
 		char buf[160];
 		snprintf(buf, sizeof(buf),
-			u8"機制圖示規則的回測一致率只有 %.1f%%（門檻 %.1f%%），"
-			u8"GGG 可能改了圖示命名，已中止",
+			u8"메커니즘 아이콘 규칙의 일치율이 %.1f%%에 불과합니다(기준 %.1f%%). "
+			u8"GGG가 아이콘 이름을 변경했을 수 있어 중단했습니다.",
 			out->backtestPct(), AtlasMechanicBacktestGate());
 		return fail(buf);
 	}
@@ -285,7 +285,7 @@ bool AtlasWriteMechanicMap(const AtlasMechanicMap& m, const std::wstring& destDi
 	std::wstring dir = destDir;
 	if (!dir.empty() && dir.back() != L'\\' && dir.back() != L'/') dir += L'\\';
 	if (!mech_write_file(dir + L"atlas_mechanics.json", AtlasMechanicMapToJson(m))) {
-		if (err) *err = u8"無法寫入 atlas_mechanics.json";
+		if (err) *err = u8"atlas_mechanics.json을 기록할 수 없습니다.";
 		return false;
 	}
 	return true;

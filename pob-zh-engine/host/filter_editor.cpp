@@ -57,7 +57,7 @@ public:
 		// relative, so this fits a tab's content area exactly as it fits a window.
 		const float statusH = ImGui::GetFrameHeightWithSpacing();
 		ImGui::BeginChild("##nav", ImVec2(176 * shell_.scale, -statusH), true);
-		ImGui::TextDisabled(u8"編輯模式");
+		ImGui::TextDisabled(u8"편집 모드");
 		ImGui::Separator();
 		DrawLeftNav(shell_);
 		ImGui::EndChild();
@@ -73,29 +73,29 @@ public:
 
 		// The prompt is opened from here rather than from RequestClose(), because
 		// OpenPopup has to happen inside the frame that will draw it.
-		if (close_ == ToolCloseState::Asking && !ImGui::IsPopupOpen(u8"未儲存變更"))
-			ImGui::OpenPopup(u8"未儲存變更");
-		if (ImGui::BeginPopupModal(u8"未儲存變更", nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {
-			ImGui::TextUnformatted(u8"過濾器有尚未儲存的變更。");
+		if (close_ == ToolCloseState::Asking && !ImGui::IsPopupOpen(u8"저장되지 않은 변경 사항"))
+			ImGui::OpenPopup(u8"저장되지 않은 변경 사항");
+		if (ImGui::BeginPopupModal(u8"저장되지 않은 변경 사항", nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {
+			ImGui::TextUnformatted(u8"필터에 저장되지 않은 변경 사항이 있습니다.");
 			ImGui::Spacing();
-			if (ImGui::Button(u8"儲存並關閉")) {
+			if (ImGui::Button(u8"저장 및 종료")) {
 				std::string err;
 				// The return value used to be dropped, and the window closed
 				// regardless: a failed save here looks exactly like a successful
 				// one, and the edits are gone with it.
 				if (!SaveFilter(shell_.model, &err))
-					PobLog::Error("save", u8"過濾器「儲存並關閉」失敗：" +
-					                          (err.empty() ? std::string(u8"原因不明") : err));
+					PobLog::Error("save", u8"필터 '저장 후 닫기' 실패: " +
+					                          (err.empty() ? std::string(u8"원인을 알 수 없습니다.") : err));
 				ImGui::CloseCurrentPopup();
 				close_ = ToolCloseState::Closed;
 			}
 			ImGui::SameLine();
-			if (ImGui::Button(u8"直接關閉")) {
+			if (ImGui::Button(u8"바로 닫기")) {
 				ImGui::CloseCurrentPopup();
 				close_ = ToolCloseState::Closed;
 			}
 			ImGui::SameLine();
-			if (ImGui::Button(u8"取消")) {
+			if (ImGui::Button(u8"취소")) {
 				ImGui::CloseCurrentPopup();
 				// Cancelled, not Open: whoever asked (a tab's X, or the launcher
 				// closing every tab in turn) has to know the answer was no and give up,

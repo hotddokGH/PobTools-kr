@@ -44,8 +44,8 @@ void EdRunDeferredDialogs(EditorShell& s)
 				s.model.name = EdNarrow(slash == std::wstring::npos ? p : p.substr(slash + 1));
 				std::string err;
 				s.status = SaveFilter(s.model, &err)
-					? (u8"已儲存：" + s.model.name + u8"　※ 遊戲內要到 選項→遊戲→UI 重新選擇過濾器才會生效")
-					: (u8"儲存失敗：" + err);
+					? (u8"저장됨: " + s.model.name + u8"  ※ 게임 내 옵션 > 게임 > UI에서 필터를 다시 선택해야 적용됩니다.")
+					: (u8"저장 실패: " + err);
 			}
 			break;
 		}
@@ -55,11 +55,11 @@ void EdRunDeferredDialogs(EditorShell& s)
 			if (sel.empty()) break;
 			std::wstring p = EdFilterDialog(s.initialDir, true, s.hostHwnd);
 			if (!p.empty()) {
-				std::string frag = ExportCustomRules(s.model, sel, u8"自訂規則");
+				std::string frag = ExportCustomRules(s.model, sel, u8"사용자 지정 규칙");
 				std::string err;
 				s.status = SaveCustomRulesFile(p, frag, &err)
-					? (u8"已保存 " + std::to_string((int)sel.size()) + u8" 條自訂規則")
-					: (u8"保存失敗：" + err);
+					? (u8"사용자 지정 규칙 " + std::to_string((int)sel.size()) + u8"개를 저장했습니다.")
+					: (u8"저장 실패:" + err);
 			}
 			break;
 		}
@@ -70,8 +70,8 @@ void EdRunDeferredDialogs(EditorShell& s)
 				std::string frag(data.begin(), data.end());
 				std::string err;
 				int n = ImportCustomRules(s.doc, frag, &err);
-				s.status = (n < 0) ? (u8"導入失敗：" + err)
-				         : (u8"已導入 " + std::to_string(n) + u8" 條規則到自訂區（未儲存）");
+				s.status = (n < 0) ? (u8"가져오기 실패: " + err)
+				         : (u8"사용자 지정 영역으로 규칙 " + std::to_string(n) + u8"개를 가져왔습니다(저장되지 않음)." );
 			}
 			break;
 		}
@@ -89,12 +89,12 @@ void EdRunDeferredDialogs(EditorShell& s)
 void EditorShell::OpenByPath(const std::wstring& path, bool force)
 {
 	if (model.dirty && !force) {
-		status = u8"※ 有未儲存變更，請先「儲存」或「重新載入」捨棄後再切換。";
+		status = u8"※ 저장되지 않은 변경 사항이 있습니다. 전환하기 전에 저장하거나 다시 불러와 변경을 버리세요.";
 		return;
 	}
 	bool ok = false;
 	FilterFile f = LoadFilter(path, &ok);
-	if (!ok) { status = u8"讀取失敗：" + EdNarrow(path); return; }
+	if (!ok) { status = u8"읽기 실패: " + EdNarrow(path); return; }
 	model = std::move(f);
 	loaded = true;
 	selectedBlock = model.blocks.empty() ? -1 : 0;
@@ -102,7 +102,7 @@ void EditorShell::OpenByPath(const std::wstring& path, bool force)
 	selAnchor = BlockAnchor{};
 	batchMode = false;
 	batchSel.clear();
-	status = std::to_string(model.blocks.size()) + u8" 個規則區塊 · " + model.name;
+	status = std::to_string(model.blocks.size()) + u8"개 규칙 블록 · " + model.name;
 }
 
 // ---- settings persistence (pob-zh.ini [PobTools]) ---------------------------
@@ -131,16 +131,16 @@ void DrawTopToolbar(EditorShell& s)
 	const float scale = s.scale;
 
 	ImGui::AlignTextToFramePadding();
-	ImGui::TextColored(PobUi::Accent(), u8"過濾器工作台");
+	ImGui::TextColored(PobUi::Accent(), u8"필터 작업대");
 	ImGui::SameLine(0, 18 * scale);
 	ImGui::SetNextItemWidth(300 * scale);
 	{
-		std::string preview = s.loaded ? s.model.name : u8"選擇過濾器…";
+		std::string preview = s.loaded ? s.model.name : u8"필터를 선택하세요...";
 		if (ImGui::BeginCombo("##file", preview.c_str())) {
 			if (s.fileList.empty())
-				ImGui::TextDisabled(u8"在 Documents\\My Games\\Path of Exile\\ 找不到 .filter");
+				ImGui::TextDisabled(u8"Documents\\My Games\\Path of Exile\\에서 .filter 파일을 찾을 수 없습니다.");
 			for (const FilterListEntry& e : s.fileList) {
-				std::string label = e.name + (e.inItemFilters ? u8"  （ItemFilters）" : "");
+				std::string label = e.name + (e.inItemFilters ? u8"  (ItemFilters)" : "");
 				bool sel = s.loaded && e.path == s.model.path;
 				if (ImGui::Selectable(label.c_str(), sel)) s.OpenByPath(e.path, false);
 			}
@@ -148,45 +148,45 @@ void DrawTopToolbar(EditorShell& s)
 		}
 	}
 	ImGui::SameLine();
-	if (ImGui::Button(u8"開啟檔案…")) s.pendingDialog = EdDialog::OpenFilter;
+	if (ImGui::Button(u8"파일 열기...")) s.pendingDialog = EdDialog::OpenFilter;
 	ImGui::SameLine();
-	if (ImGui::Button(u8"重新整理列表")) { s.fileList = ListFilters(); }
+	if (ImGui::Button(u8"목록 재구성")) { s.fileList = ListFilters(); }
 
 	ImGui::SameLine(0, 20 * scale);
 	ImGui::BeginDisabled(!s.loaded || !s.model.dirty);
 	PobUi::PushPrimaryButton();
-	if (ImGui::Button(s.model.dirty ? u8"儲存 *" : u8"儲存")) {
+	if (ImGui::Button(s.model.dirty ? u8"저장 *" : u8"저장")) {
 		std::string err;
 		s.status = SaveFilter(s.model, &err)
-			? (u8"已儲存：" + s.model.name + u8"　※ 遊戲內要到 選項→遊戲→UI 重新選擇過濾器才會生效")
-			: (u8"儲存失敗：" + err);
+			? (u8"저장됨: " + s.model.name + u8"  ※ 게임 내 옵션 > 게임 > UI에서 필터를 다시 선택해야 적용됩니다.")
+			: (u8"저장 실패: " + err);
 	}
 	PobUi::PopButtonStyle();
 	ImGui::EndDisabled();
 	ImGui::SameLine();
 	ImGui::BeginDisabled(!s.loaded);
-	if (ImGui::Button(u8"另存為…")) s.pendingDialog = EdDialog::SaveFilterAs;
+	if (ImGui::Button(u8"다른 이름으로 저장...")) s.pendingDialog = EdDialog::SaveFilterAs;
 	ImGui::SameLine();
-	if (ImGui::Button(u8"重新載入")) { if (!s.model.path.empty()) s.OpenByPath(s.model.path, true); }
+	if (ImGui::Button(u8"다시 불러오기")) { if (!s.model.path.empty()) s.OpenByPath(s.model.path, true); }
 
 	// --- 批量修改 / 自訂規則匯出入 ---
 	ImGui::Spacing();
-	ImGui::TextDisabled(u8"規則工具");
+	ImGui::TextDisabled(u8"규칙 도구");
 	ImGui::SameLine(0, 14 * scale);
 	bool batchOn = s.batchMode;
 	if (batchOn) ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.39f, 0.40f, 0.95f, 0.70f));
-	if (ImGui::Button(u8"批量修改")) s.batchMode = !s.batchMode;
+	if (ImGui::Button(u8"대량 변경")) s.batchMode = !s.batchMode;
 	if (batchOn) ImGui::PopStyleColor();
-	if (ImGui::IsItemHovered()) ImGui::SetTooltip(u8"開啟後可在左側清單勾選多條規則，一次套用樣式");
+	if (ImGui::IsItemHovered()) ImGui::SetTooltip(u8"왼쪽 목록에서 여러 규칙을 선택해 스타일을 한 번에 적용합니다.");
 
 	ImGui::SameLine();
-	if (ImGui::Button(u8"保存自定義")) {
+	if (ImGui::Button(u8"사용자 지정 저장")) {
 		std::vector<int> sel;
 		if (s.batchMode)
 			for (int i = 0; i < (int)s.batchSel.size(); i++) { if (s.batchSel[i]) sel.push_back(i); }
 		if (sel.empty() && s.selectedBlock >= 0) sel.push_back(s.selectedBlock);
 		if (sel.empty()) {
-			s.status = u8"請先選取（或批量勾選）要保存的規則。";
+			s.status = u8"저장할 규칙을 선택하세요.";
 		} else {
 			// Carried to the deferred step: the selection can change between the
 			// click and the dialog closing, and what was exported has to be what was
@@ -195,11 +195,11 @@ void DrawTopToolbar(EditorShell& s)
 			s.pendingDialog = EdDialog::ExportCustom;
 		}
 	}
-	if (ImGui::IsItemHovered()) ImGui::SetTooltip(u8"把選取的規則匯出成獨立檔，可在其他過濾器導入");
+	if (ImGui::IsItemHovered()) ImGui::SetTooltip(u8"선택한 규칙을 별도 파일로 내보내 다른 필터에서 가져올 수 있습니다.");
 
 	ImGui::SameLine();
-	if (ImGui::Button(u8"導入自定義")) s.pendingDialog = EdDialog::ImportCustom;
-	if (ImGui::IsItemHovered()) ImGui::SetTooltip(u8"把匯出的自訂規則檔加入此過濾器最上方的自訂區");
+	if (ImGui::Button(u8"사용자 지정 가져오기")) s.pendingDialog = EdDialog::ImportCustom;
+	if (ImGui::IsItemHovered()) ImGui::SetTooltip(u8"내보낸 사용자 지정 규칙 파일을 이 필터의 최상단 사용자 지정 영역에 추가합니다.");
 	ImGui::EndDisabled();
 }
 
@@ -209,9 +209,9 @@ void DrawLeftNav(EditorShell& s)
 {
 	struct NavItem { Section sec; const char* label; };
 	static const NavItem items[] = {
-		{ Section::FilterEdit,  u8"過濾編輯" },
-		{ Section::DropPreview, u8"掉落預覽" },
-		{ Section::Sounds,      u8"音效管理" },
+		{ Section::FilterEdit,  u8"필터 편집" },
+		{ Section::DropPreview, u8"드롭 미리보기" },
+		{ Section::Sounds,      u8"사운드 관리" },
 	};
 	for (const NavItem& it : items) {
 		if (ImGui::Selectable(it.label, s.section == it.sec, 0, ImVec2(0, 30 * s.scale)))
@@ -225,13 +225,13 @@ void DrawStatusBar(EditorShell& s)
 {
 	ImGui::Separator();
 	if (!s.loaded) {
-		ImGui::TextDisabled(u8"請從上方選擇或開啟一個 POE1 .filter 檔（位於 Documents\\My Games\\Path of Exile\\）。");
+		ImGui::TextDisabled(u8"위에서 POE1 .filter 파일을 선택하거나 여세요(Documents\\My Games\\Path of Exile\\)." );
 		return;
 	}
 	int nShow = 0, nHide = 0;
 	for (const FilterBlock& b : s.model.blocks) (b.hide ? nHide : nShow)++;
 	const std::string& msg = s.status;
-	ImGui::TextDisabled(u8"%zu 規則  ·  %d 顯示  ·  %d 隱藏%s%s",
+	ImGui::TextDisabled(u8"%zu 규칙 · %d 표시 · %d 숨기기 %s%s",
 		s.model.blocks.size(), nShow, nHide,
 		msg.empty() ? "" : u8"  ·  ", msg.c_str());
 }

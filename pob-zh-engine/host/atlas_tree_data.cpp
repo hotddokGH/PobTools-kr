@@ -694,7 +694,7 @@ int RunAtlasSelfTest(const std::wstring& exeDir)
 		          f2.builds[0].alloc == f.builds[0].alloc,
 		          "multi-build schema round-trips");
 
-		AtlasBuildEntry src{ u8"測試專案", { 45343, 65225, 27659 } };
+		AtlasBuildEntry src{ u8"테스트 프로젝트", { 45343, 65225, 27659 } };
 		AtlasBuildEntry back;
 		std::string code = AtlasBuildShareCode(src, "test");
 		std::string perr;

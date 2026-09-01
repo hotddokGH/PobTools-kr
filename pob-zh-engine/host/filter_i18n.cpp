@@ -66,8 +66,9 @@ static void load_flat(const std::wstring& path, std::unordered_map<std::string, 
 
 void FilterI18n::Load(const std::wstring& exeDir, const std::string& locale)
 {
+	const bool koreanLocale = locale == "ko-KR";
 	// 1. Complete bundled TC item names (repoe-fork derived) — primary source.
-	load_flat(exeDir + L"Data\\filter_items_zh.json", names_);
+	if (!koreanLocale) load_flat(exeDir + L"Data\\filter_items_zh.json", names_);
 
 	// 2. Engine dictionaries fill anything the bundled set lacks (first value wins).
 	std::wstring dir = exeDir + L"Data\\poe1\\" + widen(locale) + L"\\";
@@ -113,7 +114,7 @@ void FilterI18n::Load(const std::wstring& exeDir, const std::string& locale)
 
 	// 5. Item-class Chinese labels: bundled repoe-fork map (complete) first, then
 	// the engine's item_metadata.json as a fallback.
-	load_flat(exeDir + L"Data\\item_classes_zh.json", classZh_);
+	if (!koreanLocale) load_flat(exeDir + L"Data\\item_classes_zh.json", classZh_);
 	// 5b. class id -> in-game English class name (what the Class condition matches).
 	load_flat(exeDir + L"Data\\item_classes_en.json", classEn_);
 	{
@@ -142,12 +143,18 @@ void FilterI18n::Load(const std::wstring& exeDir, const std::string& locale)
 				zhToEn("item_classes", zh_.itemClass);
 			} catch (...) {}
 		}
-		// Supplements for known gaps in item_metadata.json, verified against the
-		// GGPK snapshot (tools/ggpk_zh/db, version 1). emplace: the file wins.
-		zh_.header.emplace(u8"地圖階級", "Map Tier");          // clientstrings ItemDisplayMapTier
-		zh_.header.emplace(u8"堆疊數量", "Stack Size");        // clientstrings ItemDisplayStackSize
-		                                                       // (the file's 堆疊大小 is a stale alias)
-		zh_.itemClass.emplace(u8"深淵珠寶", "Abyss Jewels");   // itemclasses AbyssJewel .Name
+		// Supplements for known gaps in item_metadata.json. Keep both locale paths:
+		// the Korean public build uses the official Korean labels, while the legacy
+		// zh-rTW mode retains its original parser aliases as UTF-8 byte escapes.
+		if (koreanLocale) {
+			zh_.header.emplace(u8"지도 등급", "Map Tier");
+			zh_.header.emplace(u8"중첩 개수", "Stack Size");
+			zh_.itemClass.emplace(u8"심연 주얼", "Abyss Jewels");
+		} else {
+			zh_.header.emplace("\xe5\x9c\xb0\xe5\x9c\x96\xe9\x9a\x8e\xe7\xb4\x9a", "Map Tier");
+			zh_.header.emplace("\xe5\xa0\x86\xe7\x96\x8a\xe6\x95\xb8\xe9\x87\x8f", "Stack Size");
+			zh_.itemClass.emplace("\xe6\xb7\xb1\xe6\xb7\xb5\xe7\x8f\xa0\xe5\xaf\xb6", "Abyss Jewels");
+		}
 	}
 
 	loaded_ = !names_.empty() || !baseClass_.empty();
@@ -199,15 +206,15 @@ std::string FilterI18n::ClassNameZh(const std::string& enClass) const
 	// differ from item_metadata.json ("Bows", "One Hand Swords"), so use a built-in
 	// table covering exactly the 26 classes that appear in base_classes.json.
 	static const std::unordered_map<std::string, std::string> kZh = {
-		{ "Amulet", u8"項鍊" }, { "Belt", u8"腰帶" }, { "Body Armour", u8"胸甲" },
-		{ "Boots", u8"鞋子" }, { "Bow", u8"弓" }, { "Claw", u8"爪" }, { "Dagger", u8"匕首" },
-		{ "Fishing Rod", u8"魚竿" }, { "Flask", u8"藥劑" }, { "Gloves", u8"手套" },
-		{ "Graft", u8"移植物" }, { "Helmet", u8"頭盔" }, { "Jewel", u8"珠寶" },
-		{ "One Handed Axe", u8"單手斧" }, { "One Handed Mace", u8"單手鎚" },
-		{ "One Handed Sword", u8"單手劍" }, { "Quiver", u8"箭袋" }, { "Ring", u8"戒指" },
-		{ "Sceptre", u8"權杖" }, { "Shield", u8"盾" }, { "Staff", u8"長杖" },
-		{ "Tincture", u8"酊劑" }, { "Two Handed Axe", u8"雙手斧" },
-		{ "Two Handed Mace", u8"雙手鎚" }, { "Two Handed Sword", u8"雙手劍" }, { "Wand", u8"法杖" },
+		{ "Amulet", u8"목걸이" }, { "Belt", u8"허리띠" }, { "Body Armour", u8"갑옷" },
+		{ "Boots", u8"장화" }, { "Bow", u8"활" }, { "Claw", u8"클로" }, { "Dagger", u8"단검" },
+		{ "Fishing Rod", u8"낚싯대" }, { "Flask", u8"플라스크" }, { "Gloves", u8"장갑" },
+		{ "Graft", u8"접목물" }, { "Helmet", u8"투구" }, { "Jewel", u8"주얼" },
+		{ "One Handed Axe", u8"한손 도끼" }, { "One Handed Mace", u8"한손 철퇴" },
+		{ "One Handed Sword", u8"한손 검" }, { "Quiver", u8"화살통" }, { "Ring", u8"반지" },
+		{ "Sceptre", u8"셉터" }, { "Shield", u8"방패" }, { "Staff", u8"지팡이" },
+		{ "Tincture", u8"팅크" }, { "Two Handed Axe", u8"양손 도끼" },
+		{ "Two Handed Mace", u8"양손 철퇴" }, { "Two Handed Sword", u8"양손 검" }, { "Wand", u8"마법봉" },
 	};
 	auto it = kZh.find(enClass);
 	if (it != kZh.end()) return it->second;
@@ -224,99 +231,99 @@ std::string FilterI18n::ClassNameZh(const std::string& enClass) const
 static const char* ns_type_seg_zh(const std::string& seg)
 {
 	static const std::unordered_map<std::string, const char*> k = {
-		{ "3l", u8"三連" }, { "4l", u8"四連" }, { "6l", u8"六連" },
-		{ "abyss", u8"深淵" },
-		{ "act1", u8"第一章" }, { "act2", u8"第二章" }, { "otheracts", u8"其他章節" },
-		{ "all", u8"全部" },
-		{ "amuring", u8"項鍊戒指" }, { "belts", u8"腰帶" },
-		{ "animatedweapons", u8"幻化武器" },
-		{ "anyremaining", u8"其餘所有" }, { "remaining", u8"其餘" },
-		{ "archer", u8"弓系" }, { "caster", u8"法系" },
-		{ "melee1h", u8"單手近戰" }, { "melee2h", u8"雙手近戰" },
-		{ "minion", u8"召喚" }, { "universal", u8"通用" },
-		{ "armours", u8"防具" },
-		{ "artefact", u8"古物" }, { "sanctifiedrelics", u8"神化聖物" },
-		{ "blighted", u8"凋落" },
-		{ "breachrings", u8"裂痕戒指" },
-		{ "chancing", u8"機會石基底" },
-		{ "cluster", u8"星團珠寶" }, { "clustereco", u8"星團珠寶·高價" },
-		{ "corpses", u8"屍體" },
-		{ "corruptedid", u8"汙染已鑑定" }, { "corruptedimplicit", u8"汙染固定詞綴" },
-		{ "corruptedspecial", u8"特殊汙染" }, { "corruptions", u8"汙染" },
-		{ "crafting", u8"製作" }, { "normalcraft", u8"普通製作" },
-		{ "qualityperfection", u8"高品質" }, { "expensive", u8"高價" },
-		{ "crucible", u8"坩堝" },
-		{ "currency", u8"通貨" },
-		{ "decorators", u8"分隔線" },
-		{ "deliriumorbs", u8"譫妄玉" },
-		{ "divination", u8"命運卡" },
-		{ "droppeditems", u8"掉落裝備" },
-		{ "eater", u8"吞噬天地" }, { "exarch", u8"灼烙總督" },
-		{ "enchanted", u8"附魔" },
-		{ "endgameflasks", u8"終局藥劑" }, { "endgamergb", u8"終局三色" },
-		{ "endgametinctures", u8"終局萃取物" },
-		{ "essence", u8"精髓" },
-		{ "event", u8"活動" }, { "idols", u8"魔偶" },
-		{ "exceptional", u8"特級" },
-		{ "exotic", u8"特異" }, { "exotics", u8"特異物品" },
-		{ "exoticbases", u8"特異基底" }, { "exoticbaseslower", u8"特異基底·低" },
-		{ "exoticmap", u8"特異地圖" }, { "exoticmods", u8"特異詞綴" },
-		{ "expedition", u8"探險" }, { "logbook", u8"探險日誌" },
-		{ "extra", u8"額外" },
-		{ "firstlevels", u8"開荒初期" },
-		{ "flasks", u8"藥劑" }, { "life", u8"生命" }, { "mana", u8"魔力" },
-		{ "hybrid", u8"複合" }, { "utility", u8"功能" }, { "quality", u8"品質" },
-		{ "fossil", u8"化石" },
-		{ "foulborn", u8"穢生" },
-		{ "fractured", u8"破裂" },
-		{ "fragments", u8"碎片" }, { "scarabs", u8"聖甲蟲" },
-		{ "gear", u8"裝備" }, { "generalgear", u8"一般裝備" },
-		{ "gems", u8"寶石" }, { "generic", u8"一般" }, { "special", u8"特殊" },
-		{ "gold", u8"金幣" },
-		{ "harvest", u8"豐收" },
-		{ "heist", u8"劫盜" }, { "heisttarget", u8"劫盜目標" },
-		{ "cloak", u8"披風" }, { "brooch", u8"胸針" }, { "tool", u8"工具" },
-		{ "contract", u8"契約書" }, { "blueprint", u8"藍圖" },
-		{ "hidelayer", u8"隱藏層" }, { "maphiders", u8"地圖隱藏" },
-		{ "implicitmod", u8"固定詞綴" },
-		{ "incubators", u8"培育器" },
-		{ "influenced", u8"影響裝備" },
-		{ "jewels", u8"珠寶" },
-		{ "leagueexclusive", u8"賽季限定" },
-		{ "leveling", u8"練等" }, { "levelingstacked", u8"練等堆疊" },
-		{ "magic", u8"魔法" }, { "magicid", u8"魔法已鑑定" },
-		{ "rare", u8"稀有" }, { "rareid", u8"稀有已鑑定" },
-		{ "rareblendid", u8"稀有混合鑑定" }, { "rareeg", u8"稀有·終局" },
-		{ "rareoptional", u8"稀有·可選" },
-		{ "rr", u8"終局稀有裝備" },
-		{ "memorystrand", u8"記憶絲縷" },
-		{ "normalmagic", u8"普通魔法" },
-		{ "maps", u8"地圖" }, { "nightmare", u8"夢魘" }, { "vaaltemple", u8"瓦爾神殿" },
-		{ "misc", u8"雜項" }, { "miscendgamerules", u8"終局雜項" },
-		{ "miscmapitems", u8"地圖雜項" }, { "miscmapitemsextra", u8"地圖雜項·額外" },
-		{ "oil", u8"油瓶" },
-		{ "omen", u8"預兆" }, { "trial", u8"試煉" }, { "tattoo", u8"紋身" },
-		{ "others", u8"其他" },
-		{ "questlike", u8"任務物品" }, { "questlikeexception", u8"任務物品·例外" },
-		{ "replicas", u8"贗品" },
-		{ "rgb", u8"三色連結" },
-		{ "runesgrafts", u8"符文之結" },
-		{ "sanctum", u8"聖域" },
-		{ "simulacrum", u8"幻像" },
-		{ "sockets", u8"插槽" }, { "socketslinks", u8"插槽連結" },
-		{ "splinter", u8"裂片" },
-		{ "stacked", u8"堆疊" }, { "stackedsix", u8"堆疊·六張" }, { "stackedthree", u8"堆疊·三張" },
-		{ "stackedsplintershigh", u8"堆疊裂片·高" }, { "stackedsplinterslow", u8"堆疊裂片·低" },
-		{ "stackedsupplieshigh", u8"堆疊補給·高" }, { "stackedsupplieslow", u8"堆疊補給·低" },
-		{ "stackedsuppliesportal", u8"堆疊傳送門" }, { "stackedsupplieswisdom", u8"堆疊知識卷軸" },
-		{ "synthesised", u8"追憶" },
-		{ "talisman", u8"魔符" },
-		{ "tincture", u8"萃取物" },
-		{ "uniques", u8"傳奇" },
-		{ "veiled", u8"隱匿" },
-		{ "vials", u8"祭罈" },
-		{ "wandprogression", u8"法杖成長" }, { "weaponprogression", u8"武器成長" },
-		{ "wombgifts", u8"胎贈" },
+		{ "3l", u8"3링크" }, { "4l", u8"4링크" }, { "6l", u8"6링크" },
+		{ "abyss", u8"심연" },
+		{ "act1", u8"1장" }, { "act2", u8"2장" }, { "otheracts", u8"기타 장" },
+		{ "all", u8"모두" },
+		{ "amuring", u8"목걸이·반지" }, { "belts", u8"허리띠" },
+		{ "animatedweapons", u8"기동된 무기" },
+		{ "anyremaining", u8"나머지 모두" }, { "remaining", u8"나머지" },
+		{ "archer", u8"활" }, { "caster", u8"시전자" },
+		{ "melee1h", u8"한손 근접" }, { "melee2h", u8"양손 근접" },
+		{ "minion", u8"소환수" }, { "universal", u8"공통" },
+		{ "armours", u8"방어구" },
+		{ "artefact", u8"유물" }, { "sanctifiedrelics", u8"성역 유물" },
+		{ "blighted", u8"역병 걸린" },
+		{ "breachrings", u8"균열 반지" },
+		{ "chancing", u8"기회의 오브 베이스" },
+		{ "cluster", u8"스킬 군 주얼" }, { "clustereco", u8"고가 스킬 군 주얼" },
+		{ "corpses", u8"시신" },
+		{ "corruptedid", u8"감정된 타락 아이템" }, { "corruptedimplicit", u8"타락 고정 속성" },
+		{ "corruptedspecial", u8"특수 타락" }, { "corruptions", u8"타락" },
+		{ "crafting", u8"제작" }, { "normalcraft", u8"일반 제작" },
+		{ "qualityperfection", u8"고퀄리티" }, { "expensive", u8"고가" },
+		{ "crucible", u8"시련" },
+		{ "currency", u8"화폐" },
+		{ "decorators", u8"구분선" },
+		{ "deliriumorbs", u8"환영의 오브" },
+		{ "divination", u8"점술 카드" },
+		{ "droppeditems", u8"드롭 장비" },
+		{ "eater", u8"세계 포식자" }, { "exarch", u8"작열의 총주교" },
+		{ "enchanted", u8"인챈트" },
+		{ "endgameflasks", u8"엔드게임 플라스크" }, { "endgamergb", u8"엔드게임 3색 링크" },
+		{ "endgametinctures", u8"엔드게임 팅크" },
+		{ "essence", u8"에센스" },
+		{ "event", u8"이벤트" }, { "idols", u8"우상" },
+		{ "exceptional", u8"특출난" },
+		{ "exotic", u8"특이" }, { "exotics", u8"특이 아이템" },
+		{ "exoticbases", u8"특이 베이스" }, { "exoticbaseslower", u8"저가 특이 베이스" },
+		{ "exoticmap", u8"특이 지도" }, { "exoticmods", u8"특이 속성" },
+		{ "expedition", u8"탐험" }, { "logbook", u8"탐험 일지" },
+		{ "extra", u8"추가" },
+		{ "firstlevels", u8"초반 레벨링" },
+		{ "flasks", u8"플라스크" }, { "life", u8"생명력" }, { "mana", u8"마나" },
+		{ "hybrid", u8"하이브리드" }, { "utility", u8"보조" }, { "quality", u8"퀄리티" },
+		{ "fossil", u8"화석" },
+		{ "foulborn", u8"사악한 탄생" },
+		{ "fractured", u8"분열" },
+		{ "fragments", u8"조각" }, { "scarabs", u8"갑충석" },
+		{ "gear", u8"장비" }, { "generalgear", u8"일반 장비" },
+		{ "gems", u8"젬" }, { "generic", u8"일반" }, { "special", u8"특별" },
+		{ "gold", u8"골드" },
+		{ "harvest", u8"수확" },
+		{ "heist", u8"강탈" }, { "heisttarget", u8"강탈 대상" },
+		{ "cloak", u8"망토" }, { "brooch", u8"브로치" }, { "tool", u8"도구" },
+		{ "contract", u8"계약" }, { "blueprint", u8"도면" },
+		{ "hidelayer", u8"레이어 숨기기" }, { "maphiders", u8"지도 숨기기" },
+		{ "implicitmod", u8"고정 속성" },
+		{ "incubators", u8"인큐베이터" },
+		{ "influenced", u8"영향받은 장비" },
+		{ "jewels", u8"주얼" },
+		{ "leagueexclusive", u8"리그 전용" },
+		{ "leveling", u8"레벨링" }, { "levelingstacked", u8"레벨링 묶음" },
+		{ "magic", u8"마법" }, { "magicid", u8"감정된 마법" },
+		{ "rare", u8"희귀" }, { "rareid", u8"감정된 희귀" },
+		{ "rareblendid", u8"감정된 혼합 희귀" }, { "rareeg", u8"엔드게임 희귀" },
+		{ "rareoptional", u8"선택 희귀" },
+		{ "rr", u8"엔드게임 희귀 장비" },
+		{ "memorystrand", u8"기억 가닥" },
+		{ "normalmagic", u8"일반·마법" },
+		{ "maps", u8"지도" }, { "nightmare", u8"악몽" }, { "vaaltemple", u8"바알 사원" },
+		{ "misc", u8"기타" }, { "miscendgamerules", u8"엔드게임 기타 규칙" },
+		{ "miscmapitems", u8"기타 지도 아이템" }, { "miscmapitemsextra", u8"추가 지도 아이템" },
+		{ "oil", u8"오일" },
+		{ "omen", u8"징조" }, { "trial", u8"시련" }, { "tattoo", u8"문신" },
+		{ "others", u8"기타" },
+		{ "questlike", u8"퀘스트 아이템" }, { "questlikeexception", u8"퀘스트 아이템 예외" },
+		{ "replicas", u8"모조품" },
+		{ "rgb", u8"3색 링크" },
+		{ "runesgrafts", u8"룬·접목물" },
+		{ "sanctum", u8"성역" },
+		{ "simulacrum", u8"복제된 영토" },
+		{ "sockets", u8"홈" }, { "socketslinks", u8"홈·연결" },
+		{ "splinter", u8"조각" },
+		{ "stacked", u8"묶음" }, { "stackedsix", u8"6장 묶음" }, { "stackedthree", u8"3장 묶음" },
+		{ "stackedsplintershigh", u8"고가 조각 묶음" }, { "stackedsplinterslow", u8"저가 조각 묶음" },
+		{ "stackedsupplieshigh", u8"고가 보급품 묶음" }, { "stackedsupplieslow", u8"저가 보급품 묶음" },
+		{ "stackedsuppliesportal", u8"포탈 주문서 묶음" }, { "stackedsupplieswisdom", u8"감정 주문서 묶음" },
+		{ "synthesised", u8"결합" },
+		{ "talisman", u8"부적" },
+		{ "tincture", u8"팅크" },
+		{ "uniques", u8"고유" },
+		{ "veiled", u8"장막" },
+		{ "vials", u8"약병" },
+		{ "wandprogression", u8"마법봉 성장" }, { "weaponprogression", u8"무기 성장" },
+		{ "wombgifts", u8"태생의 선물" },
 	};
 	auto it = k.find(seg);
 	return it == k.end() ? nullptr : it->second;
@@ -325,8 +332,8 @@ static const char* ns_type_seg_zh(const std::string& seg)
 static std::string ns_tier_seg_zh(const std::string& seg)
 {
 	static const std::unordered_map<std::string, const char*> k = {
-		{ "any", u8"任意" }, { "restex", u8"其餘" }, { "general", u8"通用" },
-		{ "final", u8"最終" }, { "anyhigh", u8"任意·高" },
+		{ "any", u8"모든" }, { "restex", u8"나머지" }, { "general", u8"일반" },
+		{ "final", u8"최종" }, { "anyhigh", u8"고등급" },
 	};
 	auto it = k.find(seg);
 	if (it != k.end()) return it->second;

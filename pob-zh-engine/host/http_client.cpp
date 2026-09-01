@@ -101,13 +101,13 @@ bool HttpsClient::Get(const std::wstring& path, std::vector<unsigned char>& out,
 		return false;
 	};
 	out.clear();
-	if (!hConnect_) return fail(u8"HTTPS 連線初始化失敗");
+	if (!hConnect_) return fail(u8"HTTPS 연결 초기화에 실패했습니다." );
 
 	// paths arrive pre-encoded (%20 etc.); disable WinHTTP's re-escaping
 	HINTERNET hReq = WinHttpOpenRequest((HINTERNET)hConnect_, L"GET", path.c_str(), nullptr,
 		WINHTTP_NO_REFERER, WINHTTP_DEFAULT_ACCEPT_TYPES,
 		WINHTTP_FLAG_SECURE | WINHTTP_FLAG_ESCAPE_DISABLE);
-	if (!hReq) return fail(u8"建立 HTTP 請求失敗");
+	if (!hReq) return fail(u8"HTTP 요청 생성에 실패했습니다." );
 
 	bool ok = false;
 	std::string reason;
@@ -127,9 +127,9 @@ bool HttpsClient::Get(const std::wstring& path, std::vector<unsigned char>& out,
 			}
 			DWORD avail = 0;
 			do {
-				if (cancel && cancel->load()) { ok = false; reason = u8"已取消"; break; }
+				if (cancel && cancel->load()) { ok = false; reason = u8"취소되었습니다."; break; }
 				avail = 0;
-				if (!WinHttpQueryDataAvailable(hReq, &avail)) { ok = false; reason = u8"讀取回應失敗"; break; }
+				if (!WinHttpQueryDataAvailable(hReq, &avail)) { ok = false; reason = u8"응답 읽기에 실패하였습니다."; break; }
 				if (avail == 0) break;
 				size_t off = out.size();
 				out.resize(off + avail);
@@ -137,18 +137,18 @@ bool HttpsClient::Get(const std::wstring& path, std::vector<unsigned char>& out,
 				if (!WinHttpReadData(hReq, out.data() + off, avail, &rd)) {
 					out.resize(off);
 					ok = false;
-					reason = u8"讀取回應失敗";
+					reason = u8"응답 읽기에 실패하였습니다.";
 					break;
 				}
 				out.resize(off + rd);
 				if (onProgress) onProgress(out.size(), total);
 			} while (avail > 0);
-			if (ok && out.empty()) { ok = false; reason = u8"回應為空"; }
+			if (ok && out.empty()) { ok = false; reason = u8"응답이 비어 있습니다."; }
 		} else {
 			reason = "HTTP " + std::to_string(code) + ": " + narrow(path);
 		}
 	} else {
-		reason = u8"連線失敗（網路無法使用？）: " + narrow(path);
+		reason = u8"연결 실패(네트워크를 사용할 수 없는지 확인하세요): " + narrow(path);
 	}
 	WinHttpCloseHandle(hReq);
 	if (!ok) {

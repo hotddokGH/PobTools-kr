@@ -173,7 +173,7 @@ int RunLauncherStringsExport(const std::wstring& exeDir)
 	// What the launcher's language picker shows. Optional: a folder without it
 	// falls back to its own name, which is how a translator can add a language
 	// with nothing but a folder and a load_order.
-	meta["display_name"] = u8"繁體中文";
+	meta["display_name"] = u8"중국어 번체";
 	meta["source"] = "launcher";
 	meta["load_order"] = ordered_json::array({ "launcher.json" });
 
@@ -265,13 +265,13 @@ int RunLauncherStringsSelfTest(const std::wstring& exeDir)
 	// L3 -- partial overlay: the named field changes, the others stay compiled.
 	{
 		ordered_json e = ordered_json::object();
-		e[STR_EN.tabHome] = "首頁測試";
+		e[STR_EN.tabHome] = "본 페이지 테스트";
 		ordered_json d = ordered_json::object();
 		d["entries"] = e;
 		put_overlay(root, d.dump(2));
 		LauncherStringStore st = LoadLauncherStrings(root, L"zh-rTW");
 		bool ok = st.fileFound && st.overridden == 1 &&
-		          std::string(st.s.tabHome) == "首頁測試" &&
+		          std::string(st.s.tabHome) == "본 페이지 테스트" &&
 		          st.s.tabSettings == STR_ZHTW.tabSettings &&
 		          st.s.title == STR_ZHTW.title;
 		check("L3 partial overlay leaves untouched fields on the compiled string", ok,
@@ -385,9 +385,9 @@ int RunLauncherStringsSelfTest(const std::wstring& exeDir)
 			try { doc = ordered_json::parse(content); } catch (...) { ok = false; }
 		}
 		if (ok) {
-			doc["entries"][STR_EN.tabHome] = "譯者改過的主畫面";
+			doc["entries"][STR_EN.tabHome] = "번역가 변경한 메인 화면";
 			doc["entries"].erase(STR_EN.font);
-			doc["entries"]["A string only an older build had"] = "孤兒";
+			doc["entries"]["A string only an older build had"] = "고아";
 			ok = write_file_bytes(file, doc.dump(2));
 		}
 
@@ -401,11 +401,11 @@ int RunLauncherStringsSelfTest(const std::wstring& exeDir)
 		std::string why;
 		if (ok) {
 			const ordered_json& e = doc2["entries"];
-			if (e.value(STR_EN.tabHome, std::string()) != "譯者改過的主畫面")
+			if (e.value(STR_EN.tabHome, std::string()) != "번역가 변경한 메인 화면")
 				why = "edited value was reverted";
 			else if (e.value(STR_EN.font, std::string()) != STR_ZHTW.font)
 				why = "missing key was not filled in";
-			else if (e.value("A string only an older build had", std::string()) != "孤兒")
+			else if (e.value("A string only an older build had", std::string()) != "고아")
 				why = "orphaned key was dropped";
 		}
 		check("L10 re-export keeps the translator's values, fills gaps, keeps orphans",

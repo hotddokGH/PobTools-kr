@@ -88,7 +88,7 @@ bool TJDataset::Load(const std::wstring& jsonPath, std::string* err)
 {
 	std::string content;
 	if (!read_file_bytes(jsonPath, content)) {
-		if (err) *err = u8"找不到 timeless_jewels.json";
+		if (err) *err = u8"timeless_jewels.json을 찾을 수 없습니다.";
 		return false;
 	}
 	try {
@@ -137,7 +137,7 @@ bool TJDataset::Load(const std::wstring& jsonPath, std::string* err)
 		for (auto& e : doc["nodes"]) nodes.push_back(e.is_null() ? TJEntry{} : parse_entry(e));
 		return true;
 	} catch (const std::exception& ex) {
-		if (err) *err = std::string(u8"解析 timeless_jewels.json 失敗: ") + ex.what();
+		if (err) *err = std::string(u8"timeless_jewels.json 분석 실패: ") + ex.what();
 		return false;
 	}
 }
@@ -503,15 +503,15 @@ TJTransform TJApply(const TJDataset& ds, const std::string& blob,
 			return false;
 		};
 		if (cq == "karui")
-			lit(attr ? "+2 to Strength" : "+4 to Strength", attr ? u8"+2 力量" : u8"+4 力量");
+			lit(attr ? "+2 to Strength" : "+4 to Strength", attr ? u8"+2 힘" : u8"+4 힘");
 		else if (cq == "maraketh")
-			lit(attr ? "+2 to Dexterity" : "+4 to Dexterity", attr ? u8"+2 敏捷" : u8"+4 敏捷");
+			lit(attr ? "+2 to Dexterity" : "+4 to Dexterity", attr ? u8"+2 민첩" : u8"+4 민첩");
 		else if (cq == "kalguur")
 			lit(attr ? "1% increased Ward" : "2% increased Ward",
-			    attr ? u8"增加 1% 保護" : u8"增加 2% 保護");
+			    attr ? u8"보호 1% 증가" : u8"보호 2% 증가");
 		else if (cq == "templar") {
 			if (attr) replaceWith("templar_devotion_node");
-			else lit("+5 to Devotion", u8"+5 奉獻");
+			else lit("+5 to Devotion", u8"+5 헌정");
 		} else if (cq == "eternal") {
 			replaceWith("eternal_small_blank"); // smalls go blank under Elegant Hubris
 		}
@@ -766,7 +766,7 @@ bool TJLoadBin(const std::wstring& exeDir, const TJDataset& ds, int jewelType,
                std::string& out, std::string* err)
 {
 	auto it = ds.types.find(jewelType);
-	if (it == ds.types.end()) { if (err) *err = u8"未知珠寶型別"; return false; }
+	if (it == ds.types.end()) { if (err) *err = u8"알 수 없는 주얼 유형"; return false; }
 	// LUT file stem: the jewel name without spaces, unless the dataset maps this
 	// type elsewhere (the Abyss LUTs are named after the Abyssal Lord).
 	auto itBin = ds.binNames.find(jewelType);
@@ -777,7 +777,7 @@ bool TJLoadBin(const std::wstring& exeDir, const TJDataset& ds, int jewelType,
 	for (char c : stem) if (c != ' ') { nameA.push_back(c); nameW.push_back((wchar_t)(unsigned char)c); }
 	std::wstring pobDir = FindPoe1Dir(exeDir);
 	if (pobDir.empty()) {
-		if (err) *err = u8"找不到 PoE1 版 POB 資料夾(需放在 pob-zh.exe 旁,名稱不限,內含 Launch.lua)";
+		if (err) *err = u8"PoE1 POB 폴더를 찾을 수 없습니다(pob-zh.exe 옆의 이름이 자유로운 폴더이며 Launch.lua가 있어야 함).";
 		return false;
 	}
 	std::wstring base = pobDir + L"Data\\TimelessJewelData\\" + nameW;
@@ -820,8 +820,7 @@ bool TJLoadBin(const std::wstring& exeDir, const TJDataset& ds, int jewelType,
 	}
 	if (binTime && read_file_bytes(base + L".bin", out))
 		return true; // stale, but better than nothing if the .zip is unreadable
-	if (err) *err = u8"找不到 " + nameA +
-	                u8".bin/.zip(需要旁邊有 PoE1 版 POB,且該珠寶的查表檔存在)";
+	if (err) *err = nameA + u8".bin/.zip 파일을 찾을 수 없습니다(옆에 PoE1 POB와 해당 주얼의 조회 테이블 파일이 있어야 함).";
 	return false;
 }
 
@@ -919,7 +918,7 @@ int RunTimelessJewelSelfTest(const std::wstring& exeDir)
 		bool tok = t.ok && !t.lines.empty() && t.lines[0] == "20% increased Damage with Poison";
 		check(tok, "TJApply BR 500 node6 stat line (en)",
 		      t.lines.empty() ? "(no lines)" : t.lines[0]);
-		bool tzh = !t.linesZh.empty() && t.linesZh[0] == u8"增加 20% 中毒傷害";
+		bool tzh = !t.linesZh.empty() && t.linesZh[0] == u8"중독 피해 20% 증가";
 		check(tzh, "TJApply BR 500 node6 stat line (zh)",
 		      t.linesZh.empty() ? "(no zh)" : t.linesZh[0]);
 
@@ -963,7 +962,7 @@ int RunTimelessJewelSelfTest(const std::wstring& exeDir)
 			TJSearchQuery qm = q;
 			qm.wants[0].minValue = 1000.0;
 			check(TJSearch(ds, blob, qm, 0, nullptr).empty(),
-			      "an unreachable 最小值 rejects every seed");
+			      "an unreachable 최소 값은 모든 씨앗을 거절합니다.");
 
 			// The poison template always grants 20, so any threshold either keeps
 			// every seed or none and "the set shrank" would be vacuously true.
@@ -1013,7 +1012,7 @@ int RunTimelessJewelSelfTest(const std::wstring& exeDir)
 					lost += it->second - h.matches;
 				}
 				check(!loose.empty() && !tight.empty() && neverGrew && lost > 0,
-				      "最小值 drops the under-minimum nodes from each seed's score",
+				      "최소 값은 각 씨앗의 점수에서 최소 점수 이하의 노드를 드롭합니다.",
 				      splitTmpl + " [" + std::to_string((int)slo) + ".." + std::to_string((int)shi) +
 				      "] " + std::to_string(lost) + " node hits removed across " +
 				      std::to_string(tight.size()) + " seeds");
@@ -1040,7 +1039,7 @@ int RunTimelessJewelSelfTest(const std::wstring& exeDir)
 			bool allAbove = true;
 			for (const auto& h : floored) allAbove = allAbove && h.weight >= qt.minTotalWeight;
 			check(allAbove && !floored.empty() && floored.size() < all.size(),
-			      "最小總權重 splits the population by score",
+			      "최소 총 힘은 population by score를 나눕니다.",
 			      std::to_string(floored.size()) + " of " + std::to_string(all.size()) +
 			      " above " + std::to_string(qt.minTotalWeight));
 
@@ -1068,7 +1067,7 @@ int RunTimelessJewelSelfTest(const std::wstring& exeDir)
 				check(anyHadPartial, "without the flag, partial seeds do get through",
 				      std::to_string(any.size()) + " seeds");
 				check(allCovered && both.size() < any.size(),
-				      "必須包含全部已選詞綴 drops the partial ones",
+				      "선택한 모든 속성 부여를 포함해야 합니다.",
 				      std::to_string(both.size()) + " of " + std::to_string(any.size()));
 
 				// The case the user actually hits: a jewel socket sees ~20 notables,
@@ -1113,9 +1112,9 @@ int RunTimelessJewelSelfTest(const std::wstring& exeDir)
 			std::vector<TJWantStat> w{ { "#% increased Damage with Poison", 25.0, 1.0 } };
 			TJWantMatcher m(w);
 			check(m.Match("30% increased Damage with Poison") != nullptr,
-			      "matcher accepts a roll at or above 最小值");
+			      "matcher accepts a roll at or above 최소 점수");
 			check(m.Match("20% increased Damage with Poison") == nullptr,
-			      "matcher rejects a roll below 最小值");
+			      "matcher rejects a roll below 최소 점수");
 			check(m.Match("30% increased Damage with Bleeding") == nullptr,
 			      "matcher rejects a different stat");
 			check(TJWantMatcher().Match("anything") == nullptr, "empty matcher matches nothing");
@@ -1234,7 +1233,7 @@ int RunTimelessJewelSelfTest(const std::wstring& exeDir)
 	TJTransform k = TJApply(ds, abyss, 7, 100, 6, "Keystone", {}, "abyss_murderous", "");
 	check(k.ok && k.newName == "Overwhelming Hate", "abyss keystone replace",
 	      k.ok ? k.newName + " / " + k.newNameZh : k.note);
-	check(k.newNameZh == u8"壓倒性恨意", "abyss keystone zh name", k.newNameZh);
+	check(k.newNameZh == u8"성욕을 진압하다", "abyss keystone zh name", k.newNameZh);
 	auto tmpl = TJStatTemplates(ds, 7);
 	check(tmpl.size() > 50, "abyss stat template list", std::to_string(tmpl.size()));
 	} else {
@@ -1254,9 +1253,9 @@ int RunTimelessJewelSelfTest(const std::wstring& exeDir)
 			{ "Binding 7412 souls to phylacteries to sustain Zorath\n"
 			  "Passives affected are Conquered by the Abyssal", 11, 7412, "paste Zorath (en)" },
 			// zh client text
-			{ u8"在柯戈的奴役下征服 6353 位靈魂\n範圍內的天賦被深淵族所征服",
+			{ u8"코르고의 부하로 영혼 6353마리 정복\n범위에 있는 패시브는 심족에게 정복당했습니다.",
 			  9, 6353, "paste Kurgal (zh)" },
-			{ u8"將 7412 位靈魂縛於命匣以維持澤洛斯\n範圍內的天賦被深淵族所征服",
+			{ u8"셀로스를 유지하기 위해 7412 마리의 영혼들을 처치하기\n지 범위의 패시브를 심족에게 정복당함",
 			  11, 7412, "paste Zorath (zh)" },
 			// full copy: item level / stack numbers must not win over the seed
 			{ "Item Class: Jewels\nRarity: Unique\nBaleful Dominion\nHypnotic Eye Jewel\n"
@@ -1342,7 +1341,7 @@ int RunTimelessJewelSelfTest(const std::wstring& exeDir)
 		      "LP addition keeps the node (not replaced)",
 		      std::string(t.replaced ? "replaced " : "kept ") +
 		      (t.lines.empty() ? "(no lines)" : t.lines[0]));
-		check(t.linesZh.size() == 1 && t.linesZh[0] == u8"減少 10% 承受的暴擊傷害",
+		check(t.linesZh.size() == 1 && t.linesZh[0] == u8"받는 치명타 피해 10% 감소",
 		      "LP addition zh", t.linesZh.empty() ? "(none)" : t.linesZh[0]);
 
 		// node 94 "Evasion" sits at index 454 == sizeNotable: no LUT row exists.
@@ -1428,12 +1427,12 @@ int RunTimelessJewelSelfTest(const std::wstring& exeDir)
 
 		// Taiwan: canonical host (www.pathofexile.tw 301-redirects), CJK league
 		// percent-encoded per byte, and never a console segment.
-		std::string tw = TradeSearchUrl(1, u8"亡焰咒海", 0, q1);
+		std::string tw = TradeSearchUrl(1, u8"망염저해", 0, q1);
 		check(tw == "https://pathofexile.tw/trade/search/"
 		            "%E4%BA%A1%E7%84%B0%E5%92%92%E6%B5%B7?q=" + kQ,
 		      "taiwan url: canonical host + encoded CJK league", tw.substr(0, 60));
-		check(TradeSearchUrl(1, u8"亡焰咒海", 1, q1) == tw &&
-		      TradeSearchUrl(1, u8"亡焰咒海", 2, q1) == tw,
+		check(TradeSearchUrl(1, u8"망염저해", 1, q1) == tw &&
+		      TradeSearchUrl(1, u8"망염저해", 2, q1) == tw,
 		      "taiwan ignores the console platform entirely");
 		check(TradeSearchUrl(1, "Standard", 0, q1).find("www.pathofexile.tw") == std::string::npos,
 		      "taiwan never uses the redirecting www host");
@@ -1469,7 +1468,7 @@ int RunTimelessJewelSelfTest(const std::wstring& exeDir)
 			TjUiState w;
 			w.realm = 1;
 			w.platform = 2;
-			w.league = u8"亡焰咒海";   // CJK must survive the round trip
+			w.league = u8"망염저해";   // CJK must survive the round trip
 			bool wrote = w.Save(exeDir);
 			TjUiState rd;
 			bool read = rd.Load(exeDir);

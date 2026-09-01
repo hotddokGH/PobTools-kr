@@ -51,6 +51,12 @@ bool startsWith(const std::string& s, const char* pfx)
 	return s.size() >= n && memcmp(s.data(), pfx, n) == 0;
 }
 
+bool endsWith(const std::string& s, const char* suffix)
+{
+	size_t n = strlen(suffix);
+	return s.size() >= n && memcmp(s.data() + s.size() - n, suffix, n) == 0;
+}
+
 // First integer in the string (handles "+29% (augmented)", "20 (Max)",
 // "1,234/40000"); returns false when there is none.
 bool firstInt(const std::string& s, int* out)
@@ -103,9 +109,9 @@ const StatusFx kStatus[] = {
 	{ "Foil",             [](ImportedItem& r) { (void)r; } },   // cosmetic, no condition
 	{ "Foil Unique",      [](ImportedItem& r) { (void)r; } },   // cosmetic, no condition
 	{ "Scourged",         [](ImportedItem& r) {
-		r.warnings.push_back({ "", u8"災魘狀態:預覽的 Scourged 條件未模擬,一律視為否" }); } },
+		r.warnings.push_back({ "", u8"스컬지 상태: 미리보기에서 Scourged 조건을 모사하지 않아 항상 '아니요'로 처리합니다." }); } },
 	{ "Transfigured",     [](ImportedItem& r) {
-		r.warnings.push_back({ "", u8"分化寶石:預覽的 TransfiguredGem 條件未模擬,一律視為否" }); } },
+		r.warnings.push_back({ "", u8"변형 젬: 미리보기에서 TransfiguredGem 조건을 모사하지 않아 항상 '아니요'로 처리합니다." }); } },
 };
 
 struct InfluenceFx { const char* en; unsigned bit; };
@@ -176,7 +182,7 @@ ImportedItem ParseGameItemText(const std::string& utf8Text,
 
 	std::vector<std::string> lines = splitLines(utf8Text);
 	if (lines.empty()) {
-		r.warnings.push_back({ "", u8"剪貼簿沒有文字" });
+		r.warnings.push_back({ "", u8"클립보드에 텍스트가 없습니다." });
 		return r;
 	}
 
@@ -210,11 +216,11 @@ ImportedItem ParseGameItemText(const std::string& utf8Text,
 		plain.push_back(l);
 	}
 	if (plain.empty()) {
-		r.warnings.push_back({ "", u8"看起來不是遊戲物品文字(第一段找不到名稱/基底行)" });
+		r.warnings.push_back({ "", u8"게임에서 복사한 아이템 텍스트가 아닌 것 같습니다(첫 구역에서 이름/베이스 행을 찾지 못함)." });
 		return r;
 	}
 	if (plain.size() > 2)
-		r.warnings.push_back({ plain[0], u8"第一段超過兩行,以最後一行當基底" });
+		r.warnings.push_back({ plain[0], u8"첫 구역이 두 줄을 초과하여 마지막 줄을 베이스로 사용합니다." });
 	if (plain.size() >= 2) r.name = plain[0];
 	r.baseRaw = plain.back();
 
@@ -228,9 +234,9 @@ ImportedItem ParseGameItemText(const std::string& utf8Text,
 		r.item.rarity = v >= 0 ? v : 0;
 	}
 	std::string classLineEn = canonClass(r.classRaw);
-	bool isGem = rarityEn == "Gem" || rarityRaw == u8"寶石" ||
+	bool isGem = rarityEn == "Gem" || rarityRaw == u8"젬" ||
 	             classLineEn == "Skill Gems" || classLineEn == "Support Gems" ||
-	             r.classRaw == u8"技能寶石" || r.classRaw == u8"輔助寶石";
+	             r.classRaw == u8"젬" || r.classRaw == u8"보조 젬";
 
 	// ---- body sections ----------------------------------------------------
 	bool sawItemLevel = false;
@@ -286,7 +292,7 @@ ImportedItem ParseGameItemText(const std::string& utf8Text,
 			if (ck == "Item Level") {
 				if (firstInt(v, &n)) { r.item.itemLevel = n; sawItemLevel = true; }
 			} else if (ck == "Quality" || startsWith(ck, "Quality (") ||
-			           startsWith(k, u8"品質")) {
+			           startsWith(k, u8"퀄리티")) {
 				// "品質 (能量護盾): +24%" keeps its parenthesis inside the key.
 				if (firstInt(v, &n)) r.item.quality = n;
 			} else if (ck == "Sockets") {
@@ -318,7 +324,7 @@ ImportedItem ParseGameItemText(const std::string& utf8Text,
 		}
 		flush();
 		if (bad)
-			r.warnings.push_back({ r.socketsRaw, u8"插槽字串有無法辨識的字元" });
+			r.warnings.push_back({ r.socketsRaw, u8"홈 문자열에 인식할 수 없는 문자가 있습니다." });
 		for (const std::string& g : r.item.socketGroups)
 			r.item.linkedSockets = std::max(r.item.linkedSockets, (int)g.size());
 	}
@@ -333,10 +339,10 @@ ImportedItem ParseGameItemText(const std::string& utf8Text,
 	struct Pfx { const char* p; bool* flag; };
 	bool dummy = false;
 	const Pfx kPfx[] = {
-		{ u8"精良的 ", &dummy },       { "Superior ", &dummy },
-		{ u8"殘存 ", &dummy },         { "Vestigial ", &dummy },
-		{ u8"凋落蔓延的 ", &uberBlight }, { "Blight-ravaged ", &uberBlight },
-		{ u8"凋落的 ", &blight },      { "Blighted ", &blight },
+		{ u8"상급 ", &dummy },              { "Superior ", &dummy },
+		{ u8"흔적 ", &dummy },              { "Vestigial ", &dummy },
+		{ u8"역병에 유린당한 ", &uberBlight }, { "Blight-ravaged ", &uberBlight },
+		{ u8"역병 걸린 ", &blight },         { "Blighted ", &blight },
 	};
 
 	const LibItem* hit = nullptr;
@@ -357,11 +363,11 @@ ImportedItem ParseGameItemText(const std::string& utf8Text,
 	if (!hit)   // magic/normal compose the base into one line; also a last resort
 		hit = longestSubstring(ix, base, classLineEn, i18n);
 
-	if (r.name == u8"贗品．" || startsWith(r.name, u8"贗品．") || startsWith(r.name, "Replica "))
+	if (endsWith(r.name, u8" 모조품") || startsWith(r.name, "Replica "))
 		r.item.replica = true;
 
 	if (!hit) {
-		r.warnings.push_back({ r.baseRaw, u8"無法辨識基底名稱,不能進行判定" });
+		r.warnings.push_back({ r.baseRaw, u8"베이스 이름을 인식할 수 없어 판정할 수 없습니다." });
 		return r;   // ok stays false
 	}
 	r.baseEn = hit->en;
@@ -374,39 +380,39 @@ ImportedItem ParseGameItemText(const std::string& utf8Text,
 		// Cross-check against the "Item Class:" line when it resolved to en.
 		if (!classLineEn.empty() && classLineEn != r.classRaw &&
 		    i18n.ClassNameEn(cls) != classLineEn)
-			r.warnings.push_back({ r.classRaw, u8"物品種類行與基底資料的類別不一致,以基底資料為準" });
+			r.warnings.push_back({ r.classRaw, u8"아이템 종류 행이 베이스 데이터의 분류와 달라 베이스 데이터를 사용합니다." });
 	} else if (!classLineEn.empty() && classLineEn != r.classRaw) {
 		r.item.classId = classLineEn;   // game class name; ClassNameEn passes through
 	} else {
 		r.item.classId = r.classRaw;    // may be zh: Class conditions won't match
-		r.warnings.push_back({ r.classRaw, u8"無法判定物品類別,Class 條件將不會命中" });
+		r.warnings.push_back({ r.classRaw, u8"아이템 종류를 판정할 수 없어 Class 조건과 일치하지 않을 수 있습니다." });
 	}
 
 	// ---- fields the text does not carry -----------------------------------
 	int dl = i18n.DropLevelOf(r.baseEn);
 	if (dl >= 0) r.item.dropLevel = dl;
-	else r.warnings.push_back({ "", u8"無此基底的掉落等級資料,DropLevel 以預設值 1 判定" });
+	else r.warnings.push_back({ "", u8"이 베이스의 드롭 레벨 데이터가 없어 DropLevel을 기본값 1로 판정합니다." });
 	int w = 0, h = 0;
 	if (i18n.SizeOf(r.baseEn, &w, &h)) { r.item.width = w; r.item.height = h; }
-	else r.warnings.push_back({ "", u8"無此基底的尺寸資料,Width/Height 以 1x1 判定" });
+	else r.warnings.push_back({ "", u8"이 베이스의 크기 데이터가 없어 Width/Height를 1x1로 판정합니다." });
 
 	if (!sawItemLevel)
-		r.warnings.push_back({ "", u8"文字裡沒有物品等級(寶石/通貨屬正常),以預設值判定" });
+		r.warnings.push_back({ "", u8"텍스트에 아이템 레벨이 없어 기본값으로 판정합니다(젬/화폐라면 정상)." });
 
 	// ---- statuses that key off the name/base ------------------------------
 	if (blight || uberBlight) {
 		r.item.blightedMap = true;
 		if (uberBlight)
-			r.warnings.push_back({ "", u8"凋落蔓延地圖:預覽的 UberBlightedMap 條件未模擬,以 BlightedMap 判定" });
+			r.warnings.push_back({ "", u8"역병에 유린당한 지도: 미리보기에서 UberBlightedMap 조건을 모사하지 않아 BlightedMap으로 판정합니다." });
 	}
 	// Magic/rare/unique text without an Unidentified marker shows its mods —
 	// it IS identified. Normal items stay unidentified (they cannot be).
 	r.item.identified = r.item.rarity >= 1 && !sawUnidentified;
 
 	if (r.exarch)
-		r.warnings.push_back({ "", u8"灼烙總督烙印:HasSearingExarchImplicit 條件未模擬,一律視為否" });
+		r.warnings.push_back({ "", u8"작열의 총주교 고정 속성: HasSearingExarchImplicit 조건을 모사하지 않아 항상 '아니요'로 처리합니다." });
 	if (r.eater)
-		r.warnings.push_back({ "", u8"吞噬天地烙印:HasEaterOfWorldsImplicit 條件未模擬,一律視為否" });
+		r.warnings.push_back({ "", u8"세계 포식자 고정 속성: HasEaterOfWorldsImplicit 조건을 모사하지 않아 항상 '아니요'로 처리합니다." });
 
 	r.ok = true;
 	return r;

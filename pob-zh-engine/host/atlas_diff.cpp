@@ -407,11 +407,11 @@ int RunAtlasDiffSelfTest(const std::wstring& exeDir)
 			{ "20% increased Quantity of Items", "Grants an extra bonus" }));   // one value-changed, one unchanged
 		nbt.nodes.push_back(MkNode(201, kAtlasNormal, "New", { "completely reworded effect" }));
 		AtlasI18n oldZh, newZh;
-		oldZh.AddStat("15% increased Quantity of Items", u8"增加 15% 物品數量");
-		oldZh.AddStat("Grants an extra bonus", u8"給予額外加成");
+		oldZh.AddStat("15% increased Quantity of Items", u8"항목 수");
+		oldZh.AddStat("Grants an extra bonus", u8"추가 보너스 지급");
 		int added = BackfillAtlasI18n(newZh, nbt, oldZh, obt);
 		check(added == 1, "backfill reuses exactly the one byte-identical line");
-		check(newZh.StatLine("Grants an extra bonus") == u8"給予額外加成",
+		check(newZh.StatLine("Grants an extra bonus") == u8"추가 보너스 지급",
 		      "backfill: unchanged line reuses the old Chinese verbatim");
 		check(newZh.StatLine("20% increased Quantity of Items") == "20% increased Quantity of Items",
 		      "backfill: value-changed line stays new English (no synthesis)");
@@ -431,12 +431,12 @@ int RunAtlasDiffSelfTest(const std::wstring& exeDir)
 			{ "Abyss Pits in your Maps have 3% chance to spawn 5 additional Rare Monsters", kSame }));
 		newT3.nodes.push_back(MkNode(400, kAtlasNotable, "A", { kStale, kSame }));
 		AtlasI18n z3;
-		z3.AddStat(kStale, u8"你地圖中的深淵坑洞有 3% 機率額外生成 5 個稀有怪物"); // repoe's stale pairing
-		z3.AddStat(kSame, u8"你的地圖有 5% 機率含有 1 個額外紅色野獸");            // correct "an" vs "1 個"
+		z3.AddStat(kStale, u8"지도에 있는 깊은 개미굴은 3% 확률로 추가로 유니크 몬스터 5마리 생성"); // repoe's stale pairing
+		z3.AddStat(kSame, u8"지도에 5% 확률로 적색 야수 1개 추가 함유가 있습니다.");            // correct "an" vs "1 個"
 		int pruned = PruneStaleTranslations(z3, newT3, oldT3);
 		check(pruned == 1, "prune drops exactly the season-new line (stale zh)");
 		check(z3.StatLine(kStale) == kStale, "reworked Abyss line falls back to English");
-		check(z3.StatLine(kSame) == u8"你的地圖有 5% 機率含有 1 個額外紅色野獸",
+		check(z3.StatLine(kSame) == u8"지도에 5% 확률로 적색 야수 1개 추가 함유가 있습니다.",
 		      "unchanged line keeps its Chinese (an vs 1-ge never mis-flagged)");
 	}
 
@@ -448,11 +448,11 @@ int RunAtlasDiffSelfTest(const std::wstring& exeDir)
 		oldT4.nodes.push_back(MkNode(500, kAtlasNotable, "F", { "old wording" }));
 		newT4.nodes.push_back(MkNode(500, kAtlasNotable, "F", { kNew }));
 		AtlasI18n z4;
-		z4.AddStat(kNew, u8"本季官方模板翻譯");
+		z4.AddStat(kNew, u8"이번 시즌 공식 템플릿 번역");
 		z4.MarkFreshStat(kNew);
 		int pruned = PruneStaleTranslations(z4, newT4, oldT4);
 		check(pruned == 0, "fresh-marked season-new line is NOT pruned");
-		check(z4.StatLine(kNew) == u8"本季官方模板翻譯",
+		check(z4.StatLine(kNew) == u8"이번 시즌 공식 템플릿 번역",
 		      "fresh line keeps its season-official Chinese");
 	}
 
@@ -464,13 +464,13 @@ int RunAtlasDiffSelfTest(const std::wstring& exeDir)
 		newT2.nodes.push_back(MkNode(300, kAtlasNotable, "Abyss Kurgal Chance", {})); // renamed
 		newT2.nodes.push_back(MkNode(301, kAtlasNotable, "Steady Name", {}));          // unchanged
 		AtlasI18n z;
-		z.AddName(300, u8"深淵深處機率");   // stale: translation of the OLD name
-		z.AddName(301, u8"穩定名稱");
+		z.AddName(300, u8"심 깊은 곳에서 랜덤");   // stale: translation of the OLD name
+		z.AddName(301, u8"안정명");
 		int dropped = DropRenamedNames(z, newT2, oldT2);
 		check(dropped == 1, "DropRenamedNames drops exactly the renamed node");
 		check(z.NodeName(300, "Abyss Kurgal Chance") == "Abyss Kurgal Chance",
 		      "renamed node falls back to the new English name");
-		check(z.NodeName(301, "Steady Name") == u8"穩定名稱",
+		check(z.NodeName(301, "Steady Name") == u8"안정명",
 		      "unchanged node keeps its Chinese name");
 	}
 
@@ -488,18 +488,18 @@ int RunAtlasDiffSelfTest(const std::wstring& exeDir)
 			"{\"tag\":\"9.99.0\",\"repoe\":\"9.98.0.1\",\"joined\":1,\"total\":2,"
 			"\"fresh\":[\"[X|Y] gains 5\",\"other line\"],\"freshNames\":[\"100\"],"
 			"\"nodes\":{"
-			"\"100\":{\"en\":\"Node A\",\"zh\":\"節點甲\","
-			"\"statsEn\":[\"[X|Y] gains 5\"],\"statsZh\":[\"[X|Y] 獲得 5\"]},"
-			"\"101\":{\"en\":\"Node B\",\"zh\":\"節點乙\","
-			"\"statsEn\":[\"other line\"],\"statsZh\":[\"舊譯\"]}}}";
+			"\"100\":{\"en\":\"Node A\",\"zh\":\"노데아\","
+			"\"statsEn\":[\"[X|Y] gains 5\"],\"statsZh\":[\"[XY] 5번\"]},"
+			"\"101\":{\"en\":\"Node B\",\"zh\":\"노드 B\","
+			"\"statsEn\":[\"other line\"],\"statsZh\":[\"오래된 번역\"]}}}";
 		write_file_utf8(dir + L"atlas_tree_zh.json", prev);
 		const char* ggg =
 			"{\"nodes\":{"
 			"\"1\":{\"skill\":100,\"name\":\"Node A\",\"stats\":[\"[X|Y] gains 5\"]},"
 			"\"2\":{\"skill\":101,\"name\":\"Node B\",\"stats\":[\"other line\"]}}}";
 		const char* tc =
-			"{\"passives\":{\"101\":{\"name\":\"節點乙\","
-			"\"stat_text\":[\"其他行\"]}}}";
+			"{\"passives\":{\"101\":{\"name\":\"노드 B\","
+			"\"stat_text\":[\"다른 행\"]}}}";
 		std::string zhErr;
 		bool ok = GenerateAtlasZhMapping(ggg, tc, "9.99.0", "9.98.0.2", dir, &zhErr, nullptr);
 		check(ok, "zh rebuild succeeds with a previous mapping present");
@@ -513,10 +513,10 @@ int RunAtlasDiffSelfTest(const std::wstring& exeDir)
 			            j.contains("freshNames") && j["freshNames"].size() == 1 &&
 			            j["freshNames"][0] == "100";
 			const auto& n100 = j["nodes"]["100"];
-			keepName = n100.value("zh", std::string()) == u8"節點甲";
-			keepStat = n100["statsZh"].size() == 1 && n100["statsZh"][0] == u8"[X|Y] 獲得 5";
+			keepName = n100.value("zh", std::string()) == u8"노드 융갑";
+			keepStat = n100["statsZh"].size() == 1 && n100["statsZh"][0] == u8"[X Y] 획득";
 			const auto& n101 = j["nodes"]["101"];
-			repoeWins = n101["statsZh"].size() == 1 && n101["statsZh"][0] == u8"其他行";
+			repoeWins = n101["statsZh"].size() == 1 && n101["statsZh"][0] == u8"다른 행";
 		} catch (...) { valid = false; }
 		check(valid, "rebuilt mapping parses");
 		check(keepName, "un-joined node keeps its fresh ggpk name");

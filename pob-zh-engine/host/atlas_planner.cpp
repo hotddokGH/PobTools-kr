@@ -54,7 +54,7 @@ static const ImVec4 kKindCol[4] = {
 	ImVec4(0.95f, 0.80f, 0.40f, 1.0f),
 	ImVec4(0.72f, 0.76f, 0.82f, 1.0f),
 };
-static const char* kGroupName[4] = { u8"核心天賦", u8"蟲洞", u8"大點", u8"小點" };
+static const char* kGroupName[4] = { u8"키스톤", u8"웜홀", u8"주요 노드", u8"소형 노드" };
 
 // Open-file dialog scoped to data.json (new-season atlastree-export import).
 static std::wstring OpenDataJsonDialog(HWND owner)
@@ -63,14 +63,14 @@ static std::wstring OpenDataJsonDialog(HWND owner)
 	OPENFILENAMEW ofn{};
 	ofn.lStructSize = sizeof(ofn);
 	ofn.hwndOwner = owner;
-	ofn.lpstrFilter = L"atlastree-export data.json\0data.json;*.json\0所有檔案 (*.*)\0*.*\0\0";
+	ofn.lpstrFilter = L"atlastree-export data.json\0data.json;*.json\0모든 파일 (*.*)\0*.*\0\0";
 	ofn.lpstrFile = buf;
 	ofn.nMaxFile = MAX_PATH;
 	ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST | OFN_NOCHANGEDIR;
 	return GetOpenFileNameW(&ofn) ? std::wstring(buf) : std::wstring();
 }
 
-static const wchar_t* kBuildJsonFilter = L"輿圖策略專案 (*.json)\0*.json\0所有檔案 (*.*)\0*.*\0\0";
+static const wchar_t* kBuildJsonFilter = L"아틀라스 전략 프로젝트 (*.json)\0*.json\0모든 파일 (*.*)\0*.*\0\0";
 
 // Save-file dialog for exporting one build project; buf pre-filled with the
 // project name (filesystem-hostile characters stripped).
@@ -192,7 +192,7 @@ public:
 		uiState.Load(exeDir);
 		verIndex.Load(exeDir);
 		if (verIndex.NeedsSave() && !verIndex.Save(exeDir))
-			PobLog::Error("save", "atlas_index.json 存檔失敗（賽季清單沒有更新）");
+			PobLog::Error("save", "atlas_index.json 저장 실패(시즌 목록에는 업데이트 없음)");
 		viewTag = (!uiState.season.empty() && verIndex.Has(uiState.season))
 			? uiState.season : verIndex.Active();
 		updater.Init(exeDir);
@@ -200,8 +200,8 @@ public:
 		loadSeason(viewTag);
 		showZh = zhLoaded;                   // default Chinese when a mapping exists
 		if (startupDropped > 0)
-			importMsg = u8"提醒：此配置存於舊版輿圖樹，" + std::to_string(startupDropped) +
-			            u8" 個已不存在的節點已自動移除";
+			importMsg = u8"주의: 해당 설정은 기존 버전의 아틀라스 트리에 저장되어 있습니다." + std::to_string(startupDropped) +
+			            u8"존재하지 않는 노드가 자동으로 삭제되었습니다.";
 		return true;   // missing data is a screen with an import button, not a failure
 	}
 
@@ -240,22 +240,22 @@ public:
 		const float dispW = ImGui::GetContentRegionAvail().x;
 
 		if (!ready) {
-			ImGui::TextColored(ImVec4(0.94f, 0.27f, 0.27f, 1.0f), u8"輿圖資料載入失敗：%s", loadErr.c_str());
-			ImGui::TextDisabled(u8"請確認 Data\\atlas_tree_poe1.json 與 Data\\atlas\\ 圖集存在，或直接匯入新資料。");
-			if (ImGui::Button(u8"匯入賽季資料")) importSeason();
+			ImGui::TextColored(ImVec4(0.94f, 0.27f, 0.27f, 1.0f), u8"아틀라스 데이터 불러오기 실패: %s", loadErr.c_str());
+			ImGui::TextDisabled(u8"Data\\atlas_tree_poe1.json과 Data\\atlas\\ 이미지가 있는지 확인하거나 새 시즌 데이터를 가져오세요.");
+			if (ImGui::Button(u8"시즌 데이터 가져오기")) importSeason();
 			// the auto updater doubles as the recovery path when no data exists
 			if (ust.phase == AtlasUpdatePhase::UpdateAvailable) {
 				ImGui::SameLine();
-				if (ImGui::Button((u8"自動下載 " + ust.latestTag).c_str())) updater.StartUpdate();
+				if (ImGui::Button((u8"자동 다운로드" + ust.latestTag).c_str())) updater.StartUpdate();
 			} else if (ust.phase == AtlasUpdatePhase::Downloading || ust.phase == AtlasUpdatePhase::Importing ||
 			           ust.phase == AtlasUpdatePhase::Checking) {
 				ImGui::SameLine();
 				ImGui::TextDisabled("%s", ust.message.c_str());
 			} else if (ust.phase == AtlasUpdatePhase::Error) {
 				ImGui::SameLine();
-				ImGui::TextColored(ImVec4(0.94f, 0.27f, 0.27f, 1.0f), u8"更新失敗：%s", ust.message.c_str());
+				ImGui::TextColored(ImVec4(0.94f, 0.27f, 0.27f, 1.0f), u8"업데이트 실패: %s", ust.message.c_str());
 				ImGui::SameLine();
-				if (ImGui::SmallButton(u8"重試")) updater.StartUpdate();
+				if (ImGui::SmallButton(u8"재시도")) updater.StartUpdate();
 			}
 			if (!importMsg.empty()) {
 				ImGui::SameLine();
@@ -278,9 +278,9 @@ public:
 			// RunDeferred(), after this frame is over.
 
 			ImGui::AlignTextToFramePadding();
-			ImGui::TextColored(PobUi::Accent(), u8"輿圖策略");
+			ImGui::TextColored(PobUi::Accent(), u8"아틀라스 전략");
 			ImGui::SameLine(0, 18.0f * scale);
-			ImGui::TextDisabled(u8"專案");
+			ImGui::TextDisabled(u8"프로젝트");
 			ImGui::SameLine();
 			ImGui::SetNextItemWidth(220.0f * scale);
 			if (ImGui::BeginCombo("##buildsel", buildFile.Active().name.c_str())) {
@@ -294,17 +294,17 @@ public:
 				ImGui::EndCombo();
 			}
 			ImGui::SameLine();
-			if (ImGui::Button(u8"＋ 新增")) {
-				nameBuf = u8"新專案";
-				ImGui::OpenPopup(u8"新增專案");
+			if (ImGui::Button(u8"+ 추가")) {
+				nameBuf = u8"신규 프로젝트";
+				ImGui::OpenPopup(u8"프로젝트 추가");
 			}
 			ImGui::SameLine();
-			if (ImGui::Button(u8"重新命名")) {
+			if (ImGui::Button(u8"이름 바꾸기")) {
 				nameBuf = buildFile.Active().name;
-				ImGui::OpenPopup(u8"重新命名專案");
+				ImGui::OpenPopup(u8"프로젝트 이름 바꾸기");
 			}
 			ImGui::SameLine();
-			if (ImGui::Button(u8"複製")) {
+			if (ImGui::Button(u8"복사")) {
 				saveActive();
 				int idx = buildFile.DuplicateBuild(buildFile.active);
 				if (idx >= 0) switchTo(idx);
@@ -313,48 +313,48 @@ public:
 			bool lastBuild = buildFile.builds.size() <= 1;
 			if (lastBuild) ImGui::BeginDisabled();
 			PobUi::PushDangerButton();
-			if (ImGui::Button(u8"刪除")) ImGui::OpenPopup(u8"刪除專案確認");
+			if (ImGui::Button(u8"삭제")) ImGui::OpenPopup(u8"프로젝트 삭제 확인");
 			PobUi::PopButtonStyle();
 			if (lastBuild) ImGui::EndDisabled();
 			ImGui::SameLine(0, 24.0f * scale);
-			if (ImGui::Button(u8"匯出")) ImGui::OpenPopup("##exportmenu");
+			if (ImGui::Button(u8"내보내기")) ImGui::OpenPopup("##exportmenu");
 			ImGui::SameLine();
-			if (ImGui::Button(u8"匯入")) ImGui::OpenPopup("##importmenu");
+			if (ImGui::Button(u8"가져오기")) ImGui::OpenPopup("##importmenu");
 
-			if (ImGui::BeginPopupModal(u8"新增專案", nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {
-				ImGui::TextUnformatted(u8"專案名稱：");
+			if (ImGui::BeginPopupModal(u8"프로젝트 추가", nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {
+				ImGui::TextUnformatted(u8"프로젝트 이름:");
 				ImGui::SetNextItemWidth(260.0f * scale);
 				ImGui::InputText("##newname", &nameBuf);
 				ImGui::Spacing();
-				if (ImGui::Button(u8"建立（空白配點）")) {
+				if (ImGui::Button(u8"만들기(빈 포인트 할당)")) {
 					saveActive();
 					int idx = buildFile.AddBuild(nameBuf);
 					switchTo(idx); // new project starts empty
 					ImGui::CloseCurrentPopup();
 				}
 				ImGui::SameLine();
-				if (ImGui::Button(u8"取消")) ImGui::CloseCurrentPopup();
+				if (ImGui::Button(u8"취소")) ImGui::CloseCurrentPopup();
 				ImGui::EndPopup();
 			}
-			if (ImGui::BeginPopupModal(u8"重新命名專案", nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {
-				ImGui::TextUnformatted(u8"新名稱：");
+			if (ImGui::BeginPopupModal(u8"프로젝트 이름 바꾸기", nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {
+				ImGui::TextUnformatted(u8"새 이름:");
 				ImGui::SetNextItemWidth(260.0f * scale);
 				ImGui::InputText("##rename", &nameBuf);
 				ImGui::Spacing();
-				if (ImGui::Button(u8"確定")) {
+				if (ImGui::Button(u8"확인")) {
 					if (!nameBuf.empty() && nameBuf != buildFile.Active().name)
 						buildFile.Active().name = buildFile.UniqueName(nameBuf);
 					buildFile.Save(exeDir);
 					ImGui::CloseCurrentPopup();
 				}
 				ImGui::SameLine();
-				if (ImGui::Button(u8"取消")) ImGui::CloseCurrentPopup();
+				if (ImGui::Button(u8"취소")) ImGui::CloseCurrentPopup();
 				ImGui::EndPopup();
 			}
-			if (ImGui::BeginPopupModal(u8"刪除專案確認", nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {
-				ImGui::Text(u8"確定要刪除專案「%s」嗎？此動作無法復原。", buildFile.Active().name.c_str());
+			if (ImGui::BeginPopupModal(u8"프로젝트 삭제 확인", nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {
+				ImGui::Text(u8"프로젝트 '%s'을(를) 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.", buildFile.Active().name.c_str());
 				ImGui::Spacing();
-				if (ImGui::Button(u8"刪除")) {
+				if (ImGui::Button(u8"삭제")) {
 					if (buildFile.RemoveBuild(buildFile.active)) {
 						tree.ApplyAllocIds(buildFile.Active().alloc);
 						tree.ApplyTargetIds(buildFile.Active().targets);
@@ -366,36 +366,36 @@ public:
 					ImGui::CloseCurrentPopup();
 				}
 				ImGui::SameLine();
-				if (ImGui::Button(u8"取消")) ImGui::CloseCurrentPopup();
+				if (ImGui::Button(u8"취소")) ImGui::CloseCurrentPopup();
 				ImGui::EndPopup();
 			}
 			if (ImGui::BeginPopup("##exportmenu")) {
-				if (ImGui::MenuItem(u8"另存 .json 檔…")) {
+				if (ImGui::MenuItem(u8".json 파일로 저장...")) {
 					saveActive();
 					pendingExportName_ = buildFile.Active().name;
 					pendingDialog_ = ApDialog::ExportBuild;
 				}
-				if (ImGui::MenuItem(u8"複製分享碼")) {
+				if (ImGui::MenuItem(u8"공유 코드 복사")) {
 					saveActive();
 					std::string code = AtlasBuildShareCode(buildFile.Active(), tree.Version());
 					if (!code.empty()) {
 						ImGui::SetClipboardText(code.c_str());
-						importMsg = u8"分享碼已複製到剪貼簿";
+						importMsg = u8"공유 코드를 클립보드에 복사했습니다.";
 						importFailed = false;
 					}
 				}
 				ImGui::EndPopup();
 			}
 			if (ImGui::BeginPopup("##importmenu")) {
-				if (ImGui::MenuItem(u8"開啟 .json 檔…")) pendingDialog_ = ApDialog::ImportBuild;
-				if (ImGui::MenuItem(u8"從剪貼簿貼上分享碼")) {
+				if (ImGui::MenuItem(u8".json 파일 열기...")) pendingDialog_ = ApDialog::ImportBuild;
+				if (ImGui::MenuItem(u8"클립보드에서 공유 코드 붙여넣기")) {
 					const char* clip = ImGui::GetClipboardText();
 					std::string perr;
 					AtlasBuildEntry e;
 					if (clip && AtlasParseShareCode(clip, &e, &perr)) {
 						importEntry(e);
 					} else {
-						importMsg = perr.empty() ? u8"剪貼簿沒有內容" : perr;
+						importMsg = perr.empty() ? u8"클립보드에 텍스트가 없습니다." : perr;
 						importFailed = true;
 					}
 				}
@@ -408,12 +408,12 @@ public:
 			ImGui::Spacing();
 			int used = tree.UsedPoints(), total = tree.TotalPoints();
 			ImGui::AlignTextToFramePadding();
-			ImGui::TextDisabled(u8"已用點數");
+			ImGui::TextDisabled(u8"사용된 포인트");
 			ImGui::SameLine();
 			ImVec4 cnt = PobUi::StatusColor(used >= total ? PobUi::StatusTone::Warning : PobUi::StatusTone::Success);
 			ImGui::TextColored(cnt, "%d / %d", used, total);
 			ImGui::SameLine(0, 24.0f * scale);
-			if (ImGui::Button(u8"重置")) ImGui::OpenPopup(u8"重置配點");
+			if (ImGui::Button(u8"초기화")) ImGui::OpenPopup(u8"포인트 할당 초기화");
 			ImGui::SameLine();
 			// Minimum-point compression on demand. Clicking never re-routes any
 			// more (see atlas_view.cpp), so this is the only thing that moves
@@ -422,7 +422,7 @@ public:
 				const bool canCompress = ready && !planningMode && !compareMode &&
 				                         onCanonicalSeason() && tree.UsedPoints() > 0;
 				if (!canCompress) ImGui::BeginDisabled();
-				if (ImGui::Button(u8"壓縮到最少點")) {
+				if (ImGui::Button(u8"최소까지 압축")) {
 					std::string msg;
 					importFailed = !applyCompress(msg);
 					importMsg = msg;
@@ -430,30 +430,30 @@ public:
 				}
 				if (!canCompress) ImGui::EndDisabled();
 				if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled))
-					ImGui::SetTooltip(u8"用最少的天賦點重新接一次目前的節點。\n"
-					                  u8"大點、鑰石與端點都會保留，只有中間繞路的小點會改道；\n"
-					                  u8"平常點節點不會自動重算，按了才會動，Ctrl+Z 可復原。");
+					ImGui::SetTooltip(u8"현재 노드를 최소 패시브 포인트 경로로 한 번 다시 연결합니다.\n"
+					                  u8"주요 노드, 키스톤, 종점 노드는 유지하며 중간 소형 노드만 경로가 바뀔 수 있습니다.\n"
+					                  u8"일반 클릭으로는 자동 재계산하지 않습니다. 이 버튼을 눌렀을 때만 이동하며 Ctrl+Z로 되돌릴 수 있습니다.");
 			}
 			ImGui::SameLine();
 			bool updaterBusy = ust.phase == AtlasUpdatePhase::Downloading ||
 			                   ust.phase == AtlasUpdatePhase::Importing;
 			if (updaterBusy) ImGui::BeginDisabled(); // both paths overwrite the same tree json
-			if (ImGui::Button(u8"匯入賽季資料")) ImGui::OpenPopup(u8"匯入賽季資料確認");
+			if (ImGui::Button(u8"시즌 데이터 가져오기")) ImGui::OpenPopup(u8"시즌 데이터 가져오기 확인");
 			if (updaterBusy) ImGui::EndDisabled();
 
 			// zh/en display toggle (only when a mapping is available); F2 mirrors it
 			if (zhLoaded) {
 				ImGui::SameLine();
-				if (ImGui::Button(showZh ? "EN" : u8"中")) showZh = !showZh;
+				if (ImGui::Button(showZh ? "EN" : u8"한")) showZh = !showZh;
 				if (ImGui::IsItemHovered())
-					ImGui::SetTooltip(u8"切換節點中/英顯示（F2）· 對照 %s", i18n.VersionNote().c_str());
+					ImGui::SetTooltip(u8"노드의 한국어/영어 표시 전환(F2) · %s", i18n.VersionNote().c_str());
 			}
 			if (zhLoaded && ImGui::IsKeyPressed(ImGuiKey_F2, false)) showZh = !showZh;
 
 			// season switcher: which league's atlas tree is drawn on the canvas
 			if (verIndex.Versions().size() >= 2 && !viewTag.empty()) {
 				ImGui::SameLine(0, 18.0f * scale);
-				ImGui::TextDisabled(u8"賽季");
+				ImGui::TextDisabled(u8"시즌");
 				ImGui::SameLine();
 				ImGui::SetNextItemWidth(96.0f * scale);
 				if (ImGui::BeginCombo("##seasonsel", viewTag.c_str())) {
@@ -471,10 +471,10 @@ public:
 					ImGui::EndCombo();
 				}
 				if (ImGui::IsItemHovered())
-					ImGui::SetTooltip(u8"切換畫布顯示的賽季輿圖樹（配點以節點 ID 跨季共用）");
+					ImGui::SetTooltip(u8"화면에 표시할 시즌의 아틀라스 트리를 변경합니다. 포인트 할당은 노드 ID를 기준으로 시즌 간 공유됩니다.");
 				if (!onCanonicalSeason()) {
 					ImGui::SameLine();
-					ImGui::TextColored(ImVec4(0.90f, 0.65f, 0.25f, 1.0f), u8"舊賽季檢視（唯讀）");
+					ImGui::TextColored(ImVec4(0.90f, 0.65f, 0.25f, 1.0f), u8"이전 시즌 보기(읽기 전용)");
 				}
 			}
 
@@ -490,7 +490,7 @@ public:
 				// other — which then tints every later button on the toolbar.
 				const bool wasPlanning = planningMode;
 				if (wasPlanning) PobUi::PushDangerButton();
-				if (ImGui::Button(wasPlanning ? u8"結束規劃" : u8"規劃模式")) {
+				if (ImGui::Button(wasPlanning ? u8"계획 종료" : u8"계획 모드")) {
 					if (planningMode) planningAskExit = true;   // ask before deciding
 					else { enterPlanning(); panelDirty = true; }
 				}
@@ -498,9 +498,9 @@ public:
 				if (compareMode) ImGui::EndDisabled();
 				if (ImGui::IsItemHovered())
 					ImGui::SetTooltip(planningMode
-						? u8"結束並選擇是否保留這次規劃"
-						: u8"沙盒：從空白開始快速標記想要／不要的節點，"
-						  u8"期間不會寫入存檔，結束時再決定要不要保留");
+						? u8"종료한 뒤 이번 계획을 유지할지 선택합니다."
+						: u8"샌드박스: 빈 트리에서 원하는 노드와 제외할 노드를 빠르게 표시합니다. "
+						  u8"계획 중에는 저장하지 않으며 종료할 때 저장 여부를 묻습니다.");
 			}
 
 			// version-compare toggle (needs two installed seasons)
@@ -515,7 +515,7 @@ public:
 				// stayed red until the window was reopened.
 				const bool wasCompare = compareMode;
 				if (wasCompare) PobUi::PushDangerButton();
-				if (ImGui::Button(wasCompare ? u8"結束比較" : u8"版本比較")) {
+				if (ImGui::Button(wasCompare ? u8"비교 종료" : u8"버전 비교")) {
 					compareMode = !compareMode;
 					if (compareMode) refreshCompare();
 					else view.ClearDiffOverlay();
@@ -524,11 +524,11 @@ public:
 				if (!canCompare) ImGui::EndDisabled();
 				if (ImGui::IsItemHovered())
 					ImGui::SetTooltip(canCompare
-						? u8"比較任兩個已安裝版本（可選）：節點增刪與逐詞條數值變更"
-						  u8"（綠=新增, 紅=移除, 黃=變動）\n"
-						  u8"當季各小版本都會保留，所以也能比 %s 這種賽季中的官方調整\n"
-						  u8"目前已安裝 %d 個版本"
-						: u8"需要兩個版本的資料才能比較",
+						? u8"설치된 두 버전을 선택해 노드 추가·삭제와 수치 변경을 비교합니다."
+						  u8"(초록=추가, 빨강=삭제, 노랑=변경)\n"
+						  u8"%s처럼 같은 시즌의 소규모 버전과 공식 조정도 비교할 수 있습니다.\n"
+						  u8"현재 설치된 버전: %d개"
+						: u8"비교를 위해서는 두 가지 버전의 데이터가 필요합니다.",
 						(verIndex.Versions().size() >= 2 ? u8"3.29.0 -> 3.29.1" : ""),
 						(int)verIndex.Versions().size());
 			}
@@ -539,7 +539,7 @@ public:
 				ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.85f, 0.60f, 0.20f, 0.45f));
 				ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(0.85f, 0.60f, 0.20f, 0.65f));
 				ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(0.85f, 0.60f, 0.20f, 0.85f));
-				if (ImGui::Button((u8"發現新版 " + ust.latestTag + u8"，點擊更新").c_str()))
+				if (ImGui::Button((u8"새 버전 " + ust.latestTag + u8" 발견 · 클릭하여 업데이트").c_str()))
 					updater.StartUpdate();
 				ImGui::PopStyleColor(3);
 			} else if (updaterBusy || ust.phase == AtlasUpdatePhase::Checking) {
@@ -547,14 +547,14 @@ public:
 				ImGui::TextDisabled("%s", ust.message.c_str());
 			} else if (ust.phase == AtlasUpdatePhase::Error) {
 				ImGui::SameLine(0, 24.0f * scale);
-				ImGui::TextColored(ImVec4(0.94f, 0.27f, 0.27f, 1.0f), u8"更新失敗：%s", ust.message.c_str());
+				ImGui::TextColored(ImVec4(0.94f, 0.27f, 0.27f, 1.0f), u8"업데이트 실패: %s", ust.message.c_str());
 				ImGui::SameLine();
-				if (ImGui::SmallButton(u8"重試")) updater.StartUpdate();
+				if (ImGui::SmallButton(u8"재시도")) updater.StartUpdate();
 			}
 
 			ImGui::Spacing();
-			ImGui::TextDisabled(u8"滾輪縮放  ·  拖曳平移  ·  左鍵配點或移除"
-			                    u8"  ·  點叢集中央的機制圖示可標出同機制的所有位置");
+			ImGui::TextDisabled(u8"마우스 휠 확대/축소 · 드래그로 이동 · 왼쪽 클릭으로 할당/해제 "
+			                    u8"· '중심'을 클릭하면 같은 메커니즘 위치를 모두 표시합니다.");
 			// Which mechanic is lit up right now, and how to turn it off. Without
 			// this the rings look like part of the tree.
 			if (!mechSel.empty()) {
@@ -562,11 +562,11 @@ public:
 				const std::vector<int>* nn = mechFind(mechNodeIdx, mechSel);
 				const std::vector<int>* mm = mechFind(mechMastIdx, mechSel);
 				ImGui::SameLine(0, 18.0f * scale);
-				ImGui::TextColored(ImVec4(1.0f, 0.89f, 0.43f, 1.0f), u8"機制：%s（%d 節點 · %d 叢集）",
+				ImGui::TextColored(ImVec4(1.0f, 0.89f, 0.43f, 1.0f), u8"메커니즘: %s(%d개 노드 · %d개 군집)",
 					d ? (showZh && zhLoaded ? d->zh.c_str() : d->en.c_str()) : mechSel.c_str(),
 					nn ? (int)nn->size() : 0, mm ? (int)mm->size() : 0);
 				ImGui::SameLine();
-				if (ImGui::SmallButton(u8"清除##mech")) { mechSel.clear(); applyMechHighlight(); }
+				if (ImGui::SmallButton(u8"##mech 삭제")) { mechSel.clear(); applyMechHighlight(); }
 			}
 			if (!importMsg.empty()) {
 				ImGui::SameLine(0, 18.0f * scale);
@@ -577,23 +577,23 @@ public:
 				ImGui::TextDisabled("%s", view.StatusLine().c_str());
 			}
 
-			if (ImGui::BeginPopupModal(u8"匯入賽季資料確認", nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {
-				ImGui::TextUnformatted(u8"從 GGG 官方 atlastree-export 匯入新賽季的輿圖天賦樹：");
-				ImGui::TextDisabled(u8"1. 到 github.com/grindinggear/atlastree-export 下載（Code → Download ZIP）並解壓縮");
-				ImGui::TextDisabled(u8"2. 選取解壓縮後資料夾內的 data.json（assets 資料夾需在旁邊）");
-				ImGui::TextDisabled(u8"匯入會覆寫目前的樹資料；已配置的節點會依 ID 對映，消失的節點自動移除。");
+			if (ImGui::BeginPopupModal(u8"시즌 데이터 가져오기 확인", nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {
+				ImGui::TextUnformatted(u8"GGG 공식 atlastree-export에서 새 시즌 아틀라스 트리를 가져옵니다.");
+				ImGui::TextDisabled(u8"1. github.com/grindinggear/atlastree-export에서 Code → Download ZIP을 선택하고 압축을 풉니다.");
+				ImGui::TextDisabled(u8"2. 압축을 푼 폴더의 data.json을 선택합니다(옆에 이미지 폴더가 있어야 합니다).");
+				ImGui::TextDisabled(u8"가져오면 현재 트리 데이터를 덮어씁니다. 할당된 노드는 ID로 대응하며 사라진 노드는 자동 제거됩니다.");
 				ImGui::Spacing();
-				if (ImGui::Button(u8"選擇 data.json")) {
+				if (ImGui::Button(u8"data.json 선택")) {
 					ImGui::CloseCurrentPopup();
 					importSeason();
 				}
 				ImGui::SameLine();
-				if (ImGui::Button(u8"立即檢查更新")) {
+				if (ImGui::Button(u8"즉시 업데이트 확인")) {
 					ImGui::CloseCurrentPopup();
 					updater.RequestCheck(true); // manual entry: skip the daily throttle
 				}
 				ImGui::SameLine();
-				if (ImGui::Button(u8"取消")) ImGui::CloseCurrentPopup();
+				if (ImGui::Button(u8"취소")) ImGui::CloseCurrentPopup();
 				ImGui::EndPopup();
 			}
 			if (!cjkOk) {
@@ -605,34 +605,34 @@ public:
 			// Leaving the sandbox: the ONLY place a planning session can reach
 			// the build file. Both outcomes are explicit -- there is no default
 			// action on a stray click, and no path that writes without asking.
-			if (planningAskExit) { ImGui::OpenPopup(u8"結束規劃"); planningAskExit = false; }
-			if (ImGui::BeginPopupModal(u8"結束規劃", nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {
+			if (planningAskExit) { ImGui::OpenPopup(u8"계획 종료"); planningAskExit = false; }
+			if (ImGui::BeginPopupModal(u8"계획 종료", nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {
 				int want = (int)tree.TargetIdx().size();
 				int avoid = (int)tree.BlockedIdx().size();
-				ImGui::TextUnformatted(u8"要保留這次規劃嗎？");
+				ImGui::TextUnformatted(u8"이번 계획을 유지하시겠습니까?");
 				ImGui::Spacing();
-				ImGui::Text(u8"目前 %d 點 · 想要 %d 個 · 排除 %d 個", tree.UsedPoints(), want, avoid);
-				ImGui::TextDisabled(u8"保留會覆蓋這個專案原本的 %d 點配置。", (int)planSnapshot.alloc.size());
+				ImGui::Text(u8"현재 %d포인트 · 목표 %d개 · 제외 %d개", tree.UsedPoints(), want, avoid);
+				ImGui::TextDisabled(u8"유지하면 이 프로젝트의 기존 %d포인트 할당을 덮어씁니다.", (int)planSnapshot.alloc.size());
 				ImGui::Spacing();
-				if (ImGui::Button(u8"保留並儲存")) { keepPlanning(); panelDirty = true; finishPlanningPrompt(true); ImGui::CloseCurrentPopup(); }
+				if (ImGui::Button(u8"유지하고 저장")) { keepPlanning(); panelDirty = true; finishPlanningPrompt(true); ImGui::CloseCurrentPopup(); }
 				ImGui::SameLine();
-				if (ImGui::Button(u8"捨棄")) { restorePlanning(); panelDirty = true; finishPlanningPrompt(true); ImGui::CloseCurrentPopup(); }
+				if (ImGui::Button(u8"변경 버리기")) { restorePlanning(); panelDirty = true; finishPlanningPrompt(true); ImGui::CloseCurrentPopup(); }
 				ImGui::SameLine();
-				if (ImGui::Button(u8"繼續規劃")) { finishPlanningPrompt(false); ImGui::CloseCurrentPopup(); }
+				if (ImGui::Button(u8"계속 계획")) { finishPlanningPrompt(false); ImGui::CloseCurrentPopup(); }
 				ImGui::EndPopup();
 			}
 
-			if (ImGui::BeginPopupModal(u8"重置配點", nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {
-				ImGui::TextUnformatted(u8"確定要清除所有已配置的節點嗎？");
+			if (ImGui::BeginPopupModal(u8"포인트 할당 초기화", nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {
+				ImGui::TextUnformatted(u8"할당된 모든 노드를 지우시겠습니까?");
 				ImGui::Spacing();
-				if (ImGui::Button(u8"清除全部")) {
+				if (ImGui::Button(u8"모두 삭제")) {
 					tree.Reset();
 					saveActive();
 					panelDirty = true;
 					ImGui::CloseCurrentPopup();
 				}
 				ImGui::SameLine();
-				if (ImGui::Button(u8"取消")) ImGui::CloseCurrentPopup();
+				if (ImGui::Button(u8"취소")) ImGui::CloseCurrentPopup();
 				ImGui::EndPopup();
 			}
 
@@ -720,7 +720,7 @@ public:
 			} else {
 
 			// --- points summary (pinned) ---
-			ImGui::TextDisabled(u8"已配置點數");
+			ImGui::TextDisabled(u8"할당된 포인트");
 			if (fontBig) ImGui::PushFont(fontBig);
 			ImGui::TextColored(cnt, "%d / %d", used, total);
 			if (fontBig) ImGui::PopFont();
@@ -734,18 +734,18 @@ public:
 				int nTargets = (int)tree.TargetIdx().size();
 				int wiring = used - nTargets;
 				if (wiring < 0) wiring = 0;   // (windows.h's max macro is in scope here)
-				ImGui::TextDisabled(u8"自己點的 %d 個 · 連接用 %d 點", nTargets, wiring);
+				ImGui::TextDisabled(u8"직접 선택 %d개 · 연결에 사용 %d포인트", nTargets, wiring);
 				if (nTargets > AtlasOptExactCap()) {
 					ImGui::SameLine(0, 8.0f * scale);
-					ImGui::TextColored(ImVec4(0.95f, 0.75f, 0.35f, 1.0f), u8"近似解");
+					ImGui::TextColored(ImVec4(0.95f, 0.75f, 0.35f, 1.0f), u8"근삿값");
 					if (ImGui::IsItemHovered())
-						ImGui::SetTooltip(u8"超過 %d 個時，「壓縮到最少點」與規劃模式改用近似演算法，\n"
-							u8"可能比真正的最少點多幾點。平常點節點不受影響。",
+						ImGui::SetTooltip(u8"%d개를 초과하면 '최소까지 압축'과 계획 모드가 근사 알고리즘을 사용합니다.\n"
+							u8"정확한 최솟값보다 몇 포인트 더 많을 수 있습니다. 일반 노드 클릭에는 영향이 없습니다.",
 							AtlasOptExactCap());
 				}
 				if (undo.valid) {
 					ImGui::SameLine(0, 10.0f * scale);
-					ImGui::TextDisabled(u8"Ctrl+Z 復原");
+					ImGui::TextDisabled(u8"Ctrl+Z 되돌리기");
 				}
 			}
 			ImGui::Spacing();
@@ -753,7 +753,7 @@ public:
 
 			// --- search (pinned; filters stats AND the node list, en + zh) ---
 			ImGui::SetNextItemWidth(-FLT_MIN);
-			ImGui::InputTextWithHint("##panelsearch", u8"搜尋統計或節點…",
+			ImGui::InputTextWithHint("##panelsearch", u8"통계 또는 노드 검색...",
 				panelSearch, sizeof(panelSearch), ImGuiInputTextFlags_EscapeClearsAll);
 			std::string needle = ToLowerAscii(panelSearch);
 			auto matches = [&](const std::string& key) {
@@ -788,10 +788,10 @@ public:
 			for (const auto& g : nodeGroups) anyAlloc = anyAlloc || !g.empty();
 			if (!anyAlloc) {
 				ImGui::Dummy(ImVec2(0, 30.0f * scale));
-				ImGui::TextDisabled(u8"尚未配置任何節點");
-				ImGui::TextWrapped(u8"在左側輿圖上點擊節點開始規劃；滾輪縮放、拖曳平移。");
+				ImGui::TextDisabled(u8"아직 노드를 설정하지 않았습니다.");
+				ImGui::TextWrapped(u8"왼쪽 아틀라스에서 노드를 클릭해 계획을 시작하세요. 마우스 휠로 확대/축소하고 드래그로 이동합니다.");
 			} else {
-				if (ImGui::CollapsingHeader(u8"加成統計", ImGuiTreeNodeFlags_DefaultOpen)) {
+				if (ImGui::CollapsingHeader(u8"보너스 통계", ImGuiTreeNodeFlags_DefaultOpen)) {
 					const std::vector<int>& order = (showZh && zhLoaded) ? statOrderZh : statOrderEn;
 					int shown = 0;
 					for (int gi : order) {
@@ -813,10 +813,10 @@ public:
 						ImGui::PopStyleColor();
 					}
 					if (shown == 0)
-						ImGui::TextDisabled(u8"沒有符合搜尋的統計");
+						ImGui::TextDisabled(u8"검색과 일치하는 통계가 없습니다.");
 					ImGui::Spacing();
 				}
-				if (ImGui::CollapsingHeader(u8"節點清單", ImGuiTreeNodeFlags_DefaultOpen)) {
+				if (ImGui::CollapsingHeader(u8"노드 목록", ImGuiTreeNodeFlags_DefaultOpen)) {
 					for (int r = 0; r < 4; r++) {
 						if (nodeGroups[r].empty()) continue;
 						int m = 0;
@@ -844,14 +844,14 @@ public:
 							const std::string& nm = showZh && zhLoaded ? i18n.NodeName(n.id, n.name) : n.name;
 							ImGui::PushID(p.idx); // duplicate display names exist
 							ImGui::PushStyleColor(ImGuiCol_Text, kKindCol[r]);
-							if (ImGui::Selectable(nm.empty() ? u8"(未命名)" : nm.c_str(), false))
+							if (ImGui::Selectable(nm.empty() ? u8"(이름 없음)" : nm.c_str(), false))
 								view.CenterOn(tree, p.idx);
 							ImGui::PopStyleColor();
 							if (ImGui::IsItemHovered()) {
 								ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(16.0f * scale, 12.0f * scale));
 								ImGui::SetNextWindowSizeConstraints(ImVec2(0, 0), ImVec2(460.0f * scale, FLT_MAX));
 								ImGui::BeginTooltip();
-								ImGui::TextColored(kKindCol[r], "%s", nm.empty() ? u8"(未命名)" : nm.c_str());
+								ImGui::TextColored(kKindCol[r], "%s", nm.empty() ? u8"(이름 없음)" : nm.c_str());
 								// 明確 wrap 寬度,不讓短標題把 tooltip 寬度撐死(同 atlas_view drawTooltip)
 								ImGui::PushTextWrapPos(380.0f * scale);
 								for (const std::string& s : n.stats) {
@@ -860,7 +860,7 @@ public:
 									ImGui::PopStyleColor();
 								}
 								ImGui::PopTextWrapPos();
-								ImGui::TextDisabled(u8"點擊清單以在輿圖中定位");
+								ImGui::TextDisabled(u8"목록을 클릭하면 아틀라스의 해당 위치로 이동합니다.");
 								ImGui::EndTooltip();
 								ImGui::PopStyleVar();
 							}
@@ -884,7 +884,7 @@ public:
 		// close. Without this a dismissed prompt would leave the panel permanently
 		// "asking": unclosable, and blocking the launcher's own shutdown.
 		if (close_ == ToolCloseState::Asking && !planningAskExit &&
-		    !ImGui::IsPopupOpen(u8"結束規劃"))
+		    !ImGui::IsPopupOpen(u8"계획 종료"))
 			close_ = ToolCloseState::Cancelled;
 	}
 
@@ -905,7 +905,7 @@ public:
 				std::wstring path = SaveBuildJsonDialog(owner, pendingExportName_);
 				if (!path.empty()) {
 					bool ok = PlannerWriteFile(path, AtlasExportJson(buildFile.Active(), tree.Version()));
-					importMsg = ok ? u8"專案已匯出" : u8"匯出檔寫入失敗";
+					importMsg = ok ? u8"프로젝트를 내보냈습니다." : u8"내보내기 파일을 쓰지 못했습니다.";
 					importFailed = !ok;
 				}
 				break;
@@ -918,7 +918,7 @@ public:
 					if (PlannerReadFile(path, body) && AtlasParseExportJson(body, &e, &perr)) {
 						importEntry(e);
 					} else {
-						importMsg = perr.empty() ? u8"無法讀取匯入檔" : perr;
+						importMsg = perr.empty() ? u8"가져오기 파일을 읽을 수 없습니다." : perr;
 						importFailed = true;
 					}
 				}
@@ -1105,11 +1105,11 @@ private:
 		std::vector<int> targets = compressTargets();
 		AtlasPlan p = AtlasPlanMinimal(tree, targets, tree.BlockedIdx(), tree.AllocIdx());
 		if (!p.ok()) {
-			msg = u8"有節點被「不要」的標記擋住，連不上，無法壓縮";
+			msg = u8"'제외'로 표시한 노드가 경로를 막아 연결할 수 없으므로 압축하지 못했습니다.";
 			return false;
 		}
 		if (p.points >= tree.UsedPoints()) {
-			msg = u8"已經是最少點的接法了（" + std::to_string(tree.UsedPoints()) + u8" 點）";
+			msg = u8"이미 최소 포인트 경로입니다(" + std::to_string(tree.UsedPoints()) + u8"포인트).";
 			return false;
 		}
 		snapshot(undo);
@@ -1120,9 +1120,9 @@ private:
 		for (int t : targets)
 			if (t >= 0 && t < (int)tree.nodes.size()) tree.nodes[t].target = true;
 		saveActive();
-		msg = u8"已壓縮：" + std::to_string(compressFrom) + u8" → " + std::to_string(compressTo) +
-		      u8" 點（Ctrl+Z 可復原）";
-		if (!p.exact) msg += u8"（近似解）";
+		msg = u8"압축 완료: " + std::to_string(compressFrom) + u8" → " + std::to_string(compressTo) +
+		      u8"포인트(Ctrl+Z로 되돌리기 가능)";
+		if (!p.exact) msg += u8"(근삿값)";
 		return true;
 	}
 
@@ -1319,30 +1319,30 @@ private:
 	{
 		std::string compass = q.id;
 		if (showZh) {
-			if (q.id == "NorthWest") compass = u8"西北";
-			else if (q.id == "NorthEast") compass = u8"東北";
-			else if (q.id == "SouthEast") compass = u8"東南";
-			else if (q.id == "SouthWest") compass = u8"西南";
+			if (q.id == "NorthWest") compass = u8"북서";
+			else if (q.id == "NorthEast") compass = u8"북동";
+			else if (q.id == "SouthEast") compass = u8"남동";
+			else if (q.id == "SouthWest") compass = u8"남서";
 		}
 		const std::string& vault = (showZh && !q.vaultZh.empty()) ? q.vaultZh : q.vaultEn;
-		return vault.empty() ? compass : compass + u8"（" + vault + u8"）";
+		return vault.empty() ? compass : compass + u8"(" + vault + u8")";
 	}
 
 	void renderAstrolabePanel()
 	{
 		AtlasBuildEntry& b = buildFile.Active();
 		if (!astroDb.available()) {
-			if (ImGui::CollapsingHeader(u8"星盤")) {
-				ImGui::TextWrapped(u8"星盤資料未載入：%s", astroErr.c_str());
-				ImGui::TextDisabled(u8"已存的星盤設定不會被更動。");
+			if (ImGui::CollapsingHeader(u8"아스트롤라베")) {
+				ImGui::TextWrapped(u8"아스트롤라베 데이터를 불러오지 못했습니다: %s", astroErr.c_str());
+				ImGui::TextDisabled(u8"저장된 아스트롤라베 설정은 변경되지 않습니다.");
 			}
 			return;
 		}
-		std::string hdr = u8"星盤 (" + std::to_string(b.astrolabes.size()) + "/" +
+		std::string hdr = u8"아스트롤라베 (" + std::to_string(b.astrolabes.size()) + "/" +
 		                  std::to_string(astroDb.Regions().size()) + ")###astrohdr";
 		if (!ImGui::CollapsingHeader(hdr.c_str(), ImGuiTreeNodeFlags_DefaultOpen)) return;
 
-		ImGui::TextDisabled(u8"每個半區同時只能有一片幻塑界域");
+		ImGui::TextDisabled(u8"각 반구에는 아스트롤라베를 하나만 배치할 수 있습니다.");
 		const float slot = 38.0f * scale;
 		int regionIdx = 0;
 		for (const AtlasQuadrant& q : astroDb.Regions()) {
@@ -1372,19 +1372,19 @@ private:
 					saveActive();
 				} else {
 					astroSearch[0] = '\0';
-					ImGui::OpenPopup(u8"選擇星盤");
+					ImGui::OpenPopup(u8"아스트롤라베 선택");
 				}
 			}
 			if (def && ImGui::IsItemHovered()) {
-				ImGui::SetTooltip(u8"點擊移除");
+				ImGui::SetTooltip(u8"클릭하여 제거");
 			}
 
 			// One picker per quadrant; the PushID above keeps their ids apart.
-			if (ImGui::BeginPopup(u8"選擇星盤")) {
+			if (ImGui::BeginPopup(u8"아스트롤라베 선택")) {
 				ImGui::TextDisabled("%s", quadrantLabel(q).c_str());
 				ImGui::SetNextItemWidth(320.0f * scale);
 				if (ImGui::IsWindowAppearing()) ImGui::SetKeyboardFocusHere();
-				ImGui::InputTextWithHint("##astrosearch", u8"搜尋名稱或效果（中英、模糊）…",
+				ImGui::InputTextWithHint("##astrosearch", u8"이름 또는 효과 검색(한국어/영어, 퍼지 검색)...",
 					astroSearch, sizeof(astroSearch), ImGuiInputTextFlags_EscapeClearsAll);
 				FuzzyQuery q2 = MakeFuzzyQuery(astroSearch);
 
@@ -1399,7 +1399,7 @@ private:
 							if (x.first != y.first) return x.first > y.first;
 							return x.second->zh.size() < y.second->zh.size();
 						});
-				ImGui::TextDisabled(u8"%d 種 · %s", (int)hits.size(), astroDb.Source().c_str());
+				ImGui::TextDisabled(u8"%d종 · %s", (int)hits.size(), astroDb.Source().c_str());
 
 				ImGui::BeginChild("##astrolist", ImVec2(420.0f * scale, 300.0f * scale));
 				for (size_t k = 0; k < hits.size(); k++) {
@@ -1431,7 +1431,7 @@ private:
 							ImGui::TextUnformatted(StripStatMarkup(s).c_str());
 						ImGui::PopTextWrapPos();
 						if (!d.enabled)
-							ImGui::TextDisabled(u8"（本賽季尚未啟用，交易站也沒有）");
+							ImGui::TextDisabled(u8"(이번 시즌에는 활성화되지 않아 거래소에도 없습니다.)");
 						ImGui::EndTooltip();
 						ImGui::PopStyleVar();
 					}
@@ -1448,9 +1448,9 @@ private:
 				ImGui::TextColored(PobUi::Accent(), "%s", astroName(*def).c_str());
 			} else if (placed) {
 				// Sanitize should have removed this; say so instead of drawing a blank.
-				ImGui::TextDisabled(u8"未知星盤");
+				ImGui::TextDisabled(u8"알 수 없는 아스트롤라베");
 			} else {
-				ImGui::TextDisabled(u8"未配置");
+				ImGui::TextDisabled(u8"미할당");
 			}
 			ImGui::EndGroup();
 
@@ -1461,7 +1461,7 @@ private:
 					ImGui::TextWrapped("%s", StripStatMarkup(s).c_str());
 				ImGui::PopStyleColor();
 				if (!def->enabled)
-					ImGui::TextDisabled(u8"（本賽季尚未啟用）");
+					ImGui::TextDisabled(u8"(이번 시즌에는 활성화되지 않았습니다.)");
 				ImGui::Unindent(10.0f * scale);
 			}
 			ImGui::PopID();
@@ -1496,13 +1496,13 @@ private:
 	// so it cannot be mistaken for the tier the project plans to run.
 	std::string mapOwnTierLabel(const AtlasMapDef& d)
 	{
-		if (d.kind == AtlasMapDef::kUnique) return std::string(showZh ? u8"傳奇" : "unique");
+		if (d.kind == AtlasMapDef::kUnique) return std::string(showZh ? u8"고유" : "unique");
 		return d.tier > 0 ? "T" + std::to_string(d.tier) : std::string("-");
 	}
 	std::string mapTierLabel(int t)
 	{
-		if (t == 0) return std::string(showZh ? u8"未指定" : "unset");
-		if (t == kMapTierUnique) return std::string(showZh ? u8"傳奇圖" : "unique");
+		if (t == 0) return std::string(showZh ? u8"미지정" : "unset");
+		if (t == kMapTierUnique) return std::string(showZh ? u8"고유 맵" : "unique");
 		return "T" + std::to_string(t);
 	}
 	// Endgame is almost entirely run at the top tier, so an unset project shows
@@ -1519,13 +1519,13 @@ private:
 	{
 		AtlasBuildEntry& b = buildFile.Active();
 		if (!mapDb.available()) {
-			if (ImGui::CollapsingHeader(u8"主力地圖")) {
-				ImGui::TextWrapped(u8"地圖資料未載入：%s", mapErr.c_str());
-				ImGui::TextDisabled(u8"已存的地圖設定不會被更動。");
+			if (ImGui::CollapsingHeader(u8"주력 지도")) {
+				ImGui::TextWrapped(u8"지도 데이터를 불러오지 못했습니다: %s", mapErr.c_str());
+				ImGui::TextDisabled(u8"저장된 지도 설정은 변경되지 않습니다.");
 			}
 			return;
 		}
-		if (!ImGui::CollapsingHeader(u8"主力地圖", ImGuiTreeNodeFlags_DefaultOpen)) return;
+		if (!ImGui::CollapsingHeader(u8"주력 지도", ImGuiTreeNodeFlags_DefaultOpen)) return;
 
 		const AtlasMapDef* cur = b.mapId.empty() ? nullptr : mapDb.ById(b.mapId);
 		if (cur) {
@@ -1549,11 +1549,11 @@ private:
 			ImGui::TextDisabled("%s", sub.c_str());
 			ImGui::EndGroup();
 		} else {
-			ImGui::TextDisabled(u8"尚未選擇");
+			ImGui::TextDisabled(u8"선택되지 않았습니다.");
 		}
 
 		// --- two INDEPENDENT dropdowns: the tier to run at, and which map ---
-		ImGui::TextDisabled(u8"階級");
+		ImGui::TextDisabled(u8"등급");
 		ImGui::SameLine();
 		ImGui::SetNextItemWidth(110.0f * scale);
 		if (ImGui::BeginCombo("##maptier", mapTierLabel(plannedTier()).c_str())) {
@@ -1574,10 +1574,10 @@ private:
 		}
 
 		ImGui::SameLine();
-		ImGui::TextDisabled(u8"地圖");
+		ImGui::TextDisabled(u8"지도");
 		ImGui::SameLine();
 		ImGui::SetNextItemWidth(-FLT_MIN);
-		const char* namePreview = cur ? mapPrimaryName(*cur).c_str() : u8"選擇地圖…";
+		const char* namePreview = cur ? mapPrimaryName(*cur).c_str() : u8"지도를 선택하세요...";
 		if (ImGui::BeginCombo("##mapname", namePreview)) {
 			// EVERY map, always. The tier dropdown does not filter this list:
 			// a Voidstone lifts a whole quadrant to T16, so a map's shipped tier
@@ -1587,7 +1587,7 @@ private:
 				mapSearch[0] = '\0';
 				ImGui::SetKeyboardFocusHere();
 			}
-			ImGui::InputTextWithHint("##mapsearch", u8"搜尋地圖名稱…",
+			ImGui::InputTextWithHint("##mapsearch", u8"지도 이름 검색...",
 				mapSearch, sizeof(mapSearch), ImGuiInputTextFlags_EscapeClearsAll);
 			FuzzyQuery q = MakeFuzzyQuery(mapSearch);
 
@@ -1610,7 +1610,7 @@ private:
 					return x.second->enArea.size() < y.second->enArea.size();
 				});
 
-			ImGui::TextDisabled(u8"%d 張", (int)hits.size());
+			ImGui::TextDisabled(u8"%d개", (int)hits.size());
 			ImGui::BeginChild("##maplist", ImVec2(340.0f * scale, 320.0f * scale));
 			ImGuiListClipper clip;
 			clip.Begin((int)hits.size());
@@ -1628,7 +1628,7 @@ private:
 					}
 					if (ImGui::IsItemHovered()) {
 						std::string tip = mapRegionLabel(d.region) +
-							u8" · 原始階級 " + mapOwnTierLabel(d);
+							u8" · 기본 등급 " + mapOwnTierLabel(d);
 						const std::string& item = mapSecondName(d);
 						if (!item.empty() && item != mapPrimaryName(d)) tip = item + u8" · " + tip;
 						ImGui::SetTooltip("%s", tip.c_str());
@@ -1640,7 +1640,7 @@ private:
 			ImGui::EndCombo();
 		}
 
-		if (cur && ImGui::Button(u8"清除")) {
+		if (cur && ImGui::Button(u8"지우기")) {
 			b.mapId.clear();
 			saveActive();
 		}
@@ -1668,13 +1668,13 @@ private:
 	{
 		switch (r.code) {
 		case ScarabAdd::kFull:
-			return u8"地圖裝置只有 " + std::to_string(kMaxScarabs) + u8" 個地圖格";
+			return u8"지도 장치에는 갑충석을 최대 " + std::to_string(kMaxScarabs) + u8"개까지 넣을 수 있습니다.";
 		case ScarabAdd::kOverLimit:
-			return u8"這個項目最多只能放 " + std::to_string(r.limit) + u8" 份";
+			return u8"이 갑충석은 최대 " + std::to_string(r.limit) + u8"개까지 넣을 수 있습니다.";
 		case ScarabAdd::kFamilyConflict:
-			return u8"與「" + (r.conflict ? scarabName(*r.conflict) : std::string("?")) + u8"」不能同時使用";
+			return (r.conflict ? scarabName(*r.conflict) : std::string("?")) + u8"과(와) 동시에 사용할 수 없습니다.";
 		default:
-			return u8"這個項目不在目前的資料中";
+			return u8"이 갑충석은 현재 데이터에 없습니다.";
 		}
 	}
 
@@ -1682,13 +1682,13 @@ private:
 	{
 		AtlasBuildEntry& b = buildFile.Active();
 		if (!scarabDb.available()) {
-			if (ImGui::CollapsingHeader(u8"地圖格")) {
-				ImGui::TextWrapped(u8"地圖格資料未載入：%s", scarabErr.c_str());
-				ImGui::TextDisabled(u8"已存的地圖格設定不會被更動。");
+			if (ImGui::CollapsingHeader(u8"갑충석")) {
+				ImGui::TextWrapped(u8"갑충석 데이터를 불러오지 못했습니다: %s", scarabErr.c_str());
+				ImGui::TextDisabled(u8"저장된 갑충석 설정은 변경되지 않습니다.");
 			}
 			return;
 		}
-		std::string hdr = u8"地圖格 (" + std::to_string(b.scarabs.size()) + "/" +
+		std::string hdr = u8"갑충석 (" + std::to_string(b.scarabs.size()) + "/" +
 		                  std::to_string(kMaxScarabs) + ")###scarabhdr";
 		if (!ImGui::CollapsingHeader(hdr.c_str(), ImGuiTreeNodeFlags_DefaultOpen)) return;
 
@@ -1716,7 +1716,7 @@ private:
 					for (const std::string& s : scarabLines(*d))
 						ImGui::TextUnformatted(StripStatMarkup(s).c_str());
 					ImGui::PopTextWrapPos();
-					ImGui::TextDisabled(u8"點擊移除");
+					ImGui::TextDisabled(u8"클릭하여 제거");
 					ImGui::EndTooltip();
 					ImGui::PopStyleVar();
 				}
@@ -1741,7 +1741,7 @@ private:
 
 		ImGui::Spacing();
 		if (b.scarabs.empty()) {
-			ImGui::TextDisabled(u8"尚未放置任何項目");
+			ImGui::TextDisabled(u8"아직 배치한 갑충석이 없습니다.");
 		} else {
 			for (const std::string& id : b.scarabs) {
 				const ScarabDef* d = scarabDb.ById(id);
@@ -1772,13 +1772,13 @@ private:
 		if (!scarabDb.available()) return;
 		AtlasBuildEntry& b = buildFile.Active();
 		if (openScarabPicker) {
-			ImGui::OpenPopup(u8"選擇地圖格項目");
+			ImGui::OpenPopup(u8"갑충석 선택");
 			openScarabPicker = false;
 		}
-		if (ImGui::BeginPopup(u8"選擇地圖格項目")) {
+		if (ImGui::BeginPopup(u8"갑충석 선택")) {
 					ImGui::SetNextItemWidth(320.0f * scale);
 					if (ImGui::IsWindowAppearing()) ImGui::SetKeyboardFocusHere();
-					ImGui::InputTextWithHint("##scarabsearch", u8"搜尋名稱或效果（中英、模糊）…",
+					ImGui::InputTextWithHint("##scarabsearch", u8"이름 또는 효과 검색(한국어/영어, 퍼지 검색)...",
 						scarabSearch, sizeof(scarabSearch), ImGuiInputTextFlags_EscapeClearsAll);
 					ScarabQuery q = MakeScarabQuery(scarabSearch);
 
@@ -1795,7 +1795,7 @@ private:
 								if (a.first != b.first) return a.first > b.first;
 								return a.second->zh.size() < b.second->zh.size(); // tighter name first
 							});
-					ImGui::TextDisabled(u8"%d 隻 · %s", (int)hits.size(), scarabDb.Source().c_str());
+					ImGui::TextDisabled(u8"%d종 · %s", (int)hits.size(), scarabDb.Source().c_str());
 
 					ImGui::BeginChild("##scarablist", ImVec2(420.0f * scale, 360.0f * scale));
 					std::string lastType;
@@ -1832,9 +1832,9 @@ private:
 									ImGui::TextUnformatted(StripStatMarkup(s).c_str());
 								ImGui::PopTextWrapPos();
 								if (d.limit > 1)
-									ImGui::TextDisabled(u8"可放置 %d 份", d.limit);
+									ImGui::TextDisabled(u8"최대 %d개 배치 가능", d.limit);
 								if (!d.stash)
-									ImGui::TextDisabled(u8"（未出現在碎片倉庫與交易站）");
+									ImGui::TextDisabled(u8"(파편 보관함 및 거래소에 표시되지 않음)");
 								if (!can.ok())
 									ImGui::TextColored(PobUi::StatusColor(PobUi::StatusTone::Warning),
 										"%s", scarabRefuseText(can).c_str());
@@ -1852,7 +1852,7 @@ private:
 	// --- project notes ---
 	void renderNotesPanel()
 	{
-		if (!ImGui::CollapsingHeader(u8"備註")) return;
+		if (!ImGui::CollapsingHeader(u8"메모")) return;
 		AtlasBuildEntry& b = buildFile.Active();
 		ImGui::InputTextMultiline("##notes", &b.notes,
 			ImVec2(-FLT_MIN, 90.0f * scale));
@@ -1866,16 +1866,16 @@ private:
 	// nothing here is saved, it is a way of reading the map.
 	void renderMechanicPanel()
 	{
-		if (!ImGui::CollapsingHeader(u8"機制")) return;
+		if (!ImGui::CollapsingHeader(u8"메커니즘")) return;
 		if (mechNodeIdx.empty()) {
-			ImGui::TextWrapped(u8"這個賽季還沒有機制分類資料。重新下載或匯入賽季資料後就會產生。");
+			ImGui::TextWrapped(u8"이번 시즌의 메커니즘 분류 데이터가 없습니다. 다시 다운로드하거나 시즌 데이터를 가져오면 생성됩니다.");
 			ImGui::Spacing();
 			return;
 		}
 		if (!mechDb.BorrowedFrom().empty())
-			ImGui::TextDisabled(u8"（分類沿用 %s，本賽季新增的節點可能未歸類）",
+			ImGui::TextDisabled(u8"(%s의 분류를 사용 중이므로 이번 시즌에 추가된 노드는 분류되지 않을 수 있습니다.)",
 				mechDb.BorrowedFrom().c_str());
-		ImGui::TextDisabled(u8"點一列標出全輿圖同機制的位置；再點一次取消");
+		ImGui::TextDisabled(u8"항목을 클릭하면 아틀라스에서 해당 메커니즘 위치를 모두 표시합니다. 다시 클릭하면 해제됩니다.");
 		for (const auto& kv : mechNodeIdx) {
 			const AtlasMechanicDef* d = AtlasMechanicById(kv.first);
 			if (!d) continue;
@@ -1910,7 +1910,7 @@ private:
 			}
 		}
 		if (mechDb.Unassigned() > 0)
-			ImGui::TextDisabled(u8"另有 %d 個節點不屬於任何機制叢集", mechDb.Unassigned());
+			ImGui::TextDisabled(u8"그 밖의 %d개 노드는 어떤 메커니즘 그룹에도 속하지 않습니다.", mechDb.Unassigned());
 		ImGui::Spacing();
 	}
 
@@ -1929,17 +1929,17 @@ private:
 		if (cmpTarg.empty() || !verIndex.Has(cmpTarg)) cmpTarg = verIndex.Active();
 		std::string base = cmpBase, targ = cmpTarg;
 		if (base.empty() || targ.empty()) {
-			diffErr = u8"需要兩個版本的資料才能比較（目前只安裝了一個版本）";
+			diffErr = u8"비교하려면 두 버전의 데이터가 필요합니다(현재 한 버전만 설치됨).";
 			return;
 		}
 		if (base == targ) {
-			diffErr = u8"請選擇兩個不同的版本";
+			diffErr = u8"서로 다른 버전을 선택하세요.";
 			return;
 		}
 		AtlasTreeData bt, tt;
 		std::string e;
-		if (!bt.LoadVersion(exeDir, base, &e)) { diffErr = u8"載入 " + base + u8" 失敗：" + e; return; }
-		if (!tt.LoadVersion(exeDir, targ, &e)) { diffErr = u8"載入 " + targ + u8" 失敗：" + e; return; }
+		if (!bt.LoadVersion(exeDir, base, &e)) { diffErr = base + u8" 불러오기 실패: " + e; return; }
+		if (!tt.LoadVersion(exeDir, targ, &e)) { diffErr = targ + u8" 불러오기 실패: " + e; return; }
 		AtlasI18n bz, tz;
 		bool hb = bz.LoadVersion(exeDir, base), ht = tz.LoadVersion(exeDir, targ);
 		// same display rules as the canvas: when the zh snapshot predates the
@@ -1994,7 +1994,7 @@ private:
 	// still exists in the new season focuses it on the canvas.
 	void renderComparePanel()
 	{
-		ImGui::TextDisabled(u8"版本比較");
+		ImGui::TextDisabled(u8"버전 비교");
 
 		// --- pick the two versions ---
 		// Every installed tag is offered on both sides, so this covers both
@@ -2016,13 +2016,13 @@ private:
 			}
 			return changed;
 		};
-		bool pairChanged = versionCombo("##cmpbase", u8"舊", cmpBase);
+		bool pairChanged = versionCombo("##cmpbase", u8"이전", cmpBase);
 		ImGui::SameLine();
 		ImGui::TextDisabled(">>");
 		ImGui::SameLine();
-		pairChanged |= versionCombo("##cmptarg", u8"新", cmpTarg);
+		pairChanged |= versionCombo("##cmptarg", u8"신규", cmpTarg);
 		ImGui::SameLine();
-		if (ImGui::SmallButton(u8"對調")) {
+		if (ImGui::SmallButton(u8"맞바꾸기")) {
 			std::swap(cmpBase, cmpTarg);
 			pairChanged = true;
 		}
@@ -2033,14 +2033,14 @@ private:
 		if (fontBig) ImGui::PopFont();
 		if (!diffReady) {
 			ImGui::Dummy(ImVec2(0, 12.0f * scale));
-			ImGui::TextWrapped("%s", diffErr.empty() ? u8"尚未計算比較" : diffErr.c_str());
+			ImGui::TextWrapped("%s", diffErr.empty() ? u8"아직 비교를 계산하지 않았습니다." : diffErr.c_str());
 			return;
 		}
-		ImGui::Text(u8"新增 %d    移除 %d    數值/詞條變動 %d",
+		ImGui::Text(u8"추가 %d 삭제 %d 수치/사용 변경 %d",
 			(int)diff.added.size(), (int)diff.removed.size(), (int)diff.modified.size());
 		ImGui::Spacing();
 		ImGui::SetNextItemWidth(-FLT_MIN);
-		ImGui::InputTextWithHint("##diffsearch", u8"搜尋變更節點或詞條…",
+		ImGui::InputTextWithHint("##diffsearch", u8"변경된 노드 또는 문구 검색...",
 			diffSearch, sizeof(diffSearch), ImGuiInputTextFlags_EscapeClearsAll);
 		std::string needle = ToLowerAscii(diffSearch);
 		ImGui::Spacing();
@@ -2069,7 +2069,7 @@ private:
 		ImGui::BeginChild("##diffscroll", ImVec2(0, 0), false, ImGuiWindowFlags_AlwaysUseWindowPadding);
 
 		if (!diff.added.empty() &&
-		    ImGui::CollapsingHeader(header(u8"新增節點", diff.added.size()).c_str(), ImGuiTreeNodeFlags_DefaultOpen)) {
+		    ImGui::CollapsingHeader(header(u8"추가 노드", diff.added.size()).c_str(), ImGuiTreeNodeFlags_DefaultOpen)) {
 			for (const AtlasNodeDiff& n : diff.added) {
 				if (!match(n)) continue;
 				ImGui::PushID(n.id);
@@ -2082,7 +2082,7 @@ private:
 			}
 		}
 		if (!diff.removed.empty() &&
-		    ImGui::CollapsingHeader(header(u8"移除節點", diff.removed.size()).c_str(), ImGuiTreeNodeFlags_DefaultOpen)) {
+		    ImGui::CollapsingHeader(header(u8"노드 제거", diff.removed.size()).c_str(), ImGuiTreeNodeFlags_DefaultOpen)) {
 			for (const AtlasNodeDiff& n : diff.removed) {
 				if (!match(n)) continue;
 				ImGui::PushID(n.id);
@@ -2091,7 +2091,7 @@ private:
 				ImGui::PopStyleColor();
 				if (ImGui::IsItemHovered()) {
 					ImGui::BeginTooltip();
-					ImGui::TextDisabled(u8"此節點在新賽季已移除");
+					ImGui::TextDisabled(u8"해당 노드가 새 시즌에서 삭제되었습니다.");
 					ImGui::PushTextWrapPos(380.0f * scale);
 					for (const std::string& s : n.statsOld) ImGui::TextUnformatted(StripStatMarkup(s).c_str());
 					ImGui::PopTextWrapPos();
@@ -2101,7 +2101,7 @@ private:
 			}
 		}
 		if (!diff.modified.empty() &&
-		    ImGui::CollapsingHeader(header(u8"數值/詞條變動", diff.modified.size()).c_str(), ImGuiTreeNodeFlags_DefaultOpen)) {
+		    ImGui::CollapsingHeader(header(u8"수치/사용 변경", diff.modified.size()).c_str(), ImGuiTreeNodeFlags_DefaultOpen)) {
 			for (const AtlasNodeDiff& n : diff.modified) {
 				if (!match(n)) continue;
 				ImGui::PushID(n.id);
@@ -2114,7 +2114,7 @@ private:
 				ImGui::PushTextWrapPos(0.0f);
 				if (n.nameChanged) {
 					ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.60f, 0.66f, 0.74f, 1.0f));
-					ImGui::TextWrapped(u8"改名自：%s",
+					ImGui::TextWrapped(u8"이름 변경: %s",
 						(showZh && zhLoaded && !n.nameOldZh.empty() ? n.nameOldZh : n.nameOld).c_str());
 					ImGui::PopStyleColor();
 				}
@@ -2163,9 +2163,9 @@ private:
 		if (ready && verIndex.Versions().size() >= 2 && !verIndex.CompareBase().empty()) {
 			rebuildDiff();
 			if (diffReady)
-				importMsg += u8"｜可比較 " + diff.oldVer + u8" -> " + diff.newVer + u8"：新增" +
-				             std::to_string(diff.added.size()) + u8" 移除" + std::to_string(diff.removed.size()) +
-				             u8" 變動" + std::to_string(diff.modified.size()) + u8"（按「版本比較」）";
+				importMsg += u8" · 비교 " + diff.oldVer + u8" → " + diff.newVer + u8": 추가 " +
+				             std::to_string(diff.added.size()) + u8", 삭제 " + std::to_string(diff.removed.size()) +
+				             u8", 변경 " + std::to_string(diff.modified.size()) + u8"('버전 비교'에서 확인)";
 		}
 		if (compareMode) { if (diffReady) applyDiffOverlay(); else view.ClearDiffOverlay(); }
 		else view.ClearDiffOverlay();
@@ -2215,7 +2215,7 @@ private:
 		snote += anote;
 		buildFile.builds[idx].mapId = mapDb.SanitizeOne(e.mapId);
 		if (!e.mapId.empty() && buildFile.builds[idx].mapId.empty())
-			snote += u8"，忽略 1 張未知地圖";
+			snote += u8", 알 수 없는 지도 1개 무시";
 		int kept = tree.ApplyAllocIds(e.alloc);
 		tree.ApplyTargetIds(e.targets);
 		tree.ApplyBlockedIds(e.blocked);
@@ -2223,14 +2223,14 @@ private:
 		saveActive();
 		panelDirty = true;
 		int dropped = (int)e.alloc.size() - kept;
-		importMsg = u8"已匯入「" + buildFile.Active().name + u8"」：" + std::to_string(kept) + u8" 點";
-		if (dropped > 0) importMsg += u8"（丟棄 " + std::to_string(dropped) + u8" 個未知節點）";
+		importMsg = u8"가져오기 완료 '" + buildFile.Active().name + u8"': " + std::to_string(kept) + u8"포인트";
+		if (dropped > 0) importMsg += u8"(알 수 없는 노드 " + std::to_string(dropped) + u8"개 제외)";
 		if (!buildFile.builds[idx].astrolabes.empty())
-			importMsg += u8"、" + std::to_string(buildFile.builds[idx].astrolabes.size()) + u8" 片幻塑界域";
-		if (!buildFile.builds[idx].mapId.empty()) importMsg += u8"、主力地圖";
+			importMsg += u8", 아스트롤라베 " + std::to_string(buildFile.builds[idx].astrolabes.size()) + u8"개";
+		if (!buildFile.builds[idx].mapId.empty()) importMsg += u8", 주력 지도";
 		if (!buildFile.builds[idx].scarabs.empty())
-			importMsg += u8"、" + std::to_string(buildFile.builds[idx].scarabs.size()) + u8" 個地圖格項目";
-		if (!buildFile.builds[idx].notes.empty()) importMsg += u8"、備註";
+			importMsg += u8", 갑충석 " + std::to_string(buildFile.builds[idx].scarabs.size()) + u8"개";
+		if (!buildFile.builds[idx].notes.empty()) importMsg += u8", 메모";
 		importMsg += snote; // "，忽略 N 個未知甲蟲" etc., empty when nothing was dropped
 		importFailed = false;
 	}
@@ -2258,7 +2258,7 @@ void ShowAtlasPlanner(const std::wstring& exeDir, const std::wstring& locale)
 	AtlasPlannerPanel panel;
 	ToolWindowDesc desc;
 	// "PobTools — 輿圖策略"
-	desc.titleUtf8 = "PobTools \xe2\x80\x94 \xe8\xbc\xbf\xe5\x9c\x96\xe7\xad\x96\xe7\x95\xa5";
+	desc.titleUtf8 = u8"PobTools — 아틀라스 전략";
 	desc.defW = 1280;
 	desc.defH = 860;
 	RunToolWindow(panel, desc, exeDir, L"poe1", locale);

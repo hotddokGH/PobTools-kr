@@ -44,20 +44,20 @@ bool PassiveTreeView::LoadTextures(const std::wstring& exeDir, const PassiveTree
 		std::vector<unsigned char> bytes = EdReadFile(bundled + rel);
 		if (bytes.empty() && !pobBase.empty()) bytes = EdReadFile(pobBase + rel);
 		if (bytes.empty()) {
-			if (err) *err = "找不到天賦樹圖集：Data/tree/ 或 TreeData/" + d.TreeVersion() + "/" + d.sheets[i].file +
-			                "（請重新安裝 PobTools 或確認 POB 已下載天賦樹資料）";
+			if (err) *err = "Data/Tree/TreeData/" + d.TreeVersion() + "/" + d.sheets[i].file +
+			                " 파일이 없습니다(POBTools를 다시 설치하거나 POB가 패시브 스킬 트리 데이터를 내려받았는지 확인하세요).";
 			return false;
 		}
 		int w = 0, h = 0;
 		unsigned char* rgba = DecodeImageRGBA(bytes.data(), (int)bytes.size(), &w, &h);
 		if (!rgba) {
-			if (err) *err = "無法解碼天賦樹圖集：" + d.sheets[i].file;
+			if (err) *err = "패시브 트리 아틀라스를 디코딩할 수 없습니다: " + d.sheets[i].file;
 			return false;
 		}
 		tex_[i] = CreateTextureRGBA(rgba, w, h);
 		FreeDecoded(rgba);
 		if (!tex_[i]) {
-			if (err) *err = "GL 上傳失敗：" + d.sheets[i].file;
+			if (err) *err = "GL 전송에 실패하였습니다." + d.sheets[i].file;
 			return false;
 		}
 	}

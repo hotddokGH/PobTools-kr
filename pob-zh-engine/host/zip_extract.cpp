@@ -58,13 +58,13 @@ bool ExtractZipToDir(const void* data, size_t size, const std::wstring& destDir,
 	if (!base.empty() && base.back() != L'\\') base += L'\\';
 	if (SHCreateDirectoryExW(nullptr, base.c_str(), nullptr) != ERROR_SUCCESS &&
 	    GetLastError() != ERROR_ALREADY_EXISTS && GetLastError() != ERROR_FILE_EXISTS) {
-		if (err) *err = u8"無法建立解壓目錄";
+		if (err) *err = u8"압축 해제 폴더를 만들 수 없습니다.";
 		return false;
 	}
 
 	mz_zip_archive za{};
 	if (!mz_zip_reader_init_mem(&za, data, size, 0)) {
-		if (err) *err = u8"zip 檔格式無效";
+		if (err) *err = u8"zip 파일 형식이 올바르지 않습니다.";
 		return false;
 	}
 
@@ -74,7 +74,7 @@ bool ExtractZipToDir(const void* data, size_t size, const std::wstring& destDir,
 	for (mz_uint i = 0; i < count && ok; i++) {
 		mz_zip_archive_file_stat st{};
 		if (!mz_zip_reader_file_stat(&za, i, &st)) {
-			if (err) *err = u8"zip 條目資訊讀取失敗";
+			if (err) *err = u8"zip 항목 정보를 읽지 못했습니다";
 			ok = false;
 			break;
 		}
@@ -83,7 +83,7 @@ bool ExtractZipToDir(const void* data, size_t size, const std::wstring& destDir,
 		for (char& c : name) if (c == '\\') c = '/';
 		if (name.empty()) continue;
 		if (!entry_name_safe(name)) {
-			if (err) *err = u8"zip 條目路徑非法: " + name;
+			if (err) *err = u8"zip 항목 경로 오류:" + name;
 			ok = false;
 			break;
 		}
@@ -106,12 +106,12 @@ bool ExtractZipToDir(const void* data, size_t size, const std::wstring& destDir,
 		size_t outSize = 0;
 		void* p = mz_zip_reader_extract_to_heap(&za, i, &outSize, 0);
 		if (!p) {
-			if (err) *err = u8"zip 條目解壓失敗: " + name;
+			if (err) *err = u8"zip 항목 압축 해제 실패: " + name;
 			ok = false;
 			break;
 		}
 		if (!write_file_bytes(base + rel, p, outSize)) {
-			if (err) *err = u8"檔案寫入失敗: " + name;
+			if (err) *err = u8"파일 기록 실패: " + name;
 			ok = false;
 		}
 		mz_free(p);

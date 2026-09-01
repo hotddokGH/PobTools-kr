@@ -2054,7 +2054,7 @@ static const PobToolsSourcePatch kPobToolsSourcePatches[] = {
 	// StripEscapes on the RESULT, not just the input: several of these values
 	// come back coloured ("Is the enemy Shocked?" is three coloured runs), and a
 	// query typed off the screen would otherwise straddle an escape and miss.
-	{ u8"設定頁的選項搜尋打不進中文",
+	{ u8"설정 페이지 옵션을 한국어로 검색할 수 없음",
 	  "configtab.lua",
 	  "local label = StripEscapes(varData.label or \"\"):lower()",
 	  " if PobToolsTranslateDisplay and searchStr:find(\"[\\128-\\255]\") then "
@@ -2067,7 +2067,7 @@ static const PobToolsSourcePatch kPobToolsSourcePatches[] = {
 	// which never matches a CJK byte. That is enough: rank 1 is the exact
 	// "type what you see" case. PoE2 has no such popup, so the anchor simply
 	// finds nothing there.
-	{ u8"自訂修飾符的「新增修飾符」搜尋打不進中文",
+	{ u8"사용자 지정 속성의 '속성 추가'에서 한국어로 검색할 수 없음",
 	  "configtab.lua",
 	  "local modLower = modText:lower()",
 	  " if PobToolsTranslateDisplay and searchStr:find(\"[\\128-\\255]\") then "
@@ -2086,7 +2086,7 @@ static const PobToolsSourcePatch kPobToolsSourcePatches[] = {
 	// title and returns the translation, and returning nil is what leaves the
 	// English alone (gsub keeps a match whose handler returns nil/false), which
 	// is also the fallback when the global is missing on an older engine.
-	{ u8"物品提示的標題維持英文",
+	{ u8"아이템 툴팁 제목이 영어로 남음",
 	  "itemstab.lua",
 	  "rarityCode..item.title",
 	  ":gsub(\"^.+$\", PobToolsItemTitle or \"%0\")" },
@@ -2103,7 +2103,7 @@ static const PobToolsSourcePatch kPobToolsSourcePatches[] = {
 	// notables, and the item-title path would fall back to word-by-word and could
 	// turn an unknown notable into word salad. A plain lookup returns nil instead,
 	// and nil is what keeps the English.
-	{ u8"刺青與軍團珠寶下拉的名稱維持英文",
+	{ u8"문신과 무궁한 주얼 드롭다운 이름이 영어로 남음",
 	  "treetab.lua",
 	  "label = node.dn .. \"",
 	  nullptr,
@@ -2112,7 +2112,7 @@ static const PobToolsSourcePatch kPobToolsSourcePatches[] = {
 	// own, which is right here because they are separate modifiers rather than one
 	// sentence. A stat containing its own comma splits into runs that match
 	// nothing, so it is simply left in English -- never mangled.
-	{ u8"刺青下拉的詞綴文字維持英文",
+	{ u8"문신 드롭다운의 속성 문구가 영어로 남음",
 	  "treetab.lua",
 	  "table.concat(node.sd, \",\")",
 	  ":gsub(\"[^,]+\", PobToolsTranslateDisplay)",
@@ -2129,7 +2129,7 @@ static const PobToolsSourcePatch kPobToolsSourcePatches[] = {
 	//
 	// Re-translating text a caller already translated is harmless: the lookup
 	// misses on Chinese and returns nil, and `or str` keeps what was passed in.
-	{ u8"換行過的長句維持英文",
+	{ u8"줄 바꿈된 긴 문구가 영어로 남음",
 	  "main.lua",
 	  "function main:WrapString(str, height, width)",
 	  " if PobToolsTranslateDisplay then str = PobToolsTranslateDisplay(str) or str end" },
@@ -2144,7 +2144,7 @@ static const PobToolsSourcePatch kPobToolsSourcePatches[] = {
 	// the colon, so the English layout stays pixel-identical (per-glyph widths
 	// are additive). Replace mode: PoE1 (`local ex = lx + ...`) and PoE2
 	// (`local x = x + 3 + ...`) share the call but not the line around it.
-	{ u8"計算頁區段標題後面的數值被中文標題蓋住",
+	{ u8"계산 페이지 구역 제목이 뒤의 수치를 가림",
 	  "calcsectioncontrol.lua",
 	  "DrawStringWidth(16, \"VAR BOLD\", subSec.label)",
 	  nullptr,
@@ -2186,7 +2186,7 @@ static int pobtools_loadfile_patched(lua_State* L, const char* path)
 			// updated and Chinese input stopped working" has no other symptom.
 			if (!p.oneForkOnly)
 				PobLog::Error("inject", std::string(p.what) + " — " + p.fileLeaf +
-				                            u8" 的錨點對不上（POB 可能更新過）");
+					                            u8"개수가 일치하지 않습니다(POB 업데이트 여부 확인)." );
 			continue;
 		}
 		const size_t alen = strlen(p.anchor);
@@ -2205,7 +2205,7 @@ static int pobtools_loadfile_patched(lua_State* L, const char* path)
 			// Skipping is the safe answer, but it is still a feature going dark.
 			if (src.find(p.anchor, at + 1) != std::string::npos) {
 				PobLog::Error("inject", std::string(p.what) + " — " + p.fileLeaf +
-				                            u8" 的錨點不再唯一，已跳過以免改錯地方");
+					                            u8"앵커가 하나가 아니어서 잘못 패치하지 않도록 건너뛰었습니다." );
 				continue;
 			}
 			src.insert(at + alen, p.insertAfter);
@@ -2907,5 +2907,4 @@ int ui_main_c::InitAPI(lua_State* L)
 
 	return 0;
 }
-
 

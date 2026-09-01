@@ -286,7 +286,7 @@ void PassiveTreeUpdater::workerLoop()
 
 bool PassiveTreeUpdater::doCheck(std::string* err)
 {
-	setPhase(PassiveUpdatePhase::Checking, u8"檢查天賦樹資料更新中…");
+	setPhase(PassiveUpdatePhase::Checking, u8"패시브 스킬 트리 데이터 업데이트 확인 중...");
 
 	std::pair<int, int> current{ 0, 0 };
 	parse_folder_ver(currentVer_, &current); // "" parses false -> {0,0}: anything is newer
@@ -320,7 +320,7 @@ bool PassiveTreeUpdater::doCheck(std::string* err)
 	std::pair<int, int> newest = std::max(localBest, remoteBest);
 	if (newest <= current || newest == std::make_pair(0, 0)) {
 		setPhase(PassiveUpdatePhase::UpToDate,
-			currentVer_.empty() ? u8"天賦樹資料未知版本" : u8"天賦樹資料已是最新（" + currentVer_ + u8"）");
+			currentVer_.empty() ? u8"패시브 스킬 트리 데이터 버전을 알 수 없습니다." : u8"패시브 스킬 트리 데이터가 최신입니다(" + currentVer_ + u8").");
 		lastCheckUtc_ = now_filetime();
 		saveRecord();
 		return true;
@@ -337,9 +337,9 @@ bool PassiveTreeUpdater::doCheck(std::string* err)
 		st_.latestVer = latestVer_;
 	}
 	setPhase(PassiveUpdatePhase::UpdateAvailable,
-		u8"發現新賽季天賦樹 " + latestVer_ +
-		(currentVer_.empty() ? "" : u8"（目前 " + currentVer_ + u8"）") +
-		(localBest == newest ? u8"｜POB 已更新，圖集可直接取用" : ""));
+		u8"새 시즌 패시브 스킬 트리 " + latestVer_ + u8"을(를) 찾았습니다." +
+		(currentVer_.empty() ? "" : u8"(현재 " + currentVer_ + u8")") +
+		(localBest == newest ? u8" | POB가 이미 업데이트되어 이미지 데이터를 바로 가져올 수 있습니다." : ""));
 
 	lastCheckUtc_ = now_filetime();
 	saveRecord();
@@ -352,11 +352,11 @@ bool PassiveTreeUpdater::doUpdate(std::string* err)
 	const std::string ver = latestVer_;
 	const std::string tag = latestTag_;
 	if (ver.empty() || tag.empty()) {
-		if (err) *err = u8"沒有可更新的版本";
+		if (err) *err = u8"업데이트할 버전이 없습니다.";
 		return false;
 	}
 
-	setPhase(PassiveUpdatePhase::Downloading, u8"下載 " + tag + u8" 天賦樹資料中…");
+	setPhase(PassiveUpdatePhase::Downloading, u8"패시브 스킬 트리 " + tag + u8" 데이터 다운로드 중...");
 
 	std::wstring cacheDir = exeDir_ + L"PobTools\\cache\\pt_update\\" + widen(tag) + L"\\";
 	SHCreateDirectoryExW(nullptr, (cacheDir + L"assets").c_str(), nullptr);
@@ -368,7 +368,7 @@ bool PassiveTreeUpdater::doUpdate(std::string* err)
 		std::wstring path = std::wstring(kRawBase) + widen(tag) + L"/data.json";
 		if (!raw.GetString(path, dataJson, err, &stop_)) return false;
 		if (!write_file_utf8(cacheDir + L"data.json", dataJson))
-			{ if (err) *err = u8"寫入下載快取失敗"; return false; }
+			{ if (err) *err = u8"다운로드 캐시를 기록하지 못했습니다."; return false; }
 	}
 
 	// the sheets the condensed tree references; skip those PoB already has
@@ -376,14 +376,14 @@ bool PassiveTreeUpdater::doUpdate(std::string* err)
 	try {
 		ordered_json d = ordered_json::parse(dataJson);
 		if (!d.contains("sprites") || !d["sprites"].is_object())
-			{ if (err) *err = u8"data.json 缺少 sprites 段"; return false; }
+			{ if (err) *err = u8"data.json에 sprites 항목이 없습니다."; return false; }
 		for (const char* cat : kUsedCats) {
 			if (!d["sprites"].contains(cat) || !d["sprites"][cat].contains(kZoom)) continue;
 			std::string base = cdn_base_name(d["sprites"][cat][kZoom].value("filename", std::string()));
 			if (!base.empty()) needed.insert(base);
 		}
 	} catch (const std::exception& e) {
-		if (err) *err = std::string(u8"data.json 解析失敗: ") + e.what();
+		if (err) *err = std::string(u8"data.json 분석 실패: ") + e.what();
 		return false;
 	}
 
@@ -391,7 +391,7 @@ bool PassiveTreeUpdater::doUpdate(std::string* err)
 	std::wstring pobDir = poe1Base.empty() ? L"" : poe1Base + L"TreeData\\" + widen(ver) + L"\\";
 	int done = 0;
 	for (const std::string& base : needed) {
-		if (stop_.load()) { if (err) *err = u8"已取消"; return false; }
+		if (stop_.load()) { if (err) *err = u8"취소되었습니다."; return false; }
 		if (!pobDir.empty() && file_exists(pobDir + widen(base))) continue; // importer copies from PoB directly
 		std::wstring dst = cacheDir + L"assets\\" + widen(base);
 		if (!file_exists(dst)) {
@@ -400,14 +400,14 @@ bool PassiveTreeUpdater::doUpdate(std::string* err)
 			if (!raw.Get(path, bytes, err, &stop_)) return false;
 			std::string body((const char*)bytes.data(), bytes.size());
 			if (!write_file_utf8(dst, body))
-				{ if (err) *err = u8"寫入圖集快取失敗: " + base; return false; }
+				{ if (err) *err = u8"이미지 캐시 기록 실패: " + base; return false; }
 		}
 		done++;
 		setPhase(PassiveUpdatePhase::Downloading,
-			u8"下載 " + tag + u8" 圖集中… " + std::to_string(done) + "/" + std::to_string((int)needed.size()));
+			u8"이미지 데이터 다운로드 중: " + tag + u8" " + std::to_string(done) + "/" + std::to_string((int)needed.size()));
 	}
 
-	setPhase(PassiveUpdatePhase::Importing, u8"匯入 " + ver + u8" 中…");
+	setPhase(PassiveUpdatePhase::Importing, u8"패시브 스킬 트리 " + ver + u8" 가져오는 중...");
 	std::string sum;
 	if (!ImportPassiveTreeData(cacheDir + L"data.json", ver, exeDir_, err, &sum)) return false;
 

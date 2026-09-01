@@ -281,8 +281,8 @@ int RunWindowLayoutSelfTest(const std::wstring& exeDir)
 		      ShortenWindowTitle(L"Frostblades Raider (Ranger) - Path of Building", fb) ==
 		          L"Frostblades Raider");
 		check("T1b a secondary ascendancy is part of the same group",
-		      ShortenWindowTitle(L"3.29點燃贖罪 (Elementalist + Abberath) - Path of Building", fb) ==
-		          L"3.29點燃贖罪");
+		      ShortenWindowTitle(L"3.29 등연계 (Elementalist +Abberath) - Path of Building", fb) ==
+		          L"3.29시 연계");
 		check("T1c only the LAST group goes: a name's own parens survive",
 		      ShortenWindowTitle(L"Spark (v2) (Inquisitor) - Path of Building", fb) ==
 		          L"Spark (v2)");
@@ -304,7 +304,7 @@ int RunWindowLayoutSelfTest(const std::wstring& exeDir)
 		// says nothing the tab does not already say, and taking it "as-is" only
 		// added a redundant prefix. The test was pinning the wrong behaviour.
 		check("T5 a caption that is not POB's leaves the tab alone",
-		      ShortenWindowTitle(L"PobTools — 輿圖策略", fb).empty());
+		      ShortenWindowTitle(L"PobTools 아틀라스 전략", fb).empty());
 		check("T5b ... including anything else that is not POB",
 		      ShortenWindowTitle(L"Some Other Window", fb).empty());
 		{

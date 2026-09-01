@@ -1,0 +1,22 @@
+{
+  "excludedPaths": [
+    { "path": "host/editor_selftest.cpp", "reason": "diagnostic-only output and fixtures" },
+    { "path": "host/error_log_selftest.cpp", "reason": "diagnostic-only output and fixtures" },
+    { "path": "host/filter_selftest.cpp", "reason": "parser regression fixtures" },
+    { "path": "host/item_name_selftest.cpp", "reason": "reverse-translation regression fixtures" },
+    { "path": "host/paste_fixtures.h", "reason": "verbatim client paste fixtures" },
+    { "path": "host/paste_selftest.cpp", "reason": "verbatim client paste regression checks" },
+    { "path": "host/placeholder_selftest.cpp", "reason": "zh-rTW placeholder regression fixtures" },
+    { "path": "host/regex_selftest.cpp", "reason": "synthetic Unicode and compatibility fixtures" },
+    { "path": "host/launcher_strings.h", "reason": "zh-rTW compiled fallback; ko-KR is fully overlaid by launcher/ko-KR/launcher.json" },
+    { "path": "host/filter_tierlist.cpp", "reason": "retired implementation not present in the pob-zh CMake target" },
+    { "path": "host/filter_tierlist_ui.cpp", "reason": "retired implementation not present in the pob-zh CMake target" },
+    { "path": "host/section_appearance.cpp", "reason": "retired section not present in the pob-zh CMake target" },
+    { "path": "host/section_customrules.cpp", "reason": "retired section not present in the pob-zh CMake target" },
+    { "path": "host/section_presets.cpp", "reason": "retired section not present in the pob-zh CMake target" },
+    { "path": "host/section_preview.cpp", "reason": "retired section not present in the pob-zh CMake target" },
+    { "path": "host/section_quickfilter.cpp", "reason": "retired section not present in the pob-zh CMake target" },
+    { "path": "host/section_settings.cpp", "reason": "retired section not present in the pob-zh CMake target" }
+  ],
+  "internalLiteralAllowlist": []
+}

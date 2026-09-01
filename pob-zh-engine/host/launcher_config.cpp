@@ -535,7 +535,7 @@ static int copy_tree(const std::wstring& src, const std::wstring& dst, std::stri
 {
 	if (!dir_exists(dst) && !CreateDirectoryW(dst.c_str(), nullptr) &&
 	    GetLastError() != ERROR_ALREADY_EXISTS) {
-		if (err) *err = u8"無法建立資料夾：" + narrow_utf8(dst);
+		if (err) *err = u8"폴더를 만들 수 없습니다: " + narrow_utf8(dst);
 		return -1;
 	}
 	int n = 0;
@@ -552,7 +552,7 @@ static int copy_tree(const std::wstring& src, const std::wstring& dst, std::stri
 		} else if (CopyFileW((src + name).c_str(), (dst + name).c_str(), FALSE)) {
 			n++;
 		} else {
-			if (err) *err = u8"無法複製：" + narrow_utf8(name);
+			if (err) *err = u8"복사할 수 없습니다: " + narrow_utf8(name);
 			FindClose(h);
 			return -1;
 		}
@@ -567,15 +567,15 @@ int CopyBuiltinDictionary(const std::wstring& exeDir, DictSlot slot,
 	const std::wstring src = BuiltinDictDir(exeDir, slot);
 	const std::wstring dst = with_trailing_sep(dest);
 	if (dst.empty()) {
-		if (err) *err = u8"沒有選擇資料夾";
+		if (err) *err = u8"데이터 폴더를 선택하지 않았습니다.";
 		return -1;
 	}
 	if (!dir_exists(src)) {
-		if (err) *err = u8"內建資料夾裡沒有這一組字典";
+		if (err) *err = u8"내장 데이터 폴더에 해당 사전이 없습니다.";
 		return -1;
 	}
 	int n = copy_tree(src, dst, err);
-	if (n == 0 && err) *err = u8"內建資料夾裡沒有可複製的字典";
+	if (n == 0 && err) *err = u8"내장 데이터 폴더에 복사할 수 있는 사전이 없습니다.";
 	return n <= 0 ? -1 : n;
 }
 
@@ -1002,7 +1002,7 @@ int RunLauncherConfigSelfTest(const std::wstring& exeDir)
 	// T13/T14 -- the hex copy exists for the codepage switch; it must appear only
 	// when it is needed, or the ini stops being hand-editable for everyone else.
 	{
-		const std::wstring zh = L"D:\\翻譯\\工作副本\\";
+		const std::wstring zh = L"D:\\번역\\연락처 목록\\";
 		DeleteFileW(ini.c_str());
 		LauncherConfig c;
 		c.dataDir[0] = zh;

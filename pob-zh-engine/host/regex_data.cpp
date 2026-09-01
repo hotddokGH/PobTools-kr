@@ -70,7 +70,7 @@ bool RegexDataset::Load(const std::wstring& exeDir, const std::wstring& preferre
 	for (const std::wstring& g : games)
 		any |= LoadOne(exeDir, g, err);
 	if (!any) {
-		if (err) *err = u8"安裝目錄的 Data 底下沒有任何 regex_*.json 清單檔";
+		if (err) *err = u8"설치 폴더의 Data 아래에 regex_*.json 목록 파일이 없습니다.";
 		PobLog::Error("data", "no regex_*.json found under Data\\ (Poe Regex has nothing to show)");
 		return false;
 	}
@@ -91,7 +91,7 @@ bool RegexDataset::LoadOne(const std::wstring& exeDir, const std::wstring& game,
 		if (source_.empty()) source_ = doc.value("source", std::string());
 		const auto pages = doc.find("pages");
 		if (pages == doc.end() || !pages->is_array()) {
-			if (err) *err = u8"資料檔缺少 pages 陣列";
+			if (err) *err = u8"데이터 파일에 pages 배열이 없습니다.";
 			return false;
 		}
 		for (const auto& p : *pages) {
@@ -127,7 +127,7 @@ bool RegexDataset::LoadOne(const std::wstring& exeDir, const std::wstring& game,
 	} catch (const std::exception& ex) {
 		// One bad file must not take the other game's catalogue down with it, so
 		// only this file's pages are rolled back.
-		if (err) *err = u8"regex_" + gameId + u8".json 解析失敗：" + ex.what();
+		if (err) *err = u8"regex_" + gameId + u8".json 분석 실패: " + ex.what();
 		PobLog::Error("data", "regex_" + gameId + ".json parse failed: " + ex.what());
 		while (pages_.size() > before) pages_.pop_back();
 		return false;

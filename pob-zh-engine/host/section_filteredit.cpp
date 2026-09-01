@@ -89,7 +89,7 @@ bool DrawBlockList(EditorShell& s)
 	bool openBatch = false;
 
 	PobUi::PushPrimaryButton();
-	bool addRule = ImGui::Button(u8"＋ 新增自訂規則", ImVec2(-1, 0));
+	bool addRule = ImGui::Button(u8"+ 사용자 지정 규칙 추가", ImVec2(-1, 0));
 	PobUi::PopButtonStyle();
 	if (addRule) {
 		CustomZone z = EnsureCustomZone(s.doc);
@@ -102,15 +102,15 @@ bool DrawBlockList(EditorShell& s)
 					{ FilterToken{ "Divine Orb", true } });
 				s.selectedBlock = nb;
 				s.selAnchor = s.doc.CaptureAnchor(nb);
-				s.status = u8"已在自訂區新增規則（請修改物品名稱）";
+				s.status = u8"사용자 지정 영역에 규칙을 추가했습니다(아이템 이름을 수정하세요).";
 			}
 		}
 		return false;  // caches are stale; skip the list until next frame's rebuild
 	}
-	if (ImGui::IsItemHovered()) ImGui::SetTooltip(u8"新規則加在檔案最上方的自訂區，優先權最高");
+	if (ImGui::IsItemHovered()) ImGui::SetTooltip(u8"새 규칙은 파일 최상단의 사용자 지정 영역에 추가되며 우선순위가 가장 높습니다.");
 
 	ImGui::SetNextItemWidth(-1);
-	if (ImGui::InputTextWithHint("##search", u8"輸入文字自動搜尋過濾條目…", &s.search)) {
+	if (ImGui::InputTextWithHint("##search", u8"텍스트를 입력해 필터 항목 검색...", &s.search)) {
 		s.searchLower = EdToLowerAscii(s.search);
 		RebuildVisRows(s);
 	}
@@ -118,18 +118,18 @@ bool DrawBlockList(EditorShell& s)
 	if (s.batchMode) {
 		int nSel = 0;
 		for (char c : s.batchSel) if (c) nSel++;
-		if (ImGui::SmallButton(u8"全選可見")) {
+		if (ImGui::SmallButton(u8"보이는 항목 모두 선택")) {
 			for (int bi : s.visRows) s.batchSel[bi] = 1;
 		}
 		ImGui::SameLine();
-		if (ImGui::SmallButton(u8"清除")) s.batchSel.assign(s.batchSel.size(), 0);
+		if (ImGui::SmallButton(u8"지우기")) s.batchSel.assign(s.batchSel.size(), 0);
 		ImGui::SameLine();
 		ImGui::BeginDisabled(nSel == 0);
-		if (ImGui::SmallButton((u8"套用樣式（已選 " + std::to_string(nSel) + u8" 條）…").c_str()))
+		if (ImGui::SmallButton((u8"스타일 적용(선택 " + std::to_string(nSel) + u8"개)...").c_str()))
 			openBatch = true;
 		ImGui::EndDisabled();
 	} else {
-		ImGui::TextDisabled(u8"過濾項  %d / %d（單擊勾選切換顯示隱藏）",
+		ImGui::TextDisabled(u8"필터 항목 %d / %d(클릭하여 선택, 표시/숨기기 전환)",
 			(int)s.visRows.size(), (int)s.rows.size());
 	}
 	ImGui::Separator();
@@ -152,7 +152,7 @@ bool DrawBlockList(EditorShell& s)
 
 			bool show = !b.hide;
 			if (ImGui::Checkbox("##show", &show)) SetBlockHide(s, b, !show);
-			if (ImGui::IsItemHovered()) ImGui::SetTooltip(show ? u8"顯示中（點擊改為隱藏）" : u8"隱藏中（點擊改為顯示）");
+			if (ImGui::IsItemHovered()) ImGui::SetTooltip(show ? u8"표시 중(클릭하면 숨김)" : u8"숨김 중(클릭하면 표시)");
 			ImGui::SameLine();
 
 			bool blockDirty = false;
@@ -189,7 +189,7 @@ void EdRebuildRows(EditorShell& s) { RebuildRows(s); }
 void DrawFilterEditSection(EditorShell& s)
 {
 	if (!s.loaded) {
-		const char* prompt = u8"尚未開啟過濾器";
+		const char* prompt = u8"아직 필터를 오픈하지 않았습니다.";
 		ImVec2 avail = ImGui::GetContentRegionAvail();
 		ImGui::Dummy(ImVec2(0, std::max(60.0f * s.scale, avail.y * 0.30f)));
 		float textW = ImGui::CalcTextSize(prompt).x;
@@ -199,7 +199,7 @@ void DrawFilterEditSection(EditorShell& s)
 		const float buttonW = 190.0f * s.scale;
 		ImGui::SetCursorPosX(ImGui::GetCursorPosX() + std::max(0.0f, (avail.x - buttonW) * 0.5f));
 		PobUi::PushPrimaryButton();
-		bool open = ImGui::Button(u8"開啟 .filter 檔…", ImVec2(buttonW, 0));
+		bool open = ImGui::Button(u8".filter 파일 열기...", ImVec2(buttonW, 0));
 		PobUi::PopButtonStyle();
 		if (open) s.pendingDialog = EdDialog::OpenFilter;
 		return;
@@ -214,7 +214,7 @@ void DrawFilterEditSection(EditorShell& s)
 	ImGui::BeginChild("##left", ImVec2(leftW, 0), true);
 	bool openBatch = DrawBlockList(s);
 	ImGui::EndChild();
-	if (openBatch) ImGui::OpenPopup(u8"批量修改###batchmodal");
+	if (openBatch) ImGui::OpenPopup(u8"배치 수정 ###batchmodal");
 	DrawBatchModal(s);
 
 	// A structural change in the left pane (new custom rule, import) leaves
@@ -228,7 +228,7 @@ void DrawFilterEditSection(EditorShell& s)
 	bool wantDeleteRule = false;
 	ImGui::BeginChild("##mid", ImVec2(-rightW - ImGui::GetStyle().ItemSpacing.x, 0), true);
 	if (s.selectedBlock < 0) {
-		ImGui::TextDisabled(u8"在左側選擇一個過濾項以編輯。");
+		ImGui::TextDisabled(u8"왼쪽에서 필터 항목 하나를 선택해 편집하세요.");
 	} else {
 		const BlockListRow& row = s.rows[s.selectedBlock];
 		ImGui::TextColored(PobUi::Accent(), "%s", row.label.c_str());
@@ -237,8 +237,8 @@ void DrawFilterEditSection(EditorShell& s)
 		const FilterBlock& blk = s.model.blocks[s.selectedBlock];
 		if (z.present() && blk.headerLineIdx > z.beginLine && blk.headerLineIdx < z.endLine) {
 			ImGui::SameLine(ImGui::GetContentRegionMax().x - 92 * s.scale);
-			if (ImGui::SmallButton(u8"刪除規則")) wantDeleteRule = true;
-			if (ImGui::IsItemHovered()) ImGui::SetTooltip(u8"從檔案中刪除這條自訂規則（無法復原）");
+			if (ImGui::SmallButton(u8"삭제 규칙")) wantDeleteRule = true;
+			if (ImGui::IsItemHovered()) ImGui::SetTooltip(u8"파일에서 이 사용자 지정 규칙을 삭제합니다(복구할 수 없음)." );
 		}
 		ImGui::Separator();
 		ImGui::PushID(s.selectedBlock);
@@ -257,27 +257,27 @@ void DrawFilterEditSection(EditorShell& s)
 
 	// Delete-custom-rule confirm modal — opened at section level (popup 不能在
 	// PushID 迴圈/子視窗內開)。實際刪除發生在本 frame 尾端,下一 frame 重建快取。
-	if (wantDeleteRule) ImGui::OpenPopup(u8"刪除自訂規則###delrule");
-	if (ImGui::BeginPopupModal(u8"刪除自訂規則###delrule", nullptr,
+	if (wantDeleteRule) ImGui::OpenPopup(u8"사용자 지정 규칙 삭제###delrule");
+	if (ImGui::BeginPopupModal(u8"사용자 지정 규칙 삭제###delrule", nullptr,
 	                           ImGuiWindowFlags_AlwaysAutoResize)) {
 		const char* nm = (s.selectedBlock >= 0 && s.selectedBlock < (int)s.rows.size())
 			? s.rows[s.selectedBlock].label.c_str() : "";
-		ImGui::Text(u8"確定刪除自訂規則「%s」？", nm);
-		ImGui::TextDisabled(u8"此動作直接從檔案移除該規則，無法復原。");
+		ImGui::Text(u8"사용자 지정 규칙 '%s'을(를) 삭제하시겠습니까?", nm);
+		ImGui::TextDisabled(u8"이 작업은 파일에서 규칙을 바로 제거하며 복구할 수 없습니다.");
 		ImGui::Spacing();
 		PobUi::PushPrimaryButton();
-		if (ImGui::Button(u8"刪除", ImVec2(110 * s.scale, 0))) {
+		if (ImGui::Button(u8"삭제", ImVec2(110 * s.scale, 0))) {
 			if (s.selectedBlock >= 0 && s.selectedBlock < (int)s.model.blocks.size()) {
 				s.doc.RemoveBlock(s.selectedBlock);
 				s.selectedBlock = -1;
 				s.selAnchor = {};
-				s.status = u8"已刪除自訂規則（記得儲存）";
+				s.status = u8"사용자 지정 규칙을 삭제했습니다(저장 필요).";
 			}
 			ImGui::CloseCurrentPopup();
 		}
 		PobUi::PopButtonStyle();
 		ImGui::SameLine();
-		if (ImGui::Button(u8"取消", ImVec2(110 * s.scale, 0))) ImGui::CloseCurrentPopup();
+		if (ImGui::Button(u8"취소", ImVec2(110 * s.scale, 0))) ImGui::CloseCurrentPopup();
 		ImGui::EndPopup();
 	}
 }

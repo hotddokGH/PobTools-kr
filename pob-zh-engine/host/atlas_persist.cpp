@@ -123,7 +123,7 @@ bool AtlasBuildFile::ParseDoc(const std::string& json)
 				if (!b.is_object() || !b.contains("alloc") || !b["alloc"].is_array()) return false;
 				AtlasBuildEntry e;
 				e.name = b.value("name", std::string());
-				if (e.name.empty()) e.name = u8"預設";
+				if (e.name.empty()) e.name = u8"기본값";
 				e.alloc = parse_alloc_array(b["alloc"]);
 				parse_extras(b, e);
 				parsed.push_back(std::move(e));
@@ -138,7 +138,7 @@ bool AtlasBuildFile::ParseDoc(const std::string& json)
 		if (doc.contains("alloc") && doc["alloc"].is_array()) {
 			// legacy single-build file: wrap it as the first project
 			AtlasBuildEntry e;
-			e.name = u8"預設";
+			e.name = u8"기본값";
 			e.alloc = parse_alloc_array(doc["alloc"]);
 			parse_extras(doc, e); // harmless on a real legacy file; keeps the paths symmetric
 			builds.assign(1, std::move(e));
@@ -174,7 +174,7 @@ bool AtlasBuildFile::Load(const std::wstring& exeDir)
 {
 	std::string content;
 	if (read_file_utf8(PathOf(exeDir), content) && ParseDoc(content)) return true;
-	builds.assign(1, AtlasBuildEntry{ u8"預設", {} });
+	builds.assign(1, AtlasBuildEntry{ u8"기본값", {} });
 	version.clear();
 	active = 0;
 	return false;
@@ -188,7 +188,7 @@ bool AtlasBuildFile::Save(const std::wstring& exeDir) const
 
 AtlasBuildEntry& AtlasBuildFile::Active()
 {
-	if (builds.empty()) builds.assign(1, AtlasBuildEntry{ u8"預設", {} });
+	if (builds.empty()) builds.assign(1, AtlasBuildEntry{ u8"기본값", {} });
 	if (active < 0) active = 0;
 	if (active >= (int)builds.size()) active = (int)builds.size() - 1;
 	return builds[active];
@@ -196,7 +196,7 @@ AtlasBuildEntry& AtlasBuildFile::Active()
 
 int AtlasBuildFile::AddBuild(const std::string& name)
 {
-	builds.push_back(AtlasBuildEntry{ UniqueName(name.empty() ? u8"新專案" : name), {} });
+	builds.push_back(AtlasBuildEntry{ UniqueName(name.empty() ? u8"신규 프로젝트" : name), {} });
 	return (int)builds.size() - 1;
 }
 
@@ -204,7 +204,7 @@ int AtlasBuildFile::DuplicateBuild(int idx)
 {
 	if (idx < 0 || idx >= (int)builds.size()) return -1;
 	AtlasBuildEntry copy = builds[idx];
-	copy.name = UniqueName(copy.name + u8"（複製）");
+	copy.name = UniqueName(copy.name + u8"복제");
 	builds.push_back(std::move(copy));
 	return (int)builds.size() - 1;
 }
@@ -256,18 +256,18 @@ bool AtlasParseExportJson(const std::string& json, AtlasBuildEntry* out, std::st
 		ordered_json doc = ordered_json::parse(json);
 		if (doc.value("format", std::string()) != "pobtools-atlas-build") {
 			if (doc.value("format", std::string()) == "pobtools-atlas-builds")
-				return fail(u8"這是完整存檔而不是單一專案的匯出檔");
-			return fail(u8"不是 PobTools 輿圖專案匯出檔（format 欄位不符）");
+				return fail(u8"전체 저장 파일이며 단일 프로젝트 내보내기 파일이 아닙니다.");
+			return fail(u8"PobTools 아틀라스 프로젝트 내보내기 파일이 아닙니다(format 필드 불일치)." );
 		}
 		if (!doc.contains("alloc") || !doc["alloc"].is_array())
-			return fail(u8"匯出檔缺少 alloc 陣列");
+			return fail(u8"내보내기 파일에 alloc 배열이 없습니다.");
 		out->name = doc.value("name", std::string());
-		if (out->name.empty()) out->name = u8"匯入的專案";
+		if (out->name.empty()) out->name = u8"가져온 프로젝트";
 		out->alloc = parse_alloc_array(doc["alloc"]);
 		parse_extras(doc, *out); // the caller still runs scarabs through ScarabDb::Sanitize
 		return true;
 	} catch (const std::exception& e) {
-		if (err) *err = std::string(u8"JSON 解析失敗: ") + e.what();
+		if (err) *err = std::string(u8"JSON 분석 실패:") + e.what();
 		return false;
 	}
 }
@@ -297,11 +297,11 @@ bool AtlasParseShareCode(const std::string& code, AtlasBuildEntry* out, std::str
 	for (char c : code)
 		if (c != ' ' && c != '\t' && c != '\r' && c != '\n') s.push_back(c);
 	if (s.compare(0, strlen(kShareCodePrefix), kShareCodePrefix) != 0)
-		return fail(u8"不是 PobTools 輿圖分享碼（缺少 PTAT1 前綴）");
+		return fail(u8"PobTools 아틀라스 공유 코드가 아닙니다(PTAT1 접두사 없음)." );
 	unsigned char* dec = nullptr;
 	size_t decLen = 0;
 	if (!Base64Decode(s.c_str() + strlen(kShareCodePrefix), &dec, &decLen) || !dec)
-		return fail(u8"分享碼的 base64 內容無法解碼");
+		return fail(u8"공유 코드의 base64 내용은 해독할 수 없습니다.");
 	std::string json((const char*)dec, decLen);
 	free(dec);
 	return AtlasParseExportJson(json, out, err);

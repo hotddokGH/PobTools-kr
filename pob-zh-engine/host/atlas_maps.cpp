@@ -36,20 +36,20 @@ bool AtlasMapDb::Load(const std::wstring& exeDir, std::string* err)
 
 	std::string body;
 	if (!map_read_file(exeDir + L"Data\\atlas_maps_poe1.json", body)) {
-		if (err) *err = u8"找不到 Data\\atlas_maps_poe1.json";
+		if (err) *err = u8"Data\\atlas_maps_poe1.json을 찾을 수 없습니다.";
 		return false;
 	}
 	try {
 		ordered_json doc = ordered_json::parse(body);
 		if (doc.value("format", std::string()) != "pobtools-atlas-maps") {
-			if (err) *err = u8"atlas_maps_poe1.json 的 format 欄位不符";
+			if (err) *err = u8"atlas_maps_poe1.json의 format 필드가 올바르지 않습니다.";
 			return false;
 		}
 		source_ = doc.value("source", std::string());
 		series_ = doc.value("series", std::string());
 		const auto& arr = doc["maps"];
 		if (!arr.is_array()) {
-			if (err) *err = u8"atlas_maps_poe1.json 缺少 maps 陣列";
+			if (err) *err = u8"atlas_maps_poe1.json에 maps 배열이 없습니다.";
 			return false;
 		}
 		defs_.reserve(arr.size());
@@ -84,11 +84,11 @@ bool AtlasMapDb::Load(const std::wstring& exeDir, std::string* err)
 		}
 	} catch (const std::exception& e) {
 		defs_.clear();
-		if (err) *err = std::string(u8"atlas_maps_poe1.json 解析失敗: ") + e.what();
+		if (err) *err = std::string(u8"atlas_maps_poe1.json 분석 실패: ") + e.what();
 		return false;
 	}
 	if (defs_.empty()) {
-		if (err) *err = u8"atlas_maps_poe1.json 沒有任何地圖";
+		if (err) *err = u8"atlas_maps_poe1.json에 지도가 없습니다.";
 		return false;
 	}
 	for (int i = 0; i < (int)defs_.size(); i++) byId_.emplace(defs_[i].id, i);
@@ -227,12 +227,12 @@ int RunAtlasMapSelfTest(const std::wstring& exeDir, std::string& out)
 		rep.check(shrine != nullptr, "search fixture present");
 		if (shrine) {
 			auto score = [&](const char* qs) { return db.MatchScore(*shrine, MakeFuzzyQuery(qs)); };
-			rep.check(score(u8"奇術秘殿") > 0, "zh area name matches");
+			rep.check(score(u8"성소 지도") > 0, "zh area name matches");
 			rep.check(score("shrine") > 0, "en name matches");
 			// The item name differs from the area name on 8 maps; both must hit.
 			const AtlasMapDef* sanct = db.ById("MapWorldsSanctuary");
-			rep.check(sanct && db.MatchScore(*sanct, MakeFuzzyQuery(u8"庇護聖所")) > 0 &&
-			              db.MatchScore(*sanct, MakeFuzzyQuery(u8"聖所地圖")) > 0,
+			rep.check(sanct && db.MatchScore(*sanct, MakeFuzzyQuery(u8"성역")) > 0 &&
+			              db.MatchScore(*sanct, MakeFuzzyQuery(u8"성역 지도")) > 0,
 			          "a map whose area and item names differ is findable by both");
 		}
 		rep.check(hitCount("") == (int)db.All().size(), "empty query matches everything");

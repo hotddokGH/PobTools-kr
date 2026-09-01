@@ -48,13 +48,13 @@ bool AstrolabeDb::Load(const std::wstring& exeDir, std::string* err)
 
 	std::string body;
 	if (!astro_read_file(exeDir + L"Data\\astrolabes_poe1.json", body)) {
-		if (err) *err = u8"找不到 Data\\astrolabes_poe1.json";
+		if (err) *err = u8"Data\\astrolabes_poe1.json을 찾을 수 없습니다.";
 		return false;
 	}
 	try {
 		ordered_json doc = ordered_json::parse(body);
 		if (doc.value("format", std::string()) != "pobtools-astrolabes") {
-			if (err) *err = u8"astrolabes_poe1.json 的 format 欄位不符";
+			if (err) *err = u8"astrolabes_poe1.json의 format 필드가 올바르지 않습니다.";
 			return false;
 		}
 		source_ = doc.value("source", std::string());
@@ -74,7 +74,7 @@ bool AstrolabeDb::Load(const std::wstring& exeDir, std::string* err)
 
 		const auto& arr = doc["astrolabes"];
 		if (!arr.is_array()) {
-			if (err) *err = u8"astrolabes_poe1.json 缺少 astrolabes 陣列";
+			if (err) *err = u8"astrolabes_poe1.json에 astrolabes 배열이 없습니다.";
 			return false;
 		}
 		defs_.reserve(arr.size());
@@ -106,11 +106,11 @@ bool AstrolabeDb::Load(const std::wstring& exeDir, std::string* err)
 	} catch (const std::exception& e) {
 		defs_.clear();
 		regions_.clear();
-		if (err) *err = std::string(u8"astrolabes_poe1.json 解析失敗: ") + e.what();
+		if (err) *err = std::string(u8"astrolabes_poe1.json 분석 실패: ") + e.what();
 		return false;
 	}
 	if (defs_.empty() || regions_.empty()) {
-		if (err) *err = u8"astrolabes_poe1.json 沒有星盤或半區資料";
+		if (err) *err = u8"astrolabes_poe1.json에 천체 투영기 또는 반쪽 영역 데이터가 없습니다.";
 		defs_.clear();
 		regions_.clear();
 		return false;
@@ -168,9 +168,9 @@ std::vector<AstrolabePlacement> AstrolabeDb::Sanitize(const std::vector<Astrolab
 		}
 	}
 	if (note) {
-		if (unknownRegion) *note += u8"，忽略 " + std::to_string(unknownRegion) + u8" 個未知半區";
-		if (unknownAstro)  *note += u8"，忽略 " + std::to_string(unknownAstro) + u8" 個未知星盤";
-		if (occupied)      *note += u8"，忽略 " + std::to_string(occupied) + u8" 個重複配置的半區";
+		if (unknownRegion) *note += u8", 알 수 없는 반쪽 영역 " + std::to_string(unknownRegion) + u8"개 무시";
+		if (unknownAstro)  *note += u8", 알 수 없는 천체 투영기 " + std::to_string(unknownAstro) + u8"개 무시";
+		if (occupied)      *note += u8", 중복 배치된 반쪽 영역 " + std::to_string(occupied) + u8"개 무시";
 	}
 	return out;
 }
@@ -272,7 +272,7 @@ int RunAstrolabeSelfTest(const std::wstring& exeDir, std::string& out)
 		// The share code carries them, and the PTAT1 prefix is unchanged on
 		// purpose — bumping it would make older builds reject new codes.
 		AtlasBuildEntry src;
-		src.name = u8"星盤測試";
+		src.name = u8"아스트롤라베 테스트";
 		src.alloc = { 11, 22 };
 		src.astrolabes = { { "NorthEast", "Metadata/Items/Currency/AstrolabeRitual" } };
 		src.mapId = "MapWorldsIceberg";
@@ -441,14 +441,14 @@ int RunAstrolabeSelfTest(const std::wstring& exeDir, std::string& out)
 		const AstrolabeDef* abyss = db.ById("Metadata/Items/Currency/AstrolabeAbyss");
 		rep.check(breach && abyss, "search fixtures present");
 		if (breach && abyss) {
-			rep.check(score(*breach, u8"執掌") > 0, "zh substring matches");
+			rep.check(score(*breach, u8"집권") > 0, "zh substring matches");
 			rep.check(score(*breach, "grasping") > 0, "en substring matches");
 			// Found by the mechanic named in the effect text, not in the name.
-			rep.check(score(*breach, u8"裂痕") > 0, "effect text is searchable");
-			rep.check(score(*abyss, u8"無光") > score(*breach, u8"裂痕"),
+			rep.check(score(*breach, u8"균열") > 0, "effect text is searchable");
+			rep.check(score(*abyss, u8"무광") > score(*breach, u8"균열"),
 			          "a name hit outranks an effect hit",
-			          std::to_string(score(*abyss, u8"無光")) + " vs " +
-			              std::to_string(score(*breach, u8"裂痕")));
+			          std::to_string(score(*abyss, u8"무광")) + " vs " +
+			              std::to_string(score(*breach, u8"균열")));
 			rep.check(hitCount("") == (int)db.All().size(), "empty query matches everything");
 			rep.check(hitCount("zzzzqqqq") == 0, "nonsense query matches nothing");
 		}

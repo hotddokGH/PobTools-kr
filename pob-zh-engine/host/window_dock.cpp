@@ -849,7 +849,7 @@ int RunDockSpike(const std::wstring& exeDir, bool spawnPob, bool verbose)
 	InstallInfo installs = DetectInstalls(exeDir);
 	const std::wstring lua = !installs.poe1Lua.empty() ? installs.poe1Lua : installs.poe2Lua;
 	if (lua.empty()) {
-		MessageBoxW(nullptr, L"找不到 POB 安裝，無法進行停靠驗證。", L"PobTools",
+		MessageBoxW(nullptr, L"POB 설치를 찾을 수 없어 도킹을 확인할 수 없습니다.", L"PobTools",
 		            MB_ICONERROR | MB_OK);
 		return 1;
 	}

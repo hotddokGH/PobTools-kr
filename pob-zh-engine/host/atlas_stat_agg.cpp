@@ -253,30 +253,30 @@ int RunAtlasAggSelfTest(const std::wstring& exeDir)
 	// 6: zh backfill replaces the value-matched number
 	{
 		std::function<std::string(const std::string&)> zh = [](const std::string& en) -> std::string {
-			if (en == "Ore Deposits contain 10% increased Ore") return u8"礦床蘊含的礦石增加 10%";
-			if (en == "Ore Deposits contain 20% increased Ore") return u8"礦床蘊含的礦石增加 20%";
+			if (en == "Ore Deposits contain 10% increased Ore") return u8"광석 비단 함량이 10% 증가합니다.";
+			if (en == "Ore Deposits contain 20% increased Ore") return u8"광석 비단 함량이 20% 증가합니다.";
 			return en;
 		};
 		auto g = agg({ "Ore Deposits contain 10% increased Ore", "Ore Deposits contain 20% increased Ore" }, &zh);
-		check(g.size() == 1 && !g[0].zhFallback && g[0].dispZh == u8"礦床蘊含的礦石增加 30%",
+		check(g.size() == 1 && !g[0].zhFallback && g[0].dispZh == u8"광석 비단 함량이 30% 증가합니다.",
 		      "zh value-matched backfill", g.empty() ? "no groups" : g[0].dispZh);
 	}
 	// 7: an extra explicit "1" in the zh line is not mistaken for the value
 	{
 		std::function<std::string(const std::string&)> zh = [](const std::string& en) -> std::string {
-			if (en == "Maps have 5% chance to contain a Beast") return u8"地圖有 5% 機率含有 1 個野獸";
+			if (en == "Maps have 5% chance to contain a Beast") return u8"지도는 5% 확률로 야수 1개 포함";
 			return en;
 		};
 		auto g = agg({ "Maps have 5% chance to contain a Beast",
 		               "Maps have 5% chance to contain a Beast" }, &zh);
-		check(g.size() == 1 && g[0].dispZh == u8"地圖有 10% 機率含有 1 個野獸",
+		check(g.size() == 1 && g[0].dispZh == u8"지도는 10% 확률로 야수 1개 포함",
 		      "zh skips unrelated numbers", g.empty() ? "no groups" : g[0].dispZh);
 	}
 	// 8: no matching value anywhere -> English fallback
 	{
 		std::function<std::string(const std::string&)> zh = [](const std::string& en) -> std::string {
 			(void)en;
-			return u8"翻譯數字對不上 99%";
+			return u8"번역 수치가 잘못되었습니다. 99%";
 		};
 		auto g = agg({ "Maps have 5% chance to contain V" }, &zh);
 		check(g.size() == 1 && g[0].zhFallback && g[0].dispZh == g[0].dispEn,

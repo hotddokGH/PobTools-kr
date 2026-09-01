@@ -389,7 +389,7 @@ void AtlasView::drawTooltip(const AtlasTreeData& d, float uiScale, const AtlasI1
 		ImGui::BeginTooltip();
 		ImGui::TextColored(ImVec4(1.0f, 0.89f, 0.43f, 1.0f), "%s", lbl.empty() ? "?" : lbl.c_str());
 		ImGui::TextDisabled(mechMasteries_.count(hoverMastery_)
-			? u8"點擊取消標示" : u8"點擊標示這個機制的所有位置");
+			? u8"클릭하여 표시 해제" : u8"클릭하여 이 메커니즘의 모든 위치 표시");
 		ImGui::EndTooltip();
 		ImGui::PopStyleVar();
 		return;
@@ -406,22 +406,22 @@ void AtlasView::drawTooltip(const AtlasTreeData& d, float uiScale, const AtlasI1
 		n.kind == kAtlasWormhole ? ImVec4(0.55f, 0.80f, 0.95f, 1.0f) :
 		ImVec4(0.90f, 0.90f, 0.90f, 1.0f);
 	const std::string& dispName = zh ? zh->NodeName(n.id, n.name) : n.name;
-	ImGui::TextColored(nameCol, "%s", dispName.empty() ? (n.kind == kAtlasStart ? u8"輿圖起點" : "?") : dispName.c_str());
+	ImGui::TextColored(nameCol, "%s", dispName.empty() ? (n.kind == kAtlasStart ? u8"아틀라스 시작 노드" : "?") : dispName.c_str());
 	// cost badge next to the name, poeplanner style (+N / -N nodes)
 	// ASCII '-'（U+2212 − 不在 FZ_ZY 字形內,會畫成 '?'）
 	if (n.kind != kAtlasStart && planReady_) {
 		int net = planPoints_ - d.UsedPoints();
 		ImGui::SameLine(0, 14.0f * uiScale);
 		if (net > 0)
-			ImGui::TextColored(ImVec4(0.45f, 0.85f, 0.55f, 1.0f), u8"+%d 點", net);
+			ImGui::TextColored(ImVec4(0.45f, 0.85f, 0.55f, 1.0f), u8"+%d점", net);
 		else if (net < 0)
-			ImGui::TextColored(ImVec4(0.88f, 0.35f, 0.35f, 1.0f), u8"-%d 點", -net);
+			ImGui::TextColored(ImVec4(0.88f, 0.35f, 0.35f, 1.0f), u8"-%d점", -net);
 		else
-			ImGui::TextDisabled(u8"±0 點");
+			ImGui::TextDisabled(u8"±0점");
 	}
 	if (n.target) {
 		ImGui::SameLine(0, 10.0f * uiScale);
-		ImGui::TextColored(ImVec4(1.0f, 0.80f, 0.43f, 1.0f), u8"[目標]");
+		ImGui::TextColored(ImVec4(1.0f, 0.80f, 0.43f, 1.0f), u8"[목]");
 	}
 
 	// 明確 wrap 寬度:TextWrapped 會跟著「目前視窗寬」換行,而 auto-resize
@@ -436,47 +436,47 @@ void AtlasView::drawTooltip(const AtlasTreeData& d, float uiScale, const AtlasI1
 
 	ImGui::Separator();
 	if (n.kind == kAtlasStart) {
-		ImGui::TextDisabled(u8"起點節點");
+		ImGui::TextDisabled(u8"시작 노드");
 	} else if (!planning_) {
 		// Normal mode: shortest path from the current allocation, nothing moves.
 		if (!planReady_) {
-			ImGui::TextDisabled(u8"計算路徑…");
+			ImGui::TextDisabled(u8"경로 계산 중...");
 		} else if (n.alloc) {
 			int lose = (int)hoverDrop_.size();
 			ImGui::TextColored(ImVec4(0.88f, 0.35f, 0.35f, 1.0f),
-			                   lose > 1 ? u8"點擊移除，連帶失去 %d 點" : u8"點擊移除（%d 點）", lose);
+				                   lose > 1 ? u8"클릭하여 제거하면 연결된 %d포인트도 해제됩니다." : u8"클릭하여 제거(%d포인트)", lose);
 		} else if (hoverAdd_.empty()) {
-			ImGui::TextDisabled(u8"無法從已配置的節點連到這裡");
+			ImGui::TextDisabled(u8"할당된 노드에서 이곳으로 연결할 수 없습니다.");
 		} else if (planPoints_ > d.TotalPoints()) {
 			ImGui::TextColored(ImVec4(0.88f, 0.35f, 0.35f, 1.0f),
-			                   u8"要 %d 點，超過上限 %d 點", planPoints_, d.TotalPoints());
+				                   u8"%d포인트가 필요하여 최대 %d포인트를 초과합니다.", planPoints_, d.TotalPoints());
 		} else {
 			ImGui::TextColored(ImVec4(0.45f, 0.85f, 0.55f, 1.0f),
-			                   u8"點擊配置 %d 點，共 %d 點", (int)hoverAdd_.size(), planPoints_);
+				                   u8"클릭하여 %d포인트 할당, 총 %d포인트", (int)hoverAdd_.size(), planPoints_);
 		}
 	} else if (!planReady_) {
-		ImGui::TextDisabled(u8"計算最少點路徑…");
+		ImGui::TextDisabled(u8"최소 포인트 경로 계산 중...");
 	} else if (planNodes_.empty()) {
-		ImGui::TextDisabled(u8"無法連接到起點");
+		ImGui::TextDisabled(u8"시작 노드에 연결할 수 없습니다.");
 	} else if (planNoop_) {
-		ImGui::TextDisabled(u8"連接用節點，沒有目標依賴它（點擊無效）");
+		ImGui::TextDisabled(u8"경로 연결용 노드이며 연결된 목표가 없습니다(클릭할 수 없음)." );
 	} else if (planPoints_ > d.TotalPoints()) {
 		ImGui::TextColored(ImVec4(0.88f, 0.35f, 0.35f, 1.0f),
-		                   u8"要 %d 點，超過上限 %d 點", planPoints_, d.TotalPoints());
+			                   u8"%d포인트가 필요하여 최대 %d포인트를 초과합니다.", planPoints_, d.TotalPoints());
 	} else if (n.alloc && n.target) {
 		ImGui::TextColored(ImVec4(0.88f, 0.35f, 0.35f, 1.0f),
-		                   u8"點擊取消這個目標（剩 %d 點）", planPoints_);
+			                   u8"클릭하여 이 목표 해제(총 %d포인트)", planPoints_);
 	} else if (n.alloc) {
 		ImGui::TextColored(ImVec4(0.88f, 0.35f, 0.35f, 1.0f),
-		                   u8"連接用節點，點擊會放棄它後面的目標（剩 %d 點）", planPoints_);
+			                   u8"경로 연결용 노드입니다. 클릭하면 뒤에 연결된 목표도 해제됩니다(총 %d포인트).", planPoints_);
 	} else {
 		ImGui::TextColored(ImVec4(0.45f, 0.85f, 0.55f, 1.0f),
-		                   u8"點擊設為目標，共 %d 點", planPoints_);
+			                   u8"클릭하여 목표로 설정, 총 %d포인트", planPoints_);
 		if (!hoverDrop_.empty())
 			ImGui::TextColored(ImVec4(0.95f, 0.75f, 0.35f, 1.0f),
-			                   u8"其中 %d 個連接用節點會改道", (int)hoverDrop_.size());
+				                   u8"이 중 연결용 노드 %d개는 경로가 변경됩니다.", (int)hoverDrop_.size());
 		if (!planExact_)
-			ImGui::TextDisabled(u8"目標超過 %d 個，這是近似解", AtlasOptExactCap());
+			ImGui::TextDisabled(u8"목표가 %d개를 초과하여 근삿값을 사용합니다.", AtlasOptExactCap());
 	}
 	ImGui::EndTooltip();
 	ImGui::PopStyleVar();
@@ -605,12 +605,12 @@ bool AtlasView::Draw(AtlasTreeData& d, float uiScale, const AtlasI18n* zh, bool 
 			AtlasNode& n = d.nodes[hover_];
 			if (shortRight && (n.target || n.blocked)) {
 				n.target = n.blocked = false;
-				status_ = u8"已清除標記";
+				status_ = u8"표시를 해제했습니다.";
 				markChanged = true;
 			} else if (shortLeft) {
-				if (!n.target && !n.blocked)      { n.target = true;  status_ = u8"標記為想要"; }
-				else if (n.target)                { n.target = false; n.blocked = true; status_ = u8"標記為不要"; }
-				else                              { n.blocked = false; status_ = u8"已清除標記"; }
+				if (!n.target && !n.blocked)      { n.target = true;  status_ = u8"원하는 노드로 표시했습니다."; }
+				else if (n.target)                { n.target = false; n.blocked = true; status_ = u8"제외할 노드로 표시했습니다."; }
+				else                              { n.blocked = false; status_ = u8"표시를 해제했습니다."; }
 				markChanged = true;
 			}
 		}
@@ -621,11 +621,11 @@ bool AtlasView::Draw(AtlasTreeData& d, float uiScale, const AtlasI18n* zh, bool 
 			// A want that the avoids have walled off is reported, never left
 			// allocated-but-disconnected (the defect this model exists to avoid).
 			if (!p.ok()) {
-				status_ += u8" · " + std::to_string(p.unreachable.size()) + u8" 個想要的點被不要的點擋住，連不上";
+				status_ += u8" · 원하는 노드 " + std::to_string(p.unreachable.size()) + u8"개가 제외 노드에 막혀 연결되지 않습니다.";
 				rejectFlash_ = kRejectFlash;
 			} else {
-				status_ += u8" · 共 " + std::to_string(d.UsedPoints()) + u8" 點";
-				if (!p.exact) status_ += u8"（近似解）";
+				status_ += u8" · 총 " + std::to_string(d.UsedPoints()) + u8"포인트";
+				if (!p.exact) status_ += u8"(근삿값)";
 			}
 			changed = true;
 			allocDirty_ = true;
@@ -648,24 +648,24 @@ bool AtlasView::Draw(AtlasTreeData& d, float uiScale, const AtlasI18n* zh, bool 
 			for (int v : hoverDrop_)
 				if (v >= 0 && v < (int)d.nodes.size()) d.nodes[v].target = false;
 			d.Remove(hoverDrop_);
-			status_ = u8"已移除 " + std::to_string((int)hoverDrop_.size()) + u8" 點";
+			status_ = std::to_string((int)hoverDrop_.size()) + u8"포인트를 해제했습니다.";
 			changed = true;
 		} else if (planReady_ && hoverAdd_.empty()) {
-			status_ = u8"無法從已配置的節點連到這裡";
+			status_ = u8"할당된 노드에서 이곳으로 연결할 수 없습니다.";
 			rejectFlash_ = kRejectFlash;
 		} else if (planReady_) {
 			int remain = d.TotalPoints() - d.UsedPoints();
 			if ((int)hoverAdd_.size() > remain) {
-				status_ = u8"點數不足：需要 " + std::to_string((int)hoverAdd_.size()) +
-				          u8" 點，剩餘 " + std::to_string(remain) + u8" 點";
+				status_ = u8"포인트 부족: " + std::to_string((int)hoverAdd_.size()) +
+				          u8"포인트 필요, " + std::to_string(remain) + u8"포인트 남음";
 				rejectFlash_ = kRejectFlash;
 			} else {
 				d.Alloc(hoverAdd_);
 				// Only the node actually clicked is a deliberate pick; the rest
 				// of the path is wiring.
 				d.nodes[hover_].target = true;
-				status_ = u8"已配置 " + std::to_string((int)hoverAdd_.size()) +
-				          u8" 點 · 共 " + std::to_string(d.UsedPoints()) + u8" 點";
+				status_ = std::to_string((int)hoverAdd_.size()) +
+				          u8"포인트 할당 · 총 " + std::to_string(d.UsedPoints()) + u8"포인트";
 				changed = true;
 			}
 		}

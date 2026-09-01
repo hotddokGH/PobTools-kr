@@ -112,7 +112,7 @@ struct SheetIndex {
 	const ordered_json* section(const std::string& cat)
 	{
 		if (!sprites.contains(cat) || !sprites[cat].contains(kZoom)) {
-			err = u8"sprites 段缺少類別 " + cat + u8"（zoom 0.5）";
+			err = u8"sprites 항목에 " + cat + u8" 유형이 없습니다(zoom 0.5).";
 			return nullptr;
 		}
 		return &sprites[cat][kZoom];
@@ -127,17 +127,17 @@ struct SheetIndex {
 		if (it != byBase.end()) return it->second;
 
 		if (base.size() >= 5 && base.compare(base.size() - 5, 5, ".webp") == 0) {
-			err = u8"圖集 " + base + u8" 是 webp 格式，目前不支援（需要 png/jpg）";
+			err = u8"이미지 시트 " + base + u8"은(는) 지원하지 않는 webp 형식입니다(png/jpg 필요).";
 			return -1;
 		}
 		int w = sec->value("w", 0), h = sec->value("h", 0);
 		if (w <= 0 || h <= 0 || w > 4096 || h > 4096) {
-			err = u8"圖集 " + base + u8" 尺寸異常或超過 4096";
+			err = u8"이미지 시트 " + base + u8"의 크기가 올바르지 않거나 4096을 초과합니다.";
 			return -1;
 		}
 		DWORD attr = GetFileAttributesW((srcAssets + widen(base)).c_str());
 		if (attr == INVALID_FILE_ATTRIBUTES || (attr & FILE_ATTRIBUTE_DIRECTORY)) {
-			err = u8"assets 資料夾內找不到圖集 " + base;
+			err = u8"이미지 시트 폴더에서 " + base + u8" 파일을 찾을 수 없습니다.";
 			return -1;
 		}
 		int slot = (int)baseNames.size();
@@ -185,19 +185,19 @@ bool ImportAtlasTreeData(const std::wstring& dataJsonPath, const std::wstring& d
 
 	std::string content;
 	if (!read_file_utf8(dataJsonPath, content))
-		return fail(u8"無法讀取 data.json");
+		return fail(u8"data.json를 찾을 수 없습니다.");
 
 	ordered_json d;
 	try {
 		d = ordered_json::parse(content);
 	} catch (const std::exception& e) {
-		return fail(std::string(u8"data.json 解析失敗: ") + e.what());
+		return fail(std::string(u8"data.json 분석 실패: ") + e.what());
 	}
 
 	try {
 		if (!d.contains("nodes") || !d.contains("groups") || !d.contains("constants") ||
 		    !d.contains("sprites") || !d.contains("points"))
-			return fail(u8"data.json 缺少必要欄位（nodes/groups/constants/sprites/points）——確定選的是 atlastree-export 的 data.json 嗎？");
+			return fail(u8"data.json에 필수 필드(nodes/groups/constants/orbits/points)가 없습니다. atlastree-export의 data.json인지 확인하세요.");
 
 		const ordered_json& nodesIn = d["nodes"];
 		const ordered_json& groups = d["groups"];
@@ -205,7 +205,7 @@ bool ImportAtlasTreeData(const std::wstring& dataJsonPath, const std::wstring& d
 		// atlas tree only; a character skilltree-export has classes filled in
 		if (d["constants"].contains("classes") && d["constants"]["classes"].is_array() &&
 		    !d["constants"]["classes"].empty())
-			return fail(u8"這是角色天賦樹的匯出，不是輿圖（atlas）天賦樹");
+			return fail(u8"캐릭터 패시브 스킬 트리 내보내기 파일입니다. 아틀라스 가져오기를 사용하세요.");
 
 		std::vector<double> orbitRadii;
 		for (const auto& v : d["constants"]["orbitRadii"]) orbitRadii.push_back(v.get<double>());
@@ -215,7 +215,7 @@ bool ImportAtlasTreeData(const std::wstring& dataJsonPath, const std::wstring& d
 
 		if (!nodesIn.contains("root") || !nodesIn["root"].contains("out") ||
 		    nodesIn["root"]["out"].size() != 1)
-			return fail(u8"找不到 root 節點或其起點連線數不是 1（schema 可能已變動）");
+			return fail(u8"루트 노드 또는 연결이 하나뿐인 시작 노드를 찾을 수 없습니다(데이터 구조가 변경되었을 수 있음)." );
 		std::string startId = nodesIn["root"]["out"][0].get<std::string>();
 
 		// source assets live next to data.json
@@ -241,14 +241,14 @@ bool ImportAtlasTreeData(const std::wstring& dataJsonPath, const std::wstring& d
 			if (key == "root") continue;
 			for (const char* f : kRejectFlags)
 				if (v.value(f, false))
-					return fail(u8"節點 " + key + u8" 帶有未支援的旗標 " + f + u8"（schema 已變動，需更新匯入器）");
+					return fail(u8"노드 " + key + u8"에 지원하지 않는 플래그 " + f + u8"가 있습니다(데이터 구조 변경, 가져오기 도구 업데이트 필요)." );
 
 			int grpId = v.value("group", -1);
 			int orbit = v.value("orbit", 0);
 			int orbitIndex = v.value("orbitIndex", 0);
 			const ordered_json& grp = groups.at(std::to_string(grpId));
 			if (orbit >= (int)orbitAngles.size() || orbitIndex >= (int)orbitAngles[orbit].size())
-				return fail(u8"節點 " + key + u8" 的 orbit/orbitIndex 超出範圍");
+				return fail(u8"노드 " + key + u8"의 orbit/orbitIndex가 범위를 벗어났습니다." );
 			double ang = orbitAngles[orbit][orbitIndex];
 			double x = grp.value("x", 0.0) + std::sin(ang) * orbitRadii[orbit];
 			double y = grp.value("y", 0.0) - std::cos(ang) * orbitRadii[orbit];
@@ -257,7 +257,7 @@ bool ImportAtlasTreeData(const std::wstring& dataJsonPath, const std::wstring& d
 				masteryIds.insert(key);
 				ordered_json spr = sheets.uv("mastery", v.value("icon", std::string()));
 				if (spr.is_null())
-					return fail(sheets.err.empty() ? u8"mastery 圖示缺失: " + key : sheets.err);
+					return fail(sheets.err.empty() ? u8"숙련 이미지가 없습니다: " + key : sheets.err);
 				ordered_json m;
 				m["n"] = v.value("name", std::string());
 				m["x"] = r2(x); m["y"] = r2(y);
@@ -287,7 +287,7 @@ bool ImportAtlasTreeData(const std::wstring& dataJsonPath, const std::wstring& d
 			}
 			if (on.is_null() || off.is_null())
 				return fail(sheets.err.empty()
-					? u8"節點 " + key + u8" 的圖示在 sprite 表中缺失: " + v.value("icon", std::string())
+					? u8"노드 " + key + u8"의 아이콘이 sprite 표에 없습니다: " + v.value("icon", std::string())
 					: sheets.err);
 
 			ordered_json n;
@@ -305,7 +305,7 @@ bool ImportAtlasTreeData(const std::wstring& dataJsonPath, const std::wstring& d
 			nAng.push_back(ang);
 		}
 		if (id2idx.find(startId) == id2idx.end())
-			return fail(u8"起點節點不在輸出集合中");
+			return fail(u8"시작 노드를 생성하지 못했습니다." );
 
 		// undirected edges, skipping root and masteries
 		std::set<std::pair<int, int>> edgeSet;
@@ -314,7 +314,7 @@ bool ImportAtlasTreeData(const std::wstring& dataJsonPath, const std::wstring& d
 			auto addNb = [&](const std::string& nb) -> bool {
 				if (nb == "root" || masteryIds.count(nb)) return true;
 				auto it = id2idx.find(nb);
-				if (it == id2idx.end()) { fail(u8"連線指向未知節點 " + nb); return false; }
+				if (it == id2idx.end()) { fail(u8"연결 대상인 알 수 없는 노드: " + nb); return false; }
 				int a = id2idx[key], b = it->second;
 				if (a != b) edgeSet.insert({ (std::min)(a, b), (std::max)(a, b) });
 				return true;
@@ -360,8 +360,8 @@ bool ImportAtlasTreeData(const std::wstring& dataJsonPath, const std::wstring& d
 					if (!seen[nb]) { seen[nb] = 1; reached++; stack.push_back(nb); }
 			}
 			if (reached != (int)outNodes.size())
-				return fail(u8"有 " + std::to_string((int)outNodes.size() - reached) +
-				            u8" 個節點無法從起點抵達，資料異常，已中止匯入");
+				return fail(std::to_string((int)outNodes.size() - reached) +
+				            u8"개 노드가 시작 노드에서 연결되지 않습니다. 데이터 오류로 가져오기를 중단했습니다." );
 		}
 
 		// frames
@@ -378,7 +378,7 @@ bool ImportAtlasTreeData(const std::wstring& dataJsonPath, const std::wstring& d
 			f["path"] = sheets.uv("frame", fr.path);
 			f["on"] = sheets.uv("frame", fr.on);
 			if (f["off"].is_null() || f["path"].is_null() || f["on"].is_null())
-				return fail(u8"frame sprite 缺失（kind " + std::to_string(fr.kind) + u8"）");
+				return fail(u8"프레임 sprite가 없습니다(kind " + std::to_string(fr.kind) + u8")." );
 			outFrames[std::to_string(fr.kind)] = std::move(f);
 		}
 
@@ -389,7 +389,7 @@ bool ImportAtlasTreeData(const std::wstring& dataJsonPath, const std::wstring& d
 			const ordered_json& bg = gv["background"];
 			ordered_json spr = sheets.uv("groupBackground", bg.value("image", std::string()));
 			if (spr.is_null())
-				return fail(u8"群組背景 sprite 缺失: " + bg.value("image", std::string()));
+				return fail(u8"그룹 배경 sprite가 없습니다: " + bg.value("image", std::string()));
 			ordered_json g;
 			g["x"] = r2(gv.value("x", 0.0)); g["y"] = r2(gv.value("y", 0.0));
 			g["half"] = bg.value("isHalfImage", false) ? 1 : 0;
@@ -400,11 +400,11 @@ bool ImportAtlasTreeData(const std::wstring& dataJsonPath, const std::wstring& d
 		// full-tree background art, stretched over bounds by the renderer
 		ordered_json outBg = sheets.uv("atlasBackground", "AtlasPassiveBackground");
 		if (outBg.is_null())
-			return fail(sheets.err.empty() ? u8"atlasBackground sprite 缺失" : sheets.err);
+			return fail(sheets.err.empty() ? u8"아틀라스 배경 sprite가 없습니다." : sheets.err);
 
 		int totalPoints = d["points"].value("totalPoints", 0);
 		if (totalPoints < 50 || totalPoints > 500)
-			return fail(u8"totalPoints=" + std::to_string(totalPoints) + u8" 不合理，已中止");
+			return fail(u8"totalPoints=" + std::to_string(totalPoints) + u8" 값을 확인할 수 없어 중단했습니다." );
 
 		ordered_json out;
 		out["version"] = d.value("tree", std::string("Default")) + "/" +
@@ -442,10 +442,10 @@ bool ImportAtlasTreeData(const std::wstring& dataJsonPath, const std::wstring& d
 			std::wstring src = sheets.srcAssets + widen(base);
 			std::wstring dst = destDir + L"atlas\\" + widen(base);
 			if (!CopyFileW(src.c_str(), dst.c_str(), FALSE))
-				return fail(u8"複製圖集失敗: " + base);
+				return fail(u8"이미지 시트 복사 실패: " + base);
 		}
 		if (!write_file_utf8(destDir + L"atlas_tree_poe1.json", out.dump()))
-			return fail(u8"寫入 atlas_tree_poe1.json 失敗");
+			return fail(u8"atlas_tree_poe1.json 기록에 실패했습니다." );
 
 		// League-mechanic map for the same season, from the same document. This
 		// lives here rather than in a maintainer script precisely so a new season
@@ -466,20 +466,20 @@ bool ImportAtlasTreeData(const std::wstring& dataJsonPath, const std::wstring& d
 			std::string mErr;
 			if (AtlasBuildMechanicMap(content, tag, &m, &mErr) &&
 			    AtlasWriteMechanicMap(m, destDir, &mErr)) {
-				mechNote = u8"、" + std::to_string((int)m.groups.size()) + u8" 個機制分類";
+				mechNote = u8", 메커니즘 분류 " + std::to_string((int)m.groups.size()) + u8"개";
 			} else {
-				mechNote = u8"（機制分類未產生：" + mErr + u8"）";
+				mechNote = u8"(메커니즘 데이터 생성 실패: " + mErr + u8")";
 			}
 		}
 
 		if (summary)
-			*summary = u8"匯入完成：" + std::to_string(out["nodes"].size()) + u8" 節點、" +
-			           std::to_string(out["edges"].size()) + u8" 連線、" +
-			           std::to_string(totalPoints) + u8" 點上限、" +
-			           std::to_string(sheets.baseNames.size()) + u8" 張圖集" + mechNote;
+			*summary = u8"가져오기 완료: 노드 " + std::to_string(out["nodes"].size()) + u8"개, 연결선 " +
+			           std::to_string(out["edges"].size()) + u8"개, 최대 포인트 " +
+			           std::to_string(totalPoints) + u8", 이미지 시트 " +
+			           std::to_string(sheets.baseNames.size()) + u8"개" + mechNote;
 		return true;
 	} catch (const std::exception& e) {
-		return fail(std::string(u8"匯入過程發生例外: ") + e.what());
+		return fail(std::string(u8"가져오는 중 예외 발생: ") + e.what());
 	}
 }
 

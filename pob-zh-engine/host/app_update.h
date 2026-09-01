@@ -74,6 +74,14 @@ public:
 	// no way to tell a failure from "already up to date".
 	enum class CheckReason { Background, UserAsked };
 	void RequestCheck(CheckReason reason);
+	bool RemoteUpdatesEnabled() const
+	{
+#ifdef POBTOOLS_KOREAN_RELEASE
+		return false;
+#else
+		return true;
+#endif
+	}
 
 	// Main thread. Valid in AppAvailable/Error: downloads + stages the app zip.
 	void StartAppUpdate();

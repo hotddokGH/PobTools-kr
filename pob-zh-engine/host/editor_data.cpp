@@ -393,8 +393,8 @@ int SaveAll(EditorModel& model, std::string* err)
 		}
 	}
 	if (failed)
-		PobLog::Error("save", u8"翻譯字典存檔失敗：" + std::to_string(failed) +
-		                          u8" 個檔沒有寫入（成功 " + std::to_string(saved) + u8" 個）");
+		PobLog::Error("save", u8"번역 사전 저장 실패: " + std::to_string(failed) +
+		                          u8"개 파일을 기록하지 못했습니다(성공 " + std::to_string(saved) + u8"개)." );
 	return saved;
 }
 

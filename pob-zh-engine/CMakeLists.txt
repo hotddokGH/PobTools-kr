@@ -3,6 +3,8 @@ project(SimpleGraphic C CXX)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_STANDARD 17)
 
+option(POBTOOLS_KOREAN_RELEASE "Build the public Korean release" OFF)
+
 if (APPLE)
     enable_language(OBJCXX)
 endif ()
@@ -438,6 +440,9 @@ if (WIN32)
         ${IMGUI_SOURCES}
     )
     target_compile_definitions(pob-zh PRIVATE "UNICODE" "_UNICODE" "IMGUI_IMPL_OPENGL_ES2")
+    if(POBTOOLS_KOREAN_RELEASE)
+        target_compile_definitions(pob-zh PRIVATE POBTOOLS_KOREAN_RELEASE=1)
+    endif()
     # 更新來源的 repo。不設就是 app_update.cpp 裡的正式值。
     #
     # 存在的理由:「簽章會放行正確的更新」只能對著一個真的 release 證明,而拿正式

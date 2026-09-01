@@ -260,7 +260,7 @@ SoundLibraryService::ApplyResult SoundLibraryService::ApplyRenamePlan(
 	for (const RenamePlanEntry& e : plan)
 		if (e.state == RenamePlanEntry::State::Conflict &&
 		    e.resolution == RenamePlanEntry::Resolution::Unset) {
-			res.err = u8"尚有衝突未選擇處理方式（跳過 / 加後綴 / 互換）";
+			res.err = u8"아직 처리 방법을 선택하지 않은 충돌이 있습니다(건너뛰기 / 접미사 추가 / 서로 바꾸기).";
 			return res;
 		}
 
@@ -327,7 +327,7 @@ SoundLibraryService::ApplyResult SoundLibraryService::ApplyRenamePlan(
 			if (!MoveFileExW(full(e.oldName).c_str(), full(tmp).c_str(), 0) ||
 			    !MoveFileExW(full(e.newName).c_str(), full(e.oldName).c_str(), 0) ||
 			    !MoveFileExW(full(tmp).c_str(), full(e.newName).c_str(), 0)) {
-				res.err += narrow(e.oldName) + u8": 互換失敗; ";
+				res.err += narrow(e.oldName) + u8": 서로 바꾸기 실패; ";
 				res.skipped++;
 				MoveFileExW(full(tmp).c_str(), full(e.oldName).c_str(), 0); // best-effort undo
 				continue;
@@ -337,7 +337,7 @@ SoundLibraryService::ApplyResult SoundLibraryService::ApplyRenamePlan(
 		}
 
 		if (!MoveFileExW(full(e.oldName).c_str(), full(target).c_str(), 0)) {
-			res.err += narrow(e.oldName) + u8": 改名失敗; ";
+			res.err += narrow(e.oldName) + u8": 이름 변경 실패; ";
 			res.skipped++;
 			continue;
 		}

@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { formatSignature } from './lib/format-signature.mjs';
 import { mergeLayers, reflowLineBreaks } from './lib/merge-layers.mjs';
 import { deriveUnambiguousPatterns } from './lib/official-patterns.mjs';
+import { buildKoreanItemMetadata } from './lib/item-metadata.mjs';
 
 const localeRoot = dirname(fileURLToPath(import.meta.url));
 const repositoryRoot = dirname(dirname(localeRoot));
@@ -238,3 +239,88 @@ for (const dictionary of ['tags', 'items', 'gems', 'ui', 'stats', 'passives', 'u
 
 writeFileSync(provenancePath, `${JSON.stringify(provenance, null, 2)}\n`, 'utf8');
 console.log(`provenance: ${provenancePath}`);
+
+const metadataManualTerms = {
+  'Added Small Passive Skills also grant: ': '추가된 소형 패시브 스킬이 부여하는 효과: ',
+  Amulets: '목걸이',
+  Belts: '허리띠',
+  'Body Armours': '갑옷',
+  Bows: '활',
+  Claws: '클로',
+  'Corruption Implicit': '타락 고정 속성',
+  Daggers: '단검',
+  'Eater of Worlds Implicit': '세계 포식자 고정 속성',
+  'Evasion and Armour': '회피 및 방어도',
+  'Fishing Rods': '낚싯대',
+  Foil: '포일',
+  Fractured: '분열',
+  Helmets: '투구',
+  Implicit: '고정 속성',
+  Large: '큼',
+  'Mana Multiplier': '마나 배율',
+  'Mana Reserved': '마나 점유',
+  'Master Crafted': '대가 제작',
+  'One Hand Axes': '한손 도끼',
+  'One Hand Maces': '한손 철퇴',
+  'One Hand Swords': '한손 검',
+  Quivers: '화살통',
+  Rings: '반지',
+  Sceptres: '셉터',
+  'Searing Exarch Implicit': '작열의 총주교 고정 속성',
+  Shields: '방패',
+  Small: '작음',
+  Staves: '지팡이',
+  'Thrusting One Hand Swords': '찌르기용 한손 검',
+  'Two Hand Axes': '양손 도끼',
+  'Two Hand Maces': '양손 철퇴',
+  'Two Hand Swords': '양손 검',
+  'Vestigial Implicit': '잔존 고정 속성',
+  Wands: '마법봉',
+};
+const metadataManualAffixes = {
+  "Assassin's": '암살자의',
+  "Champion's": '챔피언의',
+  Charging: '돌진하는',
+  Chosen: '선택받은',
+  "Gladiator's": '글래디에이터의',
+  Infernal: '지옥불의',
+  Lingering: '지속되는',
+  "Raider's": '레이더의',
+  Rejuvenating: '활력을 되찾는',
+  Sapphire: '사파이어의',
+  Vampiric: '흡혈의',
+  Wasting: '쇠약하게 하는',
+  'of Torment': '고통의',
+  'of the Gladiator': '글래디에이터의',
+  'of the Guardian': '가디언의',
+  'of the Inquisitor': '인퀴지터의',
+  'of the Raider': '레이더의',
+  'of the Saboteur': '사보추어의',
+  'of the Seal': '봉인의',
+  'of the Slayer': '슬레이어의',
+};
+const metadataTerms = {};
+for (const dictionary of ['ui', 'items', 'gems', 'stats', 'passives', 'uniques', 'monsters', 'tags']) {
+  Object.assign(metadataTerms, readJson(join(targetRoot, `${dictionary}.json`)).entries);
+}
+const metadataModNames = Object.fromEntries(Object.entries(direct.modNames.exact).map(
+  ([english, record]) => [english, record.value],
+));
+const metadataResult = buildKoreanItemMetadata({
+  reference: readJson(join(referenceRoot, 'item_metadata.json')),
+  exactTerms: metadataTerms,
+  exactModNames: metadataModNames,
+  manualTerms: metadataManualTerms,
+  manualAffixes: metadataManualAffixes,
+  skipPatterns: ['우클릭', '좌클릭'],
+});
+if (metadataResult.unresolved.length > 0) {
+  throw new Error(`Korean item metadata has unresolved terms:\n${metadataResult.unresolved.join('\n')}`);
+}
+writeFileSync(join(targetRoot, 'item_metadata.json'), `${JSON.stringify(metadataResult.document, null, 2)}\n`, 'utf8');
+writeFileSync(join(reportRoot, 'item-metadata.json'), `${JSON.stringify({
+  patch,
+  affixes: Object.keys(metadataResult.document.affix_names).length,
+  collisions: metadataResult.collisions,
+}, null, 2)}\n`, 'utf8');
+console.log(`item_metadata.json: ${Object.keys(metadataResult.document.affix_names).length} affixes; ${metadataResult.collisions.length} collisions`);

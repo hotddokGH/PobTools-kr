@@ -69,19 +69,19 @@ bool ScarabDb::Load(const std::wstring& exeDir, std::string* err)
 
 	std::string body;
 	if (!scarab_read_file(exeDir + L"Data\\scarabs_poe1.json", body)) {
-		if (err) *err = u8"找不到 Data\\scarabs_poe1.json";
+		if (err) *err = u8"Data\\scarabs_poe1.json을 찾을 수 없습니다.";
 		return false;
 	}
 	try {
 		ordered_json doc = ordered_json::parse(body);
 		if (doc.value("format", std::string()) != "pobtools-scarabs") {
-			if (err) *err = u8"scarabs_poe1.json 的 format 欄位不符";
+			if (err) *err = u8"scarabs_poe1.json의 format 필드가 올바르지 않습니다.";
 			return false;
 		}
 		source_ = doc.value("source", std::string());
 		const auto& arr = doc["scarabs"];
 		if (!arr.is_array()) {
-			if (err) *err = u8"scarabs_poe1.json 缺少 scarabs 陣列";
+			if (err) *err = u8"scarabs_poe1.json에 scarabs 배열이 없습니다.";
 			return false;
 		}
 		defs_.reserve(arr.size());
@@ -116,11 +116,11 @@ bool ScarabDb::Load(const std::wstring& exeDir, std::string* err)
 		}
 	} catch (const std::exception& e) {
 		defs_.clear();
-		if (err) *err = std::string(u8"scarabs_poe1.json 解析失敗: ") + e.what();
+		if (err) *err = std::string(u8"scarabs_poe1.json 분석 실패: ") + e.what();
 		return false;
 	}
 	if (defs_.empty()) {
-		if (err) *err = u8"scarabs_poe1.json 沒有任何項目";
+		if (err) *err = u8"scarabs_poe1.json에 항목이 없습니다.";
 		return false;
 	}
 	for (int i = 0; i < (int)defs_.size(); i++) byId_.emplace(defs_[i].id, i);
@@ -183,10 +183,10 @@ std::vector<std::string> ScarabDb::Sanitize(const std::vector<std::string>& ids,
 		}
 	}
 	if (note) {
-		if (unknown) *note += u8"，忽略 " + std::to_string(unknown) + u8" 個未知項目";
-		if (illegal) *note += u8"，忽略 " + std::to_string(illegal) + u8" 個違反放置規則的項目";
-		if (over)    *note += u8"，超過 " + std::to_string(kMaxScarabs) + u8" 個地圖格的 " +
-		                      std::to_string(over) + u8" 個項目已捨棄";
+		if (unknown) *note += u8", 알 수 없는 항목 " + std::to_string(unknown) + u8"개 무시";
+		if (illegal) *note += u8", 배치 규칙을 위반한 항목 " + std::to_string(illegal) + u8"개 무시";
+		if (over)    *note += u8", 지도 슬롯 " + std::to_string(kMaxScarabs) + u8"개를 초과한 항목 " +
+		                      std::to_string(over) + u8"개 제외";
 	}
 	return out;
 }
@@ -242,7 +242,7 @@ int RunScarabSelfTest(const std::wstring& exeDir, std::string& out)
 		// T-roundtrip: full state survives save -> load.
 		AtlasBuildFile g;
 		g.ParseDoc(u8"{\"builds\":[{\"name\":\"a\",\"alloc\":[7]}]}");
-		g.builds[0].notes = u8"第一行\n第二行";
+		g.builds[0].notes = u8"첫 번째 행\n두 번째 행";
 		g.builds[0].scarabs = { "s1", "s2", "s3", "s4", "s5" };
 		g.builds[0].targets = { 7, 4242 };
 		g.builds[0].blocked = { 99 };
@@ -268,9 +268,9 @@ int RunScarabSelfTest(const std::wstring& exeDir, std::string& out)
 		// BEFORE they existed still parses (the PTAT1 prefix is unchanged on
 		// purpose — bumping it would make older builds reject new codes).
 		AtlasBuildEntry src;
-		src.name = u8"甲蟲測試";
+		src.name = u8"곰 testi";
 		src.alloc = { 11, 22 };
-		src.notes = u8"備註內容";
+		src.notes = u8"참고 내용";
 		src.scarabs = { "a", "b" };
 		src.targets = { 22 };
 		src.blocked = { 33 };
@@ -310,7 +310,7 @@ int RunScarabSelfTest(const std::wstring& exeDir, std::string& out)
 		w.ParseDoc(u8"{\"builds\":[{\"name\":\"p1\",\"alloc\":[1,2]},{\"name\":\"p2\",\"alloc\":[3]}]}");
 		w.active = 1;
 		w.version = "vtest";
-		w.builds[0].notes = u8"專案一備註\n含換行";
+		w.builds[0].notes = u8"프로젝트 예비\n교환 포함";
 		w.builds[0].scarabs = { "sA", "sB" };
 		w.builds[1].scarabs = { "sC" };
 		w.builds[0].targets = { 2 };
@@ -432,14 +432,14 @@ int RunScarabSelfTest(const std::wstring& exeDir, std::string& out)
 				if (d.kind == "fragment" && ScarabMatchScore(d, sq) > 0) n++;
 			return n;
 		};
-		rep.check(found(u8"奉獻") == 4, "搜尋「奉獻」找到 4 個獻祭碎片",
-		          std::to_string(found(u8"奉獻")));
-		rep.check(found(u8"凡人") == 4, "搜尋「凡人」找到 4 個凡人碎片",
-		          std::to_string(found(u8"凡人")));
-		rep.check(found("Sacrifice") == 4, "英文查詢同樣找得到",
+		rep.check(found(u8"헌정") == 4, "'안전'을 검색하면 4가지 희생이 있다.",
+		          std::to_string(found(u8"헌정")));
+		rep.check(found(u8"만인") == 4, "검색 『인간』이 4개 인간 조각을 찾았습니다.",
+		          std::to_string(found(u8"만인")));
+		rep.check(found("Sacrifice") == 4, "영문 검색과 동일하게 획득",
 		          std::to_string(found("Sacrifice")));
-		rep.check(found(u8"黎明的奉獻") == 1, "全名查詢只命中一件",
-		          std::to_string(found(u8"黎明的奉獻")));
+		rep.check(found(u8"새벽의 희생") == 1, "모든 명칭은 명중일 뿐입니다.",
+		          std::to_string(found(u8"새벽의 희생")));
 	}
 	{
 		// Five distinct families fill the device; a sixth is refused.
@@ -504,27 +504,27 @@ int RunScarabSelfTest(const std::wstring& exeDir, std::string& out)
 				return n;
 			};
 
-			rep.check(score(*hive, u8"裂痕") > 0, "zh substring still matches");
+			rep.check(score(*hive, u8"균열") > 0, "zh substring still matches");
 			rep.check(score(*hive, "hive") > 0, "en substring still matches");
 			// The two locales order the words oppositely; a user who knows one
 			// order must still find the scarab.
 			rep.check(score(*hive, "hive breach") > 0, "en tokens out of order match");
-			rep.check(score(*hive, u8"裂痕 窩巢") > 0, "zh tokens out of order match");
+			rep.check(score(*hive, u8"열열 호기소") > 0, "zh tokens out of order match");
 			// 「聖甲蟲：窩巢裂痕」 typed without the fullwidth colon.
-			rep.check(score(*hive, u8"聖甲蟲窩巢") > 0, "punctuation-free query matches");
-			rep.check(score(*hive, u8"窩裂") > 0, "zh subsequence matches");
+			rep.check(score(*hive, u8"갑충석 참나무 소굴") > 0, "punctuation-free query matches");
+			rep.check(score(*hive, u8"열") > 0, "zh subsequence matches");
 			rep.check(score(*hive, "brchhv") > 0, "en subsequence matches");
 
 			// Effect text is searchable but must never outrank a name hit.
-			int byEffect = score(*hive, u8"裂痕巢穴");
+			int byEffect = score(*hive, u8"열열동굴");
 			rep.check(byEffect > 0, "effect text is searchable");
-			rep.check(score(*abyss, u8"深淵") > byEffect,
+			rep.check(score(*abyss, u8"심연") > byEffect,
 			          "a name hit outranks an effect hit",
-			          std::to_string(score(*abyss, u8"深淵")) + " vs " + std::to_string(byEffect));
+			          std::to_string(score(*abyss, u8"심연")) + " vs " + std::to_string(byEffect));
 
 			// An exact name beats a name that merely contains the query.
 			const ScarabDef* multi = db.ById("Metadata/Items/Scarabs/ScarabAbyssNew2");
-			rep.check(multi && score(*abyss, u8"聖甲蟲：深淵") > score(*multi, u8"聖甲蟲：深淵"),
+			rep.check(multi && score(*abyss, u8"심연 갑충석") > score(*multi, u8"심연 갑충석"),
 			          "exact name outranks a longer containing name");
 
 			rep.check(hitCount("") == (int)db.All().size(), "empty query matches everything");
@@ -532,9 +532,9 @@ int RunScarabSelfTest(const std::wstring& exeDir, std::string& out)
 			          std::to_string(hitCount("zzzzqqqq")));
 			// A subsequence over whole code points must not pair half of one CJK
 			// character with half of another.
-			rep.check(hitCount(u8"深") >= 5 && hitCount(u8"深") < (int)db.All().size(),
+			rep.check(hitCount(u8"심오한") >= 5 && hitCount(u8"심오한") < (int)db.All().size(),
 			          "single CJK char filters without matching everything",
-			          std::to_string(hitCount(u8"深")));
+			          std::to_string(hitCount(u8"심오한")));
 			rep.check(hitCount("  breach  ") == hitCount("breach"),
 			          "surrounding whitespace is ignored");
 		}

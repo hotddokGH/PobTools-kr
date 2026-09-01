@@ -217,7 +217,7 @@ static int run_engine(const std::wstring& dllDir, const std::wstring& launchLua)
 		// three completely different stories behind one message.
 		PobLog::Error("pob", "SimpleGraphic.dll failed to load, GetLastError=" +
 		                         std::to_string((unsigned long)GetLastError()));
-		MessageBoxW(nullptr, L"無法載入 SimpleGraphic.dll。", L"PobTools", MB_ICONERROR | MB_OK);
+		MessageBoxW(nullptr, L"SimpleGraphic.dll을 불러올 수 없습니다.", L"PobTools", MB_ICONERROR | MB_OK);
 		return 1;
 	}
 
@@ -227,7 +227,7 @@ static int run_engine(const std::wstring& dllDir, const std::wstring& launchLua)
 		// message on screen reads like corruption when it is really a mismatch.
 		PobLog::Error("pob", "SimpleGraphic.dll loaded but has no RunLuaFileAsWin export "
 		                     "(engine and launcher are from different builds)");
-		MessageBoxW(nullptr, L"SimpleGraphic.dll 缺少 RunLuaFileAsWin 匯出。", L"PobTools", MB_ICONERROR | MB_OK);
+		MessageBoxW(nullptr, L"SimpleGraphic.dll에 RunLuaFileAsWin 내보내기 함수가 없습니다.", L"PobTools", MB_ICONERROR | MB_OK);
 		return 1;
 	}
 
@@ -678,9 +678,9 @@ int WINAPI wWinMain(HINSTANCE, HINSTANCE, LPWSTR, int)
 			PobLog::Error("pob", "no Launch.lua found beside the exe or via POB_PATH "
 			                     "(direct-launch path)");
 			MessageBoxW(nullptr,
-				L"找不到 Path of Building 的 Launch.lua。\n\n"
-				L"請將 POB 資料夾(內含 Launch.lua,名稱不限)放在 pob-zh.exe 旁邊,\n"
-				L"或設定環境變數 POB_PATH 指向 POB 安裝目錄。",
+				L"Path of Building의 Launch.lua 를 찾을 수 없습니다.\n\n"
+				L"pob-zh.exe 옆에 Launch.lua가 들어 있는 POB 폴더를 두세요(폴더 이름은 자유).\n"
+				L"또는 POB_PATH 환경 변수를 POB 설치 폴더로 설정하세요.",
 				L"PobTools", MB_ICONERROR | MB_OK);
 			return 1;
 		}
@@ -703,8 +703,8 @@ int WINAPI wWinMain(HINSTANCE, HINSTANCE, LPWSTR, int)
 		PobLog::Error("pob", "launcher cannot start: missing " + miss + "under " +
 		                         to_utf8(engineDir));
 		MessageBoxW(nullptr,
-			L"engine 資料夾不完整（缺少 glfw3.dll 或 libGLESv2.dll）。\n"
-			L"請重新解壓縮完整的 pob-zh 套件。",
+			L"engine 데이터 폴더가 불완전합니다(glfw3.dll 또는 libGLESv2.dll 누락).\n"
+			L"PobTools 배포 압축 파일 전체를 다시 풀어 주세요.",
 			L"PobTools", MB_ICONERROR | MB_OK);
 		return 1;
 	}
@@ -752,7 +752,7 @@ int WINAPI wWinMain(HINSTANCE, HINSTANCE, LPWSTR, int)
 				                                    cfg.updateTranslations) == 0) {
 					return 0; // the freshly spawned new exe takes over
 				}
-				MessageBoxW(nullptr, (L"更新套用失敗：\n" + from_utf8(aerr)).c_str(),
+				MessageBoxW(nullptr, (L"업데이트 적용 실패:\n" + from_utf8(aerr)).c_str(),
 				            L"PobTools", MB_ICONERROR | MB_OK);
 				appUpdater.Init(dir); // resume the launcher with a fresh worker
 				continue;

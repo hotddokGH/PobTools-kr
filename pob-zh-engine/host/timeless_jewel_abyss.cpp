@@ -110,7 +110,7 @@ bool TJAbyssParse(const std::string& blob, int jewelType, TJAbyssLUT& out, std::
 		if (err) *err = m;
 		return false;
 	};
-	if (blob.size() < 12) return fail(u8"深淵查表檔太短,不是有效的容器");
+	if (blob.size() < 12) return fail(u8"심연 조회 테이블 파일이 너무 짧아 올바른 컨테이너가 아닙니다." );
 
 	out.fmt = blob.substr(0, 4);
 	const int formatVersion = (unsigned char)blob[4];
@@ -118,72 +118,72 @@ bool TJAbyssParse(const std::string& blob, int jewelType, TJAbyssLUT& out, std::
 	size_t o = 6;
 	int lo = 0, hi = 0, inc = 0;
 	if (!rd_u16(blob, o, lo) || !rd_u16(blob, o, hi) || !rd_u16(blob, o, inc))
-		return fail(u8"深淵查表檔標頭讀取失敗");
+		return fail(u8"심연 조회 테이블 파일 헤더를 읽지 못했습니다." );
 
 	if (out.fmt != "ABYS" && out.fmt != "ABYN")
-		return fail(u8"未知的深淵容器格式:" + out.fmt);
+		return fail(u8"알 수 없는 심연 컨테이너 형식: " + out.fmt);
 	// PoB errors out on each of these rather than carrying on, and so do we: a
 	// header that disagrees means the file is not the one we were asked for.
 	if (formatVersion != 1)
-		return fail(u8"深淵容器版本 " + std::to_string(formatVersion) + u8",本程式只認得版本 1");
+		return fail(u8"심연 컨테이너 버전 " + std::to_string(formatVersion) + u8"은(는) 지원하지 않습니다. 버전 1만 지원합니다." );
 	if (storedType != jewelType)
-		return fail(u8"深淵查表檔屬於珠寶型別 " + std::to_string(storedType) +
-		            u8",但要求的是 " + std::to_string(jewelType));
-	if (inc == 0) return fail(u8"深淵查表檔的種子間隔為 0");
+		return fail(u8"심연 조회 테이블의 주얼 유형은 " + std::to_string(storedType) +
+		            u8"이지만 요청한 유형은 " + std::to_string(jewelType) + u8"입니다." );
+	if (inc == 0) return fail(u8"심연 조회 테이블의 시드 간격이 0입니다." );
 
 	out.jewelType = jewelType;
 	out.seedMin = lo;
 	out.seedMax = hi;
 	out.seedInc = inc;
 	out.seedCount = (hi - lo) / inc + 1;
-	if (out.seedCount <= 0) return fail(u8"深淵查表檔的種子範圍無效");
+	if (out.seedCount <= 0) return fail(u8"심연 조회 테이블의 시드 범위가 올바르지 않습니다." );
 
 	if (out.fmt == "ABYS") {
 		int socketCount = 0, size = 0;
 		if (!rd_u8(blob, o, socketCount) || !rd_u8(blob, o, size))
-			return fail(u8"深淵查表檔插槽表頭讀取失敗");
+			return fail(u8"심연 조회 테이블의 주얼 슬롯 헤더를 읽지 못했습니다." );
 		out.abyssSize = size;
 		out.socketIds.reserve((size_t)socketCount);
 		for (int i = 0; i < socketCount; i++) {
 			int id = 0;
-			if (!rd_u16(blob, o, id)) return fail(u8"深淵查表檔插槽清單讀取失敗");
+			if (!rd_u16(blob, o, id)) return fail(u8"심연 조회 테이블의 주얼 슬롯 목록을 읽지 못했습니다." );
 			out.socketIds.push_back(id);
 		}
 		for (size_t i = 0; i < out.socketIds.size(); i++) {
 			out.blockOffsets[out.socketIds[i]] = o;
 			for (int s = 0; s < out.seedCount; s++)
 				if (!skip_socket_record(blob, o))
-					return fail(u8"深淵查表檔在插槽 " + std::to_string(out.socketIds[i]) +
-					            u8" 的第 " + std::to_string(s) + u8" 個種子處截斷");
+					return fail(u8"심연 조회 테이블이 주얼 슬롯 " + std::to_string(out.socketIds[i]) +
+					            u8"의 " + std::to_string(s) + u8"번째 시드에서 잘렸습니다." );
 		}
 	} else {
 		int nodeCount = 0;
-		if (!rd_u16(blob, o, nodeCount)) return fail(u8"深淵查表檔節點表頭讀取失敗");
+		if (!rd_u16(blob, o, nodeCount)) return fail(u8"심연 조회 테이블의 노드 헤더를 읽지 못했습니다." );
 		std::vector<int> nodeIds;
 		nodeIds.reserve((size_t)nodeCount);
 		for (int i = 0; i < nodeCount; i++) {
 			int id = 0;
-			if (!rd_u16(blob, o, id)) return fail(u8"深淵查表檔節點清單讀取失敗");
+			if (!rd_u16(blob, o, id)) return fail(u8"심연 조회 테이블의 노드 목록을 읽지 못했습니다." );
 			nodeIds.push_back(id);
 		}
 		for (size_t i = 0; i < nodeIds.size(); i++) {
 			out.blockOffsets[nodeIds[i]] = o;
 			for (int s = 0; s < out.seedCount; s++)
-				if (!skip_modification(blob, o)) return fail(u8"深淵查表檔節點區塊截斷");
+				if (!skip_modification(blob, o)) return fail(u8"심연 조회 테이블의 노드 블록이 잘렸습니다." );
 		}
-		if (blob.compare(o, 4, "ASCS") != 0) return fail(u8"深淵查表檔缺少昇華區段(ASCS)");
+		if (blob.compare(o, 4, "ASCS") != 0) return fail(u8"심연 조회 테이블에 전직 영역(ASCS)이 없습니다." );
 		o += 4;
 		int ascCount = 0;
-		if (!rd_u16(blob, o, ascCount)) return fail(u8"深淵查表檔昇華表頭讀取失敗");
+		if (!rd_u16(blob, o, ascCount)) return fail(u8"심연 조회 테이블의 전직 헤더를 읽지 못했습니다." );
 		for (int i = 0; i < ascCount; i++) {
 			int nameLen = 0;
-			if (!rd_u8(blob, o, nameLen)) return fail(u8"深淵查表檔昇華名稱長度讀取失敗");
-			if (o + (size_t)nameLen > blob.size()) return fail(u8"深淵查表檔昇華名稱截斷");
+			if (!rd_u8(blob, o, nameLen)) return fail(u8"심연 조회 테이블의 전직 이름 길이를 읽지 못했습니다." );
+			if (o + (size_t)nameLen > blob.size()) return fail(u8"심연 조회 테이블의 전직 이름이 잘렸습니다." );
 			const std::string name = blob.substr(o, (size_t)nameLen);
 			o += (size_t)nameLen;
 			out.ascOffsets[name] = o;
 			for (int s = 0; s < out.seedCount; s++)
-				if (!skip_ascendancy_record(blob, o)) return fail(u8"深淵查表檔昇華區塊截斷");
+				if (!skip_ascendancy_record(blob, o)) return fail(u8"심연 조회 테이블의 전직 블록이 잘렸습니다." );
 		}
 	}
 
@@ -192,8 +192,8 @@ bool TJAbyssParse(const std::string& blob, int jewelType, TJAbyssLUT& out, std::
 	// anywhere else means the layout is not what this code believes it is, and
 	// the block offsets above are already worthless.
 	if (o != blob.size())
-		return fail(u8"深淵查表檔走訪結束於位元組 " + std::to_string(o) + u8",但檔案長 " +
-		            std::to_string(blob.size()) + u8" —— 格式與本程式認知不符");
+		return fail(u8"심연 조회 테이블 탐색이 " + std::to_string(o) + u8"바이트에서 끝났지만 파일 길이는 " +
+		            std::to_string(blob.size()) + u8"바이트입니다. 지원하지 않는 형식일 수 있습니다." );
 
 	out.ok = true;
 	return true;

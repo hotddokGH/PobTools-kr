@@ -1,0 +1,146 @@
+{
+  "patch": "3.29.3.2",
+  "affixes": 1733,
+  "collisions": [
+    {
+      "korean": "- 타격",
+      "kept": "of the Strike",
+      "dropped": "of Striking"
+    },
+    {
+      "korean": "부식성",
+      "kept": "Corrosive",
+      "dropped": "Caustic"
+    },
+    {
+      "korean": "글래디에이터의",
+      "kept": "Gladiator's",
+      "dropped": "of the Gladiator"
+    },
+    {
+      "korean": "- 완화",
+      "kept": "of Alleviation",
+      "dropped": "of Dampening"
+    },
+    {
+      "korean": "- 냉각",
+      "kept": "of Chilling",
+      "dropped": "of Cooling"
+    },
+    {
+      "korean": "- 방벽",
+      "kept": "of the Bulwark",
+      "dropped": "of the Barricade"
+    },
+    {
+      "korean": "- 석탄",
+      "kept": "of Coal",
+      "dropped": "of Coals"
+    },
+    {
+      "korean": "꺼지지 않는",
+      "kept": "Inextinguishable",
+      "dropped": "Unquenchable"
+    },
+    {
+      "korean": "으스스한",
+      "kept": "Grim",
+      "dropped": "Haunted"
+    },
+    {
+      "korean": "인퀴지터의",
+      "kept": "Inquisitor's",
+      "dropped": "of the Inquisitor"
+    },
+    {
+      "korean": "- 추방",
+      "kept": "of Banishment",
+      "dropped": "of Banishing"
+    },
+    {
+      "korean": "사보추어의",
+      "kept": "Saboteur's",
+      "dropped": "of the Saboteur"
+    },
+    {
+      "korean": "- 잠재력",
+      "kept": "of Potential",
+      "dropped": "of Potency"
+    },
+    {
+      "korean": "유연한",
+      "kept": "Flexible",
+      "dropped": "Lithe"
+    },
+    {
+      "korean": "- 분산",
+      "kept": "of Diverting",
+      "dropped": "of Dispersion"
+    },
+    {
+      "korean": "- 신비학자",
+      "kept": "of the Arcanist",
+      "dropped": "of the Mystic"
+    },
+    {
+      "korean": "- 해방",
+      "kept": "of Liberation",
+      "dropped": "of the Unleashed"
+    },
+    {
+      "korean": "글래디에이터의",
+      "kept": "Gladiator's",
+      "dropped": "of the Gladiator"
+    },
+    {
+      "korean": "레이더의",
+      "kept": "Raider's",
+      "dropped": "of the Raider"
+    },
+    {
+      "korean": "- 유령",
+      "kept": "of the Phantom",
+      "dropped": "of Ghosts"
+    },
+    {
+      "korean": "불길한",
+      "kept": "Malignant",
+      "dropped": "Foreboding"
+    },
+    {
+      "korean": "- 구름",
+      "kept": "of the Clouds",
+      "dropped": "of the Cloud"
+    },
+    {
+      "korean": "- 군단",
+      "kept": "of Hordes",
+      "dropped": "of the Legion"
+    },
+    {
+      "korean": "- 질서",
+      "kept": "of the Order",
+      "dropped": "of Order"
+    },
+    {
+      "korean": "강화된",
+      "kept": "Fortified",
+      "dropped": "Empowered"
+    },
+    {
+      "korean": "- 주입",
+      "kept": "of Infusing",
+      "dropped": "of Infusion"
+    },
+    {
+      "korean": "- 집중",
+      "kept": "of Concentration",
+      "dropped": "of Focus"
+    },
+    {
+      "korean": "건장한",
+      "kept": "Stalwart",
+      "dropped": "Brawny"
+    }
+  ]
+}

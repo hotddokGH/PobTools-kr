@@ -68,17 +68,17 @@ static const float kBigFontSize = 30.0f;   // ToolPanelHost::big, digits only
 // LauncherStrings so they stay translated; everything here is a proper noun.
 struct LinkEntry { const char* label; const wchar_t* url; };
 static const LinkEntry kLinks[] = {
-	{ u8"PoeDB 流亡編年史",       L"https://poedb.tw" },
+	{ u8"PoeDB",                 L"https://poedb.tw" },
 	{ u8"PoE2DB",                 L"https://poe2db.tw" },
-	{ u8"官方網站",               L"https://www.pathofexile.com" },
-	{ u8"官方交易市集",           L"https://www.pathofexile.com/trade" },
-	{ u8"交易市集中文化",         L"https://github.com/Hsiung-Shao/poe-market-zh/releases/latest" },
+	{ u8"공식 홈페이지",               L"https://www.pathofexile.com" },
+	{ u8"공식 거래소",             L"https://www.pathofexile.com/trade" },
+	{ u8"poe-market-zh 릴리스",    L"https://github.com/Hsiung-Shao/poe-market-zh/releases/latest" },
 	{ u8"PoE Wiki",               L"https://www.poewiki.net" },
-	{ u8"巴哈姆特 PoE 板",        L"https://forum.gamer.com.tw/A.php?bsn=18966" },
+	{ u8"Bahamut PoE 게시판",      L"https://forum.gamer.com.tw/A.php?bsn=18966" },
 	{ u8"Reddit r/pathofexile",   L"https://www.reddit.com/r/pathofexile/" },
 	{ u8"poe.ninja",              L"https://poe.ninja" },
 	{ u8"FilterBlade",            L"https://www.filterblade.xyz" },
-	{ u8"拆粉查詢",               L"https://poe-disenchant-tool.vercel.app/allflame" },
+	{ u8"마법부여 해제 조회",      L"https://poe-disenchant-tool.vercel.app/allflame" },
 };
 
 // The language-picker labels name scripts a Traditional Chinese font is not
@@ -86,7 +86,7 @@ static const LinkEntry kLinks[] = {
 // supplies a font that has them, they draw — but they are not a coverage
 // requirement, and LoadFonts already probes koreanOk/cjkOk to drive the UI.
 static const char* const kOptionalScriptTexts[] = {
-	u8"简体", u8"한국어",
+	u8"한국어",
 };
 
 // Every piece of text the launcher can put on screen, in one place so the font
@@ -113,7 +113,7 @@ static void CollectLauncherTexts(std::vector<const char*>& out,
 	out.push_back(kAppUpdateGlyphSeed); // dynamic updater Status.message vocabulary
 	out.push_back(kChangelogText);      // version-history dialog body
 	for (const LinkEntry& l : kLinks) out.push_back(l.label);
-	out.push_back(u8"繁體中文Korean·"); // language combo labels + link separator
+	out.push_back(u8"한국어·"); // language combo labels + link separator
 }
 
 // Release history body.
@@ -874,7 +874,7 @@ LauncherResult ShowLauncher(LauncherConfig& cfg, const InstallInfo& installs, co
                             AppUpdater* appUpd)
 {
 	if (!glfwInit()) {
-		MessageBoxW(nullptr, L"無法初始化 GLFW，啟動器介面無法顯示。", L"PobTools", MB_ICONERROR | MB_OK);
+		MessageBoxW(nullptr, L"GLFW를 초기화할 수 없으며, 런처 화면에서는 표시할 수 없습니다.", L"PobTools", MB_ICONERROR | MB_OK);
 		return LauncherResult::Quit;
 	}
 	startup_trace_mark("glfwInit done");
@@ -900,7 +900,7 @@ LauncherResult ShowLauncher(LauncherConfig& cfg, const InstallInfo& installs, co
 	GLFWwindow* win = glfwCreateWindow(winW, winH, "PobTools", nullptr, nullptr);
 	if (!win) {
 		glfwTerminate();
-		MessageBoxW(nullptr, L"無法建立啟動器視窗。", L"PobTools", MB_ICONERROR | MB_OK);
+		MessageBoxW(nullptr, L"런처 창을 만들 수 없습니다.", L"PobTools", MB_ICONERROR | MB_OK);
 		return LauncherResult::Quit;
 	}
 	if (monitor) {
@@ -1186,7 +1186,7 @@ LauncherResult ShowLauncher(LauncherConfig& cfg, const InstallInfo& installs, co
 			panelInitError = fresh->InitError();
 			if (!panelInitError.empty())
 				PobLog::Error("panel", std::string(fresh->PanelId() ? fresh->PanelId() : "?") +
-				                           u8" 面板初始化失敗：" + panelInitError);
+				                           u8"패널 초기화에 실패하였습니다." + panelInitError);
 			return;
 		}
 		EmbeddedPanel ep;
@@ -1343,7 +1343,8 @@ LauncherResult ShowLauncher(LauncherConfig& cfg, const InstallInfo& installs, co
 		// frame because that call is also where finished processes are reaped.
 		const int pobCount = PobLaunch::PobRunningCount();
 		const bool pobBusy = PobLaunch::AnyPobRunning(exeDir);
-		if (appUpd) {
+		const bool remoteUpdatesEnabled = appUpd && appUpd->RemoteUpdatesEnabled();
+		if (remoteUpdatesEnabled) {
 			// Applying an update renames engine\* out of the way while POB has
 			// those DLLs open, and the same check silently overwrites Data\*.json
 			// with a fresh translation pack. Both have to stop, so the gate goes
@@ -1358,7 +1359,7 @@ LauncherResult ShowLauncher(LauncherConfig& cfg, const InstallInfo& installs, co
 		// launch/tool actions are disabled so the auto-relaunch cannot interrupt
 		// anything; a ready stage closes the window via ApplyAppUpdate.
 		AppUpdater::Status ust;
-		if (appUpd) {
+		if (remoteUpdatesEnabled) {
 			ust = appUpd->Poll();
 			if (ust.phase == AppUpdatePhase::UpToDate) {
 				if (!manualCheck) {
@@ -1417,7 +1418,7 @@ LauncherResult ShowLauncher(LauncherConfig& cfg, const InstallInfo& installs, co
 			// Idle shows the manual check button: the automatic check only fires
 			// once per launch and is throttled to once a day, so without this a
 			// user who leaves the launcher open has no way to ask again.
-			if (appUpd) {
+			if (remoteUpdatesEnabled) {
 				ImVec2 keep = ImGui::GetCursorPos();
 				ImGui::PushFont(fonts.small);
 				auto placeRight = [&](float w, float h) {
@@ -1592,7 +1593,7 @@ LauncherResult ShowLauncher(LauncherConfig& cfg, const InstallInfo& installs, co
 				ImGui::TextWrapped("%s", S.noDictBanner);
 				ImGui::PopTextWrapPos();
 				ImGui::PopStyleColor();
-				if (appUpd) {
+				if (remoteUpdatesEnabled) {
 					ImGui::BeginDisabled(pobBusy || updaterBusy ||
 					                     ust.phase == AppUpdatePhase::TransUpdating);
 					if (ImGui::Button(S.noDictDownload)) appUpd->StartTranslationUpdate();
@@ -1754,8 +1755,8 @@ LauncherResult ShowLauncher(LauncherConfig& cfg, const InstallInfo& installs, co
 				std::string s = l.displayName;
 				if (l.id == "en") return s;
 				const bool p1 = l.slot[(int)DictSlot::Poe1], p2 = l.slot[(int)DictSlot::Poe2];
-				if (p1 && !p2) s += u8"（僅 PoE1）";
-				else if (!p1 && p2) s += u8"（僅 PoE2）";
+				if (p1 && !p2) s += u8"(PoE1만)";
+				else if (!p1 && p2) s += u8"(PoE2만)";
 				return s;
 			};
 			if (localeIdx >= 0 && localeIdx < (int)locales.size() &&
@@ -2025,12 +2026,12 @@ LauncherResult ShowLauncher(LauncherConfig& cfg, const InstallInfo& installs, co
 					ImGui::SameLine(0, gapBtn);
 					if (ImGui::Button(S.browse, ImVec2(btnW, 0))) {
 						std::wstring picked = EdBrowseForFolder(
-							L"選擇翻譯資料夾", cfg.dataDir[i].empty() ? builtin : cfg.dataDir[i]);
+							L"번역 폴더 선택", cfg.dataDir[i].empty() ? builtin : cfg.dataDir[i]);
 						if (!picked.empty()) applyPath(picked);
 					}
 					ImGui::SameLine(0, gapBtn);
 					if (ImGui::Button(S.copyBuiltin, ImVec2(btnW, 0))) {
-						copyDest = EdBrowseForFolder(L"複製內建翻譯資料到…",
+						copyDest = EdBrowseForFolder(L"복사 내공 번역: 데이터~...",
 						                             cfg.dataDir[i].empty() ? builtin : cfg.dataDir[i]);
 						copyMsg.clear();
 						copySlot = i;
@@ -2110,14 +2111,14 @@ LauncherResult ShowLauncher(LauncherConfig& cfg, const InstallInfo& installs, co
 					ImGui::PopTextWrapPos();
 				}
 
-				// The update gate. Default on: most people want new-league
-				// translations; only someone editing them wants to opt out.
-				ImGui::Dummy(ImVec2(0, 6.0f * scale));
-				ImGui::AlignTextToFramePadding();
-				ImGui::PushStyleColor(ImGuiCol_Text, ImGui::GetStyle().Colors[ImGuiCol_TextDisabled]);
-				ImGui::TextUnformatted(S.transUpdateLabel);
-				ImGui::PopStyleColor();
-				{
+				// The public Korean build is maintained independently and has no
+				// compatible upstream update feed, so it does not expose this gate.
+				if (remoteUpdatesEnabled) {
+					ImGui::Dummy(ImVec2(0, 6.0f * scale));
+					ImGui::AlignTextToFramePadding();
+					ImGui::PushStyleColor(ImGuiCol_Text, ImGui::GetStyle().Colors[ImGuiCol_TextDisabled]);
+					ImGui::TextUnformatted(S.transUpdateLabel);
+					ImGui::PopStyleColor();
 					int tu = cfg.updateTranslations ? 0 : 1;
 					ImGui::RadioButton(S.transUpdateOn, &tu, 0);
 					ImGui::RadioButton(S.transUpdateOff, &tu, 1);
@@ -2127,7 +2128,7 @@ LauncherResult ShowLauncher(LauncherConfig& cfg, const InstallInfo& installs, co
 						saveNow();
 						// The worker applies packs on its own schedule, so the
 						// setting has to reach it immediately, not at next start.
-						if (appUpd) appUpd->SetTranslationUpdates(want);
+						appUpd->SetTranslationUpdates(want);
 					}
 				}
 
@@ -2473,7 +2474,7 @@ int RunFontAtlasSelftest(const std::wstring& exeDir)
 	// Written as UTF-8 and decoded, never as hand-typed codepoints: the first version
 	// of this list had 贖 as 0x8CFF (it is 0x8D16), and the check went green or red
 	// depending on whether a font happened to have a glyph at the wrong address.
-	const char* kProbeText = u8"贖燃點罪鮫龜";
+	const char* kProbeText = u8"화점범죄";
 	std::vector<unsigned> probeCps;
 	ForEachCodepoint(kProbeText, [&](unsigned cp) { probeCps.push_back(cp); });
 

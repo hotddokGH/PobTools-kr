@@ -300,7 +300,7 @@ struct SheetIndex {
 	const ordered_json* section(const std::string& cat)
 	{
 		if (!sprites.contains(cat) || !sprites[cat].contains(kZoom)) {
-			err = u8"sprites 段缺少類別 " + cat + u8"（zoom 0.3835）";
+			err = u8"sprites 항목에 " + cat + u8" 유형이 없습니다(zoom 0.3835).";
 			return nullptr;
 		}
 		return &sprites[cat][kZoom];
@@ -315,7 +315,7 @@ struct SheetIndex {
 		if (it != byBase.end()) return it->second;
 		int w = sec->value("w", 0), h = sec->value("h", 0);
 		if (w <= 0 || h <= 0 || w > kGlesMax || h > kGlesMax) {
-			err = u8"圖集 " + base + u8" 尺寸異常或超過 4096";
+			err = u8"이미지 시트 " + base + u8"의 크기가 올바르지 않거나 4096을 초과합니다.";
 			return -1;
 		}
 		int slot = (int)baseNames.size();
@@ -372,24 +372,24 @@ bool ImportPassiveTreeData(const std::wstring& dataJsonPath, const std::string& 
 		PobLog::Error("tree", "passive tree import failed: " + m);
 		return false;
 	};
-	if (ver.empty()) return fail(u8"缺少樹版本（例如 3_29）");
+	if (ver.empty()) return fail(u8"트리 버전이 없습니다(예: 3_29)." );
 
 	std::string content;
 	if (!read_file_utf8(dataJsonPath, content))
-		return fail(u8"無法讀取 data.json");
+		return fail(u8"data.json를 찾을 수 없습니다.");
 	ordered_json d;
 	try {
 		d = ordered_json::parse(content);
 	} catch (const std::exception& e) {
-		return fail(std::string(u8"data.json 解析失敗: ") + e.what());
+		return fail(std::string(u8"data.json 분석 실패: ") + e.what());
 	}
 
 	try {
 		if (!d.contains("nodes") || !d.contains("groups") || !d.contains("constants") || !d.contains("sprites"))
-			return fail(u8"data.json 缺少必要欄位（nodes/groups/constants/sprites）——確定是 skilltree-export 的 data.json 嗎？");
+			return fail(u8"data.json에 필수 필드(nodes/groups/constants/sprites)가 없습니다. skilltree-export의 data.json인지 확인하세요." );
 		// a character tree has classes filled in; an atlas export does not
 		if (!d.contains("classes") || d["classes"].empty())
-			return fail(u8"這不是角色天賦樹的匯出（缺 classes；atlas 樹請用輿圖的匯入）");
+			return fail(u8"캐릭터 패시브 스킬 트리 내보내기 파일이 아닙니다(아틀라스 트리는 아틀라스 가져오기를 사용하세요)." );
 
 		const ordered_json& nodesIn = d["nodes"];
 		const ordered_json& groups = d["groups"];
@@ -423,10 +423,10 @@ bool ImportPassiveTreeData(const std::wstring& dataJsonPath, const std::string& 
 			std::string gid = std::to_string(v["group"].get<long long>());
 			int orbit = v.value("orbit", 0);
 			int orbitIndex = v.value("orbitIndex", 0);
-			if (!groups.contains(gid)) return fail(u8"節點 " + key + u8" 的 group 不存在");
+			if (!groups.contains(gid)) return fail(u8"노드 " + key + u8"의 group이 없습니다." );
 			const ordered_json& grp = groups[gid];
 			if (orbit >= (int)orbitAngles.size() || orbitIndex >= (int)orbitAngles[orbit].size())
-				return fail(u8"節點 " + key + u8" 的 orbit/orbitIndex 超出範圍");
+				return fail(u8"노드 " + key + u8"의 orbit/orbitIndex가 범위를 벗어났습니다." );
 			double ang = orbitAngles[orbit][orbitIndex];
 			double x = grp.value("x", 0.0) + std::sin(ang) * orbitRadii[orbit];
 			double y = grp.value("y", 0.0) - std::cos(ang) * orbitRadii[orbit];
@@ -466,7 +466,7 @@ bool ImportPassiveTreeData(const std::wstring& dataJsonPath, const std::string& 
 				ordered_json off = sheets.uv(inaCat[kind], v.value("icon", std::string()));
 				if (on.is_null() || off.is_null())
 					return fail(sheets.err.empty()
-						? u8"節點 " + key + u8" 的圖示在 sprite 表中缺失: " + v.value("icon", std::string())
+						? u8"노드 " + key + u8"의 아이콘이 sprite 표에 없습니다: " + v.value("icon", std::string())
 						: sheets.err);
 				nd["on"] = std::move(on);
 				nd["off"] = std::move(off);
@@ -581,7 +581,7 @@ bool ImportPassiveTreeData(const std::wstring& dataJsonPath, const std::string& 
 			f["path"] = sheets.uv("frame", fr.path);
 			f["on"] = sheets.uv("frame", fr.on);
 			if (f["off"].is_null() || f["path"].is_null() || f["on"].is_null())
-				return fail(u8"frame sprite 缺失（kind " + std::to_string(fr.kind) + u8"）");
+				return fail(u8"프레임 sprite가 없습니다(kind " + std::to_string(fr.kind) + u8")." );
 			outFrames[std::to_string(fr.kind)] = std::move(f);
 		}
 
@@ -670,10 +670,10 @@ bool ImportPassiveTreeData(const std::wstring& dataJsonPath, const std::string& 
 			std::wstring gggSrc = srcDir + L"assets\\" + widen(base);
 			const std::wstring& src = (!pobSrc.empty() && file_exists(pobSrc)) ? pobSrc : gggSrc;
 			if (!CopyFileW(src.c_str(), dst.c_str(), FALSE))
-				return fail(u8"複製圖集失敗: " + base);
+				return fail(u8"이미지 시트 복사 실패: " + base);
 		}
 		if (!write_file_utf8(exeDir + L"Data\\passive_tree_poe1.json", out.dump()))
-			return fail(u8"寫入 Data/passive_tree_poe1.json 失敗");
+			return fail(u8"Data/passive_tree_poe1.json 기록에 실패했습니다." );
 
 		if (summary) {
 			int zhLines = 0, lines = 0;
@@ -685,14 +685,14 @@ bool ImportPassiveTreeData(const std::wstring& dataJsonPath, const std::string& 
 						if (z.is_string() && !z.get<std::string>().empty()) zhLines++;
 			}
 			int pct = lines > 0 ? (int)(100.0 * zhLines / lines + 0.5) : 0;
-			*summary = u8"匯入完成：" + std::string(ver) + u8" 樹 " +
-			           std::to_string(out["nodes"].size()) + u8" 節點、" +
-			           std::to_string(out["sockets"].size()) + u8" 插槽、繁中詞條 " +
-			           std::to_string(pct) + u8"%（捨棄 " + std::to_string(dropped) + u8" 個孤立節點）";
+			*summary = u8"가져오기 완료: " + std::string(ver) + u8" 트리, 노드 " +
+			           std::to_string(out["nodes"].size()) + u8"개, 주얼 슬롯 " +
+			           std::to_string(out["sockets"].size()) + u8"개, 한국어 능력치 " +
+			           std::to_string(pct) + u8"%(고립 노드 " + std::to_string(dropped) + u8"개 제외)";
 		}
 		return true;
 	} catch (const std::exception& e) {
-		return fail(std::string(u8"匯入過程發生例外: ") + e.what());
+		return fail(std::string(u8"가져오는 중 예외 발생: ") + e.what());
 	}
 }
 
@@ -738,7 +738,7 @@ int RunPassiveImportSelfTest(const std::wstring& exeDir)
 	      "normalize: {N} placeholders");
 	check(tr_normalize("gain 5,000 gold and 2.5% speed") == "gain # gold and #% speed",
 	      "normalize: thousands comma + decimal");
-	check(tr_normalize(u8"增加 15% 傷害") == u8"增加 #% 傷害",
+	check(tr_normalize(u8"피해 15% 증가") == u8"#% 피해 증가",
 	      "normalize: UTF-8 CJK bytes untouched");
 
 	// token_findall: range-first alternation, left to right (Python _TOKEN)
@@ -752,14 +752,14 @@ int RunPassiveImportSelfTest(const std::wstring& exeDir)
 	// ZhTranslator::Stat: template refill by {N}
 	{
 		ZhTranslator tr;
-		tr.statIdx[tr_normalize("15% increased Quantity of Items")] = u8"增加 {0}% 物品數量";
-		tr.statIdx[tr_normalize("Adds 5 to 10 damage")] = u8"附加 {0} 至 {1} 傷害";
-		tr.statIdx[tr_normalize("boolean effect line")] = u8"布林效果行";
-		check(tr.Stat("20% increased Quantity of Items") == u8"增加 20% 物品數量",
+		tr.statIdx[tr_normalize("15% increased Quantity of Items")] = u8"발견하는 아이템 수량 {0}% 증가";
+		tr.statIdx[tr_normalize("Adds 5 to 10 damage")] = u8"{0}~{1} 피해 추가";
+		tr.statIdx[tr_normalize("boolean effect line")] = u8"숲의 효과 행";
+		check(tr.Stat("20% increased Quantity of Items") == u8"항목 수의 20 % 증가",
 		      "Stat: value refilled with the line's own number");
-		check(tr.Stat("Adds 7 to 13 damage") == u8"附加 7 至 13 傷害",
+		check(tr.Stat("Adds 7 to 13 damage") == u8"7~13 피해 추가",
 		      "Stat: two placeholders in order");
-		check(tr.Stat("boolean effect line") == u8"布林效果行", "Stat: no-number line");
+		check(tr.Stat("boolean effect line") == u8"숲의 효과 행", "Stat: no-number line");
 		check(tr.Stat("completely unknown line").empty(), "Stat: unknown template -> empty");
 	}
 
