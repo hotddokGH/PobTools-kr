@@ -391,32 +391,12 @@ def migrate(
             and (path, function, source, occurrence_index) in reviewed_contexts
         ):
             continue
-        sources = issue.get("sources")
-        if isinstance(sources, list):
-            remaining = [
-                source
-                for source in sources
-                if isinstance(source, str)
-                and (
-                    type(occurrence_index) is not int
-                    or (path, function, source, occurrence_index) not in reviewed_contexts
-                )
-            ]
-            if not remaining:
-                continue
-            issue = {**issue, "sources": remaining}
         filtered_alignment_issues.append(issue)
     alignment_issue_rows = filtered_alignment_issues
 
     for issue in alignment_issue_rows:
-        issue_sources: list[str] = []
-        if isinstance(issue.get("source"), str):
-            issue_sources.append(issue["source"])
-        if isinstance(issue.get("sources"), list):
-            issue_sources.extend(
-                source for source in issue["sources"] if isinstance(source, str)
-            )
-        for source in issue_sources:
+        source = issue.get("source")
+        if isinstance(source, str):
             failed_sources.add(source)
             occurrence_index = issue.get("occurrenceIndex")
             if type(occurrence_index) is int:
@@ -766,17 +746,19 @@ def align_file_literals(
                 for row in current_rows
                 if HANGUL.search(row.decoded)
             ]
-            issues.append(
-                {
-                    "code": "AMBIGUOUS_ALIGNMENT" if candidates else "UNMAPPED_ALIGNMENT",
-                    "path": path.as_posix(),
-                    "function": function,
-                    "line": visible_rows[0][0].line,
-                    "occurrenceIndex": visible_rows[0][1],
-                    "sources": [row.decoded for row, _ in visible_rows],
-                    "currentCandidates": candidates,
-                }
-            )
+            code = "AMBIGUOUS_ALIGNMENT" if candidates else "UNMAPPED_ALIGNMENT"
+            for upstream_row, occurrence_index in visible_rows:
+                issues.append(
+                    {
+                        "code": code,
+                        "path": path.as_posix(),
+                        "function": function,
+                        "line": upstream_row.line,
+                        "occurrenceIndex": occurrence_index,
+                        "source": upstream_row.decoded,
+                        "currentCandidates": candidates,
+                    }
+                )
             continue
         for (upstream_row, occurrence_index), current_row in zip(
             indexed_rows, current_rows, strict=True

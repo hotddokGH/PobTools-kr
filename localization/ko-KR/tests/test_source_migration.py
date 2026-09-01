@@ -334,7 +334,7 @@ class SourceMigrationTests(unittest.TestCase):
                     "function": "Check",
                     "line": 8,
                     "occurrenceIndex": 0,
-                    "sources": ["發現新賽季天賦樹 "],
+                    "source": "發現新賽季天賦樹 ",
                     "currentCandidates": [],
                 }
             ],
@@ -352,6 +352,129 @@ class SourceMigrationTests(unittest.TestCase):
             [row["code"] for row in result.report["issues"]],
             ["UNMAPPED_ALIGNMENT"],
         )
+
+    def test_distinct_multi_source_issues_are_fully_resolved_by_exact_contexts(self):
+        path = "host/a.cpp"
+        upstream = 'void Draw(){ Label(u8"設定"); Label(u8"更新"); }'.encode("utf-8")
+        current = 'void Draw(){ Label(u8"설정 및 업데이트"); }'.encode("utf-8")
+        _, alignment_issues = migration.align_file_literals(
+            Path(path), upstream, current
+        )
+        result = migration.migrate(
+            legacy={"entries": {}},
+            overrides={
+                "entries": {},
+                "contexts": [
+                    {
+                        "path": path,
+                        "function": "Draw",
+                        "source": "設定",
+                        "target": "설정",
+                        "occurrenceIndex": 0,
+                    },
+                    {
+                        "path": path,
+                        "function": "Draw",
+                        "source": "更新",
+                        "target": "업데이트",
+                        "occurrenceIndex": 1,
+                    },
+                ],
+            },
+            official={},
+            alignment_issues=alignment_issues,
+            context_inventories=self.context_inventory(
+                path,
+                [("Draw", "設定"), ("Draw", "更新")],
+                [("Draw", "설정"), ("Draw", "업데이트")],
+            ),
+        )
+
+        self.assertEqual(result.report["issues"], [])
+        self.assertEqual(result.report["counts"]["unmapped"], 0)
+
+    def test_same_source_multi_issue_keeps_only_unreviewed_index_blocking(self):
+        path = "host/a.cpp"
+        upstream = (
+            'void Draw(){ Label(u8"設定"); Log("trace"); Label(u8"設定"); }'
+        ).encode("utf-8")
+        current = 'void Draw(){ Label(u8"설정"); }'.encode("utf-8")
+        _, alignment_issues = migration.align_file_literals(
+            Path(path), upstream, current
+        )
+        result = migration.migrate(
+            legacy={"entries": {}},
+            overrides={
+                "entries": {},
+                "contexts": [
+                    {
+                        "path": path,
+                        "function": "Draw",
+                        "source": "設定",
+                        "target": "설정",
+                        "occurrenceIndex": 0,
+                    }
+                ],
+            },
+            official={},
+            alignment_issues=alignment_issues,
+            context_inventories=self.context_inventory(
+                path,
+                [("Draw", "設定"), ("Draw", "trace"), ("Draw", "設定")],
+                [("Draw", "설정")],
+            ),
+        )
+
+        self.assertEqual(
+            [
+                (row["code"], row["source"], row["occurrenceIndex"])
+                for row in result.report["issues"]
+            ],
+            [("AMBIGUOUS_ALIGNMENT", "設定", 2)],
+        )
+        self.assertEqual(result.report["counts"]["ambiguous"], 1)
+
+    def test_same_source_multi_issue_is_clean_when_both_indexes_are_reviewed(self):
+        path = "host/a.cpp"
+        upstream = (
+            'void Draw(){ Label(u8"設定"); Log("trace"); Label(u8"設定"); }'
+        ).encode("utf-8")
+        current = 'void Draw(){ Label(u8"설정 및 환경 설정"); }'.encode("utf-8")
+        _, alignment_issues = migration.align_file_literals(
+            Path(path), upstream, current
+        )
+        result = migration.migrate(
+            legacy={"entries": {}},
+            overrides={
+                "entries": {},
+                "contexts": [
+                    {
+                        "path": path,
+                        "function": "Draw",
+                        "source": "設定",
+                        "target": "설정",
+                        "occurrenceIndex": 0,
+                    },
+                    {
+                        "path": path,
+                        "function": "Draw",
+                        "source": "設定",
+                        "target": "환경 설정",
+                        "occurrenceIndex": 2,
+                    },
+                ],
+            },
+            official={},
+            alignment_issues=alignment_issues,
+            context_inventories=self.context_inventory(
+                path,
+                [("Draw", "設定"), ("Draw", "trace"), ("Draw", "設定")],
+                [("Draw", "설정"), ("Draw", "환경 설정")],
+            ),
+        )
+
+        self.assertEqual(result.report["issues"], [])
+        self.assertEqual(result.report["counts"]["ambiguous"], 0)
 
     def test_explicit_reviewed_context_resolves_one_failed_occurrence(self):
         source = "發現新賽季天賦樹 "
@@ -392,7 +515,7 @@ class SourceMigrationTests(unittest.TestCase):
                     "function": "PassiveTreeUpdater::doCheck",
                     "line": 340,
                     "occurrenceIndex": 7,
-                    "sources": [source],
+                    "source": source,
                     "currentCandidates": [],
                 }
             ],
@@ -893,6 +1016,38 @@ class SourceMigrationTests(unittest.TestCase):
             },
         )
 
+    def test_real_multi_source_groups_preserve_every_occurrence_identity(self):
+        expected = {
+            "host/atlas_import.cpp": {
+                ("sheetFor", "圖集 ", 2),
+                ("sheetFor", "圖集 ", 6),
+                ("sheetFor", " 是 webp 格式，目前不支援（需要 png/jpg）", 3),
+                ("sheetFor", " 尺寸異常或超過 4096", 7),
+            },
+            "host/filter_i18n.cpp": {
+                ("FilterI18n::Load", "地圖階級", 47),
+                ("FilterI18n::Load", "堆疊數量", 49),
+            },
+            "host/launcher_editor.cpp": {
+                ("Frame", "儲存全部 (", 10),
+                ("Frame", "已儲存 ", 13),
+                ("Frame", "儲存失敗：", 15),
+                ("Frame", "改寫入 ", 44),
+                ("Frame", "即將切換到 ", 85),
+                ("Frame", "即將切換到 ", 87),
+            },
+        }
+
+        for relative, expected_identities in expected.items():
+            with self.subTest(relative=relative):
+                _, issues = self.align_real_file(relative)
+                identities = {
+                    (row["function"], row["source"], row["occurrenceIndex"])
+                    for row in issues
+                }
+                self.assertTrue(expected_identities <= identities)
+                self.assertEqual(len(identities), len(issues))
+
     def test_real_season_tree_source_emits_exact_context_targets(self):
         source = "發現新賽季天賦樹 "
         passive, passive_issues = migration.align_file_literals(
@@ -1001,8 +1156,16 @@ class SourceMigrationTests(unittest.TestCase):
         alignments, issues = migration.align_file_literals(Path("host/ui.cpp"), upstream, current)
 
         self.assertEqual(alignments, [])
-        self.assertEqual([row["code"] for row in issues], ["AMBIGUOUS_ALIGNMENT"])
-        self.assertEqual(issues[0]["sources"], ["設定", "新增"])
+        self.assertEqual(
+            [
+                (row["code"], row["source"], row["occurrenceIndex"])
+                for row in issues
+            ],
+            [
+                ("AMBIGUOUS_ALIGNMENT", "設定", 0),
+                ("AMBIGUOUS_ALIGNMENT", "新增", 1),
+            ],
+        )
 
     def test_output_documents_are_canonical_sorted_schema_version_two(self):
         result = migration.migrate(

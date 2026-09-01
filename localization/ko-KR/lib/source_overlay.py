@@ -48,6 +48,12 @@ class UnsupportedEscape(ValueError):
         self.occurrence_index = -1
 
 
+class CppParseError(ValueError):
+    def __init__(self, problems: list[dict[str, Any]]):
+        super().__init__(f"C++ parse failed with {len(problems)} problem(s)")
+        self.problems = problems
+
+
 class RawDelimiterCollision(ValueError):
     pass
 
@@ -144,6 +150,93 @@ def _decode_literal(node: Node, text: bytes, function: str, line: int) -> tuple[
     )
 
 
+def _is_benign_macro_recovery(node: Node, text: bytes) -> bool:
+    if (
+        node.is_missing
+        and node.type == "type_identifier"
+        and node.parent is not None
+        and node.parent.type == "enum_specifier"
+        and text[node.parent.start_byte : node.start_byte].strip() == b"enum"
+        and re.match(rb"\s*:", text[node.end_byte : node.end_byte + 16]) is not None
+    ):
+        return True
+    if (
+        node.is_missing
+        and node.type == "type_identifier"
+        and node.parent is not None
+        and node.parent.type == "compound_literal_expression"
+        and text[node.parent.start_byte : node.parent.end_byte].lstrip().startswith(b"{")
+    ):
+        return True
+    line_start = text.rfind(b"\n", 0, node.start_byte) + 1
+    line_end = text.find(b"\n", node.end_byte)
+    if line_end < 0:
+        line_end = len(text)
+    line = text[line_start:line_end].strip()
+    token = text[node.start_byte : node.end_byte].strip()
+    if node.is_error:
+        line_prefix = text[line_start:node.start_byte].strip()
+        if (
+            re.fullmatch(rb"\*\[[^\]\r\n]+\]", token) is not None
+            and re.search(rb"\bnew\s+[A-Za-z_][A-Za-z0-9_:]*$", line_prefix)
+            is not None
+        ):
+            return True
+        if (
+            token in {b"void", b"int", b"char", b"bool", b"float", b"double"}
+            and re.match(rb"[A-Z][A-Z0-9_]*(?:\s|\()", line_prefix) is not None
+        ):
+            return True
+        if (
+            token == b"*"
+            and node.parent is not None
+            and node.parent.type == "field_expression"
+            and (
+                text[max(0, node.start_byte - 2) : node.start_byte] == b"->"
+                or text[max(0, node.start_byte - 1) : node.start_byte] == b"."
+            )
+        ):
+            return True
+        if token.startswith(b"#") or re.fullmatch(rb"[A-Z][A-Z0-9_]*", token) is not None:
+            return True
+        suffix = text[node.end_byte:line_end]
+        return (
+            re.fullmatch(rb'(?:u8|u|U|L)?R?".*"', token, flags=re.DOTALL)
+            is not None
+            and re.match(
+                rb'\s+[A-Z][A-Z0-9_]*(?:\s*;|\s+(?:u8|u|U|L)?R?")',
+                suffix,
+            )
+            is not None
+        )
+    if not node.is_missing or node.type != ";":
+        return False
+    if line.endswith(b"\\"):
+        return True
+    if re.fullmatch(rb"[A-Z][A-Z0-9_]*\s*\(.*\)", line) is not None:
+        return True
+    previous_end = max(0, line_start - 1)
+    previous_start = text.rfind(b"\n", 0, previous_end) + 1
+    previous_line = text[previous_start:previous_end].strip()
+    if re.fullmatch(rb"[A-Z][A-Z0-9_]*\s*\(.*\)", previous_line) is not None:
+        return True
+    if node.parent is not None and node.parent.type == "expression_statement":
+        parent_first_line = text[
+            node.parent.start_byte : node.start_byte
+        ].lstrip().split(b"\n", 1)[0].strip()
+        if re.fullmatch(rb"[A-Z][A-Z0-9_]*\s*\(.*\)", parent_first_line) is not None:
+            return True
+    suffix = text[node.end_byte:line_end].strip()
+    return (
+        suffix.endswith(b";")
+        and re.match(
+            rb'(?:(?:u8|u|U|L)?R?"|[A-Z][A-Z0-9_]*(?:\s*\(|\s*;))',
+            suffix,
+        )
+        is not None
+    )
+
+
 def scan_cpp_literals(path: Path, text: bytes) -> list[Literal]:
     """Return semantic C++ string values with byte offsets into *text*."""
     tree = _PARSER.parse(text)
@@ -168,6 +261,77 @@ def scan_cpp_literals(path: Path, text: bytes) -> list[Literal]:
     for function_scope, nodes in by_function.items():
         for occurrence_index, node in enumerate(sorted(nodes, key=lambda value: value.start_byte)):
             occurrence_by_span[(function_scope, node.start_byte, node.end_byte)] = occurrence_index
+
+    problem_nodes: list[Node] = []
+    saw_recovery_node = False
+    pending = [tree.root_node]
+    while pending:
+        node = pending.pop()
+        if node.is_error or node.is_missing or node.type == "ERROR":
+            saw_recovery_node = True
+            if not _is_benign_macro_recovery(node, text):
+                problem_nodes.append(node)
+        pending.extend(reversed(node.children))
+    if tree.root_node.has_error and not saw_recovery_node:
+        problem_nodes.append(tree.root_node)
+    if problem_nodes:
+        problems: list[dict[str, Any]] = []
+        for problem in sorted(
+            problem_nodes,
+            key=lambda node: (node.start_byte, node.end_byte, node.type, node.is_missing),
+        ):
+            matching_candidates = [
+                (node, function, function_scope)
+                for node, function, function_scope in candidates
+                if (
+                    node.start_byte < problem.end_byte
+                    and node.end_byte > problem.start_byte
+                )
+                or (
+                    problem.start_byte == problem.end_byte
+                    and node.start_byte <= problem.start_byte <= node.end_byte
+                )
+            ]
+            if matching_candidates:
+                for node, function, function_scope in matching_candidates:
+                    problems.append(
+                        {
+                            "function": function,
+                            "line": text.count(b"\n", 0, problem.start_byte) + 1,
+                            "startByte": problem.start_byte,
+                            "endByte": problem.end_byte,
+                            "occurrenceIndex": occurrence_by_span[
+                                (function_scope, node.start_byte, node.end_byte)
+                            ],
+                        }
+                    )
+            else:
+                function = ""
+                ancestor = problem.parent
+                while ancestor is not None:
+                    if ancestor.type == "function_definition":
+                        function = _function_name(ancestor, text)
+                        break
+                    ancestor = ancestor.parent
+                problems.append(
+                    {
+                        "function": function,
+                        "line": text.count(b"\n", 0, problem.start_byte) + 1,
+                        "startByte": problem.start_byte,
+                        "endByte": problem.end_byte,
+                    }
+                )
+        unique_problems = {
+            (
+                row["function"],
+                row["line"],
+                row["startByte"],
+                row["endByte"],
+                row.get("occurrenceIndex", -1),
+            ): row
+            for row in problems
+        }
+        raise CppParseError([unique_problems[key] for key in sorted(unique_problems)])
 
     rows: list[Literal] = []
     for node, function, function_scope in sorted(
@@ -508,6 +672,16 @@ def _run_overlay(
         originals[path] = text
         try:
             literals = scan_cpp_literals(Path(relative), text)
+        except CppParseError as error:
+            for problem in error.problems:
+                report["issues"].append(
+                    {
+                        "code": "CPP_PARSE_ERROR",
+                        "path": relative,
+                        **problem,
+                    }
+                )
+            continue
         except UnsupportedEscape as error:
             report["issues"].append(
                 {

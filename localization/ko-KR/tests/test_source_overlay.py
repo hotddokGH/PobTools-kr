@@ -158,6 +158,67 @@ class SourceOverlayTests(unittest.TestCase):
         self.assertEqual(report["issues"][0]["escape"], "\\x414")
         self.assertEqual(self.read("host/ui.cpp"), original)
 
+    def test_cpp_parse_error_blocks_all_files_without_writing(self):
+        malformed = 'void Draw( { Label(u8"設定"); }'
+        valid = 'void Draw(){ Label(u8"更新"); }'
+        self.write("host/bad.cpp", malformed)
+        self.write("host/good.cpp", valid)
+        mapping = self.mapping(
+            {
+                "設定": self.entry("설정", "reviewed"),
+                "更新": self.entry("업데이트", "reviewed"),
+            }
+        )
+
+        report = apply_overlay(self.root, mapping, self.policy, self.report)
+
+        self.assertEqual(
+            [
+                {
+                    key: issue[key]
+                    for key in (
+                        "code",
+                        "path",
+                        "function",
+                        "line",
+                        "startByte",
+                        "endByte",
+                        "occurrenceIndex",
+                    )
+                }
+                for issue in report["issues"]
+            ],
+            [
+                {
+                    "code": "CPP_PARSE_ERROR",
+                    "path": "host/bad.cpp",
+                    "function": "",
+                    "line": 1,
+                    "startByte": 0,
+                    "endByte": len(malformed.encode("utf-8")),
+                    "occurrenceIndex": 0,
+                }
+            ],
+        )
+        self.assertEqual(self.read("host/bad.cpp"), malformed)
+        self.assertEqual(self.read("host/good.cpp"), valid)
+
+    def test_valid_macro_and_cpp_recovery_forms_are_not_parse_errors(self):
+        source = (
+            '#define VERSION "1"\n'
+            'enum : int { Value = 1 };\n'
+            'void Draw(){ std::string value = "v" VERSION; '
+            'auto selected = object->*member; '
+            'for (const char* text : { "設定", "更新" }) Use(text); }'
+        )
+
+        rows = scan_cpp_literals(Path("host/ui.cpp"), source.encode("utf-8"))
+
+        self.assertEqual(
+            [row.decoded for row in rows],
+            ["v", "設定", "更新"],
+        )
+
     def test_apply_is_transactional_when_any_row_is_unreviewed(self):
         original = 'void Draw(){ ImGui::Text(u8"設定"); ImGui::Text(u8"更新"); }'
         self.write("host/ui.cpp", original)
