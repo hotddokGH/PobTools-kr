@@ -19,7 +19,7 @@ non-commercial use only.
 - License declared by the model card: Creative Commons Attribution-
   NonCommercial 4.0 International (CC BY-NC 4.0)
 - Use in this project: initial draft text for PobTools C++ display literals,
-  followed by source-level review and manual corrections
+  retained only as non-releasable suggestions pending source-level review
 
 Rejected direct-model rows were retried through
 `Helsinki-NLP/opus-mt-zh-en` as an intermediate English conversion and the
@@ -38,3 +38,10 @@ manual mappings. The generation report records `machine: 0`.
 Official Path of Exile Korean mappings for patch `3.29.3.2`, reviewed manual
 PoB UI strings, and reviewed rejection overrides take precedence over every
 fallback. Formatting tokens are verified before a generated value is accepted.
+
+The optional source-literal machine tool supports suggestion generation and
+retry only. It writes `source-translation-suggestions.json`, refuses the
+canonical `source-translations.json` path, and never applies or restores C++
+source files. A machine suggestion can enter the canonical map only after an
+explicit review changes its status and records reviewed provenance; the release
+overlay accepts only `official`, `reviewed`, or `intentional` rows.

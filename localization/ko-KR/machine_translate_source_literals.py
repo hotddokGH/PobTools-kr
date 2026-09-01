@@ -1,22 +1,45 @@
 import argparse
 import json
 import re
-import subprocess
 from pathlib import Path
-
-import sentencepiece as spm
-import torch
-from huggingface_hub import snapshot_download
-from opencc import OpenCC
-from transformers import AutoModelForSeq2SeqLM, AutoTokenizer, NllbTokenizerFast
-
-from machine_translate_runtime import SOURCE_GLOSSARY, apply_glossary, protect as protect_english, restore
-
 
 ZH_EN_MODEL = "Helsinki-NLP/opus-mt-zh-en"
 EN_KO_MODEL = "Helsinki-NLP/opus-mt-tc-big-en-ko"
 DIRECT_MODEL = "SimpleJerry/longtu-nllb-zh2ko"
 DIRECT_MODEL_REVISION = "earlystop-v1-ckpt48000"
+SOURCE_GLOSSARY: dict[str, str] = {}
+
+
+def load_ml_dependencies() -> None:
+    """Load optional heavyweight dependencies only for generation or retry."""
+    global AutoModelForSeq2SeqLM, AutoTokenizer, NllbTokenizerFast
+    global OpenCC, SOURCE_GLOSSARY, apply_glossary, protect_english, restore
+    global snapshot_download, spm, torch
+
+    import sentencepiece as spm_module
+    import torch as torch_module
+    from huggingface_hub import snapshot_download as snapshot_download_function
+    from opencc import OpenCC as OpenCC_class
+    from transformers import AutoModelForSeq2SeqLM as model_class
+    from transformers import AutoTokenizer as tokenizer_class
+    from transformers import NllbTokenizerFast as nllb_tokenizer_class
+
+    from machine_translate_runtime import SOURCE_GLOSSARY as glossary
+    from machine_translate_runtime import apply_glossary as apply_glossary_function
+    from machine_translate_runtime import protect as protect_function
+    from machine_translate_runtime import restore as restore_function
+
+    spm = spm_module
+    torch = torch_module
+    snapshot_download = snapshot_download_function
+    OpenCC = OpenCC_class
+    AutoModelForSeq2SeqLM = model_class
+    AutoTokenizer = tokenizer_class
+    NllbTokenizerFast = nllb_tokenizer_class
+    SOURCE_GLOSSARY = glossary
+    apply_glossary = apply_glossary_function
+    protect_english = protect_function
+    restore = restore_function
 HAN = re.compile(r"[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]")
 HANGUL = re.compile(r"[가-힣]")
 PROTECTED_SOURCE = re.compile(
@@ -578,6 +601,7 @@ def split_protected_source(text: str) -> list[tuple[str, bool]]:
 
 
 def retry_rejected(output_path: Path, batch_size: int) -> None:
+    load_ml_dependencies()
     document = json.loads(output_path.read_text(encoding="utf-8"))
     repository_root = output_path.parents[3]
     english_map = official_english_map(repository_root)
@@ -641,7 +665,7 @@ def retry_rejected(output_path: Path, batch_size: int) -> None:
         elif signature(source) != signature(target):
             document["rejected"][source] = "split retry C++ display signature mismatch"
         else:
-            document["entries"][source] = target
+            document["entries"][source] = suggestion_entry(source, target)
             document["rejected"].pop(source, None)
     document["entries"] = dict(sorted(document["entries"].items()))
     document["rejected"] = dict(sorted(document["rejected"].items()))
@@ -650,6 +674,7 @@ def retry_rejected(output_path: Path, batch_size: int) -> None:
 
 
 def generate(repository_root: Path, output_path: Path, batch_size: int) -> None:
+    load_ml_dependencies()
     engine_root = repository_root / "pob-zh-engine"
     literals = sorted({
         value
@@ -759,6 +784,7 @@ def generate(repository_root: Path, output_path: Path, batch_size: int) -> None:
         print(f"source fallback: {min(offset + batch_size, len(pending))}/{len(pending)}; translated={len(entries)}; rejected={len(rejected)}", flush=True)
 
     document = {
+        "schemaVersion": 1,
         "source": "official exact/contextual Korean plus offline t2s direct and zh-en/en-ko machine-assisted source literal fallback",
         "models": [DIRECT_MODEL, ZH_EN_MODEL, EN_KO_MODEL],
         "licenses": {
@@ -766,98 +792,44 @@ def generate(repository_root: Path, output_path: Path, batch_size: int) -> None:
             ZH_EN_MODEL: "CC-BY-4.0",
             EN_KO_MODEL: "CC-BY-4.0",
         },
-        "entries": dict(sorted(entries.items())),
+        "entries": {
+            source: suggestion_entry(source, target)
+            for source, target in sorted(entries.items())
+        },
+        "contexts": [],
         "rejected": dict(sorted(rejected.items())),
     }
     output_path.write_text(json.dumps(document, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
-def apply(repository_root: Path, mapping_path: Path) -> None:
-    mapping = json.loads(mapping_path.read_text(encoding="utf-8"))["entries"]
-    override_path = mapping_path.with_name("source-literal-overrides.json")
-    if override_path.exists():
-        mapping.update(json.loads(override_path.read_text(encoding="utf-8"))["entries"])
-
-    def cpp_safe(target: str) -> str:
-        target = target.replace("\r\n", "\\n").replace("\r", "\\n").replace("\n", "\\n").replace("\t", "\\t")
-        output: list[str] = []
-        for character in target:
-            if character == '"':
-                backslashes = 0
-                for previous in reversed(output):
-                    if previous != "\\":
-                        break
-                    backslashes += 1
-                if backslashes % 2 == 0:
-                    output.append("\\")
-            output.append(character)
-        return "".join(output)
-
-    mapping = {source: cpp_safe(target) for source, target in mapping.items()}
-    engine_root = repository_root / "pob-zh-engine"
-    changed = 0
-    for path in source_files(engine_root):
-        text = path.read_text(encoding="utf-8")
-        replacements = [(start, end, mapping[value]) for start, end, value in scan_literals(text) if value in mapping]
-        if not replacements:
-            continue
-        for start, end, target in reversed(replacements):
-            text = text[:start] + target + text[end:]
-        path.write_text(text, encoding="utf-8", newline="")
-        changed += 1
-    print(f"applied source literal translations to {changed} files")
-
-
-def restore_generated_sources(repository_root: Path) -> None:
-    engine_root = repository_root / "pob-zh-engine"
-    restored = 0
-    for path in source_files(engine_root):
-        relative = path.relative_to(repository_root).as_posix()
-        result = subprocess.run(
-            ["git", "diff", "--quiet", "--", relative],
-            cwd=repository_root,
-            check=False,
-        )
-        if result.returncode == 0:
-            continue
-        baseline = subprocess.check_output(["git", "show", f"HEAD:{relative}"], cwd=repository_root)
-        path.write_bytes(baseline)
-        restored += 1
-    print(f"restored {restored} generated source files from HEAD")
-
-
-def restore_excluded_sources(repository_root: Path) -> None:
-    engine_root = repository_root / "pob-zh-engine"
-    restored = 0
-    for path in all_source_files(engine_root):
-        relative_engine = path.relative_to(engine_root).as_posix()
-        if relative_engine not in EXCLUDED_SOURCE_PATHS:
-            continue
-        relative = path.relative_to(repository_root).as_posix()
-        baseline = subprocess.check_output(["git", "show", f"HEAD:{relative}"], cwd=repository_root)
-        path.write_bytes(baseline)
-        restored += 1
-    print(f"restored {restored} excluded non-display source files from HEAD")
+def suggestion_entry(source: str, target: str) -> dict[str, object]:
+    return {
+        "target": target,
+        "status": "suggested",
+        "provenance": "machine-generated-source-literal",
+        "formatSignature": signature(source),
+    }
 
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("mode", choices=("generate", "retry", "restore", "restore-excluded", "apply"))
+    parser.add_argument("mode", choices=("generate", "retry"))
     parser.add_argument("--batch-size", type=int, default=64)
+    parser.add_argument("--output", type=Path)
     args = parser.parse_args()
     locale_root = Path(__file__).resolve().parent
     repository_root = locale_root.parent.parent
-    mapping_path = locale_root / "manual/source-literal-translations.json"
+    mapping_path = args.output or locale_root / "source-translation-suggestions.json"
+    canonical_path = (locale_root / "source-translations.json").resolve()
+    if (
+        mapping_path.name.casefold() == "source-translations.json"
+        or mapping_path.resolve() == canonical_path
+    ):
+        parser.error(f"refusing canonical accepted-map output: {mapping_path}")
     if args.mode == "generate":
         generate(repository_root, mapping_path, args.batch_size)
-    elif args.mode == "retry":
-        retry_rejected(mapping_path, args.batch_size)
-    elif args.mode == "restore":
-        restore_generated_sources(repository_root)
-    elif args.mode == "restore-excluded":
-        restore_excluded_sources(repository_root)
     else:
-        apply(repository_root, mapping_path)
+        retry_rejected(mapping_path, args.batch_size)
 
 
 if __name__ == "__main__":
