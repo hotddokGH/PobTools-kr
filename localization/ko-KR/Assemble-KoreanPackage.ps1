@@ -45,9 +45,24 @@ New-Item -ItemType Directory -Path $output | Out-Null
 Get-ChildItem -LiteralPath $install -Force | ForEach-Object {
     Copy-Item -LiteralPath $_.FullName -Destination $output -Recurse -Force
 }
-$poe2Path = Join-Path $output 'Data/poe2'
-if (Test-Path -LiteralPath $poe2Path) {
-    Remove-Item -LiteralPath $poe2Path -Recurse -Force
+$forbiddenOutputPaths = @(
+    'Data/poe2',
+    'Path of Building Community',
+    'PobTools',
+    'tools',
+    'reports',
+    'tests',
+    'node_modules',
+    'cache',
+    'logs',
+    'translate_misses.log',
+    'MalgunGothic-TestOnly.ttf'
+)
+foreach ($relative in $forbiddenOutputPaths) {
+    $path = Join-Path $output $relative
+    if (Test-Path -LiteralPath $path) {
+        Remove-Item -LiteralPath $path -Recurse -Force
+    }
 }
 foreach ($slot in 'launcher','poe1') {
     $slotPath = Join-Path $output "Data/$slot"
