@@ -287,17 +287,17 @@ function phase2LexicalView(text) {
       if (state === 'code') {
         if (previous === '/' && character === '/') {
           state = 'line-comment';
-          stateStart = originalLeftBoundaries[lexicalText.length - 2];
+          stateStart = originalBoundaries[lexicalText.length - 2];
         } else if (previous === '/' && character === '*') {
           state = 'block-comment';
-          stateStart = originalLeftBoundaries[lexicalText.length - 2];
+          stateStart = originalBoundaries[lexicalText.length - 2];
         } else if (character === '"') {
           state = 'string';
-          stateStart = originalLeftBoundaries[lexicalText.length - 1];
+          stateStart = originalBoundaries[lexicalText.length - 1];
           escaped = false;
         } else if (character === "'") {
           state = 'character';
-          stateStart = originalLeftBoundaries[lexicalText.length - 1];
+          stateStart = originalBoundaries[lexicalText.length - 1];
           escaped = false;
         }
       } else if (state === 'line-comment') {

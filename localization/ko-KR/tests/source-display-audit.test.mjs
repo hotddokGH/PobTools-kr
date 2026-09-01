@@ -424,6 +424,30 @@ test('unterminated character literals fail closed before literal auditing', () =
   });
 });
 
+test('unterminated lexical states report the physical opener after line splices', () => {
+  for (const [newline, newlineLength] of [['\n', 1], ['\r\n', 2]]) {
+    for (const [opener, detail] of [
+      ['/*', 'unterminated block comment'],
+      ["'", 'unterminated character literal'],
+    ]) {
+      for (const prefix of ['', 'a']) {
+        for (const spliceCount of [1, 2]) {
+          const splice = `\\${newline}`.repeat(spliceCount);
+          const source = `${prefix}${splice}${opener}`;
+          const report = auditSourceText(source, { internalLiteralAllowlist: [] }, 'host/spliced.cpp');
+          assert.deepEqual(report.issues, [{
+            code: 'INVALID_SOURCE_SYNTAX',
+            detail,
+            file: 'host/spliced.cpp',
+            index: prefix.length + spliceCount * (1 + newlineLength),
+            line: spliceCount + 1,
+          }], `${JSON.stringify({ newline, opener, prefix, spliceCount })}`);
+        }
+      }
+    }
+  }
+});
+
 test('unterminated lexical suffixes discard earlier allowlisted literals', () => {
   const policy = {
     internalLiteralAllowlist: [{
