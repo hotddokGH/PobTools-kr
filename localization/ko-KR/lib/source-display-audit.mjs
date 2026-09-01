@@ -205,12 +205,71 @@ function afterSeparators(text, index) {
   return cursor;
 }
 
+function rawOpeningAt(text, start, previousLexicalCharacter) {
+  if (previousLexicalCharacter !== undefined && /[\p{ID_Continue}$]/u.test(previousLexicalCharacter)) {
+    return undefined;
+  }
+  let candidate = '';
+  let cursor = start;
+  while (cursor < text.length && candidate.length <= 21) {
+    if (text.startsWith('\\\r\n', cursor)) {
+      cursor += 3;
+      continue;
+    }
+    if (text.startsWith('\\\n', cursor)) {
+      cursor += 2;
+      continue;
+    }
+    const character = text[cursor];
+    candidate += character;
+    cursor += 1;
+    if (character === '(') {
+      const opening = /^(?:u8R|uR|UR|LR|R)"([^ ()\\\t\r\n]{0,16})\($/u.exec(candidate);
+      if (!opening) return undefined;
+      return { openingEnd: cursor, delimiter: opening[1] };
+    }
+    if (character === '\r' || character === '\n') return undefined;
+  }
+  return undefined;
+}
+
 function phase2LexicalView(text) {
   let lexicalText = '';
   const originalLeftBoundaries = [0];
   const originalBoundaries = [0];
   let cursor = 0;
+  let state = 'code';
+  let escaped = false;
   while (cursor < text.length) {
+    if (state === 'code') {
+      const opening = rawOpeningAt(text, cursor, lexicalText.at(-1));
+      if (opening) {
+        while (cursor < opening.openingEnd) {
+          if (text.startsWith('\\\r\n', cursor)) {
+            cursor += 3;
+            originalBoundaries[originalBoundaries.length - 1] = cursor;
+          } else if (text.startsWith('\\\n', cursor)) {
+            cursor += 2;
+            originalBoundaries[originalBoundaries.length - 1] = cursor;
+          } else {
+            lexicalText += text[cursor];
+            cursor += 1;
+            originalLeftBoundaries.push(cursor);
+            originalBoundaries.push(cursor);
+          }
+        }
+        const terminator = `)${opening.delimiter}"`;
+        const close = text.indexOf(terminator, cursor);
+        const rawEnd = close < 0 ? text.length : close + terminator.length;
+        while (cursor < rawEnd) {
+          lexicalText += text[cursor];
+          cursor += 1;
+          originalLeftBoundaries.push(cursor);
+          originalBoundaries.push(cursor);
+        }
+        continue;
+      }
+    }
     if (text.startsWith('\\\r\n', cursor)) {
       cursor += 3;
       originalBoundaries[originalBoundaries.length - 1] = cursor;
@@ -218,10 +277,30 @@ function phase2LexicalView(text) {
       cursor += 2;
       originalBoundaries[originalBoundaries.length - 1] = cursor;
     } else {
-      lexicalText += text[cursor];
+      const character = text[cursor];
+      const previous = lexicalText.at(-1);
+      lexicalText += character;
       cursor += 1;
       originalLeftBoundaries.push(cursor);
       originalBoundaries.push(cursor);
+      if (state === 'code') {
+        if (previous === '/' && character === '/') state = 'line-comment';
+        else if (previous === '/' && character === '*') state = 'block-comment';
+        else if (character === '"') { state = 'string'; escaped = false; }
+        else if (character === "'") { state = 'character'; escaped = false; }
+      } else if (state === 'line-comment') {
+        if (character === '\n') state = 'code';
+      } else if (state === 'block-comment') {
+        if (previous === '*' && character === '/') state = 'code';
+      } else if (state === 'string') {
+        if (escaped) escaped = false;
+        else if (character === '\\') escaped = true;
+        else if (character === '"') state = 'code';
+      } else if (state === 'character') {
+        if (escaped) escaped = false;
+        else if (character === '\\') escaped = true;
+        else if (character === "'") state = 'code';
+      }
     }
   }
   return { lexicalText, originalLeftBoundaries, originalBoundaries };

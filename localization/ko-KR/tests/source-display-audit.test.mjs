@@ -304,6 +304,57 @@ test('raw payload splices retain original LF and CRLF semantic identity', () => 
   }
 });
 
+test('raw terminators are contiguous original spelling across every prefix', () => {
+  for (const prefix of ['R', 'u8R', 'uR', 'UR', 'LR']) {
+    for (const newline of ['\n', '\r\n']) {
+      for (const delimiter of ['', 'tag']) {
+        const rawPayload = delimiter
+          ? `前)ta\\${newline}g" "後`
+          : `前)\\${newline}" "後`;
+        const source = `Label(${prefix}"${delimiter}(${rawPayload})${delimiter}");`;
+        const exact = auditSourceText(source, {
+          internalLiteralAllowlist: [{
+            path: 'host/phase-aware.cpp',
+            sha256: literalSha256(rawPayload),
+            reason: 'contiguous raw terminator fixture',
+          }],
+        }, 'host/phase-aware.cpp');
+        assert.equal(exact.displayLiterals, 1);
+        assert.equal(exact.allowedInternalLiterals, 1);
+        assert.deepEqual(exact.issues, []);
+
+        const fabricated = auditSourceText(source, {
+          internalLiteralAllowlist: [{
+            path: 'host/phase-aware.cpp',
+            sha256: literalSha256(`前後)${delimiter}`),
+            reason: 'incorrect phase-collapsed identity probe',
+          }],
+        }, 'host/phase-aware.cpp');
+        assert.equal(fabricated.allowedInternalLiterals, 0);
+        assert.equal(fabricated.issues[0].literal, rawPayload);
+        assert.equal(fabricated.issues[0].sha256, literalSha256(rawPayload));
+      }
+    }
+  }
+});
+
+test('prefix splices do not let a comment-shaped raw payload fabricate a close', () => {
+  const newline = '\r\n';
+  const prefix = `u\\${newline}8R\\${newline}`;
+  const rawPayload = `前)ta\\${newline}g" /* payload */ "後`;
+  const source = `Label(${prefix}"tag(${rawPayload})tag");`;
+  const report = auditSourceText(source, {
+    internalLiteralAllowlist: [{
+      path: 'host/phase-aware.cpp',
+      sha256: literalSha256(rawPayload),
+      reason: 'prefix and payload phase boundary fixture',
+    }],
+  }, 'host/phase-aware.cpp');
+  assert.equal(report.displayLiterals, 1);
+  assert.equal(report.allowedInternalLiterals, 1);
+  assert.deepEqual(report.issues, []);
+});
+
 test('scanSourceDisplay validates internal policy once before reading source text', () => {
   const root = mkdtempSync(join(tmpdir(), 'source-display-policy-'));
   try {

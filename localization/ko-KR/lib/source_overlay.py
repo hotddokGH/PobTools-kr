@@ -422,12 +422,72 @@ def recovery_evidence_report(
     return {"useCount": len(identities), "identities": identities}
 
 
+def _raw_opening_at(
+    text: bytes, start: int, previous_lexical_byte: int | None
+) -> tuple[int, bytes] | None:
+    if previous_lexical_byte is not None and (
+        previous_lexical_byte >= 0x80
+        or chr(previous_lexical_byte).isalnum()
+        or previous_lexical_byte in b"_$"
+    ):
+        return None
+    candidate = bytearray()
+    cursor = start
+    while cursor < len(text) and len(candidate) <= 21:
+        if text.startswith(b"\\\r\n", cursor):
+            cursor += 3
+            continue
+        if text.startswith(b"\\\n", cursor):
+            cursor += 2
+            continue
+        byte = text[cursor]
+        candidate.append(byte)
+        cursor += 1
+        if byte == ord("("):
+            opening = _RAW_OPEN.fullmatch(bytes(candidate))
+            if opening is None:
+                return None
+            return cursor, opening.group("delimiter")
+        if byte in b"\r\n":
+            return None
+    return None
+
+
 def _phase2_lexical_view(text: bytes) -> tuple[bytes, list[int], list[int]]:
     output = bytearray()
     left_boundaries = [0]
     right_boundaries = [0]
     cursor = 0
+    state = "code"
+    escaped = False
     while cursor < len(text):
+        if state == "code":
+            opening = _raw_opening_at(
+                text, cursor, output[-1] if output else None
+            )
+            if opening is not None:
+                opening_end, delimiter = opening
+                while cursor < opening_end:
+                    if text.startswith(b"\\\r\n", cursor):
+                        cursor += 3
+                        right_boundaries[-1] = cursor
+                    elif text.startswith(b"\\\n", cursor):
+                        cursor += 2
+                        right_boundaries[-1] = cursor
+                    else:
+                        output.append(text[cursor])
+                        cursor += 1
+                        left_boundaries.append(cursor)
+                        right_boundaries.append(cursor)
+                terminator = b")" + delimiter + b'"'
+                close = text.find(terminator, cursor)
+                raw_end = len(text) if close < 0 else close + len(terminator)
+                while cursor < raw_end:
+                    output.append(text[cursor])
+                    cursor += 1
+                    left_boundaries.append(cursor)
+                    right_boundaries.append(cursor)
+                continue
         if text.startswith(b"\\\r\n", cursor):
             cursor += 3
             right_boundaries[-1] = cursor
@@ -436,10 +496,43 @@ def _phase2_lexical_view(text: bytes) -> tuple[bytes, list[int], list[int]]:
             cursor += 2
             right_boundaries[-1] = cursor
             continue
-        output.append(text[cursor])
+        byte = text[cursor]
+        previous = output[-1] if output else None
+        output.append(byte)
         cursor += 1
         left_boundaries.append(cursor)
         right_boundaries.append(cursor)
+        if state == "code":
+            if previous == ord("/") and byte == ord("/"):
+                state = "line-comment"
+            elif previous == ord("/") and byte == ord("*"):
+                state = "block-comment"
+            elif byte == ord('"'):
+                state = "string"
+                escaped = False
+            elif byte == ord("'"):
+                state = "character"
+                escaped = False
+        elif state == "line-comment":
+            if byte == ord("\n"):
+                state = "code"
+        elif state == "block-comment":
+            if previous == ord("*") and byte == ord("/"):
+                state = "code"
+        elif state == "string":
+            if escaped:
+                escaped = False
+            elif byte == ord("\\"):
+                escaped = True
+            elif byte == ord('"'):
+                state = "code"
+        elif state == "character":
+            if escaped:
+                escaped = False
+            elif byte == ord("\\"):
+                escaped = True
+            elif byte == ord("'"):
+                state = "code"
     return bytes(output), left_boundaries, right_boundaries
 
 

@@ -821,6 +821,109 @@ class SourceOverlayTests(unittest.TestCase):
         self.assertEqual(self.read("host/valid.cpp"), valid)
         self.assertEqual(self.read("host/malformed.cpp"), malformed)
 
+    def test_raw_terminators_must_be_contiguous_in_original_spelling(self):
+        for prefix in ("R", "u8R", "uR", "UR", "LR"):
+            for newline in ("\n", "\r\n"):
+                for delimiter in ("", "tag"):
+                    with self.subTest(
+                        prefix=prefix, newline=repr(newline), delimiter=delimiter
+                    ):
+                        if delimiter:
+                            raw_source = f'前)ta\\{newline}g" "後'
+                        else:
+                            raw_source = f'前)\\{newline}" "後'
+                        raw_target = raw_source.replace("前", "앞").replace("後", "뒤")
+                        token = f'{prefix}"{delimiter}({raw_source}){delimiter}"'
+                        original = f"void Draw(){{ Label({token}); }}"
+                        expected = original.replace("前", "앞").replace("後", "뒤")
+                        self.write("host/phase-aware.cpp", original, newline="")
+
+                        rows = scan_cpp_literals(
+                            Path("host/phase-aware.cpp"), original.encode("utf-8")
+                        )
+                        self.assertEqual(len(rows), 1)
+                        self.assertEqual(rows[0].decoded, raw_source)
+                        self.assertEqual(len(rows[0].components), 1)
+
+                        fabricated = f"前後){delimiter}"
+                        wrong = self.mapping(
+                            {fabricated: self.entry("잘못된 결합", "reviewed")}
+                        )
+                        wrong_report = apply_overlay(
+                            self.root, wrong, self.policy, self.report
+                        )
+                        self.assertEqual(
+                            [(row["code"], row["source"]) for row in wrong_report["issues"]],
+                            [("MISSING_MAPPING", raw_source)],
+                        )
+                        self.assertEqual(self.read("host/phase-aware.cpp"), original)
+
+                        correct = self.mapping(
+                            {
+                                raw_source: self.entry(
+                                    raw_target,
+                                    "reviewed",
+                                    list(format_signature(raw_source)),
+                                )
+                            }
+                        )
+                        correct_report = apply_overlay(
+                            self.root, correct, self.policy, self.report
+                        )
+                        self.assertEqual(correct_report["issues"], [])
+                        changed = (self.root / "host/phase-aware.cpp").read_bytes()
+                        self.assertEqual(changed, expected.encode("utf-8"))
+                        rescanned = scan_cpp_literals(
+                            Path("host/phase-aware.cpp"), changed
+                        )
+                        self.assertEqual(len(rescanned), 1)
+                        self.assertEqual(rescanned[0].decoded, raw_target)
+                        self.assertEqual(len(rescanned[0].components), 1)
+
+    def test_prefix_splices_and_fake_raw_close_keep_comment_text_in_payload(self):
+        newline = "\r\n"
+        raw_source = f'前)ta\\{newline}g" /* payload */ "後'
+        raw_target = raw_source.replace("前", "앞").replace("後", "뒤")
+        prefix = f"u\\{newline}8R\\{newline}"
+        original = f'void Draw(){{ Label({prefix}"tag({raw_source})tag"); }}'
+        expected = original.replace("前", "앞").replace("後", "뒤")
+        self.write("host/phase-aware.cpp", original, newline="")
+        mapping = self.mapping(
+            {
+                raw_source: self.entry(
+                    raw_target, "reviewed", list(format_signature(raw_source))
+                )
+            }
+        )
+
+        report = apply_overlay(self.root, mapping, self.policy, self.report)
+
+        self.assertEqual(report["issues"], [])
+        self.assertEqual(
+            (self.root / "host/phase-aware.cpp").read_bytes(), expected.encode("utf-8")
+        )
+
+    def test_fake_raw_close_plan_is_transactional_with_malformed_neighbor(self):
+        valid = 'void Draw(){ Label(u8R"tag(前)ta\\\ng" "後)tag"); }'
+        malformed = 'void Broken( { Label(u8"設定"); }'
+        self.write("host/valid.cpp", valid, newline="")
+        self.write("host/malformed.cpp", malformed, newline="")
+        source = '前)ta\\\ng" "後'
+        target = source.replace("前", "앞").replace("後", "뒤")
+        mapping = self.mapping(
+            {
+                source: self.entry(
+                    target, "reviewed", list(format_signature(source))
+                )
+            }
+        )
+
+        report = apply_overlay(self.root, mapping, self.policy, self.report)
+
+        self.assertTrue(any(row["code"] == "CPP_PARSE_ERROR" for row in report["issues"]))
+        self.assertEqual(self.read("host/valid.cpp"), valid)
+        self.assertEqual(self.read("host/malformed.cpp"), malformed)
+
     def test_nul_followed_by_octal_digit_cannot_be_encoded(self):
         original = 'void Draw(){ Label(u8"設定\\0X"); }'
         self.write("host/ui.cpp", original)
