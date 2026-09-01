@@ -1,0 +1,946 @@
+{
+  "patch": "3.29.3.2",
+  "rows": [
+    {
+      "ids": [
+        "active_skill_cast_speed_+%_final"
+      ],
+      "variantIdentity": "24410A44B39CC1470F89B0AA18B0B26976049DF8E166CBF61FDBA645677B66E9",
+      "kind": "string",
+      "english": "{0}% more Cast Speed",
+      "korean": "{0}% more Cast Speed",
+      "koreanCandidates": [
+        "{0}% more Cast Speed",
+        "시전 속도 {0}% 증폭"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "active_skill_cast_speed_+%_final"
+      ],
+      "variantIdentity": "C293DFA588518292D2A45F79673DCE4595E0FA1DBAE90CD5F41747087A2EA17D",
+      "kind": "string",
+      "english": "{0}% less Cast Speed",
+      "korean": "{0}% less Cast Speed",
+      "koreanCandidates": [
+        "{0}% less Cast Speed",
+        "시전 속도 {0}% 감폭"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "additional_block_%"
+      ],
+      "variantIdentity": "212FA2F49361168642C59820BD03B38466FA5DF825209743CE156969C6D73FCB",
+      "kind": "string",
+      "english": "{0}% Chance to Block Attack Damage",
+      "korean": "공격 피해 막기 확률 {0}%",
+      "koreanCandidates": [
+        "{0}%의 확률로 공격 피해를 막아냄",
+        "공격 피해 막기 확률 {0}%"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "additional_spell_block_%"
+      ],
+      "variantIdentity": "212FA2F49361168642C59820BD03B38466FA5DF825209743CE156969C6D73FCB",
+      "kind": "string",
+      "english": "{0}% Chance to Block Spell Damage",
+      "korean": "주문 피해 막기 확률 {0}%",
+      "koreanCandidates": [
+        "{0}%의 확률로 주문 피해를 막아냄",
+        "주문 피해 막기 확률 {0}%"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "axe_mastery_hit_and_ailment_damage_+%_final_vs_enemies_on_low_life"
+      ],
+      "variantIdentity": "24410A44B39CC1470F89B0AA18B0B26976049DF8E166CBF61FDBA645677B66E9",
+      "kind": "string",
+      "english": "{0}% more Damage with Hits and Ailments against Enemies that are on Low Life",
+      "korean": "낮은 생명력 상태의 적에 대한 명중 및 상태 이상 피해 {0}% 증폭",
+      "koreanCandidates": [
+        "낮은 생명력 상태의 적에 대한 명중 및 상태 이상 피해 {0}% 증폭",
+        "낮은 생명력 상태의 적에 대한 적중 및 상태 이상 피해 {0}% 증폭"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "base_cast_speed_+%_per_frenzy_charge"
+      ],
+      "variantIdentity": "408A17D5EDB05B746D10411F4253923CBAD5A6F7394F5DC31439ED37BEF8DA36",
+      "kind": "string",
+      "english": "{0}% increased Cast Speed per Frenzy Charge",
+      "korean": "{0}% increased Cast Speed per Frenzy Charge",
+      "koreanCandidates": [
+        "{0}% increased Cast Speed per Frenzy Charge",
+        "격분 충전 하나당 시전 속도 {0}% 증가"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "base_movement_velocity_+%"
+      ],
+      "variantIdentity": "24410A44B39CC1470F89B0AA18B0B26976049DF8E166CBF61FDBA645677B66E9",
+      "kind": "string",
+      "english": "{0}% increased Movement Speed",
+      "korean": "이동 속도 {0}% 증가",
+      "koreanCandidates": [
+        "{0}% increased Movement Speed",
+        "이동 속도 {0}% 증가"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "base_movement_velocity_+%"
+      ],
+      "variantIdentity": "C293DFA588518292D2A45F79673DCE4595E0FA1DBAE90CD5F41747087A2EA17D",
+      "kind": "string",
+      "english": "{0}% reduced Movement Speed",
+      "korean": "이동 속도 {0}% 감소",
+      "koreanCandidates": [
+        "{0}% reduced Movement Speed",
+        "이동 속도 {0}% 감소"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "base_should_have_onslaught_from_stat"
+      ],
+      "variantIdentity": "17FBAB4B860C45A71ED075034160578CBE6E8671381658B5AC3A01192AAACE0D",
+      "kind": "string",
+      "english": "Onslaught",
+      "korean": "맹공",
+      "koreanCandidates": [
+        "Onslaught",
+        "맹공"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "base_spell_block_%"
+      ],
+      "variantIdentity": "408A17D5EDB05B746D10411F4253923CBAD5A6F7394F5DC31439ED37BEF8DA36",
+      "kind": "string",
+      "english": "{0}% Chance to Block Spell Damage",
+      "korean": "{0}%의 확률로 주문 피해를 막아냄",
+      "koreanCandidates": [
+        "{0}%의 확률로 주문 피해를 막아냄",
+        "주문 피해 막기 확률 {0}%"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "cast_speed_+%_per_frenzy_charge"
+      ],
+      "variantIdentity": "24410A44B39CC1470F89B0AA18B0B26976049DF8E166CBF61FDBA645677B66E9",
+      "kind": "string",
+      "english": "{0}% increased Cast Speed per Frenzy Charge",
+      "korean": "격분 충전 하나당 시전 속도 {0}% 증가",
+      "koreanCandidates": [
+        "{0}% increased Cast Speed per Frenzy Charge",
+        "격분 충전 하나당 시전 속도 {0}% 증가"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "chance_to_intimidate_on_hit_%"
+      ],
+      "variantIdentity": "B523D5F7094FDBD52FA0E6E81D76833B56E9FCCAB56A11A2B717529A33984D51",
+      "kind": "string",
+      "english": "{0}% chance to Intimidate Enemies for 4 seconds on Hit",
+      "korean": "적중 시 {0}%의 확률로 4초 동안 적 위협",
+      "koreanCandidates": [
+        "명중 시 {0}%의 확률로 4초 동안 적 위협",
+        "적중 시 {0}%의 확률로 4초 동안 적 위협"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "damage_vs_enemies_on_low_life_+%_final"
+      ],
+      "variantIdentity": "24410A44B39CC1470F89B0AA18B0B26976049DF8E166CBF61FDBA645677B66E9",
+      "kind": "string",
+      "english": "{0}% more Damage with Hits and Ailments against Enemies that are on Low Life",
+      "korean": "낮은 생명력 상태의 적에 대한 적중 및 상태 이상 피해 {0}% 증폭",
+      "koreanCandidates": [
+        "낮은 생명력 상태의 적에 대한 명중 및 상태 이상 피해 {0}% 증폭",
+        "낮은 생명력 상태의 적에 대한 적중 및 상태 이상 피해 {0}% 증폭"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "from_armour_movement_speed_+%"
+      ],
+      "variantIdentity": "24410A44B39CC1470F89B0AA18B0B26976049DF8E166CBF61FDBA645677B66E9",
+      "kind": "string",
+      "english": "{0}% increased Movement Speed",
+      "korean": "{0}% increased Movement Speed",
+      "koreanCandidates": [
+        "{0}% increased Movement Speed",
+        "이동 속도 {0}% 증가"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "from_armour_movement_speed_+%"
+      ],
+      "variantIdentity": "C293DFA588518292D2A45F79673DCE4595E0FA1DBAE90CD5F41747087A2EA17D",
+      "kind": "string",
+      "english": "{0}% reduced Movement Speed",
+      "korean": "{0}% reduced Movement Speed",
+      "koreanCandidates": [
+        "{0}% reduced Movement Speed",
+        "이동 속도 {0}% 감소"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "gloves_shock_proliferation_radius"
+      ],
+      "variantIdentity": "155DA162B57A0922CFAE368B2405C7D7312BD13A7C54050CDC7407930DFF8E47",
+      "kind": "string",
+      "english": "Shocks you inflict spread to other Enemies within {0} metres",
+      "korean": "플레이어가 유발한 감전이 {0}미터 내의 다른 적에게 확산",
+      "koreanCandidates": [
+        "플레이어가 유발한 감전이 {0}미터 내의 다른 적에게 확산",
+        "플레이어가 유발한 감전이 반경 {0}미터 내의 다른 적에게 확산"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "gloves_shock_proliferation_radius"
+      ],
+      "variantIdentity": "60DE99F59427607377E88CD12885B6FBFFD8067C40072A71C0843092B6BD7DBD",
+      "kind": "string",
+      "english": "Shocks you inflict spread to other Enemies within {0} metre",
+      "korean": "플레이어가 유발한 감전이 {0}미터 내의 다른 적에게 확산",
+      "koreanCandidates": [
+        "플레이어가 유발한 감전이 {0}미터 내의 다른 적에게 확산",
+        "플레이어가 유발한 감전이 반경 {0}미터 내의 다른 적에게 확산"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "local_chance_to_intimidate_on_hit_%"
+      ],
+      "variantIdentity": "408A17D5EDB05B746D10411F4253923CBAD5A6F7394F5DC31439ED37BEF8DA36",
+      "kind": "string",
+      "english": "{0}% chance to Intimidate Enemies for 4 seconds on Hit",
+      "korean": "명중 시 {0}%의 확률로 4초 동안 적 위협",
+      "koreanCandidates": [
+        "명중 시 {0}%의 확률로 4초 동안 적 위협",
+        "적중 시 {0}%의 확률로 4초 동안 적 위협"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "local_weapon_passive_tree_granted_passive_hash"
+      ],
+      "variantIdentity": "7B3640950BFBE216B629B01F32D719B8F30D1ACE71DADF7D83DE00100D85649E",
+      "kind": "string",
+      "english": "Allocates {0}",
+      "korean": "{0} 할당",
+      "koreanCandidates": [
+        "{0} 할당",
+        "할당 {0}"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "map_hidden_monster_life_+%_final"
+      ],
+      "variantIdentity": "24410A44B39CC1470F89B0AA18B0B26976049DF8E166CBF61FDBA645677B66E9",
+      "kind": "string",
+      "english": "{0}% more Maximum Life",
+      "korean": "{0}% more Maximum Life",
+      "koreanCandidates": [
+        "{0}% more Maximum Life",
+        "최대 생명력 {0}% 증폭"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "map_hidden_monster_life_+%_final"
+      ],
+      "variantIdentity": "C293DFA588518292D2A45F79673DCE4595E0FA1DBAE90CD5F41747087A2EA17D",
+      "kind": "string",
+      "english": "{0}% less Maximum Life",
+      "korean": "{0}% less Maximum Life",
+      "koreanCandidates": [
+        "{0}% less Maximum Life",
+        "최대 생명력 {0}% 감폭"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "map_hidden_monsters_additional_cold_resistance"
+      ],
+      "variantIdentity": "408A17D5EDB05B746D10411F4253923CBAD5A6F7394F5DC31439ED37BEF8DA36",
+      "kind": "string",
+      "english": "+{0}% Monster Cold Resistance",
+      "korean": "+{0}% Monster Cold Resistance",
+      "koreanCandidates": [
+        "+{0}% Monster Cold Resistance",
+        "몬스터의 냉기 저항 +{0}%"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "map_hidden_monsters_additional_fire_resistance"
+      ],
+      "variantIdentity": "408A17D5EDB05B746D10411F4253923CBAD5A6F7394F5DC31439ED37BEF8DA36",
+      "kind": "string",
+      "english": "+{0}% Monster Fire Resistance",
+      "korean": "+{0}% Monster Fire Resistance",
+      "koreanCandidates": [
+        "+{0}% Monster Fire Resistance",
+        "몬스터의 화염 저항 +{0}%"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "map_hidden_monsters_additional_lightning_resistance"
+      ],
+      "variantIdentity": "408A17D5EDB05B746D10411F4253923CBAD5A6F7394F5DC31439ED37BEF8DA36",
+      "kind": "string",
+      "english": "+{0}% Monster Lightning Resistance",
+      "korean": "+{0}% Monster Lightning Resistance",
+      "koreanCandidates": [
+        "+{0}% Monster Lightning Resistance",
+        "몬스터의 번개 저항 +{0}%"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "map_hidden_monsters_poison_on_hit"
+      ],
+      "variantIdentity": "96BAC324933F7ECB0C159001981D379962D2EF24DEDCB11ECACCB56F72D0392B",
+      "kind": "string",
+      "english": "Monsters Poison on Hit",
+      "korean": "Monsters Poison on Hit",
+      "koreanCandidates": [
+        "Monsters Poison on Hit",
+        "몬스터가 명중 시 중독 유발",
+        "몬스터의 공격 명중 시 중독"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "map_hidden_num_extra_invasion_bosses"
+      ],
+      "variantIdentity": "E58563EA068DF4AB90A6B8B030BC906D105084487CB0F09B74BE47C9EBE410AC",
+      "kind": "string",
+      "english": "Area is inhabited by {0} additional Invasion Bosses",
+      "korean": "Area is inhabited by {0} additional Invasion Bosses",
+      "koreanCandidates": [
+        "Area is inhabited by {0} additional Invasion Bosses",
+        "지역에 침략 보스 {0}마리 추가 서식"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "map_hidden_packs_are_totems"
+      ],
+      "variantIdentity": "96BAC324933F7ECB0C159001981D379962D2EF24DEDCB11ECACCB56F72D0392B",
+      "kind": "string",
+      "english": "Area contains many Totems",
+      "korean": "Area contains many Totems",
+      "koreanCandidates": [
+        "Area contains many Totems",
+        "지역에 다수의 토템 존재"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "map_hidden_spawn_extra_exiles"
+      ],
+      "variantIdentity": "E58563EA068DF4AB90A6B8B030BC906D105084487CB0F09B74BE47C9EBE410AC",
+      "kind": "string",
+      "english": "Area is inhabited by {0} additional Rogue Exiles",
+      "korean": "Area is inhabited by {0} additional Rogue Exiles",
+      "koreanCandidates": [
+        "Area is inhabited by {0} additional Rogue Exiles",
+        "지역에 탈주 유배자 추가 {0}명이 서식"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "map_hidden_spawn_extra_torment_spirits"
+      ],
+      "variantIdentity": "6A80EB00C0DB858446890050DEA08D8649551CB0E11FB6B26BFFF126459B2DA1",
+      "kind": "string",
+      "english": "Area is haunted by {0} additional Tormented Spirit",
+      "korean": "Area is haunted by {0} additional Tormented Spirit",
+      "koreanCandidates": [
+        "Area is haunted by {0} additional Tormented Spirit",
+        "지역에 고통받는 혼백 {0}마리 추가 등장"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "map_hidden_spawn_extra_torment_spirits"
+      ],
+      "variantIdentity": "E58563EA068DF4AB90A6B8B030BC906D105084487CB0F09B74BE47C9EBE410AC",
+      "kind": "string",
+      "english": "Area is haunted by {0} additional Tormented Spirits",
+      "korean": "Area is haunted by {0} additional Tormented Spirits",
+      "koreanCandidates": [
+        "Area is haunted by {0} additional Tormented Spirits",
+        "지역에 고통받는 혼백 {0}마리 추가 등장"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "map_monsters_additional_cold_resistance"
+      ],
+      "variantIdentity": "408A17D5EDB05B746D10411F4253923CBAD5A6F7394F5DC31439ED37BEF8DA36",
+      "kind": "string",
+      "english": "+{0}% Monster Cold Resistance",
+      "korean": "몬스터의 냉기 저항 +{0}%",
+      "koreanCandidates": [
+        "+{0}% Monster Cold Resistance",
+        "몬스터의 냉기 저항 +{0}%"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "map_monsters_additional_fire_resistance"
+      ],
+      "variantIdentity": "408A17D5EDB05B746D10411F4253923CBAD5A6F7394F5DC31439ED37BEF8DA36",
+      "kind": "string",
+      "english": "+{0}% Monster Fire Resistance",
+      "korean": "몬스터의 화염 저항 +{0}%",
+      "koreanCandidates": [
+        "+{0}% Monster Fire Resistance",
+        "몬스터의 화염 저항 +{0}%"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "map_monsters_additional_lightning_resistance"
+      ],
+      "variantIdentity": "408A17D5EDB05B746D10411F4253923CBAD5A6F7394F5DC31439ED37BEF8DA36",
+      "kind": "string",
+      "english": "+{0}% Monster Lightning Resistance",
+      "korean": "몬스터의 번개 저항 +{0}%",
+      "koreanCandidates": [
+        "+{0}% Monster Lightning Resistance",
+        "몬스터의 번개 저항 +{0}%"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "map_monsters_global_poison_on_hit"
+      ],
+      "variantIdentity": "96BAC324933F7ECB0C159001981D379962D2EF24DEDCB11ECACCB56F72D0392B",
+      "kind": "string",
+      "english": "Monsters Poison on Hit",
+      "korean": "몬스터가 명중 시 중독 유발",
+      "koreanCandidates": [
+        "Monsters Poison on Hit",
+        "몬스터가 명중 시 중독 유발",
+        "몬스터의 공격 명중 시 중독"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "map_monsters_poison_on_hit"
+      ],
+      "variantIdentity": "96BAC324933F7ECB0C159001981D379962D2EF24DEDCB11ECACCB56F72D0392B",
+      "kind": "string",
+      "english": "Monsters Poison on Hit",
+      "korean": "몬스터의 공격 명중 시 중독",
+      "koreanCandidates": [
+        "Monsters Poison on Hit",
+        "몬스터가 명중 시 중독 유발",
+        "몬스터의 공격 명중 시 중독"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "map_num_extra_invasion_bosses"
+      ],
+      "variantIdentity": "E58563EA068DF4AB90A6B8B030BC906D105084487CB0F09B74BE47C9EBE410AC",
+      "kind": "string",
+      "english": "Area is inhabited by {0} additional Invasion Bosses",
+      "korean": "지역에 침략 보스 {0}마리 추가 서식",
+      "koreanCandidates": [
+        "Area is inhabited by {0} additional Invasion Bosses",
+        "지역에 침략 보스 {0}마리 추가 서식"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "map_num_extra_shrines"
+      ],
+      "variantIdentity": "E58563EA068DF4AB90A6B8B030BC906D105084487CB0F09B74BE47C9EBE410AC",
+      "kind": "string",
+      "english": "Area contains {0} additional Shrines",
+      "korean": "지역에 성소 {0}개 추가 존재",
+      "koreanCandidates": [
+        "지역 내 성소 {0}개 추가 등장",
+        "지역에 성소 {0}개 추가 존재"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "map_num_extra_shrines"
+      ],
+      "variantIdentity": "F69B40BB3E4C758DD818ED4DF8E4C73EB9C6E3921052A357A040436E3899FFB3",
+      "kind": "string",
+      "english": "Area contains an additional Shrine",
+      "korean": "지역에 추가 성소 존재",
+      "koreanCandidates": [
+        "지역 내 성소 1개 추가 등장",
+        "지역에 추가 성소 존재"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "map_num_extra_strongboxes"
+      ],
+      "variantIdentity": "E58563EA068DF4AB90A6B8B030BC906D105084487CB0F09B74BE47C9EBE410AC",
+      "kind": "string",
+      "english": "Area contains {0} additional Strongboxes",
+      "korean": "지역에 추가 금고 {0}개 존재",
+      "koreanCandidates": [
+        "지역에 금고 {0}개 추가 등장",
+        "지역에 추가 금고 {0}개 존재"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "map_num_extra_strongboxes"
+      ],
+      "variantIdentity": "F69B40BB3E4C758DD818ED4DF8E4C73EB9C6E3921052A357A040436E3899FFB3",
+      "kind": "string",
+      "english": "Area contains an additional Strongbox",
+      "korean": "지역에 추가 금고 존재",
+      "koreanCandidates": [
+        "지역에 금고 1개 추가 등장",
+        "지역에 추가 금고 존재"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "map_packs_are_totems"
+      ],
+      "variantIdentity": "96BAC324933F7ECB0C159001981D379962D2EF24DEDCB11ECACCB56F72D0392B",
+      "kind": "string",
+      "english": "Area contains many Totems",
+      "korean": "지역에 다수의 토템 존재",
+      "koreanCandidates": [
+        "Area contains many Totems",
+        "지역에 다수의 토템 존재"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "map_set_league_category"
+      ],
+      "variantIdentity": "692DC0F2B0A458DE86D0B23BE91069AFF25377EC2A651692424C302E74DBE5C7",
+      "kind": "string",
+      "english": "Onslaught",
+      "korean": "Onslaught",
+      "koreanCandidates": [
+        "Onslaught",
+        "맹공"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "map_set_league_category"
+      ],
+      "variantIdentity": "B33A51DA33D5C08AAA51D9813687E7528ADAA2045366723795EF251D4E4C7693",
+      "kind": "string",
+      "english": "Rampage",
+      "korean": "Rampage",
+      "koreanCandidates": [
+        "Rampage",
+        "광란"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "map_spawn_extra_exiles"
+      ],
+      "variantIdentity": "E58563EA068DF4AB90A6B8B030BC906D105084487CB0F09B74BE47C9EBE410AC",
+      "kind": "string",
+      "english": "Area is inhabited by {0} additional Rogue Exiles",
+      "korean": "지역에 탈주 유배자 추가 {0}명이 서식",
+      "koreanCandidates": [
+        "Area is inhabited by {0} additional Rogue Exiles",
+        "지역에 탈주 유배자 추가 {0}명이 서식"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "map_spawn_extra_torment_spirits"
+      ],
+      "variantIdentity": "6A80EB00C0DB858446890050DEA08D8649551CB0E11FB6B26BFFF126459B2DA1",
+      "kind": "string",
+      "english": "Area is haunted by {0} additional Tormented Spirit",
+      "korean": "지역에 고통받는 혼백 {0}마리 추가 등장",
+      "koreanCandidates": [
+        "Area is haunted by {0} additional Tormented Spirit",
+        "지역에 고통받는 혼백 {0}마리 추가 등장"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "map_spawn_extra_torment_spirits"
+      ],
+      "variantIdentity": "E58563EA068DF4AB90A6B8B030BC906D105084487CB0F09B74BE47C9EBE410AC",
+      "kind": "string",
+      "english": "Area is haunted by {0} additional Tormented Spirits",
+      "korean": "지역에 고통받는 혼백 {0}마리 추가 등장",
+      "koreanCandidates": [
+        "Area is haunted by {0} additional Tormented Spirits",
+        "지역에 고통받는 혼백 {0}마리 추가 등장"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "memory_line_number_of_shrines"
+      ],
+      "variantIdentity": "E58563EA068DF4AB90A6B8B030BC906D105084487CB0F09B74BE47C9EBE410AC",
+      "kind": "string",
+      "english": "Area contains {0} additional Shrines",
+      "korean": "지역 내 성소 {0}개 추가 등장",
+      "koreanCandidates": [
+        "지역 내 성소 {0}개 추가 등장",
+        "지역에 성소 {0}개 추가 존재"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "memory_line_number_of_shrines"
+      ],
+      "variantIdentity": "F69B40BB3E4C758DD818ED4DF8E4C73EB9C6E3921052A357A040436E3899FFB3",
+      "kind": "string",
+      "english": "Area contains an additional Shrine",
+      "korean": "지역 내 성소 1개 추가 등장",
+      "koreanCandidates": [
+        "지역 내 성소 1개 추가 등장",
+        "지역에 추가 성소 존재"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "memory_line_number_of_strongboxes"
+      ],
+      "variantIdentity": "E58563EA068DF4AB90A6B8B030BC906D105084487CB0F09B74BE47C9EBE410AC",
+      "kind": "string",
+      "english": "Area contains {0} additional Strongboxes",
+      "korean": "지역에 금고 {0}개 추가 등장",
+      "koreanCandidates": [
+        "지역에 금고 {0}개 추가 등장",
+        "지역에 추가 금고 {0}개 존재"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "memory_line_number_of_strongboxes"
+      ],
+      "variantIdentity": "F69B40BB3E4C758DD818ED4DF8E4C73EB9C6E3921052A357A040436E3899FFB3",
+      "kind": "string",
+      "english": "Area contains an additional Strongbox",
+      "korean": "지역에 금고 1개 추가 등장",
+      "koreanCandidates": [
+        "지역에 금고 1개 추가 등장",
+        "지역에 추가 금고 존재"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "mod_granted_passive_hash_2"
+      ],
+      "variantIdentity": "7B3640950BFBE216B629B01F32D719B8F30D1ACE71DADF7D83DE00100D85649E",
+      "kind": "string",
+      "english": "Allocates {0}",
+      "korean": "할당 {0}",
+      "koreanCandidates": [
+        "{0} 할당",
+        "할당 {0}"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "mod_granted_passive_hash_3"
+      ],
+      "variantIdentity": "7B3640950BFBE216B629B01F32D719B8F30D1ACE71DADF7D83DE00100D85649E",
+      "kind": "string",
+      "english": "Allocates {0}",
+      "korean": "할당 {0}",
+      "koreanCandidates": [
+        "{0} 할당",
+        "할당 {0}"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "mod_granted_passive_hash_4"
+      ],
+      "variantIdentity": "7B3640950BFBE216B629B01F32D719B8F30D1ACE71DADF7D83DE00100D85649E",
+      "kind": "string",
+      "english": "Allocates {0}",
+      "korean": "할당 {0}",
+      "koreanCandidates": [
+        "{0} 할당",
+        "할당 {0}"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "mod_granted_passive_hash_5"
+      ],
+      "variantIdentity": "7B3640950BFBE216B629B01F32D719B8F30D1ACE71DADF7D83DE00100D85649E",
+      "kind": "string",
+      "english": "Allocates {0}",
+      "korean": "할당 {0}",
+      "koreanCandidates": [
+        "{0} 할당",
+        "할당 {0}"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "mod_granted_passive_hash"
+      ],
+      "variantIdentity": "7B3640950BFBE216B629B01F32D719B8F30D1ACE71DADF7D83DE00100D85649E",
+      "kind": "string",
+      "english": "Allocates {0}",
+      "korean": "할당 {0}",
+      "koreanCandidates": [
+        "{0} 할당",
+        "할당 {0}"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "monster_base_block_%"
+      ],
+      "variantIdentity": "408A17D5EDB05B746D10411F4253923CBAD5A6F7394F5DC31439ED37BEF8DA36",
+      "kind": "string",
+      "english": "{0}% Chance to Block Attack Damage",
+      "korean": "{0}%의 확률로 공격 피해를 막아냄",
+      "koreanCandidates": [
+        "{0}%의 확률로 공격 피해를 막아냄",
+        "공격 피해 막기 확률 {0}%"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "old_do_not_use_spell_block_%_from_assumed_block_value"
+      ],
+      "variantIdentity": "F2D6FD4A95180737E229761114DB16D599E9358873ED0B590FD7A577DA3EF89C",
+      "kind": "string",
+      "english": "{0}% Chance to Block Spell Damage",
+      "korean": "{0}%의 확률로 주문 피해를 막아냄",
+      "koreanCandidates": [
+        "{0}%의 확률로 주문 피해를 막아냄",
+        "주문 피해 막기 확률 {0}%"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "old_do_not_use_spell_block_%_while_on_low_life_from_assumed_block_value"
+      ],
+      "variantIdentity": "B1E2A51E8271F80571276AD8B91E4B1595C07AF94924E767E93CC5AA27D03439",
+      "kind": "string",
+      "english": "{0}% Chance to Block Spell Damage while on Low Life",
+      "korean": "낮은 생명력 상태일 때 {0}%의 확률로 주문 피해를 막아냄",
+      "koreanCandidates": [
+        "낮은 생명력 상태일 때 {0}%의 확률로 주문 피해를 막아냄",
+        "낮은 생명력 상태일 때 주문 피해 막기 확률 {0}%"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "passive_mastery_shock_proliferation_radius"
+      ],
+      "variantIdentity": "155DA162B57A0922CFAE368B2405C7D7312BD13A7C54050CDC7407930DFF8E47",
+      "kind": "string",
+      "english": "Shocks you inflict spread to other Enemies within {0} metres",
+      "korean": "플레이어가 유발한 감전이 반경 {0}미터 내의 다른 적에게 확산",
+      "koreanCandidates": [
+        "플레이어가 유발한 감전이 {0}미터 내의 다른 적에게 확산",
+        "플레이어가 유발한 감전이 반경 {0}미터 내의 다른 적에게 확산"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "passive_mastery_shock_proliferation_radius"
+      ],
+      "variantIdentity": "60DE99F59427607377E88CD12885B6FBFFD8067C40072A71C0843092B6BD7DBD",
+      "kind": "string",
+      "english": "Shocks you inflict spread to other Enemies within {0} metre",
+      "korean": "플레이어가 유발한 감전이 반경 {0}미터 내의 다른 적에게 확산",
+      "koreanCandidates": [
+        "플레이어가 유발한 감전이 {0}미터 내의 다른 적에게 확산",
+        "플레이어가 유발한 감전이 반경 {0}미터 내의 다른 적에게 확산"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "player_gain_rampage_stacks"
+      ],
+      "variantIdentity": "17FBAB4B860C45A71ED075034160578CBE6E8671381658B5AC3A01192AAACE0D",
+      "kind": "string",
+      "english": "Rampage",
+      "korean": "광란",
+      "koreanCandidates": [
+        "Rampage",
+        "광란"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "silver_flask_display_onslaught"
+      ],
+      "variantIdentity": "17FBAB4B860C45A71ED075034160578CBE6E8671381658B5AC3A01192AAACE0D",
+      "kind": "string",
+      "english": "Onslaught",
+      "korean": "맹공",
+      "koreanCandidates": [
+        "Onslaught",
+        "맹공"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "spell_block_%_while_on_low_life"
+      ],
+      "variantIdentity": "212FA2F49361168642C59820BD03B38466FA5DF825209743CE156969C6D73FCB",
+      "kind": "string",
+      "english": "{0}% Chance to Block Spell Damage while on Low Life",
+      "korean": "낮은 생명력 상태일 때 주문 피해 막기 확률 {0}%",
+      "koreanCandidates": [
+        "낮은 생명력 상태일 때 {0}%의 확률로 주문 피해를 막아냄",
+        "낮은 생명력 상태일 때 주문 피해 막기 확률 {0}%"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "unique_jewel_reserved_blood_maximum_life_+%_final"
+      ],
+      "variantIdentity": "24410A44B39CC1470F89B0AA18B0B26976049DF8E166CBF61FDBA645677B66E9",
+      "kind": "string",
+      "english": "{0}% more Maximum Life",
+      "korean": "최대 생명력 {0}% 증폭",
+      "koreanCandidates": [
+        "{0}% more Maximum Life",
+        "최대 생명력 {0}% 증폭"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "unique_jewel_reserved_blood_maximum_life_+%_final"
+      ],
+      "variantIdentity": "C293DFA588518292D2A45F79673DCE4595E0FA1DBAE90CD5F41747087A2EA17D",
+      "kind": "string",
+      "english": "{0}% less Maximum Life",
+      "korean": "최대 생명력 {0}% 감폭",
+      "koreanCandidates": [
+        "{0}% less Maximum Life",
+        "최대 생명력 {0}% 감폭"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "weapon_tree_cast_speed_+%_final"
+      ],
+      "variantIdentity": "24410A44B39CC1470F89B0AA18B0B26976049DF8E166CBF61FDBA645677B66E9",
+      "kind": "string",
+      "english": "{0}% more Cast Speed",
+      "korean": "시전 속도 {0}% 증폭",
+      "koreanCandidates": [
+        "{0}% more Cast Speed",
+        "시전 속도 {0}% 증폭"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    },
+    {
+      "ids": [
+        "weapon_tree_cast_speed_+%_final"
+      ],
+      "variantIdentity": "C293DFA588518292D2A45F79673DCE4595E0FA1DBAE90CD5F41747087A2EA17D",
+      "kind": "string",
+      "english": "{0}% less Cast Speed",
+      "korean": "시전 속도 {0}% 감폭",
+      "koreanCandidates": [
+        "{0}% less Cast Speed",
+        "시전 속도 {0}% 감폭"
+      ],
+      "reason": "One English template maps to multiple official Korean templates"
+    }
+  ]
+}

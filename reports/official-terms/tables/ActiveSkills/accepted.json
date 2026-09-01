@@ -1,0 +1,5958 @@
+{
+  "patch": "3.29.3.2",
+  "table": "ActiveSkills",
+  "join": "Id",
+  "nameColumn": "DisplayedName",
+  "rows": [
+    {
+      "english": "Abberath's Fury",
+      "korean": "아버라스의 광분",
+      "id": "abberaths_fury_explosion"
+    },
+    {
+      "english": "Absolution",
+      "korean": "면죄",
+      "id": "absolution"
+    },
+    {
+      "english": "Absolution of Inspiring",
+      "korean": "격려의 면죄",
+      "id": "absolution_alt_x"
+    },
+    {
+      "english": "[DNT] AbsolutionAltY",
+      "korean": "[DNT] AbsolutionAltY",
+      "id": "absolution_alt_y"
+    },
+    {
+      "english": "Abyssal Cry",
+      "korean": "심연의 함성",
+      "id": "abyssal_cry"
+    },
+    {
+      "english": "Abyssal Maw",
+      "korean": "심연의 아귀",
+      "id": "abyssal_well"
+    },
+    {
+      "english": "Cold Aegis",
+      "korean": "냉기의 비호",
+      "id": "aegis_cold"
+    },
+    {
+      "english": "Elemental Aegis",
+      "korean": "원소의 비호",
+      "id": "aegis_elemental"
+    },
+    {
+      "english": "Primal Aegis",
+      "korean": "원시 비호",
+      "id": "aegis_elementalist"
+    },
+    {
+      "english": "Fire Aegis",
+      "korean": "화염의 비호",
+      "id": "aegis_fire"
+    },
+    {
+      "english": "Lightning Aegis",
+      "korean": "번개의 비호",
+      "id": "aegis_lightning"
+    },
+    {
+      "english": "Physical Aegis",
+      "korean": "물리 비호",
+      "id": "aegis_physical"
+    },
+    {
+      "english": "Unbound Avatar",
+      "korean": "족쇄 풀린 화신",
+      "id": "ailment_bearer"
+    },
+    {
+      "english": "Alchemist's Mark",
+      "korean": "연금술사의 징표",
+      "id": "alchemists_mark"
+    },
+    {
+      "english": "Ambush",
+      "korean": "매복",
+      "id": "ambush_player"
+    },
+    {
+      "english": "Ancestral Blademaster",
+      "korean": "선대의 검귀",
+      "id": "ancestor_totem_slash"
+    },
+    {
+      "english": "Ancestral Cry",
+      "korean": "선대의 함성",
+      "id": "ancestral_cry"
+    },
+    {
+      "english": "Ancestral Protector",
+      "korean": "선대의 수호자",
+      "id": "ancestral_protector"
+    },
+    {
+      "english": "[DNT] MeleeTotemAltX",
+      "korean": "[DNT] MeleeTotemAltX",
+      "id": "ancestral_protector_alt_x"
+    },
+    {
+      "english": "[DNT] MeleeTotemAltY",
+      "korean": "[DNT] MeleeTotemAltY",
+      "id": "ancestral_protector_alt_y"
+    },
+    {
+      "english": "Ancestral Warchief",
+      "korean": "선대의 대전사",
+      "id": "ancestral_warchief"
+    },
+    {
+      "english": "[DNT] AncestralWarchiefAltX",
+      "korean": "[DNT] AncestralWarchiefAltX",
+      "id": "ancestral_warchief_alt_x"
+    },
+    {
+      "english": "[DNT] AncestralWarchiefAltY",
+      "korean": "[DNT] AncestralWarchiefAltY",
+      "id": "ancestral_warchief_alt_y"
+    },
+    {
+      "english": "Anger",
+      "korean": "분노",
+      "id": "anger"
+    },
+    {
+      "english": "Animate Guardian",
+      "korean": "수호자 기동",
+      "id": "animate_guardian"
+    },
+    {
+      "english": "Animate Guardian of Smiting",
+      "korean": "징벌의 수호자 기동",
+      "id": "animate_guardian_alt_x"
+    },
+    {
+      "english": "[DNT] AnimateArmourAltY",
+      "korean": "[DNT] AnimateArmourAltY",
+      "id": "animate_guardian_alt_y"
+    },
+    {
+      "english": "Animate Guardian's Weapon",
+      "korean": "움직이는 수호자의 무기",
+      "id": "animate_guardian_weapon"
+    },
+    {
+      "english": "Animate Weapon",
+      "korean": "무기 기동",
+      "id": "animate_weapon"
+    },
+    {
+      "english": "Animate Weapon of Self Reflection",
+      "korean": "자기 반사의 무기 기동",
+      "id": "animate_weapon_alt_x"
+    },
+    {
+      "english": "Animate Weapon of Ranged Arms",
+      "korean": "원거리 병기의 무기 기동",
+      "id": "animate_weapon_alt_y"
+    },
+    {
+      "english": "Animate Weapon",
+      "korean": "무기 기동",
+      "id": "animate_weapon_trigger"
+    },
+    {
+      "english": "Tears of Rot",
+      "korean": "부식의 눈물",
+      "id": "animosity"
+    },
+    {
+      "english": "Approaching Flames",
+      "korean": "다가가는 화염",
+      "id": "approaching_flames"
+    },
+    {
+      "english": "Arc",
+      "korean": "연쇄 번개",
+      "id": "arc"
+    },
+    {
+      "english": "Arc of Surging",
+      "korean": "쇄도의 연쇄 번개",
+      "id": "arc_alt_x"
+    },
+    {
+      "english": "Arc of Oscillating",
+      "korean": "뇌동의 연쇄 번개",
+      "id": "arc_alt_y"
+    },
+    {
+      "english": "Arcane Cloak",
+      "korean": "비전의 망토",
+      "id": "arcane_cloak"
+    },
+    {
+      "english": "Arcane Wake",
+      "korean": "비전의 각성",
+      "id": "arcane_wake"
+    },
+    {
+      "english": "Arcanist Brand",
+      "korean": "신비학자 낙인",
+      "id": "arcanist_brand"
+    },
+    {
+      "english": "Arctic Armour",
+      "korean": "한기의 방어구",
+      "id": "arctic_armour"
+    },
+    {
+      "english": "Arctic Armour",
+      "korean": "한기의 방어구",
+      "id": "arctic_armour_old"
+    },
+    {
+      "english": "Armageddon Brand",
+      "korean": "종말의 낙인",
+      "id": "armageddon_brand"
+    },
+    {
+      "english": "Armageddon Brand of Volatility",
+      "korean": "일촉즉발의 종말의 낙인",
+      "id": "armageddon_brand_alt_x"
+    },
+    {
+      "english": "Armageddon Brand of Recall",
+      "korean": "소환의 종말의 낙인",
+      "id": "armageddon_brand_alt_y"
+    },
+    {
+      "english": "Artillery Ballista",
+      "korean": "포대 쇠뇌",
+      "id": "artillery_ballista"
+    },
+    {
+      "english": "Artillery Ballista of Cross Strafe",
+      "korean": "십자 포화의 포대 쇠뇌",
+      "id": "artillery_ballista_alt_x"
+    },
+    {
+      "english": "Artillery Ballista of Focus Fire",
+      "korean": "집중 사격의 포대 쇠뇌",
+      "id": "artillery_ballista_alt_y"
+    },
+    {
+      "english": "Aspect of Arakaali",
+      "korean": "아라칼리의 위상",
+      "id": "aspect_arakaali"
+    },
+    {
+      "english": "Aspect of the Avian",
+      "korean": "새의 위상",
+      "id": "aspect_bird"
+    },
+    {
+      "english": "Aspect of the Brine King",
+      "korean": "염수왕의 위상",
+      "id": "aspect_brine_king"
+    },
+    {
+      "english": "Aspect of the Cat",
+      "korean": "고양이의 위상",
+      "id": "aspect_cat"
+    },
+    {
+      "english": "Aspect of the Crab",
+      "korean": "게의 위상",
+      "id": "aspect_crab"
+    },
+    {
+      "english": "Aspect of Lunaris",
+      "korean": "루나리스의 위상",
+      "id": "aspect_lunaris"
+    },
+    {
+      "english": "Aspect of Solaris",
+      "korean": "솔라리스의 위상",
+      "id": "aspect_solaris"
+    },
+    {
+      "english": "Aspect of the Spider",
+      "korean": "거미의 위상",
+      "id": "aspect_spider"
+    },
+    {
+      "english": "Assassin's Mark",
+      "korean": "암살자의 징표",
+      "id": "assassins_mark"
+    },
+    {
+      "english": "Assassin's Mark",
+      "korean": "암살자의 징표",
+      "id": "assassins_mark_triggered"
+    },
+    {
+      "english": "Atlas Riftwalk",
+      "korean": "아틀라스 균열 걷기",
+      "id": "atlas_riftwalk"
+    },
+    {
+      "english": "Flames of Judgement",
+      "korean": "심판의 화염",
+      "id": "atziri_unique_staff_flameblast"
+    },
+    {
+      "english": "Storm of Judgement",
+      "korean": "심판의 폭풍",
+      "id": "atziri_unique_staff_storm_call"
+    },
+    {
+      "english": "Automation",
+      "korean": "자동화",
+      "id": "automation"
+    },
+    {
+      "english": "Avenging Flame",
+      "korean": "복수의 화염",
+      "id": "avenging_flame"
+    },
+    {
+      "english": "Twister",
+      "korean": "돌개바람",
+      "id": "avian_tornado"
+    },
+    {
+      "english": "Backstab",
+      "korean": "배후 공격",
+      "id": "backstab"
+    },
+    {
+      "english": "Ball Lightning",
+      "korean": "구형 번개",
+      "id": "ball_lightning"
+    },
+    {
+      "english": "Ball Lightning of Orbiting",
+      "korean": "공전의 구형 번개",
+      "id": "ball_lightning_alt_x"
+    },
+    {
+      "english": "Ball Lightning of Static",
+      "korean": "정전기의 구형 번개",
+      "id": "ball_lightning_alt_y"
+    },
+    {
+      "english": "Bane",
+      "korean": "파멸",
+      "id": "bane"
+    },
+    {
+      "english": "Bane of Condemnation",
+      "korean": "규탄의 파멸",
+      "id": "bane_alt_x"
+    },
+    {
+      "english": "[DNT] DarkRitualAltY",
+      "korean": "[DNT] DarkRitualAltY",
+      "id": "bane_alt_y"
+    },
+    {
+      "english": "Barkskin",
+      "korean": "껍질피부",
+      "id": "barkskin"
+    },
+    {
+      "english": "Savage Barnacle",
+      "korean": "사나운 따개비",
+      "id": "barnacle_snap"
+    },
+    {
+      "english": "Barrage",
+      "korean": "연발 사격",
+      "id": "barrage"
+    },
+    {
+      "english": "Barrage of Volley Fire",
+      "korean": "일제 포격의 연발 사격",
+      "id": "barrage_alt_x"
+    },
+    {
+      "english": "[DNT] BarrageAltY",
+      "korean": "[DNT] BarrageAltY",
+      "id": "barrage_alt_y"
+    },
+    {
+      "english": "Barrel Explosion",
+      "korean": "통 폭발",
+      "id": "barrel_explosion"
+    },
+    {
+      "english": "Battlemage's Cry",
+      "korean": "전투마법사의 함성",
+      "id": "battlemages_cry"
+    },
+    {
+      "english": "Bear Trap",
+      "korean": "곰 덫",
+      "id": "bear_trap"
+    },
+    {
+      "english": "Bear Trap of Skewers",
+      "korean": "꼬챙이의 곰 덫",
+      "id": "bear_trap_alt_x"
+    },
+    {
+      "english": "[DNT] BearTrapAltY",
+      "korean": "[DNT] BearTrapAltY",
+      "id": "bear_trap_alt_y"
+    },
+    {
+      "english": "Berserk",
+      "korean": "광폭",
+      "id": "berserk"
+    },
+    {
+      "english": "Caustic Retribution",
+      "korean": "부식성 응징",
+      "id": "biting_braid_nova"
+    },
+    {
+      "english": "Blade Blast",
+      "korean": "칼날 폭격",
+      "id": "blade_blast"
+    },
+    {
+      "english": "Blade Blast of Unloading",
+      "korean": "난사의 칼날 폭격",
+      "id": "blade_blast_alt_x"
+    },
+    {
+      "english": "Blade Blast of Dagger Detonation",
+      "korean": "단검 폭파의 칼날 폭격",
+      "id": "blade_blast_alt_y"
+    },
+    {
+      "english": "Blade Flurry",
+      "korean": "질풍의 칼날",
+      "id": "blade_flurry"
+    },
+    {
+      "english": "Blade Flurry of Incision",
+      "korean": "절개의 질풍의 칼날",
+      "id": "blade_flurry_alt_x"
+    },
+    {
+      "english": "[DNT] ChargedAttackAltY",
+      "korean": "[DNT] ChargedAttackAltY",
+      "id": "blade_flurry_alt_y"
+    },
+    {
+      "english": "Blade Trap",
+      "korean": "칼날 덫",
+      "id": "blade_trap"
+    },
+    {
+      "english": "Blade Trap of Greatswords",
+      "korean": "대검의 칼날 덫",
+      "id": "blade_trap_alt_x"
+    },
+    {
+      "english": "Blade Trap of Laceration",
+      "korean": "열상의 칼날 덫",
+      "id": "blade_trap_alt_y"
+    },
+    {
+      "english": "Blade Vortex",
+      "korean": "칼날 소용돌이",
+      "id": "blade_vortex"
+    },
+    {
+      "english": "Blade Vortex of the Scythe",
+      "korean": "낫의 칼날 소용돌이",
+      "id": "blade_vortex_alt_x"
+    },
+    {
+      "english": "[DNT] BladeVortexAltY",
+      "korean": "[DNT] BladeVortexAltY",
+      "id": "blade_vortex_alt_y"
+    },
+    {
+      "english": "Blade Vortex",
+      "korean": "칼날 소용돌이",
+      "id": "blade_vortex_old"
+    },
+    {
+      "english": "Bladefall",
+      "korean": "칼날비",
+      "id": "bladefall"
+    },
+    {
+      "english": "Bladefall of Volleys",
+      "korean": "사격 공세의 칼날비",
+      "id": "bladefall_alt_x"
+    },
+    {
+      "english": "Bladefall of Impaling",
+      "korean": "꿰뚫기의 칼날비",
+      "id": "bladefall_alt_y"
+    },
+    {
+      "english": "Bladefall of Trarthus",
+      "korean": "트라투스의 칼날비",
+      "id": "bladefall_alt_z"
+    },
+    {
+      "english": "Bladestorm",
+      "korean": "칼날 폭풍",
+      "id": "bladestorm"
+    },
+    {
+      "english": "Bladestorm of Uncertainty",
+      "korean": "불확실성의 칼날 폭풍",
+      "id": "bladestorm_alt_x"
+    },
+    {
+      "english": "[DNT] BladestormAltY",
+      "korean": "[DNT] BladestormAltY",
+      "id": "bladestorm_alt_y"
+    },
+    {
+      "english": "Blast Rain",
+      "korean": "폭발 화살비",
+      "id": "blast_rain"
+    },
+    {
+      "english": "Blast Rain of Trarthus",
+      "korean": "트라투스의 폭발 화살비",
+      "id": "blast_rain_alt_x"
+    },
+    {
+      "english": "[DNT] BlastRainAltY",
+      "korean": "[DNT] BlastRainAltY",
+      "id": "blast_rain_alt_y"
+    },
+    {
+      "english": "Blazing Salvo",
+      "korean": "맹렬한 포격",
+      "id": "blazing_salvo"
+    },
+    {
+      "english": "[DNT] Blazing Salvo of Wildfire",
+      "korean": "들불의 맹렬한 포격",
+      "id": "blazing_salvo_alt_x"
+    },
+    {
+      "english": "[DNT] BlazingSalvoAltY",
+      "korean": "[DNT] BlazingSalvoAltY",
+      "id": "blazing_salvo_alt_y"
+    },
+    {
+      "english": "Blight",
+      "korean": "황폐",
+      "id": "blight"
+    },
+    {
+      "english": "Blight of Contagion",
+      "korean": "전염의 황폐",
+      "id": "blight_alt_x"
+    },
+    {
+      "english": "Blight of Atrophy",
+      "korean": "위축의 황폐",
+      "id": "blight_alt_y"
+    },
+    {
+      "english": "[UNUSED] Blight Tower Aura",
+      "korean": "[DNT] Blight Tower Aura",
+      "id": "blight_tower_aura"
+    },
+    {
+      "english": "[UNUSED] Blight Tower Petrify",
+      "korean": "[DNT] Blight Tower Petrify",
+      "id": "blight_tower_petrify"
+    },
+    {
+      "english": "Blinding Aura",
+      "korean": "실명의 오라",
+      "id": "blinding_aura"
+    },
+    {
+      "english": "Blink Arrow",
+      "korean": "점멸 화살",
+      "id": "blink_arrow"
+    },
+    {
+      "english": "Blink Arrow of Bombarding Clones",
+      "korean": "포격 분신의 점멸 화살",
+      "id": "blink_arrow_alt_x"
+    },
+    {
+      "english": "Blink Arrow of Prismatic Clones",
+      "korean": "분광 분신의 점멸 화살",
+      "id": "blink_arrow_alt_y"
+    },
+    {
+      "english": "Blink Arrow",
+      "korean": "점멸 화살",
+      "id": "blink_arrow_triggered"
+    },
+    {
+      "english": "[UNUSED] Blitz (NOT CURRENTLY USED)",
+      "korean": "공세",
+      "id": "blitz"
+    },
+    {
+      "english": "Blood and Sand",
+      "korean": "피와 모래",
+      "id": "blood_and_sand"
+    },
+    {
+      "english": "Blood Offering",
+      "korean": "피의 공물",
+      "id": "blood_offering"
+    },
+    {
+      "english": "Blood Rage",
+      "korean": "피의 격노",
+      "id": "blood_rage"
+    },
+    {
+      "english": "Blood Sacrament",
+      "korean": "피 성체",
+      "id": "blood_sacrament"
+    },
+    {
+      "english": "Stance Swap",
+      "korean": "태세 전환",
+      "id": "blood_sand_triggered"
+    },
+    {
+      "english": "[UNUSED] Blood Whirl",
+      "korean": "[DNT]Blood Whirl",
+      "id": "blood_whirl"
+    },
+    {
+      "english": "Bodyswap",
+      "korean": "신체 전환",
+      "id": "bodyswap"
+    },
+    {
+      "english": "Bodyswap of Sacrifice",
+      "korean": "희생의 신체 전환",
+      "id": "bodyswap_alt_x"
+    },
+    {
+      "english": "[DNT] CorpseWarpAltY",
+      "korean": "[DNT] CorpseWarpAltY",
+      "id": "bodyswap_alt_y"
+    },
+    {
+      "english": "Bodyswap",
+      "korean": "신체 전환",
+      "id": "bodyswap_triggered"
+    },
+    {
+      "english": "Bone Armour",
+      "korean": "뼈 갑옷",
+      "id": "bone_armour"
+    },
+    {
+      "english": "Bone Corpses",
+      "korean": "뼈 시신",
+      "id": "bone_corpses"
+    },
+    {
+      "english": "Bone Nova",
+      "korean": "뼈 폭발",
+      "id": "bone_nova"
+    },
+    {
+      "english": "Bone Offering",
+      "korean": "뼈 공물",
+      "id": "bone_offering"
+    },
+    {
+      "english": "Boneshatter",
+      "korean": "뼈 박살",
+      "id": "boneshatter"
+    },
+    {
+      "english": "Boneshatter of Complex Trauma",
+      "korean": "복합 외상의 뼈 박살",
+      "id": "boneshatter_alt_x"
+    },
+    {
+      "english": "Boneshatter of Carnage",
+      "korean": "살육의 뼈 박살",
+      "id": "boneshatter_alt_y"
+    },
+    {
+      "english": "Brand Recall",
+      "korean": "낙인 소환",
+      "id": "brand_recall"
+    },
+    {
+      "english": "Brandsurge",
+      "korean": "낙인 쇄도",
+      "id": "brandsurge"
+    },
+    {
+      "english": "Bone Mortar",
+      "korean": "뼈 박격포",
+      "id": "breach_bone_mortar"
+    },
+    {
+      "english": "Consume Bones",
+      "korean": "뼈 소모",
+      "id": "breach_consume_bones"
+    },
+    {
+      "english": "Flicker Strike",
+      "korean": "점멸 타격",
+      "id": "breach_flicker_strike"
+    },
+    {
+      "english": "Will of the Lords",
+      "korean": "군주의 의지",
+      "id": "breach_hand_trap"
+    },
+    {
+      "english": "Flicker Strike",
+      "korean": "점멸 타격",
+      "id": "breach_mass_flicker_strike"
+    },
+    {
+      "english": "Surging Torrent",
+      "korean": "솟구치는 급류",
+      "id": "brine_torrent"
+    },
+    {
+      "english": "Burning Arrow",
+      "korean": "불타는 화살",
+      "id": "burning_arrow"
+    },
+    {
+      "english": "Burning Arrow of Vigour",
+      "korean": "활력의 불타는 화살",
+      "id": "burning_arrow_alt_x"
+    },
+    {
+      "english": "[DNT] BurningArrowAltY",
+      "korean": "[DNT] BurningArrowAltY",
+      "id": "burning_arrow_alt_y"
+    },
+    {
+      "english": "Order: To me!",
+      "korean": "명령: 내게 와라!",
+      "id": "call_mercenary"
+    },
+    {
+      "english": "Call of Steel",
+      "korean": "강철의 부름",
+      "id": "call_of_steel"
+    },
+    {
+      "english": "[DNT] Call of the Wild",
+      "korean": "[DNT] Call of the Wild",
+      "id": "call_of_the_wild"
+    },
+    {
+      "english": "Call the Pyre",
+      "korean": "장작 부르기",
+      "id": "call_the_pyre"
+    },
+    {
+      "english": "Autoexertion",
+      "korean": "자동 전력",
+      "id": "call_to_arms"
+    },
+    {
+      "english": "Capture Monster",
+      "korean": "몬스터 포획",
+      "id": "capture_monster"
+    },
+    {
+      "english": "Caustic Arrow",
+      "korean": "부식성 화살",
+      "id": "caustic_arrow"
+    },
+    {
+      "english": "Caustic Arrow of Poison",
+      "korean": "독의 부식성 화살",
+      "id": "caustic_arrow_alt_x"
+    },
+    {
+      "english": "[DNT] PoisonArrowAltY",
+      "korean": "[DNT] PoisonArrowAltY",
+      "id": "caustic_arrow_alt_y"
+    },
+    {
+      "english": "[DNT] Chain Grab",
+      "korean": "[DNT] Chain Grab",
+      "id": "chain_grab"
+    },
+    {
+      "english": "Chain Hook",
+      "korean": "사슬 갈고리",
+      "id": "chain_hook"
+    },
+    {
+      "english": "Chain Hook of Angling",
+      "korean": "낚시의 사슬 갈고리",
+      "id": "chain_hook_alt_x"
+    },
+    {
+      "english": "Chain Hook of Trarthus",
+      "korean": "트라투스의 사슬 갈고리",
+      "id": "chain_hook_alt_y"
+    },
+    {
+      "english": "Snipe",
+      "korean": "저격",
+      "id": "channelled_snipe"
+    },
+    {
+      "english": "Blade Flurry",
+      "korean": "질풍의 칼날",
+      "id": "charged_attack"
+    },
+    {
+      "english": "Flameblast",
+      "korean": "화염파",
+      "id": "charged_blast"
+    },
+    {
+      "english": "Charged Dash",
+      "korean": "충전 질주",
+      "id": "charged_dash"
+    },
+    {
+      "english": "Charged Dash of Projection",
+      "korean": "투영의 충전 질주",
+      "id": "charged_dash_alt_x"
+    },
+    {
+      "english": "[DNT] ChargedDashAltY",
+      "korean": "[DNT] ChargedDashAltY",
+      "id": "charged_dash_alt_y"
+    },
+    {
+      "english": "Charged Dash",
+      "korean": "충전 질주",
+      "id": "charged_dash_old"
+    },
+    {
+      "english": "WIP",
+      "korean": "WIP",
+      "id": "chronos_statues_cast"
+    },
+    {
+      "english": "Clarity",
+      "korean": "명상",
+      "id": "clarity"
+    },
+    {
+      "english": "Cleave",
+      "korean": "회전베기",
+      "id": "cleave"
+    },
+    {
+      "english": "Cleave of Rage",
+      "korean": "격노의 회전베기",
+      "id": "cleave_alt_x"
+    },
+    {
+      "english": "[DNT] CleaveAltY",
+      "korean": "[DNT] CleaveAltY",
+      "id": "cleave_alt_y"
+    },
+    {
+      "english": "Cobra Lash",
+      "korean": "코브라 채찍",
+      "id": "cobra_lash"
+    },
+    {
+      "english": "[DNT] CobraLashAltX",
+      "korean": "[DNT] CobraLashAltX",
+      "id": "cobra_lash_alt_x"
+    },
+    {
+      "english": "[DNT] CobraLashAltY",
+      "korean": "[DNT] CobraLashAltY",
+      "id": "cobra_lash_alt_y"
+    },
+    {
+      "english": "[UNUSED] DISCONTINUED",
+      "korean": "[DNT] DISCONTINUED",
+      "id": "coiling_assault"
+    },
+    {
+      "english": "Cold Snap",
+      "korean": "한파",
+      "id": "cold_snap"
+    },
+    {
+      "english": "Cold Snap of Power",
+      "korean": "권능의 한파",
+      "id": "cold_snap_alt_x"
+    },
+    {
+      "english": "[DNT] ColdSnapAltY",
+      "korean": "[DNT] ColdSnapAltY",
+      "id": "cold_snap_alt_y"
+    },
+    {
+      "english": "Cold Snap",
+      "korean": "한파",
+      "id": "cold_snap_old"
+    },
+    {
+      "english": "...",
+      "korean": "...",
+      "id": "combo_strike"
+    },
+    {
+      "english": "Commandment of Blades",
+      "korean": "칼날의 율령",
+      "id": "commandment_of_blades"
+    },
+    {
+      "english": "Commandment of Flames",
+      "korean": "화염의 율령",
+      "id": "commandment_of_flames"
+    },
+    {
+      "english": "Commandment of Force",
+      "korean": "힘의 율령",
+      "id": "commandment_of_force_on_hit"
+    },
+    {
+      "english": "Commandment of Frost",
+      "korean": "서리의 율령",
+      "id": "commandment_of_frost"
+    },
+    {
+      "english": "Commandment of Fury",
+      "korean": "광분의 율령",
+      "id": "commandment_of_fury_on_hit"
+    },
+    {
+      "english": "Commandment of Inferno",
+      "korean": "지옥불의 율령",
+      "id": "commandment_of_inferno_on_kill"
+    },
+    {
+      "english": "Commandment of Inferno",
+      "korean": "지옥불의 율령",
+      "id": "commandment_of_inferno_unique"
+    },
+    {
+      "english": "Commandment of Ire",
+      "korean": "노여움의 율령",
+      "id": "commandment_of_ire_when_hit"
+    },
+    {
+      "english": "Commandment of Light",
+      "korean": "빛의 율령",
+      "id": "commandment_of_light_when_critically_hit"
+    },
+    {
+      "english": "Commandment of Reflection",
+      "korean": "투영의 율령",
+      "id": "commandment_of_reflection_when_hit"
+    },
+    {
+      "english": "Commandment of Spite",
+      "korean": "원한의 율령",
+      "id": "commandment_of_spite_when_hit"
+    },
+    {
+      "english": "Commandment of the Tempest",
+      "korean": "폭풍의 율령",
+      "id": "commandment_of_tempest_on_hit"
+    },
+    {
+      "english": "Commandment of the Grave",
+      "korean": "무덤의 율령",
+      "id": "commandment_of_the_grave_on_kill"
+    },
+    {
+      "english": "Commandment of Thunder",
+      "korean": "천둥의 율령",
+      "id": "commandment_of_thunder_on_kill"
+    },
+    {
+      "english": "Commandment of War",
+      "korean": "전쟁의 율령",
+      "id": "commandment_of_war_on_kill"
+    },
+    {
+      "english": "Commandment of Winter",
+      "korean": "겨울의 율령",
+      "id": "commandment_of_winter_when_hit"
+    },
+    {
+      "english": "Conductivity",
+      "korean": "전도성",
+      "id": "conductivity"
+    },
+    {
+      "english": "Consecrate",
+      "korean": "신성화",
+      "id": "consecrate"
+    },
+    {
+      "english": "Consecrated Path",
+      "korean": "축성의 진격",
+      "id": "consecrated_path"
+    },
+    {
+      "english": "Consecrated Path of Endurance",
+      "korean": "인내의 축성의 진격",
+      "id": "consecrated_path_alt_x"
+    },
+    {
+      "english": "[DNT] ConsecratedPathAltY",
+      "korean": "[DNT] ConsecratedPathAltY",
+      "id": "consecrated_path_alt_y"
+    },
+    {
+      "english": "Contagion",
+      "korean": "전염",
+      "id": "contagion"
+    },
+    {
+      "english": "Contagion of Subsiding",
+      "korean": "침하의 전염",
+      "id": "contagion_alt_x"
+    },
+    {
+      "english": "Contagion of Transference",
+      "korean": "전이의 전염",
+      "id": "contagion_alt_y"
+    },
+    {
+      "english": "Conversion Trap",
+      "korean": "전향 덫",
+      "id": "conversion_trap"
+    },
+    {
+      "english": "Convocation",
+      "korean": "소집",
+      "id": "convocation"
+    },
+    {
+      "english": "Cremation",
+      "korean": "시체 소각",
+      "id": "corpse_erruption_monster"
+    },
+    {
+      "english": "Corpse Walk",
+      "korean": "시체 보행",
+      "id": "corpse_walk"
+    },
+    {
+      "english": "Corrupting Fever",
+      "korean": "타락한 열병",
+      "id": "corrupting_fever"
+    },
+    {
+      "english": "Crackling Lance",
+      "korean": "치직대는 창",
+      "id": "crackling_lance"
+    },
+    {
+      "english": "Crackling Lance of Branching",
+      "korean": "파생의 치직대는 창",
+      "id": "crackling_lance_alt_x"
+    },
+    {
+      "english": "Crackling Lance of Disintegration",
+      "korean": "분해의 치직대는 창",
+      "id": "crackling_lance_alt_y"
+    },
+    {
+      "english": "Contaminate",
+      "korean": "오염",
+      "id": "create_fungal_ground_on_kill"
+    },
+    {
+      "english": "Create Lesser Shrine",
+      "korean": "하위 성소 창조",
+      "id": "create_lesser_shrine"
+    },
+    {
+      "english": "Creeping Frost",
+      "korean": "엄습하는 서리",
+      "id": "creeping_frost"
+    },
+    {
+      "english": "Creeping Frost of Floes",
+      "korean": "부빙의 엄습하는 서리",
+      "id": "creeping_frost_alt_x"
+    },
+    {
+      "english": "[DNT] ArcticBreathAltY",
+      "korean": "[DNT] ArcticBreathAltY",
+      "id": "creeping_frost_alt_y"
+    },
+    {
+      "english": "Cremation",
+      "korean": "시체 소각",
+      "id": "cremation"
+    },
+    {
+      "english": "Cremation of Exhuming",
+      "korean": "발굴의 시체 소각",
+      "id": "cremation_alt_x"
+    },
+    {
+      "english": "Cremation of the Volcano",
+      "korean": "화산의 시체 소각",
+      "id": "cremation_alt_y"
+    },
+    {
+      "english": "[DNT] Crucible Channel",
+      "korean": "[DNT] Crucible Channel",
+      "id": "crucible_channel"
+    },
+    {
+      "english": "Crushing Fist",
+      "korean": "타쇄하는 주먹",
+      "id": "crushing_fist"
+    },
+    {
+      "english": "Falling Crystal",
+      "korean": "낙하하는 수정",
+      "id": "crystalfall"
+    },
+    {
+      "english": "Curse Consume",
+      "korean": "저주 소모",
+      "id": "curse_consume"
+    },
+    {
+      "english": "Curse Transfer",
+      "korean": "저주 전이",
+      "id": "curse_transfer"
+    },
+    {
+      "english": "Cyclone",
+      "korean": "회오리바람",
+      "id": "cyclone"
+    },
+    {
+      "english": "Cyclone of Tumult",
+      "korean": "소동의 회오리바람",
+      "id": "cyclone_alt_x"
+    },
+    {
+      "english": "[DNT] CycloneAltY",
+      "korean": "[DNT] CycloneAltY",
+      "id": "cyclone_alt_y"
+    },
+    {
+      "english": "Cyclone",
+      "korean": "회오리바람",
+      "id": "cyclone_old"
+    },
+    {
+      "english": "Damage Infusion",
+      "korean": "피해 주입",
+      "id": "damage_infusion"
+    },
+    {
+      "english": "Dark Bargain",
+      "korean": "어둠의 협상",
+      "id": "dark_pact"
+    },
+    {
+      "english": "Dark Bargain of Trarthus",
+      "korean": "트라투스의 어둠의 협상",
+      "id": "dark_pact_alt_x"
+    },
+    {
+      "english": "[DNT] DarkPactAltY",
+      "korean": "[DNT] DarkPactAltY",
+      "id": "dark_pact_alt_y"
+    },
+    {
+      "english": "Darktongue's Kiss",
+      "korean": "다크텅의 입맞춤",
+      "id": "darktongue_kiss"
+    },
+    {
+      "english": "Dash",
+      "korean": "질주",
+      "id": "dash"
+    },
+    {
+      "english": "Death Aura",
+      "korean": "죽음의 오라",
+      "id": "death_aura"
+    },
+    {
+      "english": "Death Walk",
+      "korean": "죽음의 발걸음",
+      "id": "death_walk"
+    },
+    {
+      "english": "Death Wish",
+      "korean": "죽음 동경",
+      "id": "death_wish"
+    },
+    {
+      "english": "Decoy Totem",
+      "korean": "미끼 토템",
+      "id": "decoy_totem"
+    },
+    {
+      "english": "Decree of Blades",
+      "korean": "칼날의 법령",
+      "id": "decree_of_blades"
+    },
+    {
+      "english": "Decree of Flames",
+      "korean": "화염의 법령",
+      "id": "decree_of_flames"
+    },
+    {
+      "english": "Decree of Force",
+      "korean": "힘의 법령",
+      "id": "decree_of_force_on_hit"
+    },
+    {
+      "english": "Decree of Frost",
+      "korean": "서리의 법령",
+      "id": "decree_of_frost"
+    },
+    {
+      "english": "Decree of Fury",
+      "korean": "광분의 법령",
+      "id": "decree_of_fury_on_hit"
+    },
+    {
+      "english": "Decree of Inferno",
+      "korean": "지옥불의 법령",
+      "id": "decree_of_inferno_on_kill"
+    },
+    {
+      "english": "Decree of Ire",
+      "korean": "노여움의 법령",
+      "id": "decree_of_ire_when_hit"
+    },
+    {
+      "english": "Decree of Light",
+      "korean": "빛의 법령",
+      "id": "decree_of_light_when_critically_hit"
+    },
+    {
+      "english": "Decree of Reflection",
+      "korean": "투영의 법령",
+      "id": "decree_of_reflection_when_hit"
+    },
+    {
+      "english": "Decree of Spite",
+      "korean": "원한의 법령",
+      "id": "decree_of_spite_when_hit"
+    },
+    {
+      "english": "Decree of the Tempest",
+      "korean": "폭풍의 법령",
+      "id": "decree_of_tempest_on_hit"
+    },
+    {
+      "english": "Decree of the Grave",
+      "korean": "무덤의 법령",
+      "id": "decree_of_the_grave_on_kill"
+    },
+    {
+      "english": "Decree of Thunder",
+      "korean": "천둥의 법령",
+      "id": "decree_of_thunder_on_kill"
+    },
+    {
+      "english": "Decree of War",
+      "korean": "전쟁의 법령",
+      "id": "decree_of_war_on_kill"
+    },
+    {
+      "english": "Decree of Winter",
+      "korean": "겨울의 법령",
+      "id": "decree_of_winter_when_hit"
+    },
+    {
+      "english": "Defiance Banner",
+      "korean": "저항의 깃발",
+      "id": "defiance_banner"
+    },
+    {
+      "english": "Desecrate",
+      "korean": "모독",
+      "id": "desecrate"
+    },
+    {
+      "english": "Despair",
+      "korean": "절망",
+      "id": "despair"
+    },
+    {
+      "english": "Destructive Link",
+      "korean": "파괴의 연결",
+      "id": "destructive_link"
+    },
+    {
+      "english": "Determination",
+      "korean": "결의",
+      "id": "determination"
+    },
+    {
+      "english": "Detonate Dead",
+      "korean": "시체 폭발",
+      "id": "detonate_dead"
+    },
+    {
+      "english": "Detonate Dead of Scavenging",
+      "korean": "청소부의 시체 폭발",
+      "id": "detonate_dead_alt_x"
+    },
+    {
+      "english": "Detonate Dead of Chain Reaction",
+      "korean": "연쇄 반응의 시체 폭발",
+      "id": "detonate_dead_alt_y"
+    },
+    {
+      "english": "Detonate Mines",
+      "korean": "지뢰 폭발",
+      "id": "detonate_mines"
+    },
+    {
+      "english": "Devouring Totem",
+      "korean": "포식 토템",
+      "id": "devouring_totem"
+    },
+    {
+      "english": "Discharge",
+      "korean": "방출",
+      "id": "discharge"
+    },
+    {
+      "english": "Discharge of Misery",
+      "korean": "비참의 방출",
+      "id": "discharge_alt_x"
+    },
+    {
+      "english": "[DNT] DischargeAltY",
+      "korean": "[DNT] DischargeAltY",
+      "id": "discharge_alt_y"
+    },
+    {
+      "english": "Discipline",
+      "korean": "단련",
+      "id": "discipline"
+    },
+    {
+      "english": "Divine Blast",
+      "korean": "신성한 폭발",
+      "id": "discus_slam"
+    },
+    {
+      "english": "Divine Blast of Radiance",
+      "korean": "광휘의 신성한 폭발",
+      "id": "discus_slam_alt_x"
+    },
+    {
+      "english": "Divine Ire",
+      "korean": "신성한 진노",
+      "id": "divine_ire"
+    },
+    {
+      "english": "Divine Ire of Holy Lightning",
+      "korean": "상서로운 번개의 신성한 진노",
+      "id": "divine_ire_alt_x"
+    },
+    {
+      "english": "Divine Ire of Disintegration",
+      "korean": "분해의 신성한 진노",
+      "id": "divine_ire_alt_y"
+    },
+    {
+      "english": "Divine Retribution",
+      "korean": "신성한 응징",
+      "id": "divine_retribution"
+    },
+    {
+      "english": "Dominating Blow",
+      "korean": "지배의 맹타",
+      "id": "dominating_blow"
+    },
+    {
+      "english": "Dominating Blow of Inspiring",
+      "korean": "격려의 지배의 맹타",
+      "id": "dominating_blow_alt_x"
+    },
+    {
+      "english": "[DNT] DominatingBlowAltY",
+      "korean": "[DNT] DominatingBlowAltY",
+      "id": "dominating_blow_alt_y"
+    },
+    {
+      "english": "Touch Of God",
+      "korean": "신의 손길",
+      "id": "dominus_lightning_slam"
+    },
+    {
+      "english": "Doom Arrow",
+      "korean": "멸망의 화살",
+      "id": "doom_arrow"
+    },
+    {
+      "english": "Doom Blast",
+      "korean": "멸망 폭발",
+      "id": "doom_blast"
+    },
+    {
+      "english": "Doryani's Touch",
+      "korean": "도리아니의 손길",
+      "id": "doryanis_touch"
+    },
+    {
+      "english": "Double Strike",
+      "korean": "이중 타격",
+      "id": "double_strike"
+    },
+    {
+      "english": "Double Strike of Impaling",
+      "korean": "꿰뚫기의 이중 타격",
+      "id": "double_strike_alt_x"
+    },
+    {
+      "english": "Double Strike of Momentum",
+      "korean": "기세의 이중 타격",
+      "id": "double_strike_alt_y"
+    },
+    {
+      "english": "Dread Banner",
+      "korean": "공포의 깃발",
+      "id": "dread_banner"
+    },
+    {
+      "english": "Dual Strike",
+      "korean": "쌍수 타격",
+      "id": "dual_strike"
+    },
+    {
+      "english": "Dual Strike of Ambidexterity",
+      "korean": "양손잡이의 쌍수 타격",
+      "id": "dual_strike_alt_x"
+    },
+    {
+      "english": "[DNT] DualStrikeAltY",
+      "korean": "[DNT] DualStrikeAltY",
+      "id": "dual_strike_alt_y"
+    },
+    {
+      "english": "Throw Dynamite",
+      "korean": "다이너마이트 투척",
+      "id": "dynamite"
+    },
+    {
+      "english": "Earthquake",
+      "korean": "지진",
+      "id": "earthquake"
+    },
+    {
+      "english": "Earthquake of Amplification",
+      "korean": "증폭의 지진",
+      "id": "earthquake_alt_x"
+    },
+    {
+      "english": "[DNT] EarthquakeAltY",
+      "korean": "[DNT] EarthquakeAltY",
+      "id": "earthquake_alt_y"
+    },
+    {
+      "english": "Earthshatter",
+      "korean": "지면 분쇄",
+      "id": "earthshatter"
+    },
+    {
+      "english": "Earthshatter of Fragility",
+      "korean": "허약의 지면 분쇄",
+      "id": "earthshatter_alt_x"
+    },
+    {
+      "english": "Earthshatter of Prominence",
+      "korean": "출중의 지면 분쇄",
+      "id": "earthshatter_alt_y"
+    },
+    {
+      "english": "Edict of Blades",
+      "korean": "칼날의 칙령",
+      "id": "edict_of_blades"
+    },
+    {
+      "english": "Edict of Flames",
+      "korean": "화염의 칙령",
+      "id": "edict_of_flames"
+    },
+    {
+      "english": "Edict of Force",
+      "korean": "힘의 칙령",
+      "id": "edict_of_force_on_hit"
+    },
+    {
+      "english": "Edict of Frost",
+      "korean": "서리의 칙령",
+      "id": "edict_of_frost"
+    },
+    {
+      "english": "Edict of Fury",
+      "korean": "광분의 칙령",
+      "id": "edict_of_fury_on_hit"
+    },
+    {
+      "english": "Edict of Inferno",
+      "korean": "지옥불의 칙령",
+      "id": "edict_of_inferno_on_kill"
+    },
+    {
+      "english": "Edict of Ire",
+      "korean": "노여움의 칙령",
+      "id": "edict_of_ire_when_hit"
+    },
+    {
+      "english": "Edict of Light",
+      "korean": "빛의 칙령",
+      "id": "edict_of_light_when_critically_hit"
+    },
+    {
+      "english": "Edict of Reflection",
+      "korean": "투영의 칙령",
+      "id": "edict_of_reflection_when_hit"
+    },
+    {
+      "english": "Edict of Spite",
+      "korean": "원한의 칙령",
+      "id": "edict_of_spite_when_hit"
+    },
+    {
+      "english": "Edict of the Tempest",
+      "korean": "폭풍의 칙령",
+      "id": "edict_of_tempest_on_hit"
+    },
+    {
+      "english": "Edict of the Grave",
+      "korean": "무덤의 칙령",
+      "id": "edict_of_the_grave_on_kill"
+    },
+    {
+      "english": "Edict of Thunder",
+      "korean": "천둥의 칙령",
+      "id": "edict_of_thunder_on_kill"
+    },
+    {
+      "english": "Edict of War",
+      "korean": "전쟁의 칙령",
+      "id": "edict_of_war_on_kill"
+    },
+    {
+      "english": "Edict of Winter",
+      "korean": "겨울의 칙령",
+      "id": "edict_of_winter_when_hit"
+    },
+    {
+      "english": "Elemental Hit",
+      "korean": "원소의 일격",
+      "id": "elemental_hit"
+    },
+    {
+      "english": "Elemental Hit of the Spectrum",
+      "korean": "파장의 원소의 일격",
+      "id": "elemental_hit_alt_x"
+    },
+    {
+      "english": "[DNT] ElementalHitAltY",
+      "korean": "[DNT] ElementalHitAltY",
+      "id": "elemental_hit_alt_y"
+    },
+    {
+      "english": "Elemental Hit",
+      "korean": "원소의 일격",
+      "id": "elemental_hit_monster"
+    },
+    {
+      "english": "Elemental Projectiles",
+      "korean": "원소 투사체",
+      "id": "elemental_projectiles"
+    },
+    {
+      "english": "Elemental Warding",
+      "korean": "원소의 수호",
+      "id": "elemental_warding"
+    },
+    {
+      "english": "Elemental Weakness",
+      "korean": "원소 약화",
+      "id": "elemental_weakness"
+    },
+    {
+      "english": "Embrace Madness",
+      "korean": "광기의 수용",
+      "id": "embrace_madness"
+    },
+    {
+      "english": "Empowering Howl",
+      "korean": "힘이 깃든 고함",
+      "id": "empowering_howl"
+    },
+    {
+      "english": "Enduring Cry",
+      "korean": "인내의 함성",
+      "id": "enduring_cry"
+    },
+    {
+      "english": "Energy Blade",
+      "korean": "에너지 칼날",
+      "id": "energy_blade"
+    },
+    {
+      "english": "Foulgrasp",
+      "korean": "부정한 손아귀",
+      "id": "enervating_grasp"
+    },
+    {
+      "english": "Enfeeble",
+      "korean": "쇠약화",
+      "id": "enfeeble"
+    },
+    {
+      "english": "Ensnaring Arrow",
+      "korean": "올가미 화살",
+      "id": "ensnaring_arrow"
+    },
+    {
+      "english": "[DNT] EnsnaringArrowAltX",
+      "korean": "[DNT] EnsnaringArrowAltX",
+      "id": "ensnaring_arrow_alt_x"
+    },
+    {
+      "english": "[DNT] EnsnaringArrowAltY",
+      "korean": "[DNT] EnsnaringArrowAltY",
+      "id": "ensnaring_arrow_alt_y"
+    },
+    {
+      "english": "Envy",
+      "korean": "선망",
+      "id": "envy"
+    },
+    {
+      "english": "Essence Drain",
+      "korean": "정수 흡수",
+      "id": "essence_drain"
+    },
+    {
+      "english": "Essence Drain of Desperation",
+      "korean": "필사의 정수 흡수",
+      "id": "essence_drain_alt_x"
+    },
+    {
+      "english": "Essence Drain of Wickedness",
+      "korean": "사악함의 정수 흡수",
+      "id": "essence_drain_alt_y"
+    },
+    {
+      "english": "Ethereal Knives",
+      "korean": "천상의 단도",
+      "id": "ethereal_knives"
+    },
+    {
+      "english": "Ethereal Knives of Lingering Blades",
+      "korean": "지속되는 칼날의 천상의 단도",
+      "id": "ethereal_knives_alt_x"
+    },
+    {
+      "english": "Ethereal Knives of the Massacre",
+      "korean": "도륙의 천상의 단도",
+      "id": "ethereal_knives_alt_y"
+    },
+    {
+      "english": "Eviscerate",
+      "korean": "내장 적출",
+      "id": "eviscerate"
+    },
+    {
+      "english": "Explosive Toad",
+      "korean": "폭발성 두꺼비",
+      "id": "exploding_blood_toad"
+    },
+    {
+      "english": "Bursting Toad",
+      "korean": "터지는 두꺼비",
+      "id": "exploding_poison_toad"
+    },
+    {
+      "english": "Explosive Arrow",
+      "korean": "폭발 화살",
+      "id": "explosive_arrow"
+    },
+    {
+      "english": "[DNT] ExplosiveArrowAltX",
+      "korean": "[DNT] ExplosiveArrowAltX",
+      "id": "explosive_arrow_alt_x"
+    },
+    {
+      "english": "[DNT] ExplosiveArrowAltY",
+      "korean": "[DNT] ExplosiveArrowAltY",
+      "id": "explosive_arrow_alt_y"
+    },
+    {
+      "english": "Explosive Arrow",
+      "korean": "폭발 화살",
+      "id": "explosive_arrow_old"
+    },
+    {
+      "english": "Explosive Concoction",
+      "korean": "폭발성 혼합물",
+      "id": "explosive_concoction"
+    },
+    {
+      "english": "Explosive Concoction of Destruction",
+      "korean": "파괴의 폭발성 혼합물",
+      "id": "explosive_concoction_alt_x"
+    },
+    {
+      "english": "[DNT] ExplosiveConcoctionAltY",
+      "korean": "[DNT] ExplosiveConcoctionAltY",
+      "id": "explosive_concoction_alt_y"
+    },
+    {
+      "english": "Explosive Trap",
+      "korean": "폭발 덫",
+      "id": "explosive_trap"
+    },
+    {
+      "english": "Explosive Trap of Shrapnel",
+      "korean": "파편의 폭발 덫",
+      "id": "explosive_trap_alt_x"
+    },
+    {
+      "english": "Explosive Trap of Magnitude",
+      "korean": "규모의 폭발 덫",
+      "id": "explosive_trap_alt_y"
+    },
+    {
+      "english": "Exsanguinate",
+      "korean": "방혈",
+      "id": "exsanguinate"
+    },
+    {
+      "english": "Exsanguinate of Transmission",
+      "korean": "전송의 방혈",
+      "id": "exsanguinate_alt_x"
+    },
+    {
+      "english": "[DNT] ExsanguinateAltY",
+      "korean": "[DNT] ExsanguinateAltY",
+      "id": "exsanguinate_alt_y"
+    },
+    {
+      "english": "Eye of Winter",
+      "korean": "겨울의 눈",
+      "id": "eye_of_winter"
+    },
+    {
+      "english": "Eye of Winter of Finality",
+      "korean": "종극의 겨울의 눈",
+      "id": "eye_of_winter_alt_x"
+    },
+    {
+      "english": "Eye of Winter of Transience",
+      "korean": "덧없음의 겨울의 눈",
+      "id": "eye_of_winter_alt_y"
+    },
+    {
+      "english": "Face Last Target",
+      "korean": "마지막 대상 맞서기",
+      "id": "face_last_target"
+    },
+    {
+      "english": "Feast of Flesh",
+      "korean": "육체의 연회",
+      "id": "feast_of_flesh"
+    },
+    {
+      "english": "Fiery Impact",
+      "korean": "불타는 충격",
+      "id": "fiery_impact"
+    },
+    {
+      "english": "FigureHead Incinerate",
+      "korean": "선수상 소각",
+      "id": "figurehead_incinerate"
+    },
+    {
+      "english": "Fire Burst",
+      "korean": "화염 격발",
+      "id": "fire_burst"
+    },
+    {
+      "english": "Fire Elemental Cone",
+      "korean": "불의 정령 돌풍",
+      "id": "fire_elemental_cone"
+    },
+    {
+      "english": "Fire Nova Mine",
+      "korean": "화염 폭발 지뢰",
+      "id": "fire_nova"
+    },
+    {
+      "english": "Fire Projectile Retaliation",
+      "korean": "화염 투사체 보복",
+      "id": "fire_projectile_retaliation"
+    },
+    {
+      "english": "Fire Trap",
+      "korean": "화염 덫",
+      "id": "fire_trap"
+    },
+    {
+      "english": "Fire Trap of Blasting",
+      "korean": "폭발의 화염 덫",
+      "id": "fire_trap_alt_x"
+    },
+    {
+      "english": "[DNT] FireTrapAltY",
+      "korean": "[DNT] FireTrapAltY",
+      "id": "fire_trap_alt_y"
+    },
+    {
+      "english": "Fire Weapon",
+      "korean": "화염 무기",
+      "id": "fire_weapon"
+    },
+    {
+      "english": "Fireball",
+      "korean": "화염구",
+      "id": "fireball"
+    },
+    {
+      "english": "[DNT] FireballAltX",
+      "korean": "[DNT] FireballAltX",
+      "id": "fireball_alt_x"
+    },
+    {
+      "english": "[DNT] FireballAltY",
+      "korean": "[DNT] FireballAltY",
+      "id": "fireball_alt_y"
+    },
+    {
+      "english": "Firestorm",
+      "korean": "화염 폭풍",
+      "id": "firestorm"
+    },
+    {
+      "english": "Firestorm of Meteors",
+      "korean": "유성의 화염 폭풍",
+      "id": "firestorm_alt_x"
+    },
+    {
+      "english": "Firestorm of Pelting",
+      "korean": "퍼부음의 화염 폭풍",
+      "id": "firestorm_alt_y"
+    },
+    {
+      "english": "Flame Breath",
+      "korean": "화염 숨결",
+      "id": "flame_breath"
+    },
+    {
+      "english": "Flame Dash",
+      "korean": "화염 질주",
+      "id": "flame_dash"
+    },
+    {
+      "english": "Flame Dash of Incinerating",
+      "korean": "소각의 화염 질주",
+      "id": "flame_dash_alt_x"
+    },
+    {
+      "english": "Flame Dash of Return",
+      "korean": "귀환의 화염 질주",
+      "id": "flame_dash_alt_y"
+    },
+    {
+      "english": "Flame Link",
+      "korean": "화염의 연결",
+      "id": "flame_link"
+    },
+    {
+      "english": "Flame Surge",
+      "korean": "화염 쇄도",
+      "id": "flame_surge"
+    },
+    {
+      "english": "Flame Surge of Combusting",
+      "korean": "발화의 화염 쇄도",
+      "id": "flame_surge_alt_x"
+    },
+    {
+      "english": "[DNT] FlameWhipAltY",
+      "korean": "[DNT] FlameWhipAltY",
+      "id": "flame_surge_alt_y"
+    },
+    {
+      "english": "Flame Wall",
+      "korean": "화염 벽",
+      "id": "flame_wall"
+    },
+    {
+      "english": "[DNT] Flame Wall of Forking",
+      "korean": "갈래 투사체의 화염 벽",
+      "id": "flame_wall_alt_x"
+    },
+    {
+      "english": "[DNT] Flame Wall of Surging",
+      "korean": "쇄도의 화염 벽",
+      "id": "flame_wall_alt_y"
+    },
+    {
+      "english": "Flameblast",
+      "korean": "화염파",
+      "id": "flameblast"
+    },
+    {
+      "english": "Flameblast of Celerity",
+      "korean": "민첩함의 화염파",
+      "id": "flameblast_alt_x"
+    },
+    {
+      "english": "Flameblast of Contraction",
+      "korean": "수축의 화염파",
+      "id": "flameblast_alt_y"
+    },
+    {
+      "english": "Flamethrower Trap",
+      "korean": "화염방사기 덫",
+      "id": "flamethrower_trap"
+    },
+    {
+      "english": "Flamethrower Trap of Stability",
+      "korean": "안정성의 화염방사기 덫",
+      "id": "flamethrower_trap_alt_x"
+    },
+    {
+      "english": "[DNT] FlamethrowerTrapAltY",
+      "korean": "[DNT] FlamethrowerTrapAltY",
+      "id": "flamethrower_trap_alt_y"
+    },
+    {
+      "english": "Flammability",
+      "korean": "인화성",
+      "id": "flammability"
+    },
+    {
+      "english": "Throw Flare",
+      "korean": "섬광 투척",
+      "id": "flare"
+    },
+    {
+      "english": "Flesh and Stone",
+      "korean": "육체와 돌",
+      "id": "flesh_and_stone"
+    },
+    {
+      "english": "Flesh Offering",
+      "korean": "살점 공물",
+      "id": "flesh_offering"
+    },
+    {
+      "english": "Flicker Strike",
+      "korean": "점멸 타격",
+      "id": "flicker_strike"
+    },
+    {
+      "english": "Flicker Strike of Power",
+      "korean": "권능의 점멸 타격",
+      "id": "flicker_strike_alt_x"
+    },
+    {
+      "english": "[DNT] FlickerStrikeAltY",
+      "korean": "[DNT] FlickerStrikeAltY",
+      "id": "flicker_strike_alt_y"
+    },
+    {
+      "english": "Flicker Thrust",
+      "korean": "명멸하는 찌르기",
+      "id": "flicker_thrust"
+    },
+    {
+      "english": "Focus",
+      "korean": "집중",
+      "id": "focus"
+    },
+    {
+      "english": "Fog of War",
+      "korean": "전장의 안개",
+      "id": "fog_of_war"
+    },
+    {
+      "english": "Forbidden Rite",
+      "korean": "금단의 의식",
+      "id": "forbidden_rite"
+    },
+    {
+      "english": "Forbidden Rite of Soul Sacrifice",
+      "korean": "영혼 희생의 금단의 의식",
+      "id": "forbidden_rite_alt_x"
+    },
+    {
+      "english": "[DNT] ForbiddenRiteAltY",
+      "korean": "[DNT] ForbiddenRiteAltY",
+      "id": "forbidden_rite_alt_y"
+    },
+    {
+      "english": "Freeze Mine",
+      "korean": "동결 지뢰",
+      "id": "freeze_mine"
+    },
+    {
+      "english": "Freezing Pulse",
+      "korean": "동결 파동",
+      "id": "freezing_pulse"
+    },
+    {
+      "english": "[DNT] FreezingPulseAltX",
+      "korean": "[DNT] FreezingPulseAltX",
+      "id": "freezing_pulse_alt_x"
+    },
+    {
+      "english": "[DNT] FreezingPulseAltY",
+      "korean": "[DNT] FreezingPulseAltY",
+      "id": "freezing_pulse_alt_y"
+    },
+    {
+      "english": "Frenzy",
+      "korean": "격분",
+      "id": "frenzy"
+    },
+    {
+      "english": "Frenzy of Onslaught",
+      "korean": "맹공의 격분",
+      "id": "frenzy_alt_x"
+    },
+    {
+      "english": "[DNT] FrenzyAltY",
+      "korean": "[DNT] FrenzyAltY",
+      "id": "frenzy_alt_y"
+    },
+    {
+      "english": "Frost Blades",
+      "korean": "서리 칼날",
+      "id": "frost_blades"
+    },
+    {
+      "english": "Frost Blades of Katabasis",
+      "korean": "퇴각의 서리 칼날",
+      "id": "frost_blades_alt_x"
+    },
+    {
+      "english": "[DNT] FrostBladesAltY",
+      "korean": "[DNT] FrostBladesAltY",
+      "id": "frost_blades_alt_y"
+    },
+    {
+      "english": "Frostbolt",
+      "korean": "서리 구체",
+      "id": "frost_bolt"
+    },
+    {
+      "english": "[DNT] FrostBoltAltX",
+      "korean": "[DNT] FrostBoltAltX",
+      "id": "frost_bolt_alt_x"
+    },
+    {
+      "english": "[DNT] FrostBoltAltY",
+      "korean": "[DNT] FrostBoltAltY",
+      "id": "frost_bolt_alt_y"
+    },
+    {
+      "english": "Frost Bolt Channel",
+      "korean": "서리 구체 집중 유지",
+      "id": "frost_bolt_channel"
+    },
+    {
+      "english": "Frost Bomb",
+      "korean": "서리 폭탄",
+      "id": "frost_bomb"
+    },
+    {
+      "english": "Frost Bomb of Instability",
+      "korean": "불안정의 서리 폭탄",
+      "id": "frost_bomb_alt_x"
+    },
+    {
+      "english": "Frost Bomb of Forthcoming",
+      "korean": "임박의 서리 폭탄",
+      "id": "frost_bomb_alt_y"
+    },
+    {
+      "english": "Frost Shield",
+      "korean": "서리 방패",
+      "id": "frost_shield"
+    },
+    {
+      "english": "Frost Wall",
+      "korean": "서리 방벽",
+      "id": "frost_wall"
+    },
+    {
+      "english": "Frost Wall of Encroachment",
+      "korean": "침범의 서리 방벽",
+      "id": "frost_wall_alt_x"
+    },
+    {
+      "english": "[DNT] FrostWallAltY",
+      "korean": "[DNT] FrostWallAltY",
+      "id": "frost_wall_alt_y"
+    },
+    {
+      "english": "Frostbite",
+      "korean": "동상",
+      "id": "frostbite"
+    },
+    {
+      "english": "Frostblink",
+      "korean": "서리점멸",
+      "id": "frostblink"
+    },
+    {
+      "english": "Frostblink of Wintry Blast",
+      "korean": "차가운 폭발의 서리점멸",
+      "id": "frostblink_alt_x"
+    },
+    {
+      "english": "[DNT] FrostblinkAltY",
+      "korean": "[DNT] FrostblinkAltY",
+      "id": "frostblink_alt_y"
+    },
+    {
+      "english": "Frozen Legion",
+      "korean": "얼어붙은 군단",
+      "id": "frozen_legion"
+    },
+    {
+      "english": "Frozen Legion of Rallying",
+      "korean": "재집결의 얼어붙은 군단",
+      "id": "frozen_legion_alt_x"
+    },
+    {
+      "english": "[DNT] FrozenLegionAltY",
+      "korean": "[DNT] FrozenLegionAltY",
+      "id": "frozen_legion_alt_y"
+    },
+    {
+      "english": "Frozen Sweep",
+      "korean": "얼어붙은 휩쓸기",
+      "id": "frozen_sweep"
+    },
+    {
+      "english": "Galvanic Arrow",
+      "korean": "충격 화살",
+      "id": "galvanic_arrow"
+    },
+    {
+      "english": "Galvanic Arrow of Energy",
+      "korean": "에너지의 충격 화살",
+      "id": "galvanic_arrow_alt_x"
+    },
+    {
+      "english": "Galvanic Arrow of Surging",
+      "korean": "쇄도의 충격 화살",
+      "id": "galvanic_arrow_alt_y"
+    },
+    {
+      "english": "Galvanic Field",
+      "korean": "충격장",
+      "id": "galvanic_field"
+    },
+    {
+      "english": "Galvanic Field of Intensity",
+      "korean": "격렬함의 충격장",
+      "id": "galvanic_field_alt_x"
+    },
+    {
+      "english": "[DNT] GalvanicFieldAltY",
+      "korean": "[DNT] GalvanicFieldAltY",
+      "id": "galvanic_field_alt_y"
+    },
+    {
+      "english": "General's Cry",
+      "korean": "장군의 함성",
+      "id": "generals_cry"
+    },
+    {
+      "english": "[DNT] GeneralsCryAltX",
+      "korean": "[DNT] GeneralsCryAltX",
+      "id": "generals_cry_alt_x"
+    },
+    {
+      "english": "[DNT] GeneralsCryAltY",
+      "korean": "[DNT] GeneralsCryAltY",
+      "id": "generals_cry_alt_y"
+    },
+    {
+      "english": "[DNT] Ghost Furnace",
+      "korean": "[DNT] Ghost Furnace",
+      "id": "ghost_furnace"
+    },
+    {
+      "english": "Glacial Cascade",
+      "korean": "빙하 폭포",
+      "id": "glacial_cascade"
+    },
+    {
+      "english": "Glacial Hammer",
+      "korean": "빙하 망치",
+      "id": "glacial_hammer"
+    },
+    {
+      "english": "Glacial Hammer of Shattering",
+      "korean": "산산조각의 빙하 망치",
+      "id": "glacial_hammer_alt_x"
+    },
+    {
+      "english": "[DNT] GlacialHammerAltY",
+      "korean": "[DNT] GlacialHammerAltY",
+      "id": "glacial_hammer_alt_y"
+    },
+    {
+      "english": "Glacial Shield Swipe",
+      "korean": "빙하 방패 후려치기",
+      "id": "glacial_shield_swipe"
+    },
+    {
+      "english": "Vaal Lightning Warp",
+      "korean": "바알 번개 차원 이동",
+      "id": "gladiator_boss_vaal_lightning_warp"
+    },
+    {
+      "english": "Glimpse of Eternity",
+      "korean": "영원의 눈길",
+      "id": "glimpse_of_eternity"
+    },
+    {
+      "english": "Gluttony of Elements",
+      "korean": "원소의 폭식",
+      "id": "gluttony_of_elements"
+    },
+    {
+      "english": "Goddess Beam",
+      "korean": "여신의 광선",
+      "id": "goddess_beam"
+    },
+    {
+      "english": "Goddess Warp",
+      "korean": "여신의 차원",
+      "id": "goddess_warp"
+    },
+    {
+      "english": "Gore Shockwave",
+      "korean": "선혈 충격파",
+      "id": "gore_shockwave"
+    },
+    {
+      "english": "Grace",
+      "korean": "은총",
+      "id": "grace"
+    },
+    {
+      "english": "Overcharged Sinews",
+      "korean": "과충전된 힘줄",
+      "id": "graft_skill_esh_jolt_buff"
+    },
+    {
+      "english": "Glowing Silhouette",
+      "korean": "빛나는 실루엣",
+      "id": "graft_skill_esh_lightning_clones"
+    },
+    {
+      "english": "Enervating Grasp",
+      "korean": "피폐의 장악",
+      "id": "graft_skill_esh_lightning_hands"
+    },
+    {
+      "english": "Wreathed in Light",
+      "korean": "빛에 휩싸임",
+      "id": "graft_skill_esh_lightning_ring"
+    },
+    {
+      "english": "Preserving Stillness",
+      "korean": "보존의 고요",
+      "id": "graft_skill_tul_aegis"
+    },
+    {
+      "english": "Falling Crystals",
+      "korean": "낙하하는 수정",
+      "id": "graft_skill_tul_mortars"
+    },
+    {
+      "english": "The Great Avalanche",
+      "korean": "대눈사태",
+      "id": "graft_skill_tul_summon"
+    },
+    {
+      "english": "Dance in the White",
+      "korean": "설원에서의 춤",
+      "id": "graft_skill_tul_tornado"
+    },
+    {
+      "english": "Icicles",
+      "korean": "고드름",
+      "id": "graft_skill_tul_tornado_projectile"
+    },
+    {
+      "english": "Seize the Flesh",
+      "korean": "살점 붙잡기",
+      "id": "graft_skill_uulnetol_bone_spires"
+    },
+    {
+      "english": "Return to Dust",
+      "korean": "먼지로 돌아가라",
+      "id": "graft_skill_uulnetol_hand_slam"
+    },
+    {
+      "english": "Violent Desire",
+      "korean": "난폭한 갈망",
+      "id": "graft_skill_uulnetol_impale_buff"
+    },
+    {
+      "english": "Tender Embrace",
+      "korean": "다정한 포옹",
+      "id": "graft_skill_uulnetol_lowlife_buff"
+    },
+    {
+      "english": "The Grey Wind Howls",
+      "korean": "회색 바람의 포효",
+      "id": "graft_skill_xoph_ailment_buff"
+    },
+    {
+      "english": "Call the Pyre",
+      "korean": "장작 부르기",
+      "id": "graft_skill_xoph_flame_pillars"
+    },
+    {
+      "english": "His Burning Message",
+      "korean": "그의 불타는 뜻",
+      "id": "graft_skill_xoph_geyser_explosion"
+    },
+    {
+      "english": "Heart of Flame",
+      "korean": "화염의 심장",
+      "id": "graft_skill_xoph_molten_shell"
+    },
+    {
+      "english": "Gravity Sphere",
+      "korean": "중력 구체",
+      "id": "gravity_sphere_triggered"
+    },
+    {
+      "english": "Fire Trap",
+      "korean": "화염 덫",
+      "id": "ground_fire_self"
+    },
+    {
+      "english": "Ground Slam",
+      "korean": "대지 강타",
+      "id": "ground_slam"
+    },
+    {
+      "english": "Ground Slam of Earthshaking",
+      "korean": "지동의 대지 강타",
+      "id": "ground_slam_alt_x"
+    },
+    {
+      "english": "[DNT] GroundSlamAltY",
+      "korean": "[DNT] GroundSlamAltY",
+      "id": "ground_slam_alt_y"
+    },
+    {
+      "english": "Ground Slam",
+      "korean": "대지 강타",
+      "id": "ground_slam_old"
+    },
+    {
+      "english": "Haste",
+      "korean": "가속",
+      "id": "haste"
+    },
+    {
+      "english": "Hatred",
+      "korean": "증오",
+      "id": "hatred"
+    },
+    {
+      "english": "Heavy Strike",
+      "korean": "묵직한 타격",
+      "id": "heavy_strike"
+    },
+    {
+      "english": "[DNT] Heavy Strike of Clobbering",
+      "korean": "구타의 묵직한 타격",
+      "id": "heavy_strike_alt_x"
+    },
+    {
+      "english": "Heavy Strike of Trarthus",
+      "korean": "트라투스의 묵직한 타격",
+      "id": "heavy_strike_alt_y"
+    },
+    {
+      "english": "[UNUSED] You son of a ****",
+      "korean": "[UNUSED] You son of a ****",
+      "id": "heist_lock_pick"
+    },
+    {
+      "english": "Herald of Agony",
+      "korean": "고통의 전령",
+      "id": "herald_of_agony"
+    },
+    {
+      "english": "Herald of Ash",
+      "korean": "재의 전령",
+      "id": "herald_of_ash"
+    },
+    {
+      "english": "Herald of Ice",
+      "korean": "얼음의 전령",
+      "id": "herald_of_ice"
+    },
+    {
+      "english": "Herald of Purity",
+      "korean": "순수의 전령",
+      "id": "herald_of_purity"
+    },
+    {
+      "english": "Herald of the Hive",
+      "korean": "벌레집의 전령",
+      "id": "herald_of_the_breach"
+    },
+    {
+      "english": "Herald of Thunder",
+      "korean": "천둥의 전령",
+      "id": "herald_of_thunder"
+    },
+    {
+      "english": "Hexblast",
+      "korean": "사술 폭발",
+      "id": "hexblast"
+    },
+    {
+      "english": "Hexblast of Contradiction",
+      "korean": "상반의 사술폭발",
+      "id": "hexblast_alt_x"
+    },
+    {
+      "english": "Hexblast of Havoc",
+      "korean": "혼란의 사술폭발",
+      "id": "hexblast_alt_y"
+    },
+    {
+      "english": "Holy Flame Totem",
+      "korean": "신성한 화염 토템",
+      "id": "holy_flame_totem"
+    },
+    {
+      "english": "Holy Flame Totem of Ire",
+      "korean": "노여움의 신성한 화염 토템",
+      "id": "holy_flame_totem_alt_x"
+    },
+    {
+      "english": "[DNT] FlameTotemAltY",
+      "korean": "[DNT] FlameTotemAltY",
+      "id": "holy_flame_totem_alt_y"
+    },
+    {
+      "english": "Holy Hammers",
+      "korean": "신성한 망치",
+      "id": "holy_hammers"
+    },
+    {
+      "english": "Holy Hammers of Spirals",
+      "korean": "나선의 신성한 망치",
+      "id": "holy_hammers_alt_x"
+    },
+    {
+      "english": "Holy Strike",
+      "korean": "신성한 타격",
+      "id": "holy_strike"
+    },
+    {
+      "english": "Hydrosphere",
+      "korean": "물의 구체",
+      "id": "hydrosphere"
+    },
+    {
+      "english": "[DNT] HydrosphereAltX",
+      "korean": "[DNT] HydrosphereAltX",
+      "id": "hydrosphere_alt_x"
+    },
+    {
+      "english": "[DNT] HydrosphereAltY",
+      "korean": "[DNT] HydrosphereAltY",
+      "id": "hydrosphere_alt_y"
+    },
+    {
+      "english": "Hydrosphere",
+      "korean": "물의 구체",
+      "id": "hydrosphere_triggered"
+    },
+    {
+      "english": "Ice Crash",
+      "korean": "얼음 충격",
+      "id": "ice_crash"
+    },
+    {
+      "english": "Ice Crash of Cadence",
+      "korean": "운율의 얼음 충격",
+      "id": "ice_crash_alt_x"
+    },
+    {
+      "english": "[DNT] IceCrashAltY",
+      "korean": "[DNT] IceCrashAltY",
+      "id": "ice_crash_alt_y"
+    },
+    {
+      "english": "Ice Crash",
+      "korean": "얼음 충격",
+      "id": "ice_crash_triggered"
+    },
+    {
+      "english": "Ice Elemental Spear",
+      "korean": "얼음 정령 창",
+      "id": "ice_elemental_spear"
+    },
+    {
+      "english": "Icefire",
+      "korean": "얼음불꽃",
+      "id": "ice_fire"
+    },
+    {
+      "english": "Ice Nova",
+      "korean": "얼음 폭발",
+      "id": "ice_nova"
+    },
+    {
+      "english": "Ice Nova of Frostbolts",
+      "korean": "서리 구체의 얼음 폭발",
+      "id": "ice_nova_alt_x"
+    },
+    {
+      "english": "Ice Nova of Deep Freeze",
+      "korean": "결빙의 얼음 폭발",
+      "id": "ice_nova_alt_y"
+    },
+    {
+      "english": "Ice Nova",
+      "korean": "얼음 폭발",
+      "id": "ice_nova_triggered"
+    },
+    {
+      "english": "Ice Shot",
+      "korean": "얼음 화살",
+      "id": "ice_shot"
+    },
+    {
+      "english": "Ice Shot of Penetration",
+      "korean": "관통의 얼음 화살",
+      "id": "ice_shot_alt_x"
+    },
+    {
+      "english": "[DNT] IceShotAltY",
+      "korean": "[DNT] IceShotAltY",
+      "id": "ice_shot_alt_y"
+    },
+    {
+      "english": "Ice Spear",
+      "korean": "얼음 창",
+      "id": "ice_spear"
+    },
+    {
+      "english": "Ice Spear of Splitting",
+      "korean": "분할의 얼음 창",
+      "id": "ice_spear_alt_x"
+    },
+    {
+      "english": "[DNT] IceSpearAltY",
+      "korean": "[DNT] IceSpearAltY",
+      "id": "ice_spear_alt_y"
+    },
+    {
+      "english": "Ice Trap",
+      "korean": "얼음 덫",
+      "id": "ice_trap"
+    },
+    {
+      "english": "Ice Trap of Hollowness",
+      "korean": "무상의 얼음 덫",
+      "id": "ice_trap_alt_x"
+    },
+    {
+      "english": "[DNT] IceTrapAltY",
+      "korean": "[DNT] IceTrapAltY",
+      "id": "ice_trap_alt_y"
+    },
+    {
+      "english": "Icestorm",
+      "korean": "얼음태풍",
+      "id": "icestorm"
+    },
+    {
+      "english": "Icicle Burst",
+      "korean": "고드름 격발",
+      "id": "icicle_burst"
+    },
+    {
+      "english": "Icicle Mine",
+      "korean": "고드름 지뢰",
+      "id": "icicle_mine"
+    },
+    {
+      "english": "Icicle Mine of Fanning",
+      "korean": "퍼짐의 고드름 지뢰",
+      "id": "icicle_mine_alt_x"
+    },
+    {
+      "english": "Icicle Mine of Sabotage",
+      "korean": "방해 공작의 고드름 지뢰",
+      "id": "icicle_mine_alt_y"
+    },
+    {
+      "english": "Ignite",
+      "korean": "점화",
+      "id": "ignite"
+    },
+    {
+      "english": "Ignition Blast",
+      "korean": "점화 폭발",
+      "id": "ignition_blast"
+    },
+    {
+      "english": "Illusory Warp",
+      "korean": "환상의 차원",
+      "id": "illusory_warp"
+    },
+    {
+      "english": "Immortal Call",
+      "korean": "불멸의 외침",
+      "id": "immortal_call"
+    },
+    {
+      "english": "Immortal Call",
+      "korean": "불멸의 외침",
+      "id": "immortal_call_old"
+    },
+    {
+      "english": "Inca Boss Freezing Pulse",
+      "korean": "잉카 보스 동결 파동",
+      "id": "inca_boss_freezing_pulse"
+    },
+    {
+      "english": "Incinerate",
+      "korean": "소각",
+      "id": "incinerate"
+    },
+    {
+      "english": "Incinerate of Expanse",
+      "korean": "광야의 소각",
+      "id": "incinerate_alt_x"
+    },
+    {
+      "english": "Incinerate of Venting",
+      "korean": "환기의 소각",
+      "id": "incinerate_alt_y"
+    },
+    {
+      "english": "Incinerate",
+      "korean": "소각",
+      "id": "incinerate_channel"
+    },
+    {
+      "english": "Incinerate",
+      "korean": "소각",
+      "id": "incinerate_old"
+    },
+    {
+      "english": "Infernal Blow",
+      "korean": "지옥불 맹타",
+      "id": "infernal_blow"
+    },
+    {
+      "english": "Infernal Blow of Immolation",
+      "korean": "제물의 지옥불 맹타",
+      "id": "infernal_blow_alt_x"
+    },
+    {
+      "english": "[DNT] InfernalBlowAltY",
+      "korean": "[DNT] InfernalBlowAltY",
+      "id": "infernal_blow_alt_y"
+    },
+    {
+      "english": "Infernal Blow",
+      "korean": "지옥불 맹타",
+      "id": "infernal_blow_old"
+    },
+    {
+      "english": "Infernal Cry",
+      "korean": "지옥불 함성",
+      "id": "infernal_cry"
+    },
+    {
+      "english": "Combust",
+      "korean": "발화",
+      "id": "infernal_cry_on_hit_explosion"
+    },
+    {
+      "english": "Wildfire",
+      "korean": "도깨비불",
+      "id": "infernal_swarm"
+    },
+    {
+      "english": "Infernal Sweep",
+      "korean": "지옥불 휩쓸기",
+      "id": "infernal_sweep"
+    },
+    {
+      "english": "[DNT] Old Rallying Cry",
+      "korean": "집결의 함성",
+      "id": "inspiring_cry"
+    },
+    {
+      "english": "Intimidating Cry",
+      "korean": "위협의 함성",
+      "id": "intimidating_cry"
+    },
+    {
+      "english": "Intimidating Cry",
+      "korean": "위협의 함성",
+      "id": "intimidating_cry_triggered"
+    },
+    {
+      "english": "Intuitive Link",
+      "korean": "직관의 연결",
+      "id": "intuitive_link"
+    },
+    {
+      "english": "Elemental Weakness",
+      "korean": "원소 약화",
+      "id": "izaro_elemental_weakness"
+    },
+    {
+      "english": "Temporal Chains",
+      "korean": "시간의 사슬",
+      "id": "izaro_temporal_chains"
+    },
+    {
+      "english": "Vulnerability",
+      "korean": "취약성",
+      "id": "izaro_vulnerability"
+    },
+    {
+      "english": "Izaro Warp",
+      "korean": "이자로의 차원",
+      "id": "izaro_warp"
+    },
+    {
+      "english": "Kill",
+      "korean": "살상",
+      "id": "kill"
+    },
+    {
+      "english": "Kinetic Blast",
+      "korean": "역학 폭발",
+      "id": "kinetic_blast"
+    },
+    {
+      "english": "Kinetic Blast of Clustering",
+      "korean": "군집의 역학 폭발",
+      "id": "kinetic_blast_alt_x"
+    },
+    {
+      "english": "[DNT] KineticBlastAltY",
+      "korean": "[DNT] KineticBlastAltY",
+      "id": "kinetic_blast_alt_y"
+    },
+    {
+      "english": "Kinetic Bolt",
+      "korean": "역학 투사체",
+      "id": "kinetic_bolt"
+    },
+    {
+      "english": "Kinetic Bolt of Fragmentation",
+      "korean": "파쇄의 역학 투사체",
+      "id": "kinetic_bolt_alt_x"
+    },
+    {
+      "english": "[DNT] KineticBoltAltY",
+      "korean": "[DNT] KineticBoltAltY",
+      "id": "kinetic_bolt_alt_y"
+    },
+    {
+      "english": "Kinetic Fusillade",
+      "korean": "역학 일제 사격",
+      "id": "kinetic_fusillade"
+    },
+    {
+      "english": "Kinetic Fusillade of Detonation",
+      "korean": "기폭의 역학 일제 사격",
+      "id": "kinetic_fusillade_alt_x"
+    },
+    {
+      "english": "Kinetic Rain",
+      "korean": "역학 비",
+      "id": "kinetic_rain"
+    },
+    {
+      "english": "Kinetic Rain of Impact",
+      "korean": "충격의 역학 비",
+      "id": "kinetic_rain_alt_x"
+    },
+    {
+      "english": "Kinetic Anomaly",
+      "korean": "역학 이형",
+      "id": "kinetic_rain_kinetic_instability"
+    },
+    {
+      "english": "Somatic Shell",
+      "korean": "신체의 껍질",
+      "id": "kinetic_shell"
+    },
+    {
+      "english": "Rain Of Blades",
+      "korean": "칼날의 비",
+      "id": "labyrinth_boss_rain_of_blades"
+    },
+    {
+      "english": "Lacerate",
+      "korean": "피부 찢기",
+      "id": "lacerate"
+    },
+    {
+      "english": "Lacerate of Butchering",
+      "korean": "도살의 피부 찢기",
+      "id": "lacerate_alt_x"
+    },
+    {
+      "english": "Lacerate of Haemorrhage",
+      "korean": "실혈의 피부 찢기",
+      "id": "lacerate_alt_y"
+    },
+    {
+      "english": "Lancing Steel",
+      "korean": "강철 관통",
+      "id": "lancing_steel"
+    },
+    {
+      "english": "Lancing Steel",
+      "korean": "강철 관통",
+      "id": "lancing_steel_new"
+    },
+    {
+      "english": "Lancing Steel of Spraying",
+      "korean": "분사의 강철 관통",
+      "id": "lancing_steel_new_alt_x"
+    },
+    {
+      "english": "[DNT] LancingSteelAltY",
+      "korean": "[DNT] LancingSteelAltY",
+      "id": "lancing_steel_new_alt_y"
+    },
+    {
+      "english": "Leap Slam",
+      "korean": "도약 강타",
+      "id": "leap_slam"
+    },
+    {
+      "english": "Leap Slam of Groundbreaking",
+      "korean": "땅 분쇄의 도약 강타",
+      "id": "leap_slam_alt_x"
+    },
+    {
+      "english": "[DNT] LeapSlamAltY",
+      "korean": "[DNT] LeapSlamAltY",
+      "id": "leap_slam_alt_y"
+    },
+    {
+      "english": "Leap Slam",
+      "korean": "도약 강타",
+      "id": "leap_slam_behind"
+    },
+    {
+      "english": "Leap Slam",
+      "korean": "도약 강타",
+      "id": "leap_slam_cooldown"
+    },
+    {
+      "english": "Lightning Arrow",
+      "korean": "번개 화살",
+      "id": "lightning_arrow"
+    },
+    {
+      "english": "Lightning Arrow of Electrocution",
+      "korean": "전기 처형의 번개 화살",
+      "id": "lightning_arrow_alt_x"
+    },
+    {
+      "english": "[DNT] LightningArrowAltY",
+      "korean": "[DNT] LightningArrowAltY",
+      "id": "lightning_arrow_alt_y"
+    },
+    {
+      "english": "...",
+      "korean": "...",
+      "id": "lightning_channel"
+    },
+    {
+      "english": "...",
+      "korean": "...",
+      "id": "lightning_circle"
+    },
+    {
+      "english": "Lightning Clone Retaliation",
+      "korean": "번개 분신 보복",
+      "id": "lightning_clone_retaliation"
+    },
+    {
+      "english": "Lightning Conduit",
+      "korean": "번개 도관",
+      "id": "lightning_conduit"
+    },
+    {
+      "english": "Lightning Conduit of the Heavens",
+      "korean": "천국의 번개 도관",
+      "id": "lightning_conduit_alt_x"
+    },
+    {
+      "english": "[DNT] LightningConduitAltY",
+      "korean": "[DNT] LightningConduitAltY",
+      "id": "lightning_conduit_alt_y"
+    },
+    {
+      "english": "Lightning Strike",
+      "korean": "번개 타격",
+      "id": "lightning_strike"
+    },
+    {
+      "english": "Lightning Strike of Arcing",
+      "korean": "전호의 번개 타격",
+      "id": "lightning_strike_alt_x"
+    },
+    {
+      "english": "[DNT] LightningStrikeAltY",
+      "korean": "[DNT] LightningStrikeAltY",
+      "id": "lightning_strike_alt_y"
+    },
+    {
+      "english": "Lightning Tendrils",
+      "korean": "덩굴 번개",
+      "id": "lightning_tendrils"
+    },
+    {
+      "english": "Lightning Tendrils of Eccentricity",
+      "korean": "기행의 덩굴 번개",
+      "id": "lightning_tendrils_alt_x"
+    },
+    {
+      "english": "Lightning Tendrils of Escalation",
+      "korean": "격화의 덩굴 번개",
+      "id": "lightning_tendrils_alt_y"
+    },
+    {
+      "english": "Lightning Tendrils",
+      "korean": "덩굴 번개",
+      "id": "lightning_tendrils_old"
+    },
+    {
+      "english": "Lightning Spire Trap",
+      "korean": "번개 첨탑 덫",
+      "id": "lightning_tower_trap"
+    },
+    {
+      "english": "Lightning Spire Trap of Zapping",
+      "korean": "전류의 번개 첨탑 덫",
+      "id": "lightning_tower_trap_alt_x"
+    },
+    {
+      "english": "Lightning Spire Trap of Overloading",
+      "korean": "과부하의 번개 첨탑 덫",
+      "id": "lightning_tower_trap_alt_y"
+    },
+    {
+      "english": "Lightning Trap",
+      "korean": "번개 덫",
+      "id": "lightning_trap"
+    },
+    {
+      "english": "Lightning Trap of Sparking",
+      "korean": "전기불꽃의 번개 덫",
+      "id": "lightning_trap_alt_x"
+    },
+    {
+      "english": "[DNT] LightningTrapAltY",
+      "korean": "[DNT] LightningTrapAltY",
+      "id": "lightning_trap_alt_y"
+    },
+    {
+      "english": "Lightning Warp",
+      "korean": "번개 차원 이동",
+      "id": "lightning_warp"
+    },
+    {
+      "english": "[DNT] LightningWarpAltX",
+      "korean": "[DNT] LightningWarpAltX",
+      "id": "lightning_warp_alt_x"
+    },
+    {
+      "english": "[DNT] LightningWarpAltY",
+      "korean": "[DNT] LightningWarpAltY",
+      "id": "lightning_warp_alt_y"
+    },
+    {
+      "english": "Living Lightning Zap",
+      "korean": "살아 있는 번개 전류",
+      "id": "living_lightning_zap"
+    },
+    {
+      "english": "Malevolence",
+      "korean": "악의",
+      "id": "malevolence"
+    },
+    {
+      "english": "Mana-Infused Staff",
+      "korean": "마나 주입 지팡이",
+      "id": "mana_infused_staff"
+    },
+    {
+      "english": "Manabond",
+      "korean": "마나 결속",
+      "id": "manabond"
+    },
+    {
+      "english": "[DNT] ManabondAltX",
+      "korean": "[DNT] ManabondAltX",
+      "id": "manabond_alt_x"
+    },
+    {
+      "english": "[DNT] ManabondAltY",
+      "korean": "[DNT] ManabondAltY",
+      "id": "manabond_alt_y"
+    },
+    {
+      "english": "Manifest Dancing Dervishes",
+      "korean": "춤추는 수도승 출현",
+      "id": "manifest_dancing_dervishes"
+    },
+    {
+      "english": "Command Graft",
+      "korean": "기생체에게 명령",
+      "id": "manual_graft_trigger"
+    },
+    {
+      "english": "Default Attack",
+      "korean": "기본 공격",
+      "id": "melee"
+    },
+    {
+      "english": "Affliction",
+      "korean": "고난",
+      "id": "minion_sacrifice"
+    },
+    {
+      "english": "Return to Mirage Portal",
+      "korean": "허상 포탈로 돌아가기",
+      "id": "mirage_portal_return"
+    },
+    {
+      "english": "Mirror Arrow",
+      "korean": "거울 화살",
+      "id": "mirror_arrow"
+    },
+    {
+      "english": "Mirror Arrow of Bombarding Clones",
+      "korean": "포격 분신의 거울 화살",
+      "id": "mirror_arrow_alt_x"
+    },
+    {
+      "english": "Mirror Arrow of Prismatic Clones",
+      "korean": "분광 분신의 거울 화살",
+      "id": "mirror_arrow_alt_y"
+    },
+    {
+      "english": "Mirror Arrow",
+      "korean": "거울 화살",
+      "id": "mirror_arrow_triggered"
+    },
+    {
+      "english": "Misty Reflection",
+      "korean": "연무의 투영",
+      "id": "misty_reflection"
+    },
+    {
+      "english": "Molten Burst",
+      "korean": "마그마 폭발",
+      "id": "molten_burst"
+    },
+    {
+      "english": "Molten Shell",
+      "korean": "용암 방패",
+      "id": "molten_shell"
+    },
+    {
+      "english": "Molten Shell",
+      "korean": "용암 방패",
+      "id": "molten_shell_monster"
+    },
+    {
+      "english": "Molten Strike",
+      "korean": "용암 타격",
+      "id": "molten_strike"
+    },
+    {
+      "english": "Molten Strike of the Zenith",
+      "korean": "북극성의 용암 타격",
+      "id": "molten_strike_alt_x"
+    },
+    {
+      "english": "[DNT] MoltenStrikeAltY",
+      "korean": "[DNT] MoltenStrikeAltY",
+      "id": "molten_strike_alt_y"
+    },
+    {
+      "english": "Arctic Armour",
+      "korean": "한기의 방어구",
+      "id": "monster_arctic_armour_trigger"
+    },
+    {
+      "english": "Increased Damage Taken Aura",
+      "korean": "피해 증가의 오라",
+      "id": "monster_aura_increased_damage_taken"
+    },
+    {
+      "english": "Physical Degeneration Aura",
+      "korean": "신체 퇴화의 오라",
+      "id": "monster_aura_physical_degeneration"
+    },
+    {
+      "english": "Slow Aura",
+      "korean": "감속의 오라",
+      "id": "monster_aura_slow"
+    },
+    {
+      "english": "Damage On Movement Skill Use Aura",
+      "korean": "이동 스킬 사용 시 피해의 오라",
+      "id": "monster_aura_take_damage_on_movement_skill_use"
+    },
+    {
+      "english": "Bleed Nova",
+      "korean": "출혈 폭발",
+      "id": "monster_bleed_nova"
+    },
+    {
+      "english": "Flask Charge Nova",
+      "korean": "플라스크 충전 폭발",
+      "id": "monster_flask_charge_nova"
+    },
+    {
+      "english": "Frenzy",
+      "korean": "격분",
+      "id": "monster_frenzy"
+    },
+    {
+      "english": "Puncture",
+      "korean": "관통상",
+      "id": "monster_puncture"
+    },
+    {
+      "english": "Vaal Molten Shell",
+      "korean": "바알 용암 방패",
+      "id": "monster_vaal_molten_shell"
+    },
+    {
+      "english": "Mortar",
+      "korean": "박격포",
+      "id": "mortar_with_ground_effects"
+    },
+    {
+      "english": "Flip a coin",
+      "korean": "동전 던지기",
+      "id": "mtx_coin_flip"
+    },
+    {
+      "english": "Mark as prey",
+      "korean": "사냥감 징표 찍기",
+      "id": "mtx_command_cruelty_killer_bird"
+    },
+    {
+      "english": "Set Shark Bait",
+      "korean": "상어 미끼 설정",
+      "id": "mtx_command_land_shark_pet"
+    },
+    {
+      "english": "Mesmerize",
+      "korean": "현혹",
+      "id": "mtx_command_pied_piper_pet"
+    },
+    {
+      "english": "[DNT] mtx_cruelty_killer_bird_consume",
+      "korean": "[DNT] mtx_cruelty_killer_bird_consume",
+      "id": "mtx_cruelty_killer_bird_consume"
+    },
+    {
+      "english": "Direct Ants",
+      "korean": "개미 이동",
+      "id": "mtx_direct_line_of_ants"
+    },
+    {
+      "english": "Assume Disguise",
+      "korean": "위장",
+      "id": "mtx_disguise"
+    },
+    {
+      "english": "Jet of Flame",
+      "korean": "화염 분출",
+      "id": "mtx_flamethrower"
+    },
+    {
+      "english": "Who's a Good Doggy?",
+      "korean": "오구오구, 우리 예쁜 댕댕이!",
+      "id": "mtx_hunting_dog_pet"
+    },
+    {
+      "english": "Play Dead!",
+      "korean": "빵야!",
+      "id": "mtx_hunting_dog_play_dead"
+    },
+    {
+      "english": "Roll Over!",
+      "korean": "굴러!",
+      "id": "mtx_hunting_dog_roll_over"
+    },
+    {
+      "english": "Sit!",
+      "korean": "앉아!",
+      "id": "mtx_hunting_dog_sit"
+    },
+    {
+      "english": "Transform into Mimic",
+      "korean": "흉내쟁이로 변화",
+      "id": "mtx_mimic_transform"
+    },
+    {
+      "english": "Fury of the Awakener",
+      "korean": "각성자의 광분",
+      "id": "mtx_player_die_beam"
+    },
+    {
+      "english": "Polymorph",
+      "korean": "변신",
+      "id": "mtx_polymorph_player"
+    },
+    {
+      "english": "Summon Barrel",
+      "korean": "통 소환",
+      "id": "mtx_raccoon_trash"
+    },
+    {
+      "english": "Arm Whack",
+      "korean": "팔 후려치기",
+      "id": "mtx_severed_arm_slap"
+    },
+    {
+      "english": "Conflagration",
+      "korean": "연소 화재",
+      "id": "napalm_arrows"
+    },
+    {
+      "english": "Blade Vortex",
+      "korean": "칼날 소용돌이",
+      "id": "new_blade_vortex"
+    },
+    {
+      "english": "Shield Charge",
+      "korean": "방패 돌진",
+      "id": "new_shield_charge"
+    },
+    {
+      "english": "Flammable Shot",
+      "korean": "가연성 사격",
+      "id": "oil_arrow"
+    },
+    {
+      "english": "Orb of Storms",
+      "korean": "폭풍 보주",
+      "id": "orb_of_storms"
+    },
+    {
+      "english": "Orb of Storms of Squalls",
+      "korean": "돌풍의 폭풍 보주",
+      "id": "orb_of_storms_alt_x"
+    },
+    {
+      "english": "[DNT] OrbOfStormsAltY",
+      "korean": "[DNT] OrbOfStormsAltY",
+      "id": "orb_of_storms_alt_y"
+    },
+    {
+      "english": "Pacify",
+      "korean": "진정",
+      "id": "pacify"
+    },
+    {
+      "english": "Pact of Beidat",
+      "korean": "베이다트의 맹약",
+      "id": "pact_of_beidat"
+    },
+    {
+      "english": "Pact of Ghorr",
+      "korean": "고르의 맹약",
+      "id": "pact_of_ghorr"
+    },
+    {
+      "english": "Pact of K'Tash",
+      "korean": "크타쉬의 맹약",
+      "id": "pact_of_ktash"
+    },
+    {
+      "english": "Pact of Lycia",
+      "korean": "리키아의 맹약",
+      "id": "pact_of_lycia"
+    },
+    {
+      "english": "Penance Brand",
+      "korean": "속죄의 낙인",
+      "id": "penance_brand"
+    },
+    {
+      "english": "Penance Brand of Dissipation",
+      "korean": "소실의 속죄의 낙인",
+      "id": "penance_brand_alt_x"
+    },
+    {
+      "english": "Penance Brand of Conduction",
+      "korean": "전도의 속죄의 낙인",
+      "id": "penance_brand_alt_y"
+    },
+    {
+      "english": "Penance Mark",
+      "korean": "속죄의 징표",
+      "id": "penance_mark"
+    },
+    {
+      "english": "Perforate",
+      "korean": "천공",
+      "id": "perforate"
+    },
+    {
+      "english": "Perforate of Duality",
+      "korean": "이중성의 천공",
+      "id": "perforate_alt_x"
+    },
+    {
+      "english": "Perforate of Bloodshed",
+      "korean": "유혈의 천공",
+      "id": "perforate_alt_y"
+    },
+    {
+      "english": "Pestilent Strike",
+      "korean": "전염성 일격",
+      "id": "pestilent_strike"
+    },
+    {
+      "english": "[DNT] PestilentStrikeAltX",
+      "korean": "[DNT] PestilentStrikeAltX",
+      "id": "pestilent_strike_alt_x"
+    },
+    {
+      "english": "[DNT] PestilentStrikeAltY",
+      "korean": "[DNT] PestilentStrikeAltY",
+      "id": "pestilent_strike_alt_y"
+    },
+    {
+      "english": "Petrified Blood",
+      "korean": "피 석화",
+      "id": "petrified_blood"
+    },
+    {
+      "english": "Phase Run",
+      "korean": "위상 질주",
+      "id": "phase_run"
+    },
+    {
+      "english": "Phase Run",
+      "korean": "위상 질주",
+      "id": "phase_run_old"
+    },
+    {
+      "english": "Physical Projectile Retaliation",
+      "korean": "물리 투사체 보복",
+      "id": "physical_projectile_retaliation"
+    },
+    {
+      "english": "Piety Beam",
+      "korean": "파이어티 광선",
+      "id": "piety_ally_beam"
+    },
+    {
+      "english": "Piety Reverse Cleave",
+      "korean": "파이어티 역회전베기",
+      "id": "piety_reverse_cleave"
+    },
+    {
+      "english": "Plague",
+      "korean": "역병",
+      "id": "plague"
+    },
+    {
+      "english": "Plague Bearer",
+      "korean": "독성 운반자",
+      "id": "plague_bearer"
+    },
+    {
+      "english": "Glacial Cascade",
+      "korean": "빙하 폭포",
+      "id": "player_glacial_cascade"
+    },
+    {
+      "english": "Glacial Cascade of the Fissure",
+      "korean": "균열의 빙하 폭포",
+      "id": "player_glacial_cascade_alt_x"
+    },
+    {
+      "english": "[DNT] GlacialCascadeAltY",
+      "korean": "[DNT] GlacialCascadeAltY",
+      "id": "player_glacial_cascade_alt_y"
+    },
+    {
+      "english": "Playtest Attack",
+      "korean": "테스트용 공격",
+      "id": "playtest_attack"
+    },
+    {
+      "english": "Playtest Slam",
+      "korean": "테스트용 강타",
+      "id": "playtest_slam"
+    },
+    {
+      "english": "Playtest Spell",
+      "korean": "테스트용 주문",
+      "id": "playtest_spell"
+    },
+    {
+      "english": "Poacher's Mark",
+      "korean": "밀렵꾼의 징표",
+      "id": "poachers_mark"
+    },
+    {
+      "english": "Poacher's Mark",
+      "korean": "밀렵꾼의 징표",
+      "id": "poachers_mark_triggered"
+    },
+    {
+      "english": "Poisonous Concoction",
+      "korean": "독성 혼합물",
+      "id": "poisonous_concoction"
+    },
+    {
+      "english": "Poisonous Concoction of Bouncing",
+      "korean": "반동의 독성 혼합물",
+      "id": "poisonous_concoction_alt_x"
+    },
+    {
+      "english": "[DNT] PoisonousConcoctionAltY",
+      "korean": "[DNT] PoisonousConcoctionAltY",
+      "id": "poisonous_concoction_alt_y"
+    },
+    {
+      "english": "Power Siphon",
+      "korean": "권능 착취",
+      "id": "power_siphon"
+    },
+    {
+      "english": "Power Siphon of the Archmage",
+      "korean": "대마법사의 권능 착취",
+      "id": "power_siphon_alt_x"
+    },
+    {
+      "english": "[DNT] PowerSiphonAltY",
+      "korean": "[DNT] PowerSiphonAltY",
+      "id": "power_siphon_alt_y"
+    },
+    {
+      "english": "Precision",
+      "korean": "정밀함",
+      "id": "precision"
+    },
+    {
+      "english": "Pride",
+      "korean": "자부심",
+      "id": "pride"
+    },
+    {
+      "english": "Prismatic Burst",
+      "korean": "분광 격발",
+      "id": "prismatic_burst"
+    },
+    {
+      "english": "[UNUSED] Projectile Portal",
+      "korean": "[DNT] Projectile Portal",
+      "id": "projectile_portal"
+    },
+    {
+      "english": "Protective Link",
+      "korean": "보호의 연결",
+      "id": "protective_link"
+    },
+    {
+      "english": "Puncture",
+      "korean": "관통상",
+      "id": "puncture"
+    },
+    {
+      "english": "Puncture of Shanking",
+      "korean": "들이꽂는 관통상",
+      "id": "puncture_alt_x"
+    },
+    {
+      "english": "[DNT] PunctureAltY",
+      "korean": "[DNT] PunctureAltY",
+      "id": "puncture_alt_y"
+    },
+    {
+      "english": "Punishment",
+      "korean": "응징",
+      "id": "punishment"
+    },
+    {
+      "english": "Purifying Flame",
+      "korean": "정화의 불길",
+      "id": "purifying_flame"
+    },
+    {
+      "english": "Purifying Flame of Revelations",
+      "korean": "계시의 정화의 불길",
+      "id": "purifying_flame_alt_x"
+    },
+    {
+      "english": "[DNT] SanctifyAltY",
+      "korean": "[DNT] SanctifyAltY",
+      "id": "purifying_flame_alt_y"
+    },
+    {
+      "english": "Purity of Elements",
+      "korean": "원소의 순수함",
+      "id": "purity_of_elements"
+    },
+    {
+      "english": "Purity of Fire",
+      "korean": "불의 순수함",
+      "id": "purity_of_fire"
+    },
+    {
+      "english": "Purity of Ice",
+      "korean": "얼음의 순수함",
+      "id": "purity_of_ice"
+    },
+    {
+      "english": "Purity of Lightning",
+      "korean": "번개의 순수함",
+      "id": "purity_of_lightning"
+    },
+    {
+      "english": "Pyroclast Mine",
+      "korean": "화산탄 지뢰",
+      "id": "pyroclast_mine"
+    },
+    {
+      "english": "Pyroclast Mine of Sabotage",
+      "korean": "방해 공작의 화산탄 지뢰",
+      "id": "pyroclast_mine_alt_x"
+    },
+    {
+      "english": "[DNT] FireNovaMineAltY",
+      "korean": "[DNT] FireNovaMineAltY",
+      "id": "pyroclast_mine_alt_y"
+    },
+    {
+      "english": "Queen's Demand",
+      "korean": "여왕의 요구",
+      "id": "queens_demand"
+    },
+    {
+      "english": "[UNUSED] Quick Block  (NOT CURRENTLY USED)",
+      "korean": "빠른 막기",
+      "id": "quick_block"
+    },
+    {
+      "english": "Rage Vortex",
+      "korean": "격노 소용돌이",
+      "id": "rage_vortex"
+    },
+    {
+      "english": "Rage Vortex of Berserking",
+      "korean": "광폭화의 격노 소용돌이",
+      "id": "rage_vortex_alt_x"
+    },
+    {
+      "english": "[DNT] RageVortexAltY",
+      "korean": "[DNT] RageVortexAltY",
+      "id": "rage_vortex_alt_y"
+    },
+    {
+      "english": "Rain of Arrows",
+      "korean": "화살비",
+      "id": "rain_of_arrows"
+    },
+    {
+      "english": "Rain of Arrows of Artillery",
+      "korean": "포대의 화살비",
+      "id": "rain_of_arrows_alt_x"
+    },
+    {
+      "english": "Rain of Arrows of Saturation",
+      "korean": "포화의 화살비",
+      "id": "rain_of_arrows_alt_y"
+    },
+    {
+      "english": "Rain of Arrows",
+      "korean": "화살비",
+      "id": "rain_of_arrows_old"
+    },
+    {
+      "english": "Rain of Arrows",
+      "korean": "화살비",
+      "id": "rain_of_arrows_triggered"
+    },
+    {
+      "english": "Raise Spectre",
+      "korean": "망령 소환",
+      "id": "raise_spectre"
+    },
+    {
+      "english": "Raise Spectre of Transience",
+      "korean": "덧없음의 망령 소환",
+      "id": "raise_spectre_alt_x"
+    },
+    {
+      "english": "[DNT] RaiseSpectreAltY",
+      "korean": "[DNT] RaiseSpectreAltY",
+      "id": "raise_spectre_alt_y"
+    },
+    {
+      "english": "Raise Spiders",
+      "korean": "거미 소환",
+      "id": "raise_spiders"
+    },
+    {
+      "english": "Raise Zombie",
+      "korean": "좀비 소환",
+      "id": "raise_zombie"
+    },
+    {
+      "english": "Raise Zombie of Slamming",
+      "korean": "강타의 좀비 소환",
+      "id": "raise_zombie_alt_x"
+    },
+    {
+      "english": "Raise Zombie of Falling",
+      "korean": "추락의 좀비 소환",
+      "id": "raise_zombie_alt_y"
+    },
+    {
+      "english": "Rallying Cry",
+      "korean": "집결의 함성",
+      "id": "rallying_cry"
+    },
+    {
+      "english": "Range Finder",
+      "korean": "범위 탐지기",
+      "id": "range_finder"
+    },
+    {
+      "english": "Ravenous",
+      "korean": "굶주림",
+      "id": "ravenous"
+    },
+    {
+      "english": "Reap",
+      "korean": "낫질",
+      "id": "reap"
+    },
+    {
+      "english": "Reap of Butchery",
+      "korean": "도살의 낫질",
+      "id": "reap_alt_x"
+    },
+    {
+      "english": "[DNT] BloodreapAltY",
+      "korean": "[DNT] BloodreapAltY",
+      "id": "reap_alt_y"
+    },
+    {
+      "english": "Reave",
+      "korean": "약탈",
+      "id": "reave"
+    },
+    {
+      "english": "Reave of Refraction",
+      "korean": "굴절의 약탈",
+      "id": "reave_alt_x"
+    },
+    {
+      "english": "[DNT] ReaveAltY",
+      "korean": "[DNT] ReaveAltY",
+      "id": "reave_alt_y"
+    },
+    {
+      "english": "Reckoning",
+      "korean": "역습",
+      "id": "reckoning"
+    },
+    {
+      "english": "Rejuvenation Totem",
+      "korean": "회복 토템",
+      "id": "rejuvenation_totem"
+    },
+    {
+      "english": "Rending Steel (NOT CURRENTLY USED)",
+      "korean": "강철 분리 (현재 사용되지 않음)",
+      "id": "rending_steel"
+    },
+    {
+      "english": "[UNUSED] Replicate  (NOT CURRENTLY USED)",
+      "korean": "복제",
+      "id": "replicate"
+    },
+    {
+      "english": "Cinders",
+      "korean": "잉걸",
+      "id": "resentment"
+    },
+    {
+      "english": "Ceaseless Flesh",
+      "korean": "끊임없는 살점",
+      "id": "restless_dead"
+    },
+    {
+      "english": "[DNT] Retaliation Swords",
+      "korean": "[DNT] Retaliation Swords",
+      "id": "retaliation_swords"
+    },
+    {
+      "english": "Righteous Fire",
+      "korean": "정의의 화염",
+      "id": "righteous_fire"
+    },
+    {
+      "english": "Righteous Fire of Arcane Devotion",
+      "korean": "비전 헌신의 정의의 화염",
+      "id": "righteous_fire_alt_x"
+    },
+    {
+      "english": "[DNT] RighteousFireAltY",
+      "korean": "[DNT] RighteousFireAltY",
+      "id": "righteous_fire_alt_y"
+    },
+    {
+      "english": "Righteous Lightning",
+      "korean": "정의의 번개",
+      "id": "righteous_lightning"
+    },
+    {
+      "english": "Riposte",
+      "korean": "반격",
+      "id": "riposte"
+    },
+    {
+      "english": "Riptide",
+      "korean": "역류",
+      "id": "riptide"
+    },
+    {
+      "english": "Rolling Magma",
+      "korean": "몰려오는 마그마",
+      "id": "rolling_magma"
+    },
+    {
+      "english": "[DNT] MagmaOrbAltX",
+      "korean": "[DNT] MagmaOrbAltX",
+      "id": "rolling_magma_alt_x"
+    },
+    {
+      "english": "[DNT] MagmaOrbAltY",
+      "korean": "[DNT] MagmaOrbAltY",
+      "id": "rolling_magma_alt_y"
+    },
+    {
+      "english": "Rune Blast",
+      "korean": "룬 폭발",
+      "id": "rune_blast"
+    },
+    {
+      "english": "Rune Blast of Teleportation",
+      "korean": "순간이동의 룬 폭발",
+      "id": "rune_blast_alt_x"
+    },
+    {
+      "english": "Scorching Ray",
+      "korean": "작열 광선",
+      "id": "scorching_ray"
+    },
+    {
+      "english": "Scorching Ray of Immolation",
+      "korean": "제물의 작열 광선",
+      "id": "scorching_ray_alt_x"
+    },
+    {
+      "english": "[DNT] FireBeamAltY",
+      "korean": "[DNT] FireBeamAltY",
+      "id": "scorching_ray_alt_y"
+    },
+    {
+      "english": "Scourge Arrow",
+      "korean": "재앙의 화살",
+      "id": "scourge_arrow"
+    },
+    {
+      "english": "Scourge Arrow of Menace",
+      "korean": "위험의 재앙의 화살",
+      "id": "scourge_arrow_alt_x"
+    },
+    {
+      "english": "[DNT] ScourgeArrowAltY",
+      "korean": "[DNT] ScourgeArrowAltY",
+      "id": "scourge_arrow_alt_y"
+    },
+    {
+      "english": "Searing Bond",
+      "korean": "불타는 굴레",
+      "id": "searing_bond"
+    },
+    {
+      "english": "Searing Bond of Detonation",
+      "korean": "기폭의 불타는 굴레",
+      "id": "searing_bond_alt_x"
+    },
+    {
+      "english": "[DNT] SearingBondAltY",
+      "korean": "[DNT] SearingBondAltY",
+      "id": "searing_bond_alt_y"
+    },
+    {
+      "english": "Seismic Cry",
+      "korean": "지진 함성",
+      "id": "seismic_cry"
+    },
+    {
+      "english": "Seismic Trap",
+      "korean": "지진 덫",
+      "id": "seismic_trap"
+    },
+    {
+      "english": "Seismic Trap of Swells",
+      "korean": "팽창의 지진 덫",
+      "id": "seismic_trap_alt_x"
+    },
+    {
+      "english": "[DNT] PhysCascadeTrapAltY",
+      "korean": "[DNT] PhysCascadeTrapAltY",
+      "id": "seismic_trap_alt_y"
+    },
+    {
+      "english": "Seize the Flesh",
+      "korean": "살점 붙잡기",
+      "id": "seize_the_flesh"
+    },
+    {
+      "english": "[UNUSED] DISCONTINUED",
+      "korean": "[DNT] DISCONTINUED",
+      "id": "serpent_strike"
+    },
+    {
+      "english": "Shade Form",
+      "korean": "그림자 형상",
+      "id": "shade_form"
+    },
+    {
+      "english": "Shadow Blades",
+      "korean": "어둠의 칼날",
+      "id": "shadow_blades"
+    },
+    {
+      "english": "Ethereal Knives",
+      "korean": "천상의 단도",
+      "id": "shadow_projectiles_no_los"
+    },
+    {
+      "english": "Shaper's Ire",
+      "korean": "쉐이퍼의 진노",
+      "id": "shaper_beam"
+    },
+    {
+      "english": "Shaper's Despair",
+      "korean": "쉐이퍼의 절망",
+      "id": "shaper_projectile"
+    },
+    {
+      "english": "Shaper's Devastation",
+      "korean": "쉐이퍼의 유린",
+      "id": "shaper_teleport_slam"
+    },
+    {
+      "english": "Shattering Steel",
+      "korean": "강철 파편",
+      "id": "shattering_steel"
+    },
+    {
+      "english": "Shattering Steel of Ammunition",
+      "korean": "탄약의 강철 파편",
+      "id": "shattering_steel_alt_x"
+    },
+    {
+      "english": "[DNT] ShatteringSteelAltY",
+      "korean": "[DNT] ShatteringSteelAltY",
+      "id": "shattering_steel_alt_y"
+    },
+    {
+      "english": "Shield Charge",
+      "korean": "방패 돌진",
+      "id": "shield_charge"
+    },
+    {
+      "english": "[DNT] ShieldChargeAltX",
+      "korean": "[DNT] ShieldChargeAltX",
+      "id": "shield_charge_alt_x"
+    },
+    {
+      "english": "[DNT] ShieldChargeAltY",
+      "korean": "[DNT] ShieldChargeAltY",
+      "id": "shield_charge_alt_y"
+    },
+    {
+      "english": "Shield Charge",
+      "korean": "방패 돌진",
+      "id": "shield_charge_cooldown"
+    },
+    {
+      "english": "Shield Charge",
+      "korean": "방패 돌진",
+      "id": "shield_charge_old"
+    },
+    {
+      "english": "Shield Crush",
+      "korean": "방패 타쇄",
+      "id": "shield_crush"
+    },
+    {
+      "english": "Shield Crush of the Chieftain",
+      "korean": "부족장의 방패 타쇄",
+      "id": "shield_crush_alt_x"
+    },
+    {
+      "english": "[DNT] ShieldCrushAltY",
+      "korean": "[DNT] ShieldCrushAltY",
+      "id": "shield_crush_alt_y"
+    },
+    {
+      "english": "Shield of Light",
+      "korean": "빛의 방패",
+      "id": "shield_of_light"
+    },
+    {
+      "english": "Shield Shatter",
+      "korean": "방패 파괴",
+      "id": "shield_shatter"
+    },
+    {
+      "english": "Shock Ground",
+      "korean": "충격 지면",
+      "id": "shock_ground"
+    },
+    {
+      "english": "Shock Ground",
+      "korean": "충격 지면",
+      "id": "shock_ground_on_hit"
+    },
+    {
+      "english": "Shock Nova",
+      "korean": "충격 폭발",
+      "id": "shock_nova"
+    },
+    {
+      "english": "Shock Nova of Procession",
+      "korean": "행진의 충격 폭발",
+      "id": "shock_nova_alt_x"
+    },
+    {
+      "english": "[DNT] ShockNovaAltY",
+      "korean": "[DNT] ShockNovaAltY",
+      "id": "shock_nova_alt_y"
+    },
+    {
+      "english": "Shock Nova",
+      "korean": "충격 폭발",
+      "id": "shock_nova_monster"
+    },
+    {
+      "english": "Shockwave Totem",
+      "korean": "충격파 토템",
+      "id": "shockwave_totem"
+    },
+    {
+      "english": "Shockwave Totem of Authority",
+      "korean": "권위의 충격파 토템",
+      "id": "shockwave_totem_alt_x"
+    },
+    {
+      "english": "[DNT] ShockwaveTotemAltY",
+      "korean": "[DNT] ShockwaveTotemAltY",
+      "id": "shockwave_totem_alt_y"
+    },
+    {
+      "english": "Shrapnel Ballista",
+      "korean": "파편 쇠뇌",
+      "id": "shrapnel_ballista"
+    },
+    {
+      "english": "Shrapnel Ballista of Steel",
+      "korean": "강철의 파편 쇠뇌",
+      "id": "shrapnel_ballista_alt_x"
+    },
+    {
+      "english": "[DNT] ShrapnelBallistaAltY",
+      "korean": "[DNT] ShrapnelBallistaAltY",
+      "id": "shrapnel_ballista_alt_y"
+    },
+    {
+      "english": "Siege Ballista",
+      "korean": "공성 쇠뇌",
+      "id": "siege_ballista"
+    },
+    {
+      "english": "Siege Ballista of Splintering",
+      "korean": "파편의 공성 쇠뇌",
+      "id": "siege_ballista_alt_x"
+    },
+    {
+      "english": "Siege Ballista of Trarthus",
+      "korean": "트라투스의 공성 쇠뇌",
+      "id": "siege_ballista_alt_y"
+    },
+    {
+      "english": "Sigil of Power",
+      "korean": "힘의 부적",
+      "id": "sigil_of_power"
+    },
+    {
+      "english": "Signal Prey",
+      "korean": "사냥감 신호",
+      "id": "signal_prey"
+    },
+    {
+      "english": "Siphoning Trap",
+      "korean": "착취 덫",
+      "id": "siphoning_trap"
+    },
+    {
+      "english": "Siphoning Trap of Pain",
+      "korean": "고통의 착취 덫",
+      "id": "siphoning_trap_alt_x"
+    },
+    {
+      "english": "[DNT] IceSiphonTrapAltY",
+      "korean": "[DNT] IceSiphonTrapAltY",
+      "id": "siphoning_trap_alt_y"
+    },
+    {
+      "english": "[UNUSED] Slice and Dice (NOT CURRENTLY USED)",
+      "korean": "난도질",
+      "id": "slice_and_dice"
+    },
+    {
+      "english": "Quickstep",
+      "korean": "빠른 걸음",
+      "id": "slow_dodge"
+    },
+    {
+      "english": "Smite",
+      "korean": "징벌",
+      "id": "smite"
+    },
+    {
+      "english": "Smite of Divine Judgement",
+      "korean": "신성한 심판의 징벌",
+      "id": "smite_alt_x"
+    },
+    {
+      "english": "[DNT] SmiteAltY",
+      "korean": "[DNT] SmiteAltY",
+      "id": "smite_alt_y"
+    },
+    {
+      "english": "Smoke Mine",
+      "korean": "연막 지뢰",
+      "id": "smoke_mine"
+    },
+    {
+      "english": "Sniper's Mark",
+      "korean": "저격수의 징표",
+      "id": "snipers_mark"
+    },
+    {
+      "english": "Blazing Glare",
+      "korean": "맹렬한 섬광",
+      "id": "solartwine_nova"
+    },
+    {
+      "english": "Soul Link",
+      "korean": "영혼의 연결",
+      "id": "soul_link"
+    },
+    {
+      "english": "Soulrend",
+      "korean": "영혼 분리",
+      "id": "soulrend"
+    },
+    {
+      "english": "Soulrend of Reaping",
+      "korean": "낫질의 영혼 분리",
+      "id": "soulrend_alt_x"
+    },
+    {
+      "english": "Soulrend of the Spiral",
+      "korean": "나선의 영혼 분리",
+      "id": "soulrend_alt_y"
+    },
+    {
+      "english": "Spark",
+      "korean": "전기불꽃",
+      "id": "spark"
+    },
+    {
+      "english": "Spark of the Nova",
+      "korean": "폭발의 전기불꽃",
+      "id": "spark_alt_x"
+    },
+    {
+      "english": "Spark of Unpredictability",
+      "korean": "예측 불허의 전기불꽃",
+      "id": "spark_alt_y"
+    },
+    {
+      "english": "Summon an image of K'Tash, the Hate Shepherd",
+      "korean": "증오의 목자 크타쉬의 상 소환",
+      "id": "spawn_object_mtx_demon_boss"
+    },
+    {
+      "english": "Summon Demon Harpy",
+      "korean": "악마 하피 소환",
+      "id": "spawn_object_mtx_demon_elite"
+    },
+    {
+      "english": "Summon Demon Imp",
+      "korean": "악마 임프 소환",
+      "id": "spawn_object_mtx_demon_fodder_1"
+    },
+    {
+      "english": "Summon Demon Beast",
+      "korean": "악마 야수 소환",
+      "id": "spawn_object_mtx_demon_fodder_2"
+    },
+    {
+      "english": "Summon an image of Beidat, Archangel of Death",
+      "korean": "죽음의 대천사 베이다트의 상 소환",
+      "id": "spawn_object_mtx_pale_boss"
+    },
+    {
+      "english": "Summon Pale Angel",
+      "korean": "창백한 천사 소환",
+      "id": "spawn_object_mtx_pale_elite"
+    },
+    {
+      "english": "Summon Pale Cherubim",
+      "korean": "창백한 지천사",
+      "id": "spawn_object_mtx_pale_fodder_1"
+    },
+    {
+      "english": "Summon Pale Servitor",
+      "korean": "창백한 종 소환",
+      "id": "spawn_object_mtx_pale_fodder_2"
+    },
+    {
+      "english": "Spectral Helix",
+      "korean": "영체 나선",
+      "id": "spectral_helix"
+    },
+    {
+      "english": "[DNT] SpectralHelixAltX",
+      "korean": "[DNT] SpectralHelixAltX",
+      "id": "spectral_helix_alt_x"
+    },
+    {
+      "english": "Spectral Helix of Trarthus",
+      "korean": "트라투스의 영체 나선",
+      "id": "spectral_helix_alt_y"
+    },
+    {
+      "english": "Spectral Shield Throw",
+      "korean": "환영 방패 투척",
+      "id": "spectral_shield_throw"
+    },
+    {
+      "english": "Spectral Shield Throw of Shattering",
+      "korean": "산산조각의 환영 방패 투척",
+      "id": "spectral_shield_throw_alt_x"
+    },
+    {
+      "english": "Spectral Shield Throw of Trarthus",
+      "korean": "트라투스의 환영 방패 투척",
+      "id": "spectral_shield_throw_alt_y"
+    },
+    {
+      "english": "Spectral Spinning Weapon",
+      "korean": "영체 회전 무기",
+      "id": "spectral_spinning_weapon"
+    },
+    {
+      "english": "Spectral Spirits",
+      "korean": "영체 혼백",
+      "id": "spectral_spirits"
+    },
+    {
+      "english": "Spectral Throw",
+      "korean": "환영 무기 투척",
+      "id": "spectral_throw"
+    },
+    {
+      "english": "Spectral Throw of Materialising",
+      "korean": "구체화의 환영 무기 투척",
+      "id": "spectral_throw_alt_x"
+    },
+    {
+      "english": "Spectral Throw of Trarthus",
+      "korean": "트라투스의 환영 무기 투척",
+      "id": "spectral_throw_alt_y"
+    },
+    {
+      "english": "Spellslinger",
+      "korean": "주문투척",
+      "id": "spellslinger"
+    },
+    {
+      "english": "Spirit Burst",
+      "korean": "혼백 격발",
+      "id": "spirit_burst"
+    },
+    {
+      "english": "Spirit Offering",
+      "korean": "영혼 공물",
+      "id": "spirit_offering"
+    },
+    {
+      "english": "Split Arrow",
+      "korean": "분할 화살",
+      "id": "split_arrow"
+    },
+    {
+      "english": "Split Arrow of Splitting",
+      "korean": "분할의 분할 화살",
+      "id": "split_arrow_alt_x"
+    },
+    {
+      "english": "[DNT] SplitArrowAltY",
+      "korean": "[DNT] SplitArrowAltY",
+      "id": "split_arrow_alt_y"
+    },
+    {
+      "english": "Splitting Steel",
+      "korean": "강철 분할",
+      "id": "splitting_steel"
+    },
+    {
+      "english": "Splitting Steel of Ammunition",
+      "korean": "탄약의 강철 분할",
+      "id": "splitting_steel_alt_x"
+    },
+    {
+      "english": "[DNT] SplittingSteelAltY",
+      "korean": "[DNT] SplittingSteelAltY",
+      "id": "splitting_steel_alt_y"
+    },
+    {
+      "english": "Spray Paint Blood",
+      "korean": "핏빛 물감 뿌리기",
+      "id": "spray_paint_blood"
+    },
+    {
+      "english": "Spray Paint Celestial",
+      "korean": "천공의 물감 뿌리기",
+      "id": "spray_paint_celestial"
+    },
+    {
+      "english": "Spray Paint Magmatic",
+      "korean": "마그마 물감 뿌리기",
+      "id": "spray_paint_magmatic"
+    },
+    {
+      "english": "Stalking Pustule",
+      "korean": "농포 확산",
+      "id": "stalking_pustule"
+    },
+    {
+      "english": "Static Strike",
+      "korean": "정전기 타격",
+      "id": "static_strike"
+    },
+    {
+      "english": "Static Strike of Gathering Lightning",
+      "korean": "모여드는 번개의 정전기 타격",
+      "id": "static_strike_alt_x"
+    },
+    {
+      "english": "[DNT] StaticStrikeAltY",
+      "korean": "[DNT] StaticStrikeAltY",
+      "id": "static_strike_alt_y"
+    },
+    {
+      "english": "Static Strike",
+      "korean": "정전기 타격",
+      "id": "static_strike_old"
+    },
+    {
+      "english": "Static Tether",
+      "korean": "정전기 올가미",
+      "id": "static_tether"
+    },
+    {
+      "english": "Steelskin",
+      "korean": "강철피부",
+      "id": "steelskin"
+    },
+    {
+      "english": "Steelskin",
+      "korean": "강철피부",
+      "id": "steelskin_ally"
+    },
+    {
+      "english": "Storm Brand",
+      "korean": "폭풍의 낙인",
+      "id": "storm_brand"
+    },
+    {
+      "english": "Storm Brand of Indecision",
+      "korean": "우유부단의 폭풍의 낙인",
+      "id": "storm_brand_alt_x"
+    },
+    {
+      "english": "[DNT] StormBrandAltY",
+      "korean": "[DNT] StormBrandAltY",
+      "id": "storm_brand_alt_y"
+    },
+    {
+      "english": "Storm Burst",
+      "korean": "폭풍 점사",
+      "id": "storm_burst"
+    },
+    {
+      "english": "Storm Burst",
+      "korean": "폭풍 점사",
+      "id": "storm_burst_new"
+    },
+    {
+      "english": "Storm Burst of Repulsion",
+      "korean": "반발의 폭풍 점사",
+      "id": "storm_burst_new_alt_x"
+    },
+    {
+      "english": "[DNT] StormBurstAltY",
+      "korean": "[DNT] StormBurstAltY",
+      "id": "storm_burst_new_alt_y"
+    },
+    {
+      "english": "Storm Call",
+      "korean": "폭풍 부름",
+      "id": "storm_call"
+    },
+    {
+      "english": "Storm Call of Trarthus",
+      "korean": "트라투스의 폭풍 부름",
+      "id": "storm_call_alt_x"
+    },
+    {
+      "english": "[DNT] StormCallAltY",
+      "korean": "[DNT] StormCallAltY",
+      "id": "storm_call_alt_y"
+    },
+    {
+      "english": "Storm Call",
+      "korean": "폭풍 부름",
+      "id": "storm_call_attached"
+    },
+    {
+      "english": "Storm Call",
+      "korean": "폭풍 부름",
+      "id": "storm_call_no_los"
+    },
+    {
+      "english": "Storm Call",
+      "korean": "폭풍 부름",
+      "id": "storm_call_self"
+    },
+    {
+      "english": "Storm Cascade",
+      "korean": "태풍 폭포",
+      "id": "storm_cascade_player"
+    },
+    {
+      "english": "Storm Cloud Lightning Warp",
+      "korean": "태풍 구름 번개 차원 이동",
+      "id": "storm_cloud_lightning_warp"
+    },
+    {
+      "english": "Storm Rain",
+      "korean": "폭풍우",
+      "id": "storm_rain"
+    },
+    {
+      "english": "Storm Rain of the Conduit",
+      "korean": "도관의 폭풍우",
+      "id": "storm_rain_alt_x"
+    },
+    {
+      "english": "Storm Rain of the Fence",
+      "korean": "울타리의 폭풍우",
+      "id": "storm_rain_alt_y"
+    },
+    {
+      "english": "Stormbind",
+      "korean": "폭풍 연대",
+      "id": "stormbind"
+    },
+    {
+      "english": "Stormbind of Teleportation",
+      "korean": "순간이동의 폭풍 연대",
+      "id": "stormbind_alt_x"
+    },
+    {
+      "english": "[DNT] StormBindAltY",
+      "korean": "[DNT] StormBindAltY",
+      "id": "stormbind_alt_y"
+    },
+    {
+      "english": "Stormblast Mine",
+      "korean": "태풍 파열 지뢰",
+      "id": "stormblast_mine"
+    },
+    {
+      "english": "[DNT] StormblastMineAltX",
+      "korean": "[DNT] StormblastMineAltX",
+      "id": "stormblast_mine_alt_x"
+    },
+    {
+      "english": "[DNT] StormblastMineAltY",
+      "korean": "[DNT] StormblastMineAltY",
+      "id": "stormblast_mine_alt_y"
+    },
+    {
+      "english": "Summon Bone Feeders",
+      "korean": "뼈 포식자 소환",
+      "id": "summon_abyssal_constructs"
+    },
+    {
+      "english": "Summon Arbalists",
+      "korean": "석궁병 소환",
+      "id": "summon_arbalists"
+    },
+    {
+      "english": "Summon Bestial Rhoa",
+      "korean": "흉포한 로아 소환",
+      "id": "summon_beastial_rhoa"
+    },
+    {
+      "english": "Summon Bestial Snake",
+      "korean": "흉포한 뱀 소환",
+      "id": "summon_beastial_snake"
+    },
+    {
+      "english": "Summon Bestial Ursa",
+      "korean": "흉포한 곰 소환",
+      "id": "summon_beastial_ursa"
+    },
+    {
+      "english": "Summon Carrion Golem",
+      "korean": "부패 골렘 소환",
+      "id": "summon_carrion_golem"
+    },
+    {
+      "english": "Summon Carrion Golem of Hordes",
+      "korean": "군단의 부패 골렘 소환",
+      "id": "summon_carrion_golem_alt_x"
+    },
+    {
+      "english": "Summon Carrion Golem of Scavenging",
+      "korean": "청소부의 부패 골렘 소환",
+      "id": "summon_carrion_golem_alt_y"
+    },
+    {
+      "english": "Summon Chaos Golem",
+      "korean": "카오스 골렘 소환",
+      "id": "summon_chaos_golem"
+    },
+    {
+      "english": "Summon Chaos Golem of Hordes",
+      "korean": "군단의 카오스 골렘 소환",
+      "id": "summon_chaos_golem_alt_x"
+    },
+    {
+      "english": "Summon Chaos Golem of the Maelström",
+      "korean": "마엘스트롬의 카오스 골렘 소환",
+      "id": "summon_chaos_golem_alt_y"
+    },
+    {
+      "english": "Summon Dark Effigy",
+      "korean": "어둠의 제웅 소환",
+      "id": "summon_dark_effigy"
+    },
+    {
+      "english": "Summon Doedre's Effigy",
+      "korean": "도이드리의 인형 소환",
+      "id": "summon_doedres_effigy"
+    },
+    {
+      "english": "Summon Elemental Relic",
+      "korean": "원소의 유물 소환",
+      "id": "summon_elemental_relic"
+    },
+    {
+      "english": "Summon Flame Golem",
+      "korean": "화염 골렘 소환",
+      "id": "summon_flame_golem"
+    },
+    {
+      "english": "Summon Flame Golem of Hordes",
+      "korean": "군단의 화염 골렘 소환",
+      "id": "summon_flame_golem_alt_x"
+    },
+    {
+      "english": "Summon Flame Golem of the Meteor",
+      "korean": "유성의 화염 골렘 소환",
+      "id": "summon_flame_golem_alt_y"
+    },
+    {
+      "english": "Summon Harbinger of Brutality",
+      "korean": "잔인성의 선구자 소환",
+      "id": "summon_harbinger_of_brutality"
+    },
+    {
+      "english": "Summon Greater Harbinger of Brutality",
+      "korean": "상위 잔인성의 선구자 소환",
+      "id": "summon_harbinger_of_brutality_uber"
+    },
+    {
+      "english": "Summon Harbinger of Directions",
+      "korean": "지시의 선구자 소환",
+      "id": "summon_harbinger_of_directons"
+    },
+    {
+      "english": "Summon Greater Harbinger of Directions",
+      "korean": "상위 지시의 선구자 소환",
+      "id": "summon_harbinger_of_directons_uber"
+    },
+    {
+      "english": "Summon Harbinger of Focus",
+      "korean": "집중의 선구자 소환",
+      "id": "summon_harbinger_of_focus"
+    },
+    {
+      "english": "Summon Visiting Harbinger of Focus",
+      "korean": "방문하는 집중의 선구자 소환",
+      "id": "summon_harbinger_of_focus_ascendancy"
+    },
+    {
+      "english": "Summon Greater Harbinger of Focus",
+      "korean": "상위 집중의 선구자 소환",
+      "id": "summon_harbinger_of_focus_uber"
+    },
+    {
+      "english": "Summon Harbinger of Storms",
+      "korean": "폭풍의 선구자 소환",
+      "id": "summon_harbinger_of_storms"
+    },
+    {
+      "english": "Summon Greater Harbinger of Storms",
+      "korean": "상위 태풍의 선구자 소환",
+      "id": "summon_harbinger_of_storms_uber"
+    },
+    {
+      "english": "Summon Harbinger of the Arcane",
+      "korean": "비전의 선구자 소환",
+      "id": "summon_harbinger_of_the_arcane"
+    },
+    {
+      "english": "Summon Visiting Harbinger of the Arcane",
+      "korean": "방문하는 비전의 선구자 소환",
+      "id": "summon_harbinger_of_the_arcane_ascendancy"
+    },
+    {
+      "english": "Summon Greater Harbinger of the Arcane",
+      "korean": "상위 비전의 선구자 소환",
+      "id": "summon_harbinger_of_the_arcane_uber"
+    },
+    {
+      "english": "Summon Harbinger of Time",
+      "korean": "시간의 선구자 소환",
+      "id": "summon_harbinger_of_time"
+    },
+    {
+      "english": "Summon Visiting Harbinger of Time",
+      "korean": "방문하는 시간의 선구자 소환",
+      "id": "summon_harbinger_of_time_ascendancy"
+    },
+    {
+      "english": "Summon Greater Harbinger of Time",
+      "korean": "상위 시간의 선구자 소환",
+      "id": "summon_harbinger_of_time_uber"
+    },
+    {
+      "english": "Summon Holy Relic",
+      "korean": "신성한 유물 소환",
+      "id": "summon_holy_relic"
+    },
+    {
+      "english": "Summon Holy Relic of Conviction",
+      "korean": "신념의 신성한 유물 소환",
+      "id": "summon_holy_relic_alt_x"
+    },
+    {
+      "english": "[DNT] SummonRelicAltY",
+      "korean": "[DNT] SummonRelicAltY",
+      "id": "summon_holy_relic_alt_y"
+    },
+    {
+      "english": "Summon Ice Golem",
+      "korean": "얼음 골렘 소환",
+      "id": "summon_ice_golem"
+    },
+    {
+      "english": "Summon Ice Golem of Hordes",
+      "korean": "군단의 얼음 골렘 소환",
+      "id": "summon_ice_golem_alt_x"
+    },
+    {
+      "english": "Summon Ice Golem of Shattering",
+      "korean": "산산조각의 얼음 골렘 소환",
+      "id": "summon_ice_golem_alt_y"
+    },
+    {
+      "english": "Summon Lightning Golem",
+      "korean": "번개 골렘 소환",
+      "id": "summon_lightning_golem"
+    },
+    {
+      "english": "Summon Lightning Golem of Hordes",
+      "korean": "군단의 번개 골렘 소환",
+      "id": "summon_lightning_golem_alt_x"
+    },
+    {
+      "english": "[DNT] SummonLightningGolemAltY",
+      "korean": "[DNT] SummonLightningGolemAltY",
+      "id": "summon_lightning_golem_alt_y"
+    },
+    {
+      "english": "Tawhoa's Chosen",
+      "korean": "타호아의 선택받은 자",
+      "id": "summon_mirage_chieftain"
+    },
+    {
+      "english": "Petrification Statue",
+      "korean": "석화의 조각상",
+      "id": "summon_petrification_statue"
+    },
+    {
+      "english": "Summon Raging Spirit",
+      "korean": "격노의 유령 소환",
+      "id": "summon_raging_spirit"
+    },
+    {
+      "english": "Summon Raging Spirit of Enormity",
+      "korean": "극악무도의 격노의 유령 소환",
+      "id": "summon_raging_spirit_alt_x"
+    },
+    {
+      "english": "[DNT] SummonRagingSpiritAltY",
+      "korean": "[DNT] SummonRagingSpiritAltY",
+      "id": "summon_raging_spirit_alt_y"
+    },
+    {
+      "english": "Summon Raging Spirit",
+      "korean": "격노의 유령 소환",
+      "id": "summon_raging_spirit_triggered"
+    },
+    {
+      "english": "Summon Reaper",
+      "korean": "수확자 소환",
+      "id": "summon_reaper"
+    },
+    {
+      "english": "Summon Reaper of Revenants",
+      "korean": "원령의 수확자 소환",
+      "id": "summon_reaper_alt_x"
+    },
+    {
+      "english": "Summon Reaper of Eviscerating",
+      "korean": "적출의 수확자 소환",
+      "id": "summon_reaper_alt_y"
+    },
+    {
+      "english": "Summon Sacred Wisps",
+      "korean": "신성한 도깨비불 소환",
+      "id": "summon_sacred_wisp"
+    },
+    {
+      "english": "Summon Sentinel of Radiance",
+      "korean": "광휘의 파수꾼 소환",
+      "id": "summon_sentinel_of_radiance"
+    },
+    {
+      "english": "Summon Shaper Memory",
+      "korean": "쉐이퍼의 기억 소환",
+      "id": "summon_shaper_apparition"
+    },
+    {
+      "english": "Summon Skeletons",
+      "korean": "해골 소환",
+      "id": "summon_skeletons"
+    },
+    {
+      "english": "Summon Skeletons of Archers",
+      "korean": "궁수의 해골 소환",
+      "id": "summon_skeletons_alt_x"
+    },
+    {
+      "english": "Summon Skeletons of Mages",
+      "korean": "마법사의 해골 소환",
+      "id": "summon_skeletons_alt_y"
+    },
+    {
+      "english": "Summon Skeletons Channelled",
+      "korean": "집중된 해골 소환",
+      "id": "summon_skeletons_channelled"
+    },
+    {
+      "english": "Summon Skitterbots",
+      "korean": "원격 기폭 장치 소환",
+      "id": "summon_skitterbots"
+    },
+    {
+      "english": "Summon Spectral Tiger",
+      "korean": "영체 호랑이 소환",
+      "id": "summon_spectral_tiger"
+    },
+    {
+      "english": "Summon Spectral Wolf",
+      "korean": "영체 늑대 소환",
+      "id": "summon_spectral_wolf"
+    },
+    {
+      "english": "Summon Spectral Wolf",
+      "korean": "영체 늑대 소환",
+      "id": "summon_spectral_wolf_triggered"
+    },
+    {
+      "english": "Summon Spirit of Ahuana",
+      "korean": "아후아나의 혼백 소환",
+      "id": "summon_spirit_of_ahuana"
+    },
+    {
+      "english": "Summon Spirit of Akoya",
+      "korean": "아코야의 혼백 소환",
+      "id": "summon_spirit_of_akoya"
+    },
+    {
+      "english": "Summon Spirit of Ikiaho",
+      "korean": "이키아호의 혼백 소환",
+      "id": "summon_spirit_of_ikiaho"
+    },
+    {
+      "english": "Summon Spirit of Kahuturoa",
+      "korean": "카후투로아의 혼백 소환",
+      "id": "summon_spirit_of_kahuturoa"
+    },
+    {
+      "english": "Summon Spirit of Kaom",
+      "korean": "카옴의 혼백 소환",
+      "id": "summon_spirit_of_kaom"
+    },
+    {
+      "english": "Summon Spirit of Kiloava",
+      "korean": "킬로아바의 혼백 소환",
+      "id": "summon_spirit_of_kiloava"
+    },
+    {
+      "english": "Summon Spirit of Maata",
+      "korean": "마아타의 혼백 소환",
+      "id": "summon_spirit_of_maata"
+    },
+    {
+      "english": "Summon Spirit of Rakiata",
+      "korean": "라키아타의 혼백 소환",
+      "id": "summon_spirit_of_rakiata"
+    },
+    {
+      "english": "Summon Spirit of Tawhanuku",
+      "korean": "타하누쿠의 혼백 소환",
+      "id": "summon_spirit_of_tawhanuku"
+    },
+    {
+      "english": "Summon Spirit of Utula",
+      "korean": "우툴라의 혼백 소환",
+      "id": "summon_spirit_of_utula"
+    },
+    {
+      "english": "Summon Stone Golem",
+      "korean": "돌 골렘 소환",
+      "id": "summon_stone_golem"
+    },
+    {
+      "english": "Summon Stone Golem of Hordes",
+      "korean": "군단의 돌 골렘 소환",
+      "id": "summon_stone_golem_alt_x"
+    },
+    {
+      "english": "Summon Stone Golem of Safeguarding",
+      "korean": "방비의 돌 골렘 소환",
+      "id": "summon_stone_golem_alt_y"
+    },
+    {
+      "english": "Summon Taunting Contraption",
+      "korean": "도발 장치 소환",
+      "id": "summon_taunting_contraption"
+    },
+    {
+      "english": "Summon Triggerbots",
+      "korean": "발동 장치 소환",
+      "id": "summon_triggerbots"
+    },
+    {
+      "english": "Summon Void Spawn",
+      "korean": "공허 유충 소환",
+      "id": "summon_void_spawn"
+    },
+    {
+      "english": "Sunder",
+      "korean": "산산조각",
+      "id": "sunder"
+    },
+    {
+      "english": "Sunder of Earthbreaking",
+      "korean": "대지 분쇄의 산산조각",
+      "id": "sunder_alt_x"
+    },
+    {
+      "english": "Sunder of Trarthus",
+      "korean": "트라투스의 산산조각",
+      "id": "sunder_alt_y"
+    },
+    {
+      "english": "Sunder",
+      "korean": "산산조각",
+      "id": "sunder_old"
+    },
+    {
+      "english": "Shockwave",
+      "korean": "충격파",
+      "id": "support_blunt_shockwave"
+    },
+    {
+      "english": "Kinetic Flux",
+      "korean": "역학 유동",
+      "id": "support_triggered_kinetic_instability"
+    },
+    {
+      "english": "Summon Living Lightning",
+      "korean": "살아 있는 번개 소환",
+      "id": "support_triggered_living_lightning"
+    },
+    {
+      "english": "Rings of Light",
+      "korean": "빛의 고리",
+      "id": "support_triggered_rings_of_light"
+    },
+    {
+      "english": "Void Shockwave",
+      "korean": "공허 충격파",
+      "id": "support_void_shockwave"
+    },
+    {
+      "english": "Suspend in Time",
+      "korean": "시간 속 정지",
+      "id": "suspend_in_time"
+    },
+    {
+      "english": "Holy Sweep",
+      "korean": "신성한 휩쓸기",
+      "id": "sweep"
+    },
+    {
+      "english": "Holy Sweep of Hammerfalls",
+      "korean": "망치 낙하의 신성한 휩쓸기",
+      "id": "sweep_alt_x"
+    },
+    {
+      "english": "[DNT] SweepAltY",
+      "korean": "[DNT] SweepAltY",
+      "id": "sweep_alt_y"
+    },
+    {
+      "english": "Swordstorm",
+      "korean": "검의 폭풍",
+      "id": "swordstorm"
+    },
+    {
+      "english": "Table Charge",
+      "korean": "탁자 돌진",
+      "id": "table_charge"
+    },
+    {
+      "english": "Talisman Degen",
+      "korean": "부적 퇴화",
+      "id": "talisman_degen"
+    },
+    {
+      "english": "Talisman Summon Lightning Spiral",
+      "korean": "번개 소용돌이 소환 부적",
+      "id": "talisman_summon_lightning_spiral"
+    },
+    {
+      "english": "Taunt",
+      "korean": "도발",
+      "id": "taunt"
+    },
+    {
+      "english": "Tectonic Slam",
+      "korean": "지층 강타",
+      "id": "tectonic_slam"
+    },
+    {
+      "english": "Tectonic Slam of Cataclysm",
+      "korean": "대재앙의 지층 강타",
+      "id": "tectonic_slam_alt_x"
+    },
+    {
+      "english": "[DNT] TectonicSlamAltY",
+      "korean": "[DNT] TectonicSlamAltY",
+      "id": "tectonic_slam_alt_y"
+    },
+    {
+      "english": "Tectonic Slam",
+      "korean": "지층 강타",
+      "id": "tectonic_slam_mercenary"
+    },
+    {
+      "english": "Tempest Shield",
+      "korean": "폭풍의 방패",
+      "id": "tempest_shield"
+    },
+    {
+      "english": "Temporal Chains",
+      "korean": "시간의 사슬",
+      "id": "temporal_chains"
+    },
+    {
+      "english": "Temporal Rift",
+      "korean": "시간의 균열",
+      "id": "temporal_rift"
+    },
+    {
+      "english": "Tentacle Whip",
+      "korean": "촉수 채찍",
+      "id": "tentacle_smash"
+    },
+    {
+      "english": "Summon Hiveborn",
+      "korean": "벌레집 태생 소환",
+      "id": "the_great_avalanche"
+    },
+    {
+      "english": "Thirst for Blood",
+      "korean": "피의 갈증",
+      "id": "thirst_for_blood"
+    },
+    {
+      "english": "Thunderstorm",
+      "korean": "뇌우",
+      "id": "thunderstorm"
+    },
+    {
+      "english": "Thunderburst",
+      "korean": "천둥 격발",
+      "id": "thunderstorm_thunderburst"
+    },
+    {
+      "english": "Tornado",
+      "korean": "회오리",
+      "id": "tornado"
+    },
+    {
+      "english": "[DNT] TornadoAltX",
+      "korean": "[DNT] TornadoAltX",
+      "id": "tornado_alt_x"
+    },
+    {
+      "english": "Tornado of Elemental Turbulence",
+      "korean": "격동하는 원소의 회오리",
+      "id": "tornado_alt_y"
+    },
+    {
+      "english": "Tornado Shot",
+      "korean": "회오리 사격",
+      "id": "tornado_shot"
+    },
+    {
+      "english": "Tornado Shot of Cloudburst",
+      "korean": "구름폭발의 회오리 사격",
+      "id": "tornado_shot_alt_x"
+    },
+    {
+      "english": "[DNT] TornadoShotAltY",
+      "korean": "[DNT] TornadoShotAltY",
+      "id": "tornado_shot_alt_y"
+    },
+    {
+      "english": "Tornado",
+      "korean": "회오리",
+      "id": "tornado_triggered"
+    },
+    {
+      "english": "Holy Flame Totem",
+      "korean": "신성한 화염 토템",
+      "id": "totem_fire_spray"
+    },
+    {
+      "english": "Holy Flame Totem",
+      "korean": "신성한 화염 토템",
+      "id": "totem_fire_spray_triggerable"
+    },
+    {
+      "english": "Portal",
+      "korean": "포탈",
+      "id": "town_portal"
+    },
+    {
+      "english": "Toxic Rain",
+      "korean": "맹독성 비",
+      "id": "toxic_rain"
+    },
+    {
+      "english": "Toxic Rain of Sporeburst",
+      "korean": "포자 폭발의 맹독성 비",
+      "id": "toxic_rain_alt_x"
+    },
+    {
+      "english": "Toxic Rain of Withering",
+      "korean": "고사의 맹독성 비",
+      "id": "toxic_rain_alt_y"
+    },
+    {
+      "english": "Toxic Rain",
+      "korean": "맹독성 비",
+      "id": "toxic_rain_triggered"
+    },
+    {
+      "english": "Fleshrend",
+      "korean": "살점 난도",
+      "id": "triggered_bloodrend"
+    },
+    {
+      "english": "Consecrate",
+      "korean": "신성화",
+      "id": "triggered_consecrate"
+    },
+    {
+      "english": "Detonate Mines",
+      "korean": "지뢰 폭발",
+      "id": "triggered_detonate_mines"
+    },
+    {
+      "english": "Fire Burst",
+      "korean": "화염 격발",
+      "id": "triggered_explosion"
+    },
+    {
+      "english": "Fissure",
+      "korean": "균열",
+      "id": "triggered_fissure"
+    },
+    {
+      "english": "Ghostly Artillery",
+      "korean": "귀신 포대",
+      "id": "triggered_ghost_cannons"
+    },
+    {
+      "english": "Heaven's Scourge",
+      "korean": "하늘의 재앙",
+      "id": "triggered_heavens_scourge"
+    },
+    {
+      "english": "Lightning Bolt",
+      "korean": "낙뢰",
+      "id": "triggered_lightning_spell"
+    },
+    {
+      "english": "Lightning Bolt",
+      "korean": "낙뢰",
+      "id": "triggered_lightning_spell_on_hit"
+    },
+    {
+      "english": "Starfall",
+      "korean": "별내림",
+      "id": "triggered_starfall"
+    },
+    {
+      "english": "Summon Phantasm",
+      "korean": "환영 소환",
+      "id": "triggered_summon_phantasm"
+    },
+    {
+      "english": "Voidstorm",
+      "korean": "공허폭풍",
+      "id": "triggered_voidstorm"
+    },
+    {
+      "english": "Unearth",
+      "korean": "발굴",
+      "id": "unearth"
+    },
+    {
+      "english": "Unearth",
+      "korean": "발굴",
+      "id": "unearth_channelled"
+    },
+    {
+      "english": "Unhinge",
+      "korean": "흐트러뜨리기",
+      "id": "unhinge"
+    },
+    {
+      "english": "Reflection",
+      "korean": "투영",
+      "id": "unique_mirage_warriors"
+    },
+    {
+      "english": "[DNT] Unleash Power",
+      "korean": "[DNT] Unleash Power",
+      "id": "unleash_power"
+    },
+    {
+      "english": "Unseen Strike",
+      "korean": "보이지 않는 일격",
+      "id": "unseen_strike"
+    },
+    {
+      "english": "Vaal Absolution",
+      "korean": "바알 면죄",
+      "id": "vaal_absolution"
+    },
+    {
+      "english": "Vaal Ancestral Warchief",
+      "korean": "바알 선대의 대전사",
+      "id": "vaal_ancestral_warchief"
+    },
+    {
+      "english": "Vaal Animate Weapon",
+      "korean": "바알 무기 기동",
+      "id": "vaal_animate_weapon"
+    },
+    {
+      "english": "Vaal Arc",
+      "korean": "바알 연쇄 번개",
+      "id": "vaal_arc"
+    },
+    {
+      "english": "Vaal Arctic Armour",
+      "korean": "바알 한기의 방어구",
+      "id": "vaal_arctic_armour"
+    },
+    {
+      "english": "Vaal Blade Flurry",
+      "korean": "바알 질풍의 칼날",
+      "id": "vaal_blade_flurry"
+    },
+    {
+      "english": "Vaal Blade Vortex",
+      "korean": "바알 칼날 소용돌이",
+      "id": "vaal_blade_vortex"
+    },
+    {
+      "english": "Vaal Blight",
+      "korean": "바알 황폐",
+      "id": "vaal_blight"
+    },
+    {
+      "english": "Vaal Breach",
+      "korean": "바알 균열",
+      "id": "vaal_breach"
+    },
+    {
+      "english": "Vaal Burning Arrow",
+      "korean": "바알 불타는 화살",
+      "id": "vaal_burning_arrow"
+    },
+    {
+      "english": "Vaal Caustic Arrow",
+      "korean": "바알 부식성 화살",
+      "id": "vaal_caustic_arrow"
+    },
+    {
+      "english": "Vaal Flameblast",
+      "korean": "바알 화염파",
+      "id": "vaal_charged_blast"
+    },
+    {
+      "english": "Vaal Flameblast",
+      "korean": "바알 화염파",
+      "id": "vaal_charged_blast_triggerable"
+    },
+    {
+      "english": "Vaal Clarity",
+      "korean": "바알 명상",
+      "id": "vaal_clarity"
+    },
+    {
+      "english": "Vaal Cleave",
+      "korean": "바알 회전베기",
+      "id": "vaal_cleave"
+    },
+    {
+      "english": "Vaal Cold Snap",
+      "korean": "바알 한파",
+      "id": "vaal_cold_snap"
+    },
+    {
+      "english": "Vaal Cold Snap",
+      "korean": "바알 한파",
+      "id": "vaal_cold_snap_old"
+    },
+    {
+      "english": "Vaal Cyclone",
+      "korean": "바알 회오리바람",
+      "id": "vaal_cyclone"
+    },
+    {
+      "english": "Determination",
+      "korean": "결의",
+      "id": "vaal_determination"
+    },
+    {
+      "english": "Vaal Detonate Dead",
+      "korean": "바알 시체 폭발",
+      "id": "vaal_detonate_dead"
+    },
+    {
+      "english": "Vaal Detonate Dead",
+      "korean": "바알 시체 폭발",
+      "id": "vaal_detonate_dead_old"
+    },
+    {
+      "english": "Vaal Discipline",
+      "korean": "바알 단련",
+      "id": "vaal_discipline"
+    },
+    {
+      "english": "Vaal Domination",
+      "korean": "바알 지배",
+      "id": "vaal_dominating_blow"
+    },
+    {
+      "english": "Vaal Double Strike",
+      "korean": "바알 이중 타격",
+      "id": "vaal_double_strike"
+    },
+    {
+      "english": "Vaal Double Strike",
+      "korean": "바알 이중 타격",
+      "id": "vaal_double_strike_old"
+    },
+    {
+      "english": "Vaal Earthquake",
+      "korean": "바알 지진",
+      "id": "vaal_earthquake"
+    },
+    {
+      "english": "Vaal Earthquake",
+      "korean": "바알 지진",
+      "id": "vaal_earthquake_old"
+    },
+    {
+      "english": "Vaal Firestorm",
+      "korean": "바알 화염 폭풍",
+      "id": "vaal_fire_storm"
+    },
+    {
+      "english": "Vaal Fire Trap",
+      "korean": "바알 화염 덫",
+      "id": "vaal_fire_trap"
+    },
+    {
+      "english": "Vaal Fireball",
+      "korean": "바알 화염구",
+      "id": "vaal_fireball"
+    },
+    {
+      "english": "Vaal Flameblast",
+      "korean": "바알 화염파",
+      "id": "vaal_flameblast"
+    },
+    {
+      "english": "Vaal Flesh Offering",
+      "korean": "바알 살점 공물",
+      "id": "vaal_flesh_offering"
+    },
+    {
+      "english": "Vaal Flicker Strike",
+      "korean": "바알 점멸 타격",
+      "id": "vaal_flicker_strike"
+    },
+    {
+      "english": "Vaal Glacial Hammer",
+      "korean": "바알 빙하 망치",
+      "id": "vaal_glacial_hammer"
+    },
+    {
+      "english": "Vaal Grace",
+      "korean": "바알 은총",
+      "id": "vaal_grace"
+    },
+    {
+      "english": "Vaal Ground Slam",
+      "korean": "바알 대지 강타",
+      "id": "vaal_ground_slam"
+    },
+    {
+      "english": "Vaal Ground Slam",
+      "korean": "바알 대지 강타",
+      "id": "vaal_ground_slam_old"
+    },
+    {
+      "english": "Vaal Haste",
+      "korean": "바알 가속",
+      "id": "vaal_haste"
+    },
+    {
+      "english": "Vaal Heavy Strike",
+      "korean": "바알 묵직한 타격",
+      "id": "vaal_heavy_strike"
+    },
+    {
+      "english": "Vaal Ice Nova",
+      "korean": "바알 얼음 폭발",
+      "id": "vaal_ice_nova"
+    },
+    {
+      "english": "Vaal Ice Shot",
+      "korean": "바알 얼음 화살",
+      "id": "vaal_ice_shot"
+    },
+    {
+      "english": "Vaal Immortal Call",
+      "korean": "바알 불멸의 외침",
+      "id": "vaal_immortal_call"
+    },
+    {
+      "english": "Vaal Impurity of Fire",
+      "korean": "바알 불의 부정함",
+      "id": "vaal_impurity_of_fire"
+    },
+    {
+      "english": "Vaal Impurity of Ice",
+      "korean": "바알 얼음의 부정함",
+      "id": "vaal_impurity_of_ice"
+    },
+    {
+      "english": "Vaal Impurity of Lightning",
+      "korean": "바알 번개의 부정함",
+      "id": "vaal_impurity_of_lightning"
+    },
+    {
+      "english": "Vaal Lightning Arrow",
+      "korean": "바알 번개 화살",
+      "id": "vaal_lightning_arrow"
+    },
+    {
+      "english": "Vaal Lightning Strike",
+      "korean": "바알 번개 타격",
+      "id": "vaal_lightning_strike"
+    },
+    {
+      "english": "Vaal Lightning Strike",
+      "korean": "바알 번개 타격",
+      "id": "vaal_lightning_strike_old"
+    },
+    {
+      "english": "Vaal Lightning Trap",
+      "korean": "바알 번개 덫",
+      "id": "vaal_lightning_trap"
+    },
+    {
+      "english": "Vaal Lightning Warp",
+      "korean": "바알 번개 차원 이동",
+      "id": "vaal_lightning_warp"
+    },
+    {
+      "english": "Vaal Molten Shell",
+      "korean": "바알 용암 방패",
+      "id": "vaal_molten_shell"
+    },
+    {
+      "english": "Vaal Molten Strike",
+      "korean": "바알 용암 타격",
+      "id": "vaal_molten_strike"
+    },
+    {
+      "english": "Vaal Power Siphon",
+      "korean": "바알 권능 착취",
+      "id": "vaal_power_siphon"
+    },
+    {
+      "english": "Vaal Rain of Arrows",
+      "korean": "바알 화살비",
+      "id": "vaal_rain_of_arrows"
+    },
+    {
+      "english": "Vaal Rain of Arrows",
+      "korean": "바알 화살비",
+      "id": "vaal_rain_of_arrows_old"
+    },
+    {
+      "english": "Vaal Reap",
+      "korean": "바알 낫질",
+      "id": "vaal_reap"
+    },
+    {
+      "english": "Vaal Reave",
+      "korean": "바알 약탈",
+      "id": "vaal_reave"
+    },
+    {
+      "english": "Vaal Rejuvenation Totem",
+      "korean": "바알 회복 토템",
+      "id": "vaal_rejuvenation_totem"
+    },
+    {
+      "english": "Vaal Righteous Fire",
+      "korean": "바알 정의의 화염",
+      "id": "vaal_righteous_fire"
+    },
+    {
+      "english": "Vaal Righteous Fire",
+      "korean": "바알 정의의 화염",
+      "id": "vaal_righteous_fire_old"
+    },
+    {
+      "english": "Vaal Smite",
+      "korean": "바알 징벌",
+      "id": "vaal_smite"
+    },
+    {
+      "english": "Vaal Spark",
+      "korean": "바알 전기불꽃",
+      "id": "vaal_spark"
+    },
+    {
+      "english": "Vaal Spectral Throw",
+      "korean": "바알 환영 무기 투척",
+      "id": "vaal_spectral_throw"
+    },
+    {
+      "english": "Vaal Split Arrow",
+      "korean": "바알 분할 화살",
+      "id": "vaal_split_arrow"
+    },
+    {
+      "english": "Vaal Storm Call",
+      "korean": "바알 폭풍 부름",
+      "id": "vaal_storm_call"
+    },
+    {
+      "english": "Vaal Summon Skeletons",
+      "korean": "바알 해골 소환",
+      "id": "vaal_summon_skeletons"
+    },
+    {
+      "english": "Vaal Sweep",
+      "korean": "바알 휩쓸기",
+      "id": "vaal_sweep"
+    },
+    {
+      "english": "Vaal Spectral Throw",
+      "korean": "바알 환영 무기 투척",
+      "id": "vaal_thrown_weapon"
+    },
+    {
+      "english": "Vaal Venom Gyre",
+      "korean": "바알 독액 선회",
+      "id": "vaal_venom_gyre"
+    },
+    {
+      "english": "Vaal Vitality",
+      "korean": "바알 활력",
+      "id": "vaal_vitality"
+    },
+    {
+      "english": "Vaal Volcanic Fissure",
+      "korean": "바알 화산 균열",
+      "id": "vaal_volcanic_fissure"
+    },
+    {
+      "english": "Vampiric Link",
+      "korean": "흡혈의 연결",
+      "id": "vampiric_link"
+    },
+    {
+      "english": "Vengeance",
+      "korean": "복수",
+      "id": "vengeance"
+    },
+    {
+      "english": "Vengeful Cry",
+      "korean": "복수의 함성",
+      "id": "vengeful_cry"
+    },
+    {
+      "english": "Venom Gyre",
+      "korean": "독액 선회",
+      "id": "venom_gyre"
+    },
+    {
+      "english": "[DNT] VenomGyreAltX",
+      "korean": "[DNT] VenomGyreAltX",
+      "id": "venom_gyre_alt_x"
+    },
+    {
+      "english": "[DNT] VenomGyreAltY",
+      "korean": "[DNT] VenomGyreAltY",
+      "id": "venom_gyre_alt_y"
+    },
+    {
+      "english": "Vigilant Strike",
+      "korean": "경계 타격",
+      "id": "vigilant_strike"
+    },
+    {
+      "english": "[DNT] VigilantStrikeAltX",
+      "korean": "[DNT] VigilantStrikeAltX",
+      "id": "vigilant_strike_alt_x"
+    },
+    {
+      "english": "[DNT] VigilantStrikeAltY",
+      "korean": "[DNT] VigilantStrikeAltY",
+      "id": "vigilant_strike_alt_y"
+    },
+    {
+      "english": "Vinktar Lightning Bond",
+      "korean": "빙타 번개의 유대",
+      "id": "vinktar_lightning_bond"
+    },
+    {
+      "english": "[DNT] Violent Pace",
+      "korean": "[DNT] Violent Pace",
+      "id": "violent_pace"
+    },
+    {
+      "english": "Viper Strike",
+      "korean": "맹독 타격",
+      "id": "viper_strike"
+    },
+    {
+      "english": "Viper Strike of the Mamba",
+      "korean": "큰독사의 맹독 타격",
+      "id": "viper_strike_alt_x"
+    },
+    {
+      "english": "[DNT] ViperStrikeAltY",
+      "korean": "[DNT] ViperStrikeAltY",
+      "id": "viper_strike_alt_y"
+    },
+    {
+      "english": "Vitality",
+      "korean": "활력",
+      "id": "vitality"
+    },
+    {
+      "english": "Void Gaze",
+      "korean": "공허의 응시",
+      "id": "void_gaze"
+    },
+    {
+      "english": "Void Shot",
+      "korean": "공허 사격",
+      "id": "void_shot"
+    },
+    {
+      "english": "Void Sphere",
+      "korean": "공허 구체",
+      "id": "void_sphere"
+    },
+    {
+      "english": "Void Sphere of Rending",
+      "korean": "분리의 공허 구체",
+      "id": "void_sphere_alt_x"
+    },
+    {
+      "english": "[DNT] VoidSphereAltY",
+      "korean": "[DNT] VoidSphereAltY",
+      "id": "void_sphere_alt_y"
+    },
+    {
+      "english": "Volatile Anomaly",
+      "korean": "폭발성 이형",
+      "id": "volatile_anomaly"
+    },
+    {
+      "english": "Volatile Dead",
+      "korean": "시체 불덩이",
+      "id": "volatile_dead"
+    },
+    {
+      "english": "Volatile Dead of Confinement",
+      "korean": "감금의 시체 불덩이",
+      "id": "volatile_dead_alt_x"
+    },
+    {
+      "english": "Volatile Dead of Seething",
+      "korean": "끓어오름의 시체 불덩이",
+      "id": "volatile_dead_alt_y"
+    },
+    {
+      "english": "Volcanic Fissure",
+      "korean": "화산 균열",
+      "id": "volcanic_fissure"
+    },
+    {
+      "english": "Volcanic Fissure of Snaking",
+      "korean": "구불거림의 화산 균열",
+      "id": "volcanic_fissure_alt_x"
+    },
+    {
+      "english": "[DNT] VolcanicFissureAltY",
+      "korean": "[DNT] VolcanicFissureAltY",
+      "id": "volcanic_fissure_alt_y"
+    },
+    {
+      "english": "Voltaxic Burst",
+      "korean": "전도성 격발",
+      "id": "voltaxic_burst"
+    },
+    {
+      "english": "[DNT] VoltaxicBurstAltX",
+      "korean": "[DNT] VoltaxicBurstAltX",
+      "id": "voltaxic_burst_alt_x"
+    },
+    {
+      "english": "[DNT] VoltaxicBurstAltY",
+      "korean": "[DNT] VoltaxicBurstAltY",
+      "id": "voltaxic_burst_alt_y"
+    },
+    {
+      "english": "Vortex",
+      "korean": "소용돌이",
+      "id": "vortex"
+    },
+    {
+      "english": "Vortex of Projection",
+      "korean": "투영의 소용돌이",
+      "id": "vortex_alt_x"
+    },
+    {
+      "english": "[DNT] FrostBoltNovaAltY",
+      "korean": "[DNT] FrostBoltNovaAltY",
+      "id": "vortex_alt_y"
+    },
+    {
+      "english": "Unnamed2",
+      "korean": "이름없음2",
+      "id": "vortex_old"
+    },
+    {
+      "english": "Vulnerability",
+      "korean": "취약성",
+      "id": "vulnerability"
+    },
+    {
+      "english": "Leap Slam",
+      "korean": "도약 강타",
+      "id": "vulture_leap_slam"
+    },
+    {
+      "english": "Wall of Force",
+      "korean": "힘의 벽",
+      "id": "wall_of_force"
+    },
+    {
+      "english": "Wand Teleport",
+      "korean": "마법봉 순간이동",
+      "id": "wand_teleport"
+    },
+    {
+      "english": "War Banner",
+      "korean": "전쟁 깃발",
+      "id": "war_banner"
+    },
+    {
+      "english": "Ward Shatter",
+      "korean": "수호 산산조각",
+      "id": "ward_shatter"
+    },
+    {
+      "english": "Warlord's Mark",
+      "korean": "전쟁군주의 징표",
+      "id": "warlords_mark"
+    },
+    {
+      "english": "Warlord's Mark",
+      "korean": "전쟁군주의 징표",
+      "id": "warlords_mark_triggered"
+    },
+    {
+      "english": "Wave of Conviction",
+      "korean": "신념의 파도",
+      "id": "wave_of_conviction"
+    },
+    {
+      "english": "[DNT] PurgeAltX",
+      "korean": "[DNT] PurgeAltX",
+      "id": "wave_of_conviction_alt_x"
+    },
+    {
+      "english": "Wave of Conviction of Trarthus",
+      "korean": "트라투스의 신념의 파도",
+      "id": "wave_of_conviction_alt_y"
+    },
+    {
+      "english": "Whirling Blades",
+      "korean": "칼날 선회",
+      "id": "whirling_blades"
+    },
+    {
+      "english": "[DNT] WhirlingBladesAltX",
+      "korean": "[DNT] WhirlingBladesAltX",
+      "id": "whirling_blades_alt_x"
+    },
+    {
+      "english": "[DNT] WhirlingBladesAltY",
+      "korean": "[DNT] WhirlingBladesAltY",
+      "id": "whirling_blades_alt_y"
+    },
+    {
+      "english": "Whirling Blades",
+      "korean": "칼날 선회",
+      "id": "whirling_blades_cooldown"
+    },
+    {
+      "english": "Whirling Leap",
+      "korean": "소용돌이 도약",
+      "id": "whirling_leap"
+    },
+    {
+      "english": "Wild Strike",
+      "korean": "사나운 타격",
+      "id": "wild_strike"
+    },
+    {
+      "english": "Wild Strike of Extremes",
+      "korean": "극단의 사나운 타격",
+      "id": "wild_strike_alt_x"
+    },
+    {
+      "english": "[DNT] WildStrikeAltY",
+      "korean": "[DNT] WildStrikeAltY",
+      "id": "wild_strike_alt_y"
+    },
+    {
+      "english": "Windburst",
+      "korean": "바람 격발",
+      "id": "windburst"
+    },
+    {
+      "english": "Winter Orb",
+      "korean": "겨울 보주",
+      "id": "winter_orb"
+    },
+    {
+      "english": "[DNT] WinterOrbAltX",
+      "korean": "[DNT] WinterOrbAltX",
+      "id": "winter_orb_alt_x"
+    },
+    {
+      "english": "[DNT] WinterOrbAltY",
+      "korean": "[DNT] WinterOrbAltY",
+      "id": "winter_orb_alt_y"
+    },
+    {
+      "english": "Wintertide Brand",
+      "korean": "겨울의 낙인",
+      "id": "wintertide_brand"
+    },
+    {
+      "english": "[DNT] WintertideBrandAltX",
+      "korean": "[DNT] WintertideBrandAltX",
+      "id": "wintertide_brand_alt_x"
+    },
+    {
+      "english": "[DNT] WintertideBrandAltY",
+      "korean": "[DNT] WintertideBrandAltY",
+      "id": "wintertide_brand_alt_y"
+    },
+    {
+      "english": "Wither",
+      "korean": "위축",
+      "id": "wither"
+    },
+    {
+      "english": "Wither",
+      "korean": "위축",
+      "id": "wither_old"
+    },
+    {
+      "english": "Withering Step",
+      "korean": "고사시키는 걸음",
+      "id": "withering_step"
+    },
+    {
+      "english": "Word of Blades",
+      "korean": "칼날의 명령",
+      "id": "word_of_blades"
+    },
+    {
+      "english": "Word of Flames",
+      "korean": "화염의 명령",
+      "id": "word_of_flames"
+    },
+    {
+      "english": "Word of Force",
+      "korean": "힘의 명령",
+      "id": "word_of_force_on_hit"
+    },
+    {
+      "english": "Word of Frost",
+      "korean": "서리의 명령",
+      "id": "word_of_frost"
+    },
+    {
+      "english": "Word of Fury",
+      "korean": "광분의 명령",
+      "id": "word_of_fury_on_hit"
+    },
+    {
+      "english": "Word of Inferno",
+      "korean": "지옥불의 명령",
+      "id": "word_of_inferno_on_kill"
+    },
+    {
+      "english": "Word of Ire",
+      "korean": "노여움의 명령",
+      "id": "word_of_ire_when_hit"
+    },
+    {
+      "english": "Word of Light",
+      "korean": "빛의 명령",
+      "id": "word_of_light_when_critically_hit"
+    },
+    {
+      "english": "Word of Reflection",
+      "korean": "투영의 명령",
+      "id": "word_of_reflection_when_hit"
+    },
+    {
+      "english": "Word of Spite",
+      "korean": "원한의 명령",
+      "id": "word_of_spite_when_hit"
+    },
+    {
+      "english": "Word of the Tempest",
+      "korean": "폭풍의 명령",
+      "id": "word_of_tempest_on_hit"
+    },
+    {
+      "english": "Word of the Grave",
+      "korean": "무덤의 명령",
+      "id": "word_of_the_grave_on_kill"
+    },
+    {
+      "english": "Word of Thunder",
+      "korean": "천둥의 명령",
+      "id": "word_of_thunder_on_kill"
+    },
+    {
+      "english": "Word of War",
+      "korean": "전쟁의 명령",
+      "id": "word_of_war_on_kill"
+    },
+    {
+      "english": "Word of Winter",
+      "korean": "겨울의 명령",
+      "id": "word_of_winter_when_hit"
+    },
+    {
+      "english": "Wrath",
+      "korean": "진노",
+      "id": "wrath"
+    },
+    {
+      "english": "Memory of Desire",
+      "korean": "갈망의 기억",
+      "id": "zana_influence_memory_of_desire"
+    },
+    {
+      "english": "Memory of Disbelief",
+      "korean": "불신의 기억",
+      "id": "zana_influence_memory_of_disbelief"
+    },
+    {
+      "english": "Memory of Familiarity",
+      "korean": "익숙함의 기억",
+      "id": "zana_influence_memory_of_familiarity"
+    },
+    {
+      "english": "Memory of Impatience",
+      "korean": "조바심의 기억",
+      "id": "zana_influence_memory_of_impatience"
+    },
+    {
+      "english": "Memory of Impulsiveness",
+      "korean": "충동의 기억",
+      "id": "zana_influence_memory_of_impulsiveness"
+    },
+    {
+      "english": "Memory of Mocking",
+      "korean": "조롱의 기억",
+      "id": "zana_influence_memory_of_mocking"
+    },
+    {
+      "english": "Memory of Panic",
+      "korean": "공황의 기억",
+      "id": "zana_influence_memory_of_panic"
+    },
+    {
+      "english": "Memory of Suspicion",
+      "korean": "의혹의 기억",
+      "id": "zana_influence_memory_of_suspicion"
+    },
+    {
+      "english": "Zealotry",
+      "korean": "열광",
+      "id": "zealotry"
+    }
+  ]
+}

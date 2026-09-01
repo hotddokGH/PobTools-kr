@@ -1,0 +1,1265 @@
+{
+  "patch": "3.29.3.2",
+  "table": "ClientStrings",
+  "rows": [
+    {
+      "english": "Favours",
+      "korean": [
+        "헌정품",
+        "호의"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "AncestralTrialFavoursPopupTitle"
+    },
+    {
+      "english": "Favours",
+      "korean": [
+        "헌정품",
+        "호의"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "AncestralTrialVendorWindow"
+    },
+    {
+      "english": "Armour",
+      "korean": [
+        "방어구",
+        "방어도"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "AttributeSubCategoryStr"
+    },
+    {
+      "english": "Coming Soon",
+      "korean": [
+        "곧 출시 예정!",
+        "출시 예정"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "BattlePassRewardComingSoonDesc"
+    },
+    {
+      "english": "Release",
+      "korean": [
+        "석방",
+        "해고",
+        "해방"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "BestiaryDeleteBeastButtonLabel"
+    },
+    {
+      "english": "Release",
+      "korean": [
+        "석방",
+        "해고",
+        "해방"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "BetrayalReleaseButton"
+    },
+    {
+      "english": "League",
+      "korean": [
+        "도전하기",
+        "리그"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "CharacterCreationScreenLeagueButtonText"
+    },
+    {
+      "english": "Delete",
+      "korean": [
+        "삭제",
+        "캐릭터 삭제"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "CharacterSelectionDeleteButtonText"
+    },
+    {
+      "english": "Exit",
+      "korean": [
+        "종료",
+        "종료하기"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "CharacterSelectionExitButtonText"
+    },
+    {
+      "english": "Trade",
+      "korean": [
+        "거래",
+        "거래하기"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "ChatBoxChannelNameTrade"
+    },
+    {
+      "english": "From",
+      "korean": [
+        "수신",
+        "출처"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "ChatBoxFrom"
+    },
+    {
+      "english": "Trade",
+      "korean": [
+        "거래",
+        "거래하기"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "ChatBoxTradeCheckboxLabel"
+    },
+    {
+      "english": "Expand / Collapse All",
+      "korean": [
+        "모두 확장 / 접기",
+        "확장 / 모두 접기"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "ConsoleChallengesExpandAllLabel"
+    },
+    {
+      "english": "Search",
+      "korean": [
+        "검색",
+        "검색하기"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "ConsoleMarketPanelLegendSearch"
+    },
+    {
+      "english": "Quick Move",
+      "korean": [
+        "빠른 이동",
+        "신속한 움직임"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "ConsoleQuickCategorySelectLegend"
+    },
+    {
+      "english": "Craft",
+      "korean": [
+        "제작",
+        "제작하기"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "CraftingWindowCraftButton"
+    },
+    {
+      "english": "Link",
+      "korean": [
+        "연결하기",
+        "이전하기"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "CreateEpicAccountWindowLinkButton"
+    },
+    {
+      "english": "Link",
+      "korean": [
+        "연결하기",
+        "이전하기"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "CreateSteamAccountWindowLinkButton"
+    },
+    {
+      "english": "Craft",
+      "korean": [
+        "제작",
+        "제작하기"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "CrucibleAddWeaponTreeToItemCraftingCraftButton"
+    },
+    {
+      "english": "League",
+      "korean": [
+        "도전하기",
+        "리그"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "CurrencyStashSubTabLeague"
+    },
+    {
+      "english": "Clear",
+      "korean": [
+        "지우기",
+        "취소"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "DefaultMTXOptionClear"
+    },
+    {
+      "english": "Radius",
+      "korean": [
+        "반경",
+        "적용 반경"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "DelveUpgradeTabRadiusUpgrade"
+    },
+    {
+      "english": "Trade",
+      "korean": [
+        "거래",
+        "거래하기"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "DivinationWindowTradeButton"
+    },
+    {
+      "english": "Done",
+      "korean": [
+        "완료",
+        "확인"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "Done"
+    },
+    {
+      "english": "Armour",
+      "korean": [
+        "방어구",
+        "방어도"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "EssenceCategoryArmour"
+    },
+    {
+      "english": "Shield",
+      "korean": [
+        "방패",
+        "보호막"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "EssenceCategoryShield"
+    },
+    {
+      "english": "Any",
+      "korean": [
+        "아무",
+        "전부"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "ETradeMarketFilterComboBoxPlaceHolderAny"
+    },
+    {
+      "english": "Search",
+      "korean": [
+        "검색",
+        "검색하기"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "ETradeMarketSearchButtonText"
+    },
+    {
+      "english": "Search",
+      "korean": [
+        "검색",
+        "검색하기"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "ETradeMarketSearchPageTab"
+    },
+    {
+      "english": "Any",
+      "korean": [
+        "아무",
+        "전부"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "ETradeMarketStatusOptionAny"
+    },
+    {
+      "english": "Submit",
+      "korean": [
+        "승락",
+        "제출",
+        "제출하기"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "FeedbackWindowSubmit"
+    },
+    {
+      "english": "{0} and {1}",
+      "korean": [
+        "{0} 및 {1}",
+        "{0}, {1}"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "GainLosePointCombo"
+    },
+    {
+      "english": "Craft",
+      "korean": [
+        "제작",
+        "제작하기"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "GemCraftingWindowCraft"
+    },
+    {
+      "english": "Enabled",
+      "korean": [
+        "사용함",
+        "활성화"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "GraphicsOptionsBackgroundFramerateCapEnabled"
+    },
+    {
+      "english": "Enabled",
+      "korean": [
+        "사용함",
+        "활성화"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "GraphicsOptionsDoFEnabled"
+    },
+    {
+      "english": "Enabled",
+      "korean": [
+        "사용함",
+        "활성화"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "GraphicsOptionsFramerateCapEnabled"
+    },
+    {
+      "english": "Off",
+      "korean": [
+        "꺼짐",
+        "끄기"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "GraphicsOptionsReflexOff"
+    },
+    {
+      "english": "Off",
+      "korean": [
+        "꺼짐",
+        "끄기"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "GraphicsOptionsShadowQualityOff"
+    },
+    {
+      "english": "Disabled",
+      "korean": [
+        "꺼짐",
+        "비활성화",
+        "사용하지 않음"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "GraphicsOptionsTripleBufferingDisabled"
+    },
+    {
+      "english": "Enabled (Default)",
+      "korean": [
+        "켜짐 (기본)",
+        "활성화 (기본)"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "GraphicsOptionsTripleBufferingEnabled"
+    },
+    {
+      "english": "Off",
+      "korean": [
+        "꺼짐",
+        "끄기"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "GraphicsOptionsUpscaleOff"
+    },
+    {
+      "english": "Quality",
+      "korean": [
+        "퀄리티",
+        "화질"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "GraphicsOptionsUpscaleQualityQuality"
+    },
+    {
+      "english": "Locked",
+      "korean": [
+        "잠금 (기본)",
+        "잠김"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "GraphicsOptionsVSyncLocked"
+    },
+    {
+      "english": "Off",
+      "korean": [
+        "꺼짐",
+        "끄기"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "GraphicsOptionsVSyncOff"
+    },
+    {
+      "english": "Quality",
+      "korean": [
+        "퀄리티",
+        "화질"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "GraphicsTabQualitySuffix"
+    },
+    {
+      "english": "Leader",
+      "korean": [
+        "대장",
+        "대표"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "GuildMemberTypeLeader"
+    },
+    {
+      "english": "Craft",
+      "korean": [
+        "제작",
+        "제작하기"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "HarvestRefineButtonHover"
+    },
+    {
+      "english": "Dismiss",
+      "korean": [
+        "거절",
+        "소환 해제",
+        "해고"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "HideoutInvitationDismissButton"
+    },
+    {
+      "english": "Delete",
+      "korean": [
+        "삭제",
+        "캐릭터 삭제"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "HideoutLegendDelete"
+    },
+    {
+      "english": "Swap",
+      "korean": [
+        "바꾸기",
+        "전환"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "HideoutSelectionWindowClaimHideout"
+    },
+    {
+      "english": "Exit",
+      "korean": [
+        "종료",
+        "종료하기"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "HUDDeathMessageExitButton"
+    },
+    {
+      "english": "Armour",
+      "korean": [
+        "방어구",
+        "방어도"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "ItemDisplayArmourArmour"
+    },
+    {
+      "english": "Radius",
+      "korean": [
+        "반경",
+        "적용 반경"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "ItemDisplayHarvestEffectRadius"
+    },
+    {
+      "english": "Radius",
+      "korean": [
+        "반경",
+        "적용 반경"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "JewelRadiusLabel"
+    },
+    {
+      "english": "Large",
+      "korean": [
+        "대형",
+        "큼"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "JewelRadiusLarge"
+    },
+    {
+      "english": "Small",
+      "korean": [
+        "작게",
+        "작음"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "JewelRadiusSmall"
+    },
+    {
+      "english": "Done",
+      "korean": [
+        "완료",
+        "확인"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "KalguurEditShipmentConfirmButton"
+    },
+    {
+      "english": "Release",
+      "korean": [
+        "석방",
+        "해고",
+        "해방"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "KalguurFireWorkerButton"
+    },
+    {
+      "english": "Abandon",
+      "korean": [
+        "버리기",
+        "포기"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "KalguurHarbourAbandonShipButton"
+    },
+    {
+      "english": "Abandon",
+      "korean": [
+        "버리기",
+        "포기"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "KalguurMappingAbandonWorkersButton"
+    },
+    {
+      "english": "UNUSED",
+      "korean": [
+        "미사용",
+        "UNUSED"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "KalguurWorkersStoppedError"
+    },
+    {
+      "english": "Ladder",
+      "korean": [
+        "래더",
+        "사다리"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "LadderPanelTitle"
+    },
+    {
+      "english": "Swap",
+      "korean": [
+        "바꾸기",
+        "전환"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "LakeTabletSwapActionLegend"
+    },
+    {
+      "english": "Link",
+      "korean": [
+        "연결하기",
+        "이전하기"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "LoginLinkAccountPromptWindowLinkAccountButton"
+    },
+    {
+      "english": "Exit",
+      "korean": [
+        "종료",
+        "종료하기"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "LoginScreenExitButtonText"
+    },
+    {
+      "english": "Gateway",
+      "korean": [
+        "게이트웨이",
+        "관문"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "LoginScreenGatewayLabel"
+    },
+    {
+      "english": "Gateway",
+      "korean": [
+        "게이트웨이",
+        "관문"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "LoginScreenGatewayListGatewayTitle"
+    },
+    {
+      "english": "Ladder",
+      "korean": [
+        "래더",
+        "사다리"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "MapStairAlternativeLadder"
+    },
+    {
+      "english": "Submit",
+      "korean": [
+        "승락",
+        "제출",
+        "제출하기"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "MarketOfferSubmitButton"
+    },
+    {
+      "english": "Withdraw",
+      "korean": [
+        "포기",
+        "포기하기"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "MarketOfferWithdrawButton"
+    },
+    {
+      "english": "Search",
+      "korean": [
+        "검색",
+        "검색하기"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "MarketSearchPageSearchButton"
+    },
+    {
+      "english": "Search",
+      "korean": [
+        "검색",
+        "검색하기"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "MarketSearchPageTitle"
+    },
+    {
+      "english": "Dismiss",
+      "korean": [
+        "거절",
+        "소환 해제",
+        "해고"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "MercenaryDismissButton"
+    },
+    {
+      "english": "Invite",
+      "korean": [
+        "초대",
+        "초대하기"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "MercenaryInviteButton"
+    },
+    {
+      "english": "{0}{1}",
+      "korean": [
+        "{0} {1}",
+        "{0}{1}"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "MercenaryName"
+    },
+    {
+      "english": "Swap",
+      "korean": [
+        "바꾸기",
+        "전환"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "MercenaryReplaceEquippedItem"
+    },
+    {
+      "english": "Armour",
+      "korean": [
+        "방어구",
+        "방어도"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "MercenaryStatCategoryArmour"
+    },
+    {
+      "english": "Delete",
+      "korean": [
+        "삭제",
+        "캐릭터 삭제"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "MicrotransactionTrackedStatisticLabelDelete"
+    },
+    {
+      "english": "Dismiss",
+      "korean": [
+        "거절",
+        "소환 해제",
+        "해고"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "MtxOptionDismissMaster"
+    },
+    {
+      "english": "Dismiss",
+      "korean": [
+        "거절",
+        "소환 해제",
+        "해고"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "MtxOptionDismissPet"
+    },
+    {
+      "english": "Delete Leaderboard Entry: \"{0}\"?",
+      "korean": [
+        "\"{0}\" 순위표 기록을 삭제할까요?",
+        "순위표 기록 \"{0}\"을(를) 삭제할까요?"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "MTXPrisonerAltarRemoveLeaderboardConfirmationTitle"
+    },
+    {
+      "english": "Delete Leaderboard Entry: \"{0}\"?",
+      "korean": [
+        "\"{0}\" 순위표 기록을 삭제할까요?",
+        "순위표 기록 \"{0}\"을(를) 삭제할까요?"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "MTXSanctumHourglassRemoveLeaderboardConfirmationTitle"
+    },
+    {
+      "english": "Locked",
+      "korean": [
+        "잠금 (기본)",
+        "잠김"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "MTXTierButtonPopupLocked"
+    },
+    {
+      "english": "Armour",
+      "korean": [
+        "방어구",
+        "방어도"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "NecropolisCraftWindowCraftCategoryArmour"
+    },
+    {
+      "english": "Craft",
+      "korean": [
+        "제작",
+        "제작하기"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "NecropolisOpenCraftingWindowButton"
+    },
+    {
+      "english": "Swap",
+      "korean": [
+        "바꾸기",
+        "전환"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "NecropolisPackModsWindowSwap"
+    },
+    {
+      "english": "League",
+      "korean": [
+        "도전하기",
+        "리그"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "NewLeagueDisplayBottom"
+    },
+    {
+      "english": "UNUSED",
+      "korean": [
+        "미사용",
+        "UNUSED"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "ObjectDisplayTextDelveEncounter43"
+    },
+    {
+      "english": "UNUSED",
+      "korean": [
+        "미사용",
+        "UNUSED"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "ObjectDisplayTextDelveEncounter44"
+    },
+    {
+      "english": "UNUSED",
+      "korean": [
+        "미사용",
+        "UNUSED"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "ObjectDisplayTextDelveEncounter45"
+    },
+    {
+      "english": "UNUSED",
+      "korean": [
+        "미사용",
+        "UNUSED"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "ObjectDisplayTextDelveEncounter46"
+    },
+    {
+      "english": "UNUSED",
+      "korean": [
+        "미사용",
+        "UNUSED"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "ObjectDisplayTextDelveEncounter47"
+    },
+    {
+      "english": "UNUSED",
+      "korean": [
+        "미사용",
+        "UNUSED"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "ObjectDisplayTextDelveEncounter48"
+    },
+    {
+      "english": "Disabled",
+      "korean": [
+        "꺼짐",
+        "비활성화",
+        "사용하지 않음"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "OptionPanelScreenShakeDisabled"
+    },
+    {
+      "english": "Enabled",
+      "korean": [
+        "사용함",
+        "활성화"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "OptionPanelScreenShakeEnabled"
+    },
+    {
+      "english": "Small",
+      "korean": [
+        "작게",
+        "작음"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "OptionsChatFontOptionSmall"
+    },
+    {
+      "english": "Enabled (Default)",
+      "korean": [
+        "켜짐 (기본)",
+        "활성화 (기본)"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "OptionsEngineMultithreadingEnabled"
+    },
+    {
+      "english": "Disabled",
+      "korean": [
+        "꺼짐",
+        "비활성화",
+        "사용하지 않음"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "OptionsKeyPickupDisabled"
+    },
+    {
+      "english": "Gateway",
+      "korean": [
+        "게이트웨이",
+        "관문"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "OptionsPanelConsoleGatewayOptionTitle"
+    },
+    {
+      "english": "Disabled",
+      "korean": [
+        "꺼짐",
+        "비활성화",
+        "사용하지 않음"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "OptionsPanelGenericDisabled"
+    },
+    {
+      "english": "Enabled",
+      "korean": [
+        "사용함",
+        "활성화"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "OptionsPanelGenericEnabled"
+    },
+    {
+      "english": "Disabled",
+      "korean": [
+        "꺼짐",
+        "비활성화",
+        "사용하지 않음"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "OptionsPanelPostProcessingDisabled"
+    },
+    {
+      "english": "Enabled (Default)",
+      "korean": [
+        "켜짐 (기본)",
+        "활성화 (기본)"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "OptionsPanelPostProcessingEnabled"
+    },
+    {
+      "english": "Save",
+      "korean": [
+        "네",
+        "저장"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "OptionsPanelSaveButtonText"
+    },
+    {
+      "english": "Disabled",
+      "korean": [
+        "꺼짐",
+        "비활성화",
+        "사용하지 않음"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "OptionsPanelVSyncDisabled"
+    },
+    {
+      "english": "Enabled",
+      "korean": [
+        "사용함",
+        "활성화"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "OptionsPanelVSyncEnabled"
+    },
+    {
+      "english": "Shield",
+      "korean": [
+        "방패",
+        "보호막"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "OrbShieldValue"
+    },
+    {
+      "english": "Gateway",
+      "korean": [
+        "게이트웨이",
+        "관문"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "PassiveSkillSearchWormhole"
+    },
+    {
+      "english": "Level {0}",
+      "korean": [
+        "{0} 레벨",
+        "{0}레벨"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "PlayerCharacterInfoLevel"
+    },
+    {
+      "english": "Trade",
+      "korean": [
+        "거래",
+        "거래하기"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "PlayerContextMenuTrade"
+    },
+    {
+      "english": "Promote",
+      "korean": [
+        "승급",
+        "임명"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "Promote"
+    },
+    {
+      "english": "Withdraw",
+      "korean": [
+        "포기",
+        "포기하기"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "PVPQueueWithdraw"
+    },
+    {
+      "english": "Quality",
+      "korean": [
+        "퀄리티",
+        "화질"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "Quality"
+    },
+    {
+      "english": "Quick Move",
+      "korean": [
+        "빠른 이동",
+        "신속한 움직임"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "QuickMovePrompt"
+    },
+    {
+      "english": "{0}{1}",
+      "korean": [
+        "{0} {1}",
+        "{0}{1}"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "RareNameFormat2Words"
+    },
+    {
+      "english": "Submit",
+      "korean": [
+        "승락",
+        "제출",
+        "제출하기"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "ReportWindowSubmitButtonText"
+    },
+    {
+      "english": "Favours",
+      "korean": [
+        "헌정품",
+        "호의"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "RitualRewardWindowTitle"
+    },
+    {
+      "english": "From",
+      "korean": [
+        "수신",
+        "출처"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "RitualStoneFromArea"
+    },
+    {
+      "english": "Save",
+      "korean": [
+        "네",
+        "저장"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "SaveChangesPromptSave"
+    },
+    {
+      "english": "Coming Soon",
+      "korean": [
+        "곧 출시 예정!",
+        "출시 예정"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "ShopPanelComingSoon"
+    },
+    {
+      "english": "Leader",
+      "korean": [
+        "대장",
+        "대표"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "SocialPanelGuildPageLeaderTitle"
+    },
+    {
+      "english": "Disabled",
+      "korean": [
+        "꺼짐",
+        "비활성화",
+        "사용하지 않음"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "SocialPanelPartyOptionsLevelScalingDisabled"
+    },
+    {
+      "english": "Enabled",
+      "korean": [
+        "사용함",
+        "활성화"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "SocialPanelPartyOptionsLevelScalingEnabled"
+    },
+    {
+      "english": "Leader",
+      "korean": [
+        "대장",
+        "대표"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "SocialPanelPartyPageLeaderTitle"
+    },
+    {
+      "english": "Level {0}",
+      "korean": [
+        "{0} 레벨",
+        "{0}레벨"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "SortItemLevelCategorySingle"
+    },
+    {
+      "english": "Quality",
+      "korean": [
+        "퀄리티",
+        "화질"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "SortMethodQuality"
+    },
+    {
+      "english": "Promote",
+      "korean": [
+        "승급",
+        "임명"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "StashEditorPromoteMapStashButton"
+    },
+    {
+      "english": "Search",
+      "korean": [
+        "검색",
+        "검색하기"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "TencentGuildPublicGuildListSearch"
+    },
+    {
+      "english": "{0} and {1}",
+      "korean": [
+        "{0} 및 {1}",
+        "{0}, {1}"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "TimeMS"
+    },
+    {
+      "english": "Expand / Collapse All",
+      "korean": [
+        "모두 확장 / 접기",
+        "확장 / 모두 접기"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "ToggleCollapseAllLabel"
+    },
+    {
+      "english": "Trade",
+      "korean": [
+        "거래",
+        "거래하기"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "TradeWindowTitle"
+    },
+    {
+      "english": "Clear",
+      "korean": [
+        "지우기",
+        "취소"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "UIOptionsCacheWipe"
+    },
+    {
+      "english": "Large",
+      "korean": [
+        "대형",
+        "큼"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "UIOptionsCursorSizeLarge"
+    },
+    {
+      "english": "Small",
+      "korean": [
+        "작게",
+        "작음"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "UIOptionsCursorSizeSmall"
+    },
+    {
+      "english": "Shield",
+      "korean": [
+        "방패",
+        "보호막"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "WeaponClassDisplayNameShield"
+    },
+    {
+      "english": "Invite",
+      "korean": [
+        "초대",
+        "초대하기"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "XboxPartyUIGetGold"
+    },
+    {
+      "english": "Invite",
+      "korean": [
+        "초대",
+        "초대하기"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "XboxPartyUIInvite"
+    },
+    {
+      "english": "Trade",
+      "korean": [
+        "거래",
+        "거래하기"
+      ],
+      "reason": "one English lookup key maps to multiple official Korean names",
+      "id": "XboxPlayerContextMenuTrade"
+    }
+  ]
+}

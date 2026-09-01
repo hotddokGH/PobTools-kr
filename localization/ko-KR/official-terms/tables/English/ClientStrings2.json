@@ -1,0 +1,1557 @@
+[
+  {
+    "_index": 0,
+    "Id": "GamepadActionSocketJewelInPassiveTree",
+    "Text": "Socket In Passive Tree"
+  },
+  {
+    "_index": 1,
+    "Id": "MtxOptionBuyMore",
+    "Text": "Buy More"
+  },
+  {
+    "_index": 2,
+    "Id": "ConsoleActionClearSearch",
+    "Text": "Clear Search"
+  },
+  {
+    "_index": 3,
+    "Id": "WorldPanelGamepadToHideout",
+    "Text": "Warp to Hideout"
+  },
+  {
+    "_index": 4,
+    "Id": "WorldPanelGamepadToLastArea",
+    "Text": "Return to {0}"
+  },
+  {
+    "_index": 5,
+    "Id": "GamepadTargetingModeTitleMelee",
+    "Text": "Targeting Mode\r\n<bigger>{<valuedefault>{Melee}}"
+  },
+  {
+    "_index": 6,
+    "Id": "GamepadTargetingModeTitleRanged",
+    "Text": "Targeting Mode\r\n<bigger>{<valuedefault>{Ranged}}"
+  },
+  {
+    "_index": 7,
+    "Id": "GamepadTargetingModeTitleCustom",
+    "Text": "Targeting Mode\r\n<bigger>{<valuedefault>{Custom}}"
+  },
+  {
+    "_index": 8,
+    "Id": "GamepadTargetingSelectTitle",
+    "Text": "Select Targeting Mode"
+  },
+  {
+    "_index": 9,
+    "Id": "GamepadTargetingMeleeDescription",
+    "Text": "<subtitle>{Melee}\r\nPrecise and responsive targeting.\r\n\r\n<italic>{<subtitle>{Select to always use Melee mode.}}"
+  },
+  {
+    "_index": 10,
+    "Id": "GamepadTargetingRangedDescription",
+    "Text": "<subtitle>{Ranged}\r\nStay on target while avoiding dangers.\r\n\r\n<italic>{<subtitle>{Select to always use Ranged mode.}}"
+  },
+  {
+    "_index": 11,
+    "Id": "GamepadTargetingCustomDescription",
+    "Text": "<subtitle>{Custom}\r\nFor those that prefer to create their own settings."
+  },
+  {
+    "_index": 12,
+    "Id": "GamepadTargetingCustomOptionLargeSelectionArea",
+    "Text": "Targeting Area"
+  },
+  {
+    "_index": 13,
+    "Id": "GamepadTargetingCustomOptionDistanceWeighting",
+    "Text": "Range Bias "
+  },
+  {
+    "_index": 14,
+    "Id": "GamepadTargetingCustomOptionAimOverrideSoftlock",
+    "Text": "{0} Softlock"
+  },
+  {
+    "_index": 15,
+    "Id": "GamepadTargetingCustomOptionPriortiseCombatDirection",
+    "Text": "Direction Priority"
+  },
+  {
+    "_index": 16,
+    "Id": "GamepadTargetingCustomOptionLargeSelectionAreaDesc",
+    "Text": "{0}\r\nAuto-targeting radius is biased toward your aim direction.\r\n\r\n{1}\r\nAuto-targeting radius is equal in all directions."
+  },
+  {
+    "_index": 17,
+    "Id": "GamepadTargetingCustomOptionDistanceWeightingDesc",
+    "Text": "{0}\r\nDecreased Auto-target bias for nearby enemies.\r\n\r\n{1}\r\nIncreased Auto-target bias for nearby enemies."
+  },
+  {
+    "_index": 18,
+    "Id": "GamepadTargetingCustomOptionAimOverrideSoftlockDesc",
+    "Text": "{0}\r\nTarget Softlock is disabled. Use {2} to aim manually on targets.\r\n\r\n{1}\r\nTarget Softlock is enabled. Use {2} to target lock an enemy for a short duration."
+  },
+  {
+    "_index": 19,
+    "Id": "GamepadTargetingCustomOptionPriortiseCombatDirectionDesc",
+    "Text": "{0}\r\nAuto-targeting priortises your {2} move direction.\r\n\r\n{1}\r\nAuto-targeting priotises targets in the direction your character is facing."
+  },
+  {
+    "_index": 20,
+    "Id": "GamepadTargetingModeTitleAuto",
+    "Text": "Targeting Mode\r\n<bigger>{<valuedefault>{Automatic}}"
+  },
+  {
+    "_index": 21,
+    "Id": "GamepadTargetingAutoDescription",
+    "Text": "<subtitle>{Automatic (recommended)}\r\nSwitch between Ranged and Melee modes automatically depending on your weapon and skills. \r\n\r\n<italic>{<subtitle>{Skills which change targeting modes}}"
+  },
+  {
+    "_index": 22,
+    "Id": "QuickMoveToRelicsInventory",
+    "Text": "Place Relic"
+  },
+  {
+    "_index": 23,
+    "Id": "ConsoleActionToggleItemAdvancedInfo",
+    "Text": "Toggle Advanced Info"
+  },
+  {
+    "_index": 24,
+    "Id": "GamepadSettingAdvancedInfoOnPromotePopup",
+    "Text": "Advanced Info on Inspect"
+  },
+  {
+    "_index": 25,
+    "Id": "GamepadSettingAdvancedInfoOnPromotePopupDesc",
+    "Text": "Show advanced information when entering Inspect Mode."
+  },
+  {
+    "_index": 26,
+    "Id": "GamepadTargetingOptionMeleeDefaultTag",
+    "Text": "(Default for Melee)"
+  },
+  {
+    "_index": 27,
+    "Id": "GamepadTargetingOptionRangedDefaultTag",
+    "Text": "(Default for Ranged)"
+  },
+  {
+    "_index": 28,
+    "Id": "UISettingsHideCharmBar",
+    "Text": "Hide Charm Display"
+  },
+  {
+    "_index": 29,
+    "Id": "WorldScreenContentListTitle",
+    "Text": "Points Of Interest"
+  },
+  {
+    "_index": 30,
+    "Id": "WorldScreenContentListCompletedSubtitle",
+    "Text": "Completed"
+  },
+  {
+    "_index": 31,
+    "Id": "WorldScreenNodeInfoPrompt",
+    "Text": "Show Points of Interest"
+  },
+  {
+    "_index": 32,
+    "Id": "GamepadHighlightOffTitle",
+    "Text": "Label Visibility Off"
+  },
+  {
+    "_index": 33,
+    "Id": "GamepadActionToggleHighlight",
+    "Text": "Toggle Label Visibility"
+  },
+  {
+    "_index": 34,
+    "Id": "GamepadHelpToggleHighlightUnbound",
+    "Text": "<bigger>{<<gamepad_toggle_highlight>>} Bind action to show all labels."
+  },
+  {
+    "_index": 35,
+    "Id": "GamepadTargetingCustomOptionLargeSelectionAreaOffTitle",
+    "Text": "Precise"
+  },
+  {
+    "_index": 36,
+    "Id": "GamepadTargetingCustomOptionDistanceWeightingOffTitle",
+    "Text": "Off"
+  },
+  {
+    "_index": 37,
+    "Id": "GamepadTargetingCustomOptionAimOverrideSoftlockOffTitle",
+    "Text": "Off"
+  },
+  {
+    "_index": 38,
+    "Id": "GamepadTargetingCustomOptionPriortiseCombatDirectionOffTitle",
+    "Text": "Move Direction"
+  },
+  {
+    "_index": 39,
+    "Id": "GamepadTargetingCustomOptionLargeSelectionAreaOnTitle",
+    "Text": "Wide"
+  },
+  {
+    "_index": 40,
+    "Id": "GamepadTargetingCustomOptionDistanceWeightingOnTitle",
+    "Text": "On"
+  },
+  {
+    "_index": 41,
+    "Id": "GamepadTargetingCustomOptionAimOverrideSoftlockOnTitle",
+    "Text": "On"
+  },
+  {
+    "_index": 42,
+    "Id": "GamepadTargetingCustomOptionPriortiseCombatDirectionOnTitle",
+    "Text": "Facing Direction"
+  },
+  {
+    "_index": 43,
+    "Id": "GamepadLegendEditKeywordSearch",
+    "Text": "Filter Menu"
+  },
+  {
+    "_index": 44,
+    "Id": "PassiveSkillKeywordNewFilterButton",
+    "Text": "Add New Filter"
+  },
+  {
+    "_index": 45,
+    "Id": "GamepadLegendKeywordSearchClear",
+    "Text": "Reset Filter"
+  },
+  {
+    "_index": 46,
+    "Id": "PassiveSkillKeywordEditorCurrentSearchTitle",
+    "Text": "Current Filter"
+  },
+  {
+    "_index": 47,
+    "Id": "PassiveSkillKeywordEntryEmpty",
+    "Text": "None"
+  },
+  {
+    "_index": 48,
+    "Id": "GamepadLegendKeywordAddInclude",
+    "Text": "Add to Includes"
+  },
+  {
+    "_index": 49,
+    "Id": "GamepadLegendKeywordAddExclude",
+    "Text": "Add to Excludes"
+  },
+  {
+    "_index": 50,
+    "Id": "GamepadLegendKeywordRemoveEntry",
+    "Text": "Remove"
+  },
+  {
+    "_index": 51,
+    "Id": "GamepadCycleFilterResults",
+    "Text": "Cycle Search Results"
+  },
+  {
+    "_index": 52,
+    "Id": "GamepadLegendKeywordLegendShowAllOptions",
+    "Text": "Show All Options"
+  },
+  {
+    "_index": 53,
+    "Id": "GamepadLegendKeywordLegendShowSuggestedOptions",
+    "Text": "Show Suggested Options"
+  },
+  {
+    "_index": 54,
+    "Id": "GamepadLegendKeywordShowSuggestedTitle",
+    "Text": "Suggested Keywords based on your Skills and Equipment"
+  },
+  {
+    "_index": 55,
+    "Id": "GamepadLegendKeywordLegendToggleEntryActive",
+    "Text": "Toggle Active"
+  },
+  {
+    "_index": 56,
+    "Id": "GamepadLegendKeywordLegendDeleteEntry",
+    "Text": "Delete Filter"
+  },
+  {
+    "_index": 57,
+    "Id": "GamepadLegendKeywordLegendEditEntry",
+    "Text": "Edit Filter"
+  },
+  {
+    "_index": 58,
+    "Id": "GamepadLegendKeywordFilteredOutBrightness",
+    "Text": "Filtered Out Brightness"
+  },
+  {
+    "_index": 59,
+    "Id": "GamepadLegendKeywordHighlightBrightness",
+    "Text": "Highlight Glow Intensity"
+  },
+  {
+    "_index": 60,
+    "Id": "GamepadToggleSkillTargetingMode",
+    "Text": "Toggle Targeting Mode"
+  },
+  {
+    "_index": 61,
+    "Id": "GamepadToggleSkillTargetingRangedPopup",
+    "Text": "<bigger>{<<targeting_mode_ranged>> Ranged Mode}\r\n\r\n<<xbox_button_a>> <default>{to use melee mode for this Skill.}"
+  },
+  {
+    "_index": 62,
+    "Id": "GamepadToggleSkillTargetingMeleePopup",
+    "Text": "<bigger>{<<targeting_mode_melee>> Melee Mode}\r\n\r\n<<xbox_button_a>> <default>{to use ranged mode for this Skill.}"
+  },
+  {
+    "_index": 63,
+    "Id": "GamepadLegendUndoLastChange",
+    "Text": "Undo"
+  },
+  {
+    "_index": 64,
+    "Id": "InstillCraftingWarningRemoveAmuletToClose",
+    "Text": "Remove Amulet to close Window."
+  },
+  {
+    "_index": 65,
+    "Id": "PassiveSkillKeywordEditorTitle",
+    "Text": "Filter Editor"
+  },
+  {
+    "_index": 66,
+    "Id": "ResetChanges",
+    "Text": "Reset Changes"
+  },
+  {
+    "_index": 67,
+    "Id": "HUDMapPortalsRemaining1",
+    "Text": "1x<<map_portal_icon>>Map Portal Remaining"
+  },
+  {
+    "_index": 68,
+    "Id": "HUDMapPortalsRemainingN",
+    "Text": "{0}x<<map_portal_icon>>Map Portals Remaining"
+  },
+  {
+    "_index": 69,
+    "Id": "PassiveSkillKeywordFilterActiveTitle",
+    "Text": "Filter Search"
+  },
+  {
+    "_index": 70,
+    "Id": "PassiveSkillKeywordSavedFiltersTitle",
+    "Text": "Saved Filters"
+  },
+  {
+    "_index": 71,
+    "Id": "PassiveSkillKeywordOptionsTitle",
+    "Text": "Additional Options"
+  },
+  {
+    "_index": 72,
+    "Id": "CloseOptionsMenu",
+    "Text": "Hide Options"
+  },
+  {
+    "_index": 73,
+    "Id": "PassiveSkillKeywordFilterInactiveTitle",
+    "Text": "Text Search"
+  },
+  {
+    "_index": 74,
+    "Id": "PassiveSkillKeywordUnsavedChangesWarning",
+    "Text": "Would you like to save changes made to the filter?"
+  },
+  {
+    "_index": 75,
+    "Id": "SideEncounterCastawayBombTitle",
+    "Text": "Rotten Satchel Charge"
+  },
+  {
+    "_index": 76,
+    "Id": "GamepadSpiritManagementNoSpiritCost",
+    "Text": "{0}x Free Minions"
+  },
+  {
+    "_index": 77,
+    "Id": "ReservationErrorCompanionLimitReached1",
+    "Text": "Companion Limit Reached"
+  },
+  {
+    "_index": 78,
+    "Id": "PassiveSkillKeywordSmallNodeSetting",
+    "Text": "Small Nodes"
+  },
+  {
+    "_index": 79,
+    "Id": "PassiveSkillKeywordNotableSetting",
+    "Text": "Notable"
+  },
+  {
+    "_index": 80,
+    "Id": "PassiveSkillKeywordKeystoneSetting",
+    "Text": "Keystone"
+  },
+  {
+    "_index": 81,
+    "Id": "PassiveSkillKeywordNodeTypeSettingTitle",
+    "Text": "Filter Node Types"
+  },
+  {
+    "_index": 82,
+    "Id": "GamepadInitTargetingModeTitle",
+    "Text": "Select Targeting Mode"
+  },
+  {
+    "_index": 83,
+    "Id": "GamepadInitTargetingModeSubtitle",
+    "Text": "Targeting modes can changed later in the Bind Screen."
+  },
+  {
+    "_index": 84,
+    "Id": "GamepadInitTargetingModeDescAuto",
+    "Text": "<bigger>{Automatic (recommended)}\r\n\r\nSwitch between Ranged and Melee modes automatically."
+  },
+  {
+    "_index": 85,
+    "Id": "GamepadInitTargetingModeDescMelee",
+    "Text": "<bigger>{Melee}\r\n\r\nThis mode will always priortise targets you move towards."
+  },
+  {
+    "_index": 86,
+    "Id": "GamepadInitTargetingModeDescRanged",
+    "Text": "<bigger>{Ranged}\r\n\r\nThis mode is ideal for focusing down enemies from afar."
+  },
+  {
+    "_index": 87,
+    "Id": "GamepadInitTargetingModeLegend",
+    "Text": "Hold {0} to Select Mode."
+  },
+  {
+    "_index": 88,
+    "Id": "ConsoleActionUndoPropagateEquipment",
+    "Text": "Unshare Weapon Set"
+  },
+  {
+    "_index": 89,
+    "Id": "CosmeticsPanelHelpInfo",
+    "Text": "<valuedefault>{Ctrl + Alt + L-Click}<default>{ to link item in the chat.}\r\n<valuedefault>{R-Click}<default>{ to clear MTX slot.}"
+  },
+  {
+    "_index": 90,
+    "Id": "GamepadSpectateLegendChangeViewpoint",
+    "Text": "Change Viewpoint"
+  },
+  {
+    "_index": 91,
+    "Id": "GamepadSpectateLegendExit",
+    "Text": "Exit Spectate Mode"
+  },
+  {
+    "_index": 92,
+    "Id": "MtxStatisticLabelNumArbiterOfAshPinnacleBossKilled",
+    "Text": "The Arbiter of Ash"
+  },
+  {
+    "_index": 93,
+    "Id": "MtxStatisticLabelNumXeshPinnacleBossKilled",
+    "Text": "Xesht, We That Are One"
+  },
+  {
+    "_index": 94,
+    "Id": "MtxStatisticLabelNumOlrothPinnacleBossKilled",
+    "Text": "Olroth, Origin of the Fall"
+  },
+  {
+    "_index": 95,
+    "Id": "MtxStatisticLabelNumKingInTheMistsPinnacleBossKilled",
+    "Text": "The King in the Mists"
+  },
+  {
+    "_index": 96,
+    "Id": "ConsoleActionPlayExampleVideo",
+    "Text": "Play Example Video"
+  },
+  {
+    "_index": 97,
+    "Id": "GamepadEquippedWithWeaponSet",
+    "Text": "Equipped: [WeaponSets|Weapon Set]{0}"
+  },
+  {
+    "_index": 98,
+    "Id": "PassiveSkillRefundGrantedSpecialisationPointsError",
+    "Text": "Insufficent Specialisation Points.\r\nTo refund this Skill, unallocate some of your\r\nSpecialisation Passive Skills. \r\n\r\nRequired Available Specialisation Points: {0}\r\nCurrent Available Specialisation Points: {1}"
+  },
+  {
+    "_index": 99,
+    "Id": "ItemErrorDuplicateSupportGemInSkill",
+    "Text": "This Skill gem contains duplicate Support gems.\r\nOnly one Support gem type is valid per skill."
+  },
+  {
+    "_index": 100,
+    "Id": "GamepadAscendancyTreePopupOverview",
+    "Text": "You have ascended.\r\nUse [AscendancyPoints|Ascendancy Points] to allocate\r\nAscendancy Passive Skills. "
+  },
+  {
+    "_index": 101,
+    "Id": "RecombinatorUILastResultLabelSuccess",
+    "Text": "<rareitem>{Recombination Succeeded}"
+  },
+  {
+    "_index": 102,
+    "Id": "RecombinatorUILastResultLabelFailed",
+    "Text": "<red>{Recombination Failed}"
+  },
+  {
+    "_index": 103,
+    "Id": "SkillWarningNoValidWeaponEquipped",
+    "Text": "No valid Weapon equipped to use Skill."
+  },
+  {
+    "_index": 104,
+    "Id": "ConsoleActionSetToggledMinion",
+    "Text": "Set Minion"
+  },
+  {
+    "_index": 105,
+    "Id": "SkillCraftingEquippedGemsFilter",
+    "Text": "Equipped Gems"
+  },
+  {
+    "_index": 106,
+    "Id": "MapAreaStatsTitle",
+    "Text": "Map Modifiers"
+  },
+  {
+    "_index": 107,
+    "Id": "FavouriteMapsWindowKeepPinsOnScreenCheckboxLabel",
+    "Text": "Edge Display"
+  },
+  {
+    "_index": 108,
+    "Id": "FavouriteMapsWindowKeepPinsOnScreenCheckboxPopup",
+    "Text": ""
+  },
+  {
+    "_index": 109,
+    "Id": "GamepadOptionPriortiseInteractOverSkills",
+    "Text": "Prioritise Interact Over Skills"
+  },
+  {
+    "_index": 110,
+    "Id": "GamepadOptionPriortiseInteractOverSkillsDesc",
+    "Text": "Forces interact to always take priority over Skills.\r\n\r\nWith this Setting off, only certain Interactions will have priority, such as Area Transitions."
+  },
+  {
+    "_index": 111,
+    "Id": "GamepadActionShowStashOptions",
+    "Text": "Edit Tab Settings"
+  },
+  {
+    "_index": 112,
+    "Id": "GamepadActionCollapseFolder",
+    "Text": "Collapse Folder"
+  },
+  {
+    "_index": 113,
+    "Id": "GamepadActionExpandFolder",
+    "Text": "Expand Folder"
+  },
+  {
+    "_index": 114,
+    "Id": "StashTabSettingsTitle",
+    "Text": "Stash Tab Settings"
+  },
+  {
+    "_index": 115,
+    "Id": "Colour",
+    "Text": "Colour"
+  },
+  {
+    "_index": 116,
+    "Id": "GamepadReorderStashTabsTitle",
+    "Text": "Organise Tabs"
+  },
+  {
+    "_index": 117,
+    "Id": "GamepadReorderStashTabsLegends",
+    "Text": "<bigger>{<<xbox_button_a>>} Select Tab\r\n<bigger>{<<xbox_button_x>>} Move Tab To Top\r\n<bigger>{<<xbox_button_b>>} Finish Reordering"
+  },
+  {
+    "_index": 118,
+    "Id": "GamepadReorderStashFolderSubTabsTitle",
+    "Text": "Organise Tabs In Folder"
+  },
+  {
+    "_index": 119,
+    "Id": "GoddessOfJusticeEternalFlameLandmark",
+    "Text": "Goddess of Justice"
+  },
+  {
+    "_index": 120,
+    "Id": "LogInToTownTitle",
+    "Text": "Log in to Town or Hideout"
+  },
+  {
+    "_index": 121,
+    "Id": "LogInToTownWarning",
+    "Text": "Are you sure you want to log in to your most recent Town or Hideout instead of attempting to return to the Area where you last logged out?\r\n\r\nAny progression at your previous location will be lost."
+  },
+  {
+    "_index": 122,
+    "Id": "LogInToTownWarningMap",
+    "Text": "Are you sure you want to log in to your most recent Town or Hideout instead of attempting to return to the Area where you last logged out?\r\n\r\nThis will cost an endgame Map Portal, and may result in you being unable to access the Map."
+  },
+  {
+    "_index": 123,
+    "Id": "WarpWaypointButtonHover",
+    "Text": "Travel to Waypoint"
+  },
+  {
+    "_index": 124,
+    "Id": "GamepadActionStartGameInTown",
+    "Text": "Start Game in Town/Hideout"
+  },
+  {
+    "_index": 125,
+    "Id": "WorldPanelWarpToArea",
+    "Text": "Warp to {0}"
+  },
+  {
+    "_index": 126,
+    "Id": "WorldPanelWarpErrorNoWaypoint",
+    "Text": "Area does not contain a Waypoint."
+  },
+  {
+    "_index": 127,
+    "Id": "WorldPanelWarpErrorWaypointInactive",
+    "Text": "Waypoint for Area has not been Activated."
+  },
+  {
+    "_index": 128,
+    "Id": "WorldPanelWarpErrorNotVisited",
+    "Text": "You have not visited this Area."
+  },
+  {
+    "_index": 129,
+    "Id": "GamepadStashEditorModeTitle",
+    "Text": "Edit Stash Mode"
+  },
+  {
+    "_index": 130,
+    "Id": "GamepadActionEditStash",
+    "Text": "Stash Options"
+  },
+  {
+    "_index": 131,
+    "Id": "GamepadActionMoveStashTab",
+    "Text": "Move Tab"
+  },
+  {
+    "_index": 132,
+    "Id": "GamepadActionStopMoveTab",
+    "Text": "Place Tab"
+  },
+  {
+    "_index": 133,
+    "Id": "GamepadActionMoveStashTabToTop",
+    "Text": "Move to Top"
+  },
+  {
+    "_index": 134,
+    "Id": "SkillPanelWarningSupportCapacityExceeded",
+    "Text": "Support Gem Capacity Exceeded"
+  },
+  {
+    "_index": 135,
+    "Id": "GamepadQuickNavigateApplyMode",
+    "Text": "Quick Navigate (Applicable Items Only)"
+  },
+  {
+    "_index": 136,
+    "Id": "GamepadActionStopSalvaging",
+    "Text": "Exit Salvage Bench"
+  },
+  {
+    "_index": 137,
+    "Id": "GamepadActionShowFolderOptions",
+    "Text": "Edit Folder Settings"
+  },
+  {
+    "_index": 138,
+    "Id": "GamepadActionExitEditStashMode",
+    "Text": "Exit Edit Stash Mode"
+  },
+  {
+    "_index": 139,
+    "Id": "GamepadActionAddNewFolder",
+    "Text": "Add Folder"
+  },
+  {
+    "_index": 140,
+    "Id": "StashNewFolderDefaultName",
+    "Text": "New Folder"
+  },
+  {
+    "_index": 141,
+    "Id": "StashNewFolderSelectablesTitle",
+    "Text": "Select Tabs to be added to Folder"
+  },
+  {
+    "_index": 142,
+    "Id": "StashNewFolderDescription",
+    "Text": "A Folder must contain at least one Stash Tab"
+  },
+  {
+    "_index": 143,
+    "Id": "MicrotransactionTrackedStatisticTitleNumUltimatumTrialMasterBossKills",
+    "Text": "Trial Master Kills"
+  },
+  {
+    "_index": 144,
+    "Id": "MicrotransactionTrackedStatisticTitleNumUltimatumEncountersFailed",
+    "Text": "Failed Ultimatums"
+  },
+  {
+    "_index": 145,
+    "Id": "MicrotransactionTrackedStatisticTitleNumUltimatumEncountersSucceeded",
+    "Text": "Completed Ultimatums"
+  },
+  {
+    "_index": 146,
+    "Id": "MicrotransactionTrackedStatisticTitleNumUltimatumEncounterWavesCompleted",
+    "Text": "Total waves completed"
+  },
+  {
+    "_index": 147,
+    "Id": "MicrotransactionHallowedCryptMapDeviceTrackedStatisticTitleBreach",
+    "Text": "Breach"
+  },
+  {
+    "_index": 148,
+    "Id": "MicrotransactionHallowedCryptMapDeviceTrackedStatisticTitleAbyss",
+    "Text": "Abyss"
+  },
+  {
+    "_index": 149,
+    "Id": "MicrotransactionHallowedCryptMapDeviceTrackedStatisticTitleExpedition",
+    "Text": "Expedition"
+  },
+  {
+    "_index": 150,
+    "Id": "MicrotransactionHallowedCryptMapDeviceTrackedStatisticTitleHarvest",
+    "Text": "Harvest"
+  },
+  {
+    "_index": 151,
+    "Id": "MicrotransactionHallowedCryptMapDeviceTrackedStatisticTitleLegion",
+    "Text": "Legion"
+  },
+  {
+    "_index": 152,
+    "Id": "MicrotransactionHallowedCryptMapDeviceTrackedStatisticTitleSettlers",
+    "Text": "Settlers"
+  },
+  {
+    "_index": 153,
+    "Id": "MicrotransactionHallowedCryptMapDeviceTrackedStatisticTitleDelirium",
+    "Text": "Delirium"
+  },
+  {
+    "_index": 154,
+    "Id": "MicrotransactionHallowedCryptMapDeviceTrackedStatisticTitleUltimatum",
+    "Text": "Ultimatum"
+  },
+  {
+    "_index": 155,
+    "Id": "MicrotransactionHallowedCryptMapDeviceTrackedStatisticTitleBlight",
+    "Text": "Blight"
+  },
+  {
+    "_index": 156,
+    "Id": "MicrotransactionHallowedCryptMapDeviceTrackedStatisticTitleRitual",
+    "Text": "Ritual"
+  },
+  {
+    "_index": 157,
+    "Id": "EShopPanelViewBundlesContainingItemButtonPopup",
+    "Text": "View in Bundle"
+  },
+  {
+    "_index": 158,
+    "Id": "MicrotransactionTrackedStatisticTitleNumKillDeathRatio",
+    "Text": "K/D Ratio"
+  },
+  {
+    "_index": 159,
+    "Id": "MicrotransactionTrackedStatisticTitleNumKills",
+    "Text": "Kills"
+  },
+  {
+    "_index": 160,
+    "Id": "MicrotransactionTrackedStatisticTitleNumDeaths",
+    "Text": "Deaths"
+  },
+  {
+    "_index": 161,
+    "Id": "GamepadActionUnstash",
+    "Text": "Unstash"
+  },
+  {
+    "_index": 162,
+    "Id": "StashTabEditorPublicDesc",
+    "Text": "Allow other players to view and request to \r\npurchase items within the stash tab."
+  },
+  {
+    "_index": 163,
+    "Id": "StashTabEditorAffinityDesc",
+    "Text": "Assign stash affinities to force item types to be stashed here.\r\nMultiple Stash tabs cannot share the same stash affinity."
+  },
+  {
+    "_index": 164,
+    "Id": "GamepadActionClearSearch",
+    "Text": "Clear Search"
+  },
+  {
+    "_index": 165,
+    "Id": "AsyncTradeSoldItemNotification",
+    "Text": "{} has sold for {}.\r\nSpeak to Faustus in your hideout to collect your earnings."
+  },
+  {
+    "_index": 166,
+    "Id": "AsyncTradeSoldItemNotificationShort",
+    "Text": "{} has sold for {}."
+  },
+  {
+    "_index": 167,
+    "Id": "AsyncTradeSoldItemInAnotherLeagueNotification",
+    "Text": "{} has sold for {} in another league.\r\nSpeak to Faustus in your hideout in that league to collect your earnings."
+  },
+  {
+    "_index": 168,
+    "Id": "AsyncTradeSoldItemInAnotherLeagueNotificationShort",
+    "Text": "{} has sold for {} in another league."
+  },
+  {
+    "_index": 169,
+    "Id": "AsyncTradeStashPanelHelpPopup",
+    "Text": "<valuedefault>{In order to sell items using this system you need to have a Merchant's Tab}\r\n\r\n<cxinfocolour>{How to get a Merchant's Tab:}\r\n<valuedefault>{Premium Stash Tabs bought before 30th August 2025 can be converted to Merchant's Tabs for free.\r\nStash Tab conversion can only be done through the Website.\r\nNOTE: After conversion your chosen Premium Tabs will be gone from your personal Stash as it will now be a Merchant's Tab.  \r\nYou can buy a Merchant's Tab in the Microtransaction Shop.}\r\n\r\n<cxinfocolour>{As a Seller:}\r\n<valuedefault>{To list an item for sale, place the item in one of the Shop tabs and set a price.\r\nYou can't reprice an item for a duration once it has been \"Secured\" by someone coming to get it.\r\nAn item's gold fee is assigned by the system.\r\nBuyers will be teleported to your hideout to buy the item from your Merchant's Tab.\r\nYou'll receive a notification when a trade has been completed.\r\nThe currency from your sales can be collected from the Earnings tab.\r\nYou can view the last 100 sales by clicking the Sales History button.}\r\n<default>{You can} <valuedefault>{Right-Click} <default>{the tab to rename and recolour it.}\r\n\r\n<cxinfocolour>{As a Buyer:}\r\n<valuedefault>{Find \"Securable\" Listings on the Market Panel or the Trade Website.\r\nSecuring the item will teleport your character to the Seller's hideout.\r\nBuy the item from the Seller's Merchant's Tab.}\r\n<default>{You can} <valuedefault>{Right-Click} <default>{the Seller's tab to report it for inappropriate naming.}"
+  },
+  {
+    "_index": 170,
+    "Id": "AsyncTradeStashTabName",
+    "Text": "Shop"
+  },
+  {
+    "_index": 171,
+    "Id": "AsyncTradeStashPanelTitle",
+    "Text": "Merchant"
+  },
+  {
+    "_index": 172,
+    "Id": "AsyncTradeStashPanelPriceItemConfirmationTitle",
+    "Text": "Set Item Price"
+  },
+  {
+    "_index": 173,
+    "Id": "AsyncTradeStashPanelPriceItemConfirmationMessage",
+    "Text": "In order to list an item for sale, you must first select a buyout price."
+  },
+  {
+    "_index": 174,
+    "Id": "AsyncTradeStashPanelPriceItemConfirmationActionButton",
+    "Text": "List Item"
+  },
+  {
+    "_index": 175,
+    "Id": "AsyncTradeVendorPanelTitle",
+    "Text": "Merchant"
+  },
+  {
+    "_index": 176,
+    "Id": "AsyncTradeVendorPanelReportTabPopupText",
+    "Text": "Right click to report this tab"
+  },
+  {
+    "_index": 177,
+    "Id": "ReportWindowAsyncTradeTabLabel",
+    "Text": "Tab Name"
+  },
+  {
+    "_index": 178,
+    "Id": "AsyncTradeStashPanelSellerCurrencyStashName",
+    "Text": "Earnings"
+  },
+  {
+    "_index": 179,
+    "Id": "AsyncTradeStashPanelSellerCurrencyStashPopup",
+    "Text": "Earning from your sales can be collected from this tab."
+  },
+  {
+    "_index": 180,
+    "Id": "AsyncTradeStashPanelSellLogTitle",
+    "Text": "Sales History"
+  },
+  {
+    "_index": 181,
+    "Id": "AsyncTradeStashPanelSellLogHelpInfo",
+    "Text": "Information / Sales History"
+  },
+  {
+    "_index": 182,
+    "Id": "AsyncTradeStashPanelSellLogFilter",
+    "Text": "Filter list by the name of the sold item."
+  },
+  {
+    "_index": 183,
+    "Id": "AsyncTradeStashPanelSellLogEntrySoldItemLabel",
+    "Text": "Sold:"
+  },
+  {
+    "_index": 184,
+    "Id": "AsyncTradeStashPanelSellLogEntryCostItemLabel",
+    "Text": "For:"
+  },
+  {
+    "_index": 185,
+    "Id": "GamepadActionReportAsyncTradeTabName",
+    "Text": "Report Tab Name"
+  },
+  {
+    "_index": 186,
+    "Id": "GamepadActionQuickMoveAsyncTrade",
+    "Text": "List For Sale"
+  },
+  {
+    "_index": 187,
+    "Id": "StashTabEditorCantEditDesc",
+    "Text": "This Stash Tab cannot be edited."
+  },
+  {
+    "_index": 188,
+    "Id": "GamepadActionUnlistAsyncTradeItem",
+    "Text": "Unlist"
+  },
+  {
+    "_index": 189,
+    "Id": "GamepadActionEditAsyncTradeItemPrice",
+    "Text": "Edit Price"
+  },
+  {
+    "_index": 190,
+    "Id": "AsyncTradeCloseSaleHistoryList",
+    "Text": "Close Sale History"
+  },
+  {
+    "_index": 191,
+    "Id": "GampadActionAdjustListingPrice",
+    "Text": "Adjust Listing Price"
+  },
+  {
+    "_index": 192,
+    "Id": "HUDLeaveUnownedHideoutButtonLabel",
+    "Text": "Leave Hideout"
+  },
+  {
+    "_index": 193,
+    "Id": "HUDLeaveUnownedHideoutButtonPopupText",
+    "Text": ""
+  },
+  {
+    "_index": 194,
+    "Id": "ETradeMarketMessageWhisperFailedDNDModeEnabled",
+    "Text": "Invalid Query. Your account must not be marked as DND in-game to use this feature."
+  },
+  {
+    "_index": 195,
+    "Id": "ETradeMarketQuickSearchStats",
+    "Text": "Quick Search Stats"
+  },
+  {
+    "_index": 196,
+    "Id": "ETradeMarketEditStatsSearch",
+    "Text": "Edit Stats Search"
+  },
+  {
+    "_index": 197,
+    "Id": "ETradeMarketClearStatsSearch",
+    "Text": "Clear Stats Search"
+  },
+  {
+    "_index": 198,
+    "Id": "ETradeMarketCopyItemButtonHoverText",
+    "Text": "Copy Item"
+  },
+  {
+    "_index": 199,
+    "Id": "ETradeMarketCopyItemSuccessMessage",
+    "Text": "Item text copied."
+  },
+  {
+    "_index": 200,
+    "Id": "ETradeMarketRedSocketFilterEmptyMessage",
+    "Text": "R"
+  },
+  {
+    "_index": 201,
+    "Id": "ETradeMarketGreenSocketFilterEmptyMessage",
+    "Text": "G"
+  },
+  {
+    "_index": 202,
+    "Id": "ETradeMarketBlueSocketFilterEmptyMessage",
+    "Text": "B"
+  },
+  {
+    "_index": 203,
+    "Id": "ETradeMarketWhiteSocketFilterEmptyMessage",
+    "Text": "W"
+  },
+  {
+    "_index": 204,
+    "Id": "MonasteryPortalString",
+    "Text": "Monastery of the Keepers"
+  },
+  {
+    "_index": 205,
+    "Id": "AilithBrequelGlyphObjectClickable",
+    "Text": "Strange Flame"
+  },
+  {
+    "_index": 206,
+    "Id": "ConsoleActionUseVaalOrb",
+    "Text": "Use Vaal Orb"
+  },
+  {
+    "_index": 207,
+    "Id": "BrequelEncounterUseSkillNameViaHotkey",
+    "Text": "{0} [{1}]"
+  },
+  {
+    "_index": 208,
+    "Id": "AsyncTradeConfirmationTitle",
+    "Text": "Purchase Confirmation"
+  },
+  {
+    "_index": 209,
+    "Id": "AsyncTradeConfirmationInfoLabel",
+    "Text": "Use {0}x(CurrencyIconMarkerDontTranslate){1} to purchase {2}?"
+  },
+  {
+    "_index": 210,
+    "Id": "AsyncTradeConfirmationForUsingStashCurrencyInfoLabel",
+    "Text": "Use {0}x(CurrencyIconMarkerDontTranslate){1} in (RedDontTranslate){{stash}} to purchase {2}?"
+  },
+  {
+    "_index": 211,
+    "Id": "AsyncTradeConfirmationDontShowAgainLabel",
+    "Text": "Don't Show Again"
+  },
+  {
+    "_index": 212,
+    "Id": "AsyncTradeConfirmationSettingsOption",
+    "Text": "Show Async Trade Confirmation"
+  },
+  {
+    "_index": 213,
+    "Id": "AsyncTradeConfirmationForUsingStashCurrencySettingsOption",
+    "Text": "Show Async Trade Confirmation For Using Stash Currency"
+  },
+  {
+    "_index": 214,
+    "Id": "AsyncTradeCurrencyMismatchWarning",
+    "Text": "Note: This item's price differs from the one you initially travelled to this shop for."
+  },
+  {
+    "_index": 215,
+    "Id": "AstronomersLevelUpEffectEquippingWillResetDataConfirmationText",
+    "Text": "Equipping this microtransaction will delete all the existing statistic information tracked by this microtransaction.\nDo you wish to delete this information and equip?\n<yellow>{This action cannot be undone.}"
+  },
+  {
+    "_index": 216,
+    "Id": "UnstableDriverVulkanCompilePipelinesReason",
+    "Text": "This driver version can cause very long loading screens, {0}"
+  },
+  {
+    "_index": 217,
+    "Id": "UnstableDriverResolvedAction",
+    "Text": "please update your driver to version {0} or newer"
+  },
+  {
+    "_index": 218,
+    "Id": "BlightedMapAtlasNodeDisplayName",
+    "Text": "Blighted Lands"
+  },
+  {
+    "_index": 219,
+    "Id": "ValdoMapAtlasNodeDisplayName",
+    "Text": "Valdo's Oubliette"
+  },
+  {
+    "_index": 220,
+    "Id": "ReliquaryAtlasNodeDisplayName",
+    "Text": "Reliquary Vault"
+  },
+  {
+    "_index": 221,
+    "Id": "UberCortexAtlasNodeDisplayName",
+    "Text": "The Unleashed Cortex"
+  },
+  {
+    "_index": 222,
+    "Id": "RandomLogbookDisplayName",
+    "Text": "Uncharted Expedition"
+  },
+  {
+    "_index": 223,
+    "Id": "RandomBlueprintDisplayName",
+    "Text": "Planned Heist"
+  },
+  {
+    "_index": 224,
+    "Id": "MirageCompleteHudNotificationText",
+    "Text": "Mirage Complete"
+  },
+  {
+    "_index": 225,
+    "Id": "TemplarVaultCaseDisplayName",
+    "Text": "Forbidden Reliquary"
+  },
+  {
+    "_index": 226,
+    "Id": "RitualCompleteHudNotificationText",
+    "Text": "All Rituals Complete"
+  },
+  {
+    "_index": 227,
+    "Id": "IncubationBenchTitle",
+    "Text": "Incubation Font"
+  },
+  {
+    "_index": 228,
+    "Id": "IncubationBenchDescription2",
+    "Text": "Completes up to 2 Incubators currently applied to your Equipped Items"
+  },
+  {
+    "_index": 229,
+    "Id": "IncubationBenchDescription4",
+    "Text": "Completes up to 4 Incubators currently applied to your Equipped Items"
+  },
+  {
+    "_index": 230,
+    "Id": "IncubationBenchDescription6",
+    "Text": "Completes up to 6 Incubators currently applied to your Equipped Items"
+  },
+  {
+    "_index": 231,
+    "Id": "ArbiterofDivinityMapDeviceWhiteMapsPopup",
+    "Text": "Number of white Maps completed"
+  },
+  {
+    "_index": 232,
+    "Id": "ArbiterofDivinityMapDeviceYellowMapsPopup",
+    "Text": "Number of yellow Maps completed"
+  },
+  {
+    "_index": 233,
+    "Id": "ArbiterofDivinityMapDeviceRedMapsPopup",
+    "Text": "Number of red Maps completed"
+  },
+  {
+    "_index": 234,
+    "Id": "SimpleValueOutOfValue",
+    "Text": "{0}/{1}"
+  },
+  {
+    "_index": 235,
+    "Id": "LegionCocoonCrystalTitle",
+    "Text": "Crystal of Permutation"
+  },
+  {
+    "_index": 236,
+    "Id": "LegionCocoonCrystalDescription",
+    "Text": "Interact to insert an [Enshroud|Enshrouded] Item"
+  },
+  {
+    "_index": 237,
+    "Id": "DeepwaterHubBoatString",
+    "Text": "Visit The Sovereign"
+  },
+  {
+    "_index": 238,
+    "Id": "DeepwaterTormentedSpiritsTitle",
+    "Text": "Cage of Tormented Spirits"
+  },
+  {
+    "_index": 239,
+    "Id": "DeepwaterTormentedSpiritsDescription",
+    "Text": "Release trapped Tormented Spirits"
+  },
+  {
+    "_index": 240,
+    "Id": "DeepwaterLanternReplenishTitle",
+    "Text": "Allflame Kindling "
+  },
+  {
+    "_index": 241,
+    "Id": "MtxLeaderboardMapDeviceNumNormalMonsterKills",
+    "Text": "Normal monster kills"
+  },
+  {
+    "_index": 242,
+    "Id": "MtxLeaderboardMapDeviceNumMagicMonsterKills",
+    "Text": "Magic monster kills"
+  },
+  {
+    "_index": 243,
+    "Id": "MtxLeaderboardMapDeviceNumRareMonsterKills",
+    "Text": "Rare monster kills"
+  },
+  {
+    "_index": 244,
+    "Id": "MtxLeaderboardMapDeviceNumUniqueMonsterKills",
+    "Text": "Unique monster kills"
+  },
+  {
+    "_index": 245,
+    "Id": "MtxLeaderboardMapDeviceNumMarkersUnearthedByDynamite",
+    "Text": "Markers unearthed"
+  },
+  {
+    "_index": 246,
+    "Id": "MtxLeaderboardMapDeviceNumEliteMarkersUnearthedByDynamite",
+    "Text": "Elite markers unearthed"
+  },
+  {
+    "_index": 247,
+    "Id": "MtxLeaderboardMapDeviceNumChestsUnearthedByDynamite",
+    "Text": "Chests unearthed"
+  },
+  {
+    "_index": 248,
+    "Id": "MtxLeaderboardMapDeviceNumSpecialUnearthedByDynamite",
+    "Text": ""
+  },
+  {
+    "_index": 249,
+    "Id": "MtxLeaderboardMapDeviceNumTributeGenerated",
+    "Text": "Tribute generated"
+  },
+  {
+    "_index": 250,
+    "Id": "SideEncounterAbyssPinnacleBoss",
+    "Text": "[DNT] UNUSED"
+  },
+  {
+    "_index": 251,
+    "Id": "VaalSacrificeDeviceTitle",
+    "Text": "Sacrifice to Chaos"
+  },
+  {
+    "_index": 252,
+    "Id": "VaalSacrificeDeviceDescription",
+    "Text": "Offer a Unique Item to Chaos\nfor untold wealth"
+  },
+  {
+    "_index": 253,
+    "Id": "MercenaryLevel",
+    "Text": "Mercenary Level"
+  },
+  {
+    "_index": 254,
+    "Id": "MercenaryBuild",
+    "Text": "Build"
+  },
+  {
+    "_index": 255,
+    "Id": "AbyssPinnacleExchangeJewelsString",
+    "Text": "Reclaim"
+  },
+  {
+    "_index": 256,
+    "Id": "BottledUniqueBelt",
+    "Text": "Hold fast the tiller, my good friend."
+  },
+  {
+    "_index": 257,
+    "Id": "BottledUniqueJewel",
+    "Text": "Shine on, my sweet. "
+  },
+  {
+    "_index": 258,
+    "Id": "BottledUniqueRing",
+    "Text": "I wanted his ring. He wouldn't yield it... so I took his finger too."
+  },
+  {
+    "_index": 259,
+    "Id": "BottledUniqueAmulet",
+    "Text": "Be this blessing or millstone, it is now yours to wear."
+  },
+  {
+    "_index": 260,
+    "Id": "BottledUniqueFlask",
+    "Text": "Drink deep from the wellspring of life."
+  },
+  {
+    "_index": 261,
+    "Id": "BottledHinekorasLock",
+    "Text": "May your course be straight and your heart be true."
+  },
+  {
+    "_index": 262,
+    "Id": "BottledFracturingOrb",
+    "Text": "For those seeking surety in a chaotic world."
+  },
+  {
+    "_index": 263,
+    "Id": "BottledDivineOrb",
+    "Text": "May this bring you better fortune than it did me."
+  },
+  {
+    "_index": 264,
+    "Id": "BottledDivineOrbStack",
+    "Text": "This plunder brought me no end of trouble. I return it to the sea."
+  },
+  {
+    "_index": 265,
+    "Id": "BottledReflectingMist",
+    "Text": "Remember this well: the mist reflects all. But reflection is not truth."
+  },
+  {
+    "_index": 266,
+    "Id": "BottledStackedDeckStack",
+    "Text": "My collecting days are done. Yours are just beginning. "
+  },
+  {
+    "_index": 267,
+    "Id": "BottledBrokenMirror",
+    "Text": "Had enough bad luck for one lifetime."
+  },
+  {
+    "_index": 268,
+    "Id": "BottledAlbinoCrabClaw",
+    "Text": "'Pinched' this one a while back. Had nothing but misery ever since."
+  },
+  {
+    "_index": 269,
+    "Id": "BottledChainHookOfAngling",
+    "Text": "Should your foe feel an ocean away... they shan't be for long."
+  },
+  {
+    "_index": 270,
+    "Id": "BottledUniqueKalandrasTouch",
+    "Text": "Stare deep into the mirror. Do not turn from what you see."
+  },
+  {
+    "_index": 271,
+    "Id": "BottledUniqueReplicaDragonfangsFlight",
+    "Text": "Gave this to my beloved. She claimed it was a fake."
+  },
+  {
+    "_index": 272,
+    "Id": "BottledUniqueDefianceOfDestiny",
+    "Text": "In the darkest of hours, may this serve as a reminder: your fate is yours to forge."
+  },
+  {
+    "_index": 273,
+    "Id": "BottledUniqueRyslathasCoil",
+    "Text": "To whosoever receives this: you are now another of Ryslatha's children."
+  },
+  {
+    "_index": 274,
+    "Id": "BottledUniqueHeadhunter",
+    "Text": "My strength grew with every kill... but so too did the bounty on my head. "
+  },
+  {
+    "_index": 275,
+    "Id": "BottledUniqueMageblood",
+    "Text": "Reader beware: to don this is to be the envy of all. I prefer anonymity."
+  },
+  {
+    "_index": 276,
+    "Id": "BottledUniqueInspiredLearning",
+    "Text": "May your enemies' greatest strength become their fatal flaw."
+  },
+  {
+    "_index": 277,
+    "Id": "BottledUniqueUnnaturalInstinct",
+    "Text": "Most learn to trust their instincts. I learned not to."
+  },
+  {
+    "_index": 278,
+    "Id": "BottledUniqueBloodnotch",
+    "Text": "A word of advice: let them think they have the advantage. Makes them easier to kill."
+  },
+  {
+    "_index": 279,
+    "Id": "BottledUniqueTasteOfHate",
+    "Text": "For when the ocean wind bites with salt-speckled teeth, may this keep you warm."
+  },
+  {
+    "_index": 280,
+    "Id": "BottledUniqueRainOfSplinters",
+    "Text": "Kaom swore he'd hunt me down. I'd rather not have this when he does."
+  },
+  {
+    "_index": 281,
+    "Id": "MercenaryEncounterOptInCostIndicator",
+    "Text": "Wager: {0} <<village_gold>>"
+  },
+  {
+    "_index": 282,
+    "Id": "MercenaryReserveWarning",
+    "Text": "Are you sure you want to reserve this Mercenary? They will no longer accompany you in this area."
+  },
+  {
+    "_index": 283,
+    "Id": "AbyssJumpInteractableText",
+    "Text": "Jump In"
+  },
+  {
+    "_index": 284,
+    "Id": "MercenaryWaitingForEncounter",
+    "Text": "Waiting for Duel"
+  },
+  {
+    "_index": 285,
+    "Id": "MercenaryCannotItemiseError",
+    "Text": "Only Mercenaries of level {0} or higher can be challenged for their Warrant."
+  },
+  {
+    "_index": 286,
+    "Id": "MercenaryWagerCostInfoHover",
+    "Text": "How much Gold you must stake to duel this Mercenary.\r\nIf you win the duel, you will get your Gold back."
+  },
+  {
+    "_index": 287,
+    "Id": "MercenaryShouldRecruit",
+    "Text": "Should Recruit"
+  },
+  {
+    "_index": 288,
+    "Id": "MercenaryCannotReItemiseError",
+    "Text": "You cannot request a rematch with a Mercenary called upon with a Warrant."
+  },
+  {
+    "_index": 289,
+    "Id": "MercenaryPermanentMinionDisplayPopup",
+    "Text": "Hired Mercenary:\r\n{0}\r\nLevel {1} {2}\r\n\r\n<italic>{{<grey>{{(Right click to inspect Mercenary)}}}}"
+  },
+  {
+    "_index": 290,
+    "Id": "MercenaryTemporaryMinionDisplayPopup",
+    "Text": "Temporary Hired Mercenary:\r\n{0}\r\nLevel {1} {2}\r\n\r\n<italic>{{<grey>{{(Right click to inspect Mercenary)}}}}"
+  },
+  {
+    "_index": 291,
+    "Id": "MercenaryTemporaryLoadoutInfoHover",
+    "Text": "This Mercenary will follow and aid you in combat for a few areas. In Maps they will only follow you for the current Map.\r\n\r\nYou cannot change the items that temporarily hired Mercenaries have equipped."
+  },
+  {
+    "_index": 292,
+    "Id": "MercenaryTemporaryDismissButtonHover",
+    "Text": "Dismissing this Mercenary will cause them to stop following you and they will leave the area."
+  },
+  {
+    "_index": 293,
+    "Id": "MercenaryTemporaryDismissConfirmation",
+    "Text": "Are you sure you want to dismiss this Mercenary?\r\nThey will no longer follow you and will leave the area immediately."
+  },
+  {
+    "_index": 294,
+    "Id": "VesperCraftingBenchTitle",
+    "Text": "Vesper"
+  },
+  {
+    "_index": 295,
+    "Id": "ObjectDisplayTextDive",
+    "Text": "Dive"
+  },
+  {
+    "_index": 296,
+    "Id": "MercenaryGiveItemLegend",
+    "Text": "Give"
+  },
+  {
+    "_index": 297,
+    "Id": "MercenaryTakeItemLegend",
+    "Text": "Take"
+  },
+  {
+    "_index": 298,
+    "Id": "ShowTemporaryMercenaryLegend",
+    "Text": "Show Temporary Mercenary"
+  },
+  {
+    "_index": 299,
+    "Id": "ShowHiredMercenaryLegend",
+    "Text": "Show Hired Mercenary"
+  },
+  {
+    "_index": 300,
+    "Id": "MercenaryEncounterOptInCostIndicatorError",
+    "Text": "<red>{{Wager: {0}}} <<village_gold>>"
+  },
+  {
+    "_index": 301,
+    "Id": "AnimatedGuardianMinionDisplayPopup",
+    "Text": "Animated Guardian\r\n\r\n<italic>{<grey>{(Right click to inspect equipped items)}}"
+  },
+  {
+    "_index": 302,
+    "Id": "AnimatedGuardianLoadoutInfoHover",
+    "Text": "Shows the items currently equipped to your Animated Guardian. These items cannot be removed, but can be replaced by using the Animate Guardian skill on items on the ground."
+  },
+  {
+    "_index": 303,
+    "Id": "PromoCenterTipText",
+    "Text": "You have a new reward to claim"
+  },
+  {
+    "_index": 304,
+    "Id": "DeepwaterLanternReplenishDescription",
+    "Text": "Gain additional Allflame Lanterns"
+  },
+  {
+    "_index": 305,
+    "Id": "CourtOfChaosChest",
+    "Text": "Wealth of Chaos"
+  },
+  {
+    "_index": 306,
+    "Id": "StashAllButton",
+    "Text": "[DNT] Quick Stash"
+  },
+  {
+    "_index": 307,
+    "Id": "InspectMode",
+    "Text": "Inspect Mode"
+  },
+  {
+    "_index": 308,
+    "Id": "ConsoleActionExpandPopup",
+    "Text": "Expand"
+  },
+  {
+    "_index": 309,
+    "Id": "InspectLegend",
+    "Text": "Inspect"
+  },
+  {
+    "_index": 310,
+    "Id": "DeepwaterFinalLanternWarning",
+    "Text": "One Allflame Lantern remaining"
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "name": "pobtools-ko-official-terms-probe",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Development-only official PoE1 English/Korean term extraction probe",
+  "license": "MIT",
+  "dependencies": {
+    "pathofexile-dat": "15.2.0"
+  }
+}

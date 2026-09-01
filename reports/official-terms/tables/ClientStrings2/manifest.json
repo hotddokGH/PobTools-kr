@@ -1,0 +1,34 @@
+{
+  "source": "official Path of Exile patch data",
+  "patch": "3.29.3.2",
+  "table": "ClientStrings2",
+  "idColumn": "Id",
+  "nameColumn": "Text",
+  "languages": {
+    "english": "Data",
+    "korean": "Data/Korean"
+  },
+  "tool": {
+    "name": "pathofexile-dat",
+    "version": "15.2.0",
+    "license": "MIT"
+  },
+  "clientEvidence": {
+    "log": "C:\\Daum Games\\Path of Exile\\logs\\KakaoClient.txt",
+    "detectedPatch": "3.29.3.2",
+    "matchesExportPatch": true
+  },
+  "inputs": {
+    "englishRows": 311,
+    "koreanRows": 311,
+    "stableIds": 311,
+    "englishSha256": "7DC4B57ABF2CA072E0281D32722C360BEB46BDEB7CA1B3FBD0762F5C3859DAE4",
+    "koreanSha256": "5D76237E89B6472CFE4DD128290258C27085A88810B6D9C56B8F87C8C00DF2F9"
+  },
+  "counts": {
+    "accepted": 308,
+    "conflicts": 0,
+    "unmatched": 3
+  },
+  "generatedAtUtc": "2026-09-01T02:07:42.6187417Z"
+}

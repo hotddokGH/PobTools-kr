@@ -39,6 +39,13 @@ pob-zh-engine/dist/Data/*
 !pob-zh-engine/dist/Data/poe2/
 !pob-zh-engine/dist/Data/launcher/
 
+# Korean release runtime assets are source inputs for the public package.
+!pob-zh-engine/dist/Fonts/
+pob-zh-engine/dist/Fonts/*
+!pob-zh-engine/dist/Fonts/NotoSansKR-Variable.ttf
+!pob-zh-engine/dist/Fonts/OFL-NotoSansKR.txt
+!pob-zh-engine/dist/pob-zh.ini
+
 # 這裡只再收錄「dist 是唯一寫入者」的那幾組字典。三個曾經也列在這裡的檔
 # (filter_items_zh.json / item_meta.json / item_classes_zh.json)已經拿掉了:
 # 它們由 CMakeLists.txt 的 install(FILES host/data/...) 產生,dist 那份是複本。
@@ -138,6 +145,7 @@ secrets.json
 
 # --- Misc --------------------------------------------------
 node_modules/
+localization/ko-KR/official-terms/.cache/
 **/__pycache__/
 graphify-out/
 image/

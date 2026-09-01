@@ -1,0 +1,36 @@
+{
+  "source": "RePoE structured export of official Path of Exile stat-description files",
+  "patch": "3.29.3.2",
+  "identity": "ordered stat ids + condition/format/index_handlers",
+  "sources": {
+    "english": {
+      "url": "https://repoe-fork.github.io/stat_translations.min.json",
+      "file": "English.stat_translations.min.json",
+      "sha256": "082715E60B14E5B7D893C704AE04993A3DC2B626F4D868CABEAB421098F8A9C1",
+      "bytes": 4602641
+    },
+    "korean": {
+      "url": "https://repoe-fork.github.io/Korean/stat_translations.min.json",
+      "file": "Korean.stat_translations.min.json",
+      "sha256": "AB3441A1ABE2C25E1027CBEF6D7ED94BF8963A88B9393E1F9AC4C13C9D846157",
+      "bytes": 3328460
+    }
+  },
+  "clientEvidence": {
+    "log": "C:\\Daum Games\\Path of Exile\\logs\\KakaoClient.txt",
+    "detectedPatch": "3.29.3.2",
+    "matchesExportPatch": true
+  },
+  "inputs": {
+    "englishEntries": 11257,
+    "koreanEntries": 11257,
+    "englishVariants": 16091,
+    "koreanVariants": 16091
+  },
+  "counts": {
+    "accepted": 18906,
+    "conflicts": 67,
+    "unmatched": 21
+  },
+  "generatedAtUtc": "2026-09-01T02:04:31.666Z"
+}

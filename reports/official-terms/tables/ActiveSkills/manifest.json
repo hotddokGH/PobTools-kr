@@ -1,0 +1,34 @@
+{
+  "source": "official Path of Exile patch data",
+  "patch": "3.29.3.2",
+  "table": "ActiveSkills",
+  "idColumn": "Id",
+  "nameColumn": "DisplayedName",
+  "languages": {
+    "english": "Data",
+    "korean": "Data/Korean"
+  },
+  "tool": {
+    "name": "pathofexile-dat",
+    "version": "15.2.0",
+    "license": "MIT"
+  },
+  "clientEvidence": {
+    "log": "C:\\Daum Games\\Path of Exile\\logs\\KakaoClient.txt",
+    "detectedPatch": "3.29.3.2",
+    "matchesExportPatch": true
+  },
+  "inputs": {
+    "englishRows": 1941,
+    "koreanRows": 1941,
+    "stableIds": 1941,
+    "englishSha256": "7C16CAB674D3C03DC0C7F71703294B4AD2EDCB863969D607C6051287BE32049C",
+    "koreanSha256": "E676F8E5F180C35A282BC0C0527FFB6D708348721A6AAA17933739D6B1CB129C"
+  },
+  "counts": {
+    "accepted": 1190,
+    "conflicts": 0,
+    "unmatched": 751
+  },
+  "generatedAtUtc": "2026-09-01T02:07:31.1936391Z"
+}

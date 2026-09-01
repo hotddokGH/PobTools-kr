@@ -1,0 +1,2526 @@
+{
+  "patch": "3.29.3.2",
+  "table": "BaseItemTypes",
+  "rows": [
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome1",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome10",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome100",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome101",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome102",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome103",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome104",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome105",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome106",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome107",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome108",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome109",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome11",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome110",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome111",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome112",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome113",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome114",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome115",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome116",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome117",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome118",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome119",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome12",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome120",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome121",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome122",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome123",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome124",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome125",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome126",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome127",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome128",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome129",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome13",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome130",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome131",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome132",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome133",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome134",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome135",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome136",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome137",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome138",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome139",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome14",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome140",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome141",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome142",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome143",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome144",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome145",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome146",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome147",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome148",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome149",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome15",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome150",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome151",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome152",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome153",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome154",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome155",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome156",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome157",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome158",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome159",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome16",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome160",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome161",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome162",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome163",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome164",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome165",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome166",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome167",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome168",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome169",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome17",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome170",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome171",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome172",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome173",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome174",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome175",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome176",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome177",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome178",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome179",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome18",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome180",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome181",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome182",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome183",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome184",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome185",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome186",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome187",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome188",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome189",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome19",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome190",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome191",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome192",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome193",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome194",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome195",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome196",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome197",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome198",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome199",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome2",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome20",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome200",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome201",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome202",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome203",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome204",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome205",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome206",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome207",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome208",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome209",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome21",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome210",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome211",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome212",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome213",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome214",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome215",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome216",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome217",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome218",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome219",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome22",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome220",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome221",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome222",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome223",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome224",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome225",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome226",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome227",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome228",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome229",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome23",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome230",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome231",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome232",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome233",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome234",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome235",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome236",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome237",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome238",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome239",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome24",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome240",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome241",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome242",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome243",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome244",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome245",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome246",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome247",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome248",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome249",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome25",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome250",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome251",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome252",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome253",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome254",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome255",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome256",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome257",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome258",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome259",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome26",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome260",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome261",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome262",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome263",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome264",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome265",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome266",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome267",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome268",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome269",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome27",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome270",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome271",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome272",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome273",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome274",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome275",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome276",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome277",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome278",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome279",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome28",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome280",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome281",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome282",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome283",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome284",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome285",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome286",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome287",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome288",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome289",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome29",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome290",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome291",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome292",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome293",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome294",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome295",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome296",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome297",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome298",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome299",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome3",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome30",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome300",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome301",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome302",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome303",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome304",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome305",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome306",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome307",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome308",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome309",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome31",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome310",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome311",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome312",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome313",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome314",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome315",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome316",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome317",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome318",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome319",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome32",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome320",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome321",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome322",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome323",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome324",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome325",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome326",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome327",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome328",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome329",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome33",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome330",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome331",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome332",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome333",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome334",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome335",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome336",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome337",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome338",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome339",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome34",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome340",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome341",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome342",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome343",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome344",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome345",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome346",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome347",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome348",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome349",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome35",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome350",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome351",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome352",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome353",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome354",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome355",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome356",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome357",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome358",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome359",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome36",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome360",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome361",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome362",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome363",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome364",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome365",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome366",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome367",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome368",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome369",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome37",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome370",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome371",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome372",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome373",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome374",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome375",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome376",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome377",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome378",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome379",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome38",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome380",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome381",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome382",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome383",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome384",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome385",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome386",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome387",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome388",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome389",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome39",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome390",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome391",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome392",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome393",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome394",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome395",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome396",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome397",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome398",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome399",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome4",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome40",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome400",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome401",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome402",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome403",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome404",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome405",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome406",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome407",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome408",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome409",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome41",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome410",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome411",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome412",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome413",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome414",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome415",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome416",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome417",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome418",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome419",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome42",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome420",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome43",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome44",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome45",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome46",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome47",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome48",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome49",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome5",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome50",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome51",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome52",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome53",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome54",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome55",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome56",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome57",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome58",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome59",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome6",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome60",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome61",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome62",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome63",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome64",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome65",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome66",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome67",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome68",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome69",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome7",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome70",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome71",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome72",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome73",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome74",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome75",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome76",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome77",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome78",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome79",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome8",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome80",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome81",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome82",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome83",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome84",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome85",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome86",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome87",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome88",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome89",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome9",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome90",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome91",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome92",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome93",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome94",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome95",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome96",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome97",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome98",
+      "english": null,
+      "reason": "both displayed names are empty"
+    },
+    {
+      "korean": null,
+      "id": "Metadata/Items/Currency/RandomFossilOutcome99",
+      "english": null,
+      "reason": "both displayed names are empty"
+    }
+  ]
+}

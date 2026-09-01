@@ -1,0 +1,17 @@
+{
+  "patch": "3.29.3.2",
+  "retrieved": "2026-09-01",
+  "index": "https://repoe-fork.github.io/poe1.html",
+  "english": {
+    "url": "https://repoe-fork.github.io/stat_translations.min.json",
+    "file": "English.stat_translations.min.json",
+    "sha256": "082715E60B14E5B7D893C704AE04993A3DC2B626F4D868CABEAB421098F8A9C1",
+    "bytes": 4602641
+  },
+  "korean": {
+    "url": "https://repoe-fork.github.io/Korean/stat_translations.min.json",
+    "file": "Korean.stat_translations.min.json",
+    "sha256": "AB3441A1ABE2C25E1027CBEF6D7ED94BF8963A88B9393E1F9AC4C13C9D846157",
+    "bytes": 3328460
+  }
+}
