@@ -239,6 +239,36 @@ test('prefix line splices preserve semantic identity for regular and raw literal
   }
 });
 
+test('all spliced raw prefixes hash only the raw payload', () => {
+  const forms = [
+    'R\\{nl}', 'u8R\\{nl}', 'uR\\{nl}', 'UR\\{nl}', 'LR\\{nl}',
+    'u\\{nl}8R', 'u8\\{nl}R', 'u\\{nl}R', 'U\\{nl}R', 'L\\{nl}R',
+    'u\\{nl}8\\{nl}R\\{nl}',
+  ];
+  const policy = {
+    internalLiteralAllowlist: [{
+      path: 'host/raw-prefix.cpp',
+      sha256: literalSha256('設定'),
+      reason: 'phase-2 raw prefix fixture',
+    }],
+  };
+  for (const form of forms) {
+    for (const delimiter of ['', 'tag']) {
+      for (const newline of ['\n', '\r\n']) {
+        const prefix = form.replaceAll('{nl}', newline);
+        const report = auditSourceText(
+          `auto value = ${prefix}"${delimiter}(設定)${delimiter}";`,
+          policy,
+          'host/raw-prefix.cpp',
+        );
+        assert.equal(report.displayLiterals, 1);
+        assert.equal(report.allowedInternalLiterals, 1);
+        assert.deepEqual(report.issues, []);
+      }
+    }
+  }
+});
+
 test('scanSourceDisplay validates internal policy once before reading source text', () => {
   const root = mkdtempSync(join(tmpdir(), 'source-display-policy-'));
   try {

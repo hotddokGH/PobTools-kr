@@ -291,6 +291,63 @@ class SourceOverlayTests(unittest.TestCase):
         self.assertEqual(report["issues"][0]["componentSource"], "設定更新")
         self.assertEqual(self.read("host/ui.cpp"), original)
 
+    def test_unused_malformed_component_issues_have_stable_consumer_identities(self):
+        original = 'void Draw(){ Label(u8"English"); }'
+        self.write("host/ui.cpp", original)
+        bad = {"invalid": True}
+        contexts = [
+            {
+                **self.entry("설정", "reviewed", components=bad),
+                "path": "host\\b.cpp",
+                "function": "Second",
+                "source": "設定",
+                "occurrenceIndex": 2,
+            },
+            {
+                **self.entry("업데이트", "reviewed", components=bad),
+                "path": "host/a.cpp",
+                "function": "First",
+                "source": "更新",
+                "occurrenceIndex": 1,
+            },
+        ]
+        mapping = self.mapping(
+            {
+                "更新": self.entry("업데이트", "reviewed", components=bad),
+                "設定": self.entry("설정", "reviewed", components=bad),
+            },
+            contexts,
+        )
+
+        first = apply_overlay(self.root, mapping, self.policy, self.report)
+        second = apply_overlay(self.root, mapping, self.policy, self.report)
+
+        self.assertEqual(first["issues"], second["issues"])
+        self.assertEqual(
+            [
+                (row.get("entryIndex"), row["componentSource"])
+                for row in first["issues"]
+                if "entryIndex" in row
+            ],
+            [(0, "更新"), (1, "設定")],
+        )
+        self.assertEqual(
+            [
+                (
+                    row["contextIndex"], row["path"], row["function"],
+                    row["occurrenceIndex"], row["source"],
+                )
+                for row in first["issues"]
+                if "contextIndex" in row
+            ],
+            [
+                (0, "host/b.cpp", "Second", 2, "設定"),
+                (1, "host/a.cpp", "First", 1, "更新"),
+            ],
+        )
+        self.assertEqual(len({json.dumps(row, sort_keys=True) for row in first["issues"]}), 4)
+        self.assertEqual(self.read("host/ui.cpp"), original)
+
     def test_component_encoding_and_raw_delimiter_failures_are_transactional(self):
         cases = {
             "encoding": (
@@ -597,6 +654,82 @@ class SourceOverlayTests(unittest.TestCase):
                         (self.root / "host/prefix.cpp").read_bytes(),
                         expected.encode("utf-8"),
                     )
+
+    def test_spliced_raw_prefixes_use_payload_identity_and_preserve_original_bytes(self):
+        forms = (
+            "R\\{nl}", "u8R\\{nl}", "uR\\{nl}", "UR\\{nl}", "LR\\{nl}",
+            "u\\{nl}8R", "u8\\{nl}R", "u\\{nl}R", "U\\{nl}R", "L\\{nl}R",
+            "u\\{nl}8\\{nl}R\\{nl}",
+        )
+        mapping = self.mapping({"設定": self.entry("설정", "reviewed")})
+        for form in forms:
+            semantic_prefix = form.replace("\\{nl}", "").replace("{nl}", "")
+            for delimiter in ("", "tag"):
+                for newline in ("\n", "\r\n"):
+                    with self.subTest(form=form, delimiter=delimiter, newline=repr(newline)):
+                        prefix = form.format(nl=newline)
+                        token = f'{prefix}"{delimiter}(設定){delimiter}"'
+                        original = f"void Draw(){{ auto value = {token}; }}"
+                        expected = original.replace("設定", "설정")
+                        self.write("host/raw-prefix.cpp", original, newline="")
+
+                        rows = scan_cpp_literals(
+                            Path("host/raw-prefix.cpp"), original.encode("utf-8")
+                        )
+                        self.assertEqual(
+                            [(row.decoded, row.prefix, row.start, row.end) for row in rows],
+                            [("設定", semantic_prefix, original.encode("utf-8").index(token.encode("utf-8")), original.encode("utf-8").index(token.encode("utf-8")) + len(token.encode("utf-8")))],
+                        )
+                        report = apply_overlay(
+                            self.root, mapping, self.policy, self.report
+                        )
+
+                        self.assertEqual(report["issues"], [])
+                        self.assertEqual(
+                            (self.root / "host/raw-prefix.cpp").read_bytes(),
+                            expected.encode("utf-8"),
+                        )
+
+    def test_spliced_raw_prefix_does_not_accept_regular_delimiter_text_identity(self):
+        original = 'void Draw(){ auto value = u\\\n8R"tag(設定)tag"; }'
+        self.write("host/raw-prefix.cpp", original, newline="")
+        wrong = self.mapping(
+            {"tag(設定)tag": self.entry("잘못된 값", "reviewed")}
+        )
+
+        report = apply_overlay(self.root, wrong, self.policy, self.report)
+
+        self.assertEqual(
+            [(row["code"], row["source"]) for row in report["issues"]],
+            [("MISSING_MAPPING", "設定")],
+        )
+        self.assertEqual(self.read("host/raw-prefix.cpp"), original)
+
+    def test_spliced_raw_component_replacement_preserves_adjacent_trivia(self):
+        original = (
+            'void Draw(){ Label(u\\\r\n8R"tag(設定)tag" /* keep */ L"更新"); }'
+        )
+        expected = original.replace("設定", "설정").replace("更新", "업데이트")
+        self.write("host/raw-prefix.cpp", original, newline="")
+        mapping = self.mapping(
+            {
+                "設定更新": self.entry(
+                    "설정업데이트",
+                    "reviewed",
+                    components=[
+                        {"source": "設定", "target": "설정"},
+                        {"source": "更新", "target": "업데이트"},
+                    ],
+                )
+            }
+        )
+
+        report = apply_overlay(self.root, mapping, self.policy, self.report)
+
+        self.assertEqual(report["issues"], [])
+        self.assertEqual(
+            (self.root / "host/raw-prefix.cpp").read_bytes(), expected.encode("utf-8")
+        )
 
     def test_nul_followed_by_octal_digit_cannot_be_encoded(self):
         original = 'void Draw(){ Label(u8"設定\\0X"); }'

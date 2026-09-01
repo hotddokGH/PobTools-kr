@@ -27,12 +27,6 @@ _HAN = re.compile(
 _PARSER = Parser(Language(tree_sitter_cpp.language()))
 _REGULAR_OPEN = re.compile(rb'(?P<prefix>u8|u|U|L)?"')
 _RAW_OPEN = re.compile(rb'(?P<prefix>u8R|uR|UR|LR|R)"(?P<delimiter>[^ ()\\\t\r\n]{0,16})\(')
-_SPLICED_PREFIX_END = re.compile(
-    rb"(?P<prefix>u8|u|U|L)\\(?:\r\n|\n)$"
-)
-_SPLICED_PREFIX_START = re.compile(
-    rb"(?P<lead>(?P<prefix>u8|u|U|L)\\(?:\r\n|\n))"
-)
 
 
 @dataclass(frozen=True)
@@ -428,6 +422,25 @@ def recovery_evidence_report(
     return {"useCount": len(identities), "identities": identities}
 
 
+def _phase2_lexical_view(text: bytes) -> tuple[bytes, list[int]]:
+    output = bytearray()
+    boundaries = [0]
+    cursor = 0
+    while cursor < len(text):
+        if text.startswith(b"\\\r\n", cursor):
+            cursor += 3
+            boundaries[-1] = cursor
+            continue
+        if text.startswith(b"\\\n", cursor):
+            cursor += 2
+            boundaries[-1] = cursor
+            continue
+        output.append(text[cursor])
+        cursor += 1
+        boundaries.append(cursor)
+    return bytes(output), boundaries
+
+
 def scan_cpp_literals(
     path: Path,
     text: bytes,
@@ -447,14 +460,16 @@ def scan_cpp_literals(
             error.end,
             text.count(b"\n", 0, error.start) + 1,
         ) from error
-    parser_text = text.replace(b"\\\r\n", b" \\\n")
-    tree = _PARSER.parse(parser_text)
+    recovery_parser_text = text.replace(b"\\\r\n", b" \\\n")
+    recovery_tree = _PARSER.parse(recovery_parser_text)
+    lexical_text, original_boundaries = _phase2_lexical_view(text)
+    tree = _PARSER.parse(lexical_text)
     normalized_path = path.as_posix()
     candidates: list[tuple[Node, str, int]] = []
 
     def collect(node: Node, function: str, function_scope: int) -> None:
         if node.type == "function_definition":
-            function = _function_name(node, text)
+            function = _function_name(node, lexical_text)
             function_scope = node.start_byte
         if node.type in {"concatenated_string", "string_literal", "raw_string_literal"}:
             candidates.append((node, function, function_scope))
@@ -471,7 +486,13 @@ def scan_cpp_literals(
         for occurrence_index, node in enumerate(sorted(nodes, key=lambda value: value.start_byte)):
             occurrence_by_span[(function_scope, node.start_byte, node.end_byte)] = occurrence_index
 
-    recovery_nodes = _ordered_recovery_nodes(tree)
+    raw_recovery_nodes = _ordered_recovery_nodes(recovery_tree)
+    lexical_recovery_nodes = _ordered_recovery_nodes(tree)
+    # tree-sitter sees escaped newlines inside prefixes as recovery in the raw
+    # byte stream.  They are not parser recovery after C++ translation phase 2.
+    # A clean splice-removed tree is therefore authoritative; otherwise retain
+    # the raw recovery fingerprint used by the exact Task 1 evidence contract.
+    recovery_nodes = raw_recovery_nodes if lexical_recovery_nodes else []
     relevant_evidence = [
         row
         for row in parse_recovery_allowlist
@@ -493,7 +514,7 @@ def scan_cpp_literals(
             if used_recovery_evidence is not None:
                 used_recovery_evidence.add(matching_evidence[0])
         else:
-            problem_nodes = recovery_nodes or [tree.root_node]
+            problem_nodes = recovery_nodes or [recovery_tree.root_node]
     if problem_nodes:
         problems: list[dict[str, Any]] = []
         for problem in sorted(
@@ -504,18 +525,20 @@ def scan_cpp_literals(
                 (node, function, function_scope)
                 for node, function, function_scope in candidates
                 if (
-                    node.start_byte < problem.end_byte
-                    and node.end_byte > problem.start_byte
+                    original_boundaries[node.start_byte] < problem.end_byte
+                    and original_boundaries[node.end_byte] > problem.start_byte
                 )
                 or (
                     problem.start_byte == problem.end_byte
-                    and node.start_byte <= problem.start_byte <= node.end_byte
+                    and original_boundaries[node.start_byte]
+                    <= problem.start_byte
+                    <= original_boundaries[node.end_byte]
                 )
                 or (
                     problem.parent is not None
                     and problem.parent.type != "translation_unit"
-                    and node.start_byte >= problem.parent.start_byte
-                    and node.end_byte <= problem.parent.end_byte
+                    and original_boundaries[node.start_byte] >= problem.parent.start_byte
+                    and original_boundaries[node.end_byte] <= problem.parent.end_byte
                 )
             ]
             if matching_candidates:
@@ -538,7 +561,7 @@ def scan_cpp_literals(
                 ancestor = problem.parent
                 while ancestor is not None:
                     if ancestor.type == "function_definition":
-                        function = _function_name(ancestor, text)
+                        function = _function_name(ancestor, recovery_parser_text)
                         break
                     ancestor = ancestor.parent
                 problems.append(
@@ -563,6 +586,24 @@ def scan_cpp_literals(
         }
         raise CppParseError([unique_problems[key] for key in sorted(unique_problems)])
 
+    if lexical_recovery_nodes and not raw_recovery_nodes:
+        raise CppParseError(
+            [
+                {
+                    "function": "",
+                    "line": text.count(
+                        b"\n", 0, original_boundaries[node.start_byte]
+                    )
+                    + 1,
+                    "startByte": original_boundaries[node.start_byte],
+                    "endByte": original_boundaries[node.end_byte],
+                    "fileSha256": file_sha256,
+                    "recoverySha256": _recovery_sha256(lexical_recovery_nodes),
+                }
+                for node in lexical_recovery_nodes
+            ]
+        )
+
     rows: list[Literal] = []
     for node, function, function_scope in sorted(
         candidates, key=lambda value: value[0].start_byte
@@ -579,37 +620,26 @@ def scan_cpp_literals(
                 ]
                 if not literal_nodes:
                     continue
-                line = text.count(b"\n", 0, node.start_byte) + 1
+                line = text.count(b"\n", 0, original_boundaries[node.start_byte]) + 1
                 decoded_parts: list[str] = []
                 components: list[LiteralComponent] = []
                 prefix = ""
                 for index, child in enumerate(literal_nodes):
-                    child_line = text.count(b"\n", 0, child.start_byte) + 1
+                    child_line = text.count(
+                        b"\n", 0, original_boundaries[child.start_byte]
+                    ) + 1
                     decoded, child_prefix = _decode_literal(
                         child,
-                        text,
+                        lexical_text,
                         function,
                         child_line,
                         allow_legacy_nul=allow_legacy_nul,
                     )
-                    boundary = (
-                        node.start_byte
-                        if index == 0
-                        else literal_nodes[index - 1].end_byte
-                    )
-                    spliced_prefix = _SPLICED_PREFIX_END.search(
-                        text[boundary : child.start_byte]
-                    )
-                    if spliced_prefix is not None:
-                        child_prefix = (
-                            spliced_prefix.group("prefix").decode("ascii")
-                            + child_prefix
-                        )
                     decoded_parts.append(decoded)
                     components.append(
                         LiteralComponent(
-                            child.start_byte,
-                            child.end_byte,
+                            original_boundaries[child.start_byte],
+                            original_boundaries[child.end_byte],
                             decoded,
                             child_prefix,
                             "raw" if child.type == "raw_string_literal" else "regular",
@@ -621,8 +651,8 @@ def scan_cpp_literals(
                 rows.append(
                     Literal(
                         normalized_path,
-                        node.start_byte,
-                        node.end_byte,
+                        original_boundaries[node.start_byte],
+                        original_boundaries[node.end_byte],
                         "".join(decoded_parts),
                         prefix,
                         function,
@@ -632,10 +662,10 @@ def scan_cpp_literals(
                     )
                 )
                 continue
-            line = text.count(b"\n", 0, node.start_byte) + 1
+            line = text.count(b"\n", 0, original_boundaries[node.start_byte]) + 1
             decoded, prefix = _decode_literal(
                 node,
-                text,
+                lexical_text,
                 function,
                 line,
                 allow_legacy_nul=allow_legacy_nul,
@@ -643,8 +673,8 @@ def scan_cpp_literals(
             rows.append(
                 Literal(
                     normalized_path,
-                    node.start_byte,
-                    node.end_byte,
+                    original_boundaries[node.start_byte],
+                    original_boundaries[node.end_byte],
                     decoded,
                     prefix,
                     function,
@@ -652,8 +682,8 @@ def scan_cpp_literals(
                     occurrence_index,
                     (
                         LiteralComponent(
-                            node.start_byte,
-                            node.end_byte,
+                            original_boundaries[node.start_byte],
+                            original_boundaries[node.end_byte],
                             decoded,
                             prefix,
                             "raw" if node.type == "raw_string_literal" else "regular",
@@ -752,23 +782,37 @@ def _replacement_bytes(
     original: bytes,
     source_text: bytes,
 ) -> bytes:
-    lead = b""
-    token = original
-    spliced = _SPLICED_PREFIX_START.match(original)
-    if spliced is not None:
-        lead = spliced.group("lead")
-        token = original[spliced.end() :]
+    # Translation phase 2 removes escaped newlines before tokenization.  Match
+    # that lexical token, but use its boundary map to replace only the payload
+    # in the original bytes.  Prefix characters, escaped newlines, quotes and
+    # raw delimiters therefore remain byte-for-byte identical.
+    token, boundaries = _phase2_lexical_view(original)
     raw = _RAW_OPEN.match(token)
     if raw is not None:
-        prefix = raw.group("prefix").decode("ascii")
-        return lead + _raw_literal(prefix, target, token, source_text)
+        delimiter = raw.group("delimiter").decode("ascii")
+        terminator = f'){delimiter}"'.encode("ascii")
+        if not token.endswith(terminator):
+            return _raw_literal(literal.prefix, target, original, source_text)
+        newline = _newline_style(original) or _newline_style(source_text) or "\n"
+        payload = target.replace("\r\n", "\n").replace("\r", "\n").replace("\n", newline)
+        if f'){delimiter}"' in payload:
+            raise RawDelimiterCollision(delimiter)
+        content_start = raw.end()
+        content_end = len(token) - len(terminator)
+        return (
+            original[: boundaries[content_start]]
+            + payload.encode("utf-8")
+            + original[boundaries[content_end] :]
+        )
     regular = _REGULAR_OPEN.match(token)
-    prefix = (
-        (regular.group("prefix") or b"").decode("ascii")
-        if regular is not None
-        else literal.prefix
-    )
-    return lead + _regular_literal(prefix, target)
+    if regular is not None and token.endswith(b'"'):
+        encoded = _regular_literal("", target)[1:-1]
+        return (
+            original[: boundaries[regular.end()]]
+            + encoded
+            + original[boundaries[len(token) - 1] :]
+        )
+    return _regular_literal(literal.prefix, target)
 
 
 def _is_concatenated_literal(original: bytes) -> bool:
@@ -1025,7 +1069,9 @@ def _run_overlay(
         _write_report(report_path, report)
         return report
     invalid_component_rows: list[tuple[int, dict[str, Any]]] = []
-    for source, row in sorted(entries.items(), key=lambda item: str(item[0])):
+    for entry_index, (source, row) in enumerate(
+        sorted(entries.items(), key=lambda item: str(item[0]))
+    ):
         if not isinstance(source, str) or not _mapping_row_is_well_formed(row):
             report["issues"].append(
                 {"code": "INVALID_MAPPING_ENTRY", "source": _safe_report_text(source)}
@@ -1042,7 +1088,16 @@ def _run_overlay(
         else:
             component_error = _component_document_shape_error(row, source)
             if component_error is not None:
-                invalid_component_rows.append((id(row), component_error))
+                invalid_component_rows.append(
+                    (
+                        id(row),
+                        {
+                            **component_error,
+                            "entryIndex": entry_index,
+                            "source": source,
+                        },
+                    )
+                )
     context_fields = ("path", "function", "source")
     context_keys: dict[tuple[str, str, str, int], list[int]] = {}
     for index, row in enumerate(contexts):
@@ -1074,7 +1129,19 @@ def _run_overlay(
             context_keys.setdefault(key, []).append(index)
             component_error = _component_document_shape_error(row, row["source"])
             if component_error is not None:
-                invalid_component_rows.append((id(row), component_error))
+                invalid_component_rows.append(
+                    (
+                        id(row),
+                        {
+                            **component_error,
+                            "contextIndex": index,
+                            "path": key[0],
+                            "function": row["function"],
+                            "occurrenceIndex": row["occurrenceIndex"],
+                            "source": row["source"],
+                        },
+                    )
+                )
     for indexes in context_keys.values():
         if len(indexes) > 1:
             for index in indexes:

@@ -191,6 +191,26 @@ function afterSeparators(text, index) {
   return cursor;
 }
 
+function phase2LexicalView(text) {
+  let lexicalText = '';
+  const originalBoundaries = [0];
+  let cursor = 0;
+  while (cursor < text.length) {
+    if (text.startsWith('\\\r\n', cursor)) {
+      cursor += 3;
+      originalBoundaries[originalBoundaries.length - 1] = cursor;
+    } else if (text.startsWith('\\\n', cursor)) {
+      cursor += 2;
+      originalBoundaries[originalBoundaries.length - 1] = cursor;
+    } else {
+      lexicalText += text[cursor];
+      cursor += 1;
+      originalBoundaries.push(cursor);
+    }
+  }
+  return { lexicalText, originalBoundaries };
+}
+
 function scanStringExpressions(text) {
   const expressions = [];
   let index = 0;
@@ -265,13 +285,18 @@ export function auditSourceText(text, policy, file = '<memory>') {
   let koreanDisplayLiterals = 0;
   let allowedInternalLiterals = 0;
 
-  for (const literal of scanStringExpressions(sourceText)) {
+  const { lexicalText, originalBoundaries } = phase2LexicalView(sourceText);
+  for (const literal of scanStringExpressions(lexicalText)) {
+    const originalIndex = originalBoundaries[literal.index];
+    const originalEnd = originalBoundaries[literal.end];
     displayLiterals += 1;
     if (literal.error) {
       issues.push({
         ...literal.error,
         file,
-        line: lineAt(text, literal.index),
+        index: originalBoundaries[literal.error.index ?? literal.index],
+        end: originalBoundaries[literal.error.end ?? literal.end],
+        line: lineAt(sourceText, originalIndex),
       });
       continue;
     }
@@ -280,7 +305,9 @@ export function auditSourceText(text, policy, file = '<memory>') {
       issues.push({
         code: 'MACHINE_TRANSLATION_MARKER',
         file,
-        line: lineAt(text, literal.index),
+        line: lineAt(sourceText, originalIndex),
+        index: originalIndex,
+        end: originalEnd,
         literal: literal.value,
         sha256: literalSha256(literal.value),
       });
@@ -295,7 +322,9 @@ export function auditSourceText(text, policy, file = '<memory>') {
     issues.push({
       code: 'CHINESE_SOURCE_DISPLAY',
       file,
-      line: lineAt(text, literal.index),
+      line: lineAt(sourceText, originalIndex),
+      index: originalIndex,
+      end: originalEnd,
       literal: literal.value,
       sha256,
     });
