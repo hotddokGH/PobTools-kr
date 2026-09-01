@@ -138,6 +138,58 @@ test('missing internal literal policy fails closed before scanning', () => {
   }
 });
 
+test('policy paths reject non-scalars but accept Korean paths', () => {
+  const invalid = auditSourceText('ImGui::Text(u8"設定");', {
+    internalLiteralAllowlist: [{
+      path: 'host/\uD800.cpp',
+      sha256: 'A'.repeat(64),
+      reason: 'invalid path scalar',
+    }],
+  }, 'host/fixture.cpp');
+  assert.equal(invalid.displayLiterals, 0);
+  assert.deepEqual(invalid.issues.map((row) => row.code), ['INVALID_POLICY_DOCUMENT']);
+
+  const decoded = '設定\uFFFD';
+  const valid = auditSourceText(`ImGui::Text(u8"${decoded}");`, {
+    internalLiteralAllowlist: [{
+      path: 'host/한글.cpp',
+      sha256: literalSha256(decoded),
+      reason: 'valid Korean path and replacement scalar',
+    }],
+  }, 'host/한글.cpp');
+  assert.equal(valid.allowedInternalLiterals, 1);
+  assert.deepEqual(valid.issues, []);
+});
+
+test('direct unpaired surrogate source text is an encoding issue', () => {
+  const report = auditSourceText('auto value = u8"設定\uD800";', {
+    internalLiteralAllowlist: [],
+  }, 'host/fixture.cpp');
+  assert.equal(report.displayLiterals, 0);
+  assert.deepEqual(report.issues.map((row) => row.code), ['INVALID_SOURCE_ENCODING']);
+});
+
+test('file scanner decodes UTF-8 fatally and accepts valid replacement scalar', () => {
+  const root = mkdtempSync(join(tmpdir(), 'source-encoding-audit-'));
+  try {
+    mkdirSync(join(root, 'host'));
+    writeFileSync(join(root, 'host', 'invalid.cpp'), Buffer.from([
+      ...Buffer.from('auto value = u8"', 'utf8'), 0xED, 0xA0, 0x80,
+      ...Buffer.from('";', 'utf8'),
+    ]));
+    writeFileSync(join(root, 'host', 'valid.cpp'), 'auto value = u8"\uFFFD";', 'utf8');
+    const report = scanSourceDisplay({
+      engineRoot: root,
+      policy: { internalLiteralAllowlist: [] },
+    });
+    assert.deepEqual(report.issues.map((row) => row.code), ['INVALID_SOURCE_ENCODING']);
+    assert.equal(report.issues[0].file, 'host/invalid.cpp');
+    assert.equal(report.displayLiterals, 1);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
 test('Unicode surrogate escapes are rejected deterministically', () => {
   const report = auditSourceText('auto value = u8"設定\\uD800";', {
     internalLiteralAllowlist: [],
@@ -162,6 +214,28 @@ test('LF and CRLF line splices preserve one semantic adjacent expression', () =>
     assert.equal(report.displayLiterals, 2);
     assert.equal(report.allowedInternalLiterals, 2);
     assert.deepEqual(report.issues, []);
+  }
+});
+
+test('prefix line splices preserve semantic identity for regular and raw literals', () => {
+  const policy = {
+    internalLiteralAllowlist: [{
+      path: 'host/prefix.cpp',
+      sha256: literalSha256('設定'),
+      reason: 'phase-2 prefix splice fixture',
+    }],
+  };
+  for (const prefix of ['u8', 'u', 'U', 'L']) {
+    for (const newline of ['\n', '\r\n']) {
+      for (const token of ['"設定"', 'R"tag(設定)tag"']) {
+        const report = auditSourceText(
+          `auto value = ${prefix}\\${newline}${token};`, policy, 'host/prefix.cpp',
+        );
+        assert.equal(report.displayLiterals, 1);
+        assert.equal(report.allowedInternalLiterals, 1);
+        assert.deepEqual(report.issues, []);
+      }
+    }
   }
 });
 

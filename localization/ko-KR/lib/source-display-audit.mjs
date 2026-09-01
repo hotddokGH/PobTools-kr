@@ -18,10 +18,22 @@ function lineAt(text, index) {
 
 function normalizedPolicyPath(value) {
   if (typeof value !== 'string' || !value || value.includes('\\') || value.startsWith('/')
-    || /^[A-Za-z]:/u.test(value)) return undefined;
+    || /^[A-Za-z]:/u.test(value) || invalidScalarIndex(value) !== undefined) return undefined;
   const parts = value.split('/');
   if (parts.some((part) => !part || part === '.' || part === '..')) return undefined;
   return value;
+}
+
+function invalidScalarIndex(value) {
+  for (let index = 0; index < value.length; index += 1) {
+    const unit = value.charCodeAt(index);
+    if (unit >= 0xD800 && unit <= 0xDBFF) {
+      const next = value.charCodeAt(index + 1);
+      if (!(next >= 0xDC00 && next <= 0xDFFF)) return index;
+      index += 1;
+    } else if (unit >= 0xDC00 && unit <= 0xDFFF) return index;
+  }
+  return undefined;
 }
 
 export function validateInternalLiteralAllowlist(value) {
@@ -225,6 +237,16 @@ export function auditSourceText(text, policy, file = '<memory>') {
       issues: validation.issues,
     };
   }
+  const sourceText = String(text);
+  const invalidIndex = invalidScalarIndex(sourceText);
+  if (invalidIndex !== undefined) {
+    return {
+      displayLiterals: 0,
+      koreanDisplayLiterals: 0,
+      allowedInternalLiterals: 0,
+      issues: [{ code: 'INVALID_SOURCE_ENCODING', file, index: invalidIndex }],
+    };
+  }
   const excluded = (policy?.excludedPaths ?? []).find((row) =>
     String(row?.path ?? '').replaceAll('\\', '/') === normalizedFile && String(row?.reason ?? '').trim());
   if (excluded) {
@@ -243,7 +265,7 @@ export function auditSourceText(text, policy, file = '<memory>') {
   let koreanDisplayLiterals = 0;
   let allowedInternalLiterals = 0;
 
-  for (const literal of scanStringExpressions(String(text))) {
+  for (const literal of scanStringExpressions(sourceText)) {
     displayLiterals += 1;
     if (literal.error) {
       issues.push({
@@ -320,7 +342,15 @@ export function scanSourceDisplay({ engineRoot, policy, overlayReport = undefine
     issues: [],
   };
   for (const file of files) {
-    const result = auditSourceText(readFileSync(file, 'utf8'), policy, relative(engineRoot, file).replaceAll('\\', '/'));
+    const fileName = relative(engineRoot, file).replaceAll('\\', '/');
+    let sourceText;
+    try {
+      sourceText = new TextDecoder('utf-8', { fatal: true }).decode(readFileSync(file));
+    } catch {
+      report.issues.push({ code: 'INVALID_SOURCE_ENCODING', file: fileName });
+      continue;
+    }
+    const result = auditSourceText(sourceText, policy, fileName);
     report.displayLiterals += result.displayLiterals;
     report.koreanDisplayLiterals += result.koreanDisplayLiterals;
     report.allowedInternalLiterals += result.allowedInternalLiterals;

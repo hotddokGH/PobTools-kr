@@ -217,6 +217,24 @@ class SourceOverlayTests(unittest.TestCase):
                 ],
                 (1, "更新"),
             ),
+            "non-array": (
+                {"source": "設定", "target": "설정업데이트"},
+                (-1, "設定更新"),
+            ),
+            "non-string-source": (
+                [
+                    {"source": 7, "target": "설정"},
+                    {"source": "更新", "target": "업데이트"},
+                ],
+                (0, "設定"),
+            ),
+            "non-string-target": (
+                [
+                    {"source": "設定", "target": "설정"},
+                    {"source": "更新", "target": 7},
+                ],
+                (1, "更新"),
+            ),
         }
         original = 'void Draw(){ Label(u8"設定" /* keep */ u8"更新"); }'
         valid = 'void Other(){ Label(u8"新增"); }'
@@ -250,6 +268,28 @@ class SourceOverlayTests(unittest.TestCase):
                     self.assertTrue(report["issues"][0]["detail"])
                 self.assertEqual(self.read("host/ui.cpp"), original)
                 self.assertEqual(self.read("host/other.cpp"), valid)
+
+    def test_unused_malformed_component_document_still_blocks_all_writes(self):
+        original = 'void Draw(){ Label(u8"新增"); }'
+        self.write("host/ui.cpp", original)
+        mapping = self.mapping(
+            {
+                "新增": self.entry("추가", "reviewed"),
+                "設定更新": self.entry(
+                    "설정업데이트", "reviewed", components={"invalid": True}
+                ),
+            }
+        )
+
+        report = apply_overlay(self.root, mapping, self.policy, self.report)
+
+        self.assertEqual(
+            [issue["code"] for issue in report["issues"]],
+            ["INVALID_COMPONENT_MAPPING"],
+        )
+        self.assertEqual(report["issues"][0]["componentIndex"], -1)
+        self.assertEqual(report["issues"][0]["componentSource"], "設定更新")
+        self.assertEqual(self.read("host/ui.cpp"), original)
 
     def test_component_encoding_and_raw_delimiter_failures_are_transactional(self):
         cases = {
@@ -354,6 +394,7 @@ class SourceOverlayTests(unittest.TestCase):
             [{**valid, "path": 7}],
             [{**valid, "path": "host\\fixture.cpp"}],
             [{**valid, "path": "C:/host/fixture.cpp"}],
+            [{**valid, "path": "host/\ud800.cpp"}],
             [{**valid, "sha256": 7}],
             [{**valid, "sha256": "a" * 64}],
             [{**valid, "sha256": "BAD"}],
@@ -374,6 +415,49 @@ class SourceOverlayTests(unittest.TestCase):
                     {"INVALID_POLICY_DOCUMENT"},
                 )
                 self.assertEqual(self.read("host/fixture.cpp"), original)
+
+    def test_internal_allowlist_accepts_valid_korean_path_and_replacement_scalar(self):
+        relative = "host/한글.cpp"
+        decoded = "設定\ufffd"
+        original = f'void Draw(){{ Label(u8"{decoded}"); }}'
+        self.write(relative, original)
+        self.write_policy(
+            [],
+            [{
+                "path": relative,
+                "sha256": hashlib.sha256(decoded.encode("utf-8")).hexdigest().upper(),
+                "reason": "valid non-ASCII path and replacement scalar",
+            }],
+        )
+
+        report = apply_overlay(self.root, self.mapping({}), self.policy, self.report)
+
+        self.assertEqual(report["issues"], [])
+        self.assertEqual(report["intentional"], 1)
+
+    def test_invalid_utf8_source_bytes_are_structured_and_transactional(self):
+        valid = 'void Other(){ Label(u8"更新"); }'
+        self.write("host/valid.cpp", valid)
+        mapping = self.mapping({"更新": self.entry("업데이트", "reviewed")})
+        for invalid in (b"\xED\xA0\x80", b"\xFF"):
+            with self.subTest(invalid=invalid.hex().upper()):
+                path = self.root / "host" / "invalid.cpp"
+                original = b'void Draw(){ Label(u8"' + invalid + b'"); }'
+                path.write_bytes(original)
+                try:
+                    report = apply_overlay(self.root, mapping, self.policy, self.report)
+                except UnicodeDecodeError as error:
+                    self.fail(f"source decoding escaped the report boundary: {error}")
+
+                self.assertEqual(
+                    [issue["code"] for issue in report["issues"]],
+                    ["INVALID_SOURCE_ENCODING"],
+                )
+                self.assertEqual(report["issues"][0]["path"], "host/invalid.cpp")
+                self.assertIs(type(report["issues"][0]["startByte"]), int)
+                self.assertTrue(self.report.is_file())
+                self.assertEqual(path.read_bytes(), original)
+                self.assertEqual(self.read("host/valid.cpp"), valid)
 
     def test_apply_blocks_concatenation_with_interstitial_comment(self):
         original = 'void Draw(){ ImGui::Text(u8"設定" /* keep */ u8"更新"); }'
@@ -476,6 +560,43 @@ class SourceOverlayTests(unittest.TestCase):
                     )],
                     [decoded, decoded],
                 )
+
+    def test_prefix_line_splices_are_preserved_byte_exact_during_replacement(self):
+        cases = (
+            ("u8", '"設定"', '"설정"'),
+            ("u", '"設定"', '"설정"'),
+            ("U", '"設定"', '"설정"'),
+            ("L", '"設定"', '"설정"'),
+            ("u8", 'R"tag(設定)tag"', 'R"tag(설정)tag"'),
+            ("L", 'R"tag(設定)tag"', 'R"tag(설정)tag"'),
+        )
+        mapping = self.mapping({"設定": self.entry("설정", "reviewed")})
+        for prefix, original_token, target_token in cases:
+            for newline in ("\n", "\r\n"):
+                with self.subTest(prefix=prefix, token=original_token, newline=repr(newline)):
+                    original = (
+                        f"void Draw(){{ auto value = {prefix}\\{newline}"
+                        f"{original_token}; }}"
+                    )
+                    expected = original.replace(original_token, target_token)
+                    self.write("host/prefix.cpp", original, newline="")
+
+                    rows = scan_cpp_literals(
+                        Path("host/prefix.cpp"), original.encode("utf-8")
+                    )
+                    self.assertEqual(
+                        rows[0].prefix,
+                        prefix + ("R" if original_token.startswith("R") else ""),
+                    )
+                    report = apply_overlay(
+                        self.root, mapping, self.policy, self.report
+                    )
+
+                    self.assertEqual(report["issues"], [])
+                    self.assertEqual(
+                        (self.root / "host/prefix.cpp").read_bytes(),
+                        expected.encode("utf-8"),
+                    )
 
     def test_nul_followed_by_octal_digit_cannot_be_encoded(self):
         original = 'void Draw(){ Label(u8"設定\\0X"); }'

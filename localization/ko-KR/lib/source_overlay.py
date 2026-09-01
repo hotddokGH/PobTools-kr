@@ -27,6 +27,12 @@ _HAN = re.compile(
 _PARSER = Parser(Language(tree_sitter_cpp.language()))
 _REGULAR_OPEN = re.compile(rb'(?P<prefix>u8|u|U|L)?"')
 _RAW_OPEN = re.compile(rb'(?P<prefix>u8R|uR|UR|LR|R)"(?P<delimiter>[^ ()\\\t\r\n]{0,16})\(')
+_SPLICED_PREFIX_END = re.compile(
+    rb"(?P<prefix>u8|u|U|L)\\(?:\r\n|\n)$"
+)
+_SPLICED_PREFIX_START = re.compile(
+    rb"(?P<lead>(?P<prefix>u8|u|U|L)\\(?:\r\n|\n))"
+)
 
 
 @dataclass(frozen=True)
@@ -98,6 +104,14 @@ class RawDelimiterCollision(ValueError):
 
 class UnsafeNulEncoding(ValueError):
     pass
+
+
+class InvalidSourceEncoding(ValueError):
+    def __init__(self, start: int, end: int, line: int):
+        super().__init__(f"source is not valid UTF-8 at bytes {start}:{end}")
+        self.start = start
+        self.end = end
+        self.line = line
 
 
 def format_signature(value: str) -> tuple[str, ...]:
@@ -230,6 +244,10 @@ def _decode_literal(
 
 
 def _normalized_policy_path(value: str) -> str | None:
+    try:
+        value.encode("utf-8")
+    except UnicodeEncodeError:
+        return None
     if (
         not value
         or value != value.replace("\\", "/")
@@ -421,6 +439,14 @@ def scan_cpp_literals(
     allow_legacy_nul: bool = False,
 ) -> list[Literal]:
     """Return semantic C++ string values with byte offsets into *text*."""
+    try:
+        text.decode("utf-8")
+    except UnicodeDecodeError as error:
+        raise InvalidSourceEncoding(
+            error.start,
+            error.end,
+            text.count(b"\n", 0, error.start) + 1,
+        ) from error
     parser_text = text.replace(b"\\\r\n", b" \\\n")
     tree = _PARSER.parse(parser_text)
     normalized_path = path.as_posix()
@@ -566,6 +592,19 @@ def scan_cpp_literals(
                         child_line,
                         allow_legacy_nul=allow_legacy_nul,
                     )
+                    boundary = (
+                        node.start_byte
+                        if index == 0
+                        else literal_nodes[index - 1].end_byte
+                    )
+                    spliced_prefix = _SPLICED_PREFIX_END.search(
+                        text[boundary : child.start_byte]
+                    )
+                    if spliced_prefix is not None:
+                        child_prefix = (
+                            spliced_prefix.group("prefix").decode("ascii")
+                            + child_prefix
+                        )
                     decoded_parts.append(decoded)
                     components.append(
                         LiteralComponent(
@@ -713,9 +752,23 @@ def _replacement_bytes(
     original: bytes,
     source_text: bytes,
 ) -> bytes:
-    if literal.prefix.endswith("R"):
-        return _raw_literal(literal.prefix, target, original, source_text)
-    return _regular_literal(literal.prefix, target)
+    lead = b""
+    token = original
+    spliced = _SPLICED_PREFIX_START.match(original)
+    if spliced is not None:
+        lead = spliced.group("lead")
+        token = original[spliced.end() :]
+    raw = _RAW_OPEN.match(token)
+    if raw is not None:
+        prefix = raw.group("prefix").decode("ascii")
+        return lead + _raw_literal(prefix, target, token, source_text)
+    regular = _REGULAR_OPEN.match(token)
+    prefix = (
+        (regular.group("prefix") or b"").decode("ascii")
+        if regular is not None
+        else literal.prefix
+    )
+    return lead + _regular_literal(prefix, target)
 
 
 def _is_concatenated_literal(original: bytes) -> bool:
@@ -768,6 +821,13 @@ def _validated_component_targets(
             ),
             "detail": "component count does not match the literal expression",
         }
+    for index, value in enumerate(values):
+        if not isinstance(value, dict) or set(value) != {"source", "target"}:
+            return None, {
+                "componentIndex": index,
+                "componentSource": literal.components[index].decoded,
+                "detail": "component must contain exactly source and target",
+            }
     sources = [component.get("source") for component in values]
     targets = [component.get("target") for component in values]
     for index, (source, component) in enumerate(
@@ -817,7 +877,7 @@ def _write_report(report_path: Path, report: dict[str, Any]) -> None:
 
 
 def _mapping_row_is_well_formed(row: Any) -> bool:
-    base_is_valid = (
+    return (
         isinstance(row, dict)
         and isinstance(row.get("target"), str)
         and isinstance(row.get("status"), str)
@@ -825,16 +885,44 @@ def _mapping_row_is_well_formed(row: Any) -> bool:
         and isinstance(row.get("formatSignature"), list)
         and all(isinstance(token, str) for token in row["formatSignature"])
     )
-    if not base_is_valid or "components" not in row:
-        return base_is_valid
+
+
+def _component_document_shape_error(
+    row: dict[str, Any], source: str
+) -> dict[str, Any] | None:
+    if "components" not in row:
+        return None
     components = row["components"]
-    return isinstance(components, list) and all(
-        isinstance(component, dict)
-        and set(component) == {"source", "target"}
-        and isinstance(component["source"], str)
-        and isinstance(component["target"], str)
-        for component in components
-    )
+    if not isinstance(components, list):
+        return {
+            "code": "INVALID_COMPONENT_MAPPING",
+            "componentIndex": -1,
+            "componentSource": source,
+            "detail": "components must be an array",
+        }
+    for index, component in enumerate(components):
+        if not isinstance(component, dict) or set(component) != {"source", "target"}:
+            return {
+                "code": "INVALID_COMPONENT_MAPPING",
+                "componentIndex": index,
+                "componentSource": source,
+                "detail": "component must contain exactly source and target",
+            }
+        if not isinstance(component["source"], str):
+            return {
+                "code": "INVALID_COMPONENT_MAPPING",
+                "componentIndex": index,
+                "componentSource": source,
+                "detail": "component source must be a string",
+            }
+        if not isinstance(component["target"], str):
+            return {
+                "code": "INVALID_COMPONENT_MAPPING",
+                "componentIndex": index,
+                "componentSource": component["source"],
+                "detail": "component target must be a string",
+            }
+    return None
 
 
 def _strings_are_utf8_encodable(values: list[str]) -> bool:
@@ -853,8 +941,16 @@ def _mapping_row_strings(row: dict[str, Any]) -> list[str]:
         row["provenance"],
         *row["formatSignature"],
     ]
-    for component in row.get("components", []):
-        values.extend((component["source"], component["target"]))
+    components = row.get("components")
+    if isinstance(components, list):
+        for component in components:
+            if not isinstance(component, dict):
+                continue
+            values.extend(
+                value
+                for value in (component.get("source"), component.get("target"))
+                if isinstance(value, str)
+            )
     return values
 
 
@@ -928,6 +1024,7 @@ def _run_overlay(
         )
         _write_report(report_path, report)
         return report
+    invalid_component_rows: list[tuple[int, dict[str, Any]]] = []
     for source, row in sorted(entries.items(), key=lambda item: str(item[0])):
         if not isinstance(source, str) or not _mapping_row_is_well_formed(row):
             report["issues"].append(
@@ -942,6 +1039,10 @@ def _run_overlay(
             report["issues"].append(
                 {"code": code, "location": f"entries[{source!r}]"}
             )
+        else:
+            component_error = _component_document_shape_error(row, source)
+            if component_error is not None:
+                invalid_component_rows.append((id(row), component_error))
     context_fields = ("path", "function", "source")
     context_keys: dict[tuple[str, str, str, int], list[int]] = {}
     for index, row in enumerate(contexts):
@@ -971,6 +1072,9 @@ def _run_overlay(
                 row["occurrenceIndex"],
             )
             context_keys.setdefault(key, []).append(index)
+            component_error = _component_document_shape_error(row, row["source"])
+            if component_error is not None:
+                invalid_component_rows.append((id(row), component_error))
     for indexes in context_keys.values():
         if len(indexes) > 1:
             for index in indexes:
@@ -1018,6 +1122,7 @@ def _run_overlay(
     originals: dict[Path, bytes] = {}
     plans: dict[Path, list[tuple[int, int, bytes]]] = {}
     used_recovery_evidence: set[ParseRecoveryEvidence] = set()
+    consumed_component_rows: set[int] = set()
 
     for path in files:
         relative = path.relative_to(source_root).as_posix()
@@ -1057,6 +1162,17 @@ def _run_overlay(
                 }
             )
             continue
+        except InvalidSourceEncoding as error:
+            report["issues"].append(
+                {
+                    "code": "INVALID_SOURCE_ENCODING",
+                    "path": relative,
+                    "line": error.line,
+                    "startByte": error.start,
+                    "endByte": error.end,
+                }
+            )
+            continue
         report["displayLiterals"] += len(literals)
         for literal in literals:
             digest = hashlib.sha256(literal.decoded.encode("utf-8")).hexdigest().upper()
@@ -1069,6 +1185,7 @@ def _run_overlay(
             if row is None:
                 report["issues"].append(_issue("MISSING_MAPPING", literal))
                 continue
+            consumed_component_rows.add(id(row))
             status = str(row.get("status", ""))
             if status not in ACCEPTED_STATUSES:
                 code = "SUGGESTION_ONLY" if status == "suggested" else "STATUS_REJECTED"
@@ -1148,6 +1265,12 @@ def _run_overlay(
             plans.setdefault(path, []).extend(replacements)
             report["reused"] += 1
             report[status] += 1
+
+    report["issues"].extend(
+        issue
+        for identity, issue in invalid_component_rows
+        if identity not in consumed_component_rows
+    )
 
     report["parseRecoveryEvidence"] = recovery_evidence_report(
         used_recovery_evidence
