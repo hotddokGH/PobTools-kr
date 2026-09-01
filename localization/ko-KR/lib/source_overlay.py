@@ -37,12 +37,17 @@ class Literal:
 
 
 class UnsupportedEscape(ValueError):
-    def __init__(self, escape: str, start: int, line: int, function: str):
+    def __init__(self, escape: str, start: int, end: int, line: int, function: str):
         super().__init__(f"unsupported C++ escape: {escape}")
         self.escape = escape
         self.start = start
+        self.end = end
         self.line = line
         self.function = function
+
+
+class RawDelimiterCollision(ValueError):
+    pass
 
 
 def format_signature(value: str) -> tuple[str, ...]:
@@ -54,7 +59,7 @@ def format_signature(value: str) -> tuple[str, ...]:
     return tuple(sorted(tokens))
 
 
-def _decode_escape_text(value: str, *, start: int, line: int, function: str) -> str:
+def _decode_escape_text(value: str, *, start: int, end: int, line: int, function: str) -> str:
     output: list[str] = []
     cursor = 0
     simple = {"\\": "\\", '"': '"', "n": "\n", "r": "\r", "t": "\t"}
@@ -65,24 +70,34 @@ def _decode_escape_text(value: str, *, start: int, line: int, function: str) -> 
             cursor += 1
             continue
         if cursor + 1 >= len(value):
-            raise UnsupportedEscape("\\<EOF>", start, line, function)
+            raise UnsupportedEscape("\\<EOF>", start, end, line, function)
         marker = value[cursor + 1]
         if marker in simple:
             output.append(simple[marker])
             cursor += 2
             continue
-        widths = {"x": 2, "u": 4, "U": 8}
+        if marker == "x":
+            hex_end = cursor + 2
+            while hex_end < len(value) and value[hex_end] in "0123456789abcdefABCDEF":
+                hex_end += 1
+            digits = value[cursor + 2 : hex_end]
+            if len(digits) != 2:
+                raise UnsupportedEscape(value[cursor:hex_end], start, end, line, function)
+            output.append(chr(int(digits, 16)))
+            cursor = hex_end
+            continue
+        widths = {"u": 4, "U": 8}
         width = widths.get(marker)
         digits = value[cursor + 2 : cursor + 2 + width] if width is not None else ""
         if width is not None and len(digits) == width and re.fullmatch(r"[0-9A-Fa-f]+", digits):
             try:
                 output.append(chr(int(digits, 16)))
             except ValueError as error:
-                raise UnsupportedEscape(f"\\{marker}{digits}", start, line, function) from error
+                raise UnsupportedEscape(f"\\{marker}{digits}", start, end, line, function) from error
             cursor += 2 + width
             continue
-        end = min(len(value), cursor + 2 + (width or 0))
-        raise UnsupportedEscape(value[cursor:end], start, line, function)
+        escape_end = min(len(value), cursor + 2 + (width or 0))
+        raise UnsupportedEscape(value[cursor:escape_end], start, end, line, function)
     return "".join(output)
 
 
@@ -116,7 +131,13 @@ def _decode_literal(node: Node, text: bytes, function: str, line: int) -> tuple[
         raise ValueError(f"invalid string literal at byte {node.start_byte}")
     encoded = raw[match.end() : -1].decode("utf-8")
     return (
-        _decode_escape_text(encoded, start=node.start_byte, line=line, function=function),
+        _decode_escape_text(
+            encoded,
+            start=node.start_byte,
+            end=node.end_byte,
+            line=line,
+            function=function,
+        ),
         (match.group("prefix") or b"").decode("ascii"),
     )
 
@@ -213,23 +234,41 @@ def _regular_literal(prefix: str, target: str) -> bytes:
     return f'{prefix}"{escaped}"'.encode("utf-8")
 
 
-def _raw_literal(prefix: str, target: str, original: bytes) -> bytes:
+def _newline_style(text: bytes) -> str | None:
+    if b"\r\n" in text:
+        return "\r\n"
+    if b"\n" in text:
+        return "\n"
+    if b"\r" in text:
+        return "\r"
+    return None
+
+
+def _raw_literal(prefix: str, target: str, original: bytes, source_text: bytes) -> bytes:
     opening = original.find(b"(")
     quote = original.find(b'"')
     delimiter = original[quote + 1 : opening].decode("ascii") if 0 <= quote < opening else ""
+    newline = _newline_style(original) or _newline_style(source_text) or "\n"
+    target = target.replace("\r\n", "\n").replace("\r", "\n").replace("\n", newline)
     if f'){delimiter}"' in target:
-        delimiter = "ko"
-        suffix = 1
-        while f'){delimiter}"' in target:
-            delimiter = f"ko{suffix}"
-            suffix += 1
+        raise RawDelimiterCollision(delimiter)
     return f'{prefix}"{delimiter}({target}){delimiter}"'.encode("utf-8")
 
 
-def _replacement_bytes(literal: Literal, target: str, original: bytes) -> bytes:
+def _replacement_bytes(literal: Literal, target: str, original: bytes, source_text: bytes) -> bytes:
     if literal.prefix.endswith("R"):
-        return _raw_literal(literal.prefix, target, original)
+        return _raw_literal(literal.prefix, target, original, source_text)
     return _regular_literal(literal.prefix, target)
+
+
+def _is_concatenated_literal(original: bytes) -> bool:
+    pending = [_PARSER.parse(original).root_node]
+    while pending:
+        node = pending.pop()
+        if node.type == "concatenated_string":
+            return True
+        pending.extend(node.named_children)
+    return False
 
 
 def _resolve_mapping(
@@ -253,23 +292,19 @@ def _write_report(report_path: Path, report: dict[str, Any]) -> None:
     report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="")
 
 
-def _run_overlay(
-    source_root: Path,
-    mapping_path: Path,
-    policy_path: Path,
-    report_path: Path,
-    *,
-    write_sources: bool,
-) -> dict[str, Any]:
-    mapping = json.loads(mapping_path.read_text(encoding="utf-8"))
-    policy = json.loads(policy_path.read_text(encoding="utf-8"))
-    entries = mapping.get("entries", {})
-    contexts = mapping.get("contexts", [])
-    if not isinstance(entries, dict) or not isinstance(contexts, list):
-        raise ValueError("mapping must contain an entries object and contexts array")
+def _mapping_row_is_well_formed(row: Any) -> bool:
+    return (
+        isinstance(row, dict)
+        and isinstance(row.get("target"), str)
+        and isinstance(row.get("status"), str)
+        and isinstance(row.get("provenance"), str)
+        and isinstance(row.get("formatSignature"), list)
+        and all(isinstance(token, str) for token in row["formatSignature"])
+    )
 
-    files = _source_files(source_root)
-    report: dict[str, Any] = {
+
+def _new_report(files: list[Path]) -> dict[str, Any]:
+    return {
         "filesScanned": len(files),
         "displayLiterals": 0,
         "reused": 0,
@@ -278,6 +313,58 @@ def _run_overlay(
         "intentional": 0,
         "issues": [],
     }
+
+
+def _run_overlay(
+    source_root: Path,
+    mapping_path: Path,
+    policy_path: Path,
+    report_path: Path,
+    *,
+    write_sources: bool,
+) -> dict[str, Any]:
+    files = _source_files(source_root)
+    report = _new_report(files)
+    try:
+        mapping = json.loads(mapping_path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError) as error:
+        report["issues"].append({"code": "INVALID_MAPPING_DOCUMENT", "detail": str(error)})
+        _write_report(report_path, report)
+        return report
+    if not isinstance(mapping, dict):
+        report["issues"].append(
+            {"code": "INVALID_MAPPING_DOCUMENT", "detail": "root must be an object"}
+        )
+        _write_report(report_path, report)
+        return report
+    entries = mapping.get("entries", {})
+    contexts = mapping.get("contexts", [])
+    if not isinstance(entries, dict) or not isinstance(contexts, list):
+        report["issues"].append(
+            {
+                "code": "INVALID_MAPPING_DOCUMENT",
+                "detail": "entries must be an object and contexts must be an array",
+            }
+        )
+        _write_report(report_path, report)
+        return report
+    for source, row in sorted(entries.items(), key=lambda item: str(item[0])):
+        if not isinstance(source, str) or not _mapping_row_is_well_formed(row):
+            report["issues"].append(
+                {"code": "INVALID_MAPPING_ENTRY", "source": str(source)}
+            )
+    context_fields = ("path", "function", "source")
+    for index, row in enumerate(contexts):
+        if (
+            not _mapping_row_is_well_formed(row)
+            or any(not isinstance(row.get(field), str) for field in context_fields)
+        ):
+            report["issues"].append({"code": "INVALID_CONTEXT_ENTRY", "index": index})
+    if report["issues"]:
+        _write_report(report_path, report)
+        return report
+
+    policy = json.loads(policy_path.read_text(encoding="utf-8"))
     excluded = _excluded_paths(policy)
     allowed = _allowlisted_hashes(policy)
     originals: dict[Path, bytes] = {}
@@ -298,7 +385,7 @@ def _run_overlay(
                     "path": relative,
                     "function": error.function,
                     "line": error.line,
-                    "source": text[error.start :].split(b'"', 2)[0].decode("utf-8", errors="replace"),
+                    "source": text[error.start : error.end].decode("utf-8", errors="replace"),
                     "escape": error.escape,
                 }
             )
@@ -336,7 +423,16 @@ def _run_overlay(
                 )
                 continue
             original = text[literal.start : literal.end]
-            replacement = _replacement_bytes(literal, target, original)
+            if _is_concatenated_literal(original):
+                report["issues"].append(_issue("UNSAFE_CONCATENATED_LITERAL", literal))
+                continue
+            try:
+                replacement = _replacement_bytes(literal, target, original, text)
+            except RawDelimiterCollision as error:
+                report["issues"].append(
+                    _issue("RAW_DELIMITER_COLLISION", literal, delimiter=str(error))
+                )
+                continue
             plans.setdefault(path, []).append((literal.start, literal.end, replacement))
             report["reused"] += 1
             report[status] += 1

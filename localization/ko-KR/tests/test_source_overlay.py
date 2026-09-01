@@ -66,6 +66,22 @@ class SourceOverlayTests(unittest.TestCase):
         self.assertEqual([row.decoded for row in rows], ["設定 更新"])
         self.assertEqual(source.encode("utf-8")[rows[0].start : rows[0].end], b'u8"\xe8\xa8\xad\xe5\xae\x9a " "\xe6\x9b\xb4\xe6\x96\xb0"')
 
+    def test_apply_blocks_concatenation_with_interstitial_comment(self):
+        original = 'void Draw(){ ImGui::Text(u8"設定" /* keep */ u8"更新"); }'
+        self.write("host/ui.cpp", original)
+        mapping = self.mapping({"設定更新": self.entry("설정 업데이트", "reviewed")})
+        report = apply_overlay(self.root, mapping, self.policy, self.report)
+        self.assertEqual(report["issues"][0]["code"], "UNSAFE_CONCATENATED_LITERAL")
+        self.assertEqual(self.read("host/ui.cpp"), original)
+
+    def test_apply_blocks_concatenation_with_mixed_prefixes(self):
+        original = 'void Draw(){ ImGui::Text(u8"設定" L"更新"); }'
+        self.write("host/ui.cpp", original)
+        mapping = self.mapping({"設定更新": self.entry("설정 업데이트", "reviewed")})
+        report = apply_overlay(self.root, mapping, self.policy, self.report)
+        self.assertEqual(report["issues"][0]["code"], "UNSAFE_CONCATENATED_LITERAL")
+        self.assertEqual(self.read("host/ui.cpp"), original)
+
     def test_format_signature_counts_decoded_newlines(self):
         self.assertEqual(
             format_signature("Gain {0} %s\n^xFF00FF"),
@@ -81,12 +97,24 @@ class SourceOverlayTests(unittest.TestCase):
         self.assertEqual(self.read("host/ui.cpp"), original.replace("設定", "설정"))
         self.assertEqual((self.root / "host/ui.cpp").read_bytes().count(b"\r\n"), 2)
 
-    def test_raw_replacement_selects_a_delimiter_not_present_in_target(self):
-        self.write("host/ui.cpp", 'void Draw(){ auto value = LR"tag(更新)tag"; }')
+    def test_raw_delimiter_collision_blocks_without_writing(self):
+        original = 'void Draw(){ auto value = LR"tag(更新)tag"; }'
+        self.write("host/ui.cpp", original)
         mapping = self.mapping({"更新": self.entry('끝 )tag" 계속', "official")})
         report = apply_overlay(self.root, mapping, self.policy, self.report)
+        self.assertEqual(report["issues"][0]["code"], "RAW_DELIMITER_COLLISION")
+        self.assertEqual(self.read("host/ui.cpp"), original)
+
+    def test_multiline_raw_replacement_preserves_crlf_newline_bytes(self):
+        original = 'void Draw(){ auto value = R"(設定\r\n更新)"; }\r\n'
+        self.write("host/ui.cpp", original, newline="")
+        mapping = self.mapping(
+            {"設定\r\n更新": self.entry("설정\n업데이트", "reviewed", ["<NL>"])}
+        )
+        report = apply_overlay(self.root, mapping, self.policy, self.report)
         self.assertEqual(report["issues"], [])
-        self.assertIn('LR"ko(끝 )tag" 계속)ko"', self.read("host/ui.cpp"))
+        expected = original.replace("設定\r\n更新", "설정\r\n업데이트")
+        self.assertEqual((self.root / "host/ui.cpp").read_bytes(), expected.encode("utf-8"))
 
     def test_unsupported_escape_is_reported_without_writing(self):
         original = 'void Draw(){ ImGui::Text(u8"設定\\q"); }'
@@ -94,6 +122,16 @@ class SourceOverlayTests(unittest.TestCase):
         mapping = self.mapping({})
         report = apply_overlay(self.root, mapping, self.policy, self.report)
         self.assertEqual(report["issues"][0]["code"], "UNSUPPORTED_ESCAPE")
+        self.assertEqual(report["issues"][0]["source"], 'u8"設定\\q"')
+        self.assertEqual(self.read("host/ui.cpp"), original)
+
+    def test_long_hex_escape_is_rejected_instead_of_partially_decoded(self):
+        original = 'void Draw(){ ImGui::Text(u8"設定\\x414"); }'
+        self.write("host/ui.cpp", original)
+        mapping = self.mapping({})
+        report = apply_overlay(self.root, mapping, self.policy, self.report)
+        self.assertEqual(report["issues"][0]["code"], "UNSUPPORTED_ESCAPE")
+        self.assertEqual(report["issues"][0]["escape"], "\\x414")
         self.assertEqual(self.read("host/ui.cpp"), original)
 
     def test_apply_is_transactional_when_any_row_is_unreviewed(self):
@@ -157,6 +195,35 @@ class SourceOverlayTests(unittest.TestCase):
         self.assertEqual(json.loads(self.report.read_text(encoding="utf-8")), report)
         self.assertEqual(self.read("host/a.cpp"), first)
         self.assertEqual(self.read("host/b.cpp"), second)
+
+    def test_non_object_mapping_root_writes_blocking_report(self):
+        original = 'void Draw(){ ImGui::Text(u8"設定"); }'
+        self.write("host/ui.cpp", original)
+        mapping = self.root / "source-literal-mapping.json"
+        mapping.write_text("[]", encoding="utf-8")
+        report = apply_overlay(self.root, mapping, self.policy, self.report)
+        self.assertEqual(report["issues"][0]["code"], "INVALID_MAPPING_DOCUMENT")
+        self.assertEqual(json.loads(self.report.read_text(encoding="utf-8")), report)
+        self.assertEqual(self.read("host/ui.cpp"), original)
+
+    def test_malformed_global_entry_writes_blocking_report(self):
+        original = 'void Draw(){ ImGui::Text(u8"設定"); }'
+        self.write("host/ui.cpp", original)
+        mapping = self.mapping({"設定": "설정"})
+        report = apply_overlay(self.root, mapping, self.policy, self.report)
+        self.assertEqual(report["issues"][0]["code"], "INVALID_MAPPING_ENTRY")
+        self.assertEqual(self.read("host/ui.cpp"), original)
+
+    def test_malformed_context_entry_writes_blocking_report(self):
+        original = 'void Draw(){ ImGui::Text(u8"設定"); }'
+        self.write("host/ui.cpp", original)
+        mapping = self.mapping(
+            {"設定": self.entry("설정", "reviewed")},
+            contexts=[{"path": "host/ui.cpp", "function": "Draw", "source": "設定"}],
+        )
+        report = apply_overlay(self.root, mapping, self.policy, self.report)
+        self.assertEqual(report["issues"][0]["code"], "INVALID_CONTEXT_ENTRY")
+        self.assertEqual(self.read("host/ui.cpp"), original)
 
 
 if __name__ == "__main__":
