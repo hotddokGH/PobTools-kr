@@ -25,7 +25,7 @@ function normalizedPolicyPath(value) {
 }
 
 export function validateInternalLiteralAllowlist(value) {
-  const rows = value === undefined ? [] : value;
+  const rows = value;
   const issues = [];
   const identities = new Map();
   if (!Array.isArray(rows)) {
@@ -109,12 +109,24 @@ function decodeRegularContent(value, start, end) {
     const width = marker === 'u' ? 4 : marker === 'U' ? 8 : 0;
     const digits = width ? value.slice(cursor + 2, cursor + 2 + width) : '';
     if (width && digits.length === width && /^[0-9A-Fa-f]+$/u.test(digits)) {
+      const codepoint = Number.parseInt(digits, 16);
+      if (codepoint >= 0xD800 && codepoint <= 0xDFFF) {
+        throw unsupportedEscape(`\\${marker}${digits}`, start, end);
+      }
       try {
-        output += String.fromCodePoint(Number.parseInt(digits, 16));
+        output += String.fromCodePoint(codepoint);
       } catch {
         throw unsupportedEscape(`\\${marker}${digits}`, start, end);
       }
       cursor += 2 + width;
+      continue;
+    }
+    if (marker === '\n') {
+      cursor += 2;
+      continue;
+    }
+    if (marker === '\r' && value[cursor + 2] === '\n') {
+      cursor += 3;
       continue;
     }
     throw unsupportedEscape(value.slice(cursor, Math.min(value.length, cursor + 2 + width)), start, end);
@@ -154,6 +166,8 @@ function afterSeparators(text, index) {
   let cursor = index;
   while (cursor < text.length) {
     if (/\s/u.test(text[cursor])) cursor += 1;
+    else if (text.startsWith('\\\r\n', cursor)) cursor += 3;
+    else if (text.startsWith('\\\n', cursor)) cursor += 2;
     else if (text.startsWith('//', cursor)) {
       const newline = text.indexOf('\n', cursor + 2);
       cursor = newline < 0 ? text.length : newline + 1;

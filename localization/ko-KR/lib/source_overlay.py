@@ -158,11 +158,22 @@ def _decode_escape_text(
         width = widths.get(marker)
         digits = value[cursor + 2 : cursor + 2 + width] if width is not None else ""
         if width is not None and len(digits) == width and re.fullmatch(r"[0-9A-Fa-f]+", digits):
+            codepoint = int(digits, 16)
+            if 0xD800 <= codepoint <= 0xDFFF:
+                raise UnsupportedEscape(
+                    f"\\{marker}{digits}", start, end, line, function
+                )
             try:
-                output.append(chr(int(digits, 16)))
+                output.append(chr(codepoint))
             except ValueError as error:
                 raise UnsupportedEscape(f"\\{marker}{digits}", start, end, line, function) from error
             cursor += 2 + width
+            continue
+        if marker == "\n":
+            cursor += 2
+            continue
+        if marker == "\r" and cursor + 2 < len(value) and value[cursor + 2] == "\n":
+            cursor += 3
             continue
         escape_end = min(len(value), cursor + 2 + (width or 0))
         raise UnsupportedEscape(value[cursor:escape_end], start, end, line, function)
@@ -410,7 +421,8 @@ def scan_cpp_literals(
     allow_legacy_nul: bool = False,
 ) -> list[Literal]:
     """Return semantic C++ string values with byte offsets into *text*."""
-    tree = _PARSER.parse(text)
+    parser_text = text.replace(b"\\\r\n", b" \\\n")
+    tree = _PARSER.parse(parser_text)
     normalized_path = path.as_posix()
     candidates: list[tuple[Node, str, int]] = []
 
@@ -735,22 +747,68 @@ def _resolve_mapping(
 
 def _validated_component_targets(
     literal: Literal, row: dict[str, Any], target: str
-) -> list[str] | None:
+) -> tuple[list[str] | None, dict[str, Any] | None]:
     values = row.get("components")
     if values is None:
-        return None
-    if not isinstance(values, list) or len(values) != len(literal.components):
-        return []
+        return None, None
+    if not isinstance(values, list):
+        return None, {
+            "componentIndex": -1,
+            "componentSource": literal.decoded,
+            "detail": "components must be an array",
+        }
+    if len(values) != len(literal.components):
+        index = min(len(values), len(literal.components))
+        return None, {
+            "componentIndex": index,
+            "componentSource": (
+                literal.components[index].decoded
+                if index < len(literal.components)
+                else ""
+            ),
+            "detail": "component count does not match the literal expression",
+        }
     sources = [component.get("source") for component in values]
     targets = [component.get("target") for component in values]
-    if (
-        any(not isinstance(value, str) for value in [*sources, *targets])
-        or sources != [component.decoded for component in literal.components]
-        or "".join(sources) != literal.decoded
-        or "".join(targets) != target
+    for index, (source, component) in enumerate(
+        zip(sources, literal.components, strict=True)
     ):
-        return []
-    return targets
+        if not isinstance(source, str) or source != component.decoded:
+            return None, {
+                "componentIndex": index,
+                "componentSource": component.decoded,
+                "mappedSource": _safe_report_text(source),
+                "detail": "component source does not match the literal component",
+            }
+    if any(not isinstance(value, str) for value in targets):
+        index = next(
+            index for index, value in enumerate(targets) if not isinstance(value, str)
+        )
+        return None, {
+            "componentIndex": index,
+            "componentSource": literal.components[index].decoded,
+            "detail": "component target must be a string",
+        }
+    if "".join(sources) != literal.decoded:
+        return None, {
+            "componentIndex": 0,
+            "componentSource": literal.components[0].decoded,
+            "detail": "joined component sources do not match the literal expression",
+        }
+    if "".join(targets) != target:
+        joined = ""
+        mismatch_index = len(targets) - 1
+        for index, component_target in enumerate(targets):
+            joined += component_target
+            if not target.startswith(joined):
+                mismatch_index = index
+                break
+        return None, {
+            "componentIndex": mismatch_index,
+            "componentSource": literal.components[mismatch_index].decoded,
+            "detail": "joined component targets do not match the mapping target",
+        }
+    return targets, None
 
 
 def _write_report(report_path: Path, report: dict[str, Any]) -> None:
@@ -1034,12 +1092,23 @@ def _run_overlay(
                     )
                 )
                 continue
-            component_targets = _validated_component_targets(literal, row, target)
+            component_targets, component_error = _validated_component_targets(
+                literal, row, target
+            )
             if len(literal.components) > 1 and component_targets is None:
-                report["issues"].append(_issue("INVALID_COMPONENT_PLAN", literal))
+                if component_error is None:
+                    report["issues"].append(
+                        _issue("MISSING_COMPONENT_MAPPING", literal)
+                    )
+                else:
+                    report["issues"].append(
+                        _issue("INVALID_COMPONENT_MAPPING", literal, **component_error)
+                    )
                 continue
-            if component_targets == []:
-                report["issues"].append(_issue("INVALID_COMPONENT_PLAN", literal))
+            if component_error is not None:
+                report["issues"].append(
+                    _issue("INVALID_COMPONENT_MAPPING", literal, **component_error)
+                )
                 continue
             try:
                 if component_targets is None:

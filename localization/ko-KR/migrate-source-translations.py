@@ -140,12 +140,20 @@ def _aligned_component_plan(
 
 
 def _manual_component_plan(
-    value: dict[str, Any], upstream: Literal, target: str
+    value: dict[str, Any], upstream: Literal, current: Literal
 ) -> tuple[tuple[str, str], ...] | None:
     raw_components = value.get("components")
     if raw_components is None:
-        return () if len(upstream.components) <= 1 else None
-    if not isinstance(raw_components, list) or len(raw_components) != len(upstream.components):
+        return (
+            ()
+            if len(upstream.components) <= 1 and len(current.components) <= 1
+            else None
+        )
+    if (
+        not isinstance(raw_components, list)
+        or len(raw_components) != len(upstream.components)
+        or len(raw_components) != len(current.components)
+    ):
         return None
     if any(
         not isinstance(component, dict)
@@ -162,11 +170,21 @@ def _manual_component_plan(
     if (
         [source for source, _ in plan]
         != [component.decoded for component in upstream.components]
+        or [component_target for _, component_target in plan]
+        != [component.decoded for component in current.components]
         or "".join(source for source, _ in plan) != upstream.decoded
-        or "".join(component_target for _, component_target in plan) != target
+        or "".join(component_target for _, component_target in plan) != current.decoded
     ):
         return None
     return plan
+
+
+def _component_plan_has_exact_evidence(
+    components: tuple[tuple[str, str], ...], official: dict[str, str]
+) -> bool:
+    return not components or all(
+        official.get(source) == target for source, target in components
+    )
 
 
 def _manual_override_component_plan(
@@ -198,9 +216,9 @@ def _manual_override_component_plan(
         )
     plans: set[tuple[tuple[str, str], ...]] = set()
     for _, upstream, current_matches in upstream_matches:
-        if not current_matches:
+        if len(current_matches) != 1:
             return None
-        plan = _manual_component_plan(value, upstream, target)
+        plan = _manual_component_plan(value, upstream, current_matches[0])
         if plan is None:
             return None
         plans.add(plan)
@@ -496,7 +514,9 @@ def migrate(
                     }
                 )
                 continue
-            component_plan = _manual_component_plan(value, upstream_literal, target)
+            component_plan = _manual_component_plan(
+                value, upstream_literal, target_matches[0]
+            )
             if component_plan is None:
                 issues.append(
                     {
@@ -599,12 +619,23 @@ def migrate(
                 )
             )
             continue
+        if row.components and not _component_plan_has_exact_evidence(
+            row.components, official
+        ):
+            issues.append(_alignment_issue("COMPONENT_ALIGNMENT_REQUIRED", row))
+            continue
         candidates[row.source].append(row)
 
     for source, rows in sorted(official_component_rows.items()):
         target = accepted_entries[source]["target"]
         component_plans = {row.components for row in rows}
-        if all(row.target == target for row in rows) and len(component_plans) == 1:
+        if (
+            all(row.target == target for row in rows)
+            and len(component_plans) == 1
+            and _component_plan_has_exact_evidence(
+                next(iter(component_plans)), official
+            )
+        ):
             component_plan = next(iter(component_plans))
             if component_plan:
                 accepted_entries[source]["components"] = _component_document(

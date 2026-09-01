@@ -121,6 +121,50 @@ test('malformed and duplicate internal literal policy rows fail before scanning'
   }
 });
 
+test('missing internal literal policy fails closed before scanning', () => {
+  const direct = auditSourceText('ImGui::Text(u8"設定");', {}, 'host/fixture.cpp');
+  assert.equal(direct.displayLiterals, 0);
+  assert.deepEqual(direct.issues.map((row) => row.code), ['INVALID_POLICY_DOCUMENT']);
+
+  const root = mkdtempSync(join(tmpdir(), 'missing-source-display-policy-'));
+  try {
+    mkdirSync(join(root, 'host'));
+    writeFileSync(join(root, 'host', 'ui.cpp'), 'ImGui::Text(u8"設定");', 'utf8');
+    const scanned = scanSourceDisplay({ engineRoot: root, policy: {} });
+    assert.equal(scanned.filesScanned, 0);
+    assert.deepEqual(scanned.issues.map((row) => row.code), ['INVALID_POLICY_DOCUMENT']);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test('Unicode surrogate escapes are rejected deterministically', () => {
+  const report = auditSourceText('auto value = u8"設定\\uD800";', {
+    internalLiteralAllowlist: [],
+  }, 'host/fixture.cpp');
+  assert.equal(report.issues[0].code, 'UNSUPPORTED_ESCAPE');
+  assert.equal(report.issues[0].escape, '\\uD800');
+});
+
+test('LF and CRLF line splices preserve one semantic adjacent expression', () => {
+  const decoded = '設定更新';
+  const policy = {
+    internalLiteralAllowlist: [{
+      path: 'host/splice.cpp',
+      sha256: literalSha256(decoded),
+      reason: 'line-spliced semantic fixture',
+    }],
+  };
+  for (const newline of ['\n', '\r\n']) {
+    const text = `auto between = u8"設定" \\${newline} L"更新"; `
+      + `auto inside = u8"設定\\${newline}更新";`;
+    const report = auditSourceText(text, policy, 'host/splice.cpp');
+    assert.equal(report.displayLiterals, 2);
+    assert.equal(report.allowedInternalLiterals, 2);
+    assert.deepEqual(report.issues, []);
+  }
+});
+
 test('scanSourceDisplay validates internal policy once before reading source text', () => {
   const root = mkdtempSync(join(tmpdir(), 'source-display-policy-'));
   try {
@@ -158,6 +202,7 @@ test('comments are not classified as display literals', () => {
 
 test('non-display diagnostic fixtures can be excluded by exact source path', () => {
   const report = auditSourceText('const char* fixture = u8"稀有度";', {
+    internalLiteralAllowlist: [],
     excludedPaths: [{ path: 'host/filter_selftest.cpp', reason: 'diagnostic-only fixture' }],
   }, 'host/filter_selftest.cpp');
   assert.equal(report.displayLiterals, 0);

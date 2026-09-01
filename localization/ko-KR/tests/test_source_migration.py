@@ -835,7 +835,7 @@ class SourceMigrationTests(unittest.TestCase):
         result = migration.migrate(
             legacy={"entries": {}},
             overrides={"entries": {}},
-            official={},
+            official={"設定": "설정", "更新": "업데이트"},
             alignments=alignments,
         )
 
@@ -852,7 +852,11 @@ class SourceMigrationTests(unittest.TestCase):
         official = migration.migrate(
             legacy={"entries": {}},
             overrides={"entries": {}},
-            official={"設定更新": "설정업데이트"},
+            official={
+                "設定": "설정",
+                "更新": "업데이트",
+                "設定更新": "설정업데이트",
+            },
             alignments=alignments,
         )
         self.assertEqual(official.report["issues"], [])
@@ -864,6 +868,38 @@ class SourceMigrationTests(unittest.TestCase):
                 {"source": "更新", "target": "업데이트"},
             ],
         )
+
+    def test_reordered_localized_components_require_exact_correspondence_evidence(self):
+        path = Path("host/components.cpp")
+        upstream = 'void Draw(){ Label(u8"設定" L"更新"); }'.encode("utf-8")
+        current = 'void Draw(){ Label(u8"업데이트" L"설정"); }'.encode("utf-8")
+        alignments, alignment_issues = migration.align_file_literals(
+            path, upstream, current
+        )
+        evidence = {"設定": "설정", "更新": "업데이트"}
+
+        automatic = migration.migrate(
+            legacy={"entries": {}},
+            overrides={"entries": {}},
+            official=evidence,
+            alignments=alignments,
+            alignment_issues=alignment_issues,
+        )
+        official = migration.migrate(
+            legacy={"entries": {}},
+            overrides={"entries": {}},
+            official={**evidence, "設定更新": "업데이트설정"},
+            alignments=alignments,
+            alignment_issues=alignment_issues,
+        )
+
+        for result in (automatic, official):
+            with self.subTest(status=result.accepted["entries"].get("設定更新", {})):
+                self.assertEqual(
+                    [issue["code"] for issue in result.report["issues"]],
+                    ["COMPONENT_ALIGNMENT_REQUIRED"],
+                )
+                self.assertNotIn("components", result.accepted["entries"].get("設定更新", {}))
 
     def test_split_or_merged_concatenation_requires_explicit_review(self):
         path = Path("host/components.cpp")
@@ -991,6 +1027,60 @@ class SourceMigrationTests(unittest.TestCase):
                     [issue["code"] for issue in result.report["issues"]],
                     ["INVALID_REVIEWED_OVERRIDE_COMPONENTS"],
                 )
+
+    def test_manual_components_reject_merged_localized_reference_boundaries(self):
+        path = "host/components.cpp"
+        upstream_text = 'void Draw(){ Label(u8"設定" L"更新"); }'.encode("utf-8")
+        current_text = 'void Draw(){ Label(u8"설정업데이트"); }'.encode("utf-8")
+        inventory = {
+            path: (
+                migration.source_overlay.scan_cpp_literals(Path(path), upstream_text),
+                migration.source_overlay.scan_cpp_literals(Path(path), current_text),
+            )
+        }
+        components = [
+            {"source": "設定", "target": "설정"},
+            {"source": "更新", "target": "업데이트"},
+        ]
+        context = {
+            "path": path,
+            "function": "Draw",
+            "source": "設定更新",
+            "target": "설정업데이트",
+            "occurrenceIndex": 0,
+            "components": components,
+        }
+
+        global_result = migration.migrate(
+            legacy={"entries": {}},
+            overrides={
+                "entries": {
+                    "設定更新": {
+                        "target": "설정업데이트",
+                        "components": components,
+                    }
+                }
+            },
+            official={},
+            context_inventories=inventory,
+        )
+        context_result = migration.migrate(
+            legacy={"entries": {}},
+            overrides={"entries": {}, "contexts": [context]},
+            official={},
+            context_inventories=inventory,
+        )
+
+        self.assertEqual(global_result.accepted["entries"], {})
+        self.assertEqual(
+            [issue["code"] for issue in global_result.report["issues"]],
+            ["INVALID_REVIEWED_OVERRIDE_COMPONENTS"],
+        )
+        self.assertEqual(context_result.accepted["contexts"], [])
+        self.assertEqual(
+            [issue["code"] for issue in context_result.report["issues"]],
+            ["INVALID_REVIEWED_CONTEXT_COMPONENTS"],
+        )
 
     def test_alignment_requires_han_hangul_and_equal_format_signature(self):
         result = migration.migrate(

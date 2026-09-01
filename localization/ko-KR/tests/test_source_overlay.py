@@ -198,20 +198,29 @@ class SourceOverlayTests(unittest.TestCase):
 
     def test_component_plan_mismatches_block_all_files(self):
         bad_plans = {
-            "missing": None,
-            "count": [{"source": "設定", "target": "설정업데이트"}],
-            "order": [
-                {"source": "更新", "target": "업데이트"},
-                {"source": "設定", "target": "설정"},
-            ],
-            "joined-target": [
-                {"source": "設定", "target": "설정"},
-                {"source": "更新", "target": "갱신"},
-            ],
+            "missing": (None, None),
+            "count": (
+                [{"source": "設定", "target": "설정업데이트"}],
+                (1, "更新"),
+            ),
+            "order": (
+                [
+                    {"source": "更新", "target": "업데이트"},
+                    {"source": "設定", "target": "설정"},
+                ],
+                (0, "設定"),
+            ),
+            "joined-target": (
+                [
+                    {"source": "設定", "target": "설정"},
+                    {"source": "更新", "target": "갱신"},
+                ],
+                (1, "更新"),
+            ),
         }
         original = 'void Draw(){ Label(u8"設定" /* keep */ u8"更新"); }'
         valid = 'void Other(){ Label(u8"新增"); }'
-        for name, components in bad_plans.items():
+        for name, (components, expected_detail) in bad_plans.items():
             with self.subTest(name=name):
                 self.write("host/ui.cpp", original)
                 self.write("host/other.cpp", valid)
@@ -224,7 +233,21 @@ class SourceOverlayTests(unittest.TestCase):
                     }
                 )
                 report = apply_overlay(self.root, mapping, self.policy, self.report)
-                self.assertEqual(report["issues"][0]["code"], "INVALID_COMPONENT_PLAN")
+                expected_code = (
+                    "MISSING_COMPONENT_MAPPING"
+                    if name == "missing"
+                    else "INVALID_COMPONENT_MAPPING"
+                )
+                self.assertEqual(report["issues"][0]["code"], expected_code)
+                if expected_detail is not None:
+                    self.assertEqual(
+                        (
+                            report["issues"][0]["componentIndex"],
+                            report["issues"][0]["componentSource"],
+                        ),
+                        expected_detail,
+                    )
+                    self.assertTrue(report["issues"][0]["detail"])
                 self.assertEqual(self.read("host/ui.cpp"), original)
                 self.assertEqual(self.read("host/other.cpp"), valid)
 
@@ -357,7 +380,7 @@ class SourceOverlayTests(unittest.TestCase):
         self.write("host/ui.cpp", original)
         mapping = self.mapping({"設定更新": self.entry("설정 업데이트", "reviewed")})
         report = apply_overlay(self.root, mapping, self.policy, self.report)
-        self.assertEqual(report["issues"][0]["code"], "INVALID_COMPONENT_PLAN")
+        self.assertEqual(report["issues"][0]["code"], "MISSING_COMPONENT_MAPPING")
         self.assertEqual(self.read("host/ui.cpp"), original)
 
     def test_apply_blocks_concatenation_with_mixed_prefixes(self):
@@ -365,7 +388,7 @@ class SourceOverlayTests(unittest.TestCase):
         self.write("host/ui.cpp", original)
         mapping = self.mapping({"設定更新": self.entry("설정 업데이트", "reviewed")})
         report = apply_overlay(self.root, mapping, self.policy, self.report)
-        self.assertEqual(report["issues"][0]["code"], "INVALID_COMPONENT_PLAN")
+        self.assertEqual(report["issues"][0]["code"], "MISSING_COMPONENT_MAPPING")
         self.assertEqual(self.read("host/ui.cpp"), original)
 
     def test_format_signature_counts_decoded_newlines(self):
@@ -404,6 +427,55 @@ class SourceOverlayTests(unittest.TestCase):
                 self.assertEqual(report["issues"][0]["code"], "UNSUPPORTED_ESCAPE")
                 self.assertEqual(report["issues"][0]["escape"], escape)
                 self.assertEqual(self.read("host/ui.cpp"), original)
+
+    def test_unicode_surrogate_escape_is_a_structured_transactional_issue(self):
+        malformed = 'void Draw(){ Label(u8"設定\\uD800"); }'
+        valid = 'void Other(){ Label(u8"更新"); }'
+        self.write("host/malformed.cpp", malformed)
+        self.write("host/valid.cpp", valid)
+        mapping = self.mapping({"更新": self.entry("업데이트", "reviewed")})
+
+        try:
+            report = apply_overlay(self.root, mapping, self.policy, self.report)
+        except UnicodeEncodeError as error:
+            self.fail(f"surrogate escaped the structured issue boundary: {error}")
+
+        self.assertEqual(report["issues"][0]["code"], "UNSUPPORTED_ESCAPE")
+        self.assertEqual(report["issues"][0]["escape"], r"\uD800")
+        self.assertEqual(self.read("host/malformed.cpp"), malformed)
+        self.assertEqual(self.read("host/valid.cpp"), valid)
+
+    def test_line_splices_preserve_one_semantic_adjacent_expression(self):
+        decoded = "設定更新"
+        digest = hashlib.sha256(decoded.encode("utf-8")).hexdigest().upper()
+        mapping = self.mapping({})
+        for newline in ("\n", "\r\n"):
+            with self.subTest(newline=repr(newline)):
+                source = (
+                    f'void Draw(){{ auto between = u8"設定" \\{newline} L"更新"; '
+                    f'auto inside = u8"設定\\{newline}更新"; }}'
+                )
+                self.write("host/splice.cpp", source, newline="")
+                self.write_policy(
+                    [],
+                    [{
+                        "path": "host/splice.cpp",
+                        "sha256": digest,
+                        "reason": "line-spliced semantic fixture",
+                    }],
+                )
+
+                report = apply_overlay(self.root, mapping, self.policy, self.report)
+
+                self.assertEqual(report["issues"], [])
+                self.assertEqual(report["displayLiterals"], 2)
+                self.assertEqual(report["intentional"], 2)
+                self.assertEqual(
+                    [row.decoded for row in scan_cpp_literals(
+                        Path("host/splice.cpp"), source.encode("utf-8")
+                    )],
+                    [decoded, decoded],
+                )
 
     def test_nul_followed_by_octal_digit_cannot_be_encoded(self):
         original = 'void Draw(){ Label(u8"設定\\0X"); }'
