@@ -153,7 +153,14 @@ function literalComponentAt(text, index) {
     const terminator = `)${rawMatch[1]}"`;
     const close = text.indexOf(terminator, contentStart);
     if (close < 0) return { error: { code: 'UNTERMINATED_LITERAL', index }, end: text.length };
-    return { value: text.slice(contentStart, close), start: index, end: close + terminator.length };
+    return {
+      value: text.slice(contentStart, close),
+      start: index,
+      end: close + terminator.length,
+      kind: 'raw',
+      contentStart,
+      contentEnd: close,
+    };
   }
   const regularMatch = /^(?:u8|u|U|L)?"/u.exec(text.slice(index));
   if (!regularMatch) return undefined;
@@ -165,7 +172,14 @@ function literalComponentAt(text, index) {
       const end = cursor + 1;
       const encoded = text.slice(contentStart, cursor);
       try {
-        return { value: decodeRegularContent(encoded, index, end), start: index, end };
+        return {
+          value: decodeRegularContent(encoded, index, end),
+          start: index,
+          end,
+          kind: 'regular',
+          contentStart,
+          contentEnd: cursor,
+        };
       } catch (error) {
         return { error, start: index, end };
       }
@@ -193,6 +207,7 @@ function afterSeparators(text, index) {
 
 function phase2LexicalView(text) {
   let lexicalText = '';
+  const originalLeftBoundaries = [0];
   const originalBoundaries = [0];
   let cursor = 0;
   while (cursor < text.length) {
@@ -205,10 +220,11 @@ function phase2LexicalView(text) {
     } else {
       lexicalText += text[cursor];
       cursor += 1;
+      originalLeftBoundaries.push(cursor);
       originalBoundaries.push(cursor);
     }
   }
-  return { lexicalText, originalBoundaries };
+  return { lexicalText, originalLeftBoundaries, originalBoundaries };
 }
 
 function scanStringExpressions(text) {
@@ -230,13 +246,22 @@ function scanStringExpressions(text) {
     }
     const first = literalComponentAt(text, index);
     if (first === undefined) { index += 1; continue; }
-    const expression = { value: first.value ?? '', index, end: first.end, error: first.error };
+    const expression = {
+      value: first.value ?? '',
+      index,
+      end: first.end,
+      error: first.error,
+      components: first.error ? [] : [first],
+    };
     let next = afterSeparators(text, first.end);
     while (!expression.error) {
       const component = literalComponentAt(text, next);
       if (component === undefined) break;
       if (component.error) expression.error = component.error;
-      else expression.value += component.value;
+      else {
+        expression.value += component.value;
+        expression.components.push(component);
+      }
       expression.end = component.end;
       next = afterSeparators(text, component.end);
     }
@@ -285,7 +310,7 @@ export function auditSourceText(text, policy, file = '<memory>') {
   let koreanDisplayLiterals = 0;
   let allowedInternalLiterals = 0;
 
-  const { lexicalText, originalBoundaries } = phase2LexicalView(sourceText);
+  const { lexicalText, originalLeftBoundaries, originalBoundaries } = phase2LexicalView(sourceText);
   for (const literal of scanStringExpressions(lexicalText)) {
     const originalIndex = originalBoundaries[literal.index];
     const originalEnd = originalBoundaries[literal.end];
@@ -300,20 +325,28 @@ export function auditSourceText(text, policy, file = '<memory>') {
       });
       continue;
     }
-    if (HANGUL.test(literal.value)) koreanDisplayLiterals += 1;
-    if (MACHINE_MARKER.test(literal.value)) {
+    const literalValue = literal.components.map((component) => (
+      component.kind === 'raw'
+        ? sourceText.slice(
+          originalLeftBoundaries[component.contentStart],
+          originalBoundaries[component.contentEnd],
+        )
+        : component.value
+    )).join('');
+    if (HANGUL.test(literalValue)) koreanDisplayLiterals += 1;
+    if (MACHINE_MARKER.test(literalValue)) {
       issues.push({
         code: 'MACHINE_TRANSLATION_MARKER',
         file,
         line: lineAt(sourceText, originalIndex),
         index: originalIndex,
         end: originalEnd,
-        literal: literal.value,
-        sha256: literalSha256(literal.value),
+        literal: literalValue,
+        sha256: literalSha256(literalValue),
       });
     }
-    if (!HAN.test(literal.value)) continue;
-    const sha256 = literalSha256(literal.value);
+    if (!HAN.test(literalValue)) continue;
+    const sha256 = literalSha256(literalValue);
     const reason = String(allowed.get(`${normalizedFile}\0${sha256}`) ?? '').trim();
     if (reason) {
       allowedInternalLiterals += 1;
@@ -325,7 +358,7 @@ export function auditSourceText(text, policy, file = '<memory>') {
       line: lineAt(sourceText, originalIndex),
       index: originalIndex,
       end: originalEnd,
-      literal: literal.value,
+      literal: literalValue,
       sha256,
     });
   }

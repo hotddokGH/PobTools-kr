@@ -269,6 +269,41 @@ test('all spliced raw prefixes hash only the raw payload', () => {
   }
 });
 
+test('raw payload splices retain original LF and CRLF semantic identity', () => {
+  for (const prefixNewline of ['\n', '\r\n']) {
+    for (const payloadNewline of ['\n', '\r\n']) {
+      for (const delimiter of ['', 'tag']) {
+        const rawPayload = `設定\\${payloadNewline}更新`;
+        const decoded = `${rawPayload}追加`;
+        const prefix = `u\\${prefixNewline}8R\\${prefixNewline}`;
+        const source = `Label(${prefix}"${delimiter}(${rawPayload})${delimiter}" /* keep */ L"追加");`;
+        const correct = auditSourceText(source, {
+          internalLiteralAllowlist: [{
+            path: 'host/raw-payload.cpp',
+            sha256: literalSha256(decoded),
+            reason: 'raw payload splice fixture',
+          }],
+        }, 'host/raw-payload.cpp');
+        assert.equal(correct.displayLiterals, 1);
+        assert.equal(correct.allowedInternalLiterals, 1);
+        assert.deepEqual(correct.issues, []);
+
+        const collapsed = auditSourceText(source, {
+          internalLiteralAllowlist: [{
+            path: 'host/raw-payload.cpp',
+            sha256: literalSha256('設定更新追加'),
+            reason: 'incorrect collapsed identity probe',
+          }],
+        }, 'host/raw-payload.cpp');
+        assert.equal(collapsed.allowedInternalLiterals, 0);
+        assert.equal(collapsed.issues[0].code, 'CHINESE_SOURCE_DISPLAY');
+        assert.equal(collapsed.issues[0].literal, decoded);
+        assert.equal(collapsed.issues[0].sha256, literalSha256(decoded));
+      }
+    }
+  }
+});
+
 test('scanSourceDisplay validates internal policy once before reading source text', () => {
   const root = mkdtempSync(join(tmpdir(), 'source-display-policy-'));
   try {

@@ -731,6 +731,96 @@ class SourceOverlayTests(unittest.TestCase):
             (self.root / "host/raw-prefix.cpp").read_bytes(), expected.encode("utf-8")
         )
 
+    def test_raw_payload_splices_retain_original_semantics_and_bytes(self):
+        for prefix_newline in ("\n", "\r\n"):
+            for payload_newline in ("\n", "\r\n"):
+                for delimiter in ("", "tag"):
+                    with self.subTest(
+                        prefix_newline=repr(prefix_newline),
+                        payload_newline=repr(payload_newline),
+                        delimiter=delimiter,
+                    ):
+                        raw_source = f"設定\\{payload_newline}更新"
+                        raw_target = f"설정\\{payload_newline}업데이트"
+                        prefix = f"u\\{prefix_newline}8R\\{prefix_newline}"
+                        token = f'{prefix}"{delimiter}({raw_source}){delimiter}"'
+                        original = (
+                            f"void Draw(){{ Label({token} /* keep */ L\"追加\"); }}"
+                        )
+                        expected = original.replace("設定", "설정").replace(
+                            "更新", "업데이트"
+                        ).replace("追加", "추가")
+                        self.write("host/raw-payload.cpp", original, newline="")
+                        joined_source = raw_source + "追加"
+                        joined_target = raw_target + "추가"
+                        mapping = self.mapping(
+                            {
+                                joined_source: self.entry(
+                                    joined_target,
+                                    "reviewed",
+                                    list(format_signature(joined_source)),
+                                    components=[
+                                        {"source": raw_source, "target": raw_target},
+                                        {"source": "追加", "target": "추가"},
+                                    ],
+                                )
+                            }
+                        )
+
+                        rows = scan_cpp_literals(
+                            Path("host/raw-payload.cpp"), original.encode("utf-8")
+                        )
+                        self.assertEqual(rows[0].decoded, joined_source)
+                        self.assertEqual(
+                            [component.decoded for component in rows[0].components],
+                            [raw_source, "追加"],
+                        )
+                        report = apply_overlay(
+                            self.root, mapping, self.policy, self.report
+                        )
+
+                        self.assertEqual(report["issues"], [])
+                        self.assertEqual(
+                            (self.root / "host/raw-payload.cpp").read_bytes(),
+                            expected.encode("utf-8"),
+                        )
+
+    def test_collapsed_raw_payload_mapping_is_missing_and_transactional(self):
+        original = 'void Draw(){ Label(R"tag(設定\\\r\n更新)tag"); }'
+        self.write("host/raw-payload.cpp", original, newline="")
+        mapping = self.mapping(
+            {"設定更新": self.entry("설정업데이트", "reviewed")}
+        )
+
+        report = apply_overlay(self.root, mapping, self.policy, self.report)
+
+        self.assertEqual(
+            [(issue["code"], issue["source"]) for issue in report["issues"]],
+            [("MISSING_MAPPING", "設定\\\r\n更新")],
+        )
+        self.assertEqual(self.read("host/raw-payload.cpp"), original)
+
+    def test_raw_payload_plan_is_not_written_when_neighbor_has_parse_error(self):
+        valid = 'void Draw(){ Label(u\\\n8R"tag(設定\\\n更新)tag"); }'
+        malformed = 'void Broken( { Label(u8"設定"); }'
+        self.write("host/valid.cpp", valid, newline="")
+        self.write("host/malformed.cpp", malformed, newline="")
+        source = "設定\\\n更新"
+        target = "설정\\\n업데이트"
+        mapping = self.mapping(
+            {
+                source: self.entry(
+                    target, "reviewed", list(format_signature(source))
+                )
+            }
+        )
+
+        report = apply_overlay(self.root, mapping, self.policy, self.report)
+
+        self.assertTrue(any(row["code"] == "CPP_PARSE_ERROR" for row in report["issues"]))
+        self.assertEqual(self.read("host/valid.cpp"), valid)
+        self.assertEqual(self.read("host/malformed.cpp"), malformed)
+
     def test_nul_followed_by_octal_digit_cannot_be_encoded(self):
         original = 'void Draw(){ Label(u8"設定\\0X"); }'
         self.write("host/ui.cpp", original)

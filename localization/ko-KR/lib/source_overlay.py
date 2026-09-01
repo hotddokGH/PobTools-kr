@@ -422,23 +422,58 @@ def recovery_evidence_report(
     return {"useCount": len(identities), "identities": identities}
 
 
-def _phase2_lexical_view(text: bytes) -> tuple[bytes, list[int]]:
+def _phase2_lexical_view(text: bytes) -> tuple[bytes, list[int], list[int]]:
     output = bytearray()
-    boundaries = [0]
+    left_boundaries = [0]
+    right_boundaries = [0]
     cursor = 0
     while cursor < len(text):
         if text.startswith(b"\\\r\n", cursor):
             cursor += 3
-            boundaries[-1] = cursor
+            right_boundaries[-1] = cursor
             continue
         if text.startswith(b"\\\n", cursor):
             cursor += 2
-            boundaries[-1] = cursor
+            right_boundaries[-1] = cursor
             continue
         output.append(text[cursor])
         cursor += 1
-        boundaries.append(cursor)
-    return bytes(output), boundaries
+        left_boundaries.append(cursor)
+        right_boundaries.append(cursor)
+    return bytes(output), left_boundaries, right_boundaries
+
+
+def _decode_literal_from_views(
+    node: Node,
+    lexical_text: bytes,
+    original_text: bytes,
+    left_boundaries: list[int],
+    right_boundaries: list[int],
+    function: str,
+    line: int,
+    *,
+    allow_legacy_nul: bool,
+) -> tuple[str, str]:
+    if node.type != "raw_string_literal":
+        return _decode_literal(
+            node,
+            lexical_text,
+            function,
+            line,
+            allow_legacy_nul=allow_legacy_nul,
+        )
+    token = lexical_text[node.start_byte : node.end_byte]
+    opening = _RAW_OPEN.match(token)
+    if opening is None:
+        return "", ""
+    delimiter = opening.group("delimiter")
+    terminator = b")" + delimiter + b'"'
+    content_start = node.start_byte + opening.end()
+    content_end = node.end_byte - len(terminator)
+    decoded = original_text[
+        left_boundaries[content_start] : right_boundaries[content_end]
+    ].decode("utf-8")
+    return decoded, opening.group("prefix").decode("ascii")
 
 
 def scan_cpp_literals(
@@ -462,7 +497,9 @@ def scan_cpp_literals(
         ) from error
     recovery_parser_text = text.replace(b"\\\r\n", b" \\\n")
     recovery_tree = _PARSER.parse(recovery_parser_text)
-    lexical_text, original_boundaries = _phase2_lexical_view(text)
+    lexical_text, original_left_boundaries, original_boundaries = (
+        _phase2_lexical_view(text)
+    )
     tree = _PARSER.parse(lexical_text)
     normalized_path = path.as_posix()
     candidates: list[tuple[Node, str, int]] = []
@@ -628,9 +665,12 @@ def scan_cpp_literals(
                     child_line = text.count(
                         b"\n", 0, original_boundaries[child.start_byte]
                     ) + 1
-                    decoded, child_prefix = _decode_literal(
+                    decoded, child_prefix = _decode_literal_from_views(
                         child,
                         lexical_text,
+                        text,
+                        original_left_boundaries,
+                        original_boundaries,
                         function,
                         child_line,
                         allow_legacy_nul=allow_legacy_nul,
@@ -663,9 +703,12 @@ def scan_cpp_literals(
                 )
                 continue
             line = text.count(b"\n", 0, original_boundaries[node.start_byte]) + 1
-            decoded, prefix = _decode_literal(
+            decoded, prefix = _decode_literal_from_views(
                 node,
                 lexical_text,
+                text,
+                original_left_boundaries,
+                original_boundaries,
                 function,
                 line,
                 allow_legacy_nul=allow_legacy_nul,
@@ -786,21 +829,26 @@ def _replacement_bytes(
     # that lexical token, but use its boundary map to replace only the payload
     # in the original bytes.  Prefix characters, escaped newlines, quotes and
     # raw delimiters therefore remain byte-for-byte identical.
-    token, boundaries = _phase2_lexical_view(original)
+    token, left_boundaries, boundaries = _phase2_lexical_view(original)
     raw = _RAW_OPEN.match(token)
     if raw is not None:
         delimiter = raw.group("delimiter").decode("ascii")
         terminator = f'){delimiter}"'.encode("ascii")
         if not token.endswith(terminator):
             return _raw_literal(literal.prefix, target, original, source_text)
-        newline = _newline_style(original) or _newline_style(source_text) or "\n"
+        content_start = raw.end()
+        content_end = len(token) - len(terminator)
+        original_payload = original[
+            left_boundaries[content_start] : boundaries[content_end]
+        ]
+        newline = (
+            _newline_style(original_payload) or _newline_style(source_text) or "\n"
+        )
         payload = target.replace("\r\n", "\n").replace("\r", "\n").replace("\n", newline)
         if f'){delimiter}"' in payload:
             raise RawDelimiterCollision(delimiter)
-        content_start = raw.end()
-        content_end = len(token) - len(terminator)
         return (
-            original[: boundaries[content_start]]
+            original[: left_boundaries[content_start]]
             + payload.encode("utf-8")
             + original[boundaries[content_end] :]
         )
