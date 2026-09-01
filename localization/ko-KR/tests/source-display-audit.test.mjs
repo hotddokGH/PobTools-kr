@@ -390,6 +390,114 @@ test('comments are not classified as display literals', () => {
   assert.equal(report.displayLiterals, 1);
 });
 
+test('unterminated block comments fail closed before literal auditing', () => {
+  const report = auditSourceText('/*', { internalLiteralAllowlist: [] }, 'host/broken.cpp');
+
+  assert.deepEqual(report, {
+    displayLiterals: 0,
+    koreanDisplayLiterals: 0,
+    allowedInternalLiterals: 0,
+    issues: [{
+      code: 'INVALID_SOURCE_SYNTAX',
+      detail: 'unterminated block comment',
+      file: 'host/broken.cpp',
+      index: 0,
+      line: 1,
+    }],
+  });
+});
+
+test('unterminated character literals fail closed before literal auditing', () => {
+  const report = auditSourceText("'", { internalLiteralAllowlist: [] }, 'host/broken.cpp');
+
+  assert.deepEqual(report, {
+    displayLiterals: 0,
+    koreanDisplayLiterals: 0,
+    allowedInternalLiterals: 0,
+    issues: [{
+      code: 'INVALID_SOURCE_SYNTAX',
+      detail: 'unterminated character literal',
+      file: 'host/broken.cpp',
+      index: 0,
+      line: 1,
+    }],
+  });
+});
+
+test('unterminated lexical suffixes discard earlier allowlisted literals', () => {
+  const policy = {
+    internalLiteralAllowlist: [{
+      path: 'host/broken.cpp',
+      sha256: literalSha256('設定'),
+      reason: 'exact fixture before malformed suffix',
+    }],
+  };
+  for (const [suffix, detail] of [
+    ['/*', 'unterminated block comment'],
+    ["'", 'unterminated character literal'],
+  ]) {
+    const source = `auto fixture = u8"設定"; ${suffix}`;
+    const report = auditSourceText(source, policy, 'host/broken.cpp');
+    assert.equal(report.displayLiterals, 0, suffix);
+    assert.equal(report.koreanDisplayLiterals, 0, suffix);
+    assert.equal(report.allowedInternalLiterals, 0, suffix);
+    assert.deepEqual(report.issues, [{
+      code: 'INVALID_SOURCE_SYNTAX',
+      detail,
+      file: 'host/broken.cpp',
+      index: source.indexOf(suffix),
+      line: 1,
+    }], suffix);
+  }
+});
+
+test('unterminated lexical states take precedence over file exclusions', () => {
+  const report = auditSourceText('/*', {
+    internalLiteralAllowlist: [],
+    excludedPaths: [{ path: 'host/excluded.cpp', reason: 'fixture-only source' }],
+  }, 'host/excluded.cpp');
+
+  assert.equal(report.excludedFile, undefined);
+  assert.equal(report.displayLiterals, 0);
+  assert.equal(report.issues.length, 1);
+  assert.equal(report.issues[0].code, 'INVALID_SOURCE_SYNTAX');
+  assert.equal(report.issues[0].detail, 'unterminated block comment');
+});
+
+test('EOF line comments and escaped character literals remain legal', () => {
+  for (const source of [
+    'auto label = u8"완료"; // 設定',
+    "char quote = '\\''; auto label = u8\"완료\";",
+  ]) {
+    const report = auditSourceText(source, { internalLiteralAllowlist: [] }, 'host/legal.cpp');
+    assert.equal(report.displayLiterals, 1, source);
+    assert.deepEqual(report.issues, [], source);
+  }
+});
+
+test('scanSourceDisplay aggregates unterminated lexical state issues', () => {
+  const root = mkdtempSync(join(tmpdir(), 'unterminated-source-display-'));
+  try {
+    mkdirSync(join(root, 'host'));
+    writeFileSync(join(root, 'host', 'broken.cpp'), '/*', 'utf8');
+    const report = scanSourceDisplay({
+      engineRoot: root,
+      policy: { internalLiteralAllowlist: [] },
+    });
+    assert.equal(report.filesScanned, 1);
+    assert.equal(report.displayLiterals, 0);
+    assert.deepEqual(report.issues, [{
+      code: 'INVALID_SOURCE_SYNTAX',
+      detail: 'unterminated block comment',
+      file: 'host/broken.cpp',
+      index: 0,
+      line: 1,
+    }]);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
 test('non-display diagnostic fixtures can be excluded by exact source path', () => {
   const report = auditSourceText('const char* fixture = u8"稀有度";', {
     internalLiteralAllowlist: [],

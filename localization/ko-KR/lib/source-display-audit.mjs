@@ -239,6 +239,7 @@ function phase2LexicalView(text) {
   const originalBoundaries = [0];
   let cursor = 0;
   let state = 'code';
+  let stateStart;
   let escaped = false;
   while (cursor < text.length) {
     if (state === 'code') {
@@ -284,26 +285,55 @@ function phase2LexicalView(text) {
       originalLeftBoundaries.push(cursor);
       originalBoundaries.push(cursor);
       if (state === 'code') {
-        if (previous === '/' && character === '/') state = 'line-comment';
-        else if (previous === '/' && character === '*') state = 'block-comment';
-        else if (character === '"') { state = 'string'; escaped = false; }
-        else if (character === "'") { state = 'character'; escaped = false; }
+        if (previous === '/' && character === '/') {
+          state = 'line-comment';
+          stateStart = originalLeftBoundaries[lexicalText.length - 2];
+        } else if (previous === '/' && character === '*') {
+          state = 'block-comment';
+          stateStart = originalLeftBoundaries[lexicalText.length - 2];
+        } else if (character === '"') {
+          state = 'string';
+          stateStart = originalLeftBoundaries[lexicalText.length - 1];
+          escaped = false;
+        } else if (character === "'") {
+          state = 'character';
+          stateStart = originalLeftBoundaries[lexicalText.length - 1];
+          escaped = false;
+        }
       } else if (state === 'line-comment') {
-        if (character === '\n') state = 'code';
+        if (character === '\n') {
+          state = 'code';
+          stateStart = undefined;
+        }
       } else if (state === 'block-comment') {
-        if (previous === '*' && character === '/') state = 'code';
+        if (previous === '*' && character === '/') {
+          state = 'code';
+          stateStart = undefined;
+        }
       } else if (state === 'string') {
         if (escaped) escaped = false;
         else if (character === '\\') escaped = true;
-        else if (character === '"') state = 'code';
+        else if (character === '"') {
+          state = 'code';
+          stateStart = undefined;
+        }
       } else if (state === 'character') {
         if (escaped) escaped = false;
         else if (character === '\\') escaped = true;
-        else if (character === "'") state = 'code';
+        else if (character === "'") {
+          state = 'code';
+          stateStart = undefined;
+        }
       }
     }
   }
-  return { lexicalText, originalLeftBoundaries, originalBoundaries };
+  return {
+    lexicalText,
+    originalLeftBoundaries,
+    originalBoundaries,
+    terminalState: state,
+    terminalStateIndex: stateStart,
+  };
 }
 
 function scanStringExpressions(text) {
@@ -371,6 +401,25 @@ export function auditSourceText(text, policy, file = '<memory>') {
       issues: [{ code: 'INVALID_SOURCE_ENCODING', file, index: invalidIndex }],
     };
   }
+  const lexicalView = phase2LexicalView(sourceText);
+  const terminalSyntax = new Map([
+    ['block-comment', 'unterminated block comment'],
+    ['character', 'unterminated character literal'],
+  ]).get(lexicalView.terminalState);
+  if (terminalSyntax !== undefined) {
+    return {
+      displayLiterals: 0,
+      koreanDisplayLiterals: 0,
+      allowedInternalLiterals: 0,
+      issues: [{
+        code: 'INVALID_SOURCE_SYNTAX',
+        detail: terminalSyntax,
+        file,
+        index: lexicalView.terminalStateIndex,
+        line: lineAt(sourceText, lexicalView.terminalStateIndex),
+      }],
+    };
+  }
   const excluded = (policy?.excludedPaths ?? []).find((row) =>
     String(row?.path ?? '').replaceAll('\\', '/') === normalizedFile && String(row?.reason ?? '').trim());
   if (excluded) {
@@ -389,7 +438,7 @@ export function auditSourceText(text, policy, file = '<memory>') {
   let koreanDisplayLiterals = 0;
   let allowedInternalLiterals = 0;
 
-  const { lexicalText, originalLeftBoundaries, originalBoundaries } = phase2LexicalView(sourceText);
+  const { lexicalText, originalLeftBoundaries, originalBoundaries } = lexicalView;
   for (const literal of scanStringExpressions(lexicalText)) {
     const originalIndex = originalBoundaries[literal.index];
     const originalEnd = originalBoundaries[literal.end];
