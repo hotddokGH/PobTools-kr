@@ -5,27 +5,12 @@
   "upstreamHanSources": 1381,
   "counts": {
     "official": 113,
-    "reviewed": 1253,
+    "reviewed": 1271,
     "suggested": 1499,
-    "ambiguous": 8,
+    "ambiguous": 4,
     "unmapped": 34
   },
   "issues": [
-    {
-      "code": "ALIGNMENT_COLLISION",
-      "path": "host/atlas_astrolabes.cpp",
-      "function": "AstrolabeDb::Sanitize",
-      "line": 171,
-      "occurrenceIndex": 0,
-      "source": "，忽略 ",
-      "targets": [
-        ", 배치 규칙을 위반한 항목 ",
-        ", 알 수 없는 반쪽 영역 ",
-        ", 알 수 없는 천체 투영기 ",
-        ", 알 수 없는 항목 ",
-        ", 중복 배치된 반쪽 영역 "
-      ]
-    },
     {
       "code": "UNMAPPED_ALIGNMENT",
       "path": "host/atlas_import.cpp",
@@ -90,18 +75,6 @@
         "assets 資料夾內找不到圖集 "
       ],
       "currentCandidates": []
-    },
-    {
-      "code": "ALIGNMENT_COLLISION",
-      "path": "host/atlas_planner.cpp",
-      "function": "importEntry",
-      "line": 2226,
-      "occurrenceIndex": 3,
-      "source": " 點",
-      "targets": [
-        "포인트",
-        "포인트 남음"
-      ]
     },
     {
       "code": "UNMAPPED_ALIGNMENT",
@@ -190,20 +163,6 @@
         "（目前 "
       ],
       "currentCandidates": []
-    },
-    {
-      "code": "ALIGNMENT_COLLISION",
-      "path": "host/atlas_update.cpp",
-      "function": "AtlasUpdater::doUpdate",
-      "line": 615,
-      "occurrenceIndex": 1,
-      "source": "下載 ",
-      "targets": [
-        "아틀라스 ",
-        "이미지 데이터 다운로드 중: ",
-        "이미지 시트 다운로드 중: ",
-        "패시브 스킬 트리 "
-      ]
     },
     {
       "code": "CURRENT_NOT_HANGUL",
@@ -778,18 +737,6 @@
         " 個檔案"
       ],
       "currentCandidates": []
-    },
-    {
-      "code": "ALIGNMENT_COLLISION",
-      "path": "host/launcher_editor.cpp",
-      "function": "Frame",
-      "line": 446,
-      "occurrenceIndex": 26,
-      "source": "新增",
-      "targets": [
-        "새 항목 추가",
-        "추가"
-      ]
     },
     {
       "code": "CURRENT_NOT_HANGUL",

@@ -46,7 +46,7 @@ class SourceOverlayTests(unittest.TestCase):
         path = self.root / "source-literal-mapping.json"
         path.write_text(
             json.dumps(
-                {"schemaVersion": 1, "entries": entries, "contexts": contexts or []},
+                {"schemaVersion": 2, "entries": entries, "contexts": contexts or []},
                 ensure_ascii=False,
             ),
             encoding="utf-8",
@@ -62,6 +62,26 @@ class SourceOverlayTests(unittest.TestCase):
         rows = scan_cpp_literals(Path("host/ui.cpp"), source.encode("utf-8"))
         self.assertEqual([row.decoded for row in rows], ["設定 %d\n", "寬字", "更新"])
         self.assertEqual({row.function for row in rows}, {"Draw"})
+        self.assertEqual([row.occurrence_index for row in rows], [0, 1, 2])
+
+    def test_file_scope_occurrence_indexes_use_empty_function(self):
+        source = 'auto first = u8"全域"; auto second = "trace";'
+        rows = scan_cpp_literals(Path("host/ui.cpp"), source.encode("utf-8"))
+        self.assertEqual(
+            [(row.function, row.decoded, row.occurrence_index) for row in rows],
+            [("", "全域", 0), ("", "trace", 1)],
+        )
+
+    def test_occurrence_indexes_reset_for_distinct_same_named_functions(self):
+        source = (
+            'void Draw(){ ImGui::Text(u8"設定"); } '
+            'void Draw(int mode){ ImGui::Text(u8"更新"); }'
+        )
+        rows = scan_cpp_literals(Path("host/ui.cpp"), source.encode("utf-8"))
+        self.assertEqual(
+            [(row.function, row.decoded, row.occurrence_index) for row in rows],
+            [("Draw", "設定", 0), ("Draw", "更新", 0)],
+        )
 
     def test_scans_concatenated_literals_as_one_value(self):
         source = 'void Draw(){ ImGui::Text(u8"設定 " "更新"); }'
@@ -126,6 +146,7 @@ class SourceOverlayTests(unittest.TestCase):
         report = apply_overlay(self.root, mapping, self.policy, self.report)
         self.assertEqual(report["issues"][0]["code"], "UNSUPPORTED_ESCAPE")
         self.assertEqual(report["issues"][0]["source"], 'u8"設定\\q"')
+        self.assertEqual(report["issues"][0]["occurrenceIndex"], 0)
         self.assertEqual(self.read("host/ui.cpp"), original)
 
     def test_long_hex_escape_is_rejected_instead_of_partially_decoded(self):
@@ -163,6 +184,7 @@ class SourceOverlayTests(unittest.TestCase):
                     "path": "host/unused.cpp",
                     "function": "Unused",
                     "source": "未使用文脈",
+                    "occurrenceIndex": 0,
                     "target": "미사용 문맥",
                     "status": "draft",
                     "provenance": "manual-context",
@@ -185,6 +207,7 @@ class SourceOverlayTests(unittest.TestCase):
                     "path": "host/a.cpp",
                     "function": "DrawAtlas",
                     "source": "開啟 %s",
+                    "occurrenceIndex": 0,
                     "target": "아틀라스 %s 열기",
                     "status": "reviewed",
                     "provenance": "manual-context",
@@ -236,15 +259,29 @@ class SourceOverlayTests(unittest.TestCase):
         self.assertEqual(json.loads(self.report.read_text(encoding="utf-8")), report)
         self.assertEqual(self.read("host/ui.cpp"), original)
 
-    def test_mapping_schema_requires_version_one_entries_and_contexts(self):
+    def test_schema_v1_is_rejected_after_v2_cutover(self):
+        original = 'void Draw(){ ImGui::Text(u8"設定"); }'
+        self.write("host/ui.cpp", original)
+        mapping = self.root / "source-literal-mapping.json"
+        mapping.write_text(
+            json.dumps({"schemaVersion": 1, "entries": {}, "contexts": []}),
+            encoding="utf-8",
+        )
+
+        report = apply_overlay(self.root, mapping, self.policy, self.report)
+
+        self.assertEqual(report["issues"][0]["code"], "INVALID_MAPPING_DOCUMENT")
+        self.assertEqual(self.read("host/ui.cpp"), original)
+
+    def test_mapping_schema_requires_version_two_entries_and_contexts(self):
         original = 'void Draw(){ ImGui::Text(u8"設定"); }'
         invalid_documents = [
             {},
-            {"schemaVersion": 2, "entries": {}, "contexts": []},
-            {"schemaVersion": 1, "contexts": []},
-            {"schemaVersion": 1, "entries": {}},
-            {"schemaVersion": 1, "entries": [], "contexts": []},
-            {"schemaVersion": 1, "entries": {}, "contexts": {}},
+            {"schemaVersion": 3, "entries": {}, "contexts": []},
+            {"schemaVersion": 2, "contexts": []},
+            {"schemaVersion": 2, "entries": {}},
+            {"schemaVersion": 2, "entries": [], "contexts": []},
+            {"schemaVersion": 2, "entries": {}, "contexts": {}},
         ]
         for document in invalid_documents:
             with self.subTest(document=document):
@@ -281,12 +318,101 @@ class SourceOverlayTests(unittest.TestCase):
         self.assertEqual(report["issues"][0]["code"], "INVALID_CONTEXT_ENTRY")
         self.assertEqual(self.read("host/ui.cpp"), original)
 
+    def test_context_requires_nonnegative_occurrence_index(self):
+        original = 'void Draw(){ ImGui::Text(u8"設定"); }'
+        invalid_indexes = [None, True, "0", -1]
+        for invalid_index in invalid_indexes:
+            with self.subTest(occurrenceIndex=invalid_index):
+                self.write("host/ui.cpp", original)
+                context = {
+                    "path": "host/ui.cpp",
+                    "function": "Draw",
+                    "source": "設定",
+                    "target": "설정",
+                    "status": "reviewed",
+                    "provenance": "manual-context",
+                    "formatSignature": [],
+                }
+                if invalid_index is not None:
+                    context["occurrenceIndex"] = invalid_index
+                mapping = self.mapping({}, contexts=[context])
+
+                report = apply_overlay(self.root, mapping, self.policy, self.report)
+
+                self.assertEqual(report["issues"][0]["code"], "INVALID_CONTEXT_ENTRY")
+                self.assertEqual(self.read("host/ui.cpp"), original)
+
+    def test_repeated_source_literals_resolve_by_function_occurrence_index(self):
+        original = (
+            'void Draw(){ ImGui::Text(u8"設定"); Log("trace"); '
+            'ImGui::Text(u8"設定"); }'
+        )
+        self.write("host/ui.cpp", original)
+        contexts = [
+            {
+                "path": "host/ui.cpp",
+                "function": "Draw",
+                "source": "設定",
+                "occurrenceIndex": 0,
+                "target": "첫 설정",
+                "status": "reviewed",
+                "provenance": "manual-context",
+                "formatSignature": [],
+            },
+            {
+                "path": "host/ui.cpp",
+                "function": "Draw",
+                "source": "設定",
+                "occurrenceIndex": 2,
+                "target": "둘째 설정",
+                "status": "reviewed",
+                "provenance": "manual-context",
+                "formatSignature": [],
+            },
+        ]
+        mapping = self.mapping(
+            {"設定": self.entry("전역 설정", "reviewed")}, contexts=contexts
+        )
+
+        report = apply_overlay(self.root, mapping, self.policy, self.report)
+
+        self.assertEqual(report["issues"], [])
+        self.assertEqual(
+            self.read("host/ui.cpp"),
+            original.replace("設定", "첫 설정", 1).replace("設定", "둘째 설정", 1),
+        )
+        self.assertNotIn("전역 설정", self.read("host/ui.cpp"))
+
+    def test_duplicate_context_consumer_key_blocks_all_writes(self):
+        original = 'void Draw(){ ImGui::Text(u8"設定"); }'
+        self.write("host/ui.cpp", original)
+        context = {
+            "path": "host/ui.cpp",
+            "function": "Draw",
+            "source": "設定",
+            "occurrenceIndex": 0,
+            "target": "설정",
+            "status": "reviewed",
+            "provenance": "manual-context",
+            "formatSignature": [],
+        }
+        duplicate = {**context, "target": "환경 설정"}
+        mapping = self.mapping({}, contexts=[context, duplicate])
+
+        report = apply_overlay(self.root, mapping, self.policy, self.report)
+
+        self.assertEqual(
+            [issue["code"] for issue in report["issues"]],
+            ["INVALID_CONTEXT_ENTRY", "INVALID_CONTEXT_ENTRY"],
+        )
+        self.assertEqual(self.read("host/ui.cpp"), original)
+
     def test_unused_surrogate_target_writes_encoding_issue_without_mutation(self):
         original = 'void Draw(){ ImGui::Text(u8"設定"); }'
         self.write("host/ui.cpp", original)
         mapping = self.root / "source-literal-mapping.json"
         document = {
-            "schemaVersion": 1,
+            "schemaVersion": 2,
             "entries": {
                 "設定": self.entry("설정", "reviewed"),
                 "未使用": self.entry("\ud800", "reviewed"),

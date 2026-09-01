@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "source": "official exact/contextual Korean plus offline t2s direct and zh-en/en-ko machine-assisted source literal fallback",
   "models": [
     "SimpleJerry/longtu-nllb-zh2ko",

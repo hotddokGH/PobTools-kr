@@ -35,10 +35,24 @@ class SourceMigrationTests(unittest.TestCase):
 
     def context_inventory(self, path: str, upstream_rows, current_rows):
         def literals(rows):
-            return [
-                migration.Literal(path, index, index + 1, text, "u8", function, index + 1)
-                for index, (function, text) in enumerate(rows)
-            ]
+            occurrence_by_function = {}
+            result = []
+            for index, (function, text) in enumerate(rows):
+                occurrence_index = occurrence_by_function.get(function, 0)
+                occurrence_by_function[function] = occurrence_index + 1
+                result.append(
+                    migration.Literal(
+                        path,
+                        index,
+                        index + 1,
+                        text,
+                        "u8",
+                        function,
+                        index + 1,
+                        occurrence_index,
+                    )
+                )
+            return result
 
         return {path: (literals(upstream_rows), literals(current_rows))}
 
@@ -255,10 +269,36 @@ class SourceMigrationTests(unittest.TestCase):
 
         self.assertNotIn("開啟", result.accepted["entries"])
         self.assertEqual(
-            [(row["path"], row["function"], row["target"]) for row in result.accepted["contexts"]],
             [
-                ("host/a.cpp", "DrawAtlas", "아틀라스 열기"),
-                ("host/b.cpp", "DrawFile", "파일 열기"),
+                (row["path"], row["function"], row["occurrenceIndex"], row["target"])
+                for row in result.accepted["contexts"]
+            ],
+            [
+                ("host/a.cpp", "DrawAtlas", 0, "아틀라스 열기"),
+                ("host/b.cpp", "DrawFile", 0, "파일 열기"),
+            ],
+        )
+
+    def test_same_source_contexts_are_sorted_and_preserve_automatic_indexes(self):
+        result = migration.migrate(
+            legacy={"entries": {}},
+            overrides={"entries": {}},
+            official={},
+            alignments=[
+                migration.Alignment("host/a.cpp", "Draw", "設定", "둘째 설정", 2, 8),
+                migration.Alignment("host/a.cpp", "Draw", "設定", "첫 설정", 0, 4),
+            ],
+        )
+
+        self.assertEqual(result.report["issues"], [])
+        self.assertEqual(
+            [
+                (row["path"], row["function"], row["source"], row["occurrenceIndex"], row["target"])
+                for row in result.accepted["contexts"]
+            ],
+            [
+                ("host/a.cpp", "Draw", "設定", 0, "첫 설정"),
+                ("host/a.cpp", "Draw", "設定", 2, "둘째 설정"),
             ],
         )
 
@@ -269,7 +309,7 @@ class SourceMigrationTests(unittest.TestCase):
             official={},
             alignments=[
                 migration.Alignment("host/a.cpp", "Draw", "開啟", "열기", 0, 4),
-                migration.Alignment("host/a.cpp", "Draw", "開啟", "열어 보기", 1, 5),
+                migration.Alignment("host/a.cpp", "Draw", "開啟", "열어 보기", 0, 5),
             ],
         )
 
@@ -303,10 +343,10 @@ class SourceMigrationTests(unittest.TestCase):
         self.assertNotIn("發現新賽季天賦樹 ", result.accepted["entries"])
         self.assertEqual(
             [
-                (row["path"], row["function"], row["target"])
+                (row["path"], row["function"], row["occurrenceIndex"], row["target"])
                 for row in result.accepted["contexts"]
             ],
-            [("host/known.cpp", "Draw", "새 시즌 패시브 트리 ")],
+            [("host/known.cpp", "Draw", 0, "새 시즌 패시브 트리 ")],
         )
         self.assertEqual(
             [row["code"] for row in result.report["issues"]],
@@ -365,19 +405,27 @@ class SourceMigrationTests(unittest.TestCase):
 
         self.assertEqual(
             [
-                (row["path"], row["function"], row["target"], row["provenance"])
+                (
+                    row["path"],
+                    row["function"],
+                    row["occurrenceIndex"],
+                    row["target"],
+                    row["provenance"],
+                )
                 for row in result.accepted["contexts"]
             ],
             [
                 (
                     "host/passive_tree_update.cpp",
                     "PassiveTreeUpdater::doCheck",
+                    7,
                     "새 시즌 패시브 스킬 트리 ",
                     "manual-reviewed-context",
                 ),
                 (
                     "host/timeless_jewel_ui.cpp",
                     "Frame",
+                    3,
                     "새 시즌 패시브 트리 ",
                     "current-ko-baseline",
                 ),
@@ -446,6 +494,41 @@ class SourceMigrationTests(unittest.TestCase):
                     [row["code"] for row in result.report["issues"]],
                     [expected_code],
                 )
+
+    def test_reviewed_context_uses_carried_index_for_same_named_functions(self):
+        path = "host/overloads.cpp"
+        upstream = [
+            migration.Literal(path, 0, 1, "設定", "u8", "Draw", 1, 0),
+            migration.Literal(path, 2, 3, "更新", "u8", "Draw", 2, 0),
+        ]
+        current = [
+            migration.Literal(path, 0, 1, "설정", "u8", "Draw", 1, 0),
+            migration.Literal(path, 2, 3, "업데이트", "u8", "Draw", 2, 0),
+        ]
+
+        result = migration.migrate(
+            legacy={"entries": {}},
+            overrides={
+                "entries": {},
+                "contexts": [
+                    {
+                        "path": path,
+                        "function": "Draw",
+                        "source": "更新",
+                        "target": "업데이트",
+                        "occurrenceIndex": 0,
+                    }
+                ],
+            },
+            official={},
+            context_inventories={path: (upstream, current)},
+        )
+
+        self.assertEqual(result.report["issues"], [])
+        self.assertEqual(
+            [(row["source"], row["occurrenceIndex"], row["target"]) for row in result.accepted["contexts"]],
+            [("更新", 0, "업데이트")],
+        )
 
     def test_reviewed_context_target_must_be_unique_actual_hangul_literal(self):
         path = "host/a.cpp"
@@ -552,7 +635,7 @@ class SourceMigrationTests(unittest.TestCase):
                     {"DUPLICATE_REVIEWED_CONTEXT"},
                 )
 
-    def test_repeated_upstream_source_cannot_be_expressed_by_consumer_context(self):
+    def test_repeated_upstream_source_is_validated_and_emitted_by_occurrence(self):
         path = "host/a.cpp"
         source = "設定"
         result = migration.migrate(
@@ -564,38 +647,52 @@ class SourceMigrationTests(unittest.TestCase):
                         "path": path,
                         "function": "Draw",
                         "source": source,
-                        "target": "설정",
+                        "target": "첫 설정",
                         "occurrenceIndex": 0,
-                    }
+                    },
+                    {
+                        "path": path,
+                        "function": "Draw",
+                        "source": source,
+                        "target": "둘째 설정",
+                        "occurrenceIndex": 2,
+                    },
                 ],
             },
             official={},
             context_inventories=self.context_inventory(
                 path,
-                [("Draw", source), ("Draw", source)],
-                [("Draw", "설정")],
+                [("Draw", source), ("Draw", "trace"), ("Draw", source)],
+                [("Draw", "첫 설정"), ("Draw", "trace"), ("Draw", "둘째 설정")],
             ),
         )
 
-        self.assertEqual(result.accepted["contexts"], [])
+        self.assertEqual(result.report["issues"], [])
         self.assertEqual(
-            [row["code"] for row in result.report["issues"]],
-            ["AMBIGUOUS_REVIEWED_CONTEXT_SOURCE"],
+            [(row["occurrenceIndex"], row["target"]) for row in result.accepted["contexts"]],
+            [(0, "첫 설정"), (2, "둘째 설정")],
         )
         probes = [
-            migration.Literal(path, index, index + 1, source, "u8", "Draw", index + 1)
-            for index in range(2)
+            migration.Literal(
+                path,
+                index,
+                index + 1,
+                source,
+                "u8",
+                "Draw",
+                index + 1,
+                occurrence_index,
+            )
+            for index, occurrence_index in enumerate((0, 2))
         ]
         self.assertEqual(
             [
-                migration.source_overlay._resolve_mapping(
-                    literal,
-                    result.accepted["entries"],
-                    result.accepted["contexts"],
-                )
+                migration.source_overlay._resolve_mapping(literal, {}, result.accepted["contexts"])[
+                    "target"
+                ]
                 for literal in probes
             ],
-            [None, None],
+            ["첫 설정", "둘째 설정"],
         )
 
     def test_alignment_requires_han_hangul_and_equal_format_signature(self):
@@ -650,6 +747,26 @@ class SourceMigrationTests(unittest.TestCase):
         self.assertEqual(
             [(row.source, row.occurrence_index) for row in alignments],
             [("甲", 0), ("乙", 1), ("丙", 2)],
+        )
+
+    def test_occurrence_index_resets_for_distinct_same_named_functions(self):
+        upstream = (
+            'void Draw(){ Label(u8"設定"); } '
+            'void Draw(int mode){ Label(u8"更新"); }'
+        ).encode("utf-8")
+        current = (
+            'void Draw(){ Label(u8"설정"); } '
+            'void Draw(int mode){ Label(u8"업데이트"); }'
+        ).encode("utf-8")
+
+        alignments, issues = migration.align_file_literals(
+            Path("host/overloads.cpp"), upstream, current
+        )
+
+        self.assertEqual(issues, [])
+        self.assertEqual(
+            {row.source: row.occurrence_index for row in alignments},
+            {"設定": 0, "更新": 0},
         )
 
     def test_class_initializer_does_not_duplicate_nested_function_literals(self):
@@ -828,6 +945,7 @@ class SourceMigrationTests(unittest.TestCase):
                 "u8",
                 "PassiveTreeUpdater::doCheck",
                 340,
+                7,
             ),
             migration.source_overlay.Literal(
                 "host/timeless_jewel_ui.cpp",
@@ -837,6 +955,7 @@ class SourceMigrationTests(unittest.TestCase):
                 "u8",
                 "Frame",
                 440,
+                141,
             ),
         ]
 
@@ -885,7 +1004,7 @@ class SourceMigrationTests(unittest.TestCase):
         self.assertEqual([row["code"] for row in issues], ["AMBIGUOUS_ALIGNMENT"])
         self.assertEqual(issues[0]["sources"], ["設定", "新增"])
 
-    def test_output_documents_are_canonical_sorted_schema_version_one(self):
+    def test_output_documents_are_canonical_sorted_schema_version_two(self):
         result = migration.migrate(
             legacy={
                 "source": "legacy machine pass",
@@ -897,8 +1016,8 @@ class SourceMigrationTests(unittest.TestCase):
             official={"傳奇": "고유"},
         )
 
-        self.assertEqual(result.accepted["schemaVersion"], 1)
-        self.assertEqual(result.suggestions["schemaVersion"], 1)
+        self.assertEqual(result.accepted["schemaVersion"], 2)
+        self.assertEqual(result.suggestions["schemaVersion"], 2)
         self.assertEqual(list(result.accepted["entries"]), ["傳奇", "設定"])
         self.assertEqual(list(result.suggestions["entries"]), ["新增", "設定"])
         self.assertEqual(result.suggestions["models"], ["example/model"])

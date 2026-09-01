@@ -34,6 +34,7 @@ class Literal:
     prefix: str
     function: str
     line: int
+    occurrence_index: int = 0
 
 
 class UnsupportedEscape(ValueError):
@@ -44,6 +45,7 @@ class UnsupportedEscape(ValueError):
         self.end = end
         self.line = line
         self.function = function
+        self.occurrence_index = -1
 
 
 class RawDelimiterCollision(ValueError):
@@ -146,39 +148,82 @@ def scan_cpp_literals(path: Path, text: bytes) -> list[Literal]:
     """Return semantic C++ string values with byte offsets into *text*."""
     tree = _PARSER.parse(text)
     normalized_path = path.as_posix()
-    rows: list[Literal] = []
+    candidates: list[tuple[Node, str, int]] = []
 
-    def visit(node: Node, function: str) -> None:
+    def collect(node: Node, function: str, function_scope: int) -> None:
         if node.type == "function_definition":
             function = _function_name(node, text)
-        if node.type == "concatenated_string":
-            literal_nodes = [
-                child for child in node.named_children if child.type in {"string_literal", "raw_string_literal"}
-            ]
-            if not literal_nodes:
-                return
-            line = text.count(b"\n", 0, node.start_byte) + 1
-            decoded_parts: list[str] = []
-            prefix = ""
-            for index, child in enumerate(literal_nodes):
-                child_line = text.count(b"\n", 0, child.start_byte) + 1
-                decoded, child_prefix = _decode_literal(child, text, function, child_line)
-                decoded_parts.append(decoded)
-                if index == 0:
-                    prefix = child_prefix
-            rows.append(
-                Literal(normalized_path, node.start_byte, node.end_byte, "".join(decoded_parts), prefix, function, line)
-            )
-            return
-        if node.type in {"string_literal", "raw_string_literal"}:
-            line = text.count(b"\n", 0, node.start_byte) + 1
-            decoded, prefix = _decode_literal(node, text, function, line)
-            rows.append(Literal(normalized_path, node.start_byte, node.end_byte, decoded, prefix, function, line))
+            function_scope = node.start_byte
+        if node.type in {"concatenated_string", "string_literal", "raw_string_literal"}:
+            candidates.append((node, function, function_scope))
             return
         for child in node.named_children:
-            visit(child, function)
+            collect(child, function, function_scope)
 
-    visit(tree.root_node, "")
+    collect(tree.root_node, "", -1)
+    occurrence_by_span: dict[tuple[int, int, int], int] = {}
+    by_function: dict[int, list[Node]] = {}
+    for node, _, function_scope in candidates:
+        by_function.setdefault(function_scope, []).append(node)
+    for function_scope, nodes in by_function.items():
+        for occurrence_index, node in enumerate(sorted(nodes, key=lambda value: value.start_byte)):
+            occurrence_by_span[(function_scope, node.start_byte, node.end_byte)] = occurrence_index
+
+    rows: list[Literal] = []
+    for node, function, function_scope in sorted(
+        candidates, key=lambda value: value[0].start_byte
+    ):
+        occurrence_index = occurrence_by_span[
+            (function_scope, node.start_byte, node.end_byte)
+        ]
+        try:
+            if node.type == "concatenated_string":
+                literal_nodes = [
+                    child
+                    for child in node.named_children
+                    if child.type in {"string_literal", "raw_string_literal"}
+                ]
+                if not literal_nodes:
+                    continue
+                line = text.count(b"\n", 0, node.start_byte) + 1
+                decoded_parts: list[str] = []
+                prefix = ""
+                for index, child in enumerate(literal_nodes):
+                    child_line = text.count(b"\n", 0, child.start_byte) + 1
+                    decoded, child_prefix = _decode_literal(child, text, function, child_line)
+                    decoded_parts.append(decoded)
+                    if index == 0:
+                        prefix = child_prefix
+                rows.append(
+                    Literal(
+                        normalized_path,
+                        node.start_byte,
+                        node.end_byte,
+                        "".join(decoded_parts),
+                        prefix,
+                        function,
+                        line,
+                        occurrence_index,
+                    )
+                )
+                continue
+            line = text.count(b"\n", 0, node.start_byte) + 1
+            decoded, prefix = _decode_literal(node, text, function, line)
+            rows.append(
+                Literal(
+                    normalized_path,
+                    node.start_byte,
+                    node.end_byte,
+                    decoded,
+                    prefix,
+                    function,
+                    line,
+                    occurrence_index,
+                )
+            )
+        except UnsupportedEscape as error:
+            error.occurrence_index = occurrence_index
+            raise
     return rows
 
 
@@ -217,6 +262,7 @@ def _issue(code: str, literal: Literal, **extra: Any) -> dict[str, Any]:
         "code": code,
         "path": literal.path,
         "function": literal.function,
+        "occurrenceIndex": literal.occurrence_index,
         "line": literal.line,
         "source": literal.decoded,
         **extra,
@@ -281,6 +327,7 @@ def _resolve_mapping(
             str(row.get("path", "")).replace("\\", "/") == literal.path
             and row.get("function") == literal.function
             and row.get("source") == literal.decoded
+            and row.get("occurrenceIndex") == literal.occurrence_index
         ):
             return row
     row = entries.get(literal.decoded)
@@ -359,12 +406,12 @@ def _run_overlay(
         )
         _write_report(report_path, report)
         return report
-    if type(mapping.get("schemaVersion")) is not int or mapping["schemaVersion"] != 1:
+    if type(mapping.get("schemaVersion")) is not int or mapping["schemaVersion"] != 2:
         report["issues"].append(
             {
                 "code": "INVALID_MAPPING_DOCUMENT",
                 "field": "schemaVersion",
-                "detail": "schemaVersion must equal 1",
+                "detail": "schemaVersion must equal 2",
             }
         )
     for field in ("entries", "contexts"):
@@ -405,10 +452,13 @@ def _run_overlay(
                 {"code": code, "location": f"entries[{source!r}]"}
             )
     context_fields = ("path", "function", "source")
+    context_keys: dict[tuple[str, str, str, int], list[int]] = {}
     for index, row in enumerate(contexts):
         if (
             not _mapping_row_is_well_formed(row)
             or any(not isinstance(row.get(field), str) for field in context_fields)
+            or type(row.get("occurrenceIndex")) is not int
+            or row["occurrenceIndex"] < 0
         ):
             report["issues"].append({"code": "INVALID_CONTEXT_ENTRY", "index": index})
         elif not _strings_are_utf8_encodable(
@@ -422,6 +472,24 @@ def _run_overlay(
             report["issues"].append(
                 {"code": code, "location": f"contexts[{index}]"}
             )
+        else:
+            key = (
+                row["path"].replace("\\", "/"),
+                row["function"],
+                row["source"],
+                row["occurrenceIndex"],
+            )
+            context_keys.setdefault(key, []).append(index)
+    for indexes in context_keys.values():
+        if len(indexes) > 1:
+            for index in indexes:
+                report["issues"].append(
+                    {
+                        "code": "INVALID_CONTEXT_ENTRY",
+                        "index": index,
+                        "detail": "duplicate context consumer key",
+                    }
+                )
     if report["issues"]:
         _write_report(report_path, report)
         return report
@@ -446,6 +514,7 @@ def _run_overlay(
                     "code": "UNSUPPORTED_ESCAPE",
                     "path": relative,
                     "function": error.function,
+                    "occurrenceIndex": error.occurrence_index,
                     "line": error.line,
                     "source": text[error.start : error.end].decode("utf-8", errors="replace"),
                     "escape": error.escape,

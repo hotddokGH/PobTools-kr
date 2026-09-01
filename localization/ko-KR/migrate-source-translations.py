@@ -144,7 +144,7 @@ def migrate(
     contexts: list[dict[str, Any]] = []
     issues: list[dict[str, Any]] = []
     alignment_issue_rows = [dict(issue) for issue in alignment_issues]
-    failed_contexts: set[tuple[str, str, str]] = set()
+    failed_contexts: set[tuple[str, str, str, int]] = set()
     failed_sources: set[str] = set()
 
     for source, target in sorted(official.items()):
@@ -187,7 +187,7 @@ def migrate(
                 target, "reviewed", "manual-reviewed-override", source
             )
 
-    reviewed_contexts: set[tuple[str, str, str]] = set()
+    reviewed_contexts: set[tuple[str, str, str, int]] = set()
     context_inventories = context_inventories or {}
     override_contexts = overrides.get("contexts", []) if isinstance(overrides, dict) else []
     if isinstance(override_contexts, list):
@@ -212,23 +212,31 @@ def migrate(
                 continue
             prepared_contexts.append({**value, "path": normalized_path})
 
-        contexts_by_consumer_identity: dict[tuple[str, str, str], list[dict[str, Any]]] = (
+        contexts_by_consumer_identity: dict[
+            tuple[str, str, str, int], list[dict[str, Any]]
+        ] = (
             defaultdict(list)
         )
         for value in prepared_contexts:
             contexts_by_consumer_identity[
-                (value["path"], value["function"], value["source"])
+                (
+                    value["path"],
+                    value["function"],
+                    value["source"],
+                    value["occurrenceIndex"],
+                )
             ].append(value)
         duplicate_identities = {
             key for key, values in contexts_by_consumer_identity.items() if len(values) != 1
         }
-        for path, function, source in sorted(duplicate_identities):
+        for path, function, source, occurrence_index in sorted(duplicate_identities):
             issues.append(
                 {
                     "code": "DUPLICATE_REVIEWED_CONTEXT",
                     "path": path,
                     "function": function,
                     "source": source,
+                    "occurrenceIndex": occurrence_index,
                 }
             )
 
@@ -247,7 +255,7 @@ def migrate(
             source = value["source"]
             target = value["target"]
             occurrence_index = value["occurrenceIndex"]
-            if (path, function, source) in duplicate_identities:
+            if (path, function, source, occurrence_index) in duplicate_identities:
                 continue
             if path not in context_inventories:
                 issues.append(
@@ -278,25 +286,23 @@ def migrate(
                     }
                 )
                 continue
-            upstream_source_matches = [
-                row for row in upstream_function if row.decoded == source
+            upstream_identity_matches = [
+                row
+                for row in upstream_function
+                if row.occurrence_index == occurrence_index and row.decoded == source
             ]
-            if len(upstream_source_matches) > 1:
+            if len(upstream_identity_matches) > 1:
                 issues.append(
                     {
                         "code": "AMBIGUOUS_REVIEWED_CONTEXT_SOURCE",
                         "path": path,
                         "function": function,
                         "source": source,
+                        "occurrenceIndex": occurrence_index,
                     }
                 )
                 continue
-            if (
-                not upstream_source_matches
-                or occurrence_index >= len(upstream_function)
-                or upstream_function[occurrence_index].decoded != source
-                or not HAN.search(source)
-            ):
+            if len(upstream_identity_matches) != 1 or not HAN.search(source):
                 issues.append(
                     {
                         "code": "INVALID_REVIEWED_CONTEXT_SOURCE",
@@ -358,13 +364,14 @@ def migrate(
                     }
                 )
                 continue
-            key = (path, function, source)
+            key = (path, function, source, occurrence_index)
             reviewed_contexts.add(key)
             contexts.append(
                 {
                     "path": path,
                     "function": function,
                     "source": source,
+                    "occurrenceIndex": occurrence_index,
                     "target": target,
                     "status": "reviewed",
                     "provenance": "manual-reviewed-context",
@@ -376,8 +383,13 @@ def migrate(
     for issue in alignment_issue_rows:
         path = str(issue.get("path", "")).replace("\\", "/")
         function = str(issue.get("function", ""))
+        occurrence_index = issue.get("occurrenceIndex")
         source = issue.get("source")
-        if isinstance(source, str) and (path, function, source) in reviewed_contexts:
+        if (
+            isinstance(source, str)
+            and type(occurrence_index) is int
+            and (path, function, source, occurrence_index) in reviewed_contexts
+        ):
             continue
         sources = issue.get("sources")
         if isinstance(sources, list):
@@ -385,7 +397,10 @@ def migrate(
                 source
                 for source in sources
                 if isinstance(source, str)
-                and (path, function, source) not in reviewed_contexts
+                and (
+                    type(occurrence_index) is not int
+                    or (path, function, source, occurrence_index) not in reviewed_contexts
+                )
             ]
             if not remaining:
                 continue
@@ -403,9 +418,16 @@ def migrate(
             )
         for source in issue_sources:
             failed_sources.add(source)
-            failed_contexts.add(
-                (str(issue.get("path", "")), str(issue.get("function", "")), source)
-            )
+            occurrence_index = issue.get("occurrenceIndex")
+            if type(occurrence_index) is int:
+                failed_contexts.add(
+                    (
+                        str(issue.get("path", "")),
+                        str(issue.get("function", "")),
+                        source,
+                        occurrence_index,
+                    )
+                )
 
     candidates: dict[str, list[Alignment]] = defaultdict(list)
     for row in sorted(
@@ -420,7 +442,12 @@ def migrate(
     ):
         if row.source in accepted_entries:
             continue
-        if (row.path, row.function, row.source) in reviewed_contexts:
+        if (
+            row.path,
+            row.function,
+            row.source,
+            row.occurrence_index,
+        ) in reviewed_contexts:
             continue
         if not HAN.search(row.source):
             issues.append(_alignment_issue("UPSTREAM_NOT_HAN", row))
@@ -453,9 +480,9 @@ def migrate(
                 next(iter(targets)), "reviewed", "current-ko-baseline", source
             )
             continue
-        by_context: dict[tuple[str, str], list[Alignment]] = defaultdict(list)
+        by_context: dict[tuple[str, str, int], list[Alignment]] = defaultdict(list)
         for row in rows:
-            by_context[(row.path, row.function)].append(row)
+            by_context[(row.path, row.function, row.occurrence_index)].append(row)
         if any(len({row.target for row in values}) != 1 for values in by_context.values()):
             first = rows[0]
             issues.append(
@@ -466,8 +493,8 @@ def migrate(
                 )
             )
             continue
-        for (path, function), values in sorted(by_context.items()):
-            if (path, function, source) in failed_contexts:
+        for (path, function, occurrence_index), values in sorted(by_context.items()):
+            if (path, function, source, occurrence_index) in failed_contexts:
                 continue
             target = values[0].target
             contexts.append(
@@ -475,6 +502,7 @@ def migrate(
                     "path": path,
                     "function": function,
                     "source": source,
+                    "occurrenceIndex": occurrence_index,
                     "target": target,
                     "status": "reviewed",
                     "provenance": "current-ko-baseline",
@@ -496,11 +524,19 @@ def migrate(
             )
 
     accepted_entries = dict(sorted(accepted_entries.items()))
-    contexts.sort(key=lambda row: (row["path"], row["function"], row["source"], row["target"]))
+    contexts.sort(
+        key=lambda row: (
+            row["path"],
+            row["function"],
+            row["source"],
+            row["occurrenceIndex"],
+            row["target"],
+        )
+    )
     issues.sort(key=_issue_sort_key)
-    accepted = {"schemaVersion": 1, "entries": accepted_entries, "contexts": contexts}
+    accepted = {"schemaVersion": 2, "entries": accepted_entries, "contexts": contexts}
     suggestions: dict[str, Any] = {
-        "schemaVersion": 1,
+        "schemaVersion": 2,
         "source": str(legacy.get("source", "legacy source-literal machine draft")),
     }
     for field in ("models", "licenses"):
@@ -626,6 +662,10 @@ def _normalized_unit(unit: Any, text: bytes, function: str) -> _StructuralUnit:
 def _structural_groups(path: Path, original: bytes) -> dict[tuple[str, tuple[Any, ...], int], list[Literal]]:
     text = _sanitize_legacy_null_escapes(original)
     tree = source_overlay._PARSER.parse(text)
+    occurrence_by_span = {
+        (row.start, row.end): row.occurrence_index
+        for row in source_overlay.scan_cpp_literals(path, text)
+    }
     groups: dict[tuple[str, tuple[Any, ...], int], list[Literal]] = defaultdict(list)
     seen_units: set[tuple[int, int, str]] = set()
 
@@ -652,6 +692,7 @@ def _structural_groups(path: Path, original: bytes) -> dict[tuple[str, tuple[Any
                             literal.prefix,
                             function,
                             literal.line,
+                            occurrence_by_span[(literal.start, literal.end)],
                         )
                     )
             return
@@ -678,16 +719,10 @@ def align_file_literals(
     current = _structural_groups(path, current_text)
     alignments: list[Alignment] = []
     issues: list[dict[str, Any]] = []
-    rows_by_function: dict[str, dict[tuple[int, int], Literal]] = defaultdict(dict)
-    for (function, _, _), rows in upstream.items():
-        for row in rows:
-            rows_by_function[function][(row.start, row.end)] = row
     occurrence_by_span = {
-        (function, row.start, row.end): occurrence_index
-        for function, rows in rows_by_function.items()
-        for occurrence_index, row in enumerate(
-            sorted(rows.values(), key=lambda item: (item.start, item.end))
-        )
+        (function, row.start, row.end): row.occurrence_index
+        for (function, _, _), rows in upstream.items()
+        for row in rows
     }
     handled_spans: set[tuple[str, int, int]] = set()
 
