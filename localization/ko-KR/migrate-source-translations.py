@@ -278,8 +278,22 @@ def migrate(
                     }
                 )
                 continue
+            upstream_source_matches = [
+                row for row in upstream_function if row.decoded == source
+            ]
+            if len(upstream_source_matches) > 1:
+                issues.append(
+                    {
+                        "code": "AMBIGUOUS_REVIEWED_CONTEXT_SOURCE",
+                        "path": path,
+                        "function": function,
+                        "source": source,
+                    }
+                )
+                continue
             if (
-                occurrence_index >= len(upstream_function)
+                not upstream_source_matches
+                or occurrence_index >= len(upstream_function)
                 or upstream_function[occurrence_index].decoded != source
                 or not HAN.search(source)
             ):
@@ -509,6 +523,7 @@ def migrate(
         "INVALID_REVIEWED_CONTEXT_TARGET",
         "DUPLICATE_REVIEWED_CONTEXT",
         "AMBIGUOUS_REVIEWED_CONTEXT_TARGET",
+        "AMBIGUOUS_REVIEWED_CONTEXT_SOURCE",
     }
     report = {
         "counts": {
@@ -1409,6 +1424,8 @@ def load_trusted_zh_reference_hashes(repository_root: Path) -> dict[str, str]:
         for dictionary in DICTIONARIES
     }
     observed: dict[str, list[str]] = defaultdict(list)
+    seen_paths: set[str] = set()
+    relevant_hash_paths: dict[str, list[str]] = defaultdict(list)
     if not isinstance(document, dict) or document.get("algorithm") != "SHA256":
         issues.append(
             _evidence_issue(
@@ -1428,13 +1445,67 @@ def load_trusted_zh_reference_hashes(repository_root: Path) -> dict[str, str]:
                 )
             )
         else:
-            for row in rows:
+            for index, row in enumerate(rows):
                 if not isinstance(row, dict):
+                    issues.append(
+                        _evidence_issue(
+                            "OFFICIAL_REFERENCE_MANIFEST_INVALID_ROW",
+                            manifest_path,
+                            f"baseline manifest row {index} must be an object",
+                        )
+                    )
                     continue
-                dictionary = expected_paths.get(row.get("path"))
+                if set(row) != {"path", "sha256"}:
+                    issues.append(
+                        _evidence_issue(
+                            "OFFICIAL_REFERENCE_MANIFEST_INVALID_ROW",
+                            manifest_path,
+                            f"baseline manifest row {index} fields differ",
+                        )
+                    )
+                path_value = row.get("path")
                 sha256 = row.get("sha256")
-                if dictionary is not None and isinstance(sha256, str):
-                    observed[dictionary].append(sha256.upper())
+                if not isinstance(path_value, str) or not path_value:
+                    issues.append(
+                        _evidence_issue(
+                            "OFFICIAL_REFERENCE_MANIFEST_INVALID_ROW",
+                            manifest_path,
+                            f"baseline manifest row {index} path must be a string",
+                        )
+                    )
+                    continue
+                if path_value in seen_paths:
+                    issues.append(
+                        _evidence_issue(
+                            "OFFICIAL_REFERENCE_MANIFEST_DUPLICATE_PATH",
+                            manifest_path,
+                            f"baseline manifest path is duplicated: {path_value}",
+                        )
+                    )
+                seen_paths.add(path_value)
+                if not isinstance(sha256, str) or not re.fullmatch(r"[0-9A-Fa-f]{64}", sha256):
+                    issues.append(
+                        _evidence_issue(
+                            "OFFICIAL_REFERENCE_MANIFEST_INVALID_ROW",
+                            manifest_path,
+                            f"baseline manifest row {index} sha256 is malformed",
+                        )
+                    )
+                    continue
+                dictionary = expected_paths.get(path_value)
+                if dictionary is not None:
+                    normalized_hash = sha256.upper()
+                    observed[dictionary].append(normalized_hash)
+                    relevant_hash_paths[normalized_hash].append(path_value)
+            for sha256, paths in sorted(relevant_hash_paths.items()):
+                if len(paths) > 1:
+                    issues.append(
+                        _evidence_issue(
+                            "OFFICIAL_REFERENCE_MANIFEST_DUPLICATE_HASH",
+                            manifest_path,
+                            f"trusted zh hash is reused by: {', '.join(sorted(paths))}",
+                        )
+                    )
     for dictionary in DICTIONARIES:
         values = observed.get(dictionary, [])
         expected = TRUSTED_ZH_REFERENCE_HASHES[dictionary]

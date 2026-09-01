@@ -552,6 +552,52 @@ class SourceMigrationTests(unittest.TestCase):
                     {"DUPLICATE_REVIEWED_CONTEXT"},
                 )
 
+    def test_repeated_upstream_source_cannot_be_expressed_by_consumer_context(self):
+        path = "host/a.cpp"
+        source = "設定"
+        result = migration.migrate(
+            legacy={"entries": {}},
+            overrides={
+                "entries": {},
+                "contexts": [
+                    {
+                        "path": path,
+                        "function": "Draw",
+                        "source": source,
+                        "target": "설정",
+                        "occurrenceIndex": 0,
+                    }
+                ],
+            },
+            official={},
+            context_inventories=self.context_inventory(
+                path,
+                [("Draw", source), ("Draw", source)],
+                [("Draw", "설정")],
+            ),
+        )
+
+        self.assertEqual(result.accepted["contexts"], [])
+        self.assertEqual(
+            [row["code"] for row in result.report["issues"]],
+            ["AMBIGUOUS_REVIEWED_CONTEXT_SOURCE"],
+        )
+        probes = [
+            migration.Literal(path, index, index + 1, source, "u8", "Draw", index + 1)
+            for index in range(2)
+        ]
+        self.assertEqual(
+            [
+                migration.source_overlay._resolve_mapping(
+                    literal,
+                    result.accepted["entries"],
+                    result.accepted["contexts"],
+                )
+                for literal in probes
+            ],
+            [None, None],
+        )
+
     def test_alignment_requires_han_hangul_and_equal_format_signature(self):
         result = migration.migrate(
             legacy={"entries": {}},
@@ -992,6 +1038,109 @@ class SourceMigrationTests(unittest.TestCase):
 
         self.assertIn(
             "OFFICIAL_REFERENCE_MANIFEST_MISMATCH",
+            {row["code"] for row in raised.exception.issues},
+        )
+
+    def test_trusted_zh_manifest_fails_closed_on_every_malformed_row(self):
+        valid_rows = [
+            {
+                "path": f"Data/poe1/zh-rTW/{dictionary}.json",
+                "sha256": migration.TRUSTED_ZH_REFERENCE_HASHES[dictionary],
+            }
+            for dictionary in migration.DICTIONARIES
+        ]
+        items = dict(valid_rows[1])
+        malformed_rows = [
+            [],
+            {"path": ["unhashable"], "sha256": "0" * 64},
+            {"path": "extra.json", "sha256": ["unhashable"]},
+            {"path": "extra.json", "sha256": "not-a-sha256"},
+            {"path": "extra.json"},
+            {"path": "extra.json", "sha256": "0" * 64, "extra": True},
+        ]
+        for malformed in malformed_rows:
+            with self.subTest(malformed=malformed), tempfile.TemporaryDirectory() as temporary:
+                root = Path(temporary)
+                manifest = root / "reports/baseline/original-distribution.sha256.json"
+                manifest.parent.mkdir(parents=True)
+                manifest.write_text(
+                    json.dumps(
+                        {"algorithm": "SHA256", "files": [*valid_rows, malformed]}
+                    ),
+                    encoding="utf-8",
+                )
+
+                with self.assertRaises(migration.OfficialEvidenceError) as raised:
+                    migration.load_trusted_zh_reference_hashes(root)
+
+                self.assertIn(
+                    "OFFICIAL_REFERENCE_MANIFEST_INVALID_ROW",
+                    {row["code"] for row in raised.exception.issues},
+                )
+
+        for rows in ([{**items, "sha256": "bad"}, *valid_rows], [*valid_rows, {**items, "sha256": "bad"}]):
+            with self.subTest(order=rows[0].get("sha256")), tempfile.TemporaryDirectory() as temporary:
+                root = Path(temporary)
+                manifest = root / "reports/baseline/original-distribution.sha256.json"
+                manifest.parent.mkdir(parents=True)
+                manifest.write_text(
+                    json.dumps({"algorithm": "SHA256", "files": rows}),
+                    encoding="utf-8",
+                )
+                with self.assertRaises(migration.OfficialEvidenceError) as raised:
+                    migration.load_trusted_zh_reference_hashes(root)
+                self.assertIn(
+                    "OFFICIAL_REFERENCE_MANIFEST_DUPLICATE_PATH",
+                    {row["code"] for row in raised.exception.issues},
+                )
+
+    def test_trusted_zh_manifest_rejects_duplicate_path_even_when_hash_matches(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            manifest = root / "reports/baseline/original-distribution.sha256.json"
+            manifest.parent.mkdir(parents=True)
+            rows = [
+                {
+                    "path": f"Data/poe1/zh-rTW/{dictionary}.json",
+                    "sha256": migration.TRUSTED_ZH_REFERENCE_HASHES[dictionary],
+                }
+                for dictionary in migration.DICTIONARIES
+            ]
+            rows.append(dict(rows[0]))
+            manifest.write_text(
+                json.dumps({"algorithm": "SHA256", "files": rows}),
+                encoding="utf-8",
+            )
+            with self.assertRaises(migration.OfficialEvidenceError) as raised:
+                migration.load_trusted_zh_reference_hashes(root)
+
+        self.assertIn(
+            "OFFICIAL_REFERENCE_MANIFEST_DUPLICATE_PATH",
+            {row["code"] for row in raised.exception.issues},
+        )
+
+    def test_trusted_zh_manifest_rejects_hash_reused_by_relevant_entries(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            manifest = root / "reports/baseline/original-distribution.sha256.json"
+            manifest.parent.mkdir(parents=True)
+            rows = [
+                {
+                    "path": f"Data/poe1/zh-rTW/{dictionary}.json",
+                    "sha256": migration.TRUSTED_ZH_REFERENCE_HASHES[dictionary],
+                }
+                for dictionary in migration.DICTIONARIES
+            ]
+            rows[1]["sha256"] = rows[0]["sha256"]
+            manifest.write_text(
+                json.dumps({"algorithm": "SHA256", "files": rows}),
+                encoding="utf-8",
+            )
+            with self.assertRaises(migration.OfficialEvidenceError) as raised:
+                migration.load_trusted_zh_reference_hashes(root)
+
+        self.assertIn(
+            "OFFICIAL_REFERENCE_MANIFEST_DUPLICATE_HASH",
             {row["code"] for row in raised.exception.issues},
         )
 
