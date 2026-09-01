@@ -150,6 +150,7 @@ localization/ko-KR/official-terms/.cache/
 reports/display-closure/locale-audit.json
 .venv-translation/
 .build-deps/
+.worktrees/
 localization/ko-KR/manual/machine-fallback-shard-*.json
 **/__pycache__/
 graphify-out/
