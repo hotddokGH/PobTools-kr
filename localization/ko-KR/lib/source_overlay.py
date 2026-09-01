@@ -247,12 +247,39 @@ def _normalized_policy_path(value: str) -> str | None:
         or value != value.replace("\\", "/")
         or value.startswith("/")
         or re.match(r"^[A-Za-z]:", value)
+        or any(ord(character) <= 0x1F or ord(character) == 0x7F for character in value)
     ):
         return None
     parts = value.split("/")
     if any(part in {"", ".", ".."} for part in parts):
         return None
     return value
+
+
+def _is_policy_blank_character(character: str) -> bool:
+    """Use the same explicit policy-blank set as source-display-audit.mjs.
+
+    The set is C0 (U+0000..U+001F), C1 (U+007F..U+009F), Unicode
+    White_Space (U+0020, U+00A0, U+1680, U+2000..U+200A, U+2028,
+    U+2029, U+202F, U+205F, U+3000), and BOM (U+FEFF).
+    """
+    codepoint = ord(character)
+    return (
+        codepoint <= 0x1F
+        or 0x7F <= codepoint <= 0x9F
+        or codepoint in {0x20, 0xA0, 0x1680, 0x2028, 0x2029, 0x202F, 0x205F, 0x3000, 0xFEFF}
+        or 0x2000 <= codepoint <= 0x200A
+    )
+
+
+def _normalized_policy_reason(value: str) -> str:
+    start = 0
+    end = len(value)
+    while start < end and _is_policy_blank_character(value[start]):
+        start += 1
+    while start < end and _is_policy_blank_character(value[end - 1]):
+        end -= 1
+    return value[start:end]
 
 
 def validate_parse_recovery_allowlist(value: Any) -> tuple[ParseRecoveryEvidence, ...]:
@@ -298,7 +325,7 @@ def validate_parse_recovery_allowlist(value: Any) -> tuple[ParseRecoveryEvidence
         ):
             details.append(f"parseRecoveryAllowlist[{index}] has an invalid SHA-256")
             continue
-        if not isinstance(reason, str) or not reason.strip():
+        if not isinstance(reason, str) or not _normalized_policy_reason(reason):
             details.append(f"parseRecoveryAllowlist[{index}].reason is blank")
             continue
         key = (path, source_role, source_commit)
@@ -349,11 +376,11 @@ def validate_internal_literal_allowlist(
         if not isinstance(sha256, str) or re.fullmatch(r"[0-9A-F]{64}", sha256) is None:
             details.append(f"{label}.sha256 must be uppercase SHA-256")
             continue
-        if not isinstance(reason, str) or not reason.strip():
+        if not isinstance(reason, str) or not _normalized_policy_reason(reason):
             details.append(f"{label}.reason must be nonblank")
             continue
         identities.setdefault((path, sha256), []).append(index)
-        rows.append(InternalLiteralEvidence(path, sha256, reason.strip()))
+        rows.append(InternalLiteralEvidence(path, sha256, _normalized_policy_reason(reason)))
     for identity, indexes in sorted(identities.items()):
         if len(indexes) > 1:
             details.append(
@@ -852,7 +879,7 @@ def _excluded_paths(policy: dict[str, Any]) -> set[str]:
     return {
         str(row.get("path", "")).replace("\\", "/")
         for row in policy.get("excludedPaths", [])
-        if isinstance(row, dict) and str(row.get("reason", "")).strip()
+        if isinstance(row, dict) and _normalized_policy_reason(str(row.get("reason", "")))
     }
 
 

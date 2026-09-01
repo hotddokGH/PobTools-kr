@@ -121,6 +121,43 @@ test('malformed and duplicate internal literal policy rows fail before scanning'
   }
 });
 
+test('policy blank reasons and control paths cannot allowlist Han or start scans', () => {
+  const source = 'ImGui::Text(u8"設定");';
+  const valid = {
+    path: 'host/fixture.cpp',
+    sha256: literalSha256('設定'),
+    reason: 'reviewed internal fixture',
+  };
+  const malformedRows = [
+    { ...valid, reason: '\uFEFF' },
+    { ...valid, reason: '\u001C' },
+    { ...valid, path: 'host/fixture\0.cpp' },
+    { ...valid, path: 'host/fixture\r.cpp' },
+    { ...valid, path: 'host/fixture\n.cpp' },
+    { ...valid, path: 'host/fixture\u007F.cpp' },
+  ];
+  const root = mkdtempSync(join(tmpdir(), 'source-display-invalid-policy-'));
+  try {
+    mkdirSync(join(root, 'host'));
+    writeFileSync(join(root, 'host', 'fixture.cpp'), source, 'utf8');
+    for (const row of malformedRows) {
+      const policy = { internalLiteralAllowlist: [row] };
+      const direct = auditSourceText(source, policy, 'host/fixture.cpp');
+      const scanned = scanSourceDisplay({ engineRoot: root, policy });
+
+      assert.deepEqual(direct.issues.map((issue) => issue.code), ['INVALID_POLICY_DOCUMENT']);
+      assert.equal(direct.displayLiterals, 0);
+      assert.equal(direct.allowedInternalLiterals, 0);
+      assert.deepEqual(scanned.issues.map((issue) => issue.code), ['INVALID_POLICY_DOCUMENT']);
+      assert.equal(scanned.filesScanned, 0);
+      assert.equal(scanned.displayLiterals, 0);
+      assert.equal(scanned.allowedInternalLiterals, 0);
+    }
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
 test('missing internal literal policy fails closed before scanning', () => {
   const direct = auditSourceText('ImGui::Text(u8"設定");', {}, 'host/fixture.cpp');
   assert.equal(direct.displayLiterals, 0);

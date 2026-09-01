@@ -18,10 +18,39 @@ function lineAt(text, index) {
 
 function normalizedPolicyPath(value) {
   if (typeof value !== 'string' || !value || value.includes('\\') || value.startsWith('/')
-    || /^[A-Za-z]:/u.test(value) || invalidScalarIndex(value) !== undefined) return undefined;
+    || /^[A-Za-z]:/u.test(value) || invalidScalarIndex(value) !== undefined
+    || [...value].some((character) => {
+      const codePoint = character.codePointAt(0);
+      return codePoint <= 0x1F || codePoint === 0x7F;
+    })) return undefined;
   const parts = value.split('/');
   if (parts.some((part) => !part || part === '.' || part === '..')) return undefined;
   return value;
+}
+
+function isPolicyBlankCodePoint(codePoint) {
+  // Keep this explicit set identical to source_overlay.py: C0 (U+0000..U+001F),
+  // C1 (U+007F..U+009F), Unicode White_Space (U+0020, U+00A0, U+1680,
+  // U+2000..U+200A, U+2028, U+2029, U+202F, U+205F, U+3000), and BOM (U+FEFF).
+  return codePoint <= 0x1F || (codePoint >= 0x7F && codePoint <= 0x9F)
+    || [0x20, 0xA0, 0x1680, 0x2028, 0x2029, 0x202F, 0x205F, 0x3000, 0xFEFF].includes(codePoint)
+    || (codePoint >= 0x2000 && codePoint <= 0x200A);
+}
+
+function normalizedPolicyReason(value) {
+  let start = 0;
+  let end = value.length;
+  while (start < end) {
+    const codePoint = value.codePointAt(start);
+    if (!isPolicyBlankCodePoint(codePoint)) break;
+    start += codePoint > 0xFFFF ? 2 : 1;
+  }
+  while (start < end) {
+    const codePoint = value.codePointAt(end - 1);
+    if (!isPolicyBlankCodePoint(codePoint)) break;
+    end -= codePoint > 0xFFFF ? 2 : 1;
+  }
+  return value.slice(start, end);
 }
 
 function invalidScalarIndex(value) {
@@ -60,7 +89,7 @@ export function validateInternalLiteralAllowlist(value) {
       issues.push({ code: 'INVALID_POLICY_DOCUMENT', detail: `${label}.sha256 must be uppercase SHA-256` });
       return;
     }
-    if (typeof row.reason !== 'string' || !row.reason.trim()) {
+    if (typeof row.reason !== 'string' || !normalizedPolicyReason(row.reason)) {
       issues.push({ code: 'INVALID_POLICY_DOCUMENT', detail: `${label}.reason must be nonblank` });
       return;
     }
@@ -73,7 +102,7 @@ export function validateInternalLiteralAllowlist(value) {
       return;
     }
     identities.set(identity, index);
-    validated.push({ path, sha256: row.sha256, reason: row.reason.trim() });
+    validated.push({ path, sha256: row.sha256, reason: normalizedPolicyReason(row.reason) });
   });
   return { rows: validated, issues };
 }
@@ -421,14 +450,15 @@ export function auditSourceText(text, policy, file = '<memory>') {
     };
   }
   const excluded = (policy?.excludedPaths ?? []).find((row) =>
-    String(row?.path ?? '').replaceAll('\\', '/') === normalizedFile && String(row?.reason ?? '').trim());
+    String(row?.path ?? '').replaceAll('\\', '/') === normalizedFile
+      && normalizedPolicyReason(String(row?.reason ?? '')));
   if (excluded) {
     return {
       displayLiterals: 0,
       koreanDisplayLiterals: 0,
       allowedInternalLiterals: 0,
       excludedFile: true,
-      exclusionReason: String(excluded.reason).trim(),
+      exclusionReason: normalizedPolicyReason(String(excluded.reason)),
       issues: [],
     };
   }
@@ -475,7 +505,7 @@ export function auditSourceText(text, policy, file = '<memory>') {
     }
     if (!HAN.test(literalValue)) continue;
     const sha256 = literalSha256(literalValue);
-    const reason = String(allowed.get(`${normalizedFile}\0${sha256}`) ?? '').trim();
+    const reason = normalizedPolicyReason(String(allowed.get(`${normalizedFile}\0${sha256}`) ?? ''));
     if (reason) {
       allowedInternalLiterals += 1;
       continue;

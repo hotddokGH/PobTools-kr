@@ -473,6 +473,38 @@ class SourceOverlayTests(unittest.TestCase):
                 )
                 self.assertEqual(self.read("host/fixture.cpp"), original)
 
+    def test_policy_blank_reasons_and_control_paths_cannot_allowlist_han(self):
+        original = 'void Draw(){ Label(u8"設定"); }'
+        digest = hashlib.sha256("設定".encode("utf-8")).hexdigest().upper()
+        valid = {
+            "path": "host/fixture.cpp",
+            "sha256": digest,
+            "reason": "reviewed internal fixture",
+        }
+        malformed_rows = [
+            {**valid, "reason": "\ufeff"},
+            {**valid, "reason": "\x1c"},
+            {**valid, "path": "host/fixture\x00.cpp"},
+            {**valid, "path": "host/fixture\r.cpp"},
+            {**valid, "path": "host/fixture\n.cpp"},
+            {**valid, "path": "host/fixture\x7f.cpp"},
+        ]
+        mapping = self.mapping({})
+        for row in malformed_rows:
+            with self.subTest(row=row):
+                self.write("host/fixture.cpp", original)
+                self.write_policy([], [row])
+
+                report = apply_overlay(self.root, mapping, self.policy, self.report)
+
+                self.assertEqual(
+                    {issue["code"] for issue in report["issues"]},
+                    {"INVALID_POLICY_DOCUMENT"},
+                )
+                self.assertEqual(report["displayLiterals"], 0)
+                self.assertEqual(report["intentional"], 0)
+                self.assertEqual(self.read("host/fixture.cpp"), original)
+
     def test_internal_allowlist_accepts_valid_korean_path_and_replacement_scalar(self):
         relative = "host/한글.cpp"
         decoded = "設定\ufffd"
