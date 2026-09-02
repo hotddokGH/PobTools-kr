@@ -288,6 +288,42 @@ function removeIfPresent(path) {
   unlinkSync(path);
 }
 
+function assertSafeDestinationParent(destination, path) {
+  const parent = dirname(path);
+  if (!isInside(parent, destination)) throw new Error('transaction path escapes the destination root');
+  assertRegularRoot(destination, 'destination root');
+  let cursor = destination;
+  for (const segment of relative(destination, parent).split(sep).filter(Boolean)) {
+    cursor = join(cursor, segment);
+    if (!existsSync(cursor)) throw new Error(`transaction parent is missing: ${relative(destination, parent).split(sep).join('/')}`);
+    const metadata = lstatSync(cursor);
+    if (metadata.isSymbolicLink() || !metadata.isDirectory() || !isInside(realpathSync(cursor), realpathSync(destination))) {
+      throw new Error(`transaction parent is not a safe regular directory: ${relative(destination, parent).split(sep).join('/')}`);
+    }
+  }
+}
+
+function removeTransactionTemporary(path, destination) {
+  assertSafeDestinationParent(destination, path);
+  if (!existsSync(path)) return;
+  const metadata = lstatSync(path);
+  if (!metadata.isFile() && !metadata.isSymbolicLink()) throw new Error(`transaction temporary is not removable: ${path}`);
+  unlinkSync(path);
+}
+
+function assertIndependentExpectedFile(path, row, label) {
+  if (!existsSync(path)) throw new Error(`${label} must be an independent regular file with exactly one hard link: ${row.path}`);
+  const metadata = lstatSync(path);
+  if (metadata.isSymbolicLink() || !metadata.isFile() || metadata.nlink !== 1
+      || normalized(realpathSync(path)) !== normalized(path)) {
+    throw new Error(`${label} must be an independent regular file with exactly one hard link: ${row.path}`);
+  }
+  const bytes = readFileSync(path);
+  if (bytes.length !== row.size || sha256(bytes) !== row.sha256) {
+    throw new Error(`${label} does not contain the immutable verified bytes: ${row.path}`);
+  }
+}
+
 function uniqueTemporaryPath(target, index) {
   let attempt = 0;
   while (true) {
@@ -301,10 +337,7 @@ function restoreTransaction({ changed, snapshots, createdDirectories, temporaryP
   let rollbackError;
   for (const path of temporaryPaths) {
     try {
-      const relativePath = relative(destination, path).split(sep).join('/');
-      if (!isInside(path, destination)) throw new Error('transaction temporary path escapes the destination root');
-      assertDestinationSafe(destination, [relativePath]);
-      removeIfPresent(path);
+      removeTransactionTemporary(path, destination);
     } catch (error) { rollbackError ??= error; }
   }
   for (const row of [...changed].reverse()) {
@@ -342,7 +375,8 @@ export function copyVerifiedMaintenanceBundle({ verifiedBundle, destinationRoot,
   if (!buffers) throw new Error('verified bundle token is invalid or was not created by this process');
   const { manifest } = verifiedBundle;
   if (operations === null || typeof operations !== 'object' || Array.isArray(operations)
-      || (operations.beforeReplace !== undefined && typeof operations.beforeReplace !== 'function')) {
+      || (operations.beforeReplace !== undefined && typeof operations.beforeReplace !== 'function')
+      || (operations.writeTemporary !== undefined && typeof operations.writeTemporary !== 'function')) {
     throw new Error('bundle transaction operations are invalid');
   }
   assertDestinationSafe(destination, manifest.files.map((row) => row.path));
@@ -359,24 +393,20 @@ export function copyVerifiedMaintenanceBundle({ verifiedBundle, destinationRoot,
       assertDestinationSafe(destination, [row.path]);
       const temporary = uniqueTemporaryPath(target, index);
       const bytes = buffers.get(row.path);
-      writeFileSync(temporary, bytes);
       temporaryPaths.push(temporary);
-      const written = readFileSync(temporary);
-      if (written.length !== row.size || sha256(written) !== row.sha256) {
-        throw new Error(`transaction temporary file failed verification: ${row.path}`);
-      }
+      if (operations.writeTemporary) operations.writeTemporary({ temporaryPath: temporary, bytes: Buffer.from(bytes), relativePath: row.path });
+      else writeFileSync(temporary, bytes);
+      assertIndependentExpectedFile(temporary, row, 'transaction temporary');
       plan.push({ ...row, index, target, temporary });
     }
     for (const row of plan) {
       operations.beforeReplace?.({ relativePath: row.path, index: row.index, destinationRoot: destination });
       assertDestinationSafe(destination, [row.path]);
+      assertIndependentExpectedFile(row.temporary, row, 'transaction temporary');
       renameSync(row.temporary, row.target);
       temporaryPaths.splice(temporaryPaths.indexOf(row.temporary), 1);
       changed.push(row);
-      const bytes = readFileSync(row.target);
-      if (bytes.length !== row.size || sha256(bytes) !== row.sha256) {
-        throw new Error(`copied bundle file failed verification: ${row.path}`);
-      }
+      assertIndependentExpectedFile(row.target, row, 'installed bundle file');
     }
   } catch (error) {
     restoreTransaction({ changed, snapshots, createdDirectories, temporaryPaths, destination, originalError: error });

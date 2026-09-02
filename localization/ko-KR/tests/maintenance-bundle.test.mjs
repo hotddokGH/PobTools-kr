@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto';
 import {
   cpSync,
   existsSync,
+  linkSync,
   lstatSync,
   mkdirSync,
   mkdtempSync,
@@ -10,6 +11,7 @@ import {
   readdirSync,
   rmSync,
   symlinkSync,
+  unlinkSync,
   writeFileSync,
 } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -66,6 +68,17 @@ function snapshotTree(root, relativeRoot = '') {
   };
   visit(root, relativeRoot);
   return output;
+}
+
+function findTransactionTemporary(destinationRoot, relativePath) {
+  const parent = dirname(join(destinationRoot, ...relativePath.split('/')));
+  const names = readdirSync(parent).filter((name) => name.includes('.pobtools-') && name.endsWith('.tmp'));
+  assert.equal(names.length, 1, `expected one transaction temporary file for ${relativePath}`);
+  return join(parent, names[0]);
+}
+
+function assertNoTransactionTemporaries(destinationRoot) {
+  assert.equal(snapshotTree(destinationRoot).some((row) => String(row[1]).includes('.pobtools-')), false);
 }
 
 test('creates a deterministic sorted data-only bundle and reproduces it across roots', (t) => {
@@ -223,6 +236,100 @@ test('an ancestor replacement race is caught immediately and leaves destination 
   const reports = join(redirected.destinationRoot, 'reports');
   if (existsSync(reports)) rmSync(reports, { recursive: true, force: true });
   assert.deepEqual(snapshotTree(redirected.destinationRoot), before);
+});
+
+test('a matching-byte hard-link substitution is rejected without binding destination to outside bytes', (t) => {
+  const attacked = fixture(t);
+  createMaintenanceBundle({ sourceRoot: attacked.sourceRoot, bundleRoot: attacked.bundleRoot });
+  const verifiedBundle = verifyMaintenanceBundle({ bundleRoot: attacked.bundleRoot, stagingRoot: join(attacked.root, 'staging') });
+  mkdirSync(attacked.destinationRoot);
+  write(join(attacked.destinationRoot, 'sentinel.txt'), 'destination-original');
+  const outside = join(attacked.root, 'outside-hard-link.json');
+  write(outside, readFileSync(join(attacked.sourceRoot, 'localization', 'ko-KR', 'source-translation-suggestions.json')));
+  const before = snapshotTree(attacked.destinationRoot);
+  let substituted = false;
+  assert.throws(() => copyVerifiedMaintenanceBundle({
+    verifiedBundle,
+    destinationRoot: attacked.destinationRoot,
+    operations: {
+      beforeReplace({ relativePath }) {
+        if (substituted) return;
+        substituted = true;
+        const temporary = findTransactionTemporary(attacked.destinationRoot, relativePath);
+        unlinkSync(temporary);
+        linkSync(outside, temporary);
+      },
+    },
+  }), /independent regular file with exactly one hard link/u);
+  assert.equal(readFileSync(outside, 'utf8'), '{"rows":[]}\n');
+  assert.deepEqual(snapshotTree(attacked.destinationRoot), before);
+  assertNoTransactionTemporaries(attacked.destinationRoot);
+  write(outside, 'outside mutated after rejected copy');
+  assert.deepEqual(snapshotTree(attacked.destinationRoot), before);
+});
+
+test('a matching-byte file-symlink substitution is rejected when file symlinks are available', (t) => {
+  const attacked = fixture(t);
+  const probeTarget = join(attacked.root, 'symlink-probe-target');
+  const probeLink = join(attacked.root, 'symlink-probe-link');
+  write(probeTarget, 'probe');
+  try {
+    symlinkSync(probeTarget, probeLink, 'file');
+    unlinkSync(probeLink);
+  } catch (error) {
+    if (error?.code === 'EPERM' || error?.code === 'EACCES') {
+      t.skip(`file symlinks unavailable: ${error.code}`);
+      return;
+    }
+    throw error;
+  }
+  createMaintenanceBundle({ sourceRoot: attacked.sourceRoot, bundleRoot: attacked.bundleRoot });
+  const verifiedBundle = verifyMaintenanceBundle({ bundleRoot: attacked.bundleRoot, stagingRoot: join(attacked.root, 'staging') });
+  mkdirSync(attacked.destinationRoot);
+  write(join(attacked.destinationRoot, 'sentinel.txt'), 'destination-original');
+  const outside = join(attacked.root, 'outside-symlink.json');
+  write(outside, readFileSync(join(attacked.sourceRoot, 'localization', 'ko-KR', 'source-translation-suggestions.json')));
+  const before = snapshotTree(attacked.destinationRoot);
+  let substituted = false;
+  assert.throws(() => copyVerifiedMaintenanceBundle({
+    verifiedBundle,
+    destinationRoot: attacked.destinationRoot,
+    operations: {
+      beforeReplace({ relativePath }) {
+        if (substituted) return;
+        substituted = true;
+        const temporary = findTransactionTemporary(attacked.destinationRoot, relativePath);
+        unlinkSync(temporary);
+        symlinkSync(outside, temporary, 'file');
+      },
+    },
+  }), /independent regular file with exactly one hard link/u);
+  assert.equal(readFileSync(outside, 'utf8'), '{"rows":[]}\n');
+  assert.deepEqual(snapshotTree(attacked.destinationRoot), before);
+  assertNoTransactionTemporaries(attacked.destinationRoot);
+  write(outside, 'outside mutated after rejected copy');
+  assert.deepEqual(snapshotTree(attacked.destinationRoot), before);
+});
+
+test('a partial temporary write failure leaves no destination changes or temporary residue', (t) => {
+  const damaged = fixture(t);
+  createMaintenanceBundle({ sourceRoot: damaged.sourceRoot, bundleRoot: damaged.bundleRoot });
+  const verifiedBundle = verifyMaintenanceBundle({ bundleRoot: damaged.bundleRoot, stagingRoot: join(damaged.root, 'staging') });
+  mkdirSync(damaged.destinationRoot);
+  write(join(damaged.destinationRoot, 'sentinel.txt'), 'destination-original');
+  const before = snapshotTree(damaged.destinationRoot);
+  assert.throws(() => copyVerifiedMaintenanceBundle({
+    verifiedBundle,
+    destinationRoot: damaged.destinationRoot,
+    operations: {
+      writeTemporary({ temporaryPath, bytes }) {
+        writeFileSync(temporaryPath, bytes.subarray(0, Math.max(1, Math.floor(bytes.length / 2))));
+        throw new Error('injected partial temporary write failure');
+      },
+    },
+  }), /injected partial temporary write failure/u);
+  assert.deepEqual(snapshotTree(damaged.destinationRoot), before);
+  assertNoTransactionTemporaries(damaged.destinationRoot);
 });
 
 test('rejects non-empty output directories instead of overwriting existing bundle or staging data', (t) => {
