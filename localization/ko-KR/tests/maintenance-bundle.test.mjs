@@ -81,6 +81,17 @@ function assertNoTransactionTemporaries(destinationRoot) {
   assert.equal(snapshotTree(destinationRoot).some((row) => String(row[1]).includes('.pobtools-')), false);
 }
 
+function prepareUntouchedDestination(item) {
+  mkdirSync(item.destinationRoot);
+  write(join(item.destinationRoot, 'sentinel.txt'), 'destination-original');
+  return snapshotTree(item.destinationRoot);
+}
+
+function assertUntouchedDestination(item, before, message) {
+  assert.deepEqual(snapshotTree(item.destinationRoot), before, message);
+  assertNoTransactionTemporaries(item.destinationRoot);
+}
+
 function brokenDirectoryLink(target, path) {
   symlinkSync(target, path, process.platform === 'win32' ? 'junction' : 'dir');
 }
@@ -172,6 +183,131 @@ test('rejects source and payload links or non-regular entries', (t) => {
   rmSync(payloadPath, { recursive: true });
   symlinkSync(join(payload.sourceRoot, 'reports', 'maintenance'), payloadPath, process.platform === 'win32' ? 'junction' : 'dir');
   assert.throws(() => verifyMaintenanceBundle({ bundleRoot: payload.bundleRoot }), { name: 'Error' });
+});
+
+test('broken junctions below optional and exact source paths reject before bundle output', (t) => {
+  const attacks = [
+    ['optional prefix', (item, missingOutside) => {
+      brokenDirectoryLink(missingOutside, join(item.sourceRoot, 'reports', 'display-closure', 'broken'));
+    }],
+    ['exact path ancestor', (item, missingOutside) => {
+      rmSync(join(item.sourceRoot, 'localization'), { recursive: true });
+      brokenDirectoryLink(missingOutside, join(item.sourceRoot, 'localization'));
+    }],
+  ];
+  for (const [name, attack] of attacks) {
+    const item = fixture(t);
+    const before = prepareUntouchedDestination(item);
+    const missingOutside = join(item.root, `missing-source-${name.replaceAll(' ', '-')}`);
+    attack(item, missingOutside);
+    assert.throws(
+      () => createMaintenanceBundle({ sourceRoot: item.sourceRoot, bundleRoot: item.bundleRoot }),
+      /symbolic link, junction, or reparse point/u,
+      name,
+    );
+    assert.equal(existsSync(missingOutside), false, name);
+    assert.equal(existsSync(item.bundleRoot), false, name);
+    assertUntouchedDestination(item, before, name);
+  }
+});
+
+test('an extra broken payload junction rejects before staging or destination writes', (t) => {
+  const item = fixture(t);
+  createMaintenanceBundle({ sourceRoot: item.sourceRoot, bundleRoot: item.bundleRoot });
+  const missingOutside = join(item.root, 'missing-extra-payload-target');
+  const extra = join(item.bundleRoot, 'payload', 'reports', 'display-closure', 'unmanifested');
+  brokenDirectoryLink(missingOutside, extra);
+  const stagingRoot = join(item.root, 'staging');
+  const before = prepareUntouchedDestination(item);
+  assert.throws(
+    () => verifyMaintenanceBundle({ bundleRoot: item.bundleRoot, stagingRoot }),
+    /symbolic link, junction, or reparse point/u,
+  );
+  assert.equal(existsSync(missingOutside), false);
+  assert.equal(existsSync(stagingRoot), false);
+  assertUntouchedDestination(item, before);
+});
+
+test('broken source, bundle-output, bundle-input, and staging roots are recognized as present reparse entries', (t) => {
+  const sourceAttack = fixture(t);
+  const sourceBefore = prepareUntouchedDestination(sourceAttack);
+  const missingSource = join(sourceAttack.root, 'missing-source-root');
+  rmSync(sourceAttack.sourceRoot, { recursive: true });
+  brokenDirectoryLink(missingSource, sourceAttack.sourceRoot);
+  assert.throws(
+    () => createMaintenanceBundle({ sourceRoot: sourceAttack.sourceRoot, bundleRoot: sourceAttack.bundleRoot }),
+    /source root must be a regular directory/u,
+  );
+  assert.equal(existsSync(missingSource), false);
+  assert.equal(existsSync(sourceAttack.bundleRoot), false);
+  assertUntouchedDestination(sourceAttack, sourceBefore);
+
+  const outputAttack = fixture(t);
+  const outputBefore = prepareUntouchedDestination(outputAttack);
+  const missingOutput = join(outputAttack.root, 'missing-bundle-output');
+  brokenDirectoryLink(missingOutput, outputAttack.bundleRoot);
+  assert.throws(
+    () => createMaintenanceBundle({ sourceRoot: outputAttack.sourceRoot, bundleRoot: outputAttack.bundleRoot }),
+    /bundle root must not exist or must be an empty regular directory/u,
+  );
+  assert.equal(existsSync(missingOutput), false);
+  assert.equal(lstatSync(outputAttack.bundleRoot).isSymbolicLink(), true);
+  assertUntouchedDestination(outputAttack, outputBefore);
+
+  const inputAttack = fixture(t);
+  const inputBefore = prepareUntouchedDestination(inputAttack);
+  createMaintenanceBundle({ sourceRoot: inputAttack.sourceRoot, bundleRoot: inputAttack.bundleRoot });
+  rmSync(inputAttack.bundleRoot, { recursive: true });
+  const missingInput = join(inputAttack.root, 'missing-bundle-input');
+  brokenDirectoryLink(missingInput, inputAttack.bundleRoot);
+  const inputStaging = join(inputAttack.root, 'input-staging');
+  assert.throws(
+    () => verifyMaintenanceBundle({ bundleRoot: inputAttack.bundleRoot, stagingRoot: inputStaging }),
+    /bundle root must be a regular directory/u,
+  );
+  assert.equal(existsSync(missingInput), false);
+  assert.equal(existsSync(inputStaging), false);
+  assertUntouchedDestination(inputAttack, inputBefore);
+
+  const stagingAttack = fixture(t);
+  createMaintenanceBundle({ sourceRoot: stagingAttack.sourceRoot, bundleRoot: stagingAttack.bundleRoot });
+  const missingStaging = join(stagingAttack.root, 'missing-staging-root');
+  const stagingRoot = join(stagingAttack.root, 'staging');
+  brokenDirectoryLink(missingStaging, stagingRoot);
+  const before = prepareUntouchedDestination(stagingAttack);
+  assert.throws(
+    () => verifyMaintenanceBundle({ bundleRoot: stagingAttack.bundleRoot, stagingRoot }),
+    /staging root must not exist or must be an empty regular directory/u,
+  );
+  assert.equal(existsSync(missingStaging), false);
+  assert.equal(existsSync(join(stagingRoot, 'payload')), false);
+  assertUntouchedDestination(stagingAttack, before);
+});
+
+test('broken manifest and manifested payload leaves reject as reparse entries before staging writes', (t) => {
+  const attacks = [
+    ['manifest', (item, missingOutside) => {
+      rmSync(join(item.bundleRoot, manifestName));
+      brokenDirectoryLink(missingOutside, join(item.bundleRoot, manifestName));
+    }, /bundle manifest must be a regular file/u],
+    ['manifested payload', (item, missingOutside) => {
+      const target = join(item.bundleRoot, 'payload', 'reports', 'maintenance', 'upstream-update.json');
+      rmSync(target);
+      brokenDirectoryLink(missingOutside, target);
+    }, /symbolic link, junction, or reparse point/u],
+  ];
+  for (const [name, attack, expected] of attacks) {
+    const item = fixture(t);
+    createMaintenanceBundle({ sourceRoot: item.sourceRoot, bundleRoot: item.bundleRoot });
+    const missingOutside = join(item.root, `missing-${name.replaceAll(' ', '-')}`);
+    attack(item, missingOutside);
+    const stagingRoot = join(item.root, 'staging');
+    const before = prepareUntouchedDestination(item);
+    assert.throws(() => verifyMaintenanceBundle({ bundleRoot: item.bundleRoot, stagingRoot }), expected, name);
+    assert.equal(existsSync(missingOutside), false, name);
+    assert.equal(existsSync(stagingRoot), false, name);
+    assertUntouchedDestination(item, before, name);
+  }
 });
 
 test('copy consumes immutable verified bytes even when staged bytes mutate afterward', (t) => {

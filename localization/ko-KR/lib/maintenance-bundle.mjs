@@ -1,6 +1,5 @@
 import { createHash } from 'node:crypto';
 import {
-  existsSync,
   lstatSync,
   mkdirSync,
   readFileSync,
@@ -51,14 +50,14 @@ function lstatEntry(path) {
 }
 
 function assertRegularRoot(path, label) {
-  if (!existsSync(path)) throw new Error(`${label} does not exist`);
-  const metadata = lstatSync(path);
+  const metadata = lstatEntry(path);
+  if (!metadata) throw new Error(`${label} does not exist`);
   if (metadata.isSymbolicLink() || !metadata.isDirectory()) throw new Error(`${label} must be a regular directory`);
 }
 
 function assertEmptyOutput(path, label) {
-  if (!existsSync(path)) return;
-  const metadata = lstatSync(path);
+  const metadata = lstatEntry(path);
+  if (!metadata) return;
   if (metadata.isSymbolicLink() || !metadata.isDirectory() || readdirSync(path).length !== 0) {
     throw new Error(`${label} must not exist or must be an empty regular directory`);
   }
@@ -91,8 +90,8 @@ function assertExistingPathChain(root, relativePath, label) {
   let cursor = root;
   for (const segment of relativePath.split('/')) {
     cursor = join(cursor, segment);
-    if (!existsSync(cursor)) return;
-    const metadata = lstatSync(cursor);
+    const metadata = lstatEntry(cursor);
+    if (!metadata) return;
     if (metadata.isSymbolicLink()) throw new Error(`${label} contains a symbolic link, junction, or reparse point: ${relativePath}`);
   }
 }
@@ -103,8 +102,8 @@ function sha256(bytes) {
 
 function directoryFiles(root, relativeRoot = '') {
   const absolute = relativeRoot ? join(root, ...relativeRoot.split('/')) : root;
-  if (!existsSync(absolute)) return [];
-  const metadata = lstatSync(absolute);
+  const metadata = lstatEntry(absolute);
+  if (!metadata) return [];
   if (metadata.isSymbolicLink()) throw new Error(`bundle source contains a symbolic link, junction, or reparse point: ${relativeRoot}`);
   if (metadata.isFile()) return [relativeRoot];
   if (!metadata.isDirectory()) throw new Error(`bundle source contains a non-regular entry: ${relativeRoot}`);
@@ -120,9 +119,9 @@ function collectSourcePaths(sourceRoot) {
   const output = [];
   for (const path of [...EXACT_PATHS].sort(compare)) {
     const absolute = join(sourceRoot, ...path.split('/'));
-    if (!existsSync(absolute)) continue;
     assertExistingPathChain(sourceRoot, path, 'bundle source');
-    const metadata = lstatSync(absolute);
+    const metadata = lstatEntry(absolute);
+    if (!metadata) continue;
     if (metadata.isSymbolicLink() || !metadata.isFile()) throw new Error(`bundle source is not a regular file: ${path}`);
     output.push(path);
   }
@@ -173,8 +172,8 @@ export function createMaintenanceBundle({ sourceRoot, bundleRoot }) {
 function readManifest(bundleRoot) {
   assertRegularRoot(bundleRoot, 'bundle root');
   const manifestPath = join(bundleRoot, MANIFEST_NAME);
-  if (!existsSync(manifestPath)) throw new Error('bundle manifest is missing');
-  const metadata = lstatSync(manifestPath);
+  const metadata = lstatEntry(manifestPath);
+  if (!metadata) throw new Error('bundle manifest is missing');
   if (metadata.isSymbolicLink() || !metadata.isFile()) throw new Error('bundle manifest must be a regular file');
   let manifest;
   try {
