@@ -1,0 +1,181 @@
+name: Check Korean upstream maintenance
+
+on:
+  workflow_dispatch:
+  # disabled cron: 17 3 * * *
+  # Enable the daily schedule only after a hosted manual dispatch succeeds and is reviewed.
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pobtools-ko-upstream-maintenance
+  cancel-in-progress: false
+
+jobs:
+  analyze:
+    runs-on: windows-2025-vs2026
+    permissions:
+      contents: read
+    outputs:
+      classification: ${{ steps.report.outputs.classification }}
+      commit: ${{ steps.report.outputs.commit }}
+    steps:
+      - name: Check out trusted Korean automation
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: '22'
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+        with:
+          python-version: '3.13'
+      - name: Install trusted Python dependencies
+        shell: pwsh
+        run: python -m pip install -r localization/ko-KR/requirements-overlay.txt
+      - name: Fetch upstream main
+        shell: pwsh
+        run: |
+          git remote add upstream https://github.com/Hsiung-Shao/PobTools-zh.git
+          git fetch --no-tags upstream main
+      - name: Analyze upstream and capture expected exits
+        id: analyze
+        shell: pwsh
+        run: |
+          $report = Join-Path $env:RUNNER_TEMP 'upstream-update.json'
+          $workspace = Join-Path $env:GITHUB_WORKSPACE '.ko-worktrees/upstream-maintenance'
+          node localization/ko-KR/update-upstream.mjs --repository-root $env:GITHUB_WORKSPACE --upstream-ref upstream/main --workspace $workspace --report $report --force-prepare
+          $code = $LASTEXITCODE
+          if ($code -notin @(0, 1, 2)) { $code = 1 }
+          "exit_code=$code" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+          if (-not (Test-Path -LiteralPath $report -PathType Leaf)) {
+            $commit = (git rev-parse --verify 'upstream/main^{commit}').Trim()
+            $fallback = [ordered]@{
+              schemaVersion = 1
+              commit = $commit
+              upstreamRef = 'upstream/main'
+              classification = 'blocked'
+              sourceSummary = [ordered]@{ filesScanned = 0; displayLiterals = 0; reused = 0; official = 0; reviewed = 0; intentional = 0 }
+              newStrings = @(); suggestedStrings = @(); ambiguousStrings = @(); officialDataChanges = @()
+              compatibilityFailures = @(); deterministicFailures = @()
+              commandFailures = @([ordered]@{ path = 'localization/ko-KR/update-upstream.mjs'; phase = 'orchestrator'; detail = 'maintenance report was not produced' })
+              auditFailures = @(); phases = @()
+            }
+            $fallback | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $report -Encoding utf8
+          }
+      - name: Validate report and export trusted metadata
+        id: report
+        shell: pwsh
+        run: |
+          $evidence = Join-Path $env:RUNNER_TEMP 'ko-maintenance-evidence'
+          New-Item -ItemType Directory -Force -Path $evidence | Out-Null
+          $report = Join-Path $env:RUNNER_TEMP 'upstream-update.json'
+          Copy-Item -LiteralPath $report -Destination (Join-Path $evidence 'upstream-update.json')
+          node localization/ko-KR/render-maintenance-pr.mjs --report $report --title-file (Join-Path $evidence 'pr-title.txt') --body-file (Join-Path $evidence 'pr-body.md') --labels-file (Join-Path $evidence 'pr-labels.txt') --metadata-file (Join-Path $evidence 'metadata.json')
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $metadata = Get-Content -Raw -LiteralPath (Join-Path $evidence 'metadata.json') | ConvertFrom-Json
+          if ($metadata.classification -notin @('ready', 'review-required', 'already-processed', 'blocked')) { throw 'invalid classification' }
+          if ($metadata.commit -notmatch '^[0-9a-f]{40}$') { throw 'invalid commit' }
+          "classification=$($metadata.classification)" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+          "commit=$($metadata.commit)" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+      - name: Assemble verified data-only bundle
+        if: steps.report.outputs.classification == 'ready' || steps.report.outputs.classification == 'review-required'
+        shell: pwsh
+        run: |
+          $candidate = Join-Path $env:RUNNER_TEMP 'ko-maintenance-candidate'
+          $evidence = Join-Path $env:RUNNER_TEMP 'ko-maintenance-evidence'
+          $generated = Join-Path $env:GITHUB_WORKSPACE '.ko-worktrees/upstream-maintenance'
+          New-Item -ItemType Directory -Force -Path $candidate | Out-Null
+          $copies = @(
+            @{ Source = (Join-Path $env:RUNNER_TEMP 'upstream-update.json'); Target = 'reports/maintenance/upstream-update.json' },
+            @{ Source = (Join-Path $env:GITHUB_WORKSPACE 'localization/ko-KR/source-translation-suggestions.json'); Target = 'localization/ko-KR/source-translation-suggestions.json' },
+            @{ Source = (Join-Path $env:GITHUB_WORKSPACE 'pob-zh-engine/dist/Data/launcher/ko-KR'); Target = 'pob-zh-engine/dist/Data/launcher/ko-KR' },
+            @{ Source = (Join-Path $generated 'pob-zh-engine/dist/Data/poe1/ko-KR'); Target = 'pob-zh-engine/dist/Data/poe1/ko-KR' },
+            @{ Source = (Join-Path $env:GITHUB_WORKSPACE 'reports/display-closure'); Target = 'reports/display-closure' },
+            @{ Source = (Join-Path $env:GITHUB_WORKSPACE 'reports/official-terms'); Target = 'reports/official-terms' }
+          )
+          foreach ($copy in $copies) {
+            if (-not (Test-Path -LiteralPath $copy.Source)) { continue }
+            $destination = Join-Path $candidate $copy.Target
+            New-Item -ItemType Directory -Force -Path (Split-Path -Parent $destination) | Out-Null
+            Copy-Item -LiteralPath $copy.Source -Destination $destination -Recurse
+          }
+          node localization/ko-KR/lib/maintenance-bundle.mjs create --source $candidate --bundle (Join-Path $evidence 'maintenance-bundle')
+      - name: Upload deterministic maintenance evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: ko-maintenance-analysis
+          path: ${{ runner.temp }}/ko-maintenance-evidence
+          if-no-files-found: error
+      - name: Fail blocked analysis after evidence upload
+        if: steps.analyze.outputs.exit_code == '1'
+        shell: pwsh
+        run: exit 1
+
+  propose:
+    needs: analyze
+    if: needs.analyze.result == 'success' && (needs.analyze.outputs.classification == 'ready' || needs.analyze.outputs.classification == 'review-required')
+    runs-on: windows-2025-vs2026
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Check out trusted Korean automation
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: Download analysis artifact outside the repository
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
+        with:
+          name: ko-maintenance-analysis
+          path: ${{ runner.temp }}/ko-maintenance-download
+      - name: Verify into external staging
+        shell: pwsh
+        run: node localization/ko-KR/lib/maintenance-bundle.mjs verify --bundle "${{ runner.temp }}/ko-maintenance-download/maintenance-bundle" --staging "${{ runner.temp }}/ko-maintenance-verified"
+      - name: Copy only the verified allowlist
+        shell: pwsh
+        run: node localization/ko-KR/lib/maintenance-bundle.mjs copy --staging "${{ runner.temp }}/ko-maintenance-verified" --destination $env:GITHUB_WORKSPACE
+      - name: Render trusted PR files
+        shell: pwsh
+        run: |
+          $report = Join-Path $env:GITHUB_WORKSPACE 'reports/maintenance/upstream-update.json'
+          node localization/ko-KR/render-maintenance-pr.mjs --report $report --title-file (Join-Path $env:RUNNER_TEMP 'pr-title.txt') --body-file (Join-Path $env:RUNNER_TEMP 'pr-body.md') --labels-file (Join-Path $env:RUNNER_TEMP 'pr-labels.txt') --metadata-file (Join-Path $env:RUNNER_TEMP 'metadata.json')
+      - name: Commit and push the fixed maintenance branch
+        shell: pwsh
+        run: |
+          git switch -C automation/upstream-ko
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A -- reports/maintenance/upstream-update.json localization/ko-KR/source-translation-suggestions.json pob-zh-engine/dist/Data/launcher/ko-KR pob-zh-engine/dist/Data/poe1/ko-KR reports/display-closure reports/official-terms
+          $staged = git diff --cached --name-only
+          if ($staged.Count -eq 0) { throw 'verified maintenance bundle produced no repository changes' }
+          git commit -m "chore: propose Korean upstream maintenance ${{ needs.analyze.outputs.commit }}"
+          git push --force-with-lease origin HEAD:automation/upstream-ko
+      - name: Create or update exactly one maintenance PR
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $title = (Get-Content -Raw -LiteralPath (Join-Path $env:RUNNER_TEMP 'pr-title.txt')).Trim()
+          $body = Join-Path $env:RUNNER_TEMP 'pr-body.md'
+          $open = @(gh pr list --head automation/upstream-ko --state open --json number,baseRefName | ConvertFrom-Json)
+          if ($open.Count -gt 1) { throw 'more than one maintenance PR is open' }
+          if ($open.Count -eq 1) {
+            gh pr edit $($open[0].number) --base ko/main --title $title --body-file $body
+            $number = $open[0].number
+          } else {
+            gh pr create --head automation/upstream-ko --base ko/main --title $title --body-file $body
+            $created = @(gh pr list --head automation/upstream-ko --base ko/main --state open --json number | ConvertFrom-Json)
+            if ($created.Count -ne 1) { throw 'maintenance PR creation did not produce exactly one open PR' }
+            $number = $created[0].number
+          }
+          $existingLabels = @(gh label list --limit 1000 --json name | ConvertFrom-Json | ForEach-Object { $_.name })
+          foreach ($label in Get-Content -LiteralPath (Join-Path $env:RUNNER_TEMP 'pr-labels.txt')) {
+            if ($existingLabels -contains $label) { gh pr edit $number --add-label $label }
+          }

@@ -3,6 +3,14 @@
   "commit": "ba33ed80de67d8301baad930456131d581df6ae1",
   "upstreamRef": "ba33ed80de67d8301baad930456131d581df6ae1",
   "classification": "already-processed",
+  "sourceSummary": {
+    "filesScanned": 177,
+    "displayLiterals": 8876,
+    "reused": 1655,
+    "official": 140,
+    "reviewed": 1515,
+    "intentional": 2
+  },
   "newStrings": [],
   "suggestedStrings": [],
   "ambiguousStrings": [],

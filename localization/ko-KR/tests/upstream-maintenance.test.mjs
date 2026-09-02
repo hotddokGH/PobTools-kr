@@ -261,7 +261,16 @@ for path in sorted(args.source_root.rglob("view.cpp")):
                 issues.append({"code": row["status"].upper(), "path": relative, "function": "fixture", "line": line_number, "source": source})
             else:
                 plans.append((path, source, row["target"]))
-report = {"filesScanned": len(list(args.source_root.rglob("*.cpp"))), "issues": issues}
+report = {
+    "filesScanned": len(list(args.source_root.rglob("*.cpp"))),
+    "displayLiterals": len(issues) + len(plans),
+    "reused": -1 if fixture_config.get("malformedOverlaySummary") else len(plans),
+    "official": len(plans),
+    "reviewed": 0,
+    "intentional": 0,
+    "parseRecoveryEvidence": {"useCount": 0, "identities": []},
+    "issues": issues,
+}
 args.report.parent.mkdir(parents=True, exist_ok=True)
 args.report.write_text(json.dumps(report, ensure_ascii=False, sort_keys=True) + "\n", encoding="utf-8")
 if not issues and args.mode == "apply":
@@ -388,6 +397,7 @@ async function makeUpstreamFixture(t, {
   nondeterministicCustomOutput = false,
   coreAutocrlf = false,
   unsafeTrustedIniDestination = false,
+  malformedOverlaySummary = false,
 } = {}) {
   const temporaryRoot = mkdtempSync(join(tmpdir(), 'pobtools-ko-maintenance-'));
   t.after(() => rmSync(temporaryRoot, { recursive: true, force: true }));
@@ -452,6 +462,7 @@ async function makeUpstreamFixture(t, {
       : undefined,
     unsafeTrustedIniDestination,
     unsafeTrustedIniTarget,
+    malformedOverlaySummary,
   })}\n`);
   write(join(koRoot, 'localization', 'ko-KR', 'lib', 'source_overlay.py'), overlayScript);
   write(join(koRoot, 'localization', 'ko-KR', 'build-runtime-locale.mjs'), runtimeBuilder);
@@ -511,8 +522,33 @@ test('new upstream literal becomes one review row and exit class review-required
     workspaceRoot: fixture.workspace,
   });
   assert.equal(result.report.classification, 'review-required');
+  assert.deepEqual(result.report.sourceSummary, {
+    filesScanned: 5,
+    displayLiterals: 2,
+    reused: 1,
+    official: 1,
+    reviewed: 0,
+    intentional: 0,
+  });
   assert.deepEqual(result.report.newStrings.map((row) => row.source), ['新增']);
   assert.equal(result.report.compatibilityFailures.length, 0);
+});
+
+test('malformed source-overlay summary blocks before apply and is never used as a reused count', async (t) => {
+  const fixture = await makeUpstreamFixture(t, { malformedOverlaySummary: true });
+  const result = await prepareMaintenanceRun({
+    repositoryRoot: fixture.koRoot,
+    upstreamRef: fixture.secondCommit,
+    workspaceRoot: fixture.workspace,
+  });
+  assert.equal(result.report.classification, 'blocked');
+  assert.equal(result.report.sourceSummary.reused, 0);
+  assert.equal(result.report.phases.some((row) => row.name === 'source-overlay-apply'), false);
+  assert.deepEqual(result.report.auditFailures, [{
+    path: 'reports/maintenance/source-overlay.json',
+    phase: 'source-overlay-audit',
+    detail: 'source overlay report reused must be a non-negative safe integer',
+  }]);
 });
 
 test('unchanged upstream prepares a reusable detached workspace and a ready report', async (t) => {

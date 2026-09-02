@@ -52,6 +52,16 @@ node --test localization/ko-KR/tests/*.test.mjs
 
 소스 오버레이에서 자동 적용할 수 있는 상태는 `official`, `reviewed`, `intentional`뿐이다. `suggested`와 모호하거나 알 수 없는 상태는 자동 승격하지 않으며 검토 항목 또는 차단 사유로 남긴다.
 
+## 업스트림 확인 워크플로
+
+`.github/workflows/check-upstream.yml`은 현재 **수동 실행만** 허용한다. GitHub의 Actions 탭에서 `Check Korean upstream maintenance`를 선택해 `Run workflow`를 실행하면 읽기 전용 `analyze` 작업이 `upstream/main`을 검사한다. `blocked`여도 보고서 증거를 먼저 업로드한 뒤 실패하며, `already-processed`이면 제안 브랜치나 PR을 만들지 않는다. `ready`와 `review-required`만 검증된 데이터 전용 번들을 통해 고정 브랜치 `automation/upstream-ko`와 하나의 PR을 갱신할 수 있다.
+
+보고서의 `sourceSummary.reused`는 소스 오버레이가 실제 재사용한 번역 수이다. `newStrings`, `suggestedStrings`, `ambiguousStrings`는 코드별로 PR 본문에 정렬되어 표시된다. 검토할 때는 각 행의 `path`, `function`, `occurrenceIndex`, `line`, `source`를 확인하고 `localization/ko-KR/source-translations.json`의 해당 항목을 고친다. 공식 클라이언트 근거가 있으면 `official`, 사람이 문맥을 확인했으면 `reviewed`, 번역하지 않는 내부 문자열이면 근거와 함께 `intentional`을 사용한다. `suggested`를 그대로 승인 상태로 바꾸지 않는다. 수정 후 위의 로컬 검증 명령과 `--force-prepare`를 다시 실행한다.
+
+자동 제안은 `localization/ko-KR/upstream-state.json`의 `lastReviewedCommit`을 갱신하지 않는다. 상태 전환은 사람이 결과를 검토하고 별도 커밋으로 승인해야 하므로, 그 전에는 같은 업스트림 커밋이 수동 실행에서 다시 감지되는 것이 정상이다.
+
+매일 03:17 UTC에 실행할 cron 식은 워크플로에 설명 주석으로만 남아 있고 활성화되어 있지 않다. 먼저 이 로컬 변경을 별도로 push 승인받고, hosted 수동 실행이 정확히 하나의 PR만 생성·갱신하는지 확인하고, 결과를 사람이 검토한 다음 별도 승인과 커밋으로 schedule을 활성화해야 한다.
+
 ## 검토와 배포 원칙
 
 1. 고정 업스트림 커밋으로 `--force-prepare`를 실행한다.
@@ -62,3 +72,5 @@ node --test localization/ko-KR/tests/*.test.mjs
 6. 검토가 끝난 뒤에만 상태·결정적 보고서·허용 목록을 갱신한다.
 
 검증 산출물과 이후의 미리보기 패키지는 코드 서명되지 않은 비공식 팬 제작물이다. 자동 검증 성공은 배포 승인이나 공식 지원을 뜻하지 않는다. 현재 `validate-ko.yml`은 저장소 쓰기 권한이 없는 검증 정의이며, 이 변경은 로컬 커밋까지만 준비한다. 별도 push 승인 전에는 hosted 실행 결과가 없으므로 이 문서는 GitHub 실행이 green이라고 주장하지 않는다.
+
+`check-upstream.yml`도 Release를 만들거나 실행 파일을 배포하지 않는다. 제안 PR의 JSON·사전·보고서 역시 서명된 배포물이 아니며, 현재 hosted 수동 실행과 PR 생성은 수행하지 않은 상태다.

@@ -216,6 +216,14 @@ function newReport(commit, upstreamRef) {
     commit,
     upstreamRef,
     classification: 'blocked',
+    sourceSummary: {
+      filesScanned: 0,
+      displayLiterals: 0,
+      reused: 0,
+      official: 0,
+      reviewed: 0,
+      intentional: 0,
+    },
     newStrings: [],
     suggestedStrings: [],
     ambiguousStrings: [],
@@ -505,12 +513,28 @@ function changedCustomPoe1Outputs(manifestOutputs, generatedEngineRoot, generate
 }
 
 function collectOverlayRows(report, overlayReport) {
+  const summaryKeys = ['filesScanned', 'displayLiterals', 'reused', 'official', 'reviewed', 'intentional'];
+  const summary = {};
+  for (const key of summaryKeys) {
+    const value = overlayReport[key];
+    if (!Number.isSafeInteger(value) || value < 0) {
+      report.auditFailures.push({
+        path: 'reports/maintenance/source-overlay.json',
+        phase: 'source-overlay-audit',
+        detail: `source overlay report ${key} must be a non-negative safe integer`,
+      });
+      return false;
+    }
+    summary[key] = value;
+  }
+  report.sourceSummary = summary;
   for (const row of overlayReport.issues ?? []) {
     if (row.code === 'SUGGESTION_ONLY' || row.code === 'SUGGESTED') report.suggestedStrings.push(row);
     else if (row.code === 'AMBIGUOUS') report.ambiguousStrings.push(row);
     else if (row.code === 'MISSING_MAPPING' || row.code === 'MISSING_COMPONENT_MAPPING') report.newStrings.push(row);
     else report.auditFailures.push(row);
   }
+  return true;
 }
 
 async function runTrusted(report, name, command, arguments_, options = {}) {
@@ -602,7 +626,8 @@ export async function prepareMaintenanceRun({
   ];
   const overlayScript = join(localeRoot, 'lib', 'source_overlay.py');
   const audit = await runTrusted(report, 'source-overlay-audit', 'python', [overlayScript, 'audit', ...overlayBase], { cwd: trustedRoot });
-  if (existsSync(overlayReportPath)) collectOverlayRows(report, readJson(overlayReportPath));
+  const overlayReportValid = !existsSync(overlayReportPath) || collectOverlayRows(report, readJson(overlayReportPath));
+  if (!overlayReportValid) return { commit, workspace, report: finishReport() };
   if (audit.exitCode !== 0) {
     if (report.newStrings.length + report.suggestedStrings.length + report.ambiguousStrings.length === 0) {
       report.commandFailures.push({ path: 'localization/ko-KR/lib/source_overlay.py', phase: 'source-overlay-audit', detail: audit.stderr });

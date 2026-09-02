@@ -189,3 +189,85 @@ test('validate-ko workflow is a semantic read-only pinned validation contract', 
   assert.doesNotMatch(text, /pull_request_target|create-pull-request|repository_dispatch/iu);
   assert.doesNotMatch(text, /git\s+(?:clean|reset)|Remove-Item\s+-Recurse/iu);
 });
+
+test('check-upstream workflow splits read-only analysis from a fixed-branch verified proposal', () => {
+  const workflowPath = join(repositoryRoot, '.github', 'workflows', 'check-upstream.yml');
+  const text = readFileSync(workflowPath, 'utf8');
+  const lines = text.split(/\r?\n/u);
+  const topLevelBlock = (name) => {
+    const start = lines.findIndex((line) => line === `${name}:`);
+    assert.notEqual(start, -1, `missing top-level ${name} block`);
+    let end = start + 1;
+    while (end < lines.length && (lines[end].trim() === '' || /^\s/u.test(lines[end]))) end += 1;
+    return lines.slice(start, end).join('\n');
+  };
+  const jobBlock = (name) => {
+    const start = lines.findIndex((line) => line === `  ${name}:`);
+    assert.notEqual(start, -1, `missing ${name} job`);
+    let end = start + 1;
+    while (end < lines.length && (lines[end].trim() === '' || /^ {4}/u.test(lines[end]))) end += 1;
+    return lines.slice(start, end).join('\n');
+  };
+
+  const triggers = topLevelBlock('on');
+  assert.match(triggers, /^on:\n  workflow_dispatch:/u);
+  assert.doesNotMatch(triggers, /^\s+schedule:/mu);
+  assert.match(text, /disabled cron: 17 3 \* \* \*/u);
+  assert.match(text, /hosted manual dispatch succeeds/u);
+  assert.equal((text.match(/^permissions:/gmu) ?? []).length, 1);
+  assert.equal(topLevelBlock('permissions').trim(), 'permissions:\n  contents: read');
+  assert.equal(topLevelBlock('concurrency').trim(), 'concurrency:\n  group: pobtools-ko-upstream-maintenance\n  cancel-in-progress: false');
+
+  const analyze = jobBlock('analyze');
+  const propose = jobBlock('propose');
+  assert.match(analyze, /permissions:\n      contents: read/u);
+  assert.doesNotMatch(analyze, /(?:contents|pull-requests): write/u);
+  assert.match(propose, /permissions:\n      contents: write\n      pull-requests: write/u);
+  assert.match(propose, /needs: analyze/u);
+  assert.match(propose, /needs\.analyze\.outputs\.classification == '(?:ready)'[\s\S]*review-required/u);
+  assert.doesNotMatch(propose, /already-processed/u);
+
+  const expectedActions = [
+    'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1',
+    'actions/setup-node@820762786026740c76f36085b0efc47a31fe5020',
+    'actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97',
+    'actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a',
+    'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1',
+    'actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c',
+  ];
+  const actions = [...text.matchAll(/^\s*uses:\s*([^\s]+)\s*$/gmu)].map((match) => match[1]);
+  assert.deepEqual(actions, expectedActions);
+  for (const action of actions) assert.match(action, /^[^@]+@[0-9a-f]{40}$/u);
+  assert.equal((text.match(/ref: \$\{\{ github\.sha \}\}/gu) ?? []).length, 2);
+  assert.equal((text.match(/ref: \$\{\{ github\.sha \}\}/gu) ?? []).length, 2);
+
+  assert.match(analyze, /git remote add upstream https:\/\/github\.com\/Hsiung-Shao\/PobTools-zh\.git/u);
+  assert.match(analyze, /git fetch --no-tags upstream main/u);
+  assert.match(analyze, /update-upstream\.mjs/u);
+  assert.match(analyze, /LASTEXITCODE/u);
+  assert.match(analyze, /0, 1, 2/u);
+  assert.match(analyze, /upstream-update\.json/u);
+  assert.match(analyze, /maintenance-bundle\.mjs create/u);
+  assert.match(analyze, /actions\/upload-artifact@/u);
+  assert.match(analyze, /if: always\(\)/u);
+  assert.match(analyze, /exit 1/u);
+
+  const verifyIndex = propose.indexOf('maintenance-bundle.mjs verify');
+  const copyIndex = propose.indexOf('maintenance-bundle.mjs copy');
+  const renderIndex = propose.indexOf('render-maintenance-pr.mjs');
+  const branchIndex = propose.indexOf('automation/upstream-ko');
+  const pushIndex = propose.indexOf('git push');
+  const ghIndex = propose.indexOf('gh pr');
+  assert.ok(verifyIndex >= 0 && verifyIndex < copyIndex);
+  assert.ok(copyIndex < renderIndex && renderIndex < branchIndex && branchIndex < pushIndex && pushIndex < ghIndex);
+  assert.match(propose, /\$\{\{ runner\.temp \}\}\/ko-maintenance-download/u);
+  assert.match(propose, /\$\{\{ runner\.temp \}\}\/ko-maintenance-verified/u);
+  assert.match(propose, /--body-file/u);
+  assert.match(propose, /--head automation\/upstream-ko/u);
+  assert.match(propose, /--base ko\/main/u);
+  assert.match(propose, /gh pr list --head automation\/upstream-ko --state open --json number,baseRefName/u);
+  assert.match(propose, /gh pr edit .* --base ko\/main --title .* --body-file/u);
+  assert.match(propose, /GH_TOKEN: \$\{\{ github\.token \}\}/u);
+  assert.doesNotMatch(propose, /gh label create/u);
+  assert.doesNotMatch(text, /(?:gh\s+release|softprops\/action-gh-release|pull_request_target|repository_dispatch|cmake|msbuild|\.exe\b)/iu);
+});
