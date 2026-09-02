@@ -11,7 +11,7 @@ import {
   writeFileSync,
 } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { dirname, join, resolve } from 'node:path';
+import { dirname, join, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import {
@@ -333,6 +333,25 @@ test('only the exact retained OFL license opts out of whitespace lint', () => {
     'pob-zh-engine/dist/Fonts/OFL-NotoSansKR.txt: whitespace: unset',
     `${manifestRelativePath}: whitespace: unspecified`,
   ]);
+});
+
+test('the retained OFL license stays byte-identical under auto-CRLF checkout', (t) => {
+  const licenseRelativePath = 'pob-zh-engine/dist/Fonts/OFL-NotoSansKR.txt';
+  const checkoutRoot = mkdtempSync(join(tmpdir(), 'pobtools-ko-license-checkout-'));
+  t.after(() => rmSync(checkoutRoot, { recursive: true, force: true }));
+  const checkout = spawnSync('git', [
+    '-c',
+    'core.autocrlf=true',
+    'checkout-index',
+    `--prefix=${checkoutRoot}${sep}`,
+    '--',
+    licenseRelativePath,
+  ], { cwd: repositoryRoot, encoding: 'utf8' });
+  assert.equal(checkout.status, 0, checkout.stderr);
+  assert.equal(
+    sha256(readFileSync(join(checkoutRoot, ...licenseRelativePath.split('/')))),
+    '1C05C68C34F9708415AADA51F17E1B0092D2CEA709BF4A94CD38114F9E73D7D9',
+  );
 });
 
 test('the committed distribution INI preserves the reviewed CRLF identity', () => {

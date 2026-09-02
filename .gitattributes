@@ -30,5 +30,5 @@ pob-zh-engine/dist/Data/**/*.json -text
 
 localization/ko-KR/compat/pobtools-ko.patch -text -whitespace
 localization/ko-KR/runtime-meta.json -text
-pob-zh-engine/dist/Fonts/OFL-NotoSansKR.txt -whitespace
+pob-zh-engine/dist/Fonts/OFL-NotoSansKR.txt -text -whitespace
 pob-zh-engine/dist/pob-zh.ini -text -whitespace
