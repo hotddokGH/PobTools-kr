@@ -7,12 +7,13 @@ import {
   mkdirSync,
   mkdtempSync,
   readFileSync,
+  realpathSync,
   rmSync,
   symlinkSync,
   writeFileSync,
 } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { dirname, join, resolve } from 'node:path';
+import { dirname, join, resolve, sep } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 import {
@@ -47,6 +48,31 @@ function write(path, contents) {
 
 function git(root, ...arguments_) {
   return execFileSync('git', arguments_, { cwd: root, encoding: 'utf8' }).trim();
+}
+
+function windowsShortPath(path) {
+  const powershell = join(
+    process.env.SystemRoot ?? 'C:\\Windows',
+    'System32',
+    'WindowsPowerShell',
+    'v1.0',
+    'powershell.exe',
+  );
+  return execFileSync(
+    powershell,
+    [
+      '-NoProfile',
+      '-NonInteractive',
+      '-Command',
+      '(New-Object -ComObject Scripting.FileSystemObject).GetFolder($env:POBTOOLS_ALIAS_PATH).ShortPath',
+    ],
+    { encoding: 'utf8', env: { ...process.env, POBTOOLS_ALIAS_PATH: path } },
+  ).trim();
+}
+
+function canonicalExistingPath(path) {
+  const canonical = realpathSync.native(resolve(path)).replace(/^\\\\\?\\/u, '');
+  return process.platform === 'win32' ? canonical.toLowerCase() : canonical;
 }
 
 function commitAll(root, message) {
@@ -625,6 +651,31 @@ test('unchanged upstream prepares a reusable detached workspace and a ready repo
   assert.equal(firstReport.includes('timestamp'), false);
 });
 
+test('a registered maintenance workspace remains reusable through its Windows 8.3 path alias', async (t) => {
+  if (process.platform !== 'win32') return t.skip('Windows 8.3 aliases are Windows-specific');
+  const fixture = await makeUpstreamFixture(t);
+  const temporaryRoot = dirname(fixture.koRoot);
+  const shortTemporaryRoot = windowsShortPath(temporaryRoot);
+  if (shortTemporaryRoot.toLowerCase() === temporaryRoot.toLowerCase()) {
+    return t.skip('8.3 aliases are unavailable on this volume');
+  }
+  const repositoryRoot = join(shortTemporaryRoot, 'trusted-ko');
+  const workspaceRoot = join(repositoryRoot, '.ko-worktrees', 'update');
+
+  const first = await prepareMaintenanceRun({
+    repositoryRoot,
+    upstreamRef: fixture.secondCommit,
+    workspaceRoot,
+  });
+  const second = await prepareMaintenanceRun({
+    repositoryRoot,
+    upstreamRef: fixture.secondCommit,
+    workspaceRoot,
+  });
+  assert.equal(first.report.classification, 'ready');
+  assert.equal(second.report.classification, 'ready');
+});
+
 test('identical fixture runs persist byte-identical reports across checkout roots', async (t) => {
   const fixture = await makeUpstreamFixture(t);
   const clone = cloneFixtureToIndependentRoot(t, fixture, 'cross-root');
@@ -1178,18 +1229,30 @@ test('all programs resolve from the trusted checkout and builders receive explic
   });
   const invocations = readFileSync(join(fixture.koRoot, 'localization', 'ko-KR', 'invocations.jsonl'), 'utf8')
     .trim().split(/\r?\n/u).map(JSON.parse);
+  const trustedRoot = canonicalExistingPath(fixture.koRoot);
+  const workspaceRoot = canonicalExistingPath(fixture.workspace);
   assert.ok(invocations.length >= 8);
   for (const invocation of invocations) {
-    assert.equal(resolve(invocation.script).startsWith(`${resolve(fixture.koRoot)}${process.platform === 'win32' ? '\\' : '/'}`), true);
-    assert.equal(resolve(invocation.script).startsWith(`${resolve(fixture.workspace)}${process.platform === 'win32' ? '\\' : '/'}`), false);
+    const script = canonicalExistingPath(invocation.script);
+    assert.equal(script.startsWith(`${trustedRoot}${sep}`), true);
+    assert.equal(script.startsWith(`${workspaceRoot}${sep}`), false);
   }
   const builders = invocations.filter((row) => /build-(?:runtime-locale|custom-poe1-data)\.mjs$/u.test(row.script));
   for (const invocation of builders) {
-    assert.equal(invocation.arguments[invocation.arguments.indexOf('--engine-root') + 1], join(fixture.workspace, 'pob-zh-engine'));
-    assert.equal(invocation.arguments[invocation.arguments.indexOf('--report-root') + 1], join(fixture.koRoot, 'reports'));
+    assert.equal(
+      canonicalExistingPath(invocation.arguments[invocation.arguments.indexOf('--engine-root') + 1]),
+      canonicalExistingPath(join(fixture.workspace, 'pob-zh-engine')),
+    );
+    assert.equal(
+      canonicalExistingPath(invocation.arguments[invocation.arguments.indexOf('--report-root') + 1]),
+      canonicalExistingPath(join(fixture.koRoot, 'reports')),
+    );
   }
   const overlay = invocations.find((row) => /source_overlay\.py$/u.test(row.script));
-  assert.equal(overlay.arguments[overlay.arguments.indexOf('--compatibility-patch') + 1], join(fixture.koRoot, 'localization', 'ko-KR', 'compat', 'pobtools-ko.patch'));
+  assert.equal(
+    canonicalExistingPath(overlay.arguments[overlay.arguments.indexOf('--compatibility-patch') + 1]),
+    canonicalExistingPath(join(fixture.koRoot, 'localization', 'ko-KR', 'compat', 'pobtools-ko.patch')),
+  );
 });
 
 test('CLI returns 0 for ready, 2 for review-required, and 1 for blocked or malformed input', async (t) => {

@@ -41,6 +41,9 @@ const CUSTOM_POE1_HASH_POLICY = 'crlf-to-lf-sha256';
 const CUSTOM_POE1_ATLAS_PATH = /^host\/data\/atlas_versions\/([A-Za-z0-9][A-Za-z0-9._-]*)\/atlas_tree_zh\.json$/u;
 
 const normalized = (path) => process.platform === 'win32' ? resolve(path).toLowerCase() : resolve(path);
+const sameExistingPath = (left, right) => (
+  normalized(realpathSync.native(left)) === normalized(realpathSync.native(right))
+);
 const bounded = (value) => String(value ?? '').slice(0, MAX_OUTPUT);
 const readJson = (path) => JSON.parse(readFileSync(path, 'utf8'));
 const sha256 = (bytes) => createHash('sha256').update(bytes).digest('hex').toUpperCase();
@@ -362,7 +365,9 @@ async function prepareWorktree(repositoryRoot, workspaceRoot, commit) {
   const registered = listed.stdout.split('\0')
     .filter((row) => row.startsWith('worktree '))
     .map((row) => row.slice('worktree '.length));
-  const isRegistered = registered.some((path) => normalized(path) === normalized(workspace));
+  const isRegistered = existsSync(workspace) && registered.some((path) => (
+    existsSync(path) && sameExistingPath(path, workspace)
+  ));
   if (existsSync(workspace) && !isRegistered) throw new Error('existing workspace is not a registered Git worktree');
   if (isRegistered) {
     const removed = await run('git', ['worktree', 'remove', '--force', workspace], { cwd: repositoryRoot });

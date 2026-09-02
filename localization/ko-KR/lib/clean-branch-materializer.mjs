@@ -8,7 +8,7 @@ import {
   realpathSync,
   writeFileSync,
 } from 'node:fs';
-import { dirname, isAbsolute, relative, resolve, sep } from 'node:path';
+import { dirname, isAbsolute, parse, relative, resolve, sep } from 'node:path';
 
 const manifestPath = 'localization/ko-KR/clean-branch-manifest.json';
 const regularModes = new Set(['100644', '100755']);
@@ -244,16 +244,21 @@ export async function loadAndExpandCleanBranchManifest({ repositoryRoot, sourceR
   };
 }
 
-function normalizedRealPath(path) {
-  return realpathSync.native(path).replace(/^\\\\\?\\/u, '').toLowerCase();
+function assertNoRedirect(path, label) {
+  const absolute = resolve(path);
+  const root = parse(absolute).root;
+  let current = root;
+  for (const component of relative(root, absolute).split(sep).filter(Boolean)) {
+    current = resolve(current, component);
+    if (lstatSync(current).isSymbolicLink()) {
+      throw new Error(`${label} is a symbolic link, junction, or reparse point: ${current}`);
+    }
+  }
 }
 
-function assertNoRedirect(path, label) {
-  const stats = lstatSync(path);
-  if (stats.isSymbolicLink()) throw new Error(`${label} is a symbolic link, junction, or reparse point: ${path}`);
-  if (normalizedRealPath(path) !== resolve(path).replace(/^\\\\\?\\/u, '').toLowerCase()) {
-    throw new Error(`${label} resolves through a symbolic link, junction, or reparse point: ${path}`);
-  }
+function canonicalExistingPath(path) {
+  const canonical = realpathSync.native(resolve(path)).replace(/^\\\\\?\\/u, '');
+  return process.platform === 'win32' ? canonical.toLowerCase() : canonical;
 }
 
 function assertContained(root, path) {
@@ -285,7 +290,9 @@ function preflightTarget(targetRoot, targetBaseCommit, files) {
   if (!existsSync(root)) throw new Error(`target worktree does not exist: ${root}`);
   assertNoRedirect(root, 'target worktree');
   const gitRoot = resolve(runGit(root, ['rev-parse', '--show-toplevel']).trim());
-  if (gitRoot.toLowerCase() !== root.toLowerCase()) throw new Error(`target must be the root of a Git worktree: ${root}`);
+  if (canonicalExistingPath(gitRoot) !== canonicalExistingPath(root)) {
+    throw new Error(`target must be the root of a Git worktree: ${root}`);
+  }
   const head = runGit(root, ['rev-parse', 'HEAD']).trim();
   if (head !== targetBaseCommit) throw new Error(`target HEAD is not the pinned base ${targetBaseCommit}: ${head}`);
   for (const file of files) preflightTargetPath(root, file.path);

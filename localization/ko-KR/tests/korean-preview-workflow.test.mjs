@@ -6,9 +6,10 @@ import { fileURLToPath } from 'node:url';
 
 const repositoryRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..', '..');
 const workflowPath = join(repositoryRoot, '.github', 'workflows', 'build-ko-preview.yml');
+const readWorkflow = () => readFileSync(workflowPath, 'utf8').replaceAll('\r\n', '\n');
 
 test('preview workflow is manual, read-only, pinned, and bound to exact ko/main identity', () => {
-  const workflow = readFileSync(workflowPath, 'utf8');
+  const workflow = readWorkflow();
   assert.match(workflow, /^on:\n  workflow_dispatch:\s*$/mu);
   assert.doesNotMatch(workflow, /^\s+(?:push|pull_request|schedule|release):/mu);
   assert.equal((workflow.match(/^permissions:/gmu) ?? []).length, 1);
@@ -32,7 +33,7 @@ test('preview workflow is manual, read-only, pinned, and bound to exact ko/main 
 });
 
 test('preview workflow prepares and gates the reviewed detached engine before native build', () => {
-  const workflow = readFileSync(workflowPath, 'utf8');
+  const workflow = readWorkflow();
   assert.match(workflow, /upstream-state\.json/u);
   assert.match(workflow, /lastReviewedCommit/u);
   assert.match(workflow, /update-upstream\.mjs[\s\S]*--force-prepare/u);
@@ -56,7 +57,7 @@ test('preview workflow prepares and gates the reviewed detached engine before na
 });
 
 test('preview workflow verifies offline unsigned executable, generated assets, package, provenance, and extracted ZIP', () => {
-  const workflow = readFileSync(workflowPath, 'utf8');
+  const workflow = readWorkflow();
   for (const path of [
     'dist/Data/launcher/ko-KR/launcher.json', 'dist/Data/launcher/ko-KR/meta.json',
     'dist/Fonts/NotoSansKR-Variable.ttf', 'dist/Fonts/OFL-NotoSansKR.txt', 'dist/pob-zh.ini',

@@ -92,6 +92,26 @@ function sha256(bytes) {
   return createHash('sha256').update(bytes).digest('hex').toUpperCase();
 }
 
+function windowsShortPath(path) {
+  const powershell = join(
+    process.env.SystemRoot ?? 'C:\\Windows',
+    'System32',
+    'WindowsPowerShell',
+    'v1.0',
+    'powershell.exe',
+  );
+  return execFileSync(
+    powershell,
+    [
+      '-NoProfile',
+      '-NonInteractive',
+      '-Command',
+      '(New-Object -ComObject Scripting.FileSystemObject).GetFolder($env:POBTOOLS_ALIAS_PATH).ShortPath',
+    ],
+    { encoding: 'utf8', env: { ...process.env, POBTOOLS_ALIAS_PATH: path } },
+  ).trim();
+}
+
 test('the exact real manifest expands only the reviewed inventory in sorted order', async (t) => {
   const realManifest = JSON.parse(readFileSync(join(repositoryRoot, manifestRelativePath), 'utf8'));
   const sourceFiles = {};
@@ -251,6 +271,23 @@ test('materialization reads committed Git objects instead of dirty source bytes'
   });
   assert.equal(readFileSync(join(fixture.targetRoot, 'NOTICE.md'), 'utf8'), 'committed source\n');
   assert.equal(summary.sourceCommit, fixture.sourceCommit);
+});
+
+test('a valid target worktree remains valid through its Windows 8.3 path alias', async (t) => {
+  if (process.platform !== 'win32') return t.skip('Windows 8.3 aliases are Windows-specific');
+  const fixture = makeFixture(t);
+  const shortTemporaryRoot = windowsShortPath(fixture.temporaryRoot);
+  if (shortTemporaryRoot.toLowerCase() === fixture.temporaryRoot.toLowerCase()) {
+    return t.skip('8.3 aliases are unavailable on this volume');
+  }
+
+  const summary = await materializeCleanBranch({
+    repositoryRoot: fixture.sourceRoot,
+    sourceRef: fixture.sourceCommit,
+    targetRoot: join(shortTemporaryRoot, 'target'),
+  });
+  assert.equal(summary.sourceCommit, fixture.sourceCommit);
+  assert.equal(readFileSync(join(fixture.targetRoot, 'NOTICE.md'), 'utf8'), 'committed source\n');
 });
 
 test('an existing target junction is rejected before external bytes can be changed', async (t) => {
