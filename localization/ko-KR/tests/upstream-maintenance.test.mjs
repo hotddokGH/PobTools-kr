@@ -13,7 +13,7 @@ import {
 } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
 import {
   canonicalizeMaintenanceReport,
@@ -85,22 +85,26 @@ function comparableCustomSha(contents) {
 
 const STABLE_CUSTOM_OUTPUT = '{"locale":"ko-KR","value":"stable"}\n';
 
-test('maintenance report canonicalization replaces only nested path-boundary matches', () => {
-  const repositoryRoot = String.raw`C:\review\trusted-ko`;
-  const workspaceRoot = String.raw`C:\review\trusted-ko\.ko-worktrees\update`;
+test('maintenance report canonicalization preserves URI schemes and unrelated diagnostics', () => {
+  const repositoryRoot = String.raw`C:\review space\신뢰-ko`;
+  const workspaceRoot = String.raw`C:\review space\신뢰-ko\.ko-worktrees\작업`;
   const nodePath = String.raw`C:\Program Files\nodejs\node.exe`;
+  const repositoryUrl = pathToFileURL(repositoryRoot).href;
+  const workspaceUrl = pathToFileURL(workspaceRoot).href;
   const input = {
     phases: [{
       command: [
         nodePath,
-        String.raw`C:\review\trusted-ko\.ko-worktrees\update\pob-zh-engine\script.mjs`,
-        String.raw`--mapping=C:\review\trusted-ko\localization\ko-KR\source-translations.json`,
-        String.raw`prefixC:\review\trusted-ko\must-not-change`,
+        String.raw`C:\review space\신뢰-ko\.ko-worktrees\작업\pob-zh-engine\script.mjs`,
+        'C:/review space/신뢰-ko/localization/ko-KR/source-translations.json',
+        `${workspaceUrl}/pob-zh-engine/%ED%95%9C%EA%B8%80/script.mjs:12:3`,
+        String.raw`prefixC:\review space\신뢰-ko\must-not-change`,
+        `${repositoryUrl}ish/must-not-change.mjs`,
       ],
-      stderr: String.raw`failed at C:\review\trusted-ko\.ko-worktrees\update\pob-zh-engine\host\view.cpp`,
+      stderr: String.raw`failed at C:\review space\신뢰-ko\.ko-worktrees\작업\pob-zh-engine\host\view.cpp; diagnostic \d+ stays`,
     }],
     auditFailures: [{
-      detail: String.raw`repository C:\review\trusted-ko\reports\detail.json and C:\Program Files\nodejs\node.exe`,
+      detail: `repository ${repositoryUrl}/reports/detail.json and C:\\Program Files\\nodejs\\node.exe`,
     }],
   };
   const canonical = canonicalizeMaintenanceReport(input, { repositoryRoot, workspaceRoot, nodePath });
@@ -109,13 +113,15 @@ test('maintenance report canonicalization replaces only nested path-boundary mat
       command: [
         '$NODE',
         '$WORKSPACE_ROOT/pob-zh-engine/script.mjs',
-        '--mapping=$REPOSITORY_ROOT/localization/ko-KR/source-translations.json',
-        String.raw`prefixC:\review\trusted-ko\must-not-change`,
+        '$REPOSITORY_ROOT/localization/ko-KR/source-translations.json',
+        'file:///$WORKSPACE_ROOT/pob-zh-engine/%ED%95%9C%EA%B8%80/script.mjs:12:3',
+        String.raw`prefixC:\review space\신뢰-ko\must-not-change`,
+        `${repositoryUrl}ish/must-not-change.mjs`,
       ],
-      stderr: 'failed at $WORKSPACE_ROOT/pob-zh-engine/host/view.cpp',
+      stderr: String.raw`failed at $WORKSPACE_ROOT/pob-zh-engine/host/view.cpp; diagnostic \d+ stays`,
     }],
     auditFailures: [{
-      detail: 'repository $REPOSITORY_ROOT/reports/detail.json and $NODE',
+      detail: 'repository file:///$REPOSITORY_ROOT/reports/detail.json and $NODE',
     }],
   });
   assert.notEqual(canonical, input);
@@ -482,6 +488,21 @@ async function makeUpstreamFixture(t, {
   return { firstCommit, koRoot, nestedRedirectTarget, secondCommit, unsafeTrustedIniTarget, workspace };
 }
 
+function cloneFixtureToIndependentRoot(t, fixture, label) {
+  const cloneContainer = mkdtempSync(join(tmpdir(), `pobtools-ko-${label}-`));
+  t.after(() => rmSync(cloneContainer, { recursive: true, force: true }));
+  const clonedRoot = join(cloneContainer, 'trusted-ko-clone');
+  execFileSync('git', [
+    '-c', 'core.autocrlf=false',
+    '-c', 'core.eol=lf',
+    'clone', '--quiet', fixture.koRoot, clonedRoot,
+  ], { encoding: 'utf8' });
+  return {
+    repositoryRoot: clonedRoot,
+    workspaceRoot: join(clonedRoot, '.ko-worktrees', 'update'),
+  };
+}
+
 test('new upstream literal becomes one review row and exit class review-required', async (t) => {
   const fixture = await makeUpstreamFixture(t, { second: 'ImGui::Text(u8"新增");' });
   const result = await prepareMaintenanceRun({
@@ -518,15 +539,7 @@ test('unchanged upstream prepares a reusable detached workspace and a ready repo
 
 test('identical fixture runs persist byte-identical reports across checkout roots', async (t) => {
   const fixture = await makeUpstreamFixture(t);
-  const cloneContainer = mkdtempSync(join(tmpdir(), 'pobtools-ko-cross-root-'));
-  t.after(() => rmSync(cloneContainer, { recursive: true, force: true }));
-  const clonedRoot = join(cloneContainer, 'trusted-ko-clone');
-  execFileSync('git', [
-    '-c', 'core.autocrlf=false',
-    '-c', 'core.eol=lf',
-    'clone', '--quiet', fixture.koRoot, clonedRoot,
-  ], { encoding: 'utf8' });
-  const clonedWorkspace = join(clonedRoot, '.ko-worktrees', 'update');
+  const clone = cloneFixtureToIndependentRoot(t, fixture, 'cross-root');
 
   const first = await prepareMaintenanceRun({
     repositoryRoot: fixture.koRoot,
@@ -535,18 +548,21 @@ test('identical fixture runs persist byte-identical reports across checkout root
     forcePrepare: true,
   });
   const second = await prepareMaintenanceRun({
-    repositoryRoot: clonedRoot,
+    repositoryRoot: clone.repositoryRoot,
     upstreamRef: fixture.secondCommit,
-    workspaceRoot: clonedWorkspace,
+    workspaceRoot: clone.workspaceRoot,
     forcePrepare: true,
   });
   const firstBytes = readFileSync(join(fixture.koRoot, 'reports', 'maintenance', 'upstream-update.json'), 'utf8');
-  const secondBytes = readFileSync(join(clonedRoot, 'reports', 'maintenance', 'upstream-update.json'), 'utf8');
+  const secondBytes = readFileSync(join(clone.repositoryRoot, 'reports', 'maintenance', 'upstream-update.json'), 'utf8');
 
   assert.equal(firstBytes, secondBytes);
   assert.deepEqual(first.report, second.report);
-  assert.equal(firstBytes.includes(fixture.koRoot), false);
-  assert.equal(firstBytes.includes(clonedRoot), false);
+  for (const root of [fixture.koRoot, fixture.workspace, clone.repositoryRoot, clone.workspaceRoot]) {
+    for (const form of new Set([root, root.replaceAll('\\', '/'), pathToFileURL(root).href])) {
+      assert.equal(firstBytes.includes(form), false);
+    }
+  }
   assert.match(firstBytes, /\$WORKSPACE_ROOT/u);
   assert.match(firstBytes, /\$REPOSITORY_ROOT/u);
   assert.match(firstBytes, /\$NODE/u);
@@ -785,6 +801,46 @@ test('nondeterministic runtime generation is hash-compared and blocked', async (
   assert.equal(result.report.classification, 'blocked');
   assert.deepEqual(result.report.deterministicFailures.map((row) => row.phase), ['runtime-locale-build']);
   assert.equal(result.report.phases.some((phase) => phase.name === 'custom-poe1-data-build-1'), false);
+});
+
+test('nondeterministic blocked reports are byte-identical across checkout roots', async (t) => {
+  for (const [label, options, expectedPhase] of [
+    ['runtime', { nondeterministic: true }, 'runtime-locale-build'],
+    ['custom', { nondeterministicCustomOutput: true }, 'custom-poe1-data-build'],
+  ]) {
+    await t.test(label, async (t) => {
+      const fixture = await makeUpstreamFixture(t, options);
+      const clone = cloneFixtureToIndependentRoot(t, fixture, `blocked-${label}`);
+      const first = await prepareMaintenanceRun({
+        repositoryRoot: fixture.koRoot,
+        upstreamRef: fixture.secondCommit,
+        workspaceRoot: fixture.workspace,
+        forcePrepare: true,
+      });
+      const second = await prepareMaintenanceRun({
+        repositoryRoot: clone.repositoryRoot,
+        upstreamRef: fixture.secondCommit,
+        workspaceRoot: clone.workspaceRoot,
+        forcePrepare: true,
+      });
+      const firstBytes = readFileSync(join(fixture.koRoot, 'reports', 'maintenance', 'upstream-update.json'));
+      const secondBytes = readFileSync(join(clone.repositoryRoot, 'reports', 'maintenance', 'upstream-update.json'));
+
+      assert.equal(first.report.classification, 'blocked');
+      assert.equal(second.report.classification, 'blocked');
+      assert.deepEqual(first.report.deterministicFailures.map((row) => row.phase), [expectedPhase]);
+      assert.deepEqual(first.report.deterministicFailures, second.report.deterministicFailures);
+      assert.deepEqual(firstBytes, secondBytes);
+      const persisted = firstBytes.toString('utf8');
+      for (const root of [fixture.koRoot, fixture.workspace, clone.repositoryRoot, clone.workspaceRoot]) {
+        for (const form of new Set([root, root.replaceAll('\\', '/'), pathToFileURL(root).href])) {
+          assert.equal(persisted.includes(form), false);
+        }
+      }
+      assert.match(persisted, /\$WORKSPACE_ROOT/u);
+      assert.match(persisted, /\$REPOSITORY_ROOT/u);
+    });
+  }
 });
 
 test('custom-data hashes and review changes include exact PoE1 outputs but ignore PoE2', async (t) => {

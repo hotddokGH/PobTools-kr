@@ -138,14 +138,14 @@ test('validate-ko workflow is a semantic read-only pinned validation contract', 
   assert.doesNotMatch(text, /(?:contents|pull-requests|actions|checks|issues):\s*write/iu);
   assert.match(text, /runs-on:\s*(?:ubuntu-24\.04|windows-2025-vs2026)/u);
 
-  const expectedActions = new Set([
+  const expectedActions = [
     'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1',
     'actions/setup-node@820762786026740c76f36085b0efc47a31fe5020',
     'actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97',
     'actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a',
-  ]);
+  ];
   const actions = [...text.matchAll(/^\s*uses:\s*([^\s]+)\s*$/gmu)].map((match) => match[1]);
-  assert.deepEqual(new Set(actions), expectedActions);
+  assert.deepEqual(actions, expectedActions);
   for (const action of actions) assert.match(action, /^[^@]+@[0-9a-f]{40}$/u);
 
   assert.match(text, /python -m pip install -r localization\/ko-KR\/requirements-overlay\.txt/u);

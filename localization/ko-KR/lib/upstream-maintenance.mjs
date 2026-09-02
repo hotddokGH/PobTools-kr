@@ -13,6 +13,7 @@ import {
 } from 'node:fs';
 import { promisify } from 'node:util';
 import { dirname, join, relative, resolve, sep } from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 const execFileAsync = promisify(execFile);
 const MAX_OUTPUT = 64 * 1024;
@@ -92,28 +93,39 @@ function writeJson(path, value) {
   writeFileSync(path, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
 }
 
-function pathPattern(path) {
-  return String(path)
-    .replace(/[\\/]+$/u, '')
-    .split(/[\\/]+/u)
-    .map((part) => part.replace(/[.*+?^${}()|[\]\\]/gu, '\\$&'))
-    .join('[\\\\/]');
+function escapedPattern(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/gu, '\\$&');
+}
+
+function canonicalPathForms(path, token) {
+  const native = String(path).replace(/[\\/]+$/u, '');
+  const posix = native.replaceAll('\\', '/');
+  const href = pathToFileURL(native).href.replace(/\/+$/u, '');
+  return [...new Map([
+    [native, token],
+    [posix, token],
+    [href, `file:///${token}`],
+  ]).entries()].map(([value, replacement]) => ({ value, replacement }));
 }
 
 function canonicalizePathString(value, replacements) {
   let output = value;
-  let replaced = false;
   for (const { path, token, root } of replacements) {
     if (!path) continue;
-    const before = '(^|[\\s"\'=(:,;\\[])';
-    const after = root ? '(?=$|[\\\\/\\s"\'),;:\\]])' : '(?=$|[\\s"\'),;:\\]])';
-    const expression = new RegExp(`${before}${pathPattern(path)}${after}`, process.platform === 'win32' ? 'giu' : 'gu');
-    output = output.replace(expression, (_match, prefix) => {
-      replaced = true;
-      return `${prefix}${token}`;
-    });
+    for (const form of canonicalPathForms(path, token)) {
+      const before = '(^|[\\s"\'=(:,;\\[])';
+      const suffix = root ? '((?:[\\\\/][^\\s"\'),;:\\]]*)?)' : '()';
+      const after = '(?=$|[\\s"\'),;:\\]])';
+      const expression = new RegExp(
+        `${before}${escapedPattern(form.value)}${suffix}${after}`,
+        process.platform === 'win32' ? 'giu' : 'gu',
+      );
+      output = output.replace(expression, (_match, prefix, matchedSuffix) => (
+        `${prefix}${form.replacement}${matchedSuffix.replaceAll('\\', '/')}`
+      ));
+    }
   }
-  return replaced ? output.replaceAll('\\', '/') : output;
+  return output;
 }
 
 export function canonicalizeMaintenanceReport(report, {
@@ -391,16 +403,17 @@ export async function applyCompatibilityPatch({ repositoryRoot, workspace, repor
 }
 
 function hashPath(path, root = path, hash = createHash('sha256')) {
-  if (!existsSync(path)) return hash.update(`missing:${relative(root, path)}\0`);
+  const identity = relative(root, path).split(sep).join('/');
+  if (!existsSync(path)) return hash.update(`missing:${identity}\0`);
   const metadata = lstatSync(path);
   if (metadata.isSymbolicLink()) throw new Error(`generated path is a symbolic link or reparse point: ${path}`);
   if (metadata.isDirectory()) {
     for (const name of readdirSync(path).sort((left, right) => left.localeCompare(right, 'en'))) {
-      hash.update(`directory:${relative(root, join(path, name))}\0`);
+      hash.update(`directory:${relative(root, join(path, name)).split(sep).join('/')}\0`);
       hashPath(join(path, name), root, hash);
     }
   } else if (metadata.isFile()) {
-    hash.update(`file:${relative(root, path)}\0`);
+    hash.update(`file:${identity}\0`);
     hash.update(readFileSync(path));
   }
   return hash;
@@ -408,8 +421,8 @@ function hashPath(path, root = path, hash = createHash('sha256')) {
 
 function digestScopes(scopes) {
   const hash = createHash('sha256');
-  for (const scope of [...scopes].sort((left, right) => left.localeCompare(right, 'en'))) {
-    hash.update(`scope:${scope}\0`);
+  for (const [index, scope] of scopes.entries()) {
+    hash.update(`scope:${index}\0`);
     hashPath(scope, scope, hash);
   }
   return hash.digest('hex').toUpperCase();
