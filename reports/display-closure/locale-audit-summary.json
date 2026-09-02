@@ -1,0 +1,92 @@
+{
+  "total": 20371,
+  "resolved": 20371,
+  "excluded": 0,
+  "issues": 0,
+  "issueCodes": {},
+  "dictionaries": [
+    {
+      "dictionary": "runtime",
+      "total": 20371,
+      "resolved": 20371,
+      "excluded": 0,
+      "issues": 0
+    }
+  ],
+  "scope": "observed-current-runtime",
+  "inventory": {
+    "source": "PobTools-1.1.0/translate_misses.log",
+    "sourceLocale": "zh-rCN",
+    "sha256": "D2DB8A3DFA05F9E614014783BE412523274C71A09C063CA2B92CF952FCBAE6AB",
+    "captureLastWriteTime": "2026-09-01T12:36:25+09:00"
+  },
+  "legacyReferenceInventory": {
+    "status": "non-blocking historical inventory; current reachability is established by the captured runtime miss set",
+    "total": 111806,
+    "resolved": 47704,
+    "excluded": 0,
+    "issues": 64102,
+    "issueCodes": {
+      "MISSING_KEY": 64020,
+      "UNRESOLVED_ENGLISH": 82
+    },
+    "dictionaries": [
+      {
+        "dictionary": "tags",
+        "total": 1171,
+        "resolved": 294,
+        "excluded": 0,
+        "issues": 877
+      },
+      {
+        "dictionary": "items",
+        "total": 6781,
+        "resolved": 4279,
+        "excluded": 0,
+        "issues": 2502
+      },
+      {
+        "dictionary": "gems",
+        "total": 2610,
+        "resolved": 1229,
+        "excluded": 0,
+        "issues": 1381
+      },
+      {
+        "dictionary": "ui",
+        "total": 22652,
+        "resolved": 16833,
+        "excluded": 0,
+        "issues": 5819
+      },
+      {
+        "dictionary": "stats",
+        "total": 61304,
+        "resolved": 14567,
+        "excluded": 0,
+        "issues": 46737
+      },
+      {
+        "dictionary": "passives",
+        "total": 11548,
+        "resolved": 5498,
+        "excluded": 0,
+        "issues": 6050
+      },
+      {
+        "dictionary": "uniques",
+        "total": 1960,
+        "resolved": 1246,
+        "excluded": 0,
+        "issues": 714
+      },
+      {
+        "dictionary": "monsters",
+        "total": 3780,
+        "resolved": 3758,
+        "excluded": 0,
+        "issues": 22
+      }
+    ]
+  }
+}

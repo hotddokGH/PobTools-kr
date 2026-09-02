@@ -1,0 +1,34 @@
+{
+  "source": "official Path of Exile patch data",
+  "patch": "3.29.3.2",
+  "table": "PassiveSkills",
+  "idColumn": "Id",
+  "nameColumn": "Name",
+  "languages": {
+    "english": "Data",
+    "korean": "Data/Korean"
+  },
+  "tool": {
+    "name": "pathofexile-dat",
+    "version": "15.2.0",
+    "license": "MIT"
+  },
+  "clientEvidence": {
+    "log": "C:\\Daum Games\\Path of Exile\\logs\\KakaoClient.txt",
+    "detectedPatch": "3.29.3.2",
+    "matchesExportPatch": true
+  },
+  "inputs": {
+    "englishRows": 5706,
+    "koreanRows": 5706,
+    "stableIds": 5706,
+    "englishSha256": "A15EC17BE670906EFB060E33E7D5C5870C9F80D3CE881D804685A4A8CF8FEB31",
+    "koreanSha256": "FEA5F63BDE5A2582723C76B6894FA2A9DB8BF2FD69226277312CA9EBE7366897"
+  },
+  "counts": {
+    "accepted": 5673,
+    "conflicts": 27,
+    "unmatched": 6
+  },
+  "generatedAtUtc": "2026-09-01T02:07:33.6926279Z"
+}

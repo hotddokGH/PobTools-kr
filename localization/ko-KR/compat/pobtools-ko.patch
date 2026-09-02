@@ -1,0 +1,152 @@
+diff --git a/pob-zh-engine/CMakeLists.txt b/pob-zh-engine/CMakeLists.txt
+index 5b0fb93..4948bd7 100644
+--- a/pob-zh-engine/CMakeLists.txt
++++ b/pob-zh-engine/CMakeLists.txt
+@@ -3,6 +3,8 @@ project(SimpleGraphic C CXX)
+ set(CMAKE_CXX_STANDARD_REQUIRED ON)
+ set(CMAKE_CXX_STANDARD 17)
+ 
++option(POBTOOLS_KOREAN_RELEASE "Build the public Korean release" OFF)
++
+ if (APPLE)
+     enable_language(OBJCXX)
+ endif ()
+@@ -438,6 +440,9 @@ if (WIN32)
+         ${IMGUI_SOURCES}
+     )
+     target_compile_definitions(pob-zh PRIVATE "UNICODE" "_UNICODE" "IMGUI_IMPL_OPENGL_ES2")
++    if(POBTOOLS_KOREAN_RELEASE)
++        target_compile_definitions(pob-zh PRIVATE POBTOOLS_KOREAN_RELEASE=1)
++    endif()
+     # 更新來源的 repo。不設就是 app_update.cpp 裡的正式值。
+     #
+     # 存在的理由:「簽章會放行正確的更新」只能對著一個真的 release 證明,而拿正式
+diff --git a/pob-zh-engine/host/app_update.cpp b/pob-zh-engine/host/app_update.cpp
+index 5a698f4..459d937 100644
+--- a/pob-zh-engine/host/app_update.cpp
++++ b/pob-zh-engine/host/app_update.cpp
+@@ -583,7 +583,9 @@ void AppUpdater::Init(const std::wstring& exeDir)
+ 		st_.localVer = POBTOOLS_VERSION_STRING;
+ 		st_.localDataVer = ReadLocalDataVersion(exeDir_);
+ 	}
++#ifndef POBTOOLS_KOREAN_RELEASE
+ 	worker_ = std::thread(&AppUpdater::workerLoop, this);
++#endif
+ }
+ 
+ void AppUpdater::Shutdown()
+@@ -600,6 +602,9 @@ void AppUpdater::Shutdown()
+ 
+ void AppUpdater::RequestCheck(CheckReason reason)
+ {
++#ifdef POBTOOLS_KOREAN_RELEASE
++	return;
++#endif
+ 	if (!worker_.joinable()) return;
+ 	const bool userAsked = (reason == CheckReason::UserAsked);
+ 	static const long long kDay = 24ll * 3600 * 10'000'000; // FILETIME is 100ns units
+@@ -614,6 +619,9 @@ void AppUpdater::RequestCheck(CheckReason reason)
+ 
+ void AppUpdater::StartAppUpdate()
+ {
++#ifdef POBTOOLS_KOREAN_RELEASE
++	return;
++#endif
+ 	if (!worker_.joinable()) return;
+ 	{
+ 		std::lock_guard<std::mutex> lk(cmdMx_);
+@@ -624,6 +632,9 @@ void AppUpdater::StartAppUpdate()
+ 
+ void AppUpdater::StartTranslationUpdate()
+ {
++#ifdef POBTOOLS_KOREAN_RELEASE
++	return;
++#endif
+ 	if (!worker_.joinable()) return;
+ 	{
+ 		std::lock_guard<std::mutex> lk(cmdMx_);
+diff --git a/pob-zh-engine/host/app_update.h b/pob-zh-engine/host/app_update.h
+index a5e3e6f..568f5ae 100644
+--- a/pob-zh-engine/host/app_update.h
++++ b/pob-zh-engine/host/app_update.h
+@@ -74,6 +74,14 @@ public:
+ 	// no way to tell a failure from "already up to date".
+ 	enum class CheckReason { Background, UserAsked };
+ 	void RequestCheck(CheckReason reason);
++	bool RemoteUpdatesEnabled() const
++	{
++#ifdef POBTOOLS_KOREAN_RELEASE
++		return false;
++#else
++		return true;
++#endif
++	}
+ 
+ 	// Main thread. Valid in AppAvailable/Error: downloads + stages the app zip.
+ 	void StartAppUpdate();
+diff --git a/pob-zh-engine/host/atlas_update.cpp b/pob-zh-engine/host/atlas_update.cpp
+index e749c49..22d17bd 100644
+--- a/pob-zh-engine/host/atlas_update.cpp
++++ b/pob-zh-engine/host/atlas_update.cpp
+@@ -34,7 +34,11 @@ static const wchar_t* kRawBase = L"/grindinggear/atlastree-export/";
+ // and stat text, keyed by the same node hashes.
+ static const wchar_t* kRepoeHost = L"repoe-fork.github.io";
+ static const wchar_t* kRepoeVersionPath = L"/version.txt";
++#ifdef POBTOOLS_KOREAN_RELEASE
++static const wchar_t* kRepoeTcAtlasPath = L"/Korean/passive_skill_trees/Atlas.json";
++#else
+ static const wchar_t* kRepoeTcAtlasPath = L"/Traditional%20Chinese/passive_skill_trees/Atlas.json";
++#endif
+ 
+ // ---- small helpers (same conventions as atlas_import.cpp) ---------------------
+ 
+diff --git a/pob-zh-engine/host/filter_i18n.cpp b/pob-zh-engine/host/filter_i18n.cpp
+index 102411a..d5eac08 100644
+--- a/pob-zh-engine/host/filter_i18n.cpp
++++ b/pob-zh-engine/host/filter_i18n.cpp
+@@ -66,8 +66,9 @@ static void load_flat(const std::wstring& path, std::unordered_map<std::string,
+ 
+ void FilterI18n::Load(const std::wstring& exeDir, const std::string& locale)
+ {
++	const bool koreanLocale = locale == "ko-KR";
+ 	// 1. Complete bundled TC item names (repoe-fork derived) — primary source.
+-	load_flat(exeDir + L"Data\\filter_items_zh.json", names_);
++	if (!koreanLocale) load_flat(exeDir + L"Data\\filter_items_zh.json", names_);
+ 
+ 	// 2. Engine dictionaries fill anything the bundled set lacks (first value wins).
+ 	std::wstring dir = exeDir + L"Data\\poe1\\" + widen(locale) + L"\\";
+@@ -113,7 +114,7 @@ void FilterI18n::Load(const std::wstring& exeDir, const std::string& locale)
+ 
+ 	// 5. Item-class Chinese labels: bundled repoe-fork map (complete) first, then
+ 	// the engine's item_metadata.json as a fallback.
+-	load_flat(exeDir + L"Data\\item_classes_zh.json", classZh_);
++	if (!koreanLocale) load_flat(exeDir + L"Data\\item_classes_zh.json", classZh_);
+ 	// 5b. class id -> in-game English class name (what the Class condition matches).
+ 	load_flat(exeDir + L"Data\\item_classes_en.json", classEn_);
+ 	{
+diff --git a/pob-zh-engine/host/filter_item_import.cpp b/pob-zh-engine/host/filter_item_import.cpp
+index 0ddabb8..9a70f61 100644
+--- a/pob-zh-engine/host/filter_item_import.cpp
++++ b/pob-zh-engine/host/filter_item_import.cpp
+@@ -51,6 +51,12 @@ bool startsWith(const std::string& s, const char* pfx)
+ 	return s.size() >= n && memcmp(s.data(), pfx, n) == 0;
+ }
+ 
++bool endsWith(const std::string& s, const char* suffix)
++{
++	size_t n = strlen(suffix);
++	return s.size() >= n && memcmp(s.data() + s.size() - n, suffix, n) == 0;
++}
++
+ // First integer in the string (handles "+29% (augmented)", "20 (Max)",
+ // "1,234/40000"); returns false when there is none.
+ bool firstInt(const std::string& s, int* out)
+@@ -357,7 +363,7 @@ ImportedItem ParseGameItemText(const std::string& utf8Text,
+ 	if (!hit)   // magic/normal compose the base into one line; also a last resort
+ 		hit = longestSubstring(ix, base, classLineEn, i18n);
+ 
+-	if (r.name == u8"贗品．" || startsWith(r.name, u8"贗品．") || startsWith(r.name, "Replica "))
++	if (endsWith(r.name, u8"贗品．") || startsWith(r.name, "Replica "))
+ 		r.item.replica = true;
+ 
+ 	if (!hit) {

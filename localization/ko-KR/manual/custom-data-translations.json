@@ -1,0 +1,67 @@
+{
+  "source": "Manual PoE1 custom-tool labels plus official Korean names from the Kakao Path of Exile trade API",
+  "regexPages": {
+    "map_mods": {
+      "title": "지도 속성 부여",
+      "note": "찾을 속성 부여를 선택한 뒤 생성된 문자열을 보관함 검색창에 붙여넣으세요. 오탐 방지는 이 목록의 다른 속성 부여만 기준으로 합니다.",
+      "groups": ["접두어", "접미어", "접두어·접미어"]
+    },
+    "logbook_mods": {
+      "title": "탐험 일지 속성 부여",
+      "note": "찾을 일지 속성 부여를 선택하세요. 오탐 방지는 이 목록의 다른 속성 부여만 기준으로 합니다.",
+      "groups": ["접두어", "접미어", "접두어·접미어"]
+    }
+  },
+  "timelessConquerors": {
+    "Xibaqua": "지바콰",
+    "Zerphi": "제르피",
+    "Ahuana": "아후아나",
+    "Doryani": "도리아니",
+    "Kaom": "카옴",
+    "Rakiata": "라키아타",
+    "Kiloava": "킬로아바",
+    "Akoya": "아코야",
+    "Deshret": "데쉬렛",
+    "Balbala": "발바라",
+    "Asenath": "아세나스",
+    "Nasima": "나시마",
+    "Venarius": "베나리우스",
+    "Maxarius": "막사리우스",
+    "Dominus": "도미누스",
+    "Avarius": "아배리우스",
+    "Cadiro": "카디로",
+    "Victario": "빅타리오",
+    "Chitus": "치투스",
+    "Caspiro": "카스피로",
+    "Vorana": "보라나",
+    "Uhtred": "우트레드",
+    "Medved": "메드베드",
+    "Tecrod": "테크로드",
+    "Ulaman": "울라만",
+    "Kurgal": "쿠르갈",
+    "Amanamu": "아마나무",
+    "Zorath": "조라스"
+  },
+  "entries": {
+    "Grants 20 Atlas Passive Skill Points": "아틀라스 패시브 스킬 포인트 20포인트 획득",
+    "Lifeforce found in your Maps is granted as a random Crop instead at 250% of the value": "지도에서 발견하는 생기 대신 해당 수치의 250%에 해당하는 무작위 작물을 획득",
+    "Add Melee Damage": "근접 피해 추가",
+    "Add Melee Crit Chance": "근접 치명타 확률 추가",
+    "Add Totem Damage": "토템 피해 추가",
+    "Add Melee Crit Multi": "근접 치명타 피해 배율 추가",
+    "Add Projectile Damage": "투사체 피해 추가",
+    "Add Poison Damage": "중독 피해 추가",
+    "Add Minion Damage": "소환수 피해 추가",
+    "Add Minion Movement Speed": "소환수 이동 속도 추가",
+    "Energy Shield Regeneration": "에너지 보호막 재생",
+    "Life Recovery from Non-Instant Leech is not applied": "즉시 적용되지 않는 흡수로 인한 생명력 회복이 적용되지 않음",
+    "Flasks Gain 4 Charges per empty Flask Slot every 5 seconds": "플라스크가 빈 플라스크 슬롯 하나당 5초마다 충전 4 획득",
+    "50% less recovery from Recoup": "피해 회생으로 인한 회복 50% 감폭",
+    "Minions gain 10% of Non-Chaos Damage as extra Chaos Damage while you have a Spectre": "망령이 있는 동안 소환수가 비-카오스 피해의 10%를 추가 카오스 피해로 획득",
+    "Attacks gain 1% more damage for each 2% of your Maximum Life they cost if Life Cost is not higher than the maximum you could spend": "생명력 소모가 지불 가능한 최대치를 넘지 않는 경우, 소모하는 최대 생명력의 2%당 공격 피해 1% 증폭",
+    "Splinters contained in Legion Chests in your Maps have 10% chance to be Duplicated": "지도 내 군단 상자에 들어 있는 파편이 10% 확률로 복제됨",
+    "Abyss Cracks in your Maps have 3% chance to spawn all Monsters as at least Magic": "지도 내 심연 균열이 3% 확률로 모든 몬스터를 최소 마법 등급으로 생성",
+    "Abyss Cracks in your Maps have 3% chance to spawn 100% increased Monsters": "지도 내 심연 균열이 3% 확률로 몬스터 100% 증가",
+    "Abysses in your Maps that do not lead to an Abyssal Depths have 5% increased chance to lead to a Stygian Spire": "심연의 구렁으로 이어지지 않는 지도 내 심연이 명계의 첨탑으로 이어질 확률 5% 증가"
+  }
+}

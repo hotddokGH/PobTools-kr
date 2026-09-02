@@ -1,0 +1,36 @@
+{
+  "patch": "3.29.3.2",
+  "source": "RePoE export of official Path of Exile game data",
+  "files": {
+    "English.base_items.min.json": {
+      "url": "https://repoe-fork.github.io/base_items.min.json",
+      "bytes": 3010191,
+      "sha256": "8CAC14018ABE33299EB65B5FA089008123C63B192946685D4BDCCFFC97068CEC"
+    },
+    "Korean.base_items.min.json": {
+      "url": "https://repoe-fork.github.io/Korean/base_items.min.json",
+      "bytes": 3089235,
+      "sha256": "D31184CA901229B114B78A6077C51224CDB1FC94A3DF0D9E4D8E9009E82EB347"
+    },
+    "Korean.Atlas.min.json": {
+      "url": "https://repoe-fork.github.io/Korean/passive_skill_trees/Atlas.min.json",
+      "bytes": 749685,
+      "sha256": "79AF87370199065E52CA3E0861F725CC58635E6DF495E2658CE0938224EB1A90"
+    },
+    "English.world_areas.min.json": {
+      "url": "https://repoe-fork.github.io/world_areas.min.json",
+      "bytes": 5280636,
+      "sha256": "18862A0F6151F801D44801BB22C3A03FDAE99B3483E146F1A75B4E11D38E1BFC"
+    },
+    "Korean.world_areas.min.json": {
+      "url": "https://repoe-fork.github.io/Korean/world_areas.min.json",
+      "bytes": 5283135,
+      "sha256": "EE9593CC1A97F63BBB089059F52F1424ACFA73232220E5930CB1A902DC9491A3"
+    },
+    "version.txt": {
+      "url": "https://repoe-fork.github.io/version.txt",
+      "bytes": 8,
+      "sha256": "F1DC9B7C38D34647155B7BD0B4E0BB588A2BAF9ED7A3F4C6FF0F57E1DC374B39"
+    }
+  }
+}

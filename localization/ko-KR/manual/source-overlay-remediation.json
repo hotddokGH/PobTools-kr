@@ -1,0 +1,4003 @@
+{
+  "contexts": [
+    {
+      "evidenceFunction": "ImportAtlasTreeData",
+      "evidenceMode": "localized-expression-reflow",
+      "evidencePath": "host/atlas_import.cpp",
+      "formatSignature": [],
+      "function": "ImportAtlasTreeData",
+      "localizedEvidenceSha256": "65E981F8FF6EA69E186383569322FC88AB0A943E91D4C2C2EAC2EFFBE6D91B50",
+      "localizedOccurrenceIndex": 109,
+      "occurrenceIndex": 109,
+      "path": "host/atlas_import.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "有 ",
+      "sourceSha256": "A6815DB95FF5AD9F7E44DB79CE9E41C3E29E73BF64745F893FF5ABBF41569BAB",
+      "target": "",
+      "upstreamOccurrenceIndex": 109
+    },
+    {
+      "evidenceFunction": "ImportAtlasTreeData",
+      "evidenceMode": "localized-expression-reflow",
+      "evidencePath": "host/atlas_import.cpp",
+      "formatSignature": [],
+      "function": "ImportAtlasTreeData",
+      "localizedEvidenceSha256": "65E981F8FF6EA69E186383569322FC88AB0A943E91D4C2C2EAC2EFFBE6D91B50",
+      "localizedOccurrenceIndex": 109,
+      "occurrenceIndex": 110,
+      "path": "host/atlas_import.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": " 個節點無法從起點抵達，資料異常，已中止匯入",
+      "sourceSha256": "3425BE49E0815B079D3159EB66684056A93456546531D4BD469220644E82CE3F",
+      "target": "개 노드가 시작 노드에서 연결되지 않습니다. 데이터 오류로 가져오기를 중단했습니다.",
+      "upstreamOccurrenceIndex": 110
+    },
+    {
+      "evidenceFunction": "sheetFor",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/atlas_import.cpp",
+      "formatSignature": [],
+      "function": "sheetFor",
+      "localizedEvidenceSha256": "BB36A52B630DC2AE19C360B1F8387E53638A166014DBA10AC05AF1F0BFD65576",
+      "localizedOccurrenceIndex": 2,
+      "occurrenceIndex": 2,
+      "path": "host/atlas_import.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "圖集 ",
+      "sourceSha256": "1BBE4684A999D917AFE9CBF7A767A0A8006D20AAEF27765C9CFA9993AB362C24",
+      "target": "이미지 시트 ",
+      "upstreamOccurrenceIndex": 2
+    },
+    {
+      "evidenceFunction": "sheetFor",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/atlas_import.cpp",
+      "formatSignature": [],
+      "function": "sheetFor",
+      "localizedEvidenceSha256": "716A550792A70920451F5A3DAB5ECD61303C02C33346F927D77FA037740DFA93",
+      "localizedOccurrenceIndex": 3,
+      "occurrenceIndex": 3,
+      "path": "host/atlas_import.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": " 是 webp 格式，目前不支援（需要 png/jpg）",
+      "sourceSha256": "1BF30DA9131D650A7E64C369EBA19CE80E8F22C64042AE3203221BF89514C244",
+      "target": "은(는) 지원하지 않는 webp 형식입니다(png/jpg 필요).",
+      "upstreamOccurrenceIndex": 3
+    },
+    {
+      "evidenceFunction": "sheetFor",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/atlas_import.cpp",
+      "formatSignature": [],
+      "function": "sheetFor",
+      "localizedEvidenceSha256": "BB36A52B630DC2AE19C360B1F8387E53638A166014DBA10AC05AF1F0BFD65576",
+      "localizedOccurrenceIndex": 6,
+      "occurrenceIndex": 6,
+      "path": "host/atlas_import.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "圖集 ",
+      "sourceSha256": "1BBE4684A999D917AFE9CBF7A767A0A8006D20AAEF27765C9CFA9993AB362C24",
+      "target": "이미지 시트 ",
+      "upstreamOccurrenceIndex": 6
+    },
+    {
+      "evidenceFunction": "sheetFor",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/atlas_import.cpp",
+      "formatSignature": [],
+      "function": "sheetFor",
+      "localizedEvidenceSha256": "4349DEFF5640F3AB2E4DA69B969ABE2836A7F10172E2AF763AB8F10AFD77491C",
+      "localizedOccurrenceIndex": 7,
+      "occurrenceIndex": 7,
+      "path": "host/atlas_import.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": " 尺寸異常或超過 4096",
+      "sourceSha256": "BBB8F7973E0FA1D5E7BE46EF76C6CE9C94D8D0E3C8433EADA312644873CBB2A1",
+      "target": "의 크기가 올바르지 않거나 4096을 초과합니다.",
+      "upstreamOccurrenceIndex": 7
+    },
+    {
+      "evidenceFunction": "sheetFor",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/atlas_import.cpp",
+      "formatSignature": [],
+      "function": "sheetFor",
+      "localizedEvidenceSha256": "CEC0C1E130857B6FE937CF1B2274078C1349FAF2539D6AEF846712C3F03AC5C0",
+      "localizedOccurrenceIndex": 8,
+      "occurrenceIndex": 8,
+      "path": "host/atlas_import.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "assets 資料夾內找不到圖集 ",
+      "sourceSha256": "AC8DDF7E0FD261BE27992F0B332D8672CF39EBF4E34961CBCFD6E69D74E9C63C",
+      "target": "이미지 시트 폴더에서 ",
+      "upstreamOccurrenceIndex": 8
+    },
+    {
+      "components": [
+        {
+          "source": "機制圖示規則的回測一致率只有 %.1f%%（門檻 %.1f%%），",
+          "target": "메커니즘 아이콘 규칙의 일치율이 %.1f%%에 불과합니다(기준 %.1f%%). "
+        },
+        {
+          "source": "GGG 可能改了圖示命名，已中止",
+          "target": "GGG가 아이콘 이름을 변경했을 수 있어 중단했습니다."
+        }
+      ],
+      "evidenceFunction": "AtlasBuildMechanicMap",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/atlas_mechanics.cpp",
+      "formatSignature": [
+        "%%",
+        "%%",
+        "%.1f",
+        "%.1f"
+      ],
+      "function": "AtlasBuildMechanicMap",
+      "localizedEvidenceSha256": "0F07A89C491FA4014CE721298AF38C02EF43E21FFDB923CFB84B74BE5194D51D",
+      "localizedOccurrenceIndex": 19,
+      "occurrenceIndex": 19,
+      "path": "host/atlas_mechanics.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "機制圖示規則的回測一致率只有 %.1f%%（門檻 %.1f%%），GGG 可能改了圖示命名，已中止",
+      "sourceSha256": "B86534340F59F3D2449EBF3EABBDB9438BD7E85AC45D3200F2DC8C165779B224",
+      "target": "메커니즘 아이콘 규칙의 일치율이 %.1f%%에 불과합니다(기준 %.1f%%). GGG가 아이콘 이름을 변경했을 수 있어 중단했습니다.",
+      "upstreamOccurrenceIndex": 19
+    },
+    {
+      "evidenceFunction": "",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/atlas_planner.cpp",
+      "formatSignature": [
+        "<NUL>",
+        "<NUL>",
+        "<NUL>",
+        "<NUL>",
+        "<NUL>"
+      ],
+      "function": "",
+      "localizedEvidenceSha256": "9DB9B87E6D2741B756070F91A2A4B035A004070DE202F62E000B4C4DC04259AF",
+      "localizedOccurrenceIndex": 26,
+      "occurrenceIndex": 26,
+      "path": "host/atlas_planner.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "輿圖策略專案 (*.json)\u0000*.json\u0000所有檔案 (*.*)\u0000*.*\u0000\u0000",
+      "sourceSha256": "ADABDAF87257DB83371DF2874D11F5FB02983EBA4E017032EE28AA64775697E4",
+      "target": "아틀라스 전략 프로젝트 (*.json)\u0000*.json\u0000모든 파일 (*.*)\u0000*.*\u0000\u0000",
+      "upstreamOccurrenceIndex": 26
+    },
+    {
+      "components": [
+        {
+          "source": "用最少的天賦點重新接一次目前的節點。\n",
+          "target": "현재 노드를 최소 패시브 포인트 경로로 한 번 다시 연결합니다.\n"
+        },
+        {
+          "source": "大點、鑰石與端點都會保留，只有中間繞路的小點會改道；\n",
+          "target": "주요 노드, 키스톤, 종점 노드는 유지하며 중간 소형 노드만 경로가 바뀔 수 있습니다.\n"
+        },
+        {
+          "source": "平常點節點不會自動重算，按了才會動，Ctrl+Z 可復原。",
+          "target": "일반 클릭으로는 자동 재계산하지 않습니다. 이 버튼을 눌렀을 때만 이동하며 Ctrl+Z로 되돌릴 수 있습니다."
+        }
+      ],
+      "evidenceFunction": "Frame",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/atlas_planner.cpp",
+      "formatSignature": [
+        "<NL>",
+        "<NL>"
+      ],
+      "function": "Frame",
+      "localizedEvidenceSha256": "3DC34EC160600714DDCE1FCE2DC9E02342D632A0ED233D358C970DDDA09FB158",
+      "localizedOccurrenceIndex": 50,
+      "occurrenceIndex": 50,
+      "path": "host/atlas_planner.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "用最少的天賦點重新接一次目前的節點。\n大點、鑰石與端點都會保留，只有中間繞路的小點會改道；\n平常點節點不會自動重算，按了才會動，Ctrl+Z 可復原。",
+      "sourceSha256": "658583C282E3269E1A741C80BAF31C81EE5A39790BD0372770184BBACD656161",
+      "target": "현재 노드를 최소 패시브 포인트 경로로 한 번 다시 연결합니다.\n주요 노드, 키스톤, 종점 노드는 유지하며 중간 소형 노드만 경로가 바뀔 수 있습니다.\n일반 클릭으로는 자동 재계산하지 않습니다. 이 버튼을 눌렀을 때만 이동하며 Ctrl+Z로 되돌릴 수 있습니다.",
+      "upstreamOccurrenceIndex": 50
+    },
+    {
+      "components": [
+        {
+          "source": "沙盒：從空白開始快速標記想要／不要的節點，",
+          "target": "샌드박스: 빈 트리에서 원하는 노드와 제외할 노드를 빠르게 표시합니다. "
+        },
+        {
+          "source": "期間不會寫入存檔，結束時再決定要不要保留",
+          "target": "계획 중에는 저장하지 않으며 종료할 때 저장 여부를 묻습니다."
+        }
+      ],
+      "evidenceFunction": "Frame",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/atlas_planner.cpp",
+      "formatSignature": [],
+      "function": "Frame",
+      "localizedEvidenceSha256": "AACF4C09962BC72C5CC731D99E8D81B9AEF0833F380D968669EC5D2469310C39",
+      "localizedOccurrenceIndex": 63,
+      "occurrenceIndex": 63,
+      "path": "host/atlas_planner.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "沙盒：從空白開始快速標記想要／不要的節點，期間不會寫入存檔，結束時再決定要不要保留",
+      "sourceSha256": "2D9D4576C1CB0AFD1D5AA00F240BA6C4B14239AD6B72EFC6E40E252197481D89",
+      "target": "샌드박스: 빈 트리에서 원하는 노드와 제외할 노드를 빠르게 표시합니다. 계획 중에는 저장하지 않으며 종료할 때 저장 여부를 묻습니다.",
+      "upstreamOccurrenceIndex": 63
+    },
+    {
+      "components": [
+        {
+          "source": "比較任兩個已安裝版本（可選）：節點增刪與逐詞條數值變更",
+          "target": "설치된 두 버전을 선택해 노드 추가·삭제와 수치 변경을 비교합니다."
+        },
+        {
+          "source": "（綠=新增, 紅=移除, 黃=變動）\n",
+          "target": "(초록=추가, 빨강=삭제, 노랑=변경)\n"
+        },
+        {
+          "source": "當季各小版本都會保留，所以也能比 %s 這種賽季中的官方調整\n",
+          "target": "%s처럼 같은 시즌의 소규모 버전과 공식 조정도 비교할 수 있습니다.\n"
+        },
+        {
+          "source": "目前已安裝 %d 個版本",
+          "target": "현재 설치된 버전: %d개"
+        }
+      ],
+      "evidenceFunction": "Frame",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/atlas_planner.cpp",
+      "formatSignature": [
+        "%d",
+        "%s",
+        "<NL>",
+        "<NL>"
+      ],
+      "function": "Frame",
+      "localizedEvidenceSha256": "5C906C2B7D286E418DA4AFD27200E03495253A72531066A4523399F200E0E9F2",
+      "localizedOccurrenceIndex": 66,
+      "occurrenceIndex": 66,
+      "path": "host/atlas_planner.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "比較任兩個已安裝版本（可選）：節點增刪與逐詞條數值變更（綠=新增, 紅=移除, 黃=變動）\n當季各小版本都會保留，所以也能比 %s 這種賽季中的官方調整\n目前已安裝 %d 個版本",
+      "sourceSha256": "7579158BD01A4930594D44AE7F3CEDFF5D0A18163788D6766CF72AD6053A64DC",
+      "target": "설치된 두 버전을 선택해 노드 추가·삭제와 수치 변경을 비교합니다.(초록=추가, 빨강=삭제, 노랑=변경)\n%s처럼 같은 시즌의 소규모 버전과 공식 조정도 비교할 수 있습니다.\n현재 설치된 버전: %d개",
+      "upstreamOccurrenceIndex": 66
+    },
+    {
+      "components": [
+        {
+          "source": "滾輪縮放  ·  拖曳平移  ·  左鍵配點或移除",
+          "target": "마우스 휠 확대/축소 · 드래그로 이동 · 왼쪽 클릭으로 할당/해제 "
+        },
+        {
+          "source": "  ·  點叢集中央的機制圖示可標出同機制的所有位置",
+          "target": "· '중심'을 클릭하면 같은 메커니즘 위치를 모두 표시합니다."
+        }
+      ],
+      "evidenceFunction": "Frame",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/atlas_planner.cpp",
+      "formatSignature": [],
+      "function": "Frame",
+      "localizedEvidenceSha256": "1F0FABB572BCA989C695D84799F238A5933D0496CA45344C0EC916D795A2BA3A",
+      "localizedOccurrenceIndex": 75,
+      "occurrenceIndex": 75,
+      "path": "host/atlas_planner.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "滾輪縮放  ·  拖曳平移  ·  左鍵配點或移除  ·  點叢集中央的機制圖示可標出同機制的所有位置",
+      "sourceSha256": "69C82A7F853A0848DCA6ED71B47FF2CDF6E7378AF9D4CDE2A7C9A4CAB439DCBB",
+      "target": "마우스 휠 확대/축소 · 드래그로 이동 · 왼쪽 클릭으로 할당/해제 · '중심'을 클릭하면 같은 메커니즘 위치를 모두 표시합니다.",
+      "upstreamOccurrenceIndex": 75
+    },
+    {
+      "components": [
+        {
+          "source": "超過 %d 個時，「壓縮到最少點」與規劃模式改用近似演算法，\n",
+          "target": "%d개를 초과하면 '최소까지 압축'과 계획 모드가 근사 알고리즘을 사용합니다.\n"
+        },
+        {
+          "source": "可能比真正的最少點多幾點。平常點節點不受影響。",
+          "target": "정확한 최솟값보다 몇 포인트 더 많을 수 있습니다. 일반 노드 클릭에는 영향이 없습니다."
+        }
+      ],
+      "evidenceFunction": "Frame",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/atlas_planner.cpp",
+      "formatSignature": [
+        "%d",
+        "<NL>"
+      ],
+      "function": "Frame",
+      "localizedEvidenceSha256": "2F630F08ED6753593DB736311D93B034B47FBF568F88FAC6CA3CCA427D3BCE11",
+      "localizedOccurrenceIndex": 109,
+      "occurrenceIndex": 109,
+      "path": "host/atlas_planner.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "超過 %d 個時，「壓縮到最少點」與規劃模式改用近似演算法，\n可能比真正的最少點多幾點。平常點節點不受影響。",
+      "sourceSha256": "7D530187AA0EA595EF82B613636668F13267171F6AE1F60637ADA3E2D8A17551",
+      "target": "%d개를 초과하면 '최소까지 압축'과 계획 모드가 근사 알고리즘을 사용합니다.\n정확한 최솟값보다 몇 포인트 더 많을 수 있습니다. 일반 노드 클릭에는 영향이 없습니다.",
+      "upstreamOccurrenceIndex": 109
+    },
+    {
+      "evidenceFunction": "OpenDataJsonDialog",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/atlas_planner.cpp",
+      "formatSignature": [
+        "<NUL>",
+        "<NUL>",
+        "<NUL>",
+        "<NUL>",
+        "<NUL>"
+      ],
+      "function": "OpenDataJsonDialog",
+      "localizedEvidenceSha256": "6623347859C9CFE0255FF7D50C49816E0D950B97FE5D3219679A60FAA48A0709",
+      "localizedOccurrenceIndex": 1,
+      "occurrenceIndex": 1,
+      "path": "host/atlas_planner.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "atlastree-export data.json\u0000data.json;*.json\u0000所有檔案 (*.*)\u0000*.*\u0000\u0000",
+      "sourceSha256": "83015F5C4E79ACF8F83E61F788AD989AAE0FB9122A9498B220AF770AB441F305",
+      "target": "atlastree-export data.json\u0000data.json;*.json\u0000모든 파일 (*.*)\u0000*.*\u0000\u0000",
+      "upstreamOccurrenceIndex": 1
+    },
+    {
+      "evidenceFunction": "rebuildDiff",
+      "evidenceMode": "localized-expression-reflow",
+      "evidencePath": "host/atlas_planner.cpp",
+      "formatSignature": [],
+      "function": "rebuildDiff",
+      "localizedEvidenceSha256": "A435F41C93E9E0A9E97B7AF4A0A9E4CE4869EDC269046CB9B3A90892FEEDFD46",
+      "localizedOccurrenceIndex": 2,
+      "occurrenceIndex": 2,
+      "path": "host/atlas_planner.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "載入 ",
+      "sourceSha256": "BABB2B87C74D9D2DACB4581061CB7A85F1993BAF467614C265A9983756A7CE96",
+      "target": "",
+      "upstreamOccurrenceIndex": 2
+    },
+    {
+      "evidenceFunction": "rebuildDiff",
+      "evidenceMode": "localized-expression-reflow",
+      "evidencePath": "host/atlas_planner.cpp",
+      "formatSignature": [],
+      "function": "rebuildDiff",
+      "localizedEvidenceSha256": "A435F41C93E9E0A9E97B7AF4A0A9E4CE4869EDC269046CB9B3A90892FEEDFD46",
+      "localizedOccurrenceIndex": 2,
+      "occurrenceIndex": 3,
+      "path": "host/atlas_planner.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": " 失敗：",
+      "sourceSha256": "9AC9A7A25C932730192C592A6594007C448773B6325C681EA9AA74705D7258B4",
+      "target": " 불러오기 실패: ",
+      "upstreamOccurrenceIndex": 3
+    },
+    {
+      "evidenceFunction": "rebuildDiff",
+      "evidenceMode": "localized-expression-reflow",
+      "evidencePath": "host/atlas_planner.cpp",
+      "formatSignature": [],
+      "function": "rebuildDiff",
+      "localizedEvidenceSha256": "A435F41C93E9E0A9E97B7AF4A0A9E4CE4869EDC269046CB9B3A90892FEEDFD46",
+      "localizedOccurrenceIndex": 2,
+      "occurrenceIndex": 4,
+      "path": "host/atlas_planner.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "載入 ",
+      "sourceSha256": "BABB2B87C74D9D2DACB4581061CB7A85F1993BAF467614C265A9983756A7CE96",
+      "target": "",
+      "upstreamOccurrenceIndex": 4
+    },
+    {
+      "evidenceFunction": "rebuildDiff",
+      "evidenceMode": "localized-expression-reflow",
+      "evidencePath": "host/atlas_planner.cpp",
+      "formatSignature": [],
+      "function": "rebuildDiff",
+      "localizedEvidenceSha256": "A435F41C93E9E0A9E97B7AF4A0A9E4CE4869EDC269046CB9B3A90892FEEDFD46",
+      "localizedOccurrenceIndex": 2,
+      "occurrenceIndex": 5,
+      "path": "host/atlas_planner.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": " 失敗：",
+      "sourceSha256": "9AC9A7A25C932730192C592A6594007C448773B6325C681EA9AA74705D7258B4",
+      "target": " 불러오기 실패: ",
+      "upstreamOccurrenceIndex": 5
+    },
+    {
+      "evidenceFunction": "scarabRefuseText",
+      "evidenceMode": "localized-expression-reflow",
+      "evidencePath": "host/atlas_planner.cpp",
+      "formatSignature": [],
+      "function": "scarabRefuseText",
+      "localizedEvidenceSha256": "DE2375A8A8919F63AECEAAC10EF7B289D50F3D9C515AA80332648B46A4681159",
+      "localizedOccurrenceIndex": 5,
+      "occurrenceIndex": 4,
+      "path": "host/atlas_planner.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "與「",
+      "sourceSha256": "B9866D93A93C10D22A68E360FE0B6E66244EFD4DE38DA37DEF8B562BE8C53F29",
+      "target": "",
+      "upstreamOccurrenceIndex": 4
+    },
+    {
+      "evidenceFunction": "scarabRefuseText",
+      "evidenceMode": "localized-expression-reflow",
+      "evidencePath": "host/atlas_planner.cpp",
+      "formatSignature": [],
+      "function": "scarabRefuseText",
+      "localizedEvidenceSha256": "DE2375A8A8919F63AECEAAC10EF7B289D50F3D9C515AA80332648B46A4681159",
+      "localizedOccurrenceIndex": 5,
+      "occurrenceIndex": 6,
+      "path": "host/atlas_planner.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "」不能同時使用",
+      "sourceSha256": "DB8E96FB69E6792842D8DE0FFE472DDADB26325DEDA166240BE09F9BFAC99C97",
+      "target": "과(와) 동시에 사용할 수 없습니다.",
+      "upstreamOccurrenceIndex": 6
+    },
+    {
+      "evidenceFunction": "AtlasUpdater::doCheck",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/atlas_update.cpp",
+      "formatSignature": [],
+      "function": "AtlasUpdater::doCheck",
+      "localizedEvidenceSha256": "E0F7E2594500B6847AA3603FD260CAB1A62959988291F47F6BB52B3FD442C22B",
+      "localizedOccurrenceIndex": 7,
+      "occurrenceIndex": 7,
+      "path": "host/atlas_update.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "發現新賽季輿圖資料 ",
+      "sourceSha256": "BC0920822CCC856A88D816BA6C9C2C3EC5100C1610061A558ECBE5AA0D1B3214",
+      "target": "새 시즌 아틀라스 데이터 ",
+      "upstreamOccurrenceIndex": 7
+    },
+    {
+      "evidenceFunction": "AtlasUpdater::doCheck",
+      "evidenceMode": "localized-expression-reflow",
+      "evidencePath": "host/atlas_update.cpp",
+      "formatSignature": [],
+      "function": "AtlasUpdater::doCheck",
+      "localizedEvidenceSha256": "FE3109EC889C498E875146C6C1616AEED18C6900BE65CDCD6695FDECD4E61418",
+      "localizedOccurrenceIndex": 10,
+      "occurrenceIndex": 9,
+      "path": "host/atlas_update.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "（目前 ",
+      "sourceSha256": "33E9B10355DA5BA0A208287B5CBABCDF5E210F7806DCA3F11894F20241F049BA",
+      "target": "(현재 ",
+      "upstreamOccurrenceIndex": 9
+    },
+    {
+      "evidenceFunction": "AtlasUpdater::doUpdate",
+      "evidenceMode": "localized-expression-reflow",
+      "evidencePath": "host/atlas_update.cpp",
+      "formatSignature": [],
+      "function": "AtlasUpdater::doUpdate",
+      "localizedEvidenceSha256": "8878727F8490246EFB117B29F920D60D23BC888E370B67575C2D31161D99A4E2",
+      "localizedOccurrenceIndex": 0,
+      "occurrenceIndex": 22,
+      "path": "host/atlas_update.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": " 圖集中… ",
+      "sourceSha256": "5D45A68B0E70377B9FDA38CCEC91C3238C4BD1ECA57D203D559063E919A20696",
+      "target": " ",
+      "upstreamOccurrenceIndex": 22
+    },
+    {
+      "evidenceFunction": "AtlasView::Draw",
+      "evidenceMode": "localized-expression-reflow",
+      "evidencePath": "host/atlas_view.cpp",
+      "formatSignature": [],
+      "function": "AtlasView::Draw",
+      "localizedEvidenceSha256": "A6A6C6BB7D64EB444BED7FF757A045AE6DD29F1527DD284CC07C36671327C6E4",
+      "localizedOccurrenceIndex": 11,
+      "occurrenceIndex": 11,
+      "path": "host/atlas_view.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "已移除 ",
+      "sourceSha256": "DB2867DF3F404982B99CB1611E2EACC2F7640D88C977E3DA3AB127CF7247F7F6",
+      "target": "",
+      "upstreamOccurrenceIndex": 11
+    },
+    {
+      "evidenceFunction": "AtlasView::Draw",
+      "evidenceMode": "localized-expression-reflow",
+      "evidencePath": "host/atlas_view.cpp",
+      "formatSignature": [],
+      "function": "AtlasView::Draw",
+      "localizedEvidenceSha256": "A6A6C6BB7D64EB444BED7FF757A045AE6DD29F1527DD284CC07C36671327C6E4",
+      "localizedOccurrenceIndex": 11,
+      "occurrenceIndex": 12,
+      "path": "host/atlas_view.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": " 點",
+      "sourceSha256": "799D4080D747523BB55BBA835DF4F58A2A79ED9C79072C46B01D2549B2AAC92E",
+      "target": "포인트를 해제했습니다.",
+      "upstreamOccurrenceIndex": 12
+    },
+    {
+      "evidenceFunction": "AtlasView::Draw",
+      "evidenceMode": "localized-expression-reflow",
+      "evidencePath": "host/atlas_view.cpp",
+      "formatSignature": [],
+      "function": "AtlasView::Draw",
+      "localizedEvidenceSha256": "E46CA14F90BD79677DFF0BB1C7B60F3ACA60695045D68E329CFDED6EBAD86BDB",
+      "localizedOccurrenceIndex": 16,
+      "occurrenceIndex": 17,
+      "path": "host/atlas_view.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "已配置 ",
+      "sourceSha256": "CF8EF52FC3D91B1A11E0995A0208AF32E617F408B3E8408EE173740236A73878",
+      "target": "",
+      "upstreamOccurrenceIndex": 17
+    },
+    {
+      "evidenceFunction": "AtlasView::Draw",
+      "evidenceMode": "localized-expression-reflow",
+      "evidencePath": "host/atlas_view.cpp",
+      "formatSignature": [],
+      "function": "AtlasView::Draw",
+      "localizedEvidenceSha256": "E46CA14F90BD79677DFF0BB1C7B60F3ACA60695045D68E329CFDED6EBAD86BDB",
+      "localizedOccurrenceIndex": 16,
+      "occurrenceIndex": 18,
+      "path": "host/atlas_view.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": " 點 · 共 ",
+      "sourceSha256": "05CCCCA5CE3AD4D1F59EAC631A0CAF928CCBD1E704ED168DCCFEFFBFB6D1D3EA",
+      "target": "포인트 할당 · 총 ",
+      "upstreamOccurrenceIndex": 18
+    },
+    {
+      "evidenceFunction": "AtlasView::Draw",
+      "evidenceMode": "localized-expression-reflow",
+      "evidencePath": "host/atlas_view.cpp",
+      "formatSignature": [],
+      "function": "AtlasView::Draw",
+      "localizedEvidenceSha256": "E5F25AB092ABCA34B47C379282059146E5A8DD35E8C94A29A7A9B7D3B29BDD26",
+      "localizedOccurrenceIndex": 9,
+      "occurrenceIndex": 19,
+      "path": "host/atlas_view.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": " 點",
+      "sourceSha256": "799D4080D747523BB55BBA835DF4F58A2A79ED9C79072C46B01D2549B2AAC92E",
+      "target": "포인트",
+      "upstreamOccurrenceIndex": 19
+    },
+    {
+      "components": [
+        {
+          "source": "v1.1.0（2026-08-30）\n",
+          "target": "v1.1.0（2026-08-30）\n"
+        },
+        {
+          "source": "修正\n",
+          "target": "수정\n"
+        },
+        {
+          "source": "　·POB 視窗的中文與英數霧霧的、像被整張放大過：文字改以實際字級繪製並對齊像素，筆畫銳利不再發糊。（介面縮放非 100% 時同樣清晰）\n",
+          "target": "　POB 창의 한글·영문·숫자가 흐리게 확대되어 보이던 문제를 해결했습니다. 실제 글자 크기로 그리고 픽셀에 맞춰 선명하게 표시하며, 100%가 아닌 인터페이스 배율에서도 동일합니다.\n"
+        },
+        {
+          "source": "　·※ 使用思源黑體時文字位置會比先前略低，屬修正後的正常對位。\n",
+          "target": "　※ Source Han Sans 사용 시 글자 위치가 이전보다 조금 낮아집니다. 수정된 정상 정렬입니다.\n"
+        },
+        {
+          "source": "新增\n",
+          "target": "추가\n"
+        },
+        {
+          "source": "　·設定頁新增「HTTP 代理」：更新檢查、翻譯資料與圖示下載可經代理連線，留空則自動跟隨系統代理。（給連不上 GitHub 的網路環境）\n",
+          "target": "　설정에 「HTTP 프록시」를 추가했습니다. 업데이트 확인, 번역 데이터와 아이콘 다운로드가 프록시를 사용할 수 있고 비워 두면 시스템 프록시를 따릅니다. GitHub에 연결할 수 없는 네트워크를 위한 기능입니다.\n"
+        },
+        {
+          "source": "\n",
+          "target": "\n"
+        },
+        {
+          "source": "v1.0.0（2026-08-28）\n",
+          "target": "v1.0.0（2026-08-28）\n"
+        },
+        {
+          "source": "修正\n",
+          "target": "수정\n"
+        },
+        {
+          "source": "　·POB 更新到測試版後整個變回英文：POB 新版程式碼用了新的執行環境語法，翻譯完全停擺。（執行環境已同步升級）\n",
+          "target": "　POB를 시험판으로 업데이트한 뒤 전체가 영어로 돌아가던 문제를 해결했습니다. 새 실행 환경 문법으로 번역이 멈췄으며 실행 환경도 함께 업데이트했습니다.\n"
+        },
+        {
+          "source": "　·翻譯後的文字顏色跟著前面的字走、改色不生效：一行裡夾在中間的顏色會在翻譯時被吃掉。（技能組列表、側欄括號註記等全面恢復顏色）\n",
+          "target": "　번역한 글자의 색상이 앞 글자를 따라가 색상 변경이 적용되지 않던 문제를 해결했습니다. 번역 과정에서 중간 색상 코드가 사라지던 현상을 고쳐 스킬 세트 목록과 사이드바 괄호 주석 등의 색상을 복원했습니다.\n"
+        },
+        {
+          "source": "　·客製化詞綴框沒點進去時整框顯示英文：現在逐行翻譯，配對到的詞綴顯示中文，自己寫的備註保留原文。\n",
+          "target": "　사용자 지정 속성 입력칸을 선택하지 않으면 전부 영어로 보이던 문제를 해결했습니다. 이제 줄마다 번역하며, 일치한 속성은 한글로 표시하고 사용자가 쓴 메모는 원문으로 남깁니다.\n"
+        },
+        {
+          "source": "　·物品清單的「(Unused)」被翻成「(反鍊金的)」：現在正確顯示「(未使用)」。（簡體同步修正）\n",
+          "target": "　아이템 목록의 「(Unused)」가 잘못 번역되던 문제를 고쳐 「(미사용)」으로 올바르게 표시합니다. 간체 중국어도 함께 수정했습니다.\n"
+        },
+        {
+          "source": "　·側欄的「(Guard)」被翻成「(軍衛)」：現在正確顯示「(守護)」，簡體為「(护卫)」。\n",
+          "target": "　사이드바의 「(Guard)」가 잘못 번역되던 문제를 고쳐 「(수호)」로 표시합니다. 간체 중국어 표기도 함께 수정했습니다.\n"
+        },
+        {
+          "source": "　·簡體介面下部分文字顯示成問號：啟動器與工具視窗改用出貨字型互補缺字。\n",
+          "target": "　간체 중국어 인터페이스의 일부 문자가 물음표로 보이던 문제를 해결했습니다. 런처와 도구 창에 배포 글꼴의 보완 글리프를 사용합니다.\n"
+        },
+        {
+          "source": "　·使用 POB 測試版時啟動器不顯示 POB 版本號。\n",
+          "target": "　POB 시험판 사용 시 런처에 POB 버전 번호가 표시되지 않던 문제를 해결했습니다.\n"
+        },
+        {
+          "source": "新增\n",
+          "target": "추가\n"
+        },
+        {
+          "source": "　·技能分頁的使用提示、物品清單的拖放說明等整塊英文段落現在會翻譯。\n",
+          "target": "　스킬 탭 사용 안내와 아이템 목록의 끌어놓기 설명처럼 영어로 남던 전체 문단도 이제 번역합니다.\n"
+        },
+        {
+          "source": "　·配置分頁詞綴瀏覽器的「在巔峰頭目面前時」「在傳奇頭目面前時」系列詞綴現在會翻譯。\n",
+          "target": "　설정 탭 속성 브라우저의 「우버 보스 앞에 있을 때」 및 「고유 보스 앞에 있을 때」 계열 속성도 이제 번역합니다.\n"
+        },
+        {
+          "source": "調整\n",
+          "target": "변경\n"
+        },
+        {
+          "source": "　·詞綴翻譯：補齊 15 條繁中與簡中的詞綴與介面文字。\n",
+          "target": "　속성 번역에 번체·간체 중국어 속성과 인터페이스 문구 15개를 보완했습니다.\n"
+        },
+        {
+          "source": "\n",
+          "target": "\n"
+        },
+        {
+          "source": "v0.29.0（2026-08-26）\n",
+          "target": "v0.29.0（2026-08-26）\n"
+        },
+        {
+          "source": "修正\n",
+          "target": "수정\n"
+        },
+        {
+          "source": "　·PoE2 計算頁區段標題後面的數值不見或少一格：中文標題比英文長，數值被畫在標題底下。（充能球、持續計算的吸納和擊中傷害承受等）\n",
+          "target": "　PoE2 계산 탭에서 구역 제목 뒤의 값이 사라지거나 한 칸이 빠지던 문제를 해결했습니다. 한글 제목이 더 길어 값이 제목 아래에 그려지던 현상이며, 충전, 지속 계산의 흡수 및 피격 피해 등의 값이 정상 표시됩니다.\n"
+        },
+        {
+          "source": "　·計算頁多欄數值全部變成同一個顏色：充能球、能力值這類「0, 0, 0」的數值失去各自的顏色。\n",
+          "target": "　계산 탭의 여러 열 값이 모두 같은 색으로 보이던 문제를 해결했습니다. 충전과 능력치의 「0, 0, 0」 값이 각각의 색상을 유지합니다.\n"
+        },
+        {
+          "source": "　·天賦樹提示的「擊」「額」等字顯示成方框：PoE2 字典混進了日文與簡體字形，思源黑體沒有這些字。\n",
+          "target": "　패시브 트리 안내의 일부 문자가 네모로 보이던 문제를 해결했습니다. PoE2 사전에 섞인 일본어·간체 글리프를 Source Han Sans가 그리지 못하던 현상입니다.\n"
+        },
+        {
+          "source": "　·PoE2 藥劑區段的標籤超出框外：「%機率不消耗充能使用」改為「不消耗機率」。\n",
+          "target": "　PoE2 플라스크 구역의 라벨이 틀 밖으로 넘치던 문제를 해결했습니다. 「충전을 소모하지 않을 확률」로 간결하게 표시합니다.\n"
+        },
+        {
+          "source": "　·PoE2 詞綴與介面翻譯：修正 87 條用錯字的譯文。\n",
+          "target": "　PoE2 속성과 인터페이스 번역에서 오자가 있던 87개 항목을 수정했습니다.\n"
+        },
+        {
+          "source": "新增\n",
+          "target": "추가\n"
+        },
+        {
+          "source": "　·字型缺字時自動補字：所選字型沒有的字改用另一顆內建字型畫，不再是方框。（例如部分物品名稱裡思源黑體沒有的字，會改用方正字型）\n",
+          "target": "　글꼴에 없는 문자를 자동으로 보완합니다. 선택한 글꼴에 없는 문자는 다른 내장 글꼴로 그려 더 이상 네모로 보이지 않습니다. 예를 들어 Source Han Sans에 없는 일부 아이템 이름은 FZ 글꼴로 표시합니다.\n"
+        },
+        {
+          "source": "\n",
+          "target": "\n"
+        },
+        {
+          "source": "v0.28.0（2026-08-25）\n",
+          "target": "v0.28.0（2026-08-25）\n"
+        },
+        {
+          "source": "修正\n",
+          "target": "수정\n"
+        },
+        {
+          "source": "　·按「檢查更新」沒有任何反應：檢查失敗時按鈕會直接變回原樣，看起來跟「已是最新」一模一樣。現在會說出失敗原因。\n",
+          "target": "　「업데이트 확인」을 눌러도 반응이 없던 문제를 해결했습니다. 확인 실패 시 버튼이 「최신 상태」처럼 원래 모습으로 돌아가던 대신 이제 실패 이유를 알려 줍니다.\n"
+        },
+        {
+          "source": "　·※ 短時間連按會被 GitHub 限制查詢次數，過幾分鐘再試即可。\n",
+          "target": "　※ 짧은 시간에 연속으로 누르면 GitHub의 조회 제한에 걸릴 수 있습니다. 몇 분 뒤 다시 시도하세요.\n"
+        },
+        {
+          "source": "　·介面縮放 200% 時視窗可能整片空白：字型圖集超出顯示卡上限卻仍被送出去。現在會自動縮到放得下為止。\n",
+          "target": "　인터페이스 배율 200%에서 창 전체가 비어 보일 수 있던 문제를 해결했습니다. 글꼴 아틀라스가 그래픽 카드 한계를 넘어서도 전송되던 현상이며, 들어갈 때까지 자동으로 축소합니다.\n"
+        },
+        {
+          "source": "新增\n",
+          "target": "추가\n"
+        },
+        {
+          "source": "　·問題紀錄：程式遇到問題時會把原因寫進安裝目錄的 PobTools\\logs\\，每天一個檔，含版本與是哪個功能。\n",
+          "target": "　문제 기록 기능을 추가했습니다. 프로그램 문제의 원인을 설치 폴더 PobTools\\logs\\에 하루 한 파일로 기록하며 버전과 관련 기능을 포함합니다.\n"
+        },
+        {
+          "source": "　·※ 回報問題時附上當天那一個檔最有幫助；一切正常時它會是空的。\n",
+          "target": "　※ 문제를 보고할 때 해당 날짜의 파일을 첨부하면 가장 도움이 됩니다. 정상일 때는 빈 파일입니다.\n"
+        },
+        {
+          "source": "　·設定頁新增「開啟問題紀錄資料夾」。\n",
+          "target": "　설정에 「문제 기록 폴더 열기」를 추가했습니다.\n"
+        },
+        {
+          "source": "　·POB 更新後中文輸入或搜尋失效時會留下紀錄：說得出是哪一個功能、以及為什麼沒有套用。\n",
+          "target": "　POB 업데이트 후 한글 입력 또는 검색이 실패하면 기록을 남깁니다. 어떤 기능에 왜 적용되지 않았는지 알 수 있습니다.\n"
+        },
+        {
+          "source": "　·書籤、配點、賽季清單存檔失敗時會留下紀錄，不再默默失敗。\n",
+          "target": "　북마크, 패시브 할당, 시즌 목록 저장이 실패할 때도 기록을 남겨 조용히 실패하지 않습니다.\n"
+        },
+        {
+          "source": "調整\n",
+          "target": "변경\n"
+        },
+        {
+          "source": "　·安裝包重新附上方正字型。\n",
+          "target": "　설치 패키지에 FZ 글꼴을 다시 포함했습니다.\n"
+        },
+        {
+          "source": "\n",
+          "target": "\n"
+        },
+        {
+          "source": "v0.27.0（2026-08-25）\n",
+          "target": "v0.27.0（2026-08-25）\n"
+        },
+        {
+          "source": "修正\n",
+          "target": "수정\n"
+        },
+        {
+          "source": "　·POB 的搜尋框打不進中文：技能寶石、物品資料庫、召喚物、計算頁、設定頁與自訂修飾符，輸入中文查不到東西。\n",
+          "target": "　POB 검색칸에 한글을 입력할 수 없던 문제를 해결했습니다. 스킬 젬, 아이템 데이터베이스, 소환수, 계산 탭, 설정 탭과 사용자 지정 속성에서 한글 검색이 동작합니다.\n"
+        },
+        {
+          "source": "　·物品資料庫用詞綴的中文找不到東西：只有物品名稱找得到。\n",
+          "target": "　아이템 데이터베이스에서 한글 속성으로 검색할 수 없고 아이템 이름만 찾던 문제를 해결했습니다.\n"
+        },
+        {
+          "source": "新增\n",
+          "target": "추가\n"
+        },
+        {
+          "source": "　·Poe Regex 支援 PoE2：換界石、碑牌、聖物、探險遺物四份詞綴清單。（碑牌八種共用一份，左欄依碑牌分組）\n",
+          "target": "　Poe Regex가 PoE2를 지원합니다. 길표석, 석판, 유물, 탐험 유물의 네 속성 목록을 제공하며 석판 8종은 하나의 목록을 공유하고 왼쪽 열에서 석판별로 묶습니다.\n"
+        },
+        {
+          "source": "　·Poe Regex 分成兩層選擇：先選 PoE1 或 PoE2，再選那個遊戲的清單。\n",
+          "target": "　Poe Regex 선택을 두 단계로 나눴습니다. 먼저 PoE1 또는 PoE2를 고르고 그 게임의 목록을 선택합니다.\n"
+        },
+        {
+          "source": "　·Poe Regex 書籤依遊戲分開：只顯示目前遊戲的，另一個遊戲有幾筆會標在旁邊。\n",
+          "target": "　Poe Regex 북마크를 게임별로 분리했습니다. 현재 게임의 것만 표시하고 다른 게임의 북마크 수는 옆에 표시합니다.\n"
+        },
+        {
+          "source": "調整\n",
+          "target": "변경\n"
+        },
+        {
+          "source": "　·Poe Regex 移除「自訂清單」：貼上自己的清單那一頁已經拿掉。\n",
+          "target": "　Poe Regex에서 「사용자 지정 목록」을 제거했습니다. 개인 목록을 붙여넣던 페이지는 삭제되었습니다.\n"
+        },
+        {
+          "source": "　·※ 上一版說的「PoE2 與其他清單請用自訂清單」不再適用，PoE2 現在有內建清單。\n",
+          "target": "　※ 이전 버전의 「PoE2와 다른 목록은 사용자 지정 목록 사용」 안내는 더 이상 적용되지 않습니다. PoE2에는 이제 내장 목록이 있습니다.\n"
+        },
+        {
+          "source": "　·輿圖策略內建 3.29.1 賽季：預設開在 3.29.1，比較基準改為 3.29.0。\n",
+          "target": "　아틀라스 전략에 3.29.1 시즌을 내장했습니다. 기본값은 3.29.1이며 비교 기준은 3.29.0으로 변경했습니다.\n"
+        },
+        {
+          "source": "　·安裝包不再附方正字型：只附思源黑體。（已經裝過的人磁碟上那份會留著，字型設定不受影響）\n",
+          "target": "　설치 패키지에는 더 이상 FZ 글꼴을 넣지 않고 Source Han Sans만 포함합니다. 이미 설치한 파일은 디스크에 남고 글꼴 설정은 영향을 받지 않습니다.\n"
+        },
+        {
+          "source": "\n",
+          "target": "\n"
+        },
+        {
+          "source": "v0.26.0（2026-08-24）\n",
+          "target": "v0.26.0（2026-08-24）\n"
+        },
+        {
+          "source": "修正\n",
+          "target": "수정\n"
+        },
+        {
+          "source": "　·PoE2 版 POB：詞綴、物品、技能寶石、天賦與怪物名稱仍有大量維持英文。（本次補齊 15,423 條、修正 3,044 條與遊戲內用詞不符的譯文）\n",
+          "target": "　PoE2용 POB에서 속성, 아이템, 스킬 젬, 패시브 및 몬스터 이름이 대량으로 영어로 남던 문제를 해결했습니다. 15,423개를 보완하고 게임 내 용어와 맞지 않던 3,044개 번역을 수정했습니다.\n"
+        },
+        {
+          "source": "　·※ 對照的是遊戲版本 4.5.4.10.2；官方尚未在地化的字串維持顯示英文。\n",
+          "target": "　※ 게임 버전 4.5.4.10.2를 기준으로 했으며 공식 현지화가 없는 문자열은 영어로 유지합니다.\n"
+        },
+        {
+          "source": "新增\n",
+          "target": "추가\n"
+        },
+        {
+          "source": "　·Poe Regex：勾選地圖或探險日誌詞綴，產生可以直接貼進遊戲搜尋列的字串。（勾 10 條約 25 個字，逐條打出來要 146 個字）\n",
+          "target": "　Poe Regex에서 지도 또는 탐험 일지 속성을 선택하면 게임 검색창에 바로 붙여넣을 문자열을 만듭니다. 10개 선택 시 약 25자이며 하나씩 입력하면 146자가 필요합니다.\n"
+        },
+        {
+          "source": "　·※ 產生的字串只會找到勾選的那幾條，不會誤中清單裡的其他詞綴；真的分不出來的會列出來告訴你。\n",
+          "target": "　※ 생성 문자열은 선택한 속성만 찾고 목록의 다른 속성과 잘못 일치하지 않습니다. 구분할 수 없는 경우는 목록으로 알려 줍니다.\n"
+        },
+        {
+          "source": "　·※ 字串分繁體中文與英文兩種，要跟遊戲客戶端的語言一致，兩邊不能互換。\n",
+          "target": "　※ 문자열은 번체 중국어와 영어 두 종류이며 게임 클라이언트 언어와 같아야 합니다. 서로 바꿔 쓸 수 없습니다.\n"
+        },
+        {
+          "source": "　·Poe Regex 三種找法：含任一個、全部都有、一個都沒有。（「一個都沒有」是排除字串，用來把東西藏起來）\n",
+          "target": "　Poe Regex에 세 가지 검색 방식, 「하나라도 포함」, 「모두 포함」, 「하나도 포함하지 않음」을 추가했습니다. 마지막 방식은 항목을 숨기는 제외 문자열입니다.\n"
+        },
+        {
+          "source": "　·Poe Regex 自訂清單：貼上自己的一份清單，一樣只中勾選的那幾行。（不需要資料檔，任何清單都能用）\n",
+          "target": "　Poe Regex 사용자 지정 목록을 추가했습니다. 개인 목록을 붙여넣어도 선택한 행만 일치하며 데이터 파일 없이 어떤 목록이든 사용할 수 있습니다.\n"
+        },
+        {
+          "source": "　·※ 內建清單是 PoE1 的地圖與探險日誌詞綴；PoE2 與其他清單請用「自訂清單」。\n",
+          "target": "　※ 내장 목록은 PoE1 지도 및 탐험 일지 속성입니다. PoE2와 다른 목록에는 「사용자 지정 목록」을 사용하세요.\n"
+        },
+        {
+          "source": "　·Poe Regex 書籤：常用的一組詞綴可以存成書籤，隨時叫回來，也能改名、更新或刪除。（關掉再開，上次的勾選也還在）\n",
+          "target": "　Poe Regex 북마크를 추가했습니다. 자주 쓰는 속성 묶음을 저장하고 불러오며 이름 변경, 업데이트, 삭제가 가능하고 다시 열어도 이전 선택을 유지합니다.\n"
+        },
+        {
+          "source": "　·更新檔真偽驗證：程式與翻譯資料的更新在安裝前會先驗證發布簽章，驗不過就拒絕安裝。（會顯示拒絕的原因，不會默默照裝）\n",
+          "target": "　업데이트 파일 진위 확인을 추가했습니다. 프로그램과 번역 데이터 업데이트는 설치 전 배포 서명을 확인하며 검증에 실패하면 설치하지 않습니다. 거부 이유도 표시합니다.\n"
+        },
+        {
+          "source": "　·※ 翻譯資料更新若因簽章問題失敗，會顯示原因，不會默默停在舊字典。\n",
+          "target": "　※ 번역 데이터 업데이트가 서명 문제로 실패하면 이유를 표시하며 이전 사전에 조용히 머물지 않습니다.\n"
+        },
+        {
+          "source": "　·※ 這一版之後的更新都必須帶簽章。這不是防毒用的程式碼簽章憑證，不會減少防毒誤判。\n",
+          "target": "　※ 이 버전 이후 모든 업데이트에는 서명이 필요합니다. 이는 백신용 코드 서명 인증서가 아니며 백신 오진을 줄이지는 않습니다.\n"
+        },
+        {
+          "source": "\n",
+          "target": "\n"
+        },
+        {
+          "source": "v0.25.0（2026-08-22）\n",
+          "target": "v0.25.0（2026-08-22）\n"
+        },
+        {
+          "source": "修正\n",
+          "target": "수정\n"
+        },
+        {
+          "source": "　·程式更新套用失敗後會不斷跳出錯誤視窗，回不到啟動器。\n",
+          "target": "　프로그램 업데이트 적용 실패 뒤 오류 창이 계속 나타나 런처로 돌아갈 수 없던 문제를 해결했습니다.\n"
+        },
+        {
+          "source": "　·先啟動過 POB、再切換遊戲並開啟工具（過濾器編輯器、輿圖策略、軍團珠寶）時，工具會開到上一次啟動的那個遊戲。\n",
+          "target": "　POB를 먼저 실행한 뒤 게임을 바꾸고 도구(필터 편집기, 아틀라스 전략, 무궁한 주얼)를 열면 이전에 실행한 게임으로 열리던 문제를 해결했습니다.\n"
+        },
+        {
+          "source": "　·翻譯資料自動更新可能在 POB 或翻譯編輯器正在使用字典時套用，造成字典新舊混雜。\n",
+          "target": "　POB 또는 번역 편집기가 사전을 사용하는 중에 번역 데이터 자동 업데이트가 적용되어 새·오래된 사전이 섞일 수 있던 문제를 해결했습니다.\n"
+        },
+        {
+          "source": "新增\n",
+          "target": "추가\n"
+        },
+        {
+          "source": "　·啟動時間紀錄：每次啟動會在 PobTools 資料夾留下啟動器與 POB 的啟動時間紀錄，回報啟動很慢時可一併附上。\n",
+          "target": "　시작 시간 기록을 추가했습니다. 매번 실행할 때 PobTools 폴더에 런처와 POB의 시작 시간을 남기며, 시작이 느린 문제를 보고할 때 함께 첨부할 수 있습니다.\n"
+        },
+        {
+          "source": "調整\n",
+          "target": "변경\n"
+        },
+        {
+          "source": "　·啟動器視窗一出現就有內容，不再先黑一下。\n",
+          "target": "　런처 창이 나타날 때 즉시 내용을 표시하여 먼저 검게 깜빡이지 않습니다.\n"
+        },
+        {
+          "source": "　·POB 載入：視窗提早約 1 秒出現，載入完成也快約 1 秒。（本機實測 1.4 秒 → 0.4 秒）\n",
+          "target": "　POB 로딩을 개선했습니다. 창이 약 1초 빨리 나타나고 로딩 완료도 약 1초 빨라집니다. 로컬 측정값은 1.4초에서 0.4초입니다.\n"
+        },
+        {
+          "source": "\n",
+          "target": "\n"
+        },
+        {
+          "source": "v0.24.0（2026-08-20）\n",
+          "target": "v0.24.0（2026-08-20）\n"
+        },
+        {
+          "source": "修正\n",
+          "target": "수정\n"
+        },
+        {
+          "source": "　·POB 的備註與其他文字框貼上中文會變成一串問號，只有用打字輸入才正常。\n",
+          "target": "　POB 메모와 다른 텍스트 상자에 한글을 붙여넣으면 물음표로 바뀌고 직접 입력만 되던 문제를 해결했습니다.\n"
+        },
+        {
+          "source": "新增\n",
+          "target": "추가\n"
+        },
+        {
+          "source": "　·過濾器編輯器「從遊戲匯入物品」：在遊戲裡 Ctrl+C 複製物品，貼進掉落預覽就能看到目前的過濾器會怎麼處理它。（命中哪條規則、最終外觀與音效）\n",
+          "target": "　필터 편집기에 「게임에서 아이템 가져오기」를 추가했습니다. 게임에서 Ctrl+C로 복사한 아이템을 드롭 미리보기에 붙이면 현재 필터의 처리 결과(일치 규칙, 최종 외형, 사운드)를 볼 수 있습니다.\n"
+        },
+        {
+          "source": "　·※ 無法從物品文字判斷的條件（詞綴名、插槽顏色等）會列成警告，不會假裝判定；區域等級沿用預覽面板的設定。\n",
+          "target": "　※ 아이템 텍스트만으로 판단할 수 없는 조건(속성 이름, 홈 색상 등)은 경고로 표시하며 판정한 척하지 않습니다. 지역 레벨은 미리보기 패널 설정을 따릅니다.\n"
+        },
+        {
+          "source": "\n",
+          "target": "\n"
+        },
+        {
+          "source": "v0.23.0（2026-08-18）\n",
+          "target": "v0.23.0（2026-08-18）\n"
+        },
+        {
+          "source": "修正\n",
+          "target": "수정\n"
+        },
+        {
+          "source": "　·PoE2 版 POB：新賽季的物品與詞綴大量維持英文，時空之物等新傳奇與符煉裝備現在會翻譯了。（本次補齊詞綴 2,094 條、物品名稱 1,480 條）\n",
+          "target": "　PoE2용 POB에서 새 시즌 아이템과 속성이 대량으로 영어로 남던 문제를 해결했습니다. 신규 고유 아이템과 룬 장비도 번역되며 속성 2,094개와 아이템 이름 1,480개를 보완했습니다.\n"
+        },
+        {
+          "source": "　·※ 不可交易的物品（嫁接手臂等）與官方尚未在地化的詞綴，維持顯示英文。\n",
+          "target": "　※ 거래 불가 아이템(이식 팔 등)과 공식 현지화가 없는 속성은 영어로 유지합니다.\n"
+        },
+        {
+          "source": "　·PoE2 物品資訊視窗的「符文保護」與「插槽」欄位名維持英文。\n",
+          "target": "　PoE2 아이템 정보 창의 「룬 보호」와 「홈」 필드 이름이 영어로 남던 문제를 해결했습니다.\n"
+        },
+        {
+          "source": "　·關閉「POB 視窗的英文與數字也用此字型」後，用捷徑或指令直接啟動 POB 時設定不會生效。\n",
+          "target": "　「POB 창의 영문과 숫자에도 이 글꼴 사용」을 끈 뒤 바로가기나 명령으로 POB를 직접 실행하면 설정이 적용되지 않던 문제를 해결했습니다.\n"
+        },
+        {
+          "source": "\n",
+          "target": "\n"
+        },
+        {
+          "source": "v0.22.0（2026-08-18）\n",
+          "target": "v0.22.0（2026-08-18）\n"
+        },
+        {
+          "source": "修正\n",
+          "target": "수정\n"
+        },
+        {
+          "source": "　·特索塔之珠、汙染與合成物品上帶技能名的詞綴（受某某輔助、全部某某寶石等級）整行維持英文。（本次補齊 956 條）\n",
+          "target": "　특정 고유 아이템, 타락 아이템과 합성 아이템의 스킬 이름 포함 속성(특정 보조의 영향, 모든 특정 젬 레벨 등)이 한 줄 전체 영어로 남던 문제를 해결했습니다. 956개를 보완했습니다.\n"
+        },
+        {
+          "source": "　·※「暴擊時施放」與「暈眩時施放」兩種輔助因官方資料譯名重複，維持顯示英文，避免貼上物品時裝錯輔助。\n",
+          "target": "　※ 「치명타 시 시전」과 「기절 시 시전」 보조 둘은 공식 데이터의 번역명이 겹쳐, 아이템 붙여넣기 때 잘못 장착하지 않도록 영어로 유지합니다.\n"
+        },
+        {
+          "source": "　·物品資訊視窗「按住 Shift 顯示被賦予技能」的提示與天賦樹的隱藏提示維持英文。\n",
+          "target": "　아이템 정보 창의 「Shift를 누르면 부여된 스킬 표시」 안내와 패시브 트리의 숨김 안내가 영어로 남던 문제를 해결했습니다.\n"
+        },
+        {
+          "source": "新增\n",
+          "target": "추가\n"
+        },
+        {
+          "source": "　·POB 視窗的英文與數字也套用所選字型，中英數同一字體，粗體以合成粗體顯示。（預設開啟，設定頁可關閉）\n",
+          "target": "　POB 창의 영문과 숫자에도 선택 글꼴을 적용합니다. 한글·영문·숫자를 같은 글꼴로 표시하고 굵은 글자는 합성 굵게로 표시합니다. 기본값은 켜짐이며 설정에서 끌 수 있습니다.\n"
+        },
+        {
+          "source": "　·※ 等寬欄位（主控台、物品原文編輯）不套用；切換設定後需重新啟動 POB 視窗才會生效。\n",
+          "target": "　※ 고정폭 필드(콘솔, 아이템 원문 편집)에는 적용하지 않습니다. 설정 변경 뒤 POB 창을 다시 시작해야 적용됩니다.\n"
+        },
+        {
+          "source": "\n",
+          "target": "\n"
+        },
+        {
+          "source": "v0.21.0（2026-08-14）\n",
+          "target": "v0.21.0（2026-08-14）\n"
+        },
+        {
+          "source": "修正\n",
+          "target": "수정\n"
+        },
+        {
+          "source": "　·貼上帶「殘存」的物品時，基底名稱與帶「無法使用的值」的詞綴會變成一串問號。\n",
+          "target": "　「잔존」이 붙은 아이템을 붙여넣을 때 기본 이름과 「사용할 수 없는 값」 속성이 물음표로 바뀌던 문제를 해결했습니다.\n"
+        },
+        {
+          "source": "　·分頁方式下，主視窗有時最小化不下去，還原之後 POB 視窗還會跑位或閃一下。\n",
+          "target": "　탭 방식에서 주 창이 때때로 최소화되지 않고 복원 뒤 POB 창이 위치를 잃거나 깜빡이던 문제를 해결했습니다.\n"
+        },
+        {
+          "source": "　·分頁方式下，POB 正在計算時拖曳主視窗會整個卡住。\n",
+          "target": "　탭 방식에서 POB가 계산 중일 때 주 창을 끌면 전체가 멈추던 문제를 해결했습니다.\n"
+        },
+        {
+          "source": "　·開新視窗時分頁沒有自動切換過去，分頁名稱也可能顯示成別的視窗的。\n",
+          "target": "　새 창을 열어도 탭이 자동으로 전환되지 않고 탭 이름이 다른 창 이름으로 보일 수 있던 문제를 해결했습니다.\n"
+        },
+        {
+          "source": "新增\n",
+          "target": "추가\n"
+        },
+        {
+          "source": "　·過濾器編輯器、翻譯編輯器、軍團珠寶計算器、輿圖策略可以開成主視窗裡的分頁。（視窗方式選「分頁」時）\n",
+          "target": "　필터 편집기, 번역 편집기, 무궁한 주얼 계산기, 아틀라스 전략을 주 창의 탭으로 열 수 있습니다. 창 방식에서 「탭」을 선택할 때 적용됩니다.\n"
+        },
+        {
+          "source": "　·關閉主視窗時，分頁裡還有未儲存的編輯會先詢問，不會直接關掉。\n",
+          "target": "　주 창을 닫을 때 탭에 저장하지 않은 편집이 있으면 먼저 확인하며 바로 닫지 않습니다.\n"
+        },
+        {
+          "source": "調整\n",
+          "target": "변경\n"
+        },
+        {
+          "source": "　·視窗分頁的名稱改成顯示開啟中的專案名稱，不再是固定的「PoE1」。\n",
+          "target": "　창 탭의 이름을 고정된 「PoE1」 대신 열려 있는 프로젝트 이름으로 표시합니다.\n"
+        },
+        {
+          "source": "\n",
+          "target": "\n"
+        },
+        {
+          "source": "v0.20.0（2026-08-12）\n",
+          "target": "v0.20.0（2026-08-12）\n"
+        },
+        {
+          "source": "修正\n",
+          "target": "수정\n"
+        },
+        {
+          "source": "　·稀有物品與星團珠寶的名稱有時整串維持英文，像是「Loath Joy, Medium Cluster Jewel」。\n",
+          "target": "　희귀 아이템과 스킬 군 주얼 이름이 「Loath Joy, Medium Cluster Jewel」처럼 전체 영어로 남던 문제를 해결했습니다.\n"
+        },
+        {
+          "source": "　·物品資訊視窗最上面的物品名稱維持英文，只有下面一行的基底類型有翻譯。\n",
+          "target": "　아이템 정보 창 맨 위의 아이템 이름이 영어로 남고 아래의 기본 유형만 번역되던 문제를 해결했습니다.\n"
+        },
+        {
+          "source": "　·紋身選單裡 172 種紋身有 139 種顯示英文名稱。\n",
+          "target": "　문신 목록의 172종 중 139종이 영어 이름으로 보이던 문제를 해결했습니다.\n"
+        },
+        {
+          "source": "　·置換節點詞綴之類的視窗中，較長的說明文字會整段維持英文。\n",
+          "target": "　전환 노드 속성 등의 창에서 긴 설명 문단 전체가 영어로 남던 문제를 해결했습니다.\n"
+        },
+        {
+          "source": "　·物品的無形性維持英文；貼上物品時這個數值還會整個消失。\n",
+          "target": "　아이템의 무형성 수치가 영어로 남고 아이템을 붙여넣으면 그 값이 사라지던 문제를 해결했습니다.\n"
+        },
+        {
+          "source": "　·PoE2 的物品庫用中文名稱搜尋不到東西。\n",
+          "target": "　PoE2 아이템 데이터베이스에서 한글 이름으로 검색할 수 없던 문제를 해결했습니다.\n"
+        },
+        {
+          "source": "調整\n",
+          "target": "변경\n"
+        },
+        {
+          "source": "　·物品資訊視窗的「破麻道具」改為「破裂道具」。\n",
+          "target": "　아이템 정보 창의 「깨진 아이템」 표기를 「파손된 아이템」으로 바꿨습니다.\n"
+        },
+        {
+          "source": "\n",
+          "target": "\n"
+        },
+        {
+          "source": "v0.19.0（2026-08-10）\n",
+          "target": "v0.19.0（2026-08-10）\n"
+        },
+        {
+          "source": "修正\n",
+          "target": "수정\n"
+        },
+        {
+          "source": "　·詞綴同時帶多個數值時，數值會填到錯的位置，例如把命中值與傷害的數字對調。\n",
+          "target": "　속성에 여러 수치가 있을 때 숫자가 잘못된 위치에 들어가던 문제를 해결했습니다. 예를 들어 명중 수치와 피해 수치가 바뀌던 현상입니다.\n"
+        },
+        {
+          "source": "新增\n",
+          "target": "추가\n"
+        },
+        {
+          "source": "　·軍團珠寶計算器新增深淵珠寶：潰爛復仇、撲滅之握、邪惡統治、滅亡之願、重奪惡意。\n",
+          "target": "　무궁한 주얼 계산기에 심연 주얼 5종을 추가했습니다: 짓무르는 복수 (Festering Vengeance), 절망의 손아귀 (Extinguishing Grasp), 사악한 통치 (Baleful Dominion), 파멸적인 열망 (Destructive Aspiration), 되찾은 악의 (Reclaimed Malevolence).\n"
+        },
+        {
+          "source": "　·※ 深淵珠寶是 3.29 新機制，可對照的遊戲實錄只有 42 筆，程式內選擇時會一併提醒。\n",
+          "target": "　※ 심연 주얼은 3.29의 새 기능이며 비교할 게임 기록은 42개뿐입니다. 프로그램에서 선택할 때도 이 점을 알립니다.\n"
+        },
+        {
+          "source": "　·安裝目錄缺少翻譯資料時，首頁會顯示提示與「立即下載翻譯資料」按鈕。\n",
+          "target": "　설치 폴더에 번역 데이터가 없으면 시작 화면에 안내와 「지금 번역 데이터 다운로드」 버튼을 표시합니다.\n"
+        },
+        {
+          "source": "調整\n",
+          "target": "변경\n"
+        },
+        {
+          "source": "　·更新拆成主程式與翻譯資料兩條線，各自獨立，主程式更新不會再蓋掉翻譯資料。\n",
+          "target": "　업데이트를 본 프로그램과 번역 데이터의 두 경로로 나눴습니다. 서로 독립적이며 본 프로그램 업데이트가 번역 데이터를 덮어쓰지 않습니다.\n"
+        },
+        {
+          "source": "　·設定裡的「更新時一併更新翻譯資料」改名為「自動更新翻譯資料」，並顯示目前的翻譯資料版本。\n",
+          "target": "　설정의 「업데이트 시 번역 데이터도 업데이트」 이름을 「번역 데이터 자동 업데이트」로 바꾸고 현재 번역 데이터 버전을 표시합니다.\n"
+        },
+        {
+          "source": "　·主程式的修訂版更新改成一律詢問，不再自動套用。\n",
+          "target": "　본 프로그램의 개정 버전 업데이트는 자동 적용하지 않고 항상 확인합니다.\n"
+        },
+        {
+          "source": "\n",
+          "target": "\n"
+        },
+        {
+          "source": "v0.18.0（2026-08-06）\n",
+          "target": "v0.18.0（2026-08-06）\n"
+        },
+        {
+          "source": "修正\n",
+          "target": "수정\n"
+        },
+        {
+          "source": "　·翻譯編輯器的條目清單捲到底以後，下方明明還有資料卻捲不下去。\n",
+          "target": "　번역 편집기 항목 목록을 끝까지 내린 뒤 아래에 데이터가 더 있어도 더 내려가지 않던 문제를 해결했습니다.\n"
+        },
+        {
+          "source": "調整\n",
+          "target": "변경\n"
+        },
+        {
+          "source": "　·翻譯編輯器的 Key 若本身有換行，改成顯示 \\n；完整內容可停留在該列或按「...」查看。\n",
+          "target": "　번역 편집기의 Key 자체에 줄바꿈이 있으면 \\n으로 표시합니다. 전체 내용은 해당 행에 머물거나 「...」를 눌러 확인할 수 있습니다.\n"
+        },
+        {
+          "source": "　·翻譯編輯器的顏色預覽改成滑鼠停留在譯文欄位時顯示，不再固定佔一行。\n",
+          "target": "　번역 편집기의 색상 미리보기를 번역문 필드에 마우스를 올릴 때만 표시하고 고정 행을 차지하지 않게 했습니다.\n"
+        },
+        {
+          "source": "　·翻譯編輯器的清單最後多留一列空白，最後一筆不會貼在視窗邊緣。\n",
+          "target": "　번역 편집기 목록 끝에 빈 행 하나를 남겨 마지막 항목이 창 가장자리에 붙지 않습니다.\n"
+        },
+        {
+          "source": "\n",
+          "target": "\n"
+        },
+        {
+          "source": "v0.17.0（2026-08-06）\n",
+          "target": "v0.17.0（2026-08-06）\n"
+        },
+        {
+          "source": "修正\n",
+          "target": "수정\n"
+        },
+        {
+          "source": "　·按 F2 切回原文時，游標底下的裝備說明沒有跟著變回英文，要移到別的物品上才會。\n",
+          "target": "　F2로 원문으로 전환할 때 커서 아래 장비 설명이 즉시 영어로 돌아가지 않고 다른 아이템으로 옮겨야 하던 문제를 해결했습니다.\n"
+        },
+        {
+          "source": "新增\n",
+          "target": "추가\n"
+        },
+        {
+          "source": "　·設定新增「視窗方式」：可以把 POB 與工具收成這個視窗裡的分頁，一次開多個互相切換。\n",
+          "target": "　설정에 「창 방식」을 추가했습니다. POB와 도구를 이 창 안의 탭으로 모아 여러 개를 열고 전환할 수 있습니다.\n"
+        },
+        {
+          "source": "　·※分頁方式初次提供，同時開多個時偶爾會遇到啟動失敗或沒有反應，預設仍是各自獨立的視窗。\n",
+          "target": "　※ 탭 방식은 처음 제공되는 기능이라 여러 개를 동시에 열면 간혹 시작에 실패하거나 반응하지 않을 수 있습니다. 기본값은 여전히 각각 독립 창입니다.\n"
+        },
+        {
+          "source": "調整\n",
+          "target": "변경\n"
+        },
+        {
+          "source": "　·翻譯字典改為公開在 GitHub 上，任何人都可以修改譯文後回報。\n",
+          "target": "　번역 사전을 GitHub에 공개하여 누구나 번역을 수정해 보고할 수 있습니다.\n"
+        },
+        {
+          "source": "\n",
+          "target": "\n"
+        },
+        {
+          "source": "v0.16.0（2026-08-04）\n",
+          "target": "v0.16.0（2026-08-04）\n"
+        },
+        {
+          "source": "新增\n",
+          "target": "추가\n"
+        },
+        {
+          "source": "　·設定新增「翻譯資料夾」：PoE1、PoE2、啟動器介面各自一欄，可以分別指到安裝目錄以外的資料夾。\n",
+          "target": "　설정에 「번역 폴더」를 추가했습니다. PoE1, PoE2, 런처 인터페이스에 각각 한 칸이 있으며 설치 폴더 밖의 폴더를 따로 지정할 수 있습니다.\n"
+        },
+        {
+          "source": "　·每一欄都有「複製…」，會把內建資料複製過去並自動建立正確的資料夾結構。\n",
+          "target": "　각 칸에 「복사…」를 제공하여 내장 데이터를 복사하고 올바른 폴더 구조를 자동으로 만듭니다.\n"
+        },
+        {
+          "source": "　·設定可選更新時要不要一併更新翻譯資料；選「否」時仍會通知，可隨時按一次套用。\n",
+          "target": "　업데이트할 때 번역 데이터도 함께 업데이트할지 고를 수 있습니다. 「아니요」를 골라도 알림을 받고 언제든 한 번 눌러 적용할 수 있습니다.\n"
+        },
+        {
+          "source": "　·啟動器本身的介面文字也能翻譯了，用翻譯編輯器選「launcher」就能改。\n",
+          "target": "　런처 자체의 인터페이스 문구도 번역할 수 있습니다. 번역 편집기에서 「launcher」를 선택해 수정합니다.\n"
+        },
+        {
+          "source": "　·翻譯編輯器的長文字或多行內容可以按「...」展開成大框編輯。\n",
+          "target": "　번역 편집기의 긴 문장이나 여러 줄 내용은 「...」를 눌러 큰 편집 상자로 펼칠 수 있습니다.\n"
+        },
+        {
+          "source": "　·多語系：在 Data 的遊戲資料夾底下新增一個語系資料夾，介面語言就會自動出現那個選項。\n",
+          "target": "　다국어 지원을 추가했습니다. Data의 게임 폴더 아래에 언어 폴더를 추가하면 인터페이스 언어 선택에 자동으로 나타납니다.\n"
+        },
+        {
+          "source": "　·設定新增「安裝字型…」，可以挑一個字型檔進來使用，不必自己丟到 Fonts 資料夾。\n",
+          "target": "　설정에 「글꼴 설치…」를 추가했습니다. 글꼴 파일을 골라 Fonts 폴더에 직접 넣지 않고 사용할 수 있습니다.\n"
+        },
+        {
+          "source": "　·主畫面在使用外部翻譯資料時會逐項標示出來，並可一鍵切回內建。\n",
+          "target": "　주 화면에서 외부 번역 데이터를 사용할 때 항목별로 표시하고 한 번에 내장 데이터로 되돌릴 수 있습니다.\n"
+        },
+        {
+          "source": "　·可以用捷徑直接開翻譯編輯器（pob-zh.exe --translation-editor）。\n",
+          "target": "　바로가기로 번역 편집기를 직접 열 수 있습니다(pob-zh.exe --translation-editor).\n"
+        },
+        {
+          "source": "調整\n",
+          "target": "변경\n"
+        },
+        {
+          "source": "　·翻譯編輯器會跟著設定走，編輯的一定是 POB 實際會讀的那一份。\n",
+          "target": "　번역 편집기는 설정을 따르며 실제 POB가 읽는 번역 파일만 편집합니다.\n"
+        },
+        {
+          "source": "　·翻譯資料夾留空就是使用內建資料，下方會標示實際用的是程式資料夾裡的哪一個。\n",
+          "target": "　번역 폴더를 비워 두면 내장 데이터를 사용하고 아래에 실제 사용하는 프로그램 폴더 경로를 표시합니다.\n"
+        },
+        {
+          "source": "　·資料夾選錯層時會說明是選太上面還是太裡面，並附上正確的路徑可以一鍵改用。\n",
+          "target": "　폴더를 너무 상위 또는 하위 단계로 잘못 고르면 이유를 설명하고 올바른 경로로 한 번에 바꿀 수 있습니다.\n"
+        },
+        {
+          "source": "　·選了無法使用的資料夾時會自動改用內建資料，POB 仍可正常啟動。\n",
+          "target": "　사용할 수 없는 폴더를 고르면 내장 데이터를 자동으로 사용하므로 POB는 정상적으로 시작합니다.\n"
+        },
+        {
+          "source": "　·外部資料夾少了新版才有的字典檔時，設定頁會列出來，避免它靜靜地沒被載入。\n",
+          "target": "　외부 폴더에 새 버전에서 필요한 사전 파일이 없으면 설정 페이지에 표시하여 조용히 누락되지 않게 합니다.\n"
+        },
+        {
+          "source": "　·設定改完會立刻寫入，另附「儲存設定」與已儲存提示。\n",
+          "target": "　설정을 바꾸면 즉시 기록하고 「설정 저장」과 저장 완료 안내를 함께 제공합니다.\n"
+        },
+        {
+          "source": "　·從命令列或捷徑直接啟動 POB 時，字型與翻譯資料夾設定現在也會生效。\n",
+          "target": "　명령줄이나 바로가기에서 POB를 직접 시작해도 글꼴과 번역 폴더 설정이 적용됩니다.\n"
+        },
+        {
+          "source": "　·介面語言的選項改成看資料夾決定，不再是固定的兩個；名稱可由該語系的 meta.json 指定。\n",
+          "target": "　인터페이스 언어 옵션을 고정된 두 개 대신 폴더 기준으로 결정합니다. 이름은 해당 언어의 meta.json에서 지정할 수 있습니다.\n"
+        },
+        {
+          "source": "　·目前的字型畫不出所選語言時會標示出來，並在語言選單標出缺字的語言。\n",
+          "target": "　현재 글꼴이 선택한 언어를 그릴 수 없으면 표시하고 언어 메뉴에서 누락 글리프가 있는 언어를 표시합니다.\n"
+        },
+        {
+          "source": "　·設定改動一律立即儲存；「儲存設定」按鈕移到設定頁最下方，只作為已寫入的確認。\n",
+          "target": "　설정 변경은 모두 즉시 저장합니다. 「설정 저장」 버튼은 설정 페이지 맨 아래로 옮겨 기록되었음을 확인하는 용도로만 남깁니다.\n"
+        },
+        {
+          "source": "　·「關於」從設定頁分出來，變成獨立分頁。\n",
+          "target": "　「정보」를 설정 페이지에서 분리해 독립 탭으로 만들었습니다.\n"
+        },
+        {
+          "source": "\n",
+          "target": "\n"
+        },
+        {
+          "source": "v0.15.0（2026-08-03）\n",
+          "target": "v0.15.0（2026-08-03）\n"
+        },
+        {
+          "source": "修正\n",
+          "target": "수정\n"
+        },
+        {
+          "source": "　·貼上物品時星團珠寶的大天賦全部消失：珠寶會被重建成另一顆，骰到的大天賦一個都不留。\n",
+          "target": "　아이템을 붙여넣을 때 스킬 군 주얼의 주요 패시브가 모두 사라지던 문제를 해결했습니다. 주얼이 다른 아이템으로 재구성되어 굴린 주요 패시브를 잃던 현상입니다.\n"
+        },
+        {
+          "source": "　·POB 裡較長的詞綴顯示英文：一行只要長到需要換行就翻不出來，與字典有沒有那一條無關。\n",
+          "target": "　POB에서 긴 속성이 영어로 보이던 문제를 해결했습니다. 한 줄이 줄바꿈될 만큼 길면 사전 항목 유무와 관계없이 번역되지 않던 현상입니다.\n"
+        },
+        {
+          "source": "　·血肉融合這類負值詞綴完全沒有翻譯。\n",
+          "target": "　살점의 융합처럼 음수 값을 가진 속성이 전혀 번역되지 않던 문제를 해결했습니다.\n"
+        },
+        {
+          "source": "　·傳奇珠寶「穢生 赤影夢魘」第一條詞綴顯示成問號。\n",
+          "target": "　고유 주얼 「기이한 본능」 및 「붉은 악몽」의 첫 번째 속성이 물음표로 보이던 문제를 해결했습니다.\n"
+        },
+        {
+          "source": "　·工藝介面的詞綴列顯示英文，同一條詞綴在物品說明裡卻是中文。\n",
+          "target": "　제작 인터페이스의 속성 목록이 영어로 보이고 같은 속성은 아이템 설명에서만 한글이던 문제를 해결했습니다.\n"
+        },
+        {
+          "source": "　·版本紀錄的條列符號顯示成問號，且文字擠在窄窄一欄。\n",
+          "target": "　버전 기록의 글머리표가 물음표로 보이고 텍스트가 좁은 열에 몰리던 문제를 해결했습니다.\n"
+        },
+        {
+          "source": "　·翻譯編輯器切換遊戲時，未儲存的修改會直接消失，也不會提醒。\n",
+          "target": "　번역 편집기에서 게임을 전환할 때 저장하지 않은 수정이 바로 사라지고 안내하지 않던 문제를 해결했습니다.\n"
+        },
+        {
+          "source": "　·翻譯編輯器存檔會改掉檔案的換行格式。\n",
+          "target": "　번역 편집기에서 저장할 때 파일의 줄바꿈 형식이 바뀌던 문제를 해결했습니다.\n"
+        },
+        {
+          "source": "新增\n",
+          "target": "추가\n"
+        },
+        {
+          "source": "　·啟動器改成分頁：主畫面、版本資訊、設定。版本資訊拿到整個視窗的寬度。\n",
+          "target": "　런처를 주 화면, 버전 정보, 설정의 탭으로 바꿨습니다. 버전 정보는 창 전체 너비를 사용합니다.\n"
+        },
+        {
+          "source": "　·設定可選啟動 POB 後要關閉啟動器、回到啟動器，或保持開啟。（保持開啟時可以再開一個 POB）\n",
+          "target": "　설정에서 POB 실행 뒤 런처를 닫을지, 런처로 돌아갈지, 계속 열어 둘지 고를 수 있습니다. 계속 열어 두면 POB를 하나 더 열 수 있습니다.\n"
+        },
+        {
+          "source": "　　※ 有 POB 在執行時無法更新，更新會替換 engine 資料夾裡的檔案。\n",
+          "target": "　　※ POB가 실행 중이면 업데이트할 수 없으며 업데이트는 engine 폴더의 파일을 교체합니다.\n"
+        },
+        {
+          "source": "　·設定可選啟動時要顯示主畫面還是版本資訊。\n",
+          "target": "　설정에서 시작 시 주 화면과 버전 정보 중 무엇을 표시할지 고를 수 있습니다.\n"
+        },
+        {
+          "source": "　·翻譯編輯器可以手動新增詞條，不必等它先出現在缺漏掃描裡。\n",
+          "target": "　번역 편집기에서 누락 스캔에 먼저 나타나기를 기다리지 않고 항목을 수동으로 추가할 수 있습니다.\n"
+        },
+        {
+          "source": "　·翻譯編輯器會提醒「寫進這個檔不會生效」，並可一鍵改寫到真正生效的那個檔。\n",
+          "target": "　번역 편집기가 「이 파일에 기록해도 적용되지 않음」을 알리고 실제 적용 파일로 한 번에 다시 쓸 수 있습니다.\n"
+        },
+        {
+          "source": "　·翻譯編輯器切換遊戲或語系前，會先問要不要儲存。\n",
+          "target": "　번역 편집기에서 게임 또는 언어를 바꾸기 전에 저장할지 먼저 묻습니다.\n"
+        },
+        {
+          "source": "　·外部連結新增「拆粉查詢」。\n",
+          "target": "　외부 링크에 「분해 가루 조회」를 추가했습니다.\n"
+        },
+        {
+          "source": "調整\n",
+          "target": "변경\n"
+        },
+        {
+          "source": "　·介面語言、字型、「POB 關閉後回到啟動器」移到設定分頁。\n",
+          "target": "　인터페이스 언어, 글꼴, 「POB 종료 후 런처로 돌아가기」를 설정 탭으로 옮겼습니다.\n"
+        },
+        {
+          "source": "　·「版本資訊」與「關於」不再是彈出視窗。\n",
+          "target": "　「버전 정보」와 「정보」는 더 이상 팝업 창이 아닙니다.\n"
+        },
+        {
+          "source": "　·翻譯編輯器更名為「翻譯編輯器(Beta)」。\n",
+          "target": "　번역 편집기의 이름을 「번역 편집기(Beta)」로 변경했습니다.\n"
+        },
+        {
+          "source": "\n",
+          "target": "\n"
+        },
+        {
+          "source": "v0.14.0（2026-08-01）\n",
+          "target": "v0.14.0（2026-08-01）\n"
+        },
+        {
+          "source": "修正\n",
+          "target": "수정\n"
+        },
+        {
+          "source": "　·技能欄的輔助寶石顯示成天賦的名\n",
+          "target": "　보조 젬 이름이 패시브 스킬 이\n"
+        },
+        {
+          "source": "　　字：例如「易變輔助」顯示成「易\n",
+          "target": "　　름으로 잘못 표시되던 문제를 고쳐\n"
+        },
+        {
+          "source": "　　爆」，共修正 67 條、補齊 2 條。\n",
+          "target": "　　67개를 수정하고 2개를 추가했습니다.\n"
+        },
+        {
+          "source": "　·地圖格的新增按鈕點了沒反應：星盤\n",
+          "target": "　지도 슬롯의 추가 버튼이 반응하지 않던 문제입니다. 아스트롤라베를\n"
+        },
+        {
+          "source": "　　展開時按鈕會失效，收合後才正常。\n",
+          "target": "　　펼치면 버튼이 비활성화되고 접으면 정상으로 돌아가던 현상을 수정했습니다.\n"
+        },
+        {
+          "source": "　·部分寶石與物品顯示英文：名稱帶特\n",
+          "target": "　일부 젬과 아이템이 영어로 보이던 문제입니다. 이름에 특\n"
+        },
+        {
+          "source": "　　殊字母者查不到翻譯，補齊 13 條。\n",
+          "target": "　　수 문자가 있으면 번역을 찾지 못하던 13개를 보완했습니다.\n"
+        },
+        {
+          "source": "　·範圍效果半徑等長度顯示成「分」，\n",
+          "target": "　범위 효과 반경 등의 길이가 「분」으로 보이던 문제입니다.\n"
+        },
+        {
+          "source": "　　應為「公尺」。\n",
+          "target": "　　올바른 단위는 「미터」입니다.\n"
+        },
+        {
+          "source": "新增\n",
+          "target": "추가\n"
+        },
+        {
+          "source": "　·地圖格可放入地圖碎片：黎明、正午、\n",
+          "target": "　지도 슬롯에 지도 조각을 넣을 수 있습니다: 새벽의 희생, 정오의\n"
+        },
+        {
+          "source": "　　黃昏、午夜的奉獻，以及凡人的哀傷、\n",
+          "target": "　　희생, 황혼의 희생, 자정의 희생 및 필멸자의 슬픔,\n"
+        },
+        {
+          "source": "　　憤怒、希望、無知，共 8 種。\n",
+          "target": "　　분노, 희망, 무지를 포함한 8종입니다.\n"
+        },
+        {
+          "source": "調整\n",
+          "target": "변경\n"
+        },
+        {
+          "source": "　·輿圖策略的「甲蟲」欄位更名為「地\n",
+          "target": "　아틀라스 전략의 「갑충석」 필드 이름을 「지도\n"
+        },
+        {
+          "source": "　　圖格」。\n",
+          "target": "　　슬롯」으로 변경했습니다.\n"
+        },
+        {
+          "source": "\n",
+          "target": "\n"
+        },
+        {
+          "source": "v0.13.0（2026-08-01）\n",
+          "target": "v0.13.0（2026-08-01）\n"
+        },
+        {
+          "source": "修正：配點會自己改道（0.12.0 的問題）\n",
+          "target": "수정: 패시브 할당 경로가 자동으로 바뀌던 문제(0.12.0의 문제)\n"
+        },
+        {
+          "source": "　- 點第二個節點時，第一個節點走過的路徑會被\n",
+          "target": "　- 두 번째 노드를 찍을 때 첫 노드까지의 경로가\n"
+        },
+        {
+          "source": "　　重新排過，越點越亂。現在改回原本的接法：\n",
+          "target": "　　다시 정렬되어 할당할수록 어지러워지던 현상입니다. 원래 방식으로 복원하여\n"
+        },
+        {
+          "source": "　　點一下就接最短路徑，已經配好的點不會動。\n",
+          "target": "　　한 번 누르면 최단 경로로 연결하고 이미 할당한 노드는 움직이지 않습니다.\n"
+        },
+        {
+          "source": "　- 想要最少點的接法改成工具列的「壓縮到最少\n",
+          "target": "　- 최소 포인트 경로 기능을 도구 모음의 「최소 포인트로 압축\n"
+        },
+        {
+          "source": "　　點」按鈕，按了才算，Ctrl+Z 可復原。\n",
+          "target": "　　」 버튼으로 옮겼습니다. 눌러야 적용되고 Ctrl+Z로 되돌릴 수 있습니다.\n"
+        },
+        {
+          "source": "　　大點、鑰石與端點都會保留。\n",
+          "target": "　　주요 노드, 핵심 노드와 끝 노드는 유지합니다.\n"
+        },
+        {
+          "source": "新增：點機制圖示標出同機制的所有位置\n",
+          "target": "추가: 콘텐츠 아이콘을 눌러 같은 콘텐츠의 모든 위치 표시\n"
+        },
+        {
+          "source": "　- 點叢集中央的機制圖示（裂痕、軍團、譫妄…），\n",
+          "target": "　- 군집 가운데의 콘텐츠 아이콘(균열, 군단, 환영 등)을 누르면\n"
+        },
+        {
+          "source": "　　全輿圖同機制的節點與叢集會一起亮圈。\n",
+          "target": "　　아틀라스 전체에서 같은 콘텐츠의 노드와 군집이 함께 강조됩니다.\n"
+        },
+        {
+          "source": "　- 側欄新增「機制」清單，點名稱同樣會標示\n",
+          "target": "　- 사이드바에 「콘텐츠」 목록을 추가했습니다. 이름을 누르면 같은 위치를 표시하고\n"
+        },
+        {
+          "source": "　　並跳到最近的叢集；Esc 或「清除」取消。\n",
+          "target": "　　가장 가까운 군집으로 이동합니다. Esc 또는 「지우기」로 취소합니다.\n"
+        },
+        {
+          "source": "改進：規劃模式看得出哪些是自己標的\n",
+          "target": "개선: 계획 모드에서 직접 표시한 노드를 구분\n"
+        },
+        {
+          "source": "　- 標為「想要」的節點改成明顯的綠色外框，\n",
+          "target": "　- 「원함」으로 표시한 노드는 눈에 띄는 녹색 테두리로 바뀌어\n"
+        },
+        {
+          "source": "　　縮到多小都看得到，跟系統補的連接點\n",
+          "target": "　　아무리 축소해도 보이며 시스템이 보완한 연결 노드와\n"
+        },
+        {
+          "source": "　　一眼分得出來。\n",
+          "target": "　　한눈에 구분됩니다.\n"
+        },
+        {
+          "source": "修正：最新賽季被當成舊賽季\n",
+          "target": "수정: 최신 시즌이 이전 시즌으로 처리되던 문제\n"
+        },
+        {
+          "source": "　- 應用程式更新會把賽季清單蓋回出貨版，\n",
+          "target": "　- 앱 업데이트가 시즌 목록을 배포본으로 덮어써\n"
+        },
+        {
+          "source": "　　害你自己下載的 3.29.1 顯示「舊賽季檢視\n",
+          "target": "　　직접 내려받은 3.29.1이 「이전 시즌 보기\n"
+        },
+        {
+          "source": "　　（唯讀）」而且存不進去。現在以磁碟上實際\n",
+          "target": "　　(읽기 전용)」으로 보이고 저장되지 않던 현상입니다. 이제 디스크에 실제로\n"
+        },
+        {
+          "source": "　　有的最新完整賽季為準，並自動修好清單。\n",
+          "target": "　　있는 최신 완성 시즌을 기준으로 삼아 목록도 자동으로 고칩니다.\n"
+        },
+        {
+          "source": "\n",
+          "target": "\n"
+        },
+        {
+          "source": "v0.12.0（2026-07-31）\n",
+          "target": "v0.12.0（2026-07-31）\n"
+        },
+        {
+          "source": "更名：輿圖配點器改為輿圖策略\n",
+          "target": "이름 변경: 아틀라스 패시브 플래너를 아틀라스 전략으로 변경\n"
+        },
+        {
+          "source": "改進：點擊節點會自動算出最少天賦點\n",
+          "target": "개선: 노드를 클릭하면 최소 패시브 포인트를 자동 계산\n"
+        },
+        {
+          "source": "　- 點過的節點視為目標，每次點擊重新求解\n",
+          "target": "　- 찍은 노드를 목표로 보고 매 클릭 때마다 다시 계산하여\n"
+        },
+        {
+          "source": "　　整體最少點，不管用什麼順序點，結果\n",
+          "target": "　　전체 최소 포인트를 구합니다. 어떤 순서로 눌러도 결과는\n"
+        },
+        {
+          "source": "　　都一樣且最省（舊版換個順序最多會多花\n",
+          "target": "　　같고 가장 적습니다. 이전 버전은 순서에 따라 최대\n"
+        },
+        {
+          "source": "　　10 點）。\n",
+          "target": "　　10포인트를 더 쓸 수 있었습니다.\n"
+        },
+        {
+          "source": "　- 舊的專案只會「提議」壓縮，不會自動改，\n",
+          "target": "　- 이전 프로젝트는 압축을 「제안」만 하며 자동으로 바꾸지 않습니다.\n"
+        },
+        {
+          "source": "　　真的改了也可以用 Ctrl+Z 復原。\n",
+          "target": "　　실제로 바꿔도 Ctrl+Z로 되돌릴 수 있습니다.\n"
+        },
+        {
+          "source": "新增：規劃模式（沙盒）與「不要」的節點\n",
+          "target": "추가: 계획 모드(샌드박스)와 「제외」 노드\n"
+        },
+        {
+          "source": "　- 從空白開始快速標記想要的核心節點，\n",
+          "target": "　- 빈 상태에서 원하는 핵심 노드를 빠르게 표시하고\n"
+        },
+        {
+          "source": "　　期間完全不會寫入存檔，結束時才問你\n",
+          "target": "　　그동안 저장 파일에는 전혀 기록하지 않습니다. 끝날 때\n"
+        },
+        {
+          "source": "　　要保留還是捨棄。\n",
+          "target": "　　보관하거나 버릴지 묻습니다.\n"
+        },
+        {
+          "source": "　- 可以標記不想經過的節點，求解時會繞開。\n",
+          "target": "　- 지나고 싶지 않은 노드를 표시하면 계산할 때 우회합니다.\n"
+        },
+        {
+          "source": "翻譯：補齊 3.29 新增的輿圖節點中文\n",
+          "target": "번역: 3.29에 추가된 아틀라스 노드의 한글 보완\n"
+        },
+        {
+          "source": "　- 傭兵系列等新節點原本顯示英文，\n",
+          "target": "　- 용병 계열 등 새 노드가 영어로 보이던 문제를 고쳤고\n"
+        },
+        {
+          "source": "　　名稱與詞綴皆已補上官方繁中。\n",
+          "target": "　　이름과 속성에 공식 번체 중국어를 보완했습니다.\n"
+        },
+        {
+          "source": "新增：軍團珠寶的交易連結支援台服\n",
+          "target": "추가: 무궁한 주얼 거래 링크의 대만 서버 지원\n"
+        },
+        {
+          "source": "　- 匯出設定可選國際服或台服，會記住你的\n",
+          "target": "　- 내보내기 설정에서 국제 서버 또는 대만 서버를 고르고\n"
+        },
+        {
+          "source": "　　區域、聯盟與平台選擇。\n",
+          "target": "　　지역, 리그와 플랫폼 선택을 기억합니다.\n"
+        },
+        {
+          "source": "新增：輿圖策略可以規劃星盤\n",
+          "target": "추가: 아틀라스 전략에서 관측기 계획 가능\n"
+        },
+        {
+          "source": "　- 四個半區各放一片幻塑界域，含圖示與\n",
+          "target": "　- 네 반쪽 영역에 각각 하나의 관측기를 놓고 아이콘과\n"
+        },
+        {
+          "source": "　　官方繁中效果說明。\n",
+          "target": "　　공식 번체 중국어 효과 설명을 표시합니다.\n"
+        },
+        {
+          "source": "　- 依遊戲規則擋住同一半區的第二片。\n",
+          "target": "　- 게임 규칙에 따라 같은 반쪽 영역의 두 번째 배치를 막습니다.\n"
+        },
+        {
+          "source": "　- 本賽季尚未啟用的星盤會標示出來。\n",
+          "target": "　- 이번 시즌에 아직 활성화되지 않은 관측기는 표시합니다.\n"
+        },
+        {
+          "source": "新增：輿圖策略可以指定主力地圖\n",
+          "target": "추가: 아틀라스 전략에서 주력 지도 지정 가능\n"
+        },
+        {
+          "source": "　- 階級與地圖名稱是兩個各自獨立的選單。\n",
+          "target": "　- 등급과 지도 이름은 각각 독립적인 선택 메뉴입니다.\n"
+        },
+        {
+          "source": "　- 地圖選單一律列出全部，因為虛空石會把\n",
+          "target": "　- 지도 메뉴는 공허석이\n"
+        },
+        {
+          "source": "　　整個半區的地圖都拉到 T16。\n",
+          "target": "　　반쪽 영역 전체의 지도를 T16으로 올리므로 항상 모두 표시합니다.\n"
+        },
+        {
+          "source": "　- 地圖名稱支援中英模糊搜尋。\n",
+          "target": "　- 지도 이름은 한글·영문 퍼지 검색을 지원합니다.\n"
+        },
+        {
+          "source": "新增：版本比較可以自己選要比的兩個版本\n",
+          "target": "추가: 버전 비교에서 비교할 두 버전 직접 선택\n"
+        },
+        {
+          "source": "　- 當季每個小版本都會保留，因此看得到\n",
+          "target": "　- 이번 시즌의 모든 소형 버전을 보관하므로\n"
+        },
+        {
+          "source": "　　賽季中官方調整了哪些節點與數值。\n",
+          "target": "　　시즌 중 공식이 조정한 노드와 수치를 확인할 수 있습니다.\n"
+        },
+        {
+          "source": "　- 換季時上一季只留最後一個版本。\n",
+          "target": "　- 시즌이 바뀌면 이전 시즌은 마지막 버전만 남깁니다.\n"
+        },
+        {
+          "source": "修正：離開版本比較後按鈕顏色沒有還原\n",
+          "target": "수정: 버전 비교를 나간 뒤 버튼 색상이 돌아오지 않던 문제\n"
+        },
+        {
+          "source": "修正：已下載但未登記的賽季資料看不到\n",
+          "target": "수정: 내려받았지만 등록되지 않은 시즌 데이터를 볼 수 없던 문제\n"
+        },
+        {
+          "source": "　- 現在會自動掃描並補上，不必重新下載。\n",
+          "target": "　- 이제 자동으로 스캔하여 추가하므로 다시 내려받을 필요가 없습니다.\n"
+        },
+        {
+          "source": "說明：匯出的專案檔與分享碼沿用舊格式，\n",
+          "target": "설명: 내보낸 프로젝트 파일과 공유 코드는 이전 형식을 유지하며\n"
+        },
+        {
+          "source": "　舊版 PobTools 仍可開啟。\n",
+          "target": "　이전 PobTools에서도 열 수 있습니다.\n"
+        },
+        {
+          "source": "\n",
+          "target": "\n"
+        },
+        {
+          "source": "v0.11.0（2026-07-31）\n",
+          "target": "v0.11.0（2026-07-31）\n"
+        },
+        {
+          "source": "新增：輿圖配點器可以規劃甲蟲\n",
+          "target": "추가: 아틀라스 패시브 플래너에서 갑충석 계획 가능\n"
+        },
+        {
+          "source": "　- 五個格子，含圖示、官方繁中效果說明。\n",
+          "target": "　- 아이콘과 공식 번체 중국어 효과 설명이 있는 다섯 슬롯을 제공합니다.\n"
+        },
+        {
+          "source": "　- 依遊戲規則擋不合法的組合：每隻甲蟲\n",
+          "target": "　- 게임 규칙에 따라 불가능한 조합을 막습니다. 각 갑충석의\n"
+        },
+        {
+          "source": "　　自己的可放份數，以及互斥的同類甲蟲。\n",
+          "target": "　　배치 가능 수와 서로 배타적인 같은 종류의 갑충석을 확인합니다.\n"
+        },
+        {
+          "source": "　- 圖示下載後存在本機，之後離線也看得到。\n",
+          "target": "　- 아이콘을 내려받아 로컬에 저장하므로 이후 오프라인에서도 볼 수 있습니다.\n"
+        },
+        {
+          "source": "新增：輿圖配點器每個專案可以寫備註\n",
+          "target": "추가: 아틀라스 패시브 플래너의 프로젝트별 메모 작성\n"
+        },
+        {
+          "source": "新增：甲蟲挑選支援模糊搜尋\n",
+          "target": "추가: 갑충석 선택에 퍼지 검색 지원\n"
+        },
+        {
+          "source": "　- 中英文皆可，語序顛倒、缺標點都找得到，\n",
+          "target": "　- 한글과 영문 모두 가능하며 어순을 바꾸거나 문장부호가 없어도 찾고\n"
+        },
+        {
+          "source": "　　也可以直接搜尋效果文字。\n",
+          "target": "　　효과 문구도 직접 검색할 수 있습니다.\n"
+        },
+        {
+          "source": "修正：軍團珠寶搜尋沒有真的照條件配對\n",
+          "target": "수정: 무궁한 주얼 검색이 조건대로 실제 일치하지 않던 문제\n"
+        },
+        {
+          "source": "　- 選了多條詞綴時，只滿足其中一條的種子\n",
+          "target": "　- 여러 속성을 고르면 하나만 만족하는 시드도\n"
+        },
+        {
+          "source": "　　也會出現且分數相同，現在預設要全部滿足。\n",
+          "target": "　　나오고 점수가 같던 현상을 고쳤습니다. 이제 기본값은 모두 만족입니다.\n"
+        },
+        {
+          "source": "　- 設定的最小值先前只有排名在用，結果清單\n",
+          "target": "　- 설정한 최솟값이 이전에는 순위에만 쓰여 결과 목록과\n"
+        },
+        {
+          "source": "　　與樹上標示沒有套用，會標出不符合的詞綴。\n",
+          "target": "　　트리 표시에는 적용되지 않아 맞지 않는 속성도 표시되던 문제를 해결했습니다.\n"
+        },
+        {
+          "source": "　- 同分種子的排序改為固定，不再每次不同。\n",
+          "target": "　- 같은 점수 시드의 정렬을 고정해 매번 달라지지 않습니다.\n"
+        },
+        {
+          "source": "說明：匯出的專案檔與分享碼沿用舊格式，\n",
+          "target": "설명: 내보낸 프로젝트 파일과 공유 코드는 이전 형식을 유지하며\n"
+        },
+        {
+          "source": "　舊版 PobTools 仍可開啟。\n",
+          "target": "　이전 PobTools에서도 열 수 있습니다.\n"
+        },
+        {
+          "source": "\n",
+          "target": "\n"
+        },
+        {
+          "source": "v0.10.0（2026-07-30）\n",
+          "target": "v0.10.0（2026-07-30）\n"
+        },
+        {
+          "source": "翻譯：全面比對官方遊戲檔修正用詞（2978 條）\n",
+          "target": "번역: 공식 게임 파일을 전면 대조해 용어 2,978개 수정\n"
+        },
+        {
+          "source": "　- 修正 7 條意思相反的詞綴，例如原本顯示\n",
+          "target": "　- 의미가 반대였던 속성 7개를 수정했습니다. 예를 들어 원래 표시가\n"
+        },
+        {
+          "source": "　　「減少」實際上是「增加」。\n",
+          "target": "　　「감소」여야 할 곳을 「증가」로 보이던 문제입니다.\n"
+        },
+        {
+          "source": "　- 統一為官方用詞：區域內、恢復率、複合藥劑\n",
+          "target": "　- 공식 용어인 「지역 내」, 「회복률」, 「혼합 플라스크」\n"
+        },
+        {
+          "source": "　　等，並修掉數處簡繁轉換錯字。\n",
+          "target": "　　등으로 통일하고 번체·간체 변환의 오자도 고쳤습니다.\n"
+        },
+        {
+          "source": "　- 每條都經遊戲檔、repoe、兩服交易站、poedb\n",
+          "target": "　- 각 항목은 게임 파일, repoe, 두 서버 거래소, poedb를\n"
+        },
+        {
+          "source": "　　多方比對，兩個以上來源一致才採用。\n",
+          "target": "　　여러 방식으로 비교해 두 곳 이상이 일치할 때만 채택했습니다.\n"
+        },
+        {
+          "source": "新增：翻譯編輯器重新開放\n",
+          "target": "추가: 번역 편집기 재개방\n"
+        },
+        {
+          "source": "　- 缺漏掃描改為內頁分頁，不再是小視窗。\n",
+          "target": "　- 누락 스캔을 작은 창 대신 내부 탭으로 바꿨습니다.\n"
+        },
+        {
+          "source": "　- 顯示 POB 色碼的實際顏色。\n",
+          "target": "　- POB 색상 코드의 실제 색을 표시합니다.\n"
+        },
+        {
+          "source": "　- 視窗放大並依螢幕可用範圍自動調整。\n",
+          "target": "　- 창을 키우고 화면의 사용 가능한 범위에 맞춰 자동 조정합니다.\n"
+        },
+        {
+          "source": "更名：圖譜配點器改為輿圖配點器\n",
+          "target": "이름 변경: 아틀라스 플래너를 아틀라스 패시브 플래너로 변경\n"
+        },
+        {
+          "source": "新增：外部連結區加入交易市集中文化、\n",
+          "target": "추가: 외부 링크 영역에 한글 거래 사이트,\n"
+        },
+        {
+          "source": "　Discord 社群與贊助連結。\n",
+          "target": "　Discord 커뮤니티와 후원 링크를 추가했습니다.\n"
+        },
+        {
+          "source": "\n",
+          "target": "\n"
+        },
+        {
+          "source": "v0.9.0（2026-07-27）\n",
+          "target": "v0.9.0（2026-07-27）\n"
+        },
+        {
+          "source": "修正：軍團珠寶計算器詞綴顯示錯誤\n",
+          "target": "수정: 무궁한 주얼 계산기의 속성 표시 오류\n"
+        },
+        {
+          "source": "　- 珠寶「額外加成」的節點會保留原本詞綴，\n",
+          "target": "　- 주얼의 「추가 효과」 노드는 원래 속성을 유지하고\n"
+        },
+        {
+          "source": "　　不再只顯示加成那一行。\n",
+          "target": "　　더 이상 추가 효과 한 줄만 표시하지 않습니다.\n"
+        },
+        {
+          "source": "　- 修正某個小節點被誤判成大節點，\n",
+          "target": "　- 작은 노드를 주요 노드로 잘못 판단해\n"
+        },
+        {
+          "source": "　　顯示成被替換為鑰石的問題。\n",
+          "target": "　　핵심 노드로 교체된 것처럼 보이던 문제를 수정했습니다.\n"
+        },
+        {
+          "source": "新增：範圍內小節點的變化也會顯示\n",
+          "target": "추가: 범위 안 작은 노드의 변화도 표시\n"
+        },
+        {
+          "source": "　- 例如狂戰之傲的 +4 力量、優雅之傲清空，\n",
+          "target": "　- 예를 들어 치명적인 긍지의 +4 힘과 고상한 오만의 초기화처럼\n"
+        },
+        {
+          "source": "　　六種珠寶各自的規則皆已支援。\n",
+          "target": "　　여섯 주얼 각각의 규칙을 모두 지원합니다.\n"
+        },
+        {
+          "source": "新增：查到的種子可複製成物品文字\n",
+          "target": "추가: 찾은 시드를 아이템 텍스트로 복사 가능\n"
+        },
+        {
+          "source": "　- 貼進 POB 物品分頁即可建立該顆珠寶。\n",
+          "target": "　- POB 아이템 탭에 붙이면 해당 주얼을 만들 수 있습니다.\n"
+        },
+        {
+          "source": "新增：啟動器可手動檢查更新\n",
+          "target": "추가: 런처에서 수동 업데이트 확인 가능\n"
+        },
+        {
+          "source": "　- 自動檢查每天最多一次且只在啟動時，\n",
+          "target": "　- 자동 확인은 하루 최대 한 번이며 시작할 때만 실행하고\n"
+        },
+        {
+          "source": "　　需要時可按標題列的按鈕立即檢查。\n",
+          "target": "　　필요하면 제목 표시줄 버튼으로 즉시 확인할 수 있습니다.\n"
+        },
+        {
+          "source": "說明：深淵軍團珠寶暫不開放\n",
+          "target": "설명: 심연 무궁한 주얼은 아직 공개하지 않음\n"
+        },
+        {
+          "source": "　- 待 POB 本體支援後再行加入。\n",
+          "target": "　- POB 본체가 지원한 뒤 추가할 예정입니다.\n"
+        },
+        {
+          "source": "\n",
+          "target": "\n"
+        },
+        {
+          "source": "v0.8.0（2026-07-26）\n",
+          "target": "v0.8.0（2026-07-26）\n"
+        },
+        {
+          "source": "新增：塗油附魔支援中文搜尋\n",
+          "target": "추가: 성유 부여가 한글 검색 지원\n"
+        },
+        {
+          "source": "　- 物品編輯的塗油視窗可直接輸入中文，\n",
+          "target": "　- 아이템 편집의 성유 창에 한글을 직접 입력해\n"
+        },
+        {
+          "source": "　　查詢天賦名稱與詞綴（PoE1／PoE2 皆支援）。\n",
+          "target": "　　패시브 이름과 속성을 찾을 수 있습니다(PoE1／PoE2 모두 지원).\n"
+        },
+        {
+          "source": "新增：下拉選單打字搜尋支援中文\n",
+          "target": "추가: 드롭다운 목록의 입력 검색이 한글 지원\n"
+        },
+        {
+          "source": "　- 附魔清單等下拉選單展開後輸入中文\n",
+          "target": "　- 성유 목록 등의 드롭다운을 연 뒤 한글을 입력하면\n"
+        },
+        {
+          "source": "　　即可過濾選項。\n",
+          "target": "　　선택 항목을 필터링할 수 있습니다.\n"
+        },
+        {
+          "source": "\n",
+          "target": "\n"
+        },
+        {
+          "source": "v0.7.0（2026-07-25）\n",
+          "target": "v0.7.0（2026-07-25）\n"
+        },
+        {
+          "source": "修正：解壓到舊資料夾時無法啟動 POB\n",
+          "target": "수정: 이전 폴더에 압축을 풀면 POB가 시작되지 않던 문제\n"
+        },
+        {
+          "source": "　- 安裝根目錄殘留的舊版 DLL 不再蓋過\n",
+          "target": "　- 설치 루트에 남은 이전 DLL이 더 이상\n"
+        },
+        {
+          "source": "　　engine 資料夾內的新版檔案。\n",
+          "target": "　　engine 폴더 안의 새 파일을 덮어쓰지 않습니다.\n"
+        },
+        {
+          "source": "修正：相容 POB 2.66 的 OAuth 匯入功能\n",
+          "target": "수정: POB 2.66의 OAuth 가져오기 기능 호환\n"
+        },
+        {
+          "source": "　- 內建 sha2 模組備援，POB 原地升級\n",
+          "target": "　- 내장 sha2 모듈을 대체 수단으로 제공해 POB를 제자리 업데이트할 때\n"
+        },
+        {
+          "source": "　　缺檔時自動補位，開啟 build 不再報錯。\n",
+          "target": "　　파일이 없으면 자동으로 보완하고 build를 열어도 오류가 나지 않습니다.\n"
+        },
+        {
+          "source": "\n",
+          "target": "\n"
+        },
+        {
+          "source": "v0.6.0（2026-07-25）\n",
+          "target": "v0.6.0（2026-07-25）\n"
+        },
+        {
+          "source": "修正：支援 3.29 新版物品複製格式\n",
+          "target": "수정: 3.29의 새 아이템 복사 형식 지원\n"
+        },
+        {
+          "source": "　- 遊戲內 Ctrl+C 的詞綴數值範圍（如 +7(6-11)）\n",
+          "target": "　- 게임 내 Ctrl+C로 복사한 속성 수치 범위(예: +7(6-11))를\n"
+        },
+        {
+          "source": "　　可正確貼上 POB，並保留範圍資訊。\n",
+          "target": "　　POB에 정확히 붙이고 범위 정보도 유지합니다.\n"
+        },
+        {
+          "source": "　- 新版詞綴標註行與可變長度分隔線自動處理，\n",
+          "target": "　- 새 속성 주석 행과 가변 길이 구분선을 자동 처리해\n"
+        },
+        {
+          "source": "　　不再造成貼上後詞綴無法辨識。\n",
+          "target": "　　붙여넣은 뒤 속성을 인식하지 못하던 문제를 해결했습니다.\n"
+        },
+        {
+          "source": "\n",
+          "target": "\n"
+        },
+        {
+          "source": "v0.5.0（2026-07-25）\n",
+          "target": "v0.5.0（2026-07-25）\n"
+        },
+        {
+          "source": "新增：POB 物品資料庫支援中文搜尋\n",
+          "target": "추가: POB 아이템 데이터베이스 한글 검색 지원\n"
+        },
+        {
+          "source": "　- 傳奇／基底清單可直接輸入中文名稱查詢。\n",
+          "target": "　- 고유／기본 유형 목록에 한글 이름을 직접 입력해 찾을 수 있습니다.\n"
+        },
+        {
+          "source": "改進：工具視窗獨立開啟，啟動器保持開啟\n",
+          "target": "개선: 도구 창을 독립적으로 열고 런처는 계속 열기\n"
+        },
+        {
+          "source": "　- 過濾器編輯器、圖譜配點器、軍團珠寶\n",
+          "target": "　- 필터 편집기, 아틀라스 플래너, 무궁한 주얼을\n"
+        },
+        {
+          "source": "　　改以子視窗執行，可同時開多個工具。\n",
+          "target": "　　자식 창으로 실행하여 여러 도구를 동시에 열 수 있습니다.\n"
+        },
+        {
+          "source": "資料：輿圖 3.29 新節點詞綴敘述全面中文化\n",
+          "target": "데이터: 아틀라스 3.29 신규 노드 속성 설명 전면 한글화\n"
+        },
+        {
+          "source": "　- 以官方詞綴模板嚴格比對翻譯全部新增行，\n",
+          "target": "　- 공식 속성 템플릿으로 새 행의 번역을 엄격하게 대조하고\n"
+        },
+        {
+          "source": "　　並修正上游錯置的同數值詞綴配對。\n",
+          "target": "　　상류의 같은 수치 속성 연결 오류도 수정했습니다.\n"
+        },
+        {
+          "source": "新增：關於視窗加入 Discord 社群連結。\n",
+          "target": "추가: 정보 창에 Discord 커뮤니티 링크 추가.\n"
+        },
+        {
+          "source": "\n",
+          "target": "\n"
+        },
+        {
+          "source": "v0.4.2（2026-07-25）\n",
+          "target": "v0.4.2（2026-07-25）\n"
+        },
+        {
+          "source": "翻譯：血裔昇華完整中文化\n",
+          "target": "번역: 혈통 전직 전체 한글화\n"
+        },
+        {
+          "source": "　- 十條血裔名稱、全部節點名與面板敘述。\n",
+          "target": "　- 혈통 이름 10개, 모든 노드 이름과 패널 설명을 포함합니다.\n"
+        },
+        {
+          "source": "翻譯：詞綴模板全量擴充（+3886 條）\n",
+          "target": "번역: 속성 템플릿 전면 확장(+3886개)\n"
+        },
+        {
+          "source": "　- 深水、移植、聖所、村莊、探險等機制詞綴。\n",
+          "target": "　- 심해, 이식, 성역, 마을, 탐험 등의 콘텐츠 속성입니다.\n"
+        },
+        {
+          "source": "資料：輿圖 3.29 新節點中文名補齊（37 個）；\n",
+          "target": "데이터: 아틀라스 3.29 신규 노드 한글 이름 37개 보완,\n"
+        },
+        {
+          "source": "　過濾器新增 3.29 物品資料（+231）；\n",
+          "target": "　필터에 3.29 아이템 데이터 231개 추가,\n"
+        },
+        {
+          "source": "　軍團珠寶被動樹確認為 3.29 最新版。\n",
+          "target": "　무궁한 주얼 패시브 트리를 3.29 최신판으로 확인했습니다.\n"
+        },
+        {
+          "source": "\n",
+          "target": "\n"
+        },
+        {
+          "source": "v0.4.1（2026-07-25）\n",
+          "target": "v0.4.1（2026-07-25）\n"
+        },
+        {
+          "source": "翻譯：3.29 正式資料全量更新\n",
+          "target": "번역: 3.29 정식 데이터 전면 업데이트\n"
+        },
+        {
+          "source": "　- 物品 +98、詞綴 +285、介面 +156、天賦 +65 等\n",
+          "target": "　- 아이템 +98, 속성 +285, 인터페이스 +156, 패시브 +65 등의\n"
+        },
+        {
+          "source": "　　新詞條，來源為 3.29.0.1 遊戲檔案。\n",
+          "target": "　　새 항목은 3.29.0.1 게임 파일에서 가져왔습니다.\n"
+        },
+        {
+          "source": "　- v0.4.0 使用者由自動更新背景套用，無需操作。\n",
+          "target": "　- v0.4.0 사용자는 자동 업데이트가 백그라운드에서 적용하므로 조작할 필요가 없습니다.\n"
+        },
+        {
+          "source": "\n",
+          "target": "\n"
+        },
+        {
+          "source": "v0.4.0（2026-07-24）\n",
+          "target": "v0.4.0（2026-07-24）\n"
+        },
+        {
+          "source": "改進：POB 資料夾偵測全面放寬\n",
+          "target": "개선: POB 폴더 감지 범위 전면 완화\n"
+        },
+        {
+          "source": "　- pob-zh.exe 旁任何內含 Launch.lua 的資料夾\n",
+          "target": "　- pob-zh.exe 옆에서 Launch.lua를 포함한 모든 폴더를\n"
+        },
+        {
+          "source": "　　都會被偵測，名稱不限（官方名稱優先採用）。\n",
+          "target": "　　이름과 관계없이 감지하며 공식 이름을 우선 사용합니다.\n"
+        },
+        {
+          "source": "　- 資料夾名稱含 PoE2 視為 PoE2 版 POB。\n",
+          "target": "　- 폴더 이름에 PoE2가 있으면 PoE2용 POB로 간주합니다.\n"
+        },
+        {
+          "source": "　- 支援把 pob-zh.exe 直接放進 POB 資料夾（同層）。\n",
+          "target": "　- pob-zh.exe를 POB 폴더에 직접 넣는 방식도 지원합니다(같은 단계).\n"
+        },
+        {
+          "source": "新增：本「版本資訊」視窗。\n",
+          "target": "추가: 이 「버전 정보」 창.\n"
+        },
+        {
+          "source": "\n",
+          "target": "\n"
+        },
+        {
+          "source": "v0.3.0（2026-07-24）\n",
+          "target": "v0.3.0（2026-07-24）\n"
+        },
+        {
+          "source": "新增：內建自動更新\n",
+          "target": "추가: 내장 자동 업데이트\n"
+        },
+        {
+          "source": "　- 翻譯更新（如 0.4.0 -> 0.4.1）背景自動套用。\n",
+          "target": "　- 번역 업데이트(예: 0.4.0 -> 0.4.1)를 백그라운드에서 자동 적용합니다.\n"
+        },
+        {
+          "source": "　- 主體更新出現橘色按鈕，一鍵下載、替換、重啟。\n",
+          "target": "　- 본체 업데이트에는 주황색 버튼이 나타나 한 번에 다운로드, 교체, 재시작합니다.\n"
+        },
+        {
+          "source": "　- 下載以 SHA-256 驗證；失敗自動完整還原。\n",
+          "target": "　- 다운로드는 SHA-256으로 검증하며 실패하면 자동으로 완전히 복원합니다.\n"
+        },
+        {
+          "source": "新增：pob-zh.exe 內建版本資源，啟動器顯示版本號。\n",
+          "target": "추가: pob-zh.exe에 버전 리소스를 내장하여 런처가 버전 번호를 표시합니다.\n"
+        },
+        {
+          "source": "翻譯：依 3.29 遊戲資料補充字典（物品／天賦／介面）。\n",
+          "target": "번역: 3.29 게임 데이터를 기준으로 사전 보완(아이템／패시브／인터페이스).\n"
+        },
+        {
+          "source": "\n",
+          "target": "\n"
+        },
+        {
+          "source": "v0.2.0（2026-07-23）\n",
+          "target": "v0.2.0（2026-07-23）\n"
+        },
+        {
+          "source": "新增：輿圖天賦樹雙賽季並存（3.28+3.29），\n",
+          "target": "추가: 아틀라스 패시브 트리에 두 시즌(3.28+3.29) 병행 지원,\n"
+        },
+        {
+          "source": "　「版本比較」逐節點、逐詞條比對兩季差異。\n",
+          "target": "　「버전 비교」에서 노드와 항목별로 두 시즌 차이를 비교합니다.\n"
+        },
+        {
+          "source": "新增：軍團珠寶天賦樹更新至 3.29，\n",
+          "target": "추가: 무궁한 주얼 패시브 트리를 3.29로 업데이트하고\n"
+        },
+        {
+          "source": "　圖集隨程式打包，新賽季自動檢查與一鍵更新。\n",
+          "target": "　이미지 시트를 프로그램에 포함하여 새 시즌을 자동 확인하고 한 번에 업데이트합니다.\n"
+        },
+        {
+          "source": "修正：輿圖／被動樹多項內部自檢問題。\n",
+          "target": "수정: 아틀라스／패시브 트리의 여러 내부 점검 문제.\n"
+        },
+        {
+          "source": "\n",
+          "target": "\n"
+        },
+        {
+          "source": "v0.1.0（2026-07-22）\n",
+          "target": "v0.1.0（2026-07-22）\n"
+        },
+        {
+          "source": "首次公開發布：零污染繁中化啟動器、翻譯編輯器、\n",
+          "target": "첫 공개 배포: 완전 현지화된 번체 중국어 런처, 번역 편집기,\n"
+        },
+        {
+          "source": "過濾器編輯器、圖譜配點器、軍團珠寶計算器。\n",
+          "target": "필터 편집기, 아틀라스 플래너, 무궁한 주얼 계산기.\n"
+        }
+      ],
+      "evidenceFunction": "",
+      "evidenceMode": "manual-ui-reflow",
+      "evidencePath": "host/changelog.h",
+      "formatSignature": [
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>",
+        "<NL>"
+      ],
+      "function": "",
+      "localizedEvidenceSha256": "08B1ACCBA71F4A80CD5B6903A41C9CE82CC787DF747EDD94F5574E2FD4A1979E",
+      "localizedOccurrenceIndex": 0,
+      "occurrenceIndex": 0,
+      "path": "host/changelog.h",
+      "provenance": "manual-reviewed-remediation",
+      "source": "v1.1.0（2026-08-30）\n修正\n　·POB 視窗的中文與英數霧霧的、像被整張放大過：文字改以實際字級繪製並對齊像素，筆畫銳利不再發糊。（介面縮放非 100% 時同樣清晰）\n　·※ 使用思源黑體時文字位置會比先前略低，屬修正後的正常對位。\n新增\n　·設定頁新增「HTTP 代理」：更新檢查、翻譯資料與圖示下載可經代理連線，留空則自動跟隨系統代理。（給連不上 GitHub 的網路環境）\n\nv1.0.0（2026-08-28）\n修正\n　·POB 更新到測試版後整個變回英文：POB 新版程式碼用了新的執行環境語法，翻譯完全停擺。（執行環境已同步升級）\n　·翻譯後的文字顏色跟著前面的字走、改色不生效：一行裡夾在中間的顏色會在翻譯時被吃掉。（技能組列表、側欄括號註記等全面恢復顏色）\n　·客製化詞綴框沒點進去時整框顯示英文：現在逐行翻譯，配對到的詞綴顯示中文，自己寫的備註保留原文。\n　·物品清單的「(Unused)」被翻成「(反鍊金的)」：現在正確顯示「(未使用)」。（簡體同步修正）\n　·側欄的「(Guard)」被翻成「(軍衛)」：現在正確顯示「(守護)」，簡體為「(护卫)」。\n　·簡體介面下部分文字顯示成問號：啟動器與工具視窗改用出貨字型互補缺字。\n　·使用 POB 測試版時啟動器不顯示 POB 版本號。\n新增\n　·技能分頁的使用提示、物品清單的拖放說明等整塊英文段落現在會翻譯。\n　·配置分頁詞綴瀏覽器的「在巔峰頭目面前時」「在傳奇頭目面前時」系列詞綴現在會翻譯。\n調整\n　·詞綴翻譯：補齊 15 條繁中與簡中的詞綴與介面文字。\n\nv0.29.0（2026-08-26）\n修正\n　·PoE2 計算頁區段標題後面的數值不見或少一格：中文標題比英文長，數值被畫在標題底下。（充能球、持續計算的吸納和擊中傷害承受等）\n　·計算頁多欄數值全部變成同一個顏色：充能球、能力值這類「0, 0, 0」的數值失去各自的顏色。\n　·天賦樹提示的「擊」「額」等字顯示成方框：PoE2 字典混進了日文與簡體字形，思源黑體沒有這些字。\n　·PoE2 藥劑區段的標籤超出框外：「%機率不消耗充能使用」改為「不消耗機率」。\n　·PoE2 詞綴與介面翻譯：修正 87 條用錯字的譯文。\n新增\n　·字型缺字時自動補字：所選字型沒有的字改用另一顆內建字型畫，不再是方框。（例如部分物品名稱裡思源黑體沒有的字，會改用方正字型）\n\nv0.28.0（2026-08-25）\n修正\n　·按「檢查更新」沒有任何反應：檢查失敗時按鈕會直接變回原樣，看起來跟「已是最新」一模一樣。現在會說出失敗原因。\n　·※ 短時間連按會被 GitHub 限制查詢次數，過幾分鐘再試即可。\n　·介面縮放 200% 時視窗可能整片空白：字型圖集超出顯示卡上限卻仍被送出去。現在會自動縮到放得下為止。\n新增\n　·問題紀錄：程式遇到問題時會把原因寫進安裝目錄的 PobTools\\logs\\，每天一個檔，含版本與是哪個功能。\n　·※ 回報問題時附上當天那一個檔最有幫助；一切正常時它會是空的。\n　·設定頁新增「開啟問題紀錄資料夾」。\n　·POB 更新後中文輸入或搜尋失效時會留下紀錄：說得出是哪一個功能、以及為什麼沒有套用。\n　·書籤、配點、賽季清單存檔失敗時會留下紀錄，不再默默失敗。\n調整\n　·安裝包重新附上方正字型。\n\nv0.27.0（2026-08-25）\n修正\n　·POB 的搜尋框打不進中文：技能寶石、物品資料庫、召喚物、計算頁、設定頁與自訂修飾符，輸入中文查不到東西。\n　·物品資料庫用詞綴的中文找不到東西：只有物品名稱找得到。\n新增\n　·Poe Regex 支援 PoE2：換界石、碑牌、聖物、探險遺物四份詞綴清單。（碑牌八種共用一份，左欄依碑牌分組）\n　·Poe Regex 分成兩層選擇：先選 PoE1 或 PoE2，再選那個遊戲的清單。\n　·Poe Regex 書籤依遊戲分開：只顯示目前遊戲的，另一個遊戲有幾筆會標在旁邊。\n調整\n　·Poe Regex 移除「自訂清單」：貼上自己的清單那一頁已經拿掉。\n　·※ 上一版說的「PoE2 與其他清單請用自訂清單」不再適用，PoE2 現在有內建清單。\n　·輿圖策略內建 3.29.1 賽季：預設開在 3.29.1，比較基準改為 3.29.0。\n　·安裝包不再附方正字型：只附思源黑體。（已經裝過的人磁碟上那份會留著，字型設定不受影響）\n\nv0.26.0（2026-08-24）\n修正\n　·PoE2 版 POB：詞綴、物品、技能寶石、天賦與怪物名稱仍有大量維持英文。（本次補齊 15,423 條、修正 3,044 條與遊戲內用詞不符的譯文）\n　·※ 對照的是遊戲版本 4.5.4.10.2；官方尚未在地化的字串維持顯示英文。\n新增\n　·Poe Regex：勾選地圖或探險日誌詞綴，產生可以直接貼進遊戲搜尋列的字串。（勾 10 條約 25 個字，逐條打出來要 146 個字）\n　·※ 產生的字串只會找到勾選的那幾條，不會誤中清單裡的其他詞綴；真的分不出來的會列出來告訴你。\n　·※ 字串分繁體中文與英文兩種，要跟遊戲客戶端的語言一致，兩邊不能互換。\n　·Poe Regex 三種找法：含任一個、全部都有、一個都沒有。（「一個都沒有」是排除字串，用來把東西藏起來）\n　·Poe Regex 自訂清單：貼上自己的一份清單，一樣只中勾選的那幾行。（不需要資料檔，任何清單都能用）\n　·※ 內建清單是 PoE1 的地圖與探險日誌詞綴；PoE2 與其他清單請用「自訂清單」。\n　·Poe Regex 書籤：常用的一組詞綴可以存成書籤，隨時叫回來，也能改名、更新或刪除。（關掉再開，上次的勾選也還在）\n　·更新檔真偽驗證：程式與翻譯資料的更新在安裝前會先驗證發布簽章，驗不過就拒絕安裝。（會顯示拒絕的原因，不會默默照裝）\n　·※ 翻譯資料更新若因簽章問題失敗，會顯示原因，不會默默停在舊字典。\n　·※ 這一版之後的更新都必須帶簽章。這不是防毒用的程式碼簽章憑證，不會減少防毒誤判。\n\nv0.25.0（2026-08-22）\n修正\n　·程式更新套用失敗後會不斷跳出錯誤視窗，回不到啟動器。\n　·先啟動過 POB、再切換遊戲並開啟工具（過濾器編輯器、輿圖策略、軍團珠寶）時，工具會開到上一次啟動的那個遊戲。\n　·翻譯資料自動更新可能在 POB 或翻譯編輯器正在使用字典時套用，造成字典新舊混雜。\n新增\n　·啟動時間紀錄：每次啟動會在 PobTools 資料夾留下啟動器與 POB 的啟動時間紀錄，回報啟動很慢時可一併附上。\n調整\n　·啟動器視窗一出現就有內容，不再先黑一下。\n　·POB 載入：視窗提早約 1 秒出現，載入完成也快約 1 秒。（本機實測 1.4 秒 → 0.4 秒）\n\nv0.24.0（2026-08-20）\n修正\n　·POB 的備註與其他文字框貼上中文會變成一串問號，只有用打字輸入才正常。\n新增\n　·過濾器編輯器「從遊戲匯入物品」：在遊戲裡 Ctrl+C 複製物品，貼進掉落預覽就能看到目前的過濾器會怎麼處理它。（命中哪條規則、最終外觀與音效）\n　·※ 無法從物品文字判斷的條件（詞綴名、插槽顏色等）會列成警告，不會假裝判定；區域等級沿用預覽面板的設定。\n\nv0.23.0（2026-08-18）\n修正\n　·PoE2 版 POB：新賽季的物品與詞綴大量維持英文，時空之物等新傳奇與符煉裝備現在會翻譯了。（本次補齊詞綴 2,094 條、物品名稱 1,480 條）\n　·※ 不可交易的物品（嫁接手臂等）與官方尚未在地化的詞綴，維持顯示英文。\n　·PoE2 物品資訊視窗的「符文保護」與「插槽」欄位名維持英文。\n　·關閉「POB 視窗的英文與數字也用此字型」後，用捷徑或指令直接啟動 POB 時設定不會生效。\n\nv0.22.0（2026-08-18）\n修正\n　·特索塔之珠、汙染與合成物品上帶技能名的詞綴（受某某輔助、全部某某寶石等級）整行維持英文。（本次補齊 956 條）\n　·※「暴擊時施放」與「暈眩時施放」兩種輔助因官方資料譯名重複，維持顯示英文，避免貼上物品時裝錯輔助。\n　·物品資訊視窗「按住 Shift 顯示被賦予技能」的提示與天賦樹的隱藏提示維持英文。\n新增\n　·POB 視窗的英文與數字也套用所選字型，中英數同一字體，粗體以合成粗體顯示。（預設開啟，設定頁可關閉）\n　·※ 等寬欄位（主控台、物品原文編輯）不套用；切換設定後需重新啟動 POB 視窗才會生效。\n\nv0.21.0（2026-08-14）\n修正\n　·貼上帶「殘存」的物品時，基底名稱與帶「無法使用的值」的詞綴會變成一串問號。\n　·分頁方式下，主視窗有時最小化不下去，還原之後 POB 視窗還會跑位或閃一下。\n　·分頁方式下，POB 正在計算時拖曳主視窗會整個卡住。\n　·開新視窗時分頁沒有自動切換過去，分頁名稱也可能顯示成別的視窗的。\n新增\n　·過濾器編輯器、翻譯編輯器、軍團珠寶計算器、輿圖策略可以開成主視窗裡的分頁。（視窗方式選「分頁」時）\n　·關閉主視窗時，分頁裡還有未儲存的編輯會先詢問，不會直接關掉。\n調整\n　·視窗分頁的名稱改成顯示開啟中的專案名稱，不再是固定的「PoE1」。\n\nv0.20.0（2026-08-12）\n修正\n　·稀有物品與星團珠寶的名稱有時整串維持英文，像是「Loath Joy, Medium Cluster Jewel」。\n　·物品資訊視窗最上面的物品名稱維持英文，只有下面一行的基底類型有翻譯。\n　·紋身選單裡 172 種紋身有 139 種顯示英文名稱。\n　·置換節點詞綴之類的視窗中，較長的說明文字會整段維持英文。\n　·物品的無形性維持英文；貼上物品時這個數值還會整個消失。\n　·PoE2 的物品庫用中文名稱搜尋不到東西。\n調整\n　·物品資訊視窗的「破麻道具」改為「破裂道具」。\n\nv0.19.0（2026-08-10）\n修正\n　·詞綴同時帶多個數值時，數值會填到錯的位置，例如把命中值與傷害的數字對調。\n新增\n　·軍團珠寶計算器新增深淵珠寶：潰爛復仇、撲滅之握、邪惡統治、滅亡之願、重奪惡意。\n　·※ 深淵珠寶是 3.29 新機制，可對照的遊戲實錄只有 42 筆，程式內選擇時會一併提醒。\n　·安裝目錄缺少翻譯資料時，首頁會顯示提示與「立即下載翻譯資料」按鈕。\n調整\n　·更新拆成主程式與翻譯資料兩條線，各自獨立，主程式更新不會再蓋掉翻譯資料。\n　·設定裡的「更新時一併更新翻譯資料」改名為「自動更新翻譯資料」，並顯示目前的翻譯資料版本。\n　·主程式的修訂版更新改成一律詢問，不再自動套用。\n\nv0.18.0（2026-08-06）\n修正\n　·翻譯編輯器的條目清單捲到底以後，下方明明還有資料卻捲不下去。\n調整\n　·翻譯編輯器的 Key 若本身有換行，改成顯示 \\n；完整內容可停留在該列或按「...」查看。\n　·翻譯編輯器的顏色預覽改成滑鼠停留在譯文欄位時顯示，不再固定佔一行。\n　·翻譯編輯器的清單最後多留一列空白，最後一筆不會貼在視窗邊緣。\n\nv0.17.0（2026-08-06）\n修正\n　·按 F2 切回原文時，游標底下的裝備說明沒有跟著變回英文，要移到別的物品上才會。\n新增\n　·設定新增「視窗方式」：可以把 POB 與工具收成這個視窗裡的分頁，一次開多個互相切換。\n　·※分頁方式初次提供，同時開多個時偶爾會遇到啟動失敗或沒有反應，預設仍是各自獨立的視窗。\n調整\n　·翻譯字典改為公開在 GitHub 上，任何人都可以修改譯文後回報。\n\nv0.16.0（2026-08-04）\n新增\n　·設定新增「翻譯資料夾」：PoE1、PoE2、啟動器介面各自一欄，可以分別指到安裝目錄以外的資料夾。\n　·每一欄都有「複製…」，會把內建資料複製過去並自動建立正確的資料夾結構。\n　·設定可選更新時要不要一併更新翻譯資料；選「否」時仍會通知，可隨時按一次套用。\n　·啟動器本身的介面文字也能翻譯了，用翻譯編輯器選「launcher」就能改。\n　·翻譯編輯器的長文字或多行內容可以按「...」展開成大框編輯。\n　·多語系：在 Data 的遊戲資料夾底下新增一個語系資料夾，介面語言就會自動出現那個選項。\n　·設定新增「安裝字型…」，可以挑一個字型檔進來使用，不必自己丟到 Fonts 資料夾。\n　·主畫面在使用外部翻譯資料時會逐項標示出來，並可一鍵切回內建。\n　·可以用捷徑直接開翻譯編輯器（pob-zh.exe --translation-editor）。\n調整\n　·翻譯編輯器會跟著設定走，編輯的一定是 POB 實際會讀的那一份。\n　·翻譯資料夾留空就是使用內建資料，下方會標示實際用的是程式資料夾裡的哪一個。\n　·資料夾選錯層時會說明是選太上面還是太裡面，並附上正確的路徑可以一鍵改用。\n　·選了無法使用的資料夾時會自動改用內建資料，POB 仍可正常啟動。\n　·外部資料夾少了新版才有的字典檔時，設定頁會列出來，避免它靜靜地沒被載入。\n　·設定改完會立刻寫入，另附「儲存設定」與已儲存提示。\n　·從命令列或捷徑直接啟動 POB 時，字型與翻譯資料夾設定現在也會生效。\n　·介面語言的選項改成看資料夾決定，不再是固定的兩個；名稱可由該語系的 meta.json 指定。\n　·目前的字型畫不出所選語言時會標示出來，並在語言選單標出缺字的語言。\n　·設定改動一律立即儲存；「儲存設定」按鈕移到設定頁最下方，只作為已寫入的確認。\n　·「關於」從設定頁分出來，變成獨立分頁。\n\nv0.15.0（2026-08-03）\n修正\n　·貼上物品時星團珠寶的大天賦全部消失：珠寶會被重建成另一顆，骰到的大天賦一個都不留。\n　·POB 裡較長的詞綴顯示英文：一行只要長到需要換行就翻不出來，與字典有沒有那一條無關。\n　·血肉融合這類負值詞綴完全沒有翻譯。\n　·傳奇珠寶「穢生 赤影夢魘」第一條詞綴顯示成問號。\n　·工藝介面的詞綴列顯示英文，同一條詞綴在物品說明裡卻是中文。\n　·版本紀錄的條列符號顯示成問號，且文字擠在窄窄一欄。\n　·翻譯編輯器切換遊戲時，未儲存的修改會直接消失，也不會提醒。\n　·翻譯編輯器存檔會改掉檔案的換行格式。\n新增\n　·啟動器改成分頁：主畫面、版本資訊、設定。版本資訊拿到整個視窗的寬度。\n　·設定可選啟動 POB 後要關閉啟動器、回到啟動器，或保持開啟。（保持開啟時可以再開一個 POB）\n　　※ 有 POB 在執行時無法更新，更新會替換 engine 資料夾裡的檔案。\n　·設定可選啟動時要顯示主畫面還是版本資訊。\n　·翻譯編輯器可以手動新增詞條，不必等它先出現在缺漏掃描裡。\n　·翻譯編輯器會提醒「寫進這個檔不會生效」，並可一鍵改寫到真正生效的那個檔。\n　·翻譯編輯器切換遊戲或語系前，會先問要不要儲存。\n　·外部連結新增「拆粉查詢」。\n調整\n　·介面語言、字型、「POB 關閉後回到啟動器」移到設定分頁。\n　·「版本資訊」與「關於」不再是彈出視窗。\n　·翻譯編輯器更名為「翻譯編輯器(Beta)」。\n\nv0.14.0（2026-08-01）\n修正\n　·技能欄的輔助寶石顯示成天賦的名\n　　字：例如「易變輔助」顯示成「易\n　　爆」，共修正 67 條、補齊 2 條。\n　·地圖格的新增按鈕點了沒反應：星盤\n　　展開時按鈕會失效，收合後才正常。\n　·部分寶石與物品顯示英文：名稱帶特\n　　殊字母者查不到翻譯，補齊 13 條。\n　·範圍效果半徑等長度顯示成「分」，\n　　應為「公尺」。\n新增\n　·地圖格可放入地圖碎片：黎明、正午、\n　　黃昏、午夜的奉獻，以及凡人的哀傷、\n　　憤怒、希望、無知，共 8 種。\n調整\n　·輿圖策略的「甲蟲」欄位更名為「地\n　　圖格」。\n\nv0.13.0（2026-08-01）\n修正：配點會自己改道（0.12.0 的問題）\n　- 點第二個節點時，第一個節點走過的路徑會被\n　　重新排過，越點越亂。現在改回原本的接法：\n　　點一下就接最短路徑，已經配好的點不會動。\n　- 想要最少點的接法改成工具列的「壓縮到最少\n　　點」按鈕，按了才算，Ctrl+Z 可復原。\n　　大點、鑰石與端點都會保留。\n新增：點機制圖示標出同機制的所有位置\n　- 點叢集中央的機制圖示（裂痕、軍團、譫妄…），\n　　全輿圖同機制的節點與叢集會一起亮圈。\n　- 側欄新增「機制」清單，點名稱同樣會標示\n　　並跳到最近的叢集；Esc 或「清除」取消。\n改進：規劃模式看得出哪些是自己標的\n　- 標為「想要」的節點改成明顯的綠色外框，\n　　縮到多小都看得到，跟系統補的連接點\n　　一眼分得出來。\n修正：最新賽季被當成舊賽季\n　- 應用程式更新會把賽季清單蓋回出貨版，\n　　害你自己下載的 3.29.1 顯示「舊賽季檢視\n　　（唯讀）」而且存不進去。現在以磁碟上實際\n　　有的最新完整賽季為準，並自動修好清單。\n\nv0.12.0（2026-07-31）\n更名：輿圖配點器改為輿圖策略\n改進：點擊節點會自動算出最少天賦點\n　- 點過的節點視為目標，每次點擊重新求解\n　　整體最少點，不管用什麼順序點，結果\n　　都一樣且最省（舊版換個順序最多會多花\n　　10 點）。\n　- 舊的專案只會「提議」壓縮，不會自動改，\n　　真的改了也可以用 Ctrl+Z 復原。\n新增：規劃模式（沙盒）與「不要」的節點\n　- 從空白開始快速標記想要的核心節點，\n　　期間完全不會寫入存檔，結束時才問你\n　　要保留還是捨棄。\n　- 可以標記不想經過的節點，求解時會繞開。\n翻譯：補齊 3.29 新增的輿圖節點中文\n　- 傭兵系列等新節點原本顯示英文，\n　　名稱與詞綴皆已補上官方繁中。\n新增：軍團珠寶的交易連結支援台服\n　- 匯出設定可選國際服或台服，會記住你的\n　　區域、聯盟與平台選擇。\n新增：輿圖策略可以規劃星盤\n　- 四個半區各放一片幻塑界域，含圖示與\n　　官方繁中效果說明。\n　- 依遊戲規則擋住同一半區的第二片。\n　- 本賽季尚未啟用的星盤會標示出來。\n新增：輿圖策略可以指定主力地圖\n　- 階級與地圖名稱是兩個各自獨立的選單。\n　- 地圖選單一律列出全部，因為虛空石會把\n　　整個半區的地圖都拉到 T16。\n　- 地圖名稱支援中英模糊搜尋。\n新增：版本比較可以自己選要比的兩個版本\n　- 當季每個小版本都會保留，因此看得到\n　　賽季中官方調整了哪些節點與數值。\n　- 換季時上一季只留最後一個版本。\n修正：離開版本比較後按鈕顏色沒有還原\n修正：已下載但未登記的賽季資料看不到\n　- 現在會自動掃描並補上，不必重新下載。\n說明：匯出的專案檔與分享碼沿用舊格式，\n　舊版 PobTools 仍可開啟。\n\nv0.11.0（2026-07-31）\n新增：輿圖配點器可以規劃甲蟲\n　- 五個格子，含圖示、官方繁中效果說明。\n　- 依遊戲規則擋不合法的組合：每隻甲蟲\n　　自己的可放份數，以及互斥的同類甲蟲。\n　- 圖示下載後存在本機，之後離線也看得到。\n新增：輿圖配點器每個專案可以寫備註\n新增：甲蟲挑選支援模糊搜尋\n　- 中英文皆可，語序顛倒、缺標點都找得到，\n　　也可以直接搜尋效果文字。\n修正：軍團珠寶搜尋沒有真的照條件配對\n　- 選了多條詞綴時，只滿足其中一條的種子\n　　也會出現且分數相同，現在預設要全部滿足。\n　- 設定的最小值先前只有排名在用，結果清單\n　　與樹上標示沒有套用，會標出不符合的詞綴。\n　- 同分種子的排序改為固定，不再每次不同。\n說明：匯出的專案檔與分享碼沿用舊格式，\n　舊版 PobTools 仍可開啟。\n\nv0.10.0（2026-07-30）\n翻譯：全面比對官方遊戲檔修正用詞（2978 條）\n　- 修正 7 條意思相反的詞綴，例如原本顯示\n　　「減少」實際上是「增加」。\n　- 統一為官方用詞：區域內、恢復率、複合藥劑\n　　等，並修掉數處簡繁轉換錯字。\n　- 每條都經遊戲檔、repoe、兩服交易站、poedb\n　　多方比對，兩個以上來源一致才採用。\n新增：翻譯編輯器重新開放\n　- 缺漏掃描改為內頁分頁，不再是小視窗。\n　- 顯示 POB 色碼的實際顏色。\n　- 視窗放大並依螢幕可用範圍自動調整。\n更名：圖譜配點器改為輿圖配點器\n新增：外部連結區加入交易市集中文化、\n　Discord 社群與贊助連結。\n\nv0.9.0（2026-07-27）\n修正：軍團珠寶計算器詞綴顯示錯誤\n　- 珠寶「額外加成」的節點會保留原本詞綴，\n　　不再只顯示加成那一行。\n　- 修正某個小節點被誤判成大節點，\n　　顯示成被替換為鑰石的問題。\n新增：範圍內小節點的變化也會顯示\n　- 例如狂戰之傲的 +4 力量、優雅之傲清空，\n　　六種珠寶各自的規則皆已支援。\n新增：查到的種子可複製成物品文字\n　- 貼進 POB 物品分頁即可建立該顆珠寶。\n新增：啟動器可手動檢查更新\n　- 自動檢查每天最多一次且只在啟動時，\n　　需要時可按標題列的按鈕立即檢查。\n說明：深淵軍團珠寶暫不開放\n　- 待 POB 本體支援後再行加入。\n\nv0.8.0（2026-07-26）\n新增：塗油附魔支援中文搜尋\n　- 物品編輯的塗油視窗可直接輸入中文，\n　　查詢天賦名稱與詞綴（PoE1／PoE2 皆支援）。\n新增：下拉選單打字搜尋支援中文\n　- 附魔清單等下拉選單展開後輸入中文\n　　即可過濾選項。\n\nv0.7.0（2026-07-25）\n修正：解壓到舊資料夾時無法啟動 POB\n　- 安裝根目錄殘留的舊版 DLL 不再蓋過\n　　engine 資料夾內的新版檔案。\n修正：相容 POB 2.66 的 OAuth 匯入功能\n　- 內建 sha2 模組備援，POB 原地升級\n　　缺檔時自動補位，開啟 build 不再報錯。\n\nv0.6.0（2026-07-25）\n修正：支援 3.29 新版物品複製格式\n　- 遊戲內 Ctrl+C 的詞綴數值範圍（如 +7(6-11)）\n　　可正確貼上 POB，並保留範圍資訊。\n　- 新版詞綴標註行與可變長度分隔線自動處理，\n　　不再造成貼上後詞綴無法辨識。\n\nv0.5.0（2026-07-25）\n新增：POB 物品資料庫支援中文搜尋\n　- 傳奇／基底清單可直接輸入中文名稱查詢。\n改進：工具視窗獨立開啟，啟動器保持開啟\n　- 過濾器編輯器、圖譜配點器、軍團珠寶\n　　改以子視窗執行，可同時開多個工具。\n資料：輿圖 3.29 新節點詞綴敘述全面中文化\n　- 以官方詞綴模板嚴格比對翻譯全部新增行，\n　　並修正上游錯置的同數值詞綴配對。\n新增：關於視窗加入 Discord 社群連結。\n\nv0.4.2（2026-07-25）\n翻譯：血裔昇華完整中文化\n　- 十條血裔名稱、全部節點名與面板敘述。\n翻譯：詞綴模板全量擴充（+3886 條）\n　- 深水、移植、聖所、村莊、探險等機制詞綴。\n資料：輿圖 3.29 新節點中文名補齊（37 個）；\n　過濾器新增 3.29 物品資料（+231）；\n　軍團珠寶被動樹確認為 3.29 最新版。\n\nv0.4.1（2026-07-25）\n翻譯：3.29 正式資料全量更新\n　- 物品 +98、詞綴 +285、介面 +156、天賦 +65 等\n　　新詞條，來源為 3.29.0.1 遊戲檔案。\n　- v0.4.0 使用者由自動更新背景套用，無需操作。\n\nv0.4.0（2026-07-24）\n改進：POB 資料夾偵測全面放寬\n　- pob-zh.exe 旁任何內含 Launch.lua 的資料夾\n　　都會被偵測，名稱不限（官方名稱優先採用）。\n　- 資料夾名稱含 PoE2 視為 PoE2 版 POB。\n　- 支援把 pob-zh.exe 直接放進 POB 資料夾（同層）。\n新增：本「版本資訊」視窗。\n\nv0.3.0（2026-07-24）\n新增：內建自動更新\n　- 翻譯更新（如 0.4.0 -> 0.4.1）背景自動套用。\n　- 主體更新出現橘色按鈕，一鍵下載、替換、重啟。\n　- 下載以 SHA-256 驗證；失敗自動完整還原。\n新增：pob-zh.exe 內建版本資源，啟動器顯示版本號。\n翻譯：依 3.29 遊戲資料補充字典（物品／天賦／介面）。\n\nv0.2.0（2026-07-23）\n新增：輿圖天賦樹雙賽季並存（3.28+3.29），\n　「版本比較」逐節點、逐詞條比對兩季差異。\n新增：軍團珠寶天賦樹更新至 3.29，\n　圖集隨程式打包，新賽季自動檢查與一鍵更新。\n修正：輿圖／被動樹多項內部自檢問題。\n\nv0.1.0（2026-07-22）\n首次公開發布：零污染繁中化啟動器、翻譯編輯器、\n過濾器編輯器、圖譜配點器、軍團珠寶計算器。\n",
+      "sourceSha256": "001AF120191F48F048A2ED2D0C45D26B10B92AB14BFC8395DD4BDE25CAF36EEC",
+      "target": "v1.1.0（2026-08-30）\n수정\n　POB 창의 한글·영문·숫자가 흐리게 확대되어 보이던 문제를 해결했습니다. 실제 글자 크기로 그리고 픽셀에 맞춰 선명하게 표시하며, 100%가 아닌 인터페이스 배율에서도 동일합니다.\n　※ Source Han Sans 사용 시 글자 위치가 이전보다 조금 낮아집니다. 수정된 정상 정렬입니다.\n추가\n　설정에 「HTTP 프록시」를 추가했습니다. 업데이트 확인, 번역 데이터와 아이콘 다운로드가 프록시를 사용할 수 있고 비워 두면 시스템 프록시를 따릅니다. GitHub에 연결할 수 없는 네트워크를 위한 기능입니다.\n\nv1.0.0（2026-08-28）\n수정\n　POB를 시험판으로 업데이트한 뒤 전체가 영어로 돌아가던 문제를 해결했습니다. 새 실행 환경 문법으로 번역이 멈췄으며 실행 환경도 함께 업데이트했습니다.\n　번역한 글자의 색상이 앞 글자를 따라가 색상 변경이 적용되지 않던 문제를 해결했습니다. 번역 과정에서 중간 색상 코드가 사라지던 현상을 고쳐 스킬 세트 목록과 사이드바 괄호 주석 등의 색상을 복원했습니다.\n　사용자 지정 속성 입력칸을 선택하지 않으면 전부 영어로 보이던 문제를 해결했습니다. 이제 줄마다 번역하며, 일치한 속성은 한글로 표시하고 사용자가 쓴 메모는 원문으로 남깁니다.\n　아이템 목록의 「(Unused)」가 잘못 번역되던 문제를 고쳐 「(미사용)」으로 올바르게 표시합니다. 간체 중국어도 함께 수정했습니다.\n　사이드바의 「(Guard)」가 잘못 번역되던 문제를 고쳐 「(수호)」로 표시합니다. 간체 중국어 표기도 함께 수정했습니다.\n　간체 중국어 인터페이스의 일부 문자가 물음표로 보이던 문제를 해결했습니다. 런처와 도구 창에 배포 글꼴의 보완 글리프를 사용합니다.\n　POB 시험판 사용 시 런처에 POB 버전 번호가 표시되지 않던 문제를 해결했습니다.\n추가\n　스킬 탭 사용 안내와 아이템 목록의 끌어놓기 설명처럼 영어로 남던 전체 문단도 이제 번역합니다.\n　설정 탭 속성 브라우저의 「우버 보스 앞에 있을 때」 및 「고유 보스 앞에 있을 때」 계열 속성도 이제 번역합니다.\n변경\n　속성 번역에 번체·간체 중국어 속성과 인터페이스 문구 15개를 보완했습니다.\n\nv0.29.0（2026-08-26）\n수정\n　PoE2 계산 탭에서 구역 제목 뒤의 값이 사라지거나 한 칸이 빠지던 문제를 해결했습니다. 한글 제목이 더 길어 값이 제목 아래에 그려지던 현상이며, 충전, 지속 계산의 흡수 및 피격 피해 등의 값이 정상 표시됩니다.\n　계산 탭의 여러 열 값이 모두 같은 색으로 보이던 문제를 해결했습니다. 충전과 능력치의 「0, 0, 0」 값이 각각의 색상을 유지합니다.\n　패시브 트리 안내의 일부 문자가 네모로 보이던 문제를 해결했습니다. PoE2 사전에 섞인 일본어·간체 글리프를 Source Han Sans가 그리지 못하던 현상입니다.\n　PoE2 플라스크 구역의 라벨이 틀 밖으로 넘치던 문제를 해결했습니다. 「충전을 소모하지 않을 확률」로 간결하게 표시합니다.\n　PoE2 속성과 인터페이스 번역에서 오자가 있던 87개 항목을 수정했습니다.\n추가\n　글꼴에 없는 문자를 자동으로 보완합니다. 선택한 글꼴에 없는 문자는 다른 내장 글꼴로 그려 더 이상 네모로 보이지 않습니다. 예를 들어 Source Han Sans에 없는 일부 아이템 이름은 FZ 글꼴로 표시합니다.\n\nv0.28.0（2026-08-25）\n수정\n　「업데이트 확인」을 눌러도 반응이 없던 문제를 해결했습니다. 확인 실패 시 버튼이 「최신 상태」처럼 원래 모습으로 돌아가던 대신 이제 실패 이유를 알려 줍니다.\n　※ 짧은 시간에 연속으로 누르면 GitHub의 조회 제한에 걸릴 수 있습니다. 몇 분 뒤 다시 시도하세요.\n　인터페이스 배율 200%에서 창 전체가 비어 보일 수 있던 문제를 해결했습니다. 글꼴 아틀라스가 그래픽 카드 한계를 넘어서도 전송되던 현상이며, 들어갈 때까지 자동으로 축소합니다.\n추가\n　문제 기록 기능을 추가했습니다. 프로그램 문제의 원인을 설치 폴더 PobTools\\logs\\에 하루 한 파일로 기록하며 버전과 관련 기능을 포함합니다.\n　※ 문제를 보고할 때 해당 날짜의 파일을 첨부하면 가장 도움이 됩니다. 정상일 때는 빈 파일입니다.\n　설정에 「문제 기록 폴더 열기」를 추가했습니다.\n　POB 업데이트 후 한글 입력 또는 검색이 실패하면 기록을 남깁니다. 어떤 기능에 왜 적용되지 않았는지 알 수 있습니다.\n　북마크, 패시브 할당, 시즌 목록 저장이 실패할 때도 기록을 남겨 조용히 실패하지 않습니다.\n변경\n　설치 패키지에 FZ 글꼴을 다시 포함했습니다.\n\nv0.27.0（2026-08-25）\n수정\n　POB 검색칸에 한글을 입력할 수 없던 문제를 해결했습니다. 스킬 젬, 아이템 데이터베이스, 소환수, 계산 탭, 설정 탭과 사용자 지정 속성에서 한글 검색이 동작합니다.\n　아이템 데이터베이스에서 한글 속성으로 검색할 수 없고 아이템 이름만 찾던 문제를 해결했습니다.\n추가\n　Poe Regex가 PoE2를 지원합니다. 길표석, 석판, 유물, 탐험 유물의 네 속성 목록을 제공하며 석판 8종은 하나의 목록을 공유하고 왼쪽 열에서 석판별로 묶습니다.\n　Poe Regex 선택을 두 단계로 나눴습니다. 먼저 PoE1 또는 PoE2를 고르고 그 게임의 목록을 선택합니다.\n　Poe Regex 북마크를 게임별로 분리했습니다. 현재 게임의 것만 표시하고 다른 게임의 북마크 수는 옆에 표시합니다.\n변경\n　Poe Regex에서 「사용자 지정 목록」을 제거했습니다. 개인 목록을 붙여넣던 페이지는 삭제되었습니다.\n　※ 이전 버전의 「PoE2와 다른 목록은 사용자 지정 목록 사용」 안내는 더 이상 적용되지 않습니다. PoE2에는 이제 내장 목록이 있습니다.\n　아틀라스 전략에 3.29.1 시즌을 내장했습니다. 기본값은 3.29.1이며 비교 기준은 3.29.0으로 변경했습니다.\n　설치 패키지에는 더 이상 FZ 글꼴을 넣지 않고 Source Han Sans만 포함합니다. 이미 설치한 파일은 디스크에 남고 글꼴 설정은 영향을 받지 않습니다.\n\nv0.26.0（2026-08-24）\n수정\n　PoE2용 POB에서 속성, 아이템, 스킬 젬, 패시브 및 몬스터 이름이 대량으로 영어로 남던 문제를 해결했습니다. 15,423개를 보완하고 게임 내 용어와 맞지 않던 3,044개 번역을 수정했습니다.\n　※ 게임 버전 4.5.4.10.2를 기준으로 했으며 공식 현지화가 없는 문자열은 영어로 유지합니다.\n추가\n　Poe Regex에서 지도 또는 탐험 일지 속성을 선택하면 게임 검색창에 바로 붙여넣을 문자열을 만듭니다. 10개 선택 시 약 25자이며 하나씩 입력하면 146자가 필요합니다.\n　※ 생성 문자열은 선택한 속성만 찾고 목록의 다른 속성과 잘못 일치하지 않습니다. 구분할 수 없는 경우는 목록으로 알려 줍니다.\n　※ 문자열은 번체 중국어와 영어 두 종류이며 게임 클라이언트 언어와 같아야 합니다. 서로 바꿔 쓸 수 없습니다.\n　Poe Regex에 세 가지 검색 방식, 「하나라도 포함」, 「모두 포함」, 「하나도 포함하지 않음」을 추가했습니다. 마지막 방식은 항목을 숨기는 제외 문자열입니다.\n　Poe Regex 사용자 지정 목록을 추가했습니다. 개인 목록을 붙여넣어도 선택한 행만 일치하며 데이터 파일 없이 어떤 목록이든 사용할 수 있습니다.\n　※ 내장 목록은 PoE1 지도 및 탐험 일지 속성입니다. PoE2와 다른 목록에는 「사용자 지정 목록」을 사용하세요.\n　Poe Regex 북마크를 추가했습니다. 자주 쓰는 속성 묶음을 저장하고 불러오며 이름 변경, 업데이트, 삭제가 가능하고 다시 열어도 이전 선택을 유지합니다.\n　업데이트 파일 진위 확인을 추가했습니다. 프로그램과 번역 데이터 업데이트는 설치 전 배포 서명을 확인하며 검증에 실패하면 설치하지 않습니다. 거부 이유도 표시합니다.\n　※ 번역 데이터 업데이트가 서명 문제로 실패하면 이유를 표시하며 이전 사전에 조용히 머물지 않습니다.\n　※ 이 버전 이후 모든 업데이트에는 서명이 필요합니다. 이는 백신용 코드 서명 인증서가 아니며 백신 오진을 줄이지는 않습니다.\n\nv0.25.0（2026-08-22）\n수정\n　프로그램 업데이트 적용 실패 뒤 오류 창이 계속 나타나 런처로 돌아갈 수 없던 문제를 해결했습니다.\n　POB를 먼저 실행한 뒤 게임을 바꾸고 도구(필터 편집기, 아틀라스 전략, 무궁한 주얼)를 열면 이전에 실행한 게임으로 열리던 문제를 해결했습니다.\n　POB 또는 번역 편집기가 사전을 사용하는 중에 번역 데이터 자동 업데이트가 적용되어 새·오래된 사전이 섞일 수 있던 문제를 해결했습니다.\n추가\n　시작 시간 기록을 추가했습니다. 매번 실행할 때 PobTools 폴더에 런처와 POB의 시작 시간을 남기며, 시작이 느린 문제를 보고할 때 함께 첨부할 수 있습니다.\n변경\n　런처 창이 나타날 때 즉시 내용을 표시하여 먼저 검게 깜빡이지 않습니다.\n　POB 로딩을 개선했습니다. 창이 약 1초 빨리 나타나고 로딩 완료도 약 1초 빨라집니다. 로컬 측정값은 1.4초에서 0.4초입니다.\n\nv0.24.0（2026-08-20）\n수정\n　POB 메모와 다른 텍스트 상자에 한글을 붙여넣으면 물음표로 바뀌고 직접 입력만 되던 문제를 해결했습니다.\n추가\n　필터 편집기에 「게임에서 아이템 가져오기」를 추가했습니다. 게임에서 Ctrl+C로 복사한 아이템을 드롭 미리보기에 붙이면 현재 필터의 처리 결과(일치 규칙, 최종 외형, 사운드)를 볼 수 있습니다.\n　※ 아이템 텍스트만으로 판단할 수 없는 조건(속성 이름, 홈 색상 등)은 경고로 표시하며 판정한 척하지 않습니다. 지역 레벨은 미리보기 패널 설정을 따릅니다.\n\nv0.23.0（2026-08-18）\n수정\n　PoE2용 POB에서 새 시즌 아이템과 속성이 대량으로 영어로 남던 문제를 해결했습니다. 신규 고유 아이템과 룬 장비도 번역되며 속성 2,094개와 아이템 이름 1,480개를 보완했습니다.\n　※ 거래 불가 아이템(이식 팔 등)과 공식 현지화가 없는 속성은 영어로 유지합니다.\n　PoE2 아이템 정보 창의 「룬 보호」와 「홈」 필드 이름이 영어로 남던 문제를 해결했습니다.\n　「POB 창의 영문과 숫자에도 이 글꼴 사용」을 끈 뒤 바로가기나 명령으로 POB를 직접 실행하면 설정이 적용되지 않던 문제를 해결했습니다.\n\nv0.22.0（2026-08-18）\n수정\n　특정 고유 아이템, 타락 아이템과 합성 아이템의 스킬 이름 포함 속성(특정 보조의 영향, 모든 특정 젬 레벨 등)이 한 줄 전체 영어로 남던 문제를 해결했습니다. 956개를 보완했습니다.\n　※ 「치명타 시 시전」과 「기절 시 시전」 보조 둘은 공식 데이터의 번역명이 겹쳐, 아이템 붙여넣기 때 잘못 장착하지 않도록 영어로 유지합니다.\n　아이템 정보 창의 「Shift를 누르면 부여된 스킬 표시」 안내와 패시브 트리의 숨김 안내가 영어로 남던 문제를 해결했습니다.\n추가\n　POB 창의 영문과 숫자에도 선택 글꼴을 적용합니다. 한글·영문·숫자를 같은 글꼴로 표시하고 굵은 글자는 합성 굵게로 표시합니다. 기본값은 켜짐이며 설정에서 끌 수 있습니다.\n　※ 고정폭 필드(콘솔, 아이템 원문 편집)에는 적용하지 않습니다. 설정 변경 뒤 POB 창을 다시 시작해야 적용됩니다.\n\nv0.21.0（2026-08-14）\n수정\n　「잔존」이 붙은 아이템을 붙여넣을 때 기본 이름과 「사용할 수 없는 값」 속성이 물음표로 바뀌던 문제를 해결했습니다.\n　탭 방식에서 주 창이 때때로 최소화되지 않고 복원 뒤 POB 창이 위치를 잃거나 깜빡이던 문제를 해결했습니다.\n　탭 방식에서 POB가 계산 중일 때 주 창을 끌면 전체가 멈추던 문제를 해결했습니다.\n　새 창을 열어도 탭이 자동으로 전환되지 않고 탭 이름이 다른 창 이름으로 보일 수 있던 문제를 해결했습니다.\n추가\n　필터 편집기, 번역 편집기, 무궁한 주얼 계산기, 아틀라스 전략을 주 창의 탭으로 열 수 있습니다. 창 방식에서 「탭」을 선택할 때 적용됩니다.\n　주 창을 닫을 때 탭에 저장하지 않은 편집이 있으면 먼저 확인하며 바로 닫지 않습니다.\n변경\n　창 탭의 이름을 고정된 「PoE1」 대신 열려 있는 프로젝트 이름으로 표시합니다.\n\nv0.20.0（2026-08-12）\n수정\n　희귀 아이템과 스킬 군 주얼 이름이 「Loath Joy, Medium Cluster Jewel」처럼 전체 영어로 남던 문제를 해결했습니다.\n　아이템 정보 창 맨 위의 아이템 이름이 영어로 남고 아래의 기본 유형만 번역되던 문제를 해결했습니다.\n　문신 목록의 172종 중 139종이 영어 이름으로 보이던 문제를 해결했습니다.\n　전환 노드 속성 등의 창에서 긴 설명 문단 전체가 영어로 남던 문제를 해결했습니다.\n　아이템의 무형성 수치가 영어로 남고 아이템을 붙여넣으면 그 값이 사라지던 문제를 해결했습니다.\n　PoE2 아이템 데이터베이스에서 한글 이름으로 검색할 수 없던 문제를 해결했습니다.\n변경\n　아이템 정보 창의 「깨진 아이템」 표기를 「파손된 아이템」으로 바꿨습니다.\n\nv0.19.0（2026-08-10）\n수정\n　속성에 여러 수치가 있을 때 숫자가 잘못된 위치에 들어가던 문제를 해결했습니다. 예를 들어 명중 수치와 피해 수치가 바뀌던 현상입니다.\n추가\n　무궁한 주얼 계산기에 심연 주얼 5종을 추가했습니다: 짓무르는 복수 (Festering Vengeance), 절망의 손아귀 (Extinguishing Grasp), 사악한 통치 (Baleful Dominion), 파멸적인 열망 (Destructive Aspiration), 되찾은 악의 (Reclaimed Malevolence).\n　※ 심연 주얼은 3.29의 새 기능이며 비교할 게임 기록은 42개뿐입니다. 프로그램에서 선택할 때도 이 점을 알립니다.\n　설치 폴더에 번역 데이터가 없으면 시작 화면에 안내와 「지금 번역 데이터 다운로드」 버튼을 표시합니다.\n변경\n　업데이트를 본 프로그램과 번역 데이터의 두 경로로 나눴습니다. 서로 독립적이며 본 프로그램 업데이트가 번역 데이터를 덮어쓰지 않습니다.\n　설정의 「업데이트 시 번역 데이터도 업데이트」 이름을 「번역 데이터 자동 업데이트」로 바꾸고 현재 번역 데이터 버전을 표시합니다.\n　본 프로그램의 개정 버전 업데이트는 자동 적용하지 않고 항상 확인합니다.\n\nv0.18.0（2026-08-06）\n수정\n　번역 편집기 항목 목록을 끝까지 내린 뒤 아래에 데이터가 더 있어도 더 내려가지 않던 문제를 해결했습니다.\n변경\n　번역 편집기의 Key 자체에 줄바꿈이 있으면 \\n으로 표시합니다. 전체 내용은 해당 행에 머물거나 「...」를 눌러 확인할 수 있습니다.\n　번역 편집기의 색상 미리보기를 번역문 필드에 마우스를 올릴 때만 표시하고 고정 행을 차지하지 않게 했습니다.\n　번역 편집기 목록 끝에 빈 행 하나를 남겨 마지막 항목이 창 가장자리에 붙지 않습니다.\n\nv0.17.0（2026-08-06）\n수정\n　F2로 원문으로 전환할 때 커서 아래 장비 설명이 즉시 영어로 돌아가지 않고 다른 아이템으로 옮겨야 하던 문제를 해결했습니다.\n추가\n　설정에 「창 방식」을 추가했습니다. POB와 도구를 이 창 안의 탭으로 모아 여러 개를 열고 전환할 수 있습니다.\n　※ 탭 방식은 처음 제공되는 기능이라 여러 개를 동시에 열면 간혹 시작에 실패하거나 반응하지 않을 수 있습니다. 기본값은 여전히 각각 독립 창입니다.\n변경\n　번역 사전을 GitHub에 공개하여 누구나 번역을 수정해 보고할 수 있습니다.\n\nv0.16.0（2026-08-04）\n추가\n　설정에 「번역 폴더」를 추가했습니다. PoE1, PoE2, 런처 인터페이스에 각각 한 칸이 있으며 설치 폴더 밖의 폴더를 따로 지정할 수 있습니다.\n　각 칸에 「복사…」를 제공하여 내장 데이터를 복사하고 올바른 폴더 구조를 자동으로 만듭니다.\n　업데이트할 때 번역 데이터도 함께 업데이트할지 고를 수 있습니다. 「아니요」를 골라도 알림을 받고 언제든 한 번 눌러 적용할 수 있습니다.\n　런처 자체의 인터페이스 문구도 번역할 수 있습니다. 번역 편집기에서 「launcher」를 선택해 수정합니다.\n　번역 편집기의 긴 문장이나 여러 줄 내용은 「...」를 눌러 큰 편집 상자로 펼칠 수 있습니다.\n　다국어 지원을 추가했습니다. Data의 게임 폴더 아래에 언어 폴더를 추가하면 인터페이스 언어 선택에 자동으로 나타납니다.\n　설정에 「글꼴 설치…」를 추가했습니다. 글꼴 파일을 골라 Fonts 폴더에 직접 넣지 않고 사용할 수 있습니다.\n　주 화면에서 외부 번역 데이터를 사용할 때 항목별로 표시하고 한 번에 내장 데이터로 되돌릴 수 있습니다.\n　바로가기로 번역 편집기를 직접 열 수 있습니다(pob-zh.exe --translation-editor).\n변경\n　번역 편집기는 설정을 따르며 실제 POB가 읽는 번역 파일만 편집합니다.\n　번역 폴더를 비워 두면 내장 데이터를 사용하고 아래에 실제 사용하는 프로그램 폴더 경로를 표시합니다.\n　폴더를 너무 상위 또는 하위 단계로 잘못 고르면 이유를 설명하고 올바른 경로로 한 번에 바꿀 수 있습니다.\n　사용할 수 없는 폴더를 고르면 내장 데이터를 자동으로 사용하므로 POB는 정상적으로 시작합니다.\n　외부 폴더에 새 버전에서 필요한 사전 파일이 없으면 설정 페이지에 표시하여 조용히 누락되지 않게 합니다.\n　설정을 바꾸면 즉시 기록하고 「설정 저장」과 저장 완료 안내를 함께 제공합니다.\n　명령줄이나 바로가기에서 POB를 직접 시작해도 글꼴과 번역 폴더 설정이 적용됩니다.\n　인터페이스 언어 옵션을 고정된 두 개 대신 폴더 기준으로 결정합니다. 이름은 해당 언어의 meta.json에서 지정할 수 있습니다.\n　현재 글꼴이 선택한 언어를 그릴 수 없으면 표시하고 언어 메뉴에서 누락 글리프가 있는 언어를 표시합니다.\n　설정 변경은 모두 즉시 저장합니다. 「설정 저장」 버튼은 설정 페이지 맨 아래로 옮겨 기록되었음을 확인하는 용도로만 남깁니다.\n　「정보」를 설정 페이지에서 분리해 독립 탭으로 만들었습니다.\n\nv0.15.0（2026-08-03）\n수정\n　아이템을 붙여넣을 때 스킬 군 주얼의 주요 패시브가 모두 사라지던 문제를 해결했습니다. 주얼이 다른 아이템으로 재구성되어 굴린 주요 패시브를 잃던 현상입니다.\n　POB에서 긴 속성이 영어로 보이던 문제를 해결했습니다. 한 줄이 줄바꿈될 만큼 길면 사전 항목 유무와 관계없이 번역되지 않던 현상입니다.\n　살점의 융합처럼 음수 값을 가진 속성이 전혀 번역되지 않던 문제를 해결했습니다.\n　고유 주얼 「기이한 본능」 및 「붉은 악몽」의 첫 번째 속성이 물음표로 보이던 문제를 해결했습니다.\n　제작 인터페이스의 속성 목록이 영어로 보이고 같은 속성은 아이템 설명에서만 한글이던 문제를 해결했습니다.\n　버전 기록의 글머리표가 물음표로 보이고 텍스트가 좁은 열에 몰리던 문제를 해결했습니다.\n　번역 편집기에서 게임을 전환할 때 저장하지 않은 수정이 바로 사라지고 안내하지 않던 문제를 해결했습니다.\n　번역 편집기에서 저장할 때 파일의 줄바꿈 형식이 바뀌던 문제를 해결했습니다.\n추가\n　런처를 주 화면, 버전 정보, 설정의 탭으로 바꿨습니다. 버전 정보는 창 전체 너비를 사용합니다.\n　설정에서 POB 실행 뒤 런처를 닫을지, 런처로 돌아갈지, 계속 열어 둘지 고를 수 있습니다. 계속 열어 두면 POB를 하나 더 열 수 있습니다.\n　　※ POB가 실행 중이면 업데이트할 수 없으며 업데이트는 engine 폴더의 파일을 교체합니다.\n　설정에서 시작 시 주 화면과 버전 정보 중 무엇을 표시할지 고를 수 있습니다.\n　번역 편집기에서 누락 스캔에 먼저 나타나기를 기다리지 않고 항목을 수동으로 추가할 수 있습니다.\n　번역 편집기가 「이 파일에 기록해도 적용되지 않음」을 알리고 실제 적용 파일로 한 번에 다시 쓸 수 있습니다.\n　번역 편집기에서 게임 또는 언어를 바꾸기 전에 저장할지 먼저 묻습니다.\n　외부 링크에 「분해 가루 조회」를 추가했습니다.\n변경\n　인터페이스 언어, 글꼴, 「POB 종료 후 런처로 돌아가기」를 설정 탭으로 옮겼습니다.\n　「버전 정보」와 「정보」는 더 이상 팝업 창이 아닙니다.\n　번역 편집기의 이름을 「번역 편집기(Beta)」로 변경했습니다.\n\nv0.14.0（2026-08-01）\n수정\n　보조 젬 이름이 패시브 스킬 이\n　　름으로 잘못 표시되던 문제를 고쳐\n　　67개를 수정하고 2개를 추가했습니다.\n　지도 슬롯의 추가 버튼이 반응하지 않던 문제입니다. 아스트롤라베를\n　　펼치면 버튼이 비활성화되고 접으면 정상으로 돌아가던 현상을 수정했습니다.\n　일부 젬과 아이템이 영어로 보이던 문제입니다. 이름에 특\n　　수 문자가 있으면 번역을 찾지 못하던 13개를 보완했습니다.\n　범위 효과 반경 등의 길이가 「분」으로 보이던 문제입니다.\n　　올바른 단위는 「미터」입니다.\n추가\n　지도 슬롯에 지도 조각을 넣을 수 있습니다: 새벽의 희생, 정오의\n　　희생, 황혼의 희생, 자정의 희생 및 필멸자의 슬픔,\n　　분노, 희망, 무지를 포함한 8종입니다.\n변경\n　아틀라스 전략의 「갑충석」 필드 이름을 「지도\n　　슬롯」으로 변경했습니다.\n\nv0.13.0（2026-08-01）\n수정: 패시브 할당 경로가 자동으로 바뀌던 문제(0.12.0의 문제)\n　- 두 번째 노드를 찍을 때 첫 노드까지의 경로가\n　　다시 정렬되어 할당할수록 어지러워지던 현상입니다. 원래 방식으로 복원하여\n　　한 번 누르면 최단 경로로 연결하고 이미 할당한 노드는 움직이지 않습니다.\n　- 최소 포인트 경로 기능을 도구 모음의 「최소 포인트로 압축\n　　」 버튼으로 옮겼습니다. 눌러야 적용되고 Ctrl+Z로 되돌릴 수 있습니다.\n　　주요 노드, 핵심 노드와 끝 노드는 유지합니다.\n추가: 콘텐츠 아이콘을 눌러 같은 콘텐츠의 모든 위치 표시\n　- 군집 가운데의 콘텐츠 아이콘(균열, 군단, 환영 등)을 누르면\n　　아틀라스 전체에서 같은 콘텐츠의 노드와 군집이 함께 강조됩니다.\n　- 사이드바에 「콘텐츠」 목록을 추가했습니다. 이름을 누르면 같은 위치를 표시하고\n　　가장 가까운 군집으로 이동합니다. Esc 또는 「지우기」로 취소합니다.\n개선: 계획 모드에서 직접 표시한 노드를 구분\n　- 「원함」으로 표시한 노드는 눈에 띄는 녹색 테두리로 바뀌어\n　　아무리 축소해도 보이며 시스템이 보완한 연결 노드와\n　　한눈에 구분됩니다.\n수정: 최신 시즌이 이전 시즌으로 처리되던 문제\n　- 앱 업데이트가 시즌 목록을 배포본으로 덮어써\n　　직접 내려받은 3.29.1이 「이전 시즌 보기\n　　(읽기 전용)」으로 보이고 저장되지 않던 현상입니다. 이제 디스크에 실제로\n　　있는 최신 완성 시즌을 기준으로 삼아 목록도 자동으로 고칩니다.\n\nv0.12.0（2026-07-31）\n이름 변경: 아틀라스 패시브 플래너를 아틀라스 전략으로 변경\n개선: 노드를 클릭하면 최소 패시브 포인트를 자동 계산\n　- 찍은 노드를 목표로 보고 매 클릭 때마다 다시 계산하여\n　　전체 최소 포인트를 구합니다. 어떤 순서로 눌러도 결과는\n　　같고 가장 적습니다. 이전 버전은 순서에 따라 최대\n　　10포인트를 더 쓸 수 있었습니다.\n　- 이전 프로젝트는 압축을 「제안」만 하며 자동으로 바꾸지 않습니다.\n　　실제로 바꿔도 Ctrl+Z로 되돌릴 수 있습니다.\n추가: 계획 모드(샌드박스)와 「제외」 노드\n　- 빈 상태에서 원하는 핵심 노드를 빠르게 표시하고\n　　그동안 저장 파일에는 전혀 기록하지 않습니다. 끝날 때\n　　보관하거나 버릴지 묻습니다.\n　- 지나고 싶지 않은 노드를 표시하면 계산할 때 우회합니다.\n번역: 3.29에 추가된 아틀라스 노드의 한글 보완\n　- 용병 계열 등 새 노드가 영어로 보이던 문제를 고쳤고\n　　이름과 속성에 공식 번체 중국어를 보완했습니다.\n추가: 무궁한 주얼 거래 링크의 대만 서버 지원\n　- 내보내기 설정에서 국제 서버 또는 대만 서버를 고르고\n　　지역, 리그와 플랫폼 선택을 기억합니다.\n추가: 아틀라스 전략에서 관측기 계획 가능\n　- 네 반쪽 영역에 각각 하나의 관측기를 놓고 아이콘과\n　　공식 번체 중국어 효과 설명을 표시합니다.\n　- 게임 규칙에 따라 같은 반쪽 영역의 두 번째 배치를 막습니다.\n　- 이번 시즌에 아직 활성화되지 않은 관측기는 표시합니다.\n추가: 아틀라스 전략에서 주력 지도 지정 가능\n　- 등급과 지도 이름은 각각 독립적인 선택 메뉴입니다.\n　- 지도 메뉴는 공허석이\n　　반쪽 영역 전체의 지도를 T16으로 올리므로 항상 모두 표시합니다.\n　- 지도 이름은 한글·영문 퍼지 검색을 지원합니다.\n추가: 버전 비교에서 비교할 두 버전 직접 선택\n　- 이번 시즌의 모든 소형 버전을 보관하므로\n　　시즌 중 공식이 조정한 노드와 수치를 확인할 수 있습니다.\n　- 시즌이 바뀌면 이전 시즌은 마지막 버전만 남깁니다.\n수정: 버전 비교를 나간 뒤 버튼 색상이 돌아오지 않던 문제\n수정: 내려받았지만 등록되지 않은 시즌 데이터를 볼 수 없던 문제\n　- 이제 자동으로 스캔하여 추가하므로 다시 내려받을 필요가 없습니다.\n설명: 내보낸 프로젝트 파일과 공유 코드는 이전 형식을 유지하며\n　이전 PobTools에서도 열 수 있습니다.\n\nv0.11.0（2026-07-31）\n추가: 아틀라스 패시브 플래너에서 갑충석 계획 가능\n　- 아이콘과 공식 번체 중국어 효과 설명이 있는 다섯 슬롯을 제공합니다.\n　- 게임 규칙에 따라 불가능한 조합을 막습니다. 각 갑충석의\n　　배치 가능 수와 서로 배타적인 같은 종류의 갑충석을 확인합니다.\n　- 아이콘을 내려받아 로컬에 저장하므로 이후 오프라인에서도 볼 수 있습니다.\n추가: 아틀라스 패시브 플래너의 프로젝트별 메모 작성\n추가: 갑충석 선택에 퍼지 검색 지원\n　- 한글과 영문 모두 가능하며 어순을 바꾸거나 문장부호가 없어도 찾고\n　　효과 문구도 직접 검색할 수 있습니다.\n수정: 무궁한 주얼 검색이 조건대로 실제 일치하지 않던 문제\n　- 여러 속성을 고르면 하나만 만족하는 시드도\n　　나오고 점수가 같던 현상을 고쳤습니다. 이제 기본값은 모두 만족입니다.\n　- 설정한 최솟값이 이전에는 순위에만 쓰여 결과 목록과\n　　트리 표시에는 적용되지 않아 맞지 않는 속성도 표시되던 문제를 해결했습니다.\n　- 같은 점수 시드의 정렬을 고정해 매번 달라지지 않습니다.\n설명: 내보낸 프로젝트 파일과 공유 코드는 이전 형식을 유지하며\n　이전 PobTools에서도 열 수 있습니다.\n\nv0.10.0（2026-07-30）\n번역: 공식 게임 파일을 전면 대조해 용어 2,978개 수정\n　- 의미가 반대였던 속성 7개를 수정했습니다. 예를 들어 원래 표시가\n　　「감소」여야 할 곳을 「증가」로 보이던 문제입니다.\n　- 공식 용어인 「지역 내」, 「회복률」, 「혼합 플라스크」\n　　등으로 통일하고 번체·간체 변환의 오자도 고쳤습니다.\n　- 각 항목은 게임 파일, repoe, 두 서버 거래소, poedb를\n　　여러 방식으로 비교해 두 곳 이상이 일치할 때만 채택했습니다.\n추가: 번역 편집기 재개방\n　- 누락 스캔을 작은 창 대신 내부 탭으로 바꿨습니다.\n　- POB 색상 코드의 실제 색을 표시합니다.\n　- 창을 키우고 화면의 사용 가능한 범위에 맞춰 자동 조정합니다.\n이름 변경: 아틀라스 플래너를 아틀라스 패시브 플래너로 변경\n추가: 외부 링크 영역에 한글 거래 사이트,\n　Discord 커뮤니티와 후원 링크를 추가했습니다.\n\nv0.9.0（2026-07-27）\n수정: 무궁한 주얼 계산기의 속성 표시 오류\n　- 주얼의 「추가 효과」 노드는 원래 속성을 유지하고\n　　더 이상 추가 효과 한 줄만 표시하지 않습니다.\n　- 작은 노드를 주요 노드로 잘못 판단해\n　　핵심 노드로 교체된 것처럼 보이던 문제를 수정했습니다.\n추가: 범위 안 작은 노드의 변화도 표시\n　- 예를 들어 치명적인 긍지의 +4 힘과 고상한 오만의 초기화처럼\n　　여섯 주얼 각각의 규칙을 모두 지원합니다.\n추가: 찾은 시드를 아이템 텍스트로 복사 가능\n　- POB 아이템 탭에 붙이면 해당 주얼을 만들 수 있습니다.\n추가: 런처에서 수동 업데이트 확인 가능\n　- 자동 확인은 하루 최대 한 번이며 시작할 때만 실행하고\n　　필요하면 제목 표시줄 버튼으로 즉시 확인할 수 있습니다.\n설명: 심연 무궁한 주얼은 아직 공개하지 않음\n　- POB 본체가 지원한 뒤 추가할 예정입니다.\n\nv0.8.0（2026-07-26）\n추가: 성유 부여가 한글 검색 지원\n　- 아이템 편집의 성유 창에 한글을 직접 입력해\n　　패시브 이름과 속성을 찾을 수 있습니다(PoE1／PoE2 모두 지원).\n추가: 드롭다운 목록의 입력 검색이 한글 지원\n　- 성유 목록 등의 드롭다운을 연 뒤 한글을 입력하면\n　　선택 항목을 필터링할 수 있습니다.\n\nv0.7.0（2026-07-25）\n수정: 이전 폴더에 압축을 풀면 POB가 시작되지 않던 문제\n　- 설치 루트에 남은 이전 DLL이 더 이상\n　　engine 폴더 안의 새 파일을 덮어쓰지 않습니다.\n수정: POB 2.66의 OAuth 가져오기 기능 호환\n　- 내장 sha2 모듈을 대체 수단으로 제공해 POB를 제자리 업데이트할 때\n　　파일이 없으면 자동으로 보완하고 build를 열어도 오류가 나지 않습니다.\n\nv0.6.0（2026-07-25）\n수정: 3.29의 새 아이템 복사 형식 지원\n　- 게임 내 Ctrl+C로 복사한 속성 수치 범위(예: +7(6-11))를\n　　POB에 정확히 붙이고 범위 정보도 유지합니다.\n　- 새 속성 주석 행과 가변 길이 구분선을 자동 처리해\n　　붙여넣은 뒤 속성을 인식하지 못하던 문제를 해결했습니다.\n\nv0.5.0（2026-07-25）\n추가: POB 아이템 데이터베이스 한글 검색 지원\n　- 고유／기본 유형 목록에 한글 이름을 직접 입력해 찾을 수 있습니다.\n개선: 도구 창을 독립적으로 열고 런처는 계속 열기\n　- 필터 편집기, 아틀라스 플래너, 무궁한 주얼을\n　　자식 창으로 실행하여 여러 도구를 동시에 열 수 있습니다.\n데이터: 아틀라스 3.29 신규 노드 속성 설명 전면 한글화\n　- 공식 속성 템플릿으로 새 행의 번역을 엄격하게 대조하고\n　　상류의 같은 수치 속성 연결 오류도 수정했습니다.\n추가: 정보 창에 Discord 커뮤니티 링크 추가.\n\nv0.4.2（2026-07-25）\n번역: 혈통 전직 전체 한글화\n　- 혈통 이름 10개, 모든 노드 이름과 패널 설명을 포함합니다.\n번역: 속성 템플릿 전면 확장(+3886개)\n　- 심해, 이식, 성역, 마을, 탐험 등의 콘텐츠 속성입니다.\n데이터: 아틀라스 3.29 신규 노드 한글 이름 37개 보완,\n　필터에 3.29 아이템 데이터 231개 추가,\n　무궁한 주얼 패시브 트리를 3.29 최신판으로 확인했습니다.\n\nv0.4.1（2026-07-25）\n번역: 3.29 정식 데이터 전면 업데이트\n　- 아이템 +98, 속성 +285, 인터페이스 +156, 패시브 +65 등의\n　　새 항목은 3.29.0.1 게임 파일에서 가져왔습니다.\n　- v0.4.0 사용자는 자동 업데이트가 백그라운드에서 적용하므로 조작할 필요가 없습니다.\n\nv0.4.0（2026-07-24）\n개선: POB 폴더 감지 범위 전면 완화\n　- pob-zh.exe 옆에서 Launch.lua를 포함한 모든 폴더를\n　　이름과 관계없이 감지하며 공식 이름을 우선 사용합니다.\n　- 폴더 이름에 PoE2가 있으면 PoE2용 POB로 간주합니다.\n　- pob-zh.exe를 POB 폴더에 직접 넣는 방식도 지원합니다(같은 단계).\n추가: 이 「버전 정보」 창.\n\nv0.3.0（2026-07-24）\n추가: 내장 자동 업데이트\n　- 번역 업데이트(예: 0.4.0 -> 0.4.1)를 백그라운드에서 자동 적용합니다.\n　- 본체 업데이트에는 주황색 버튼이 나타나 한 번에 다운로드, 교체, 재시작합니다.\n　- 다운로드는 SHA-256으로 검증하며 실패하면 자동으로 완전히 복원합니다.\n추가: pob-zh.exe에 버전 리소스를 내장하여 런처가 버전 번호를 표시합니다.\n번역: 3.29 게임 데이터를 기준으로 사전 보완(아이템／패시브／인터페이스).\n\nv0.2.0（2026-07-23）\n추가: 아틀라스 패시브 트리에 두 시즌(3.28+3.29) 병행 지원,\n　「버전 비교」에서 노드와 항목별로 두 시즌 차이를 비교합니다.\n추가: 무궁한 주얼 패시브 트리를 3.29로 업데이트하고\n　이미지 시트를 프로그램에 포함하여 새 시즌을 자동 확인하고 한 번에 업데이트합니다.\n수정: 아틀라스／패시브 트리의 여러 내부 점검 문제.\n\nv0.1.0（2026-07-22）\n첫 공개 배포: 완전 현지화된 번체 중국어 런처, 번역 편집기,\n필터 편집기, 아틀라스 플래너, 무궁한 주얼 계산기.\n",
+      "upstreamOccurrenceIndex": 0
+    },
+    {
+      "evidenceFunction": "EdFilterDialog",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/editor_util.cpp",
+      "formatSignature": [
+        "<NUL>",
+        "<NUL>",
+        "<NUL>",
+        "<NUL>",
+        "<NUL>"
+      ],
+      "function": "EdFilterDialog",
+      "localizedEvidenceSha256": "2C6FC5BDCD1171101972397AEC9906EA3D40E3BD0896BC5CB0C14A7A5D8705D0",
+      "localizedOccurrenceIndex": 1,
+      "occurrenceIndex": 1,
+      "path": "host/editor_util.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "過濾器 (*.filter)\u0000*.filter\u0000所有檔案 (*.*)\u0000*.*\u0000\u0000",
+      "sourceSha256": "A0A3B0ACAD2A4A4AFAE5218E196E6E74730898457CC042470B059B2C75A3072A",
+      "target": "필터 (*.filter)\u0000*.filter\u0000모든 파일 (*.*)\u0000*.*\u0000\u0000",
+      "upstreamOccurrenceIndex": 1
+    },
+    {
+      "evidenceFunction": "EdOpenFontDialog",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/editor_util.cpp",
+      "formatSignature": [
+        "<NUL>",
+        "<NUL>",
+        "<NUL>",
+        "<NUL>",
+        "<NUL>"
+      ],
+      "function": "EdOpenFontDialog",
+      "localizedEvidenceSha256": "68A847A1EBDDE3446446F0F1E8C17643110DC08D43A115C781657A030451E325",
+      "localizedOccurrenceIndex": 1,
+      "occurrenceIndex": 1,
+      "path": "host/editor_util.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "字型檔 (*.ttf;*.ttc;*.otf)\u0000*.ttf;*.ttc;*.otf\u0000所有檔案 (*.*)\u0000*.*\u0000\u0000",
+      "sourceSha256": "D284EA165BF30619D472845D6D598A0F99AE73634D85564B9093736F2C6478C6",
+      "target": "글꼴 종류 (*.ttf;*.ttc;*.otf)\u0000*.ttf;*.ttc;*.otf\u0000모든 파일 (*.*)\u0000*.*\u0000\u0000",
+      "upstreamOccurrenceIndex": 1
+    },
+    {
+      "evidenceFunction": "ParseGameItemText",
+      "evidenceMode": "localized-expression-reflow",
+      "evidencePath": "host/filter_item_import.cpp",
+      "formatSignature": [],
+      "function": "ParseGameItemText",
+      "localizedEvidenceSha256": "7CCB5F22586F5AB9120E2520CFD85AA6276CE8297B8AD5C45BDD18C9D33521E5",
+      "localizedOccurrenceIndex": 35,
+      "occurrenceIndex": 35,
+      "path": "host/filter_item_import.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "贗品．",
+      "sourceSha256": "C4462767810649368DF956CA6599525CB7DACB18E06168132CAB65065D36B58D",
+      "target": " 모조품",
+      "upstreamOccurrenceIndex": 35
+    },
+    {
+      "evidenceFunction": "ParseGameItemText",
+      "evidenceMode": "localized-expression-reflow",
+      "evidencePath": "host/filter_item_import.cpp",
+      "formatSignature": [],
+      "function": "ParseGameItemText",
+      "localizedEvidenceSha256": "5F889E370E9780E9A11C4AABEF4BEB2872EC163FCB72BFCDFD28719940F34510",
+      "localizedOccurrenceIndex": 36,
+      "occurrenceIndex": 36,
+      "path": "host/filter_item_import.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "贗品．",
+      "sourceSha256": "C4462767810649368DF956CA6599525CB7DACB18E06168132CAB65065D36B58D",
+      "target": "Replica ",
+      "upstreamOccurrenceIndex": 36
+    },
+    {
+      "components": [
+        {
+          "source": "遊戲內對物品按 Ctrl+C，回來按這裡。\n",
+          "target": "게임에서 아이템에 Ctrl+C를 누른 뒤 이 버튼을 클릭하세요.\n"
+        },
+        {
+          "source": "「加入畫布」不清空現有樣本，方便多件比較。",
+          "target": "'붙여넣고 추가'는 기존 샘플을 유지하므로 여러 아이템을 비교하기 편합니다."
+        }
+      ],
+      "evidenceFunction": "DrawDropPreviewSection",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/filter_preview.cpp",
+      "formatSignature": [
+        "<NL>"
+      ],
+      "function": "DrawDropPreviewSection",
+      "localizedEvidenceSha256": "33CD3CCA3B91EB9F080437CAEAA796C827E88063F16E51105E3102B4D6430816",
+      "localizedOccurrenceIndex": 5,
+      "occurrenceIndex": 5,
+      "path": "host/filter_preview.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "遊戲內對物品按 Ctrl+C，回來按這裡。\n「加入畫布」不清空現有樣本，方便多件比較。",
+      "sourceSha256": "EBE169EAE473919FDEA39374A2A960DB3EA77D51E0B44B5BBF9CE413B83F1FC2",
+      "target": "게임에서 아이템에 Ctrl+C를 누른 뒤 이 버튼을 클릭하세요.\n'붙여넣고 추가'는 기존 샘플을 유지하므로 여러 아이템을 비교하기 편합니다.",
+      "upstreamOccurrenceIndex": 5
+    },
+    {
+      "components": [
+        {
+          "source": "找不到 Path of Building 的 Launch.lua。\n\n",
+          "target": "Path of Building의 Launch.lua 를 찾을 수 없습니다.\n\n"
+        },
+        {
+          "source": "請將 POB 資料夾(內含 Launch.lua,名稱不限)放在 pob-zh.exe 旁邊,\n",
+          "target": "pob-zh.exe 옆에 Launch.lua가 들어 있는 POB 폴더를 두세요(폴더 이름은 자유).\n"
+        },
+        {
+          "source": "或設定環境變數 POB_PATH 指向 POB 安裝目錄。",
+          "target": "또는 POB_PATH 환경 변수를 POB 설치 폴더로 설정하세요."
+        }
+      ],
+      "evidenceFunction": "wWinMain",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/host_main.cpp",
+      "formatSignature": [
+        "<NL>",
+        "<NL>",
+        "<NL>"
+      ],
+      "function": "wWinMain",
+      "localizedEvidenceSha256": "56B105B3F6F6310F7067BE1C5AAEE5220E6AECC48C2AA185DBEB6226F9FBF3CD",
+      "localizedOccurrenceIndex": 99,
+      "occurrenceIndex": 99,
+      "path": "host/host_main.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "找不到 Path of Building 的 Launch.lua。\n\n請將 POB 資料夾(內含 Launch.lua,名稱不限)放在 pob-zh.exe 旁邊,\n或設定環境變數 POB_PATH 指向 POB 安裝目錄。",
+      "sourceSha256": "B028427313FB8C5AE844D8384C41D1E48F9469D9D82CDD44FD0477141F574C8D",
+      "target": "Path of Building의 Launch.lua 를 찾을 수 없습니다.\n\npob-zh.exe 옆에 Launch.lua가 들어 있는 POB 폴더를 두세요(폴더 이름은 자유).\n또는 POB_PATH 환경 변수를 POB 설치 폴더로 설정하세요.",
+      "upstreamOccurrenceIndex": 99
+    },
+    {
+      "components": [
+        {
+          "source": "engine 資料夾不完整（缺少 glfw3.dll 或 libGLESv2.dll）。\n",
+          "target": "engine 데이터 폴더가 불완전합니다(glfw3.dll 또는 libGLESv2.dll 누락).\n"
+        },
+        {
+          "source": "請重新解壓縮完整的 pob-zh 套件。",
+          "target": "PobTools 배포 압축 파일 전체를 다시 풀어 주세요."
+        }
+      ],
+      "evidenceFunction": "wWinMain",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/host_main.cpp",
+      "formatSignature": [
+        "<NL>"
+      ],
+      "function": "wWinMain",
+      "localizedEvidenceSha256": "E2C66992A6B76C5AB662961652B800850B58316060DC3557C5E72EF7B9C9D3B1",
+      "localizedOccurrenceIndex": 110,
+      "occurrenceIndex": 110,
+      "path": "host/host_main.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "engine 資料夾不完整（缺少 glfw3.dll 或 libGLESv2.dll）。\n請重新解壓縮完整的 pob-zh 套件。",
+      "sourceSha256": "F020027F6F8978273B39127E9E9FCA33D17E6B652BBC1912F459D6EF3ADE6A2F",
+      "target": "engine 데이터 폴더가 불완전합니다(glfw3.dll 또는 libGLESv2.dll 누락).\nPobTools 배포 압축 파일 전체를 다시 풀어 주세요.",
+      "upstreamOccurrenceIndex": 110
+    },
+    {
+      "evidenceFunction": "Frame",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/launcher_editor.cpp",
+      "formatSignature": [],
+      "function": "Frame",
+      "localizedEvidenceSha256": "57BB71B85B09646408528196BF76C65A9CA89D32FFB52967ECFEF6E10565A295",
+      "localizedOccurrenceIndex": 10,
+      "occurrenceIndex": 10,
+      "path": "host/launcher_editor.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "儲存全部 (",
+      "sourceSha256": "A0B8CA4759957CA3AA8D5FF145B953092FD72EA344A631DB0A920242BBED55F8",
+      "target": "변경 저장 (",
+      "upstreamOccurrenceIndex": 10
+    },
+    {
+      "evidenceFunction": "Frame",
+      "evidenceMode": "localized-expression-reflow",
+      "evidencePath": "host/launcher_editor.cpp",
+      "formatSignature": [],
+      "function": "Frame",
+      "localizedEvidenceSha256": "1005CB9E2678BE982ED4104D0CF856180AABBEECE81CBD62FBA0AC54F4AA305A",
+      "localizedOccurrenceIndex": 13,
+      "occurrenceIndex": 13,
+      "path": "host/launcher_editor.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "已儲存 ",
+      "sourceSha256": "693F3422E99CC06ABE043A12172A8DC91FF7FCAEEC544B69FEA2C2325B22ABA6",
+      "target": "",
+      "upstreamOccurrenceIndex": 13
+    },
+    {
+      "evidenceFunction": "Frame",
+      "evidenceMode": "localized-expression-reflow",
+      "evidencePath": "host/launcher_editor.cpp",
+      "formatSignature": [],
+      "function": "Frame",
+      "localizedEvidenceSha256": "1005CB9E2678BE982ED4104D0CF856180AABBEECE81CBD62FBA0AC54F4AA305A",
+      "localizedOccurrenceIndex": 13,
+      "occurrenceIndex": 14,
+      "path": "host/launcher_editor.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": " 個檔案",
+      "sourceSha256": "58B973C96A195ACFCA6CFD8F6ACAF93423A700552F36D7671F5BCB97BCD6FDBE",
+      "target": "개 파일을 저장했습니다",
+      "upstreamOccurrenceIndex": 14
+    },
+    {
+      "evidenceFunction": "Frame",
+      "evidenceMode": "localized-expression-reflow",
+      "evidencePath": "host/launcher_editor.cpp",
+      "formatSignature": [],
+      "function": "Frame",
+      "localizedEvidenceSha256": "545FCDAC9759C1A1A09DBC31D0E76231845EB8F4BF005B9316A33FD2B495C7C2",
+      "localizedOccurrenceIndex": 43,
+      "occurrenceIndex": 44,
+      "path": "host/launcher_editor.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "改寫入 ",
+      "sourceSha256": "4E6BE66C35145E7721BCCADEAEA39DEFB66C96D147521D91411EE574523A66B7",
+      "target": "대상 파일: ",
+      "upstreamOccurrenceIndex": 44
+    },
+    {
+      "evidenceFunction": "Frame",
+      "evidenceMode": "localized-expression-reflow",
+      "evidencePath": "host/launcher_editor.cpp",
+      "formatSignature": [],
+      "function": "Frame",
+      "localizedEvidenceSha256": "A4CDFA72F72B5E4A87060B7BC30B6BAB9449C149CA0FD5D2D61CE16868A66D65",
+      "localizedOccurrenceIndex": 84,
+      "occurrenceIndex": 85,
+      "path": "host/launcher_editor.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "即將切換到 ",
+      "sourceSha256": "7ABDE79C60B06856B35D8B44B36CF28BDE490995D6C71FFD41F497638BD6D704",
+      "target": "게임을 ",
+      "upstreamOccurrenceIndex": 85
+    },
+    {
+      "evidenceFunction": "Frame",
+      "evidenceMode": "localized-expression-reflow",
+      "evidencePath": "host/launcher_editor.cpp",
+      "formatSignature": [],
+      "function": "Frame",
+      "localizedEvidenceSha256": "074B9FA3F074A41E59D2C89DC11812BD496A61687353AA275D62CDC50DD67A75",
+      "localizedOccurrenceIndex": 86,
+      "occurrenceIndex": 87,
+      "path": "host/launcher_editor.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "即將切換到 ",
+      "sourceSha256": "7ABDE79C60B06856B35D8B44B36CF28BDE490995D6C71FFD41F497638BD6D704",
+      "target": "언어를 ",
+      "upstreamOccurrenceIndex": 87
+    },
+    {
+      "evidenceFunction": "",
+      "evidenceMode": "manual-third-party-ui",
+      "evidencePath": "host/launcher_ui.cpp",
+      "evidenceUrl": "https://poedb.tw/kr/",
+      "formatSignature": [],
+      "function": "",
+      "localizedEvidenceSha256": "1C65C0BAFA2944181F9F58B0117F1C789B5A0EC62F9E564E10B8DCBCEE260758",
+      "localizedOccurrenceIndex": 20,
+      "occurrenceIndex": 20,
+      "path": "host/launcher_ui.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "PoeDB 流亡編年史",
+      "sourceSha256": "B857851CEEB11950D1A458B1470BFA644EC1E916905434D02C16CFF22EF2197C",
+      "target": "PoeDB 패스 오브 엑자일 위키",
+      "upstreamOccurrenceIndex": 20
+    },
+    {
+      "evidenceFunction": "",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/launcher_ui.cpp",
+      "formatSignature": [],
+      "function": "",
+      "localizedEvidenceSha256": "EA3252281BC3BCEC5672D33EC8C25DEE8ABD77235F85B8A049948F59DDF60B8D",
+      "localizedOccurrenceIndex": 42,
+      "occurrenceIndex": 42,
+      "path": "host/launcher_ui.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "简体",
+      "sourceSha256": "7FB0C6D6D2A2ADD6B76E4DC314B67A1543571E8C44247C37F1742730EFD1CBBA",
+      "target": "한국어",
+      "upstreamOccurrenceIndex": 42
+    },
+    {
+      "evidenceFunction": "PassiveTreeUpdater::doCheck",
+      "evidenceMode": "localized-expression-reflow",
+      "evidencePath": "host/passive_tree_update.cpp",
+      "formatSignature": [],
+      "function": "PassiveTreeUpdater::doCheck",
+      "localizedEvidenceSha256": "FE3109EC889C498E875146C6C1616AEED18C6900BE65CDCD6695FDECD4E61418",
+      "localizedOccurrenceIndex": 10,
+      "occurrenceIndex": 9,
+      "path": "host/passive_tree_update.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "（目前 ",
+      "sourceSha256": "33E9B10355DA5BA0A208287B5CBABCDF5E210F7806DCA3F11894F20241F049BA",
+      "target": "(현재 ",
+      "upstreamOccurrenceIndex": 9
+    },
+    {
+      "evidenceFunction": "PassiveTreeUpdater::doCheck",
+      "evidenceMode": "localized-expression-reflow",
+      "evidencePath": "host/passive_tree_update.cpp",
+      "formatSignature": [],
+      "function": "PassiveTreeUpdater::doCheck",
+      "localizedEvidenceSha256": "58D7E5FF6B900E3F56126FB44E2C101F6775489EA68C6A428B97E3BFAC47FDA7",
+      "localizedOccurrenceIndex": 12,
+      "occurrenceIndex": 11,
+      "path": "host/passive_tree_update.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "｜POB 已更新，圖集可直接取用",
+      "sourceSha256": "73B8CC956A2338056F8172CDEEE030D441C978BEA2A44FAED98BA6B29C4FE1E4",
+      "target": " | POB가 이미 업데이트되어 이미지 데이터를 바로 가져올 수 있습니다.",
+      "upstreamOccurrenceIndex": 11
+    },
+    {
+      "evidenceFunction": "PassiveTreeUpdater::doUpdate",
+      "evidenceMode": "localized-expression-reflow",
+      "evidencePath": "host/passive_tree_update.cpp",
+      "formatSignature": [],
+      "function": "PassiveTreeUpdater::doUpdate",
+      "localizedEvidenceSha256": "8878727F8490246EFB117B29F920D60D23BC888E370B67575C2D31161D99A4E2",
+      "localizedOccurrenceIndex": 0,
+      "occurrenceIndex": 25,
+      "path": "host/passive_tree_update.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": " 圖集中… ",
+      "sourceSha256": "5D45A68B0E70377B9FDA38CCEC91C3238C4BD1ECA57D203D559063E919A20696",
+      "target": " ",
+      "upstreamOccurrenceIndex": 25
+    },
+    {
+      "evidenceFunction": "PassiveTreeView::LoadTextures",
+      "evidenceMode": "localized-expression-reflow",
+      "evidencePath": "host/passive_tree_view.cpp",
+      "formatSignature": [],
+      "function": "PassiveTreeView::LoadTextures",
+      "localizedEvidenceSha256": "9F217DE0734FD9319E1D670B945C319350078C2E7C0D7B347630A9B08B13803C",
+      "localizedOccurrenceIndex": 4,
+      "occurrenceIndex": 4,
+      "path": "host/passive_tree_view.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "找不到天賦樹圖集：Data/tree/ 或 TreeData/",
+      "sourceSha256": "5769F655908C7EBDBD9BDA8EAD00AF7192B2FB008AE046EB97D3B8EB06D3E79E",
+      "target": "Data/Tree/TreeData/",
+      "upstreamOccurrenceIndex": 4
+    },
+    {
+      "components": [
+        {
+          "source": "%s 還沒有書籤。勾好一組常用的詞綴後按「存成書籤」，",
+          "target": "%s에 저장된 북마크가 없습니다. 자주 쓰는 속성을 선택한 뒤 '북마크 저장'을 누르면 "
+        },
+        {
+          "source": "下次可以直接叫回來。",
+          "target": "다음에 바로 불러올 수 있습니다."
+        }
+      ],
+      "evidenceFunction": "drawBookmarks",
+      "evidenceMode": "localized-expression-reflow",
+      "evidencePath": "host/regex_tool_ui.cpp",
+      "formatSignature": [
+        "%s"
+      ],
+      "function": "drawBookmarks",
+      "localizedEvidenceSha256": "941FD1A0D08AF85FDDE7FE8D8DC04E71E69CA1563FBD1026574B2C298A8B28A4",
+      "localizedOccurrenceIndex": 11,
+      "occurrenceIndex": 11,
+      "path": "host/regex_tool_ui.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "%s 還沒有書籤。勾好一組常用的詞綴後按「存成書籤」，下次可以直接叫回來。",
+      "sourceSha256": "D29D75E0C3E7D21328D64E3BFC5FAF21E083AEAE237192AA3797FC4BDA7D093C",
+      "target": "%s에 저장된 북마크가 없습니다. 자주 쓰는 속성을 선택한 뒤 '북마크 저장'을 누르면 다음에 바로 불러올 수 있습니다.",
+      "upstreamOccurrenceIndex": 11
+    },
+    {
+      "components": [
+        {
+          "source": "「一個都沒有」產生的是排除字串（開頭的 ! ），",
+          "target": "[하나도 포함하지 않음]은 선택한 속성이 붙은 아이템을 제외하는 "
+        },
+        {
+          "source": "用來把有這些詞綴的東西藏起來。",
+          "target": "검색 문자열을 만듭니다."
+        }
+      ],
+      "evidenceFunction": "drawHeader",
+      "evidenceMode": "localized-expression-reflow",
+      "evidencePath": "host/regex_tool_ui.cpp",
+      "formatSignature": [],
+      "function": "drawHeader",
+      "localizedEvidenceSha256": "9652085572C8A17D04B7621ACAD11578679195D42D321EA2F978F5BEE81AFC2A",
+      "localizedOccurrenceIndex": 5,
+      "occurrenceIndex": 5,
+      "path": "host/regex_tool_ui.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "「一個都沒有」產生的是排除字串（開頭的 ! ），用來把有這些詞綴的東西藏起來。",
+      "sourceSha256": "65CD0C8547BA490A360C30ADBEF4D0235D92E5C58CBDF0928803A22EB692443C",
+      "target": "[하나도 포함하지 않음]은 선택한 속성이 붙은 아이템을 제외하는 검색 문자열을 만듭니다.",
+      "upstreamOccurrenceIndex": 5
+    },
+    {
+      "components": [
+        {
+          "source": "另有 %d 筆書籤存在這個版本沒有的清單上，沒有顯示",
+          "target": "현재 버전에 없는 목록의 북마크 %d개는 표시되지 않습니다."
+        },
+        {
+          "source": "（資料仍保留在 PobTools\regex_ui.json）。",
+          "target": "(데이터는 PobTools\\regex_ui.json에 그대로 보관됩니다.)"
+        }
+      ],
+      "evidenceFunction": "drawOrphanNote",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/regex_tool_ui.cpp",
+      "formatSignature": [
+        "%d"
+      ],
+      "function": "drawOrphanNote",
+      "localizedEvidenceSha256": "5F79474A83C627BD920EFC40A7BCCFA26554B8771895D2B78460F6A4C3DB3A7D",
+      "localizedOccurrenceIndex": 0,
+      "occurrenceIndex": 0,
+      "path": "host/regex_tool_ui.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "另有 %d 筆書籤存在這個版本沒有的清單上，沒有顯示（資料仍保留在 PobTools\regex_ui.json）。",
+      "sourceSha256": "9D14893D3105D42CBF4E93D33F219F7A1CBD455CB48FFE7615F2D3AD18885F1C",
+      "target": "현재 버전에 없는 목록의 북마크 %d개는 표시되지 않습니다.(데이터는 PobTools\\regex_ui.json에 그대로 보관됩니다.)",
+      "upstreamOccurrenceIndex": 0
+    },
+    {
+      "components": [
+        {
+          "source": "要貼進哪一種語言的遊戲客戶端。",
+          "target": "검색 문자열을 붙여넣을 게임 클라이언트의 언어를 고르세요."
+        },
+        {
+          "source": "兩邊產生的片段完全不同，不能互換使用。",
+          "target": "언어별로 생성되는 문자열이 달라 서로 바꿔 쓸 수 없습니다."
+        }
+      ],
+      "evidenceFunction": "drawOutput",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/regex_tool_ui.cpp",
+      "formatSignature": [],
+      "function": "drawOutput",
+      "localizedEvidenceSha256": "7A9BD87871697E543750B8C240F971DC0926124B851F8F33C9DB6A65987FDF64",
+      "localizedOccurrenceIndex": 12,
+      "occurrenceIndex": 12,
+      "path": "host/regex_tool_ui.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "要貼進哪一種語言的遊戲客戶端。兩邊產生的片段完全不同，不能互換使用。",
+      "sourceSha256": "2CA941BC39A03180DDF3884BE085E4E6DF213DB9C128CB362DFA4367CFB223A0",
+      "target": "검색 문자열을 붙여넣을 게임 클라이언트의 언어를 고르세요.언어별로 생성되는 문자열이 달라 서로 바꿔 쓸 수 없습니다.",
+      "upstreamOccurrenceIndex": 12
+    },
+    {
+      "components": [
+        {
+          "source": "清單裡有其他項目印出一模一樣的文字，",
+          "target": "목록의 다른 항목과 검색 문구가 겹쳐, "
+        },
+        {
+          "source": "遊戲的搜尋沒有辦法只中其中一個。",
+          "target": "게임 검색 기능만으로는 이 항목만 구분할 수 없습니다."
+        }
+      ],
+      "evidenceFunction": "drawOutput",
+      "evidenceMode": "localized-expression-reflow",
+      "evidencePath": "host/regex_tool_ui.cpp",
+      "formatSignature": [],
+      "function": "drawOutput",
+      "localizedEvidenceSha256": "B797184868B422DFEFB5DA6F2575FF1B5428D2FCC48B13A5D1953623FF40C008",
+      "localizedOccurrenceIndex": 16,
+      "occurrenceIndex": 16,
+      "path": "host/regex_tool_ui.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "清單裡有其他項目印出一模一樣的文字，遊戲的搜尋沒有辦法只中其中一個。",
+      "sourceSha256": "F2C6119159AC9D9DE5124DAEF2553CD1B292580CF9FCC64DB1922ED1D83AE0AE",
+      "target": "목록의 다른 항목과 검색 문구가 겹쳐, 게임 검색 기능만으로는 이 항목만 구분할 수 없습니다.",
+      "upstreamOccurrenceIndex": 16
+    },
+    {
+      "evidenceFunction": "DrawReplaceRefs",
+      "evidenceMode": "localized-expression-reflow",
+      "evidencePath": "host/section_sounds.cpp",
+      "formatSignature": [],
+      "function": "DrawReplaceRefs",
+      "localizedEvidenceSha256": "46D1C951258C23FB8E38B0CD3863ABF4CFC962D6538675407B10F328A8A6B64B",
+      "localizedOccurrenceIndex": 8,
+      "occurrenceIndex": 8,
+      "path": "host/section_sounds.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "已將 ",
+      "sourceSha256": "2B67BA6180875AB5809A7157CFA71209700C524D306430C00C92DDDCF971C994",
+      "target": "",
+      "upstreamOccurrenceIndex": 8
+    },
+    {
+      "evidenceFunction": "DrawReplaceRefs",
+      "evidenceMode": "localized-expression-reflow",
+      "evidencePath": "host/section_sounds.cpp",
+      "formatSignature": [],
+      "function": "DrawReplaceRefs",
+      "localizedEvidenceSha256": "46D1C951258C23FB8E38B0CD3863ABF4CFC962D6538675407B10F328A8A6B64B",
+      "localizedOccurrenceIndex": 8,
+      "occurrenceIndex": 9,
+      "path": "host/section_sounds.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": " 行引用替換為 ",
+      "sourceSha256": "6D1C2FD2C7563B0F269EF2E22DC4F335A332C134AFA893F4EC9F8E3285C7656B",
+      "target": "개 참조를 ",
+      "upstreamOccurrenceIndex": 9
+    },
+    {
+      "evidenceFunction": "DrawReplaceRefs",
+      "evidenceMode": "localized-expression-reflow",
+      "evidencePath": "host/section_sounds.cpp",
+      "formatSignature": [],
+      "function": "DrawReplaceRefs",
+      "localizedEvidenceSha256": "2D5B3B6050C11B9F918E8666565E6F4B98E8B9140162F97C00FA7DB1F0F396ED",
+      "localizedOccurrenceIndex": 9,
+      "occurrenceIndex": 10,
+      "path": "host/section_sounds.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "（未儲存，請按「儲存」寫入）",
+      "sourceSha256": "E91C180E29A0FD8914DF81824FE56458C9EAEF564A4AE254C441EC357339A188",
+      "target": "(으)로 변경했습니다. 적용하려면 필터를 저장하세요.",
+      "upstreamOccurrenceIndex": 10
+    },
+    {
+      "evidenceFunction": "TJLoadBin",
+      "evidenceMode": "localized-expression-reflow",
+      "evidencePath": "host/timeless_jewel.cpp",
+      "formatSignature": [],
+      "function": "TJLoadBin",
+      "localizedEvidenceSha256": "36A8929E40AED59F664B7FCA9CE945E85426C687BD04D26534CB11FAC21B67A5",
+      "localizedOccurrenceIndex": 9,
+      "occurrenceIndex": 9,
+      "path": "host/timeless_jewel.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "找不到 ",
+      "sourceSha256": "F7BE1AF79007301A6F1FB96C7D69BA0B54CC89821B39784E35760D52099C172D",
+      "target": "",
+      "upstreamOccurrenceIndex": 9
+    },
+    {
+      "evidenceFunction": "TJLoadBin",
+      "evidenceMode": "localized-expression-reflow",
+      "evidencePath": "host/timeless_jewel.cpp",
+      "formatSignature": [],
+      "function": "TJLoadBin",
+      "localizedEvidenceSha256": "36A8929E40AED59F664B7FCA9CE945E85426C687BD04D26534CB11FAC21B67A5",
+      "localizedOccurrenceIndex": 9,
+      "occurrenceIndex": 10,
+      "path": "host/timeless_jewel.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": ".bin/.zip(需要旁邊有 PoE1 版 POB,且該珠寶的查表檔存在)",
+      "sourceSha256": "323A97CB9E1CB1BAC47EE41683FB5353EC30DFCAA6CFD8AB16448D3EB6C34516",
+      "target": ".bin/.zip 파일을 찾을 수 없습니다(옆에 PoE1 POB와 해당 주얼의 조회 테이블 파일이 있어야 함).",
+      "upstreamOccurrenceIndex": 10
+    },
+    {
+      "evidenceFunction": "TJAbyssParse",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/timeless_jewel_abyss.cpp",
+      "formatSignature": [],
+      "function": "TJAbyssParse",
+      "localizedEvidenceSha256": "90C4C3D64639F64E37C2A32B3D42D0F0B8C991353FC24C714F8C9CB19FAF85A9",
+      "localizedOccurrenceIndex": 7,
+      "occurrenceIndex": 7,
+      "path": "host/timeless_jewel_abyss.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "深淵查表檔屬於珠寶型別 ",
+      "sourceSha256": "006F16D5D42CB3A077EFEF3D7EAF4D049D4CAE1DBE01B67C8B86A644B94FBBC1",
+      "target": "심연 조회 테이블의 주얼 유형은 ",
+      "upstreamOccurrenceIndex": 7
+    },
+    {
+      "evidenceFunction": "TJAbyssParse",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/timeless_jewel_abyss.cpp",
+      "formatSignature": [],
+      "function": "TJAbyssParse",
+      "localizedEvidenceSha256": "2579F173F5DA32B6630A9E65E817C56EEDCA2674ADDF2094C907AF16DF7F3749",
+      "localizedOccurrenceIndex": 8,
+      "occurrenceIndex": 8,
+      "path": "host/timeless_jewel_abyss.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": ",但要求的是 ",
+      "sourceSha256": "5C4267E17A14152714E02A219C7DD3B83AF442FB9DE3EA4B4B4558160C54A4DF",
+      "target": "이지만 요청한 유형은 ",
+      "upstreamOccurrenceIndex": 8
+    },
+    {
+      "components": [
+        {
+          "source": "※ 深淵珠寶是 3.29 新增，目前可對照的實測樣本仍少，",
+          "target": "※ 심연 주얼은 3.29에 추가되어 대조할 실측 표본이 아직 적습니다. "
+        },
+        {
+          "source": "結果無法像軍團珠寶那樣完整驗證，請以遊戲內實際結果為準。",
+          "target": "기존 무궁한 주얼만큼 완전하게 검증되지 않았으므로 게임 내 실제 결과를 기준으로 확인하세요."
+        }
+      ],
+      "evidenceFunction": "Frame",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/timeless_jewel_ui.cpp",
+      "formatSignature": [],
+      "function": "Frame",
+      "localizedEvidenceSha256": "873F64F1EADBA46D5F688B272135C23FFA0AD792738AF476C92A6FC89D4A5C7F",
+      "localizedOccurrenceIndex": 11,
+      "occurrenceIndex": 11,
+      "path": "host/timeless_jewel_ui.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "※ 深淵珠寶是 3.29 新增，目前可對照的實測樣本仍少，結果無法像軍團珠寶那樣完整驗證，請以遊戲內實際結果為準。",
+      "sourceSha256": "030B904EA0A944A46626AEAB62E1D544CC0205B000659BECCAF412923CC14615",
+      "target": "※ 심연 주얼은 3.29에 추가되어 대조할 실측 표본이 아직 적습니다. 기존 무궁한 주얼만큼 완전하게 검증되지 않았으므로 게임 내 실제 결과를 기준으로 확인하세요.",
+      "upstreamOccurrenceIndex": 11
+    },
+    {
+      "components": [
+        {
+          "source": "※ 重奪惡意另外還取決於你從插槽走到職業起點的「已配點路徑」，",
+          "target": "※ 되찾은 악의는 주얼 홈에서 직업 시작 노드까지의 할당 경로에도 영향을 받습니다. "
+        },
+        {
+          "source": "本工具沒有角色資料 —— 請隨意點一個插槽，用它周邊的天賦來判斷這顆種子。",
+          "target": "이 도구에는 캐릭터 데이터가 없으므로 홈을 선택하고 주변 패시브로 시드를 판단하세요. "
+        },
+        {
+          "source": "單一天賦會變成什麼、以及昇華天賦的選擇，這兩項是準確的。",
+          "target": "개별 패시브의 변환 결과와 전직 패시브 선택 결과는 정확합니다."
+        }
+      ],
+      "evidenceFunction": "Frame",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/timeless_jewel_ui.cpp",
+      "formatSignature": [],
+      "function": "Frame",
+      "localizedEvidenceSha256": "F27FE629ED259D2D8B92416B8C0E9410CB5529FFDCA2B22ED1D480C0E10E970D",
+      "localizedOccurrenceIndex": 12,
+      "occurrenceIndex": 12,
+      "path": "host/timeless_jewel_ui.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "※ 重奪惡意另外還取決於你從插槽走到職業起點的「已配點路徑」，本工具沒有角色資料 —— 請隨意點一個插槽，用它周邊的天賦來判斷這顆種子。單一天賦會變成什麼、以及昇華天賦的選擇，這兩項是準確的。",
+      "sourceSha256": "D0BEBFBBBC0C38F92CD6B03D165D765E6F0365615B19C52B5BBE646DAA09CB18",
+      "target": "※ 되찾은 악의는 주얼 홈에서 직업 시작 노드까지의 할당 경로에도 영향을 받습니다. 이 도구에는 캐릭터 데이터가 없으므로 홈을 선택하고 주변 패시브로 시드를 판단하세요. 개별 패시브의 변환 결과와 전직 패시브 선택 결과는 정확합니다.",
+      "upstreamOccurrenceIndex": 12
+    },
+    {
+      "components": [
+        {
+          "source": "關閉後只要命中任一條就算，權重高的仍排前面。\n",
+          "target": "끄면 하나라도 일치하는 시드를 표시하며 가중치가 높은 순으로 정렬합니다.\n"
+        },
+        {
+          "source": "開啟時，只滿足其中一條的種子不會出現。",
+          "target": "켜면 선택한 속성을 모두 만족하지 않는 시드는 표시하지 않습니다."
+        }
+      ],
+      "evidenceFunction": "Frame",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/timeless_jewel_ui.cpp",
+      "formatSignature": [
+        "<NL>"
+      ],
+      "function": "Frame",
+      "localizedEvidenceSha256": "8AB23EFAF5D4B91055D567818A7C7F39153155ACF449444DA90E39DD3DAE5A90",
+      "localizedOccurrenceIndex": 49,
+      "occurrenceIndex": 49,
+      "path": "host/timeless_jewel_ui.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "關閉後只要命中任一條就算，權重高的仍排前面。\n開啟時，只滿足其中一條的種子不會出現。",
+      "sourceSha256": "940063B194465130F987D2AF081D3912757AF21D7DD6352D6D70133BA3B4BBF6",
+      "target": "끄면 하나라도 일치하는 시드를 표시하며 가중치가 높은 순으로 정렬합니다.\n켜면 선택한 속성을 모두 만족하지 않는 시드는 표시하지 않습니다.",
+      "upstreamOccurrenceIndex": 49
+    },
+    {
+      "components": [
+        {
+          "source": "1. 在交易站找到那顆珠寶，Ctrl+C 複製，貼進 POB 的物品欄。\n",
+          "target": "1. 거래소에서 주얼을 찾아 Ctrl+C로 복사한 뒤 POB의 아이템 탭에 붙여넣습니다.\n"
+        },
+        {
+          "source": "2. 也可以把交易站上「已鑲好這顆珠寶的整件裝備」複製進 POB。\n",
+          "target": "2. 거래소에서 이 주얼이 장착된 장비 전체를 복사해 POB에 붙여넣어도 됩니다.\n"
+        },
+        {
+          "source": "3. 對照 POB 算出來的天賦加成，確認與本工具列出的詞綴一致。",
+          "target": "3. POB가 계산한 패시브 보너스가 이 도구에 표시된 속성과 일치하는지 확인합니다."
+        }
+      ],
+      "evidenceFunction": "Frame",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/timeless_jewel_ui.cpp",
+      "formatSignature": [
+        "<NL>",
+        "<NL>"
+      ],
+      "function": "Frame",
+      "localizedEvidenceSha256": "490F6CC4EE07CEFBA02CD597B159BD2C35F613443AAC82521372E884D5871A9C",
+      "localizedOccurrenceIndex": 66,
+      "occurrenceIndex": 66,
+      "path": "host/timeless_jewel_ui.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "1. 在交易站找到那顆珠寶，Ctrl+C 複製，貼進 POB 的物品欄。\n2. 也可以把交易站上「已鑲好這顆珠寶的整件裝備」複製進 POB。\n3. 對照 POB 算出來的天賦加成，確認與本工具列出的詞綴一致。",
+      "sourceSha256": "DEA176C60A9001375C61D82E75E7B65F22E9746E896C768DB6B099C41265E7C7",
+      "target": "1. 거래소에서 주얼을 찾아 Ctrl+C로 복사한 뒤 POB의 아이템 탭에 붙여넣습니다.\n2. 거래소에서 이 주얼이 장착된 장비 전체를 복사해 POB에 붙여넣어도 됩니다.\n3. POB가 계산한 패시브 보너스가 이 도구에 표시된 속성과 일치하는지 확인합니다.",
+      "upstreamOccurrenceIndex": 66
+    },
+    {
+      "components": [
+        {
+          "source": "本工具的轉換演算法以 POB 為規格、數值以遊戲檔為真值，",
+          "target": "이 도구는 POB의 변환 알고리즘과 게임 데이터 값을 기준으로 하므로 결과가 같아야 합니다. "
+        },
+        {
+          "source": "兩邊理應相同。若對不上請回報，那代表其中一邊有問題。",
+          "target": "일치하지 않으면 어느 한쪽에 문제가 있는 것이므로 제보해 주세요."
+        }
+      ],
+      "evidenceFunction": "Frame",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/timeless_jewel_ui.cpp",
+      "formatSignature": [],
+      "function": "Frame",
+      "localizedEvidenceSha256": "F377B3FBAF80F1A66BD5A506B46A2003C57198E91B34956A8FCF049A7AD43037",
+      "localizedOccurrenceIndex": 68,
+      "occurrenceIndex": 68,
+      "path": "host/timeless_jewel_ui.cpp",
+      "provenance": "manual-reviewed-remediation",
+      "source": "本工具的轉換演算法以 POB 為規格、數值以遊戲檔為真值，兩邊理應相同。若對不上請回報，那代表其中一邊有問題。",
+      "sourceSha256": "A48BC66864CB39135FBB5036F1F5A3B2B8246B9990DAFEB358BE2F87634C4DAF",
+      "target": "이 도구는 POB의 변환 알고리즘과 게임 데이터 값을 기준으로 하므로 결과가 같아야 합니다. 일치하지 않으면 어느 한쪽에 문제가 있는 것이므로 제보해 주세요.",
+      "upstreamOccurrenceIndex": 68
+    }
+  ],
+  "entries": [],
+  "internalFixtures": [
+    {
+      "path": "host/atlas_diff.cpp",
+      "reason": "non-display atlas diff JSON regression fixture at RunAtlasDiffSelfTest line 488",
+      "sha256": "1A2ED60F14281831146207077202F262ABB8309174390CA0936DD65C0555D02C"
+    },
+    {
+      "path": "host/atlas_diff.cpp",
+      "reason": "non-display atlas diff JSON regression fixture at RunAtlasDiffSelfTest line 501",
+      "sha256": "547E964D403E6AD927F15CC0D02021ABFEEE8B3D711DB3E7EF6D2666003F3BBF"
+    }
+  ],
+  "localizedCommit": "2997715df0d6257192107d799a9f414b54e6c02b",
+  "localizedEngineTree": "6c113669065ed84d160fb186ce3dfa2701e839cb",
+  "schemaVersion": 1,
+  "supportingContexts": [
+    {
+      "components": [
+        {
+          "source": "已取消回應為空連線失敗（網路無法使用？）建立 HTTP 請求 HTTPS 初始化",
+          "target": "취소됨 응답 없음 연결 실패(네트워크 사용 불가?) HTTP 요청 생성 실패 HTTPS 초기화 실패"
+        },
+        {
+          "source": "無法建立解壓目錄格式無效條目資訊讀取路徑非法檔案寫入失敗回滾備份",
+          "target": "압축 해제 폴더 생성 실패 잘못된 형식 항목 정보 읽기 실패 잘못된 경로 파일 쓰기 실패 롤백 백업"
+        }
+      ],
+      "evidenceFunction": "",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/app_update.cpp",
+      "formatSignature": [],
+      "function": "",
+      "localizedEvidenceSha256": "5DCDFE15AF04E37EC527098FF16399C5BA3FA982E45FC9354A357A1ACB6B3193",
+      "localizedOccurrenceIndex": 60,
+      "occurrenceIndex": 60,
+      "path": "host/app_update.cpp",
+      "provenance": "manual-reviewed-supporting-context",
+      "source": "已取消回應為空連線失敗（網路無法使用？）建立 HTTP 請求 HTTPS 初始化無法建立解壓目錄格式無效條目資訊讀取路徑非法檔案寫入失敗回滾備份",
+      "sourceSha256": "708EC10037752CF3B912801C2E95D0B12E253145863A521F9CE73DDF6FE3B4C0",
+      "target": "취소됨 응답 없음 연결 실패(네트워크 사용 불가?) HTTP 요청 생성 실패 HTTPS 초기화 실패압축 해제 폴더 생성 실패 잘못된 형식 항목 정보 읽기 실패 잘못된 경로 파일 쓰기 실패 롤백 백업",
+      "upstreamOccurrenceIndex": 60
+    },
+    {
+      "components": [
+        {
+          "source": "匯入",
+          "target": "가져오기"
+        }
+      ],
+      "evidenceFunction": "Frame",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/atlas_planner.cpp",
+      "formatSignature": [],
+      "function": "Frame",
+      "localizedEvidenceSha256": "C3B2704B9425D39CA677ABFBCBD9A58DF0592529F3ADEDEB23747C327F9B8622",
+      "localizedOccurrenceIndex": 21,
+      "occurrenceIndex": 21,
+      "path": "host/atlas_planner.cpp",
+      "provenance": "manual-reviewed-supporting-context",
+      "source": "匯入",
+      "sourceSha256": "20809C5D8596B07C5F77E031B12DD3246BD943B2346C940EA51BA6B6ABDE27E1",
+      "target": "가져오기",
+      "upstreamOccurrenceIndex": 21
+    },
+    {
+      "components": [
+        {
+          "source": "中",
+          "target": "한"
+        }
+      ],
+      "evidenceFunction": "Frame",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/atlas_planner.cpp",
+      "formatSignature": [],
+      "function": "Frame",
+      "localizedEvidenceSha256": "89233692031A62C60E6EF602B4CD9F3CB52A6DD8013FE9873C36101A7E3920E0",
+      "localizedOccurrenceIndex": 54,
+      "occurrenceIndex": 54,
+      "path": "host/atlas_planner.cpp",
+      "provenance": "manual-reviewed-supporting-context",
+      "source": "中",
+      "sourceSha256": "A567BDAA11367F260F0708391F4D10766B5962F565D9E432F17981A3584FE1E2",
+      "target": "한",
+      "upstreamOccurrenceIndex": 54
+    },
+    {
+      "components": [
+        {
+          "source": "重新載入",
+          "target": "다시 불러오기"
+        }
+      ],
+      "evidenceFunction": "DrawTopToolbar",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/editor_shell.cpp",
+      "formatSignature": [],
+      "function": "DrawTopToolbar",
+      "localizedEvidenceSha256": "9CEE01B43309DB005C912E7AE320B5BE5D814FAB57B711B7FE340F42DFD5C50B",
+      "localizedOccurrenceIndex": 14,
+      "occurrenceIndex": 14,
+      "path": "host/editor_shell.cpp",
+      "provenance": "manual-reviewed-supporting-context",
+      "source": "重新載入",
+      "sourceSha256": "70DD895B66DB82BBCF7404A930A3E4E7B0079F71EEF52D2B631CC51C7F65E4AC",
+      "target": "다시 불러오기",
+      "upstreamOccurrenceIndex": 14
+    },
+    {
+      "components": [
+        {
+          "source": "中",
+          "target": "중간"
+        }
+      ],
+      "evidenceFunction": "DrawBatchModal",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/filter_batch.cpp",
+      "formatSignature": [],
+      "function": "DrawBatchModal",
+      "localizedEvidenceSha256": "541D1DDB952F8FBF865AFB5CFD25E737146F9CD4E2D249CF5906A513145A81BD",
+      "localizedOccurrenceIndex": 27,
+      "occurrenceIndex": 27,
+      "path": "host/filter_batch.cpp",
+      "provenance": "manual-reviewed-supporting-context",
+      "source": "中",
+      "sourceSha256": "A567BDAA11367F260F0708391F4D10766B5962F565D9E432F17981A3584FE1E2",
+      "target": "중간",
+      "upstreamOccurrenceIndex": 27
+    },
+    {
+      "components": [
+        {
+          "source": "中",
+          "target": "중간"
+        }
+      ],
+      "evidenceFunction": "DrawMinimapIconWidget",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/filter_card_ui.cpp",
+      "formatSignature": [],
+      "function": "DrawMinimapIconWidget",
+      "localizedEvidenceSha256": "541D1DDB952F8FBF865AFB5CFD25E737146F9CD4E2D249CF5906A513145A81BD",
+      "localizedOccurrenceIndex": 1,
+      "occurrenceIndex": 1,
+      "path": "host/filter_card_ui.cpp",
+      "provenance": "manual-reviewed-supporting-context",
+      "source": "中",
+      "sourceSha256": "A567BDAA11367F260F0708391F4D10766B5962F565D9E432F17981A3584FE1E2",
+      "target": "중간",
+      "upstreamOccurrenceIndex": 1
+    },
+    {
+      "components": [
+        {
+          "source": "地圖階級",
+          "target": "지도 등급"
+        }
+      ],
+      "evidenceFunction": "FilterI18n::Load",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/filter_i18n.cpp",
+      "formatSignature": [],
+      "function": "FilterI18n::Load",
+      "localizedEvidenceSha256": "58C3B243106B3CD79D0B1F8D807868D94647F868B55B5EDB56EE0E70F52A651C",
+      "localizedOccurrenceIndex": 48,
+      "occurrenceIndex": 47,
+      "path": "host/filter_i18n.cpp",
+      "provenance": "manual-reviewed-supporting-context",
+      "source": "地圖階級",
+      "sourceSha256": "FCB55B709CB5AF69F5AF41A32ED53BE30C483DC67B980A275F961411AD78773A",
+      "target": "지도 등급",
+      "upstreamOccurrenceIndex": 47
+    },
+    {
+      "components": [
+        {
+          "source": "堆疊數量",
+          "target": "중첩 개수"
+        }
+      ],
+      "evidenceFunction": "FilterI18n::Load",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/filter_i18n.cpp",
+      "formatSignature": [],
+      "function": "FilterI18n::Load",
+      "localizedEvidenceSha256": "7CEB9D9DB2CDBF333E23A6BE04F075D8930FAAD8834056BEB166A0AD1DD9DD87",
+      "localizedOccurrenceIndex": 50,
+      "occurrenceIndex": 49,
+      "path": "host/filter_i18n.cpp",
+      "provenance": "manual-reviewed-supporting-context",
+      "source": "堆疊數量",
+      "sourceSha256": "5217D14B4F821B0F90FCADDDC102CDDC7F51B026C1FAA0D29825A03050A26E35",
+      "target": "중첩 개수",
+      "upstreamOccurrenceIndex": 49
+    },
+    {
+      "components": [
+        {
+          "source": "最終",
+          "target": "최종"
+        }
+      ],
+      "evidenceFunction": "ns_tier_seg_zh",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/filter_i18n.cpp",
+      "formatSignature": [],
+      "function": "ns_tier_seg_zh",
+      "localizedEvidenceSha256": "299C463A05E02093FF73513A24B8E7D751BEEAC4256591EB222581F86D047759",
+      "localizedOccurrenceIndex": 7,
+      "occurrenceIndex": 7,
+      "path": "host/filter_i18n.cpp",
+      "provenance": "manual-reviewed-supporting-context",
+      "source": "最終",
+      "sourceSha256": "39736CC09918965E69CFE0C9C467F962C586CA4F6FAA50423AB5A369237A49CF",
+      "target": "최종",
+      "upstreamOccurrenceIndex": 7
+    },
+    {
+      "components": [
+        {
+          "source": "召喚",
+          "target": "소환수"
+        }
+      ],
+      "evidenceFunction": "ns_type_seg_zh",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/filter_i18n.cpp",
+      "formatSignature": [],
+      "function": "ns_type_seg_zh",
+      "localizedEvidenceSha256": "1D248CA08D4A243EBE0EE89131C2BCB960945B8CF7C17D660AAD260E0E392140",
+      "localizedOccurrenceIndex": 35,
+      "occurrenceIndex": 35,
+      "path": "host/filter_i18n.cpp",
+      "provenance": "manual-reviewed-supporting-context",
+      "source": "召喚",
+      "sourceSha256": "BB2C3B24123D5809041970A09AFA72D90136FDB925511952C10BF729B8881153",
+      "target": "소환수",
+      "upstreamOccurrenceIndex": 35
+    },
+    {
+      "components": [
+        {
+          "source": "神化聖物",
+          "target": "성역 유물"
+        }
+      ],
+      "evidenceFunction": "ns_type_seg_zh",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/filter_i18n.cpp",
+      "formatSignature": [],
+      "function": "ns_type_seg_zh",
+      "localizedEvidenceSha256": "4EFBCBC5D6D7EAA878327FD964974013235F52F904D869967152F1C894F44907",
+      "localizedOccurrenceIndex": 43,
+      "occurrenceIndex": 43,
+      "path": "host/filter_i18n.cpp",
+      "provenance": "manual-reviewed-supporting-context",
+      "source": "神化聖物",
+      "sourceSha256": "084506B99AC3FFBEDF80BE26ABDA6AE2FCB54471342B3BA9F0902DE9C8F1BE3F",
+      "target": "성역 유물",
+      "upstreamOccurrenceIndex": 43
+    },
+    {
+      "components": [
+        {
+          "source": "功能",
+          "target": "보조"
+        }
+      ],
+      "evidenceFunction": "ns_type_seg_zh",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/filter_i18n.cpp",
+      "formatSignature": [],
+      "function": "ns_type_seg_zh",
+      "localizedEvidenceSha256": "931B1921EB8E25D196A4687D9DD7B6E96864A2B52DF1EDBC0B58DAE75003006D",
+      "localizedOccurrenceIndex": 133,
+      "occurrenceIndex": 133,
+      "path": "host/filter_i18n.cpp",
+      "provenance": "manual-reviewed-supporting-context",
+      "source": "功能",
+      "sourceSha256": "25F5CE57A1909740C1F26740D3F32767C9AC8F7122BF01B0845629716FB496EB",
+      "target": "보조",
+      "upstreamOccurrenceIndex": 133
+    },
+    {
+      "components": [
+        {
+          "source": "裝備",
+          "target": "장비"
+        }
+      ],
+      "evidenceFunction": "ns_type_seg_zh",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/filter_i18n.cpp",
+      "formatSignature": [],
+      "function": "ns_type_seg_zh",
+      "localizedEvidenceSha256": "4CE47CF650B962574955E99CA1117712480696AF2A62AF83878F2D834A5D7C36",
+      "localizedOccurrenceIndex": 147,
+      "occurrenceIndex": 147,
+      "path": "host/filter_i18n.cpp",
+      "provenance": "manual-reviewed-supporting-context",
+      "source": "裝備",
+      "sourceSha256": "6C49F37C3CB8B29AD3DC344BBA36AB994A291244D09E322D872D06BFBAF74EC7",
+      "target": "장비",
+      "upstreamOccurrenceIndex": 147
+    },
+    {
+      "components": [
+        {
+          "source": "固定詞綴",
+          "target": "고정 속성"
+        }
+      ],
+      "evidenceFunction": "ns_type_seg_zh",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/filter_i18n.cpp",
+      "formatSignature": [],
+      "function": "ns_type_seg_zh",
+      "localizedEvidenceSha256": "710C88DC8B409CFA176D0D286432F770F1A2518FC960743C0F9B7006ADF40593",
+      "localizedOccurrenceIndex": 179,
+      "occurrenceIndex": 179,
+      "path": "host/filter_i18n.cpp",
+      "provenance": "manual-reviewed-supporting-context",
+      "source": "固定詞綴",
+      "sourceSha256": "C6DD48C6904CA36E8F82E27A8D235AE5ED66222F4BA36FBF88F1A33128AD7BB1",
+      "target": "고정 속성",
+      "upstreamOccurrenceIndex": 179
+    },
+    {
+      "components": [
+        {
+          "source": "瓦爾神殿",
+          "target": "바알 사원"
+        }
+      ],
+      "evidenceFunction": "ns_type_seg_zh",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/filter_i18n.cpp",
+      "formatSignature": [],
+      "function": "ns_type_seg_zh",
+      "localizedEvidenceSha256": "9B8DD71EBB220ADCF28A1155B6B206626548745653F9FFDE16AC8DAB1819C451",
+      "localizedOccurrenceIndex": 217,
+      "occurrenceIndex": 217,
+      "path": "host/filter_i18n.cpp",
+      "provenance": "manual-reviewed-supporting-context",
+      "source": "瓦爾神殿",
+      "sourceSha256": "9701C91B4911A95C03BE79DA0EEAA016F59A091D0835CAA3FAD9AD91590FB841",
+      "target": "바알 사원",
+      "upstreamOccurrenceIndex": 217
+    },
+    {
+      "components": [
+        {
+          "source": "未鑑定",
+          "target": "미감정"
+        }
+      ],
+      "evidenceFunction": "DrawDropPreviewSection",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/filter_preview.cpp",
+      "formatSignature": [],
+      "function": "DrawDropPreviewSection",
+      "localizedEvidenceSha256": "64F45349D4E05D638AD473847EBA4DC7709BB5B0704B89342C88CD7C287363EE",
+      "localizedOccurrenceIndex": 27,
+      "occurrenceIndex": 27,
+      "path": "host/filter_preview.cpp",
+      "provenance": "manual-reviewed-supporting-context",
+      "source": "未鑑定",
+      "sourceSha256": "EE91275EB71CEC776001CB417848C67586DFA62163C87665058522C664B28248",
+      "target": "미감정",
+      "upstreamOccurrenceIndex": 27
+    },
+    {
+      "components": [
+        {
+          "source": "聖戰士",
+          "target": "성전사"
+        }
+      ],
+      "evidenceFunction": "DrawDropPreviewSection",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/filter_preview.cpp",
+      "formatSignature": [],
+      "function": "DrawDropPreviewSection",
+      "localizedEvidenceSha256": "11FCBD4DBE59EF741AE7B20131B796F904EE70175E804EDC792D0F5EE80AE7B5",
+      "localizedOccurrenceIndex": 33,
+      "occurrenceIndex": 33,
+      "path": "host/filter_preview.cpp",
+      "provenance": "manual-reviewed-supporting-context",
+      "source": "聖戰士",
+      "sourceSha256": "6FBA1AA578268A2D87481993AEA57CE16D964829465D2BE1F04E23D9A3B187EA",
+      "target": "성전사",
+      "upstreamOccurrenceIndex": 33
+    },
+    {
+      "components": [
+        {
+          "source": "稀有度",
+          "target": "아이템 희귀도"
+        }
+      ],
+      "evidenceFunction": "DrawDropPreviewSection",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/filter_preview.cpp",
+      "formatSignature": [],
+      "function": "DrawDropPreviewSection",
+      "localizedEvidenceSha256": "2DF84038047E596E434626C3CC24DAD02FACAC6DA7B07EC59FEC77D40EB447B0",
+      "localizedOccurrenceIndex": 57,
+      "occurrenceIndex": 57,
+      "path": "host/filter_preview.cpp",
+      "provenance": "manual-reviewed-supporting-context",
+      "source": "稀有度",
+      "sourceSha256": "530932329592C6E6590A966766B617AA7F2C8BEAC7A32CF2E9DE9A2405A61F47",
+      "target": "아이템 희귀도",
+      "upstreamOccurrenceIndex": 57
+    },
+    {
+      "components": [
+        {
+          "source": "稀有度",
+          "target": "아이템 희귀도"
+        }
+      ],
+      "evidenceFunction": "build_table",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/filter_schema.cpp",
+      "formatSignature": [],
+      "function": "build_table",
+      "localizedEvidenceSha256": "2DF84038047E596E434626C3CC24DAD02FACAC6DA7B07EC59FEC77D40EB447B0",
+      "localizedOccurrenceIndex": 9,
+      "occurrenceIndex": 9,
+      "path": "host/filter_schema.cpp",
+      "provenance": "manual-reviewed-supporting-context",
+      "source": "稀有度",
+      "sourceSha256": "530932329592C6E6590A966766B617AA7F2C8BEAC7A32CF2E9DE9A2405A61F47",
+      "target": "아이템 희귀도",
+      "upstreamOccurrenceIndex": 9
+    },
+    {
+      "components": [
+        {
+          "source": "固定詞綴",
+          "target": "고정 속성 부여"
+        }
+      ],
+      "evidenceFunction": "build_table",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/filter_schema.cpp",
+      "formatSignature": [],
+      "function": "build_table",
+      "localizedEvidenceSha256": "3C30521082C7835B0E0F9A242B183B5EF6BD40E787F708B0DD14D3D0757003F8",
+      "localizedOccurrenceIndex": 149,
+      "occurrenceIndex": 149,
+      "path": "host/filter_schema.cpp",
+      "provenance": "manual-reviewed-supporting-context",
+      "source": "固定詞綴",
+      "sourceSha256": "C6DD48C6904CA36E8F82E27A8D235AE5ED66222F4BA36FBF88F1A33128AD7BB1",
+      "target": "고정 속성 부여",
+      "upstreamOccurrenceIndex": 149
+    },
+    {
+      "components": [
+        {
+          "source": "儲存失敗：",
+          "target": "저장 실패: "
+        }
+      ],
+      "evidenceFunction": "Frame",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/launcher_editor.cpp",
+      "formatSignature": [],
+      "function": "Frame",
+      "localizedEvidenceSha256": "7B77D9B2E897F8B5D2FF8EF0CFC18E533C6B4AABE8DF326D7437508F48CB4F17",
+      "localizedOccurrenceIndex": 14,
+      "occurrenceIndex": 15,
+      "path": "host/launcher_editor.cpp",
+      "provenance": "manual-reviewed-supporting-context",
+      "source": "儲存失敗：",
+      "sourceSha256": "C71943FDF4564EE3FD8494C7EAB1D9AE7124D86816FD292F61ACDBB1710D4C32",
+      "target": "저장 실패: ",
+      "upstreamOccurrenceIndex": 15
+    },
+    {
+      "components": [
+        {
+          "source": "重新載入",
+          "target": "적용"
+        }
+      ],
+      "evidenceFunction": "Frame",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/launcher_editor.cpp",
+      "formatSignature": [],
+      "function": "Frame",
+      "localizedEvidenceSha256": "6A1C963D5BC5E2E5791ED11C5915E392D85CF692172B4B9923E0D6A1AF66803F",
+      "localizedOccurrenceIndex": 15,
+      "occurrenceIndex": 16,
+      "path": "host/launcher_editor.cpp",
+      "provenance": "manual-reviewed-supporting-context",
+      "source": "重新載入",
+      "sourceSha256": "70DD895B66DB82BBCF7404A930A3E4E7B0079F71EEF52D2B631CC51C7F65E4AC",
+      "target": "적용",
+      "upstreamOccurrenceIndex": 16
+    },
+    {
+      "components": [
+        {
+          "source": "已複製",
+          "target": "복사됨"
+        }
+      ],
+      "evidenceFunction": "drawOutput",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/regex_tool_ui.cpp",
+      "formatSignature": [],
+      "function": "drawOutput",
+      "localizedEvidenceSha256": "9693E1EB3EDB1291EB33D04471B0E546FBC0C789095623A03158B35DA32F9074",
+      "localizedOccurrenceIndex": 13,
+      "occurrenceIndex": 13,
+      "path": "host/regex_tool_ui.cpp",
+      "provenance": "manual-reviewed-supporting-context",
+      "source": "已複製",
+      "sourceSha256": "FCCE450C45F401A80A36C3B33BB86FC688A0BE9DAC6BA53F1655C0335C237498",
+      "target": "복사됨",
+      "upstreamOccurrenceIndex": 13
+    },
+    {
+      "components": [
+        {
+          "source": "詞綴",
+          "target": "속성"
+        }
+      ],
+      "evidenceFunction": "Frame",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/timeless_jewel_ui.cpp",
+      "formatSignature": [],
+      "function": "Frame",
+      "localizedEvidenceSha256": "286D43F0F3CF915E68D57DFB6D45B4BA2806923BCBC689C6425537C0E55DB8A6",
+      "localizedOccurrenceIndex": 85,
+      "occurrenceIndex": 85,
+      "path": "host/timeless_jewel_ui.cpp",
+      "provenance": "manual-reviewed-supporting-context",
+      "source": "詞綴",
+      "sourceSha256": "79C701C6C34025AEF10B13DD3CAF53532F1A173495F6A4A9B0502E076B64C58B",
+      "target": "속성",
+      "upstreamOccurrenceIndex": 85
+    },
+    {
+      "components": [
+        {
+          "source": "稀有度",
+          "target": "희귀도"
+        }
+      ],
+      "evidenceFunction": "Frame",
+      "evidenceMode": "localized-literal",
+      "evidencePath": "host/timeless_jewel_ui.cpp",
+      "formatSignature": [],
+      "function": "Frame",
+      "localizedEvidenceSha256": "8F679824C3656CD5D9CACC35671F11E7D6921987B2063068D35361EC842DF472",
+      "localizedOccurrenceIndex": 121,
+      "occurrenceIndex": 121,
+      "path": "host/timeless_jewel_ui.cpp",
+      "provenance": "manual-reviewed-supporting-context",
+      "source": "稀有度",
+      "sourceSha256": "530932329592C6E6590A966766B617AA7F2C8BEAC7A32CF2E9DE9A2405A61F47",
+      "target": "희귀도",
+      "upstreamOccurrenceIndex": 121
+    }
+  ],
+  "upstreamCommit": "baf07d41d2df524d4330a58b411826339c93fac1"
+}

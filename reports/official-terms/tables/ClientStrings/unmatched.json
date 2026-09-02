@@ -1,0 +1,1290 @@
+{
+  "patch": "3.29.3.2",
+  "table": "ClientStrings",
+  "rows": [
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "AncestralTrialForfeitGamepadHint"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ArchnemesisModSelectionPanelShowHelpLegend"
+    },
+    {
+      "english": null,
+      "korean": "키락의 금고실은 고유 아이템이 아닌 꾸미기 아이템 스킨을 보상으로 지급합니다. 스킨을 사용하려면 그에 맞는 고유 아이템을 장착해야 합니다.",
+      "reason": "english displayed name is missing",
+      "id": "BattlePassReminder"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ChatMessageLinkedItemAdded1"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ChatMessageLinkedItemAddedN"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleActionAcceptTrade"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleActionAdjustUISize"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleActionBuyItem"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleActionCancelTrade"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleActionChangeMapFavour"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleActionChangeStackSize"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleActionClearMapFavour"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleActionCraft"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleActionDiscard"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleActionEnchant"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleActionEquip"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleActionEquipOffhand"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleActionFavourMap"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleActionIdentify"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleActionInteract"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleActionLinkItemToChat"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleActionMoveItem"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleActionNavigateMods"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleActionOpenAtlas"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleActionOpenOrganQuickSelect"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleActionPickupGem"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleActionPickupJewel"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleActionPlace"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleActionRemove"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleActionSelectItem"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleActionSellItem"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleActionSocket"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleActionSockets"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleActionStash"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleActionStore"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleActionTakeCard"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleActionTakeItem"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleActionUnequip"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleActionUnsocket"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleActionUnstack"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleActionUse"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleActionUseCurrency"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleActionUseOnObject"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleActionUseRemnant"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleActivateMapDevice"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleApplyPassiveChanges"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleAscendancyGraph"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleBindSkill"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleCancelPassiveChanges"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleChangeQuest"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleChangeWaypoint"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleCharacterPanelResistances"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleCharacterPanelStats"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleChatClearMessage"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleChatEditMessage"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleChatEnterMessage"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleChatMessageTooLong"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleChatNavigateLinkedItems"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleChatPendingMessagePrompt"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleChatRemoveLastLinkedItem"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleChatRestrictionNotice"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleChatSend"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleCloseLabyrinthMap"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleCompare"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleCompareAndModifierMoreOptions"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleCycleChatHistory"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleCycleWhisperPartners"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleDescendancyGraph"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleEnterHideoutEditMode"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleErrorLabyrinthIncompleteTrials"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleEventsSeeFullSchedule"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleExitHideoutEditMode"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleGemLevelUpTitle"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleGemReadyToLevelTitle"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleHarvestEnterEditMode"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleHarvestExitEditMode"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleHarvestMovePlacement"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleHarvestMultiPlace"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleHarvestPlace"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleHideoutChangeVariation"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleJoinedPartyMessage"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleLeftPartyMessage"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleMarketPanelLegendChangeSearchOption"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleMoveToArea"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleMTXHideoutPlaceLegend"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleMTXReclaimLegend"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleMTXUseEquipReclaim"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleNavigateProphecies"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleNavigateSkills"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleOfferPageSearchMarket"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleOpenHideoutStash"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleOpenSkillsPanel"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsolePantheonActivate"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsolePantheonNavigate"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsolePaymentPackagesPurchasePreviousTierToUnlockDesc"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsolePaymentPackagesPurchasePreviousTierToUnlockLabel"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsolePickUp"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsolePickupJewel"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsolePlaceJewel"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsolePlayerJoinedPartyMessage"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsolePlayerLeftPartyMessage"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsolePlayerLevelUpText"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsolePlayerLevelUpTitle"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsolePurchaseWithFavourConfirmationWindowMessage"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsolePurchaseWithFavourConfirmationWindowTitle"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleQuickInventorySwitchMapDevice"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleRefund"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleReminderUseLifeFlask"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleReminderUseManaFlask"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleRemoveJewel"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleReorderTabsPrompt"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleRepeatApply"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleRepeatApplyAlt"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleScrollStats"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleSelectBinding"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleSelectDoodad"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleSelectMTXOption"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleSelectSkill"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleShopNavigate"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleShowVendorRefreshInfo"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleSSFMenu"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleSwapPanels"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleSwapSkillSets"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleToggleInventory"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleToggleMapInformation"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleToggleMapLegend"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleToggleMTXInventory"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleToggleStash"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ConsoleUnbindSkillLabel"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "CraftItemConfirmationText"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "CrucibleAddWeaponTreeToItemCraftingGamepadSelect"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "CrucibleCombiningScreenGamepadSelect"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "CurrencyExchangeGamepadCancelOrderLegend"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "CurrencyExchangeGamepadCollectAllItemsLegend"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "CurrencyExchangeGamepadCollectItemsLegend"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "CurrencyExchangeGamepadInspectLegend"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "CurrencyExchangeGamepadMarketInfoLegend"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "CurrencyExchangeGamepadMoreOptionsLegend"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "CurrencyExchangeGamepadNavigateCurrencyCategoriesLegend"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "CurrencyExchangeGamepadNavigateLegend"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "CurrencyExchangeGamepadNavigateListLegend"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "CurrencyExchangeGamepadNavigateOrdersLegend"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "CurrencyExchangeGamepadRatioInfoLegend"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "CurrencyExchangeGamepadSelectCurrencyTypeLegend"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "CurrencyExchangeGamepadSwitchItemsLegend"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "CurrencyExchangeGamepadToggleHoversLegend"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "CurrencyExchangeGamepadToggleInventoryLegend"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "EscapeScreenOpenTradeSiteButton"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "FailedToOpenLabyrinthText"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "FailedToOpenLabyrinthTitle"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "GamepadCannotSocketCharmNotPrimalistError"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "GamepadContextualViewIncursionTempleItemMap"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "GamepadHideAdvancedItemMods"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "GamepadIdentifyFailedNoScrolls"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "GamepadLegendAtlasRegionTree"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "GamepadLegendBulkMoveItems"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "GamepadLegendBulkOfferItems"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "GamepadLegendBulkRemoveItems"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "GamepadLegendBulkSellItems"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "GamepadLegendBulkSendItems"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "GamepadLegendBulkStashItems"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "GamepadLegendBulkTakeItems"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "GamepadLegendBulkTransferItems"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "GamepadLegendHoldAction"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "GamepadLegendOfferItem"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "GamepadLegendToggleMavenMapDeviceOption"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "GamepadLegendUseEmptyCoffin"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "GamepadLegendUseRitualFragment"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "GamepadScourScryingLegend"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "GamepadScryingLegend"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "GamepadToggleQuestGroupsExpansion"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "GemAutoLevelUpTextDisabled"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "GemAutoLevelUpTextEnabled"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "GemLevelUpGemLevel"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "GemToggleAutoLevelLegend"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "GraphicsOptionsUpscaleSharpnessPopup"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "HealthyGamingNotice"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "HellscapePanelInfoLegend"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "HellscapeToggleButtonGamepadShortcut"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "HideoutItemDisplayCaseTakeItemLegend"
+    },
+    {
+      "english": null,
+      "korean": "수확한 씨앗에서 생기를 추출합니다.",
+      "reason": "english displayed name is missing",
+      "id": "ItemDescriptionExtractor"
+    },
+    {
+      "english": null,
+      "korean": "응축된 생기를 소모하여 성장을 촉진합니다.",
+      "reason": "english displayed name is missing",
+      "id": "ItemDescriptionIrrigator"
+    },
+    {
+      "english": null,
+      "korean": "채취기, 응축기, 살포기 사이의 파이프를 지탱합니다.",
+      "reason": "english displayed name is missing",
+      "id": "ItemDescriptionPole"
+    },
+    {
+      "english": null,
+      "korean": "응축된 생기를 보관합니다.",
+      "reason": "english displayed name is missing",
+      "id": "ItemDescriptionStorageTank"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ItemDisplaySkillGemAlternateQualityType"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "LoginLinkAccountPromptWindowCreateAccountDescriptionConsole"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "LoginLinkAccountPromptWindowLinkAccountDescriptionConsole"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "MapDeviceMapToggleStatsCycleGroups"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "MapDeviceMapToggleStatsVisibility"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "NecropolisLeagueGrave"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "OptionsPanelConsoleGatewayOptionHover"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "PS4AccountConsentWindowText"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "PS4AccountConsentWindowTitle"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "RecombinatorUISelectModsPrompt"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "RegionProgressStageNumber"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "RelicAtlarCraftingNormalInfo"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "RenableObjectDescriptionsReminder"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "SanctumRunSummaryFinishedPopup"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "SanctumRunSummaryTitle"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "SanctumRunSummaryWindowInfo"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "TermsAndConditionsPrompt"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "TutorialPanelAbyssContent3"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "TutorialPanelMappingContent7USEDINTRANSLATION"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "XboxCannotOpenWebBrowser"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "XboxJoiningGroup"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "XboxLowBandwidthWarning"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "XboxNetworkExitedOnJoinReasonRestrictedGeneral"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "XboxNetworkExitedOnJoinReasonRestrictedNoGold"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "XboxNetworkExitedOnJoinReasonXboxLiveTemporarilyUnavailable"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "XboxNetworkExitedReasonRestrictedGeneral"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "XboxNetworkExitedReasonRestrictedNoGold"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "XboxNetworkExitedReasonXboxLiveTemporarilyUnavailable"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "XboxPermissionPurchaseRequiredError"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "XboxTradeNotification"
+    }
+  ]
+}

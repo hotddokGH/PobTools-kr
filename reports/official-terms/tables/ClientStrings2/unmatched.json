@@ -1,0 +1,24 @@
+{
+  "patch": "3.29.3.2",
+  "table": "ClientStrings2",
+  "rows": [
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "FavouriteMapsWindowKeepPinsOnScreenCheckboxPopup"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "HUDLeaveUnownedHideoutButtonPopupText"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "MtxLeaderboardMapDeviceNumSpecialUnearthedByDynamite"
+    }
+  ]
+}

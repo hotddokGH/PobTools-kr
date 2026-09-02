@@ -1,0 +1,287 @@
+{
+  "excludedPaths": [
+    {
+      "path": "host/editor_selftest.cpp",
+      "reason": "diagnostic-only output and fixtures"
+    },
+    {
+      "path": "host/error_log_selftest.cpp",
+      "reason": "diagnostic-only output and fixtures"
+    },
+    {
+      "path": "host/filter_selftest.cpp",
+      "reason": "parser regression fixtures"
+    },
+    {
+      "path": "host/item_name_selftest.cpp",
+      "reason": "reverse-translation regression fixtures"
+    },
+    {
+      "path": "host/paste_fixtures.h",
+      "reason": "verbatim client paste fixtures"
+    },
+    {
+      "path": "host/paste_selftest.cpp",
+      "reason": "verbatim client paste regression checks"
+    },
+    {
+      "path": "host/placeholder_selftest.cpp",
+      "reason": "zh-rTW placeholder regression fixtures"
+    },
+    {
+      "path": "host/regex_selftest.cpp",
+      "reason": "synthetic Unicode and compatibility fixtures"
+    },
+    {
+      "path": "host/launcher_strings.h",
+      "reason": "zh-rTW compiled fallback; ko-KR is fully overlaid by launcher/ko-KR/launcher.json"
+    },
+    {
+      "path": "host/filter_tierlist.cpp",
+      "reason": "retired implementation not present in the pob-zh CMake target"
+    },
+    {
+      "path": "host/filter_tierlist_ui.cpp",
+      "reason": "retired implementation not present in the pob-zh CMake target"
+    },
+    {
+      "path": "host/section_appearance.cpp",
+      "reason": "retired section not present in the pob-zh CMake target"
+    },
+    {
+      "path": "host/section_customrules.cpp",
+      "reason": "retired section not present in the pob-zh CMake target"
+    },
+    {
+      "path": "host/section_presets.cpp",
+      "reason": "retired section not present in the pob-zh CMake target"
+    },
+    {
+      "path": "host/section_preview.cpp",
+      "reason": "retired section not present in the pob-zh CMake target"
+    },
+    {
+      "path": "host/section_quickfilter.cpp",
+      "reason": "retired section not present in the pob-zh CMake target"
+    },
+    {
+      "path": "host/section_settings.cpp",
+      "reason": "retired section not present in the pob-zh CMake target"
+    }
+  ],
+  "internalLiteralAllowlist": [
+    {
+      "path": "host/atlas_diff.cpp",
+      "sha256": "1A2ED60F14281831146207077202F262ABB8309174390CA0936DD65C0555D02C",
+      "reason": "non-display atlas diff JSON regression fixture at RunAtlasDiffSelfTest line 488"
+    },
+    {
+      "path": "host/atlas_diff.cpp",
+      "sha256": "547E964D403E6AD927F15CC0D02021ABFEEE8B3D711DB3E7EF6D2666003F3BBF",
+      "reason": "non-display atlas diff JSON regression fixture at RunAtlasDiffSelfTest line 501"
+    }
+  ],
+  "parseRecoveryAllowlist": [
+    {
+      "path": "host/app_update.cpp",
+      "sourceRole": "upstream",
+      "sourceCommit": "baf07d41d2df524d4330a58b411826339c93fac1",
+      "fileSha256": "ABCE0ED7EB9B6CDEE30F6155B55F6118EAA107F6614064167A88814F5275F09E",
+      "recoverySha256": "FD5DDA6B29D5A02FC6C8D7FA23E649B1085C82C2C0294AA9E5E3ACD568A1BD34",
+      "reason": "reviewed X-macro message table and compile-time version literal concatenation recoveries"
+    },
+    {
+      "path": "host/app_update.cpp",
+      "sourceRole": "upstream",
+      "sourceCommit": "baf07d41d2df524d4330a58b411826339c93fac1",
+      "fileSha256": "7C2B6D329D066DFAE51FA34D64D2DDEBB2E6A777E683E7474D6BCB76157D4803",
+      "recoverySha256": "9F10D6FF8F79247D5AA82D3341DA8BA050A1DA20847754560EFFE49415EFBD09",
+      "compatibilityPatchSha256": "2D3963E980C2E48604BA7FA91CDF784AB3E70485FBFEFB51DC5195E25B123959",
+      "reason": "reviewed Korean compatibility patch updater-disable recovery"
+    },
+    {
+      "path": "host/atlas_tree_data.h",
+      "sourceRole": "upstream",
+      "sourceCommit": "baf07d41d2df524d4330a58b411826339c93fac1",
+      "fileSha256": "161E0972BF99E5F5F7BEC3440552DD64524D61BCB1611687DF8BA023A385E7FF",
+      "recoverySha256": "49EB7564EAE9F1E75AE9AC33FCCA38E04D68263D9200AE89E262A8A9E9AA813E",
+      "reason": "reviewed anonymous typed enum recovery"
+    },
+    {
+      "path": "host/error_log.cpp",
+      "sourceRole": "upstream",
+      "sourceCommit": "baf07d41d2df524d4330a58b411826339c93fac1",
+      "fileSha256": "4982531C725A0409C660D52E6E82E3608437E737B852CC1D2F136B9499FC3A82",
+      "recoverySha256": "9129552F3664A1417066AAD05E8140672505577B723EC487124252EF50FD663A",
+      "reason": "reviewed compile-time version literal concatenation recovery"
+    },
+    {
+      "path": "host/filter_preview.h",
+      "sourceRole": "upstream",
+      "sourceCommit": "baf07d41d2df524d4330a58b411826339c93fac1",
+      "fileSha256": "A0EBDEA438A7A682B403D242D45E5BA34649327CE1965E87B841F7A88075C485",
+      "recoverySha256": "7E2D5D0F5825B2BBD6F426FB516DCB213BBAAD09C84347B935FA81DF40919F5D",
+      "reason": "reviewed anonymous typed enum recovery"
+    },
+    {
+      "path": "host/host_main.cpp",
+      "sourceRole": "upstream",
+      "sourceCommit": "baf07d41d2df524d4330a58b411826339c93fac1",
+      "fileSha256": "403E59126F27DAD3516E8472D8F20E2CC4A9057EBF5F6B86AF016E09C18BE696",
+      "recoverySha256": "C175B42768CE84D74A99573C478BD03BFEC114BB77C47C1F9E31CBA8A4030B2E",
+      "reason": "reviewed WINAPI function declaration recovery"
+    },
+    {
+      "path": "host/launcher_ui.cpp",
+      "sourceRole": "upstream",
+      "sourceCommit": "baf07d41d2df524d4330a58b411826339c93fac1",
+      "fileSha256": "2FD097DA454E9642D443D48CAF6841B5135EBAF753E137285A8BE81A85ECCBF3",
+      "recoverySha256": "932D73DE49AEA40EF5369A2F08C6C70D42BD291006F10D204BE932BF5EFDD759",
+      "reason": "reviewed braced range, pointer-to-member, and version macro concatenation recoveries"
+    },
+    {
+      "path": "host/passive_tree_data.h",
+      "sourceRole": "upstream",
+      "sourceCommit": "baf07d41d2df524d4330a58b411826339c93fac1",
+      "fileSha256": "C0D0929D0614E66A0351B44913F65D2ECCE9BA41B8145FAD96A0D08E164790AF",
+      "recoverySha256": "D6998EE5DE5F01A2166119B0A85C1F22658926A05D95AC78F0F54F85F45668D7",
+      "reason": "reviewed anonymous typed enum recovery"
+    },
+    {
+      "path": "host/passive_tree_view.h",
+      "sourceRole": "upstream",
+      "sourceCommit": "baf07d41d2df524d4330a58b411826339c93fac1",
+      "fileSha256": "A20238B5013C008A294FE7E459B8EFC35F1BCD7D4E897B8FF7B85B44BB33E235",
+      "recoverySha256": "EAB2B936E73B205E335DCF0CFEBD3D56886CDC8D73EE606D7C67561E47950BDB",
+      "reason": "reviewed anonymous typed enum recovery"
+    },
+    {
+      "path": "host/pob_launch.cpp",
+      "sourceRole": "upstream",
+      "sourceCommit": "baf07d41d2df524d4330a58b411826339c93fac1",
+      "fileSha256": "F484D12071B911DE1D7ACAC1CC2482239191DC2DFAFB20600D81103BE25A146D",
+      "recoverySha256": "AE3F4E3DA5D7B1616BE750E2EC709DD188ACE711993C7AD518343F46FBD50A94",
+      "reason": "reviewed Win32 CALLBACK function declaration recovery"
+    },
+    {
+      "path": "host/window_dock.cpp",
+      "sourceRole": "upstream",
+      "sourceCommit": "baf07d41d2df524d4330a58b411826339c93fac1",
+      "fileSha256": "B8F0EC373585B3061C3A2A2ED2817874A38A56447DC64AD9CBEDBDDC99E95930",
+      "recoverySha256": "8603DB0613CA4C0F1843BD5BBDD14495E2DFBC1979725E0AA6868D73BC5FD4DC",
+      "reason": "reviewed Win32 CALLBACK function declaration recovery"
+    },
+    {
+      "path": "ui_api.cpp",
+      "sourceRole": "upstream",
+      "sourceCommit": "baf07d41d2df524d4330a58b411826339c93fac1",
+      "fileSha256": "1072BA8D7082082B1C361C0D086008D63A41FEB1C360DFBFFDA70788D744C262",
+      "recoverySha256": "0E70A249CBEBBE65D28C3116F52D27BE9DFE1FD1791ACDB220C29528FF47EFD9",
+      "reason": "reviewed SG_NORETURN declaration and SG_LUA function-boundary macro recoveries"
+    },
+    {
+      "path": "ui_main.cpp",
+      "sourceRole": "upstream",
+      "sourceCommit": "baf07d41d2df524d4330a58b411826339c93fac1",
+      "fileSha256": "BAE46F13BD617830F0458A7538204818BA47DB0EBF183FD4E66DA21D03DE5211",
+      "recoverySha256": "CC5221D755A85CC1B601E93FE2BB1CF5791B6E2B2CF72F562B2AE14ED87923F0",
+      "reason": "reviewed pointer-array new-expression recoveries"
+    },
+    {
+      "path": "host/app_update.cpp",
+      "sourceRole": "localized",
+      "sourceCommit": "2997715df0d6257192107d799a9f414b54e6c02b",
+      "fileSha256": "8BA6D8E76EEFB465AC46DB1FA2FED49F5547F7E16B43B6ACAFB38400FFD701AF",
+      "recoverySha256": "24921F50E4518C9E5782BC0CE3CE4A06936404F1E22C5365C70E29F8CF6427D5",
+      "reason": "reviewed localized X-macro message table and compile-time version literal concatenation recoveries"
+    },
+    {
+      "path": "host/atlas_tree_data.h",
+      "sourceRole": "localized",
+      "sourceCommit": "2997715df0d6257192107d799a9f414b54e6c02b",
+      "fileSha256": "161E0972BF99E5F5F7BEC3440552DD64524D61BCB1611687DF8BA023A385E7FF",
+      "recoverySha256": "49EB7564EAE9F1E75AE9AC33FCCA38E04D68263D9200AE89E262A8A9E9AA813E",
+      "reason": "reviewed localized anonymous typed enum recovery"
+    },
+    {
+      "path": "host/error_log.cpp",
+      "sourceRole": "localized",
+      "sourceCommit": "2997715df0d6257192107d799a9f414b54e6c02b",
+      "fileSha256": "52F8795EBCAF357B55D525CA03CBA53E0912A01A961AE0D99B9234A3F646130A",
+      "recoverySha256": "9129552F3664A1417066AAD05E8140672505577B723EC487124252EF50FD663A",
+      "reason": "reviewed localized compile-time version literal concatenation recovery"
+    },
+    {
+      "path": "host/filter_preview.h",
+      "sourceRole": "localized",
+      "sourceCommit": "2997715df0d6257192107d799a9f414b54e6c02b",
+      "fileSha256": "A0EBDEA438A7A682B403D242D45E5BA34649327CE1965E87B841F7A88075C485",
+      "recoverySha256": "7E2D5D0F5825B2BBD6F426FB516DCB213BBAAD09C84347B935FA81DF40919F5D",
+      "reason": "reviewed localized anonymous typed enum recovery"
+    },
+    {
+      "path": "host/host_main.cpp",
+      "sourceRole": "localized",
+      "sourceCommit": "2997715df0d6257192107d799a9f414b54e6c02b",
+      "fileSha256": "AA3BC77B1250D6F2556332E14230485F7F08D79A6862905FDD68B8F7BBAE809F",
+      "recoverySha256": "62A03891C6A684DAF115610C78D7A89FEB458A152C32317C597CB0BA39856AA2",
+      "reason": "reviewed localized WINAPI function declaration recovery"
+    },
+    {
+      "path": "host/launcher_ui.cpp",
+      "sourceRole": "localized",
+      "sourceCommit": "2997715df0d6257192107d799a9f414b54e6c02b",
+      "fileSha256": "E10DD48D21B71EEB2B9EC184EF9DBCCA9353F5B034F25638FCDFE71EDC2E12A6",
+      "recoverySha256": "D6E27482D1D98F986DDC1B25F0616EE96FD1A0D101082E505934DE9451874136",
+      "reason": "reviewed localized braced range, pointer-to-member, and version macro concatenation recoveries"
+    },
+    {
+      "path": "host/passive_tree_data.h",
+      "sourceRole": "localized",
+      "sourceCommit": "2997715df0d6257192107d799a9f414b54e6c02b",
+      "fileSha256": "C0D0929D0614E66A0351B44913F65D2ECCE9BA41B8145FAD96A0D08E164790AF",
+      "recoverySha256": "D6998EE5DE5F01A2166119B0A85C1F22658926A05D95AC78F0F54F85F45668D7",
+      "reason": "reviewed localized anonymous typed enum recovery"
+    },
+    {
+      "path": "host/passive_tree_view.h",
+      "sourceRole": "localized",
+      "sourceCommit": "2997715df0d6257192107d799a9f414b54e6c02b",
+      "fileSha256": "A20238B5013C008A294FE7E459B8EFC35F1BCD7D4E897B8FF7B85B44BB33E235",
+      "recoverySha256": "EAB2B936E73B205E335DCF0CFEBD3D56886CDC8D73EE606D7C67561E47950BDB",
+      "reason": "reviewed localized anonymous typed enum recovery"
+    },
+    {
+      "path": "host/pob_launch.cpp",
+      "sourceRole": "localized",
+      "sourceCommit": "2997715df0d6257192107d799a9f414b54e6c02b",
+      "fileSha256": "D09816AFDB887645D6D07951938E2D1C149381BCC7348D88EE9FAF29002E85D3",
+      "recoverySha256": "AE3F4E3DA5D7B1616BE750E2EC709DD188ACE711993C7AD518343F46FBD50A94",
+      "reason": "reviewed localized Win32 CALLBACK function declaration recovery"
+    },
+    {
+      "path": "host/window_dock.cpp",
+      "sourceRole": "localized",
+      "sourceCommit": "2997715df0d6257192107d799a9f414b54e6c02b",
+      "fileSha256": "DB4AE1E5730CEC79732E9C50921CC7EE0AF5662DFA0D68303A64D6BB1BB8F9D3",
+      "recoverySha256": "8603DB0613CA4C0F1843BD5BBDD14495E2DFBC1979725E0AA6868D73BC5FD4DC",
+      "reason": "reviewed localized Win32 CALLBACK function declaration recovery"
+    },
+    {
+      "path": "ui_api.cpp",
+      "sourceRole": "localized",
+      "sourceCommit": "2997715df0d6257192107d799a9f414b54e6c02b",
+      "fileSha256": "752E58C3D6A134275895AF401E91BE29C6B16845C07FC30144A4C54AE10E4077",
+      "recoverySha256": "E7082CB4FA325D84159E27669F8DFD0858817CEC7EF8BF22EC650D636F45861C",
+      "reason": "reviewed localized SG_NORETURN declaration and SG_LUA function-boundary macro recoveries"
+    },
+    {
+      "path": "ui_main.cpp",
+      "sourceRole": "localized",
+      "sourceCommit": "2997715df0d6257192107d799a9f414b54e6c02b",
+      "fileSha256": "BAE46F13BD617830F0458A7538204818BA47DB0EBF183FD4E66DA21D03DE5211",
+      "recoverySha256": "CC5221D755A85CC1B601E93FE2BB1CF5791B6E2B2CF72F562B2AE14ED87923F0",
+      "reason": "reviewed localized pointer-array new-expression recoveries"
+    }
+  ]
+}

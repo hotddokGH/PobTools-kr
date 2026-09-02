@@ -28,6 +28,8 @@ Path of Exile 及其所有遊戲內容、名稱、素材之著作權屬 **Grindi
 | 項目 | 授權 / 條款 | 說明 |
 |---|---|---|
 | Path of Exile 遊戲資料(翻譯字典之取材來源) | GGG 著作權 | 翻譯字典取材自官方客戶端資料,僅供粉絲工具使用,發佈時保留出處聲明,非以 MIT 授權釋出。 |
+| Path of Building 한국어 UI 문구 참고 | MIT | `antonio-kim-77/PathOfBuilding-kor` commit `4b4129ef80818f38a221e51ac4cee17cb680b94b`; PoB 전용 UI 표현만 참고하며 게임 용어는 공식 3.29.3.2 매핑을 우선함. 전문은 `localization/ko-KR/reference/NOTICE.md` 참조. |
+| PoB 전용 UI 기계 번역 초안 | CC BY 4.0 | Helsinki-NLP의 `opus-mt-tc-big-en-ko` 모델을 오프라인으로 사용함. 공식 게임 용어와 검토된 UI 번역이 항상 이 계층보다 우선하며, 자세한 출처는 `localization/ko-KR/reference/MACHINE-TRANSLATION-NOTICE.md` 참조. |
 
 ## 3. 字型
 

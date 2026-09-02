@@ -27,3 +27,7 @@ pob-zh-engine/dist/Data/**/*.json -text
 # dep/imgui/.gitattributes 已經替它自己的 ttf 標了 binary,根目錄這份補上
 # host/data/fonts/ 這條線。
 *.ttf binary
+
+localization/ko-KR/compat/pobtools-ko.patch -whitespace
+pob-zh-engine/dist/Fonts/OFL-NotoSansKR.txt -whitespace
+pob-zh-engine/dist/pob-zh.ini -text -whitespace

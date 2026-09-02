@@ -1,0 +1,42 @@
+{
+  "patch": "3.29.3.2",
+  "table": "PassiveSkills",
+  "rows": [
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "atlas_start_node"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ChayulaTreeCurrencyStartNode"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ChayulaTreeEquipmentStartNode"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ChayulaTreeMiscItemsStartNode"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ChayulaTreeUniqueItemsStartNode"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ROOT"
+    }
+  ]
+}

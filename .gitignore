@@ -16,7 +16,12 @@ Release/
 
 # pob-zh-engine build tree (CMake) and deployment bundle
 pob-zh-engine/build/
+pob-zh-engine/build-ko/
+pob-zh-engine/install-ko/
+pob-zh-engine/dist-ko/
 pob-zh-engine/vcpkg/
+pob-zh-engine/PobTools-Korean-preview.zip
+pob-zh-engine/PobTools-Korean-preview.zip.sha256.json
 pob-zh-engine/tests/translate_test_out.txt
 pob-zh-engine/tests/display_colour_test_out.txt
 
@@ -38,6 +43,13 @@ pob-zh-engine/dist/Data/*
 !pob-zh-engine/dist/Data/poe1/
 !pob-zh-engine/dist/Data/poe2/
 !pob-zh-engine/dist/Data/launcher/
+
+# Korean release runtime assets are source inputs for the public package.
+!pob-zh-engine/dist/Fonts/
+pob-zh-engine/dist/Fonts/*
+!pob-zh-engine/dist/Fonts/NotoSansKR-Variable.ttf
+!pob-zh-engine/dist/Fonts/OFL-NotoSansKR.txt
+!pob-zh-engine/dist/pob-zh.ini
 
 # 這裡只再收錄「dist 是唯一寫入者」的那幾組字典。三個曾經也列在這裡的檔
 # (filter_items_zh.json / item_meta.json / item_classes_zh.json)已經拿掉了:
@@ -138,6 +150,13 @@ secrets.json
 
 # --- Misc --------------------------------------------------
 node_modules/
+localization/ko-KR/official-terms/.cache/
+reports/display-closure/locale-audit.json
+.venv-translation/
+.build-deps/
+.worktrees/
+.ko-worktrees/
+localization/ko-KR/manual/machine-fallback-shard-*.json
 **/__pycache__/
 graphify-out/
 image/

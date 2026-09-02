@@ -1,0 +1,699 @@
+{
+  "filesScanned": 177,
+  "displayLiterals": 8865,
+  "reused": 1585,
+  "official": 161,
+  "reviewed": 1424,
+  "intentional": 0,
+  "parseRecoveryEvidence": {
+    "useCount": 12,
+    "identities": [
+      {
+        "path": "host/app_update.cpp",
+        "sourceRole": "upstream",
+        "sourceCommit": "baf07d41d2df524d4330a58b411826339c93fac1",
+        "fileSha256": "ABCE0ED7EB9B6CDEE30F6155B55F6118EAA107F6614064167A88814F5275F09E",
+        "recoverySha256": "FD5DDA6B29D5A02FC6C8D7FA23E649B1085C82C2C0294AA9E5E3ACD568A1BD34"
+      },
+      {
+        "path": "host/atlas_tree_data.h",
+        "sourceRole": "upstream",
+        "sourceCommit": "baf07d41d2df524d4330a58b411826339c93fac1",
+        "fileSha256": "161E0972BF99E5F5F7BEC3440552DD64524D61BCB1611687DF8BA023A385E7FF",
+        "recoverySha256": "49EB7564EAE9F1E75AE9AC33FCCA38E04D68263D9200AE89E262A8A9E9AA813E"
+      },
+      {
+        "path": "host/error_log.cpp",
+        "sourceRole": "upstream",
+        "sourceCommit": "baf07d41d2df524d4330a58b411826339c93fac1",
+        "fileSha256": "4982531C725A0409C660D52E6E82E3608437E737B852CC1D2F136B9499FC3A82",
+        "recoverySha256": "9129552F3664A1417066AAD05E8140672505577B723EC487124252EF50FD663A"
+      },
+      {
+        "path": "host/filter_preview.h",
+        "sourceRole": "upstream",
+        "sourceCommit": "baf07d41d2df524d4330a58b411826339c93fac1",
+        "fileSha256": "A0EBDEA438A7A682B403D242D45E5BA34649327CE1965E87B841F7A88075C485",
+        "recoverySha256": "7E2D5D0F5825B2BBD6F426FB516DCB213BBAAD09C84347B935FA81DF40919F5D"
+      },
+      {
+        "path": "host/host_main.cpp",
+        "sourceRole": "upstream",
+        "sourceCommit": "baf07d41d2df524d4330a58b411826339c93fac1",
+        "fileSha256": "403E59126F27DAD3516E8472D8F20E2CC4A9057EBF5F6B86AF016E09C18BE696",
+        "recoverySha256": "C175B42768CE84D74A99573C478BD03BFEC114BB77C47C1F9E31CBA8A4030B2E"
+      },
+      {
+        "path": "host/launcher_ui.cpp",
+        "sourceRole": "upstream",
+        "sourceCommit": "baf07d41d2df524d4330a58b411826339c93fac1",
+        "fileSha256": "2FD097DA454E9642D443D48CAF6841B5135EBAF753E137285A8BE81A85ECCBF3",
+        "recoverySha256": "932D73DE49AEA40EF5369A2F08C6C70D42BD291006F10D204BE932BF5EFDD759"
+      },
+      {
+        "path": "host/passive_tree_data.h",
+        "sourceRole": "upstream",
+        "sourceCommit": "baf07d41d2df524d4330a58b411826339c93fac1",
+        "fileSha256": "C0D0929D0614E66A0351B44913F65D2ECCE9BA41B8145FAD96A0D08E164790AF",
+        "recoverySha256": "D6998EE5DE5F01A2166119B0A85C1F22658926A05D95AC78F0F54F85F45668D7"
+      },
+      {
+        "path": "host/passive_tree_view.h",
+        "sourceRole": "upstream",
+        "sourceCommit": "baf07d41d2df524d4330a58b411826339c93fac1",
+        "fileSha256": "A20238B5013C008A294FE7E459B8EFC35F1BCD7D4E897B8FF7B85B44BB33E235",
+        "recoverySha256": "EAB2B936E73B205E335DCF0CFEBD3D56886CDC8D73EE606D7C67561E47950BDB"
+      },
+      {
+        "path": "host/pob_launch.cpp",
+        "sourceRole": "upstream",
+        "sourceCommit": "baf07d41d2df524d4330a58b411826339c93fac1",
+        "fileSha256": "F484D12071B911DE1D7ACAC1CC2482239191DC2DFAFB20600D81103BE25A146D",
+        "recoverySha256": "AE3F4E3DA5D7B1616BE750E2EC709DD188ACE711993C7AD518343F46FBD50A94"
+      },
+      {
+        "path": "host/window_dock.cpp",
+        "sourceRole": "upstream",
+        "sourceCommit": "baf07d41d2df524d4330a58b411826339c93fac1",
+        "fileSha256": "B8F0EC373585B3061C3A2A2ED2817874A38A56447DC64AD9CBEDBDDC99E95930",
+        "recoverySha256": "8603DB0613CA4C0F1843BD5BBDD14495E2DFBC1979725E0AA6868D73BC5FD4DC"
+      },
+      {
+        "path": "ui_api.cpp",
+        "sourceRole": "upstream",
+        "sourceCommit": "baf07d41d2df524d4330a58b411826339c93fac1",
+        "fileSha256": "1072BA8D7082082B1C361C0D086008D63A41FEB1C360DFBFFDA70788D744C262",
+        "recoverySha256": "0E70A249CBEBBE65D28C3116F52D27BE9DFE1FD1791ACDB220C29528FF47EFD9"
+      },
+      {
+        "path": "ui_main.cpp",
+        "sourceRole": "upstream",
+        "sourceCommit": "baf07d41d2df524d4330a58b411826339c93fac1",
+        "fileSha256": "BAE46F13BD617830F0458A7538204818BA47DB0EBF183FD4E66DA21D03DE5211",
+        "recoverySha256": "CC5221D755A85CC1B601E93FE2BB1CF5791B6E2B2CF72F562B2AE14ED87923F0"
+      }
+    ]
+  },
+  "issues": [
+    {
+      "code": "MISSING_COMPONENT_MAPPING",
+      "path": "host/atlas_diff.cpp",
+      "function": "RunAtlasDiffSelfTest",
+      "occurrenceIndex": 93,
+      "line": 488,
+      "source": "{\"tag\":\"9.99.0\",\"repoe\":\"9.98.0.1\",\"joined\":1,\"total\":2,\"fresh\":[\"[X|Y] gains 5\",\"other line\"],\"freshNames\":[\"100\"],\"nodes\":{\"100\":{\"en\":\"Node A\",\"zh\":\"節點甲\",\"statsEn\":[\"[X|Y] gains 5\"],\"statsZh\":[\"[X|Y] 獲得 5\"]},\"101\":{\"en\":\"Node B\",\"zh\":\"節點乙\",\"statsEn\":[\"other line\"],\"statsZh\":[\"舊譯\"]}}}"
+    },
+    {
+      "code": "MISSING_COMPONENT_MAPPING",
+      "path": "host/atlas_diff.cpp",
+      "function": "RunAtlasDiffSelfTest",
+      "occurrenceIndex": 96,
+      "line": 501,
+      "source": "{\"passives\":{\"101\":{\"name\":\"節點乙\",\"stat_text\":[\"其他行\"]}}}"
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/atlas_import.cpp",
+      "function": "sheetFor",
+      "occurrenceIndex": 2,
+      "line": 130,
+      "source": "圖集 "
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/atlas_import.cpp",
+      "function": "sheetFor",
+      "occurrenceIndex": 3,
+      "line": 130,
+      "source": " 是 webp 格式，目前不支援（需要 png/jpg）"
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/atlas_import.cpp",
+      "function": "sheetFor",
+      "occurrenceIndex": 6,
+      "line": 135,
+      "source": "圖集 "
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/atlas_import.cpp",
+      "function": "sheetFor",
+      "occurrenceIndex": 7,
+      "line": 135,
+      "source": " 尺寸異常或超過 4096"
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/atlas_import.cpp",
+      "function": "sheetFor",
+      "occurrenceIndex": 8,
+      "line": 140,
+      "source": "assets 資料夾內找不到圖集 "
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/atlas_import.cpp",
+      "function": "ImportAtlasTreeData",
+      "occurrenceIndex": 109,
+      "line": 363,
+      "source": "有 "
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/atlas_import.cpp",
+      "function": "ImportAtlasTreeData",
+      "occurrenceIndex": 110,
+      "line": 364,
+      "source": " 個節點無法從起點抵達，資料異常，已中止匯入"
+    },
+    {
+      "code": "MISSING_COMPONENT_MAPPING",
+      "path": "host/atlas_mechanics.cpp",
+      "function": "AtlasBuildMechanicMap",
+      "occurrenceIndex": 19,
+      "line": 210,
+      "source": "機制圖示規則的回測一致率只有 %.1f%%（門檻 %.1f%%），GGG 可能改了圖示命名，已中止"
+    },
+    {
+      "code": "FORMAT_SIGNATURE_MISMATCH",
+      "path": "host/atlas_planner.cpp",
+      "function": "OpenDataJsonDialog",
+      "occurrenceIndex": 1,
+      "line": 66,
+      "source": "atlastree-export data.json\u0000data.json;*.json\u0000所有檔案 (*.*)\u0000*.*\u0000\u0000",
+      "sourceSignature": [
+        "<NUL>",
+        "<NUL>",
+        "<NUL>",
+        "<NUL>",
+        "<NUL>"
+      ],
+      "targetSignature": [
+        "<NUL>",
+        "<NUL>",
+        "<NUL>",
+        "<NUL>",
+        "<NUL>"
+      ]
+    },
+    {
+      "code": "FORMAT_SIGNATURE_MISMATCH",
+      "path": "host/atlas_planner.cpp",
+      "function": "",
+      "occurrenceIndex": 26,
+      "line": 73,
+      "source": "輿圖策略專案 (*.json)\u0000*.json\u0000所有檔案 (*.*)\u0000*.*\u0000\u0000",
+      "sourceSignature": [
+        "<NUL>",
+        "<NUL>",
+        "<NUL>",
+        "<NUL>",
+        "<NUL>"
+      ],
+      "targetSignature": [
+        "<NUL>",
+        "<NUL>",
+        "<NUL>",
+        "<NUL>",
+        "<NUL>"
+      ]
+    },
+    {
+      "code": "MISSING_COMPONENT_MAPPING",
+      "path": "host/atlas_planner.cpp",
+      "function": "Frame",
+      "occurrenceIndex": 50,
+      "line": 433,
+      "source": "用最少的天賦點重新接一次目前的節點。\n大點、鑰石與端點都會保留，只有中間繞路的小點會改道；\n平常點節點不會自動重算，按了才會動，Ctrl+Z 可復原。"
+    },
+    {
+      "code": "MISSING_COMPONENT_MAPPING",
+      "path": "host/atlas_planner.cpp",
+      "function": "Frame",
+      "occurrenceIndex": 63,
+      "line": 502,
+      "source": "沙盒：從空白開始快速標記想要／不要的節點，期間不會寫入存檔，結束時再決定要不要保留"
+    },
+    {
+      "code": "MISSING_COMPONENT_MAPPING",
+      "path": "host/atlas_planner.cpp",
+      "function": "Frame",
+      "occurrenceIndex": 66,
+      "line": 527,
+      "source": "比較任兩個已安裝版本（可選）：節點增刪與逐詞條數值變更（綠=新增, 紅=移除, 黃=變動）\n當季各小版本都會保留，所以也能比 %s 這種賽季中的官方調整\n目前已安裝 %d 個版本"
+    },
+    {
+      "code": "MISSING_COMPONENT_MAPPING",
+      "path": "host/atlas_planner.cpp",
+      "function": "Frame",
+      "occurrenceIndex": 75,
+      "line": 556,
+      "source": "滾輪縮放  ·  拖曳平移  ·  左鍵配點或移除  ·  點叢集中央的機制圖示可標出同機制的所有位置"
+    },
+    {
+      "code": "MISSING_COMPONENT_MAPPING",
+      "path": "host/atlas_planner.cpp",
+      "function": "Frame",
+      "occurrenceIndex": 109,
+      "line": 742,
+      "source": "超過 %d 個時，「壓縮到最少點」與規劃模式改用近似演算法，\n可能比真正的最少點多幾點。平常點節點不受影響。"
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/atlas_planner.cpp",
+      "function": "scarabRefuseText",
+      "occurrenceIndex": 4,
+      "line": 1675,
+      "source": "與「"
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/atlas_planner.cpp",
+      "function": "scarabRefuseText",
+      "occurrenceIndex": 6,
+      "line": 1675,
+      "source": "」不能同時使用"
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/atlas_planner.cpp",
+      "function": "rebuildDiff",
+      "occurrenceIndex": 2,
+      "line": 1941,
+      "source": "載入 "
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/atlas_planner.cpp",
+      "function": "rebuildDiff",
+      "occurrenceIndex": 3,
+      "line": 1941,
+      "source": " 失敗："
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/atlas_planner.cpp",
+      "function": "rebuildDiff",
+      "occurrenceIndex": 4,
+      "line": 1942,
+      "source": "載入 "
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/atlas_planner.cpp",
+      "function": "rebuildDiff",
+      "occurrenceIndex": 5,
+      "line": 1942,
+      "source": " 失敗："
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/atlas_update.cpp",
+      "function": "AtlasUpdater::doCheck",
+      "occurrenceIndex": 7,
+      "line": 556,
+      "source": "發現新賽季輿圖資料 "
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/atlas_update.cpp",
+      "function": "AtlasUpdater::doCheck",
+      "occurrenceIndex": 9,
+      "line": 556,
+      "source": "（目前 "
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/atlas_update.cpp",
+      "function": "AtlasUpdater::doUpdate",
+      "occurrenceIndex": 22,
+      "line": 673,
+      "source": " 圖集中… "
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/atlas_view.cpp",
+      "function": "AtlasView::Draw",
+      "occurrenceIndex": 11,
+      "line": 651,
+      "source": "已移除 "
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/atlas_view.cpp",
+      "function": "AtlasView::Draw",
+      "occurrenceIndex": 12,
+      "line": 651,
+      "source": " 點"
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/atlas_view.cpp",
+      "function": "AtlasView::Draw",
+      "occurrenceIndex": 17,
+      "line": 667,
+      "source": "已配置 "
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/atlas_view.cpp",
+      "function": "AtlasView::Draw",
+      "occurrenceIndex": 18,
+      "line": 668,
+      "source": " 點 · 共 "
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/atlas_view.cpp",
+      "function": "AtlasView::Draw",
+      "occurrenceIndex": 19,
+      "line": 668,
+      "source": " 點"
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/changelog.h",
+      "function": "",
+      "occurrenceIndex": 0,
+      "line": 22,
+      "source": "v1.1.0（2026-08-30）\n修正\n　·POB 視窗的中文與英數霧霧的、像被整張放大過：文字改以實際字級繪製並對齊像素，筆畫銳利不再發糊。（介面縮放非 100% 時同樣清晰）\n　·※ 使用思源黑體時文字位置會比先前略低，屬修正後的正常對位。\n新增\n　·設定頁新增「HTTP 代理」：更新檢查、翻譯資料與圖示下載可經代理連線，留空則自動跟隨系統代理。（給連不上 GitHub 的網路環境）\n\nv1.0.0（2026-08-28）\n修正\n　·POB 更新到測試版後整個變回英文：POB 新版程式碼用了新的執行環境語法，翻譯完全停擺。（執行環境已同步升級）\n　·翻譯後的文字顏色跟著前面的字走、改色不生效：一行裡夾在中間的顏色會在翻譯時被吃掉。（技能組列表、側欄括號註記等全面恢復顏色）\n　·客製化詞綴框沒點進去時整框顯示英文：現在逐行翻譯，配對到的詞綴顯示中文，自己寫的備註保留原文。\n　·物品清單的「(Unused)」被翻成「(反鍊金的)」：現在正確顯示「(未使用)」。（簡體同步修正）\n　·側欄的「(Guard)」被翻成「(軍衛)」：現在正確顯示「(守護)」，簡體為「(护卫)」。\n　·簡體介面下部分文字顯示成問號：啟動器與工具視窗改用出貨字型互補缺字。\n　·使用 POB 測試版時啟動器不顯示 POB 版本號。\n新增\n　·技能分頁的使用提示、物品清單的拖放說明等整塊英文段落現在會翻譯。\n　·配置分頁詞綴瀏覽器的「在巔峰頭目面前時」「在傳奇頭目面前時」系列詞綴現在會翻譯。\n調整\n　·詞綴翻譯：補齊 15 條繁中與簡中的詞綴與介面文字。\n\nv0.29.0（2026-08-26）\n修正\n　·PoE2 計算頁區段標題後面的數值不見或少一格：中文標題比英文長，數值被畫在標題底下。（充能球、持續計算的吸納和擊中傷害承受等）\n　·計算頁多欄數值全部變成同一個顏色：充能球、能力值這類「0, 0, 0」的數值失去各自的顏色。\n　·天賦樹提示的「擊」「額」等字顯示成方框：PoE2 字典混進了日文與簡體字形，思源黑體沒有這些字。\n　·PoE2 藥劑區段的標籤超出框外：「%機率不消耗充能使用」改為「不消耗機率」。\n　·PoE2 詞綴與介面翻譯：修正 87 條用錯字的譯文。\n新增\n　·字型缺字時自動補字：所選字型沒有的字改用另一顆內建字型畫，不再是方框。（例如部分物品名稱裡思源黑體沒有的字，會改用方正字型）\n\nv0.28.0（2026-08-25）\n修正\n　·按「檢查更新」沒有任何反應：檢查失敗時按鈕會直接變回原樣，看起來跟「已是最新」一模一樣。現在會說出失敗原因。\n　·※ 短時間連按會被 GitHub 限制查詢次數，過幾分鐘再試即可。\n　·介面縮放 200% 時視窗可能整片空白：字型圖集超出顯示卡上限卻仍被送出去。現在會自動縮到放得下為止。\n新增\n　·問題紀錄：程式遇到問題時會把原因寫進安裝目錄的 PobTools\\logs\\，每天一個檔，含版本與是哪個功能。\n　·※ 回報問題時附上當天那一個檔最有幫助；一切正常時它會是空的。\n　·設定頁新增「開啟問題紀錄資料夾」。\n　·POB 更新後中文輸入或搜尋失效時會留下紀錄：說得出是哪一個功能、以及為什麼沒有套用。\n　·書籤、配點、賽季清單存檔失敗時會留下紀錄，不再默默失敗。\n調整\n　·安裝包重新附上方正字型。\n\nv0.27.0（2026-08-25）\n修正\n　·POB 的搜尋框打不進中文：技能寶石、物品資料庫、召喚物、計算頁、設定頁與自訂修飾符，輸入中文查不到東西。\n　·物品資料庫用詞綴的中文找不到東西：只有物品名稱找得到。\n新增\n　·Poe Regex 支援 PoE2：換界石、碑牌、聖物、探險遺物四份詞綴清單。（碑牌八種共用一份，左欄依碑牌分組）\n　·Poe Regex 分成兩層選擇：先選 PoE1 或 PoE2，再選那個遊戲的清單。\n　·Poe Regex 書籤依遊戲分開：只顯示目前遊戲的，另一個遊戲有幾筆會標在旁邊。\n調整\n　·Poe Regex 移除「自訂清單」：貼上自己的清單那一頁已經拿掉。\n　·※ 上一版說的「PoE2 與其他清單請用自訂清單」不再適用，PoE2 現在有內建清單。\n　·輿圖策略內建 3.29.1 賽季：預設開在 3.29.1，比較基準改為 3.29.0。\n　·安裝包不再附方正字型：只附思源黑體。（已經裝過的人磁碟上那份會留著，字型設定不受影響）\n\nv0.26.0（2026-08-24）\n修正\n　·PoE2 版 POB：詞綴、物品、技能寶石、天賦與怪物名稱仍有大量維持英文。（本次補齊 15,423 條、修正 3,044 條與遊戲內用詞不符的譯文）\n　·※ 對照的是遊戲版本 4.5.4.10.2；官方尚未在地化的字串維持顯示英文。\n新增\n　·Poe Regex：勾選地圖或探險日誌詞綴，產生可以直接貼進遊戲搜尋列的字串。（勾 10 條約 25 個字，逐條打出來要 146 個字）\n　·※ 產生的字串只會找到勾選的那幾條，不會誤中清單裡的其他詞綴；真的分不出來的會列出來告訴你。\n　·※ 字串分繁體中文與英文兩種，要跟遊戲客戶端的語言一致，兩邊不能互換。\n　·Poe Regex 三種找法：含任一個、全部都有、一個都沒有。（「一個都沒有」是排除字串，用來把東西藏起來）\n　·Poe Regex 自訂清單：貼上自己的一份清單，一樣只中勾選的那幾行。（不需要資料檔，任何清單都能用）\n　·※ 內建清單是 PoE1 的地圖與探險日誌詞綴；PoE2 與其他清單請用「自訂清單」。\n　·Poe Regex 書籤：常用的一組詞綴可以存成書籤，隨時叫回來，也能改名、更新或刪除。（關掉再開，上次的勾選也還在）\n　·更新檔真偽驗證：程式與翻譯資料的更新在安裝前會先驗證發布簽章，驗不過就拒絕安裝。（會顯示拒絕的原因，不會默默照裝）\n　·※ 翻譯資料更新若因簽章問題失敗，會顯示原因，不會默默停在舊字典。\n　·※ 這一版之後的更新都必須帶簽章。這不是防毒用的程式碼簽章憑證，不會減少防毒誤判。\n\nv0.25.0（2026-08-22）\n修正\n　·程式更新套用失敗後會不斷跳出錯誤視窗，回不到啟動器。\n　·先啟動過 POB、再切換遊戲並開啟工具（過濾器編輯器、輿圖策略、軍團珠寶）時，工具會開到上一次啟動的那個遊戲。\n　·翻譯資料自動更新可能在 POB 或翻譯編輯器正在使用字典時套用，造成字典新舊混雜。\n新增\n　·啟動時間紀錄：每次啟動會在 PobTools 資料夾留下啟動器與 POB 的啟動時間紀錄，回報啟動很慢時可一併附上。\n調整\n　·啟動器視窗一出現就有內容，不再先黑一下。\n　·POB 載入：視窗提早約 1 秒出現，載入完成也快約 1 秒。（本機實測 1.4 秒 → 0.4 秒）\n\nv0.24.0（2026-08-20）\n修正\n　·POB 的備註與其他文字框貼上中文會變成一串問號，只有用打字輸入才正常。\n新增\n　·過濾器編輯器「從遊戲匯入物品」：在遊戲裡 Ctrl+C 複製物品，貼進掉落預覽就能看到目前的過濾器會怎麼處理它。（命中哪條規則、最終外觀與音效）\n　·※ 無法從物品文字判斷的條件（詞綴名、插槽顏色等）會列成警告，不會假裝判定；區域等級沿用預覽面板的設定。\n\nv0.23.0（2026-08-18）\n修正\n　·PoE2 版 POB：新賽季的物品與詞綴大量維持英文，時空之物等新傳奇與符煉裝備現在會翻譯了。（本次補齊詞綴 2,094 條、物品名稱 1,480 條）\n　·※ 不可交易的物品（嫁接手臂等）與官方尚未在地化的詞綴，維持顯示英文。\n　·PoE2 物品資訊視窗的「符文保護」與「插槽」欄位名維持英文。\n　·關閉「POB 視窗的英文與數字也用此字型」後，用捷徑或指令直接啟動 POB 時設定不會生效。\n\nv0.22.0（2026-08-18）\n修正\n　·特索塔之珠、汙染與合成物品上帶技能名的詞綴（受某某輔助、全部某某寶石等級）整行維持英文。（本次補齊 956 條）\n　·※「暴擊時施放」與「暈眩時施放」兩種輔助因官方資料譯名重複，維持顯示英文，避免貼上物品時裝錯輔助。\n　·物品資訊視窗「按住 Shift 顯示被賦予技能」的提示與天賦樹的隱藏提示維持英文。\n新增\n　·POB 視窗的英文與數字也套用所選字型，中英數同一字體，粗體以合成粗體顯示。（預設開啟，設定頁可關閉）\n　·※ 等寬欄位（主控台、物品原文編輯）不套用；切換設定後需重新啟動 POB 視窗才會生效。\n\nv0.21.0（2026-08-14）\n修正\n　·貼上帶「殘存」的物品時，基底名稱與帶「無法使用的值」的詞綴會變成一串問號。\n　·分頁方式下，主視窗有時最小化不下去，還原之後 POB 視窗還會跑位或閃一下。\n　·分頁方式下，POB 正在計算時拖曳主視窗會整個卡住。\n　·開新視窗時分頁沒有自動切換過去，分頁名稱也可能顯示成別的視窗的。\n新增\n　·過濾器編輯器、翻譯編輯器、軍團珠寶計算器、輿圖策略可以開成主視窗裡的分頁。（視窗方式選「分頁」時）\n　·關閉主視窗時，分頁裡還有未儲存的編輯會先詢問，不會直接關掉。\n調整\n　·視窗分頁的名稱改成顯示開啟中的專案名稱，不再是固定的「PoE1」。\n\nv0.20.0（2026-08-12）\n修正\n　·稀有物品與星團珠寶的名稱有時整串維持英文，像是「Loath Joy, Medium Cluster Jewel」。\n　·物品資訊視窗最上面的物品名稱維持英文，只有下面一行的基底類型有翻譯。\n　·紋身選單裡 172 種紋身有 139 種顯示英文名稱。\n　·置換節點詞綴之類的視窗中，較長的說明文字會整段維持英文。\n　·物品的無形性維持英文；貼上物品時這個數值還會整個消失。\n　·PoE2 的物品庫用中文名稱搜尋不到東西。\n調整\n　·物品資訊視窗的「破麻道具」改為「破裂道具」。\n\nv0.19.0（2026-08-10）\n修正\n　·詞綴同時帶多個數值時，數值會填到錯的位置，例如把命中值與傷害的數字對調。\n新增\n　·軍團珠寶計算器新增深淵珠寶：潰爛復仇、撲滅之握、邪惡統治、滅亡之願、重奪惡意。\n　·※ 深淵珠寶是 3.29 新機制，可對照的遊戲實錄只有 42 筆，程式內選擇時會一併提醒。\n　·安裝目錄缺少翻譯資料時，首頁會顯示提示與「立即下載翻譯資料」按鈕。\n調整\n　·更新拆成主程式與翻譯資料兩條線，各自獨立，主程式更新不會再蓋掉翻譯資料。\n　·設定裡的「更新時一併更新翻譯資料」改名為「自動更新翻譯資料」，並顯示目前的翻譯資料版本。\n　·主程式的修訂版更新改成一律詢問，不再自動套用。\n\nv0.18.0（2026-08-06）\n修正\n　·翻譯編輯器的條目清單捲到底以後，下方明明還有資料卻捲不下去。\n調整\n　·翻譯編輯器的 Key 若本身有換行，改成顯示 \\n；完整內容可停留在該列或按「...」查看。\n　·翻譯編輯器的顏色預覽改成滑鼠停留在譯文欄位時顯示，不再固定佔一行。\n　·翻譯編輯器的清單最後多留一列空白，最後一筆不會貼在視窗邊緣。\n\nv0.17.0（2026-08-06）\n修正\n　·按 F2 切回原文時，游標底下的裝備說明沒有跟著變回英文，要移到別的物品上才會。\n新增\n　·設定新增「視窗方式」：可以把 POB 與工具收成這個視窗裡的分頁，一次開多個互相切換。\n　·※分頁方式初次提供，同時開多個時偶爾會遇到啟動失敗或沒有反應，預設仍是各自獨立的視窗。\n調整\n　·翻譯字典改為公開在 GitHub 上，任何人都可以修改譯文後回報。\n\nv0.16.0（2026-08-04）\n新增\n　·設定新增「翻譯資料夾」：PoE1、PoE2、啟動器介面各自一欄，可以分別指到安裝目錄以外的資料夾。\n　·每一欄都有「複製…」，會把內建資料複製過去並自動建立正確的資料夾結構。\n　·設定可選更新時要不要一併更新翻譯資料；選「否」時仍會通知，可隨時按一次套用。\n　·啟動器本身的介面文字也能翻譯了，用翻譯編輯器選「launcher」就能改。\n　·翻譯編輯器的長文字或多行內容可以按「...」展開成大框編輯。\n　·多語系：在 Data 的遊戲資料夾底下新增一個語系資料夾，介面語言就會自動出現那個選項。\n　·設定新增「安裝字型…」，可以挑一個字型檔進來使用，不必自己丟到 Fonts 資料夾。\n　·主畫面在使用外部翻譯資料時會逐項標示出來，並可一鍵切回內建。\n　·可以用捷徑直接開翻譯編輯器（pob-zh.exe --translation-editor）。\n調整\n　·翻譯編輯器會跟著設定走，編輯的一定是 POB 實際會讀的那一份。\n　·翻譯資料夾留空就是使用內建資料，下方會標示實際用的是程式資料夾裡的哪一個。\n　·資料夾選錯層時會說明是選太上面還是太裡面，並附上正確的路徑可以一鍵改用。\n　·選了無法使用的資料夾時會自動改用內建資料，POB 仍可正常啟動。\n　·外部資料夾少了新版才有的字典檔時，設定頁會列出來，避免它靜靜地沒被載入。\n　·設定改完會立刻寫入，另附「儲存設定」與已儲存提示。\n　·從命令列或捷徑直接啟動 POB 時，字型與翻譯資料夾設定現在也會生效。\n　·介面語言的選項改成看資料夾決定，不再是固定的兩個；名稱可由該語系的 meta.json 指定。\n　·目前的字型畫不出所選語言時會標示出來，並在語言選單標出缺字的語言。\n　·設定改動一律立即儲存；「儲存設定」按鈕移到設定頁最下方，只作為已寫入的確認。\n　·「關於」從設定頁分出來，變成獨立分頁。\n\nv0.15.0（2026-08-03）\n修正\n　·貼上物品時星團珠寶的大天賦全部消失：珠寶會被重建成另一顆，骰到的大天賦一個都不留。\n　·POB 裡較長的詞綴顯示英文：一行只要長到需要換行就翻不出來，與字典有沒有那一條無關。\n　·血肉融合這類負值詞綴完全沒有翻譯。\n　·傳奇珠寶「穢生 赤影夢魘」第一條詞綴顯示成問號。\n　·工藝介面的詞綴列顯示英文，同一條詞綴在物品說明裡卻是中文。\n　·版本紀錄的條列符號顯示成問號，且文字擠在窄窄一欄。\n　·翻譯編輯器切換遊戲時，未儲存的修改會直接消失，也不會提醒。\n　·翻譯編輯器存檔會改掉檔案的換行格式。\n新增\n　·啟動器改成分頁：主畫面、版本資訊、設定。版本資訊拿到整個視窗的寬度。\n　·設定可選啟動 POB 後要關閉啟動器、回到啟動器，或保持開啟。（保持開啟時可以再開一個 POB）\n　　※ 有 POB 在執行時無法更新，更新會替換 engine 資料夾裡的檔案。\n　·設定可選啟動時要顯示主畫面還是版本資訊。\n　·翻譯編輯器可以手動新增詞條，不必等它先出現在缺漏掃描裡。\n　·翻譯編輯器會提醒「寫進這個檔不會生效」，並可一鍵改寫到真正生效的那個檔。\n　·翻譯編輯器切換遊戲或語系前，會先問要不要儲存。\n　·外部連結新增「拆粉查詢」。\n調整\n　·介面語言、字型、「POB 關閉後回到啟動器」移到設定分頁。\n　·「版本資訊」與「關於」不再是彈出視窗。\n　·翻譯編輯器更名為「翻譯編輯器(Beta)」。\n\nv0.14.0（2026-08-01）\n修正\n　·技能欄的輔助寶石顯示成天賦的名\n　　字：例如「易變輔助」顯示成「易\n　　爆」，共修正 67 條、補齊 2 條。\n　·地圖格的新增按鈕點了沒反應：星盤\n　　展開時按鈕會失效，收合後才正常。\n　·部分寶石與物品顯示英文：名稱帶特\n　　殊字母者查不到翻譯，補齊 13 條。\n　·範圍效果半徑等長度顯示成「分」，\n　　應為「公尺」。\n新增\n　·地圖格可放入地圖碎片：黎明、正午、\n　　黃昏、午夜的奉獻，以及凡人的哀傷、\n　　憤怒、希望、無知，共 8 種。\n調整\n　·輿圖策略的「甲蟲」欄位更名為「地\n　　圖格」。\n\nv0.13.0（2026-08-01）\n修正：配點會自己改道（0.12.0 的問題）\n　- 點第二個節點時，第一個節點走過的路徑會被\n　　重新排過，越點越亂。現在改回原本的接法：\n　　點一下就接最短路徑，已經配好的點不會動。\n　- 想要最少點的接法改成工具列的「壓縮到最少\n　　點」按鈕，按了才算，Ctrl+Z 可復原。\n　　大點、鑰石與端點都會保留。\n新增：點機制圖示標出同機制的所有位置\n　- 點叢集中央的機制圖示（裂痕、軍團、譫妄…），\n　　全輿圖同機制的節點與叢集會一起亮圈。\n　- 側欄新增「機制」清單，點名稱同樣會標示\n　　並跳到最近的叢集；Esc 或「清除」取消。\n改進：規劃模式看得出哪些是自己標的\n　- 標為「想要」的節點改成明顯的綠色外框，\n　　縮到多小都看得到，跟系統補的連接點\n　　一眼分得出來。\n修正：最新賽季被當成舊賽季\n　- 應用程式更新會把賽季清單蓋回出貨版，\n　　害你自己下載的 3.29.1 顯示「舊賽季檢視\n　　（唯讀）」而且存不進去。現在以磁碟上實際\n　　有的最新完整賽季為準，並自動修好清單。\n\nv0.12.0（2026-07-31）\n更名：輿圖配點器改為輿圖策略\n改進：點擊節點會自動算出最少天賦點\n　- 點過的節點視為目標，每次點擊重新求解\n　　整體最少點，不管用什麼順序點，結果\n　　都一樣且最省（舊版換個順序最多會多花\n　　10 點）。\n　- 舊的專案只會「提議」壓縮，不會自動改，\n　　真的改了也可以用 Ctrl+Z 復原。\n新增：規劃模式（沙盒）與「不要」的節點\n　- 從空白開始快速標記想要的核心節點，\n　　期間完全不會寫入存檔，結束時才問你\n　　要保留還是捨棄。\n　- 可以標記不想經過的節點，求解時會繞開。\n翻譯：補齊 3.29 新增的輿圖節點中文\n　- 傭兵系列等新節點原本顯示英文，\n　　名稱與詞綴皆已補上官方繁中。\n新增：軍團珠寶的交易連結支援台服\n　- 匯出設定可選國際服或台服，會記住你的\n　　區域、聯盟與平台選擇。\n新增：輿圖策略可以規劃星盤\n　- 四個半區各放一片幻塑界域，含圖示與\n　　官方繁中效果說明。\n　- 依遊戲規則擋住同一半區的第二片。\n　- 本賽季尚未啟用的星盤會標示出來。\n新增：輿圖策略可以指定主力地圖\n　- 階級與地圖名稱是兩個各自獨立的選單。\n　- 地圖選單一律列出全部，因為虛空石會把\n　　整個半區的地圖都拉到 T16。\n　- 地圖名稱支援中英模糊搜尋。\n新增：版本比較可以自己選要比的兩個版本\n　- 當季每個小版本都會保留，因此看得到\n　　賽季中官方調整了哪些節點與數值。\n　- 換季時上一季只留最後一個版本。\n修正：離開版本比較後按鈕顏色沒有還原\n修正：已下載但未登記的賽季資料看不到\n　- 現在會自動掃描並補上，不必重新下載。\n說明：匯出的專案檔與分享碼沿用舊格式，\n　舊版 PobTools 仍可開啟。\n\nv0.11.0（2026-07-31）\n新增：輿圖配點器可以規劃甲蟲\n　- 五個格子，含圖示、官方繁中效果說明。\n　- 依遊戲規則擋不合法的組合：每隻甲蟲\n　　自己的可放份數，以及互斥的同類甲蟲。\n　- 圖示下載後存在本機，之後離線也看得到。\n新增：輿圖配點器每個專案可以寫備註\n新增：甲蟲挑選支援模糊搜尋\n　- 中英文皆可，語序顛倒、缺標點都找得到，\n　　也可以直接搜尋效果文字。\n修正：軍團珠寶搜尋沒有真的照條件配對\n　- 選了多條詞綴時，只滿足其中一條的種子\n　　也會出現且分數相同，現在預設要全部滿足。\n　- 設定的最小值先前只有排名在用，結果清單\n　　與樹上標示沒有套用，會標出不符合的詞綴。\n　- 同分種子的排序改為固定，不再每次不同。\n說明：匯出的專案檔與分享碼沿用舊格式，\n　舊版 PobTools 仍可開啟。\n\nv0.10.0（2026-07-30）\n翻譯：全面比對官方遊戲檔修正用詞（2978 條）\n　- 修正 7 條意思相反的詞綴，例如原本顯示\n　　「減少」實際上是「增加」。\n　- 統一為官方用詞：區域內、恢復率、複合藥劑\n　　等，並修掉數處簡繁轉換錯字。\n　- 每條都經遊戲檔、repoe、兩服交易站、poedb\n　　多方比對，兩個以上來源一致才採用。\n新增：翻譯編輯器重新開放\n　- 缺漏掃描改為內頁分頁，不再是小視窗。\n　- 顯示 POB 色碼的實際顏色。\n　- 視窗放大並依螢幕可用範圍自動調整。\n更名：圖譜配點器改為輿圖配點器\n新增：外部連結區加入交易市集中文化、\n　Discord 社群與贊助連結。\n\nv0.9.0（2026-07-27）\n修正：軍團珠寶計算器詞綴顯示錯誤\n　- 珠寶「額外加成」的節點會保留原本詞綴，\n　　不再只顯示加成那一行。\n　- 修正某個小節點被誤判成大節點，\n　　顯示成被替換為鑰石的問題。\n新增：範圍內小節點的變化也會顯示\n　- 例如狂戰之傲的 +4 力量、優雅之傲清空，\n　　六種珠寶各自的規則皆已支援。\n新增：查到的種子可複製成物品文字\n　- 貼進 POB 物品分頁即可建立該顆珠寶。\n新增：啟動器可手動檢查更新\n　- 自動檢查每天最多一次且只在啟動時，\n　　需要時可按標題列的按鈕立即檢查。\n說明：深淵軍團珠寶暫不開放\n　- 待 POB 本體支援後再行加入。\n\nv0.8.0（2026-07-26）\n新增：塗油附魔支援中文搜尋\n　- 物品編輯的塗油視窗可直接輸入中文，\n　　查詢天賦名稱與詞綴（PoE1／PoE2 皆支援）。\n新增：下拉選單打字搜尋支援中文\n　- 附魔清單等下拉選單展開後輸入中文\n　　即可過濾選項。\n\nv0.7.0（2026-07-25）\n修正：解壓到舊資料夾時無法啟動 POB\n　- 安裝根目錄殘留的舊版 DLL 不再蓋過\n　　engine 資料夾內的新版檔案。\n修正：相容 POB 2.66 的 OAuth 匯入功能\n　- 內建 sha2 模組備援，POB 原地升級\n　　缺檔時自動補位，開啟 build 不再報錯。\n\nv0.6.0（2026-07-25）\n修正：支援 3.29 新版物品複製格式\n　- 遊戲內 Ctrl+C 的詞綴數值範圍（如 +7(6-11)）\n　　可正確貼上 POB，並保留範圍資訊。\n　- 新版詞綴標註行與可變長度分隔線自動處理，\n　　不再造成貼上後詞綴無法辨識。\n\nv0.5.0（2026-07-25）\n新增：POB 物品資料庫支援中文搜尋\n　- 傳奇／基底清單可直接輸入中文名稱查詢。\n改進：工具視窗獨立開啟，啟動器保持開啟\n　- 過濾器編輯器、圖譜配點器、軍團珠寶\n　　改以子視窗執行，可同時開多個工具。\n資料：輿圖 3.29 新節點詞綴敘述全面中文化\n　- 以官方詞綴模板嚴格比對翻譯全部新增行，\n　　並修正上游錯置的同數值詞綴配對。\n新增：關於視窗加入 Discord 社群連結。\n\nv0.4.2（2026-07-25）\n翻譯：血裔昇華完整中文化\n　- 十條血裔名稱、全部節點名與面板敘述。\n翻譯：詞綴模板全量擴充（+3886 條）\n　- 深水、移植、聖所、村莊、探險等機制詞綴。\n資料：輿圖 3.29 新節點中文名補齊（37 個）；\n　過濾器新增 3.29 物品資料（+231）；\n　軍團珠寶被動樹確認為 3.29 最新版。\n\nv0.4.1（2026-07-25）\n翻譯：3.29 正式資料全量更新\n　- 物品 +98、詞綴 +285、介面 +156、天賦 +65 等\n　　新詞條，來源為 3.29.0.1 遊戲檔案。\n　- v0.4.0 使用者由自動更新背景套用，無需操作。\n\nv0.4.0（2026-07-24）\n改進：POB 資料夾偵測全面放寬\n　- pob-zh.exe 旁任何內含 Launch.lua 的資料夾\n　　都會被偵測，名稱不限（官方名稱優先採用）。\n　- 資料夾名稱含 PoE2 視為 PoE2 版 POB。\n　- 支援把 pob-zh.exe 直接放進 POB 資料夾（同層）。\n新增：本「版本資訊」視窗。\n\nv0.3.0（2026-07-24）\n新增：內建自動更新\n　- 翻譯更新（如 0.4.0 -> 0.4.1）背景自動套用。\n　- 主體更新出現橘色按鈕，一鍵下載、替換、重啟。\n　- 下載以 SHA-256 驗證；失敗自動完整還原。\n新增：pob-zh.exe 內建版本資源，啟動器顯示版本號。\n翻譯：依 3.29 遊戲資料補充字典（物品／天賦／介面）。\n\nv0.2.0（2026-07-23）\n新增：輿圖天賦樹雙賽季並存（3.28+3.29），\n　「版本比較」逐節點、逐詞條比對兩季差異。\n新增：軍團珠寶天賦樹更新至 3.29，\n　圖集隨程式打包，新賽季自動檢查與一鍵更新。\n修正：輿圖／被動樹多項內部自檢問題。\n\nv0.1.0（2026-07-22）\n首次公開發布：零污染繁中化啟動器、翻譯編輯器、\n過濾器編輯器、圖譜配點器、軍團珠寶計算器。\n"
+    },
+    {
+      "code": "FORMAT_SIGNATURE_MISMATCH",
+      "path": "host/editor_util.cpp",
+      "function": "EdFilterDialog",
+      "occurrenceIndex": 1,
+      "line": 79,
+      "source": "過濾器 (*.filter)\u0000*.filter\u0000所有檔案 (*.*)\u0000*.*\u0000\u0000",
+      "sourceSignature": [
+        "<NUL>",
+        "<NUL>",
+        "<NUL>",
+        "<NUL>",
+        "<NUL>"
+      ],
+      "targetSignature": [
+        "<NUL>",
+        "<NUL>",
+        "<NUL>",
+        "<NUL>",
+        "<NUL>"
+      ]
+    },
+    {
+      "code": "FORMAT_SIGNATURE_MISMATCH",
+      "path": "host/editor_util.cpp",
+      "function": "EdOpenFontDialog",
+      "occurrenceIndex": 1,
+      "line": 95,
+      "source": "字型檔 (*.ttf;*.ttc;*.otf)\u0000*.ttf;*.ttc;*.otf\u0000所有檔案 (*.*)\u0000*.*\u0000\u0000",
+      "sourceSignature": [
+        "<NUL>",
+        "<NUL>",
+        "<NUL>",
+        "<NUL>",
+        "<NUL>"
+      ],
+      "targetSignature": [
+        "<NUL>",
+        "<NUL>",
+        "<NUL>",
+        "<NUL>",
+        "<NUL>"
+      ]
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/filter_item_import.cpp",
+      "function": "ParseGameItemText",
+      "occurrenceIndex": 35,
+      "line": 360,
+      "source": "贗品．"
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/filter_item_import.cpp",
+      "function": "ParseGameItemText",
+      "occurrenceIndex": 36,
+      "line": 360,
+      "source": "贗品．"
+    },
+    {
+      "code": "MISSING_COMPONENT_MAPPING",
+      "path": "host/filter_preview.cpp",
+      "function": "DrawDropPreviewSection",
+      "occurrenceIndex": 5,
+      "line": 657,
+      "source": "遊戲內對物品按 Ctrl+C，回來按這裡。\n「加入畫布」不清空現有樣本，方便多件比較。"
+    },
+    {
+      "code": "MISSING_COMPONENT_MAPPING",
+      "path": "host/host_main.cpp",
+      "function": "wWinMain",
+      "occurrenceIndex": 99,
+      "line": 681,
+      "source": "找不到 Path of Building 的 Launch.lua。\n\n請將 POB 資料夾(內含 Launch.lua,名稱不限)放在 pob-zh.exe 旁邊,\n或設定環境變數 POB_PATH 指向 POB 安裝目錄。"
+    },
+    {
+      "code": "MISSING_COMPONENT_MAPPING",
+      "path": "host/host_main.cpp",
+      "function": "wWinMain",
+      "occurrenceIndex": 110,
+      "line": 706,
+      "source": "engine 資料夾不完整（缺少 glfw3.dll 或 libGLESv2.dll）。\n請重新解壓縮完整的 pob-zh 套件。"
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/launcher_editor.cpp",
+      "function": "Frame",
+      "occurrenceIndex": 10,
+      "line": 370,
+      "source": "儲存全部 ("
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/launcher_editor.cpp",
+      "function": "Frame",
+      "occurrenceIndex": 13,
+      "line": 376,
+      "source": "已儲存 "
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/launcher_editor.cpp",
+      "function": "Frame",
+      "occurrenceIndex": 14,
+      "line": 376,
+      "source": " 個檔案"
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/launcher_editor.cpp",
+      "function": "Frame",
+      "occurrenceIndex": 44,
+      "line": 508,
+      "source": "改寫入 "
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/launcher_editor.cpp",
+      "function": "Frame",
+      "occurrenceIndex": 85,
+      "line": 778,
+      "source": "即將切換到 "
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/launcher_editor.cpp",
+      "function": "Frame",
+      "occurrenceIndex": 87,
+      "line": 782,
+      "source": "即將切換到 "
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/launcher_ui.cpp",
+      "function": "",
+      "occurrenceIndex": 20,
+      "line": 71,
+      "source": "PoeDB 流亡編年史"
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/launcher_ui.cpp",
+      "function": "",
+      "occurrenceIndex": 42,
+      "line": 89,
+      "source": "简体"
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/passive_tree_update.cpp",
+      "function": "PassiveTreeUpdater::doCheck",
+      "occurrenceIndex": 9,
+      "line": 341,
+      "source": "（目前 "
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/passive_tree_update.cpp",
+      "function": "PassiveTreeUpdater::doCheck",
+      "occurrenceIndex": 11,
+      "line": 342,
+      "source": "｜POB 已更新，圖集可直接取用"
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/passive_tree_update.cpp",
+      "function": "PassiveTreeUpdater::doUpdate",
+      "occurrenceIndex": 25,
+      "line": 407,
+      "source": " 圖集中… "
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/passive_tree_view.cpp",
+      "function": "PassiveTreeView::LoadTextures",
+      "occurrenceIndex": 4,
+      "line": 47,
+      "source": "找不到天賦樹圖集：Data/tree/ 或 TreeData/"
+    },
+    {
+      "code": "MISSING_COMPONENT_MAPPING",
+      "path": "host/regex_tool_ui.cpp",
+      "function": "drawHeader",
+      "occurrenceIndex": 5,
+      "line": 442,
+      "source": "「一個都沒有」產生的是排除字串（開頭的 ! ），用來把有這些詞綴的東西藏起來。"
+    },
+    {
+      "code": "MISSING_COMPONENT_MAPPING",
+      "path": "host/regex_tool_ui.cpp",
+      "function": "drawOutput",
+      "occurrenceIndex": 12,
+      "line": 683,
+      "source": "要貼進哪一種語言的遊戲客戶端。兩邊產生的片段完全不同，不能互換使用。"
+    },
+    {
+      "code": "MISSING_COMPONENT_MAPPING",
+      "path": "host/regex_tool_ui.cpp",
+      "function": "drawOutput",
+      "occurrenceIndex": 16,
+      "line": 699,
+      "source": "清單裡有其他項目印出一模一樣的文字，遊戲的搜尋沒有辦法只中其中一個。"
+    },
+    {
+      "code": "MISSING_COMPONENT_MAPPING",
+      "path": "host/regex_tool_ui.cpp",
+      "function": "drawBookmarks",
+      "occurrenceIndex": 11,
+      "line": 761,
+      "source": "%s 還沒有書籤。勾好一組常用的詞綴後按「存成書籤」，下次可以直接叫回來。"
+    },
+    {
+      "code": "MISSING_COMPONENT_MAPPING",
+      "path": "host/regex_tool_ui.cpp",
+      "function": "drawOrphanNote",
+      "occurrenceIndex": 0,
+      "line": 814,
+      "source": "另有 %d 筆書籤存在這個版本沒有的清單上，沒有顯示（資料仍保留在 PobTools\regex_ui.json）。"
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/section_sounds.cpp",
+      "function": "DrawReplaceRefs",
+      "occurrenceIndex": 8,
+      "line": 286,
+      "source": "已將 "
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/section_sounds.cpp",
+      "function": "DrawReplaceRefs",
+      "occurrenceIndex": 9,
+      "line": 286,
+      "source": " 行引用替換為 "
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/section_sounds.cpp",
+      "function": "DrawReplaceRefs",
+      "occurrenceIndex": 10,
+      "line": 287,
+      "source": "（未儲存，請按「儲存」寫入）"
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/timeless_jewel.cpp",
+      "function": "TJLoadBin",
+      "occurrenceIndex": 9,
+      "line": 823,
+      "source": "找不到 "
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/timeless_jewel.cpp",
+      "function": "TJLoadBin",
+      "occurrenceIndex": 10,
+      "line": 824,
+      "source": ".bin/.zip(需要旁邊有 PoE1 版 POB,且該珠寶的查表檔存在)"
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/timeless_jewel_abyss.cpp",
+      "function": "TJAbyssParse",
+      "occurrenceIndex": 7,
+      "line": 130,
+      "source": "深淵查表檔屬於珠寶型別 "
+    },
+    {
+      "code": "MISSING_MAPPING",
+      "path": "host/timeless_jewel_abyss.cpp",
+      "function": "TJAbyssParse",
+      "occurrenceIndex": 8,
+      "line": 131,
+      "source": ",但要求的是 "
+    },
+    {
+      "code": "MISSING_COMPONENT_MAPPING",
+      "path": "host/timeless_jewel_ui.cpp",
+      "function": "Frame",
+      "occurrenceIndex": 11,
+      "line": 694,
+      "source": "※ 深淵珠寶是 3.29 新增，目前可對照的實測樣本仍少，結果無法像軍團珠寶那樣完整驗證，請以遊戲內實際結果為準。"
+    },
+    {
+      "code": "MISSING_COMPONENT_MAPPING",
+      "path": "host/timeless_jewel_ui.cpp",
+      "function": "Frame",
+      "occurrenceIndex": 12,
+      "line": 697,
+      "source": "※ 重奪惡意另外還取決於你從插槽走到職業起點的「已配點路徑」，本工具沒有角色資料 —— 請隨意點一個插槽，用它周邊的天賦來判斷這顆種子。單一天賦會變成什麼、以及昇華天賦的選擇，這兩項是準確的。"
+    },
+    {
+      "code": "MISSING_COMPONENT_MAPPING",
+      "path": "host/timeless_jewel_ui.cpp",
+      "function": "Frame",
+      "occurrenceIndex": 49,
+      "line": 835,
+      "source": "關閉後只要命中任一條就算，權重高的仍排前面。\n開啟時，只滿足其中一條的種子不會出現。"
+    },
+    {
+      "code": "MISSING_COMPONENT_MAPPING",
+      "path": "host/timeless_jewel_ui.cpp",
+      "function": "Frame",
+      "occurrenceIndex": 66,
+      "line": 928,
+      "source": "1. 在交易站找到那顆珠寶，Ctrl+C 複製，貼進 POB 的物品欄。\n2. 也可以把交易站上「已鑲好這顆珠寶的整件裝備」複製進 POB。\n3. 對照 POB 算出來的天賦加成，確認與本工具列出的詞綴一致。"
+    },
+    {
+      "code": "MISSING_COMPONENT_MAPPING",
+      "path": "host/timeless_jewel_ui.cpp",
+      "function": "Frame",
+      "occurrenceIndex": 68,
+      "line": 932,
+      "source": "本工具的轉換演算法以 POB 為規格、數值以遊戲檔為真值，兩邊理應相同。若對不上請回報，那代表其中一邊有問題。"
+    }
+  ]
+}

@@ -1,0 +1,204 @@
+{
+  "patch": "3.29.3.2",
+  "rows": [
+    {
+      "ids": [
+        "chain_strike_cone_radius_+_per_12_rage"
+      ],
+      "variantIdentity": "155DA162B57A0922CFAE368B2405C7D7312BD13A7C54050CDC7407930DFF8E47",
+      "englishVariantCount": 0,
+      "koreanVariantCount": 1,
+      "reason": "Variant structure is absent or non-unique in a language"
+    },
+    {
+      "ids": [
+        "chain_strike_cone_radius_+_per_12_rage"
+      ],
+      "variantIdentity": "60DE99F59427607377E88CD12885B6FBFFD8067C40072A71C0843092B6BD7DBD",
+      "englishVariantCount": 0,
+      "koreanVariantCount": 1,
+      "reason": "Variant structure is absent or non-unique in a language"
+    },
+    {
+      "ids": [
+        "chain_strike_cone_radius_+_per_12_rage"
+      ],
+      "variantIdentity": "A30EE5B4C79989B217D3A2873D6A111DBDC86FCDA2D0F39D20269550F5ACA004",
+      "englishVariantCount": 1,
+      "koreanVariantCount": 0,
+      "reason": "Variant structure is absent or non-unique in a language"
+    },
+    {
+      "ids": [
+        "chain_strike_cone_radius_+_per_12_rage"
+      ],
+      "variantIdentity": "BEB0B0F8AAC40CBBAFE51E0FC2006DA7887EF555DE58037B019B9A0E8DAC268B",
+      "englishVariantCount": 1,
+      "koreanVariantCount": 0,
+      "reason": "Variant structure is absent or non-unique in a language"
+    },
+    {
+      "ids": [
+        "chance_%_to_gain_brine_charge_instead_of_endurance_charge"
+      ],
+      "variantIdentity": "28389EDE644EE575745C5E9D8A036A2B75561ED2A401C5539D45A5B8FF214E23",
+      "kind": "reminder_text",
+      "english": null,
+      "korean": "(염수 충전 하나당 물리 피해의 4%를 추가 냉기 피해로 획득하고 추가 번개 피해로 획득합니다.\n최대 염수 충전은 최대 인내 충전과 동일합니다.)",
+      "reason": "Text exists in only one language"
+    },
+    {
+      "ids": [
+        "chance_%_to_gain_brine_charge_instead_of_endurance_charge"
+      ],
+      "variantIdentity": "B523D5F7094FDBD52FA0E6E81D76833B56E9FCCAB56A11A2B717529A33984D51",
+      "kind": "reminder_text",
+      "english": null,
+      "korean": "(염수 충전 하나당 물리 피해의 4%를 추가 냉기 피해로 획득하고 추가 번개 피해로 획득합니다.\n최대 염수 충전은 최대 인내 충전과 동일합니다.)",
+      "reason": "Text exists in only one language"
+    },
+    {
+      "ids": [
+        "life_gained_on_hit_per_enemy_status_ailment"
+      ],
+      "variantIdentity": "212FA2F49361168642C59820BD03B38466FA5DF825209743CE156969C6D73FCB",
+      "englishVariantCount": 0,
+      "koreanVariantCount": 1,
+      "reason": "Variant structure is absent or non-unique in a language"
+    },
+    {
+      "ids": [
+        "life_gained_on_hit_per_enemy_status_ailment"
+      ],
+      "variantIdentity": "408A17D5EDB05B746D10411F4253923CBAD5A6F7394F5DC31439ED37BEF8DA36",
+      "englishVariantCount": 1,
+      "koreanVariantCount": 0,
+      "reason": "Variant structure is absent or non-unique in a language"
+    },
+    {
+      "ids": [
+        "map_additional_red_beasts",
+        "map_bestiary_league"
+      ],
+      "variantIdentity": "DD11F0E86E1A09FF07C22F6A2CA4B7DF735E972D786779CDAA6AD522184AE6AF",
+      "kind": "string",
+      "english": null,
+      "korean": "-",
+      "reason": "Text exists in only one language"
+    },
+    {
+      "ids": [
+        "map_number_of_harbinger_portals"
+      ],
+      "variantIdentity": "408A17D5EDB05B746D10411F4253923CBAD5A6F7394F5DC31439ED37BEF8DA36",
+      "englishVariantCount": 1,
+      "koreanVariantCount": 0,
+      "reason": "Variant structure is absent or non-unique in a language"
+    },
+    {
+      "ids": [
+        "map_number_of_harbinger_portals"
+      ],
+      "variantIdentity": "96BAC324933F7ECB0C159001981D379962D2EF24DEDCB11ECACCB56F72D0392B",
+      "englishVariantCount": 0,
+      "koreanVariantCount": 1,
+      "reason": "Variant structure is absent or non-unique in a language"
+    },
+    {
+      "ids": [
+        "map_ritual_number_of_free_rerolls"
+      ],
+      "variantIdentity": "6A80EB00C0DB858446890050DEA08D8649551CB0E11FB6B26BFFF126459B2DA1",
+      "englishVariantCount": 0,
+      "koreanVariantCount": 1,
+      "reason": "Variant structure is absent or non-unique in a language"
+    },
+    {
+      "ids": [
+        "map_ritual_number_of_free_rerolls"
+      ],
+      "variantIdentity": "F69B40BB3E4C758DD818ED4DF8E4C73EB9C6E3921052A357A040436E3899FFB3",
+      "englishVariantCount": 1,
+      "koreanVariantCount": 0,
+      "reason": "Variant structure is absent or non-unique in a language"
+    },
+    {
+      "ids": [
+        "maximum_energy_shield_+%_and_lightning_resistance_-%"
+      ],
+      "variantIdentity": "24410A44B39CC1470F89B0AA18B0B26976049DF8E166CBF61FDBA645677B66E9",
+      "kind": "string",
+      "english": "{0}% increased Global maximum Energy Shield and reduced Lightning Resistance",
+      "korean": "일반 에너지 보호막 최대치 {0}% 증가, 번개 저항 {0}% 감소",
+      "reason": "Numbered placeholder multiset differs"
+    },
+    {
+      "ids": [
+        "maximum_energy_shield_+%_and_lightning_resistance_-%"
+      ],
+      "variantIdentity": "C293DFA588518292D2A45F79673DCE4595E0FA1DBAE90CD5F41747087A2EA17D",
+      "kind": "string",
+      "english": "{0}% reduced Global maximum Energy Shield and increased Lightning Resistance",
+      "korean": "일반 에너지 보호막 최대치 {0}% 감소, 번개 저항 {0}% 증가",
+      "reason": "Numbered placeholder multiset differs"
+    },
+    {
+      "ids": [
+        "maximum_life_+%_and_fire_resistance_-%"
+      ],
+      "variantIdentity": "24410A44B39CC1470F89B0AA18B0B26976049DF8E166CBF61FDBA645677B66E9",
+      "kind": "string",
+      "english": "{0}% increased maximum Life and reduced Fire Resistance",
+      "korean": "최대 생명력 {0}% 증가, 화염 저항 {0}% 감소",
+      "reason": "Numbered placeholder multiset differs"
+    },
+    {
+      "ids": [
+        "maximum_life_+%_and_fire_resistance_-%"
+      ],
+      "variantIdentity": "C293DFA588518292D2A45F79673DCE4595E0FA1DBAE90CD5F41747087A2EA17D",
+      "kind": "string",
+      "english": "{0}% reduced maximum Life and increased Fire Resistance",
+      "korean": "최대 생명력 {0}% 감소, 화염 저항 {0}% 증가",
+      "reason": "Numbered placeholder multiset differs"
+    },
+    {
+      "ids": [
+        "maximum_mana_+%_and_cold_resistance_-%"
+      ],
+      "variantIdentity": "24410A44B39CC1470F89B0AA18B0B26976049DF8E166CBF61FDBA645677B66E9",
+      "kind": "string",
+      "english": "{0}% increased maximum Mana and reduced Cold Resistance",
+      "korean": "최대 마나 {0}% 증가, 냉기 저항 {0}% 감소",
+      "reason": "Numbered placeholder multiset differs"
+    },
+    {
+      "ids": [
+        "maximum_mana_+%_and_cold_resistance_-%"
+      ],
+      "variantIdentity": "C293DFA588518292D2A45F79673DCE4595E0FA1DBAE90CD5F41747087A2EA17D",
+      "kind": "string",
+      "english": "{0}% reduced maximum Mana and increased Cold Resistance",
+      "korean": "최대 마나 {0}% 감소, 냉기 저항 {0}% 증가",
+      "reason": "Numbered placeholder multiset differs"
+    },
+    {
+      "ids": [
+        "retaliation_skill_additional_use_window_duration_ms"
+      ],
+      "variantIdentity": "82007FA3E8D98C3FDFAEEBDC431E3A6D6EF0FEB6C44184CE91F08496A25B6F84",
+      "englishVariantCount": 1,
+      "koreanVariantCount": 0,
+      "reason": "Variant structure is absent or non-unique in a language"
+    },
+    {
+      "ids": [
+        "retaliation_skill_additional_use_window_duration_ms"
+      ],
+      "variantIdentity": "FA930C31DC6891C5A7340577CD541B83088CF802DE5A07BECDD0E07D5E360CC1",
+      "englishVariantCount": 0,
+      "koreanVariantCount": 1,
+      "reason": "Variant structure is absent or non-unique in a language"
+    }
+  ]
+}

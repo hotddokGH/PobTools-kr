@@ -1,0 +1,2980 @@
+{
+  "patch": "3.29.3.2",
+  "rows": [
+    {
+      "id": "AnimalCharmAdditionalCriticalStrikeChanceAtMaximumPowerCharges1",
+      "english": "Assassin's",
+      "korean": "어쌔신의",
+      "koreanCandidates": [
+        "암살자의",
+        "어쌔신의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmAdditionalCriticalStrikeChanceAtMaximumPowerCharges2",
+      "english": "Assassin's",
+      "korean": "어쌔신의",
+      "koreanCandidates": [
+        "암살자의",
+        "어쌔신의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmCriticalStrikeChanceAgainstFullLifeEnemies1",
+      "english": "Assassin's",
+      "korean": "어쌔신의",
+      "koreanCandidates": [
+        "암살자의",
+        "어쌔신의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmCriticalStrikeChanceAgainstFullLifeEnemies2",
+      "english": "Assassin's",
+      "korean": "어쌔신의",
+      "koreanCandidates": [
+        "암살자의",
+        "어쌔신의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmCriticalStrikeMultiplierPerPowerCharge1",
+      "english": "Assassin's",
+      "korean": "어쌔신의",
+      "koreanCandidates": [
+        "암살자의",
+        "어쌔신의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmCriticalStrikeMultiplierPerPowerCharge2",
+      "english": "Assassin's",
+      "korean": "어쌔신의",
+      "koreanCandidates": [
+        "암살자의",
+        "어쌔신의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmCriticalStrikesHaveCullingStrike",
+      "english": "Assassin's",
+      "korean": "어쌔신의",
+      "koreanCandidates": [
+        "암살자의",
+        "어쌔신의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmPoisonDurationPerPoisonAppliedRecently1",
+      "english": "Assassin's",
+      "korean": "어쌔신의",
+      "koreanCandidates": [
+        "암살자의",
+        "어쌔신의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmPoisonDurationPerPoisonAppliedRecently2",
+      "english": "Assassin's",
+      "korean": "어쌔신의",
+      "koreanCandidates": [
+        "암살자의",
+        "어쌔신의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmPowerChargeOnCriticalStrike1",
+      "english": "Assassin's",
+      "korean": "어쌔신의",
+      "koreanCandidates": [
+        "암살자의",
+        "어쌔신의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmPowerChargeOnCriticalStrike2",
+      "english": "Assassin's",
+      "korean": "어쌔신의",
+      "koreanCandidates": [
+        "암살자의",
+        "어쌔신의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "DaggerBonus1",
+      "english": "Assassin's",
+      "korean": "암살자의",
+      "koreanCandidates": [
+        "암살자의",
+        "어쌔신의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "HeistNPCDamageFullLife4",
+      "english": "Assassin's",
+      "korean": "암살자의",
+      "koreanCandidates": [
+        "암살자의",
+        "어쌔신의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "GraftPrefixEshGlobalIncreasedEnergyShield2",
+      "english": "Bolstered",
+      "korean": "튼튼한",
+      "koreanCandidates": [
+        "발전된",
+        "튼튼한"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "LocalIncreasedWardPercentAndStunRecovery3",
+      "english": "Bolstered",
+      "korean": "발전된",
+      "koreanCandidates": [
+        "발전된",
+        "튼튼한"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "HeistContractMonsterChain1_",
+      "english": "Chaining",
+      "korean": "연쇄의",
+      "koreanCandidates": [
+        "연쇄",
+        "연쇄의",
+        "연쇄하는"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "HeistContractMonsterChain2_",
+      "english": "Chaining",
+      "korean": "연쇄의",
+      "koreanCandidates": [
+        "연쇄",
+        "연쇄의",
+        "연쇄하는"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapDeepwaterChartMonsterChain",
+      "english": "Chaining",
+      "korean": "연쇄",
+      "koreanCandidates": [
+        "연쇄",
+        "연쇄의",
+        "연쇄하는"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapMonsterChain",
+      "english": "Chaining",
+      "korean": "연쇄의",
+      "koreanCandidates": [
+        "연쇄",
+        "연쇄의",
+        "연쇄하는"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapMonsterChainMap2Tier",
+      "english": "Chaining",
+      "korean": "연쇄의",
+      "koreanCandidates": [
+        "연쇄",
+        "연쇄의",
+        "연쇄하는"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapMonsterChainMapWorlds",
+      "english": "Chaining",
+      "korean": "연쇄의",
+      "koreanCandidates": [
+        "연쇄",
+        "연쇄의",
+        "연쇄하는"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapMonsterChainMapWorldsExpedition",
+      "english": "Chaining",
+      "korean": "연쇄의",
+      "koreanCandidates": [
+        "연쇄",
+        "연쇄의",
+        "연쇄하는"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapMonsterChainMapWorldsMaven",
+      "english": "Chaining",
+      "korean": "연쇄의",
+      "koreanCandidates": [
+        "연쇄",
+        "연쇄의",
+        "연쇄하는"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapMonsterChainStrDexIntMission",
+      "english": "Chaining",
+      "korean": "연쇄의",
+      "koreanCandidates": [
+        "연쇄",
+        "연쇄의",
+        "연쇄하는"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapUberModChain",
+      "english": "Chaining",
+      "korean": "연쇄하는",
+      "koreanCandidates": [
+        "연쇄",
+        "연쇄의",
+        "연쇄하는"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MonsterModAdditionalChain",
+      "english": "Chaining",
+      "korean": "연쇄",
+      "koreanCandidates": [
+        "연쇄",
+        "연쇄의",
+        "연쇄하는"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "SentinelExtraChains1",
+      "english": "Chaining",
+      "korean": "연쇄의",
+      "koreanCandidates": [
+        "연쇄",
+        "연쇄의",
+        "연쇄하는"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmBannersNoReservation",
+      "english": "Champion's",
+      "korean": "챔피언의",
+      "koreanCandidates": [
+        "용사의",
+        "챔피언의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmGainAdrenalineOnReachingLowLife",
+      "english": "Champion's",
+      "korean": "챔피언의",
+      "koreanCandidates": [
+        "용사의",
+        "챔피언의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmImpaleLastsForExtraHits",
+      "english": "Champion's",
+      "korean": "챔피언의",
+      "koreanCandidates": [
+        "용사의",
+        "챔피언의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmTauntOnHitChance1",
+      "english": "Champion's",
+      "korean": "챔피언의",
+      "koreanCandidates": [
+        "용사의",
+        "챔피언의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmTauntOnHitChance2",
+      "english": "Champion's",
+      "korean": "챔피언의",
+      "koreanCandidates": [
+        "용사의",
+        "챔피언의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "GraftPrefixUulnetolGlobalIncreasedPhysicalDamage5",
+      "english": "Champion's",
+      "korean": "용사의",
+      "koreanCandidates": [
+        "용사의",
+        "챔피언의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "LocalIncreasedPhysicalDamagePercentAndAccuracyRating5",
+      "english": "Champion's",
+      "korean": "용사의",
+      "koreanCandidates": [
+        "용사의",
+        "챔피언의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "TwoHandedMeleeDamageJewel",
+      "english": "Champion's",
+      "korean": "용사의",
+      "koreanCandidates": [
+        "용사의",
+        "챔피언의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "SentinelIncreasedlTags3",
+      "english": "Charging",
+      "korean": "충전하는",
+      "koreanCandidates": [
+        "돌진하는",
+        "충전하는"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "ShieldAttackSpeedJewel",
+      "english": "Charging",
+      "korean": "돌진하는",
+      "koreanCandidates": [
+        "돌진하는",
+        "충전하는"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterAvoidStunAndElementalStatusAilments1",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledAddedColdAndLightningDamage",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledAddedColdAndLightningDamageInverted",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledAddedColdAndLightningDamageQuiver",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledAddedFireAndColdDamage",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledAddedFireAndColdDamageInverted",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledAddedFireAndColdDamageQuiver_",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledAddedFireAndLightningDamage",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledAddedFireAndLightningDamageInverted",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledAddedFireAndLightningDamageQuiver_",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledAreaDamageAndAreaOfEffect",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledArmourAndEnergyShield",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledArmourAndEvasionRating",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledAvoidStunAndElementalStatusAilments",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledBaseLifeAndMana_",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledBaseLifeAndManaRegen_",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledBaseLifeAndManaRegenInverted",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledBaseManaAndLifeRegen__",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledBaseManaAndLifeRegenInverted",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledBlockPercent",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledChanceToNotConsumeFlaskCharges",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledChaosDamageAndChaosSkillDuration1h",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledChaosDamageAndChaosSkillDuration2h_",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledChaosNonAilmentDamageOverTimeMultiplier1h",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledChaosNonAilmentDamageOverTimeMultiplier2h",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledChaosPenetrationWithAttacks__",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledColdDamageAndBaseChanceToFreeze1h",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledColdDamageAndBaseChanceToFreeze2h__",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledColdDamageOverTimeMultiplier1h",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledColdDamageOverTimeMultiplier2h_",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledDodgeChanceDuringFocus_",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledElementalPenetrationWithAttacks_",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledEvasionRatingAndEnergyShield",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledFireDamageAndChanceToIgnite1h",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledFireDamageAndChanceToIgnite2h",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledFireDamageOverTimeMultiplier1h",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledFireDamageOverTimeMultiplier2h_",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledFlaskEffect",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledFlaskEffectAndFlaskChargesGained",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledIncreasedManaAndRegen",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledIncreasedManaAndRegenInverted",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledLightningDamageAndChanceToShock1h_",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledLightningDamageAndChanceToShock2h",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledLocalIncreasedArmourAndEnergyShieldAndLife",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledLocalIncreasedArmourAndEnergyShieldAndLifeHigh",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledLocalIncreasedArmourAndEnergyShieldAndLifeMed",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledLocalIncreasedArmourAndEvasionAndLife",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledLocalIncreasedArmourAndEvasionAndLifeHigh",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledLocalIncreasedArmourAndEvasionAndLifeMed",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledLocalIncreasedArmourAndLife_",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledLocalIncreasedArmourAndLifeHigh",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledLocalIncreasedArmourAndLifeMed___",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledLocalIncreasedDefencesAndLife",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledLocalIncreasedDefencesAndLifeHigh__",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledLocalIncreasedDefencesAndLifeMed",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledLocalIncreasedEnergyShieldAndLife_",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledLocalIncreasedEnergyShieldAndLifeHigh",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledLocalIncreasedEnergyShieldAndLifeMed",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledLocalIncreasedEvasionAndEnergyShieldAndLife",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledLocalIncreasedEvasionAndEnergyShieldAndLifeHigh",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledLocalIncreasedEvasionAndEnergyShieldAndLifeMed",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledLocalIncreasedEvasionAndLife__",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledLocalIncreasedEvasionAndLifeHigh_",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledLocalIncreasedEvasionAndLifeMed___",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledLocalIncreasedPhysicalDamageAndBleedChanceCrafted_",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledLocalIncreasedPhysicalDamageAndBlindChanceCrafted_",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledLocalIncreasedPhysicalDamageAndImpaleCrafted",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledLocalIncreasedPhysicalDamageAndPoisonChanceCrafted_",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledManaAndDamageTakenGoesToManaPercent",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledManaAndManaCostEfficiency",
+      "english": "Chosen",
+      "korean": "선택받은",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledManaAndManaCostPercent",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledMaximumCurse",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledMaximumZombieAndSkeleton",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledMeleeDamageAndMeleeRange",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledMeleeRangeAndMeleeGemLevel",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledMinionDamageAndMinionMaximumLife1h",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledMinionDamageAndMinionMaximumLife2h__",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledMovementVelocityAndCannotBeChilled__",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledMovementVelocityAndMovementVelocityIfNotHitRecently",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledMovementVelocityAndOnslaughtOnKill",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledPercentageLifeAndMana",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledPhysicalDamageConvertedToCold",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledPhysicalDamageConvertedToFire_",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledPhysicalDamageConvertedToLightning",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledPhysicalDamageOverTimeMultiplier1h",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledPhysicalDamageOverTimeMultiplier2h_",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledPhysicalDamageReductionDuringFocus_",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledPhysicalDamageReductionRatingDuringSoulGainPrevention",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledProjectileDamageAndProjectileSpeed",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledProjectilePierceAndProjectileGemLevel",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledSkillAreaOfEffectPercentAndAreaOfEffectGemLevel",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledSpellBlockPercent____",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledSpellDamageAndManaRegenerationRate1h",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledSpellDamageAndManaRegenerationRate2h",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledSpellDamageAndNonChaosDamageToAddAsChaosDamage1h",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledSpellDamageAndNonChaosDamageToAddAsChaosDamage2h",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "JunMasterVeiledSpellDodgePercentage__",
+      "english": "Chosen",
+      "korean": "선택",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "SanctumSpecialPlayerReflectedDamage",
+      "english": "Chosen",
+      "korean": "선택받은",
+      "koreanCandidates": [
+        "선택",
+        "선택받은"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "FlaskIncreasedRecoveryAmount4",
+      "english": "Concentrated",
+      "korean": "밀집된",
+      "koreanCandidates": [
+        "농축된",
+        "밀집된"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "TinctureEffectFasterToxicity2",
+      "english": "Concentrated",
+      "korean": "농축된",
+      "koreanCandidates": [
+        "농축된",
+        "밀집된"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AfflictionJewelSmallPassivesGrantDamageSmall5",
+      "english": "Deadly",
+      "korean": "치명적인",
+      "koreanCandidates": [
+        "치명적인",
+        "치사의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "CrucibleMapRareMonstersAdditionalModifiers",
+      "english": "Deadly",
+      "korean": "치명적인",
+      "koreanCandidates": [
+        "치명적인",
+        "치사의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "CrucibleMapRareMonstersAdditionalModifiersUber",
+      "english": "Deadly",
+      "korean": "치명적인",
+      "koreanCandidates": [
+        "치명적인",
+        "치사의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "GraftPrefixTulCritMultiplier5",
+      "english": "Deadly",
+      "korean": "치사의",
+      "koreanCandidates": [
+        "치명적인",
+        "치사의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapCorruptedSideAreaCriticalStrikesAndDamage_",
+      "english": "Deadly",
+      "korean": "치명적인",
+      "koreanCandidates": [
+        "치명적인",
+        "치사의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapMonsterDamage",
+      "english": "Deadly",
+      "korean": "치명적인",
+      "koreanCandidates": [
+        "치명적인",
+        "치사의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MonsterArchnemesisAssassin",
+      "english": "Deadly",
+      "korean": "치명적인",
+      "koreanCandidates": [
+        "치명적인",
+        "치사의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MonsterCriticals1",
+      "english": "Deadly",
+      "korean": "치명적인",
+      "koreanCandidates": [
+        "치명적인",
+        "치사의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapLeaguestoneAreaContainsSpecificEssence5_",
+      "english": "Delirious",
+      "korean": "섬망의",
+      "koreanCandidates": [
+        "섬망의",
+        "환영 깃든"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapRelicDeliriumAdditionalChanceExtraLarge",
+      "english": "Delirious",
+      "korean": "환영 깃든",
+      "koreanCandidates": [
+        "섬망의",
+        "환영 깃든"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapRelicDeliriumAdditionalChanceLarge",
+      "english": "Delirious",
+      "korean": "환영 깃든",
+      "koreanCandidates": [
+        "섬망의",
+        "환영 깃든"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapRelicDeliriumAdditionalChanceMedium",
+      "english": "Delirious",
+      "korean": "환영 깃든",
+      "koreanCandidates": [
+        "섬망의",
+        "환영 깃든"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapRelicDeliriumAdditionalChanceSmall",
+      "english": "Delirious",
+      "korean": "환영 깃든",
+      "koreanCandidates": [
+        "섬망의",
+        "환영 깃든"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapRelicDeliriumDeliriousMapChance1",
+      "english": "Delirious",
+      "korean": "환영 깃든",
+      "koreanCandidates": [
+        "섬망의",
+        "환영 깃든"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapRelicDeliriumIncreasedChanceExtraLarge",
+      "english": "Delirious",
+      "korean": "환영 깃든",
+      "koreanCandidates": [
+        "섬망의",
+        "환영 깃든"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapRelicDeliriumIncreasedChanceLarge",
+      "english": "Delirious",
+      "korean": "환영 깃든",
+      "koreanCandidates": [
+        "섬망의",
+        "환영 깃든"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapRelicDeliriumIncreasedChanceMedium",
+      "english": "Delirious",
+      "korean": "환영 깃든",
+      "koreanCandidates": [
+        "섬망의",
+        "환영 깃든"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapRelicDeliriumIncreasedChanceSmall",
+      "english": "Delirious",
+      "korean": "환영 깃든",
+      "koreanCandidates": [
+        "섬망의",
+        "환영 깃든"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmBleedExplode1",
+      "english": "Gladiator's",
+      "korean": "글래디에이터의",
+      "koreanCandidates": [
+        "검투사의",
+        "글래디에이터의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmBleedExplode2",
+      "english": "Gladiator's",
+      "korean": "글래디에이터의",
+      "koreanCandidates": [
+        "검투사의",
+        "글래디에이터의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmBlindOnHitVsBleedingEnemies1",
+      "english": "Gladiator's",
+      "korean": "글래디에이터의",
+      "koreanCandidates": [
+        "검투사의",
+        "글래디에이터의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmBlindOnHitVsBleedingEnemies2",
+      "english": "Gladiator's",
+      "korean": "글래디에이터의",
+      "koreanCandidates": [
+        "검투사의",
+        "글래디에이터의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmMaimOnHitVsBlindedEnemies1",
+      "english": "Gladiator's",
+      "korean": "글래디에이터의",
+      "koreanCandidates": [
+        "검투사의",
+        "글래디에이터의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmMaimOnHitVsBlindedEnemies2",
+      "english": "Gladiator's",
+      "korean": "글래디에이터의",
+      "koreanCandidates": [
+        "검투사의",
+        "글래디에이터의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmOverwhelmIfBlockedinPast20Seconds",
+      "english": "Gladiator's",
+      "korean": "글래디에이터의",
+      "koreanCandidates": [
+        "검투사의",
+        "글래디에이터의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "DualWieldingMeleeDamageJewel",
+      "english": "Gladiator's",
+      "korean": "검투사의",
+      "koreanCandidates": [
+        "검투사의",
+        "글래디에이터의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "GraftPrefixXophGlobalIncreasedAttackDamage8",
+      "english": "Gladiator's",
+      "korean": "검투사의",
+      "koreanCandidates": [
+        "검투사의",
+        "글래디에이터의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "LocalIncreasedArmourAndEvasion4",
+      "english": "Gladiator's",
+      "korean": "검투사의",
+      "koreanCandidates": [
+        "검투사의",
+        "글래디에이터의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "FireCritMultiplier",
+      "english": "Infernal",
+      "korean": "지옥불의",
+      "koreanCandidates": [
+        "지옥불",
+        "지옥불의",
+        "지옥의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "GraftPrefixXophGlobalIncreasedFireDamage10",
+      "english": "Infernal",
+      "korean": "지옥의",
+      "koreanCandidates": [
+        "지옥불",
+        "지옥불의",
+        "지옥의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "SanctumSpecialPhysicalAddedAsFire",
+      "english": "Infernal",
+      "korean": "지옥불",
+      "koreanCandidates": [
+        "지옥불",
+        "지옥불의",
+        "지옥의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "GraftPrefixXophMinionDuration1",
+      "english": "Lingering",
+      "korean": "지속되는",
+      "koreanCandidates": [
+        "지속",
+        "지속되는"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "SentinelDuration2",
+      "english": "Lingering",
+      "korean": "지속되는",
+      "koreanCandidates": [
+        "지속",
+        "지속되는"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "WatchstoneTormentedSpiritDuration1_",
+      "english": "Lingering",
+      "korean": "지속",
+      "koreanCandidates": [
+        "지속",
+        "지속되는"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapRelicShrineAdditionalEffect1",
+      "english": "of Domination",
+      "korean": "- 지배",
+      "koreanCandidates": [
+        "- 지배",
+        "- 지배력"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapRelicShrineAdditionalPackChance1",
+      "english": "of Domination",
+      "korean": "- 지배",
+      "koreanCandidates": [
+        "- 지배",
+        "- 지배력"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapRelicShrineBuffEffect1",
+      "english": "of Domination",
+      "korean": "- 지배",
+      "koreanCandidates": [
+        "- 지배",
+        "- 지배력"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapRelicShrineDuration1",
+      "english": "of Domination",
+      "korean": "- 지배",
+      "koreanCandidates": [
+        "- 지배",
+        "- 지배력"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapRelicShrineGarunteedMagicPack1",
+      "english": "of Domination",
+      "korean": "- 지배",
+      "koreanCandidates": [
+        "- 지배",
+        "- 지배력"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapRelicShrineGreedShrineChance1",
+      "english": "of Domination",
+      "korean": "- 지배",
+      "koreanCandidates": [
+        "- 지배",
+        "- 지배력"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapUberModShrineBuff",
+      "english": "of Domination",
+      "korean": "- 지배력",
+      "koreanCandidates": [
+        "- 지배",
+        "- 지배력"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapDeepwaterChartMonstersResistPenetrationHigh",
+      "english": "of Penetration",
+      "korean": "- 관통",
+      "koreanCandidates": [
+        "- 관통",
+        "- 뚫음"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapDeepwaterChartMonstersResistPenetrationMed",
+      "english": "of Penetration",
+      "korean": "- 관통",
+      "koreanCandidates": [
+        "- 관통",
+        "- 뚫음"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapUberModEleDamagePenetration",
+      "english": "of Penetration",
+      "korean": "- 뚫음",
+      "koreanCandidates": [
+        "- 관통",
+        "- 뚫음"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "HeistNPCIncreasedFlaskChargesGained4",
+      "english": "of Plenty",
+      "korean": "- 풍부함",
+      "koreanCandidates": [
+        "- 풍부함",
+        "- 풍요함"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "LocalLifeFlaskAdditionalLifeRecovery2__",
+      "english": "of Plenty",
+      "korean": "- 풍요함",
+      "koreanCandidates": [
+        "- 풍부함",
+        "- 풍요함"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmArmourAndEvasionPerBlock1",
+      "english": "of the Gladiator",
+      "korean": "- 글래디에이터",
+      "koreanCandidates": [
+        "- 검투사",
+        "- 글래디에이터"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmArmourAndEvasionPerBlock2",
+      "english": "of the Gladiator",
+      "korean": "- 글래디에이터",
+      "koreanCandidates": [
+        "- 검투사",
+        "- 글래디에이터"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmAttackBlock1",
+      "english": "of the Gladiator",
+      "korean": "- 글래디에이터",
+      "koreanCandidates": [
+        "- 검투사",
+        "- 글래디에이터"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmAttackBlock2",
+      "english": "of the Gladiator",
+      "korean": "- 글래디에이터",
+      "koreanCandidates": [
+        "- 검투사",
+        "- 글래디에이터"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmMaximumBlock1",
+      "english": "of the Gladiator",
+      "korean": "- 글래디에이터",
+      "koreanCandidates": [
+        "- 검투사",
+        "- 글래디에이터"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmMaximumBlock2",
+      "english": "of the Gladiator",
+      "korean": "- 글래디에이터",
+      "koreanCandidates": [
+        "- 검투사",
+        "- 글래디에이터"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmStunImmuneAgainstBlockedHits",
+      "english": "of the Gladiator",
+      "korean": "- 글래디에이터",
+      "koreanCandidates": [
+        "- 검투사",
+        "- 글래디에이터"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "StunThresholdReduction5",
+      "english": "of the Gladiator",
+      "korean": "- 검투사",
+      "koreanCandidates": [
+        "- 검투사",
+        "- 글래디에이터"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AbyssIncreasedArmourIfNoEnemySlainRecentlyJewel1__",
+      "english": "of the Guardian",
+      "korean": "- 수호자",
+      "koreanCandidates": [
+        "- 가디언",
+        "- 수호자"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmBlockChanceIfAttackedRecently1",
+      "english": "of the Guardian",
+      "korean": "- 가디언",
+      "koreanCandidates": [
+        "- 가디언",
+        "- 수호자"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmBlockChanceIfAttackedRecently2",
+      "english": "of the Guardian",
+      "korean": "- 가디언",
+      "koreanCandidates": [
+        "- 가디언",
+        "- 수호자"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmEnemiesInLinkBeamCannotInflictElementalAilments",
+      "english": "of the Guardian",
+      "korean": "- 가디언",
+      "koreanCandidates": [
+        "- 가디언",
+        "- 수호자"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmRemoveCursesAndAilmentsEvery10seconds",
+      "english": "of the Guardian",
+      "korean": "- 가디언",
+      "koreanCandidates": [
+        "- 가디언",
+        "- 수호자"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmSpellBlockChanceIfCastSpellRecently1",
+      "english": "of the Guardian",
+      "korean": "- 가디언",
+      "koreanCandidates": [
+        "- 가디언",
+        "- 수호자"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmSpellBlockChanceIfCastSpellRecently2",
+      "english": "of the Guardian",
+      "korean": "- 가디언",
+      "koreanCandidates": [
+        "- 가디언",
+        "- 수호자"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapLeaguestoneAreaContainsBearersOfTheGuardianBloodline",
+      "english": "of the Guardian",
+      "korean": "- 수호자",
+      "koreanCandidates": [
+        "- 가디언",
+        "- 수호자"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AbyssDamagePenetratesElementalResistancesIfNoEnemySlainRecentlyJewel1",
+      "english": "of the Inquisitor",
+      "korean": "- 이단심문관",
+      "koreanCandidates": [
+        "- 이단심문관",
+        "- 인퀴지터"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmConsecratedGroundLingerDuration",
+      "english": "of the Inquisitor",
+      "korean": "- 인퀴지터",
+      "koreanCandidates": [
+        "- 이단심문관",
+        "- 인퀴지터"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmConsecratedGroundVsRareUnique1",
+      "english": "of the Inquisitor",
+      "korean": "- 인퀴지터",
+      "koreanCandidates": [
+        "- 이단심문관",
+        "- 인퀴지터"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmConsecratedGroundVsRareUnique2",
+      "english": "of the Inquisitor",
+      "korean": "- 인퀴지터",
+      "koreanCandidates": [
+        "- 이단심문관",
+        "- 인퀴지터"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmStrengthAndIntelligence1",
+      "english": "of the Inquisitor",
+      "korean": "- 인퀴지터",
+      "koreanCandidates": [
+        "- 이단심문관",
+        "- 인퀴지터"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmStrengthAndIntelligence2",
+      "english": "of the Inquisitor",
+      "korean": "- 인퀴지터",
+      "koreanCandidates": [
+        "- 이단심문관",
+        "- 인퀴지터"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AbyssMovementSpeedIfEnemySlainRecentlyJewel1",
+      "english": "of the Raider",
+      "korean": "- 습격자",
+      "koreanCandidates": [
+        "- 레이더",
+        "- 습격자"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmAvoidElementalAilmentsChanceWhilePhasing1",
+      "english": "of the Raider",
+      "korean": "- 레이더",
+      "koreanCandidates": [
+        "- 레이더",
+        "- 습격자"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmAvoidElementalAilmentsChanceWhilePhasing2",
+      "english": "of the Raider",
+      "korean": "- 레이더",
+      "koreanCandidates": [
+        "- 레이더",
+        "- 습격자"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmEvasionRatingPerFrenzyCharge1",
+      "english": "of the Raider",
+      "korean": "- 레이더",
+      "koreanCandidates": [
+        "- 레이더",
+        "- 습격자"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmEvasionRatingPerFrenzyCharge2",
+      "english": "of the Raider",
+      "korean": "- 레이더",
+      "koreanCandidates": [
+        "- 레이더",
+        "- 습격자"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmPhasingOnKillChance1",
+      "english": "of the Raider",
+      "korean": "- 레이더",
+      "koreanCandidates": [
+        "- 레이더",
+        "- 습격자"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmPhasingOnKillChance2",
+      "english": "of the Raider",
+      "korean": "- 레이더",
+      "koreanCandidates": [
+        "- 레이더",
+        "- 습격자"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmSpellSuppressionChance1",
+      "english": "of the Raider",
+      "korean": "- 레이더",
+      "koreanCandidates": [
+        "- 레이더",
+        "- 습격자"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmSpellSuppressionChance2",
+      "english": "of the Raider",
+      "korean": "- 레이더",
+      "koreanCandidates": [
+        "- 레이더",
+        "- 습격자"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "SentinelSentinelFrenzyChargeOnUse1",
+      "english": "of the Raider",
+      "korean": "- 습격자",
+      "koreanCandidates": [
+        "- 레이더",
+        "- 습격자"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmBlindOnHitChance1",
+      "english": "of the Saboteur",
+      "korean": "- 사보추어",
+      "koreanCandidates": [
+        "- 매설자",
+        "- 사보추어"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmBlindOnHitChance2",
+      "english": "of the Saboteur",
+      "korean": "- 사보추어",
+      "koreanCandidates": [
+        "- 매설자",
+        "- 사보추어"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmCannotBeBlinded",
+      "english": "of the Saboteur",
+      "korean": "- 사보추어",
+      "koreanCandidates": [
+        "- 매설자",
+        "- 사보추어"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmTakeHalfAreaDamageChance1",
+      "english": "of the Saboteur",
+      "korean": "- 사보추어",
+      "koreanCandidates": [
+        "- 매설자",
+        "- 사보추어"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmTakeHalfAreaDamageChance2",
+      "english": "of the Saboteur",
+      "korean": "- 사보추어",
+      "koreanCandidates": [
+        "- 매설자",
+        "- 사보추어"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "DexMasterTrapAndMineDamageCrafted",
+      "english": "of the Saboteur",
+      "korean": "- 매설자",
+      "koreanCandidates": [
+        "- 매설자",
+        "- 사보추어"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AfflictionJewelSmallPassivesGrantColdRes2",
+      "english": "of the Seal",
+      "korean": "- 봉인",
+      "koreanCandidates": [
+        "- 물개",
+        "- 봉인"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AfflictionJewelSmallPassivesGrantColdResSmall2",
+      "english": "of the Seal",
+      "korean": "- 봉인",
+      "koreanCandidates": [
+        "- 물개",
+        "- 봉인"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "ColdResist2",
+      "english": "of the Seal",
+      "korean": "- 봉인",
+      "koreanCandidates": [
+        "- 물개",
+        "- 봉인"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "FlaskBuffAvoidChillFreeze5",
+      "english": "of the Seal",
+      "korean": "- 물개",
+      "koreanCandidates": [
+        "- 물개",
+        "- 봉인"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AbyssDamageIfEnemySlainRecentlyJewel1",
+      "english": "of the Slayer",
+      "korean": "- 처형자",
+      "koreanCandidates": [
+        "- 슬레이어",
+        "- 처형자"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmOverkillLeech1",
+      "english": "of the Slayer",
+      "korean": "- 슬레이어",
+      "koreanCandidates": [
+        "- 슬레이어",
+        "- 처형자"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmOverkillLeech2",
+      "english": "of the Slayer",
+      "korean": "- 슬레이어",
+      "koreanCandidates": [
+        "- 슬레이어",
+        "- 처형자"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmPhysicalReflectImmune",
+      "english": "of the Slayer",
+      "korean": "- 슬레이어",
+      "koreanCandidates": [
+        "- 슬레이어",
+        "- 처형자"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmStunImmuneWhileLeeching",
+      "english": "of the Slayer",
+      "korean": "- 슬레이어",
+      "koreanCandidates": [
+        "- 슬레이어",
+        "- 처형자"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmUnaffectedbyBleedingWhileLeeching",
+      "english": "of the Slayer",
+      "korean": "- 슬레이어",
+      "koreanCandidates": [
+        "- 슬레이어",
+        "- 처형자"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "BleedDuration2",
+      "english": "of Torment",
+      "korean": "- 고뇌",
+      "koreanCandidates": [
+        "- 고뇌",
+        "- 고통"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "GraftSuffixAilmentDuration1",
+      "english": "of Torment",
+      "korean": "- 고통",
+      "koreanCandidates": [
+        "- 고뇌",
+        "- 고통"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapRelicTormentRareSpiritsMoreCommon1",
+      "english": "of Torment",
+      "korean": "- 고통",
+      "koreanCandidates": [
+        "- 고뇌",
+        "- 고통"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapRelicTormentSpiritDuration1",
+      "english": "of Torment",
+      "korean": "- 고통",
+      "koreanCandidates": [
+        "- 고뇌",
+        "- 고통"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapRelicTormentSpiritEscapeChance1",
+      "english": "of Torment",
+      "korean": "- 고통",
+      "koreanCandidates": [
+        "- 고뇌",
+        "- 고통"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "GraftPrefixTulCritChance4",
+      "english": "Precise",
+      "korean": "정밀한",
+      "koreanCandidates": [
+        "정밀한",
+        "정확한"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MonsterAccurate1",
+      "english": "Precise",
+      "korean": "정확한",
+      "koreanCandidates": [
+        "정밀한",
+        "정확한"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "HeistContractMonsterChaosDamage1",
+      "english": "Profane",
+      "korean": "모독적인",
+      "koreanCandidates": [
+        "모독적인",
+        "부정한"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "HeistContractMonsterChaosDamage2",
+      "english": "Profane",
+      "korean": "모독적인",
+      "koreanCandidates": [
+        "모독적인",
+        "부정한"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapCorruptedSideAreaPhysicalDamageAddedAsChaos",
+      "english": "Profane",
+      "korean": "모독적인",
+      "koreanCandidates": [
+        "모독적인",
+        "부정한"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapDeepwaterChartDamageAsChaosHigh",
+      "english": "Profane",
+      "korean": "부정한",
+      "koreanCandidates": [
+        "모독적인",
+        "부정한"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapDeepwaterChartDamageAsChaosMed",
+      "english": "Profane",
+      "korean": "부정한",
+      "koreanCandidates": [
+        "모독적인",
+        "부정한"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapDeepwaterChartDamageAsChaosVeryHigh",
+      "english": "Profane",
+      "korean": "부정한",
+      "koreanCandidates": [
+        "모독적인",
+        "부정한"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapMonsterChaosDamage2MapWorlds",
+      "english": "Profane",
+      "korean": "모독적인",
+      "koreanCandidates": [
+        "모독적인",
+        "부정한"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapMonsterChaosDamage2MapWorldsExpedition",
+      "english": "Profane",
+      "korean": "모독적인",
+      "koreanCandidates": [
+        "모독적인",
+        "부정한"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapMonsterChaosDamage3MapWorlds",
+      "english": "Profane",
+      "korean": "모독적인",
+      "koreanCandidates": [
+        "모독적인",
+        "부정한"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapMonsterChaosDamage3MapWorldsExpedition",
+      "english": "Profane",
+      "korean": "모독적인",
+      "koreanCandidates": [
+        "모독적인",
+        "부정한"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapMonsterChaosDamage3MapWorldsMaven",
+      "english": "Profane",
+      "korean": "모독적인",
+      "koreanCandidates": [
+        "모독적인",
+        "부정한"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapUberModDamageAsChaos",
+      "english": "Profane",
+      "korean": "부정한",
+      "koreanCandidates": [
+        "모독적인",
+        "부정한"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapUberWeakMonsterChaosDamage",
+      "english": "Profane",
+      "korean": "부정한",
+      "koreanCandidates": [
+        "모독적인",
+        "부정한"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmFrenzyOnHItChance1",
+      "english": "Raider's",
+      "korean": "레이더의",
+      "koreanCandidates": [
+        "레이더의",
+        "습격자의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmFrenzyOnHItChance2",
+      "english": "Raider's",
+      "korean": "레이더의",
+      "koreanCandidates": [
+        "레이더의",
+        "습격자의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmMovementSpeedPerFrenzyCharge",
+      "english": "Raider's",
+      "korean": "레이더의",
+      "koreanCandidates": [
+        "레이더의",
+        "습격자의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmOnslaughtEffect1",
+      "english": "Raider's",
+      "korean": "레이더의",
+      "koreanCandidates": [
+        "레이더의",
+        "습격자의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmOnslaughtEffect2",
+      "english": "Raider's",
+      "korean": "레이더의",
+      "koreanCandidates": [
+        "레이더의",
+        "습격자의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmOnslaughtOnKillChance1",
+      "english": "Raider's",
+      "korean": "레이더의",
+      "koreanCandidates": [
+        "레이더의",
+        "습격자의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AnimalCharmOnslaughtOnKillChance2",
+      "english": "Raider's",
+      "korean": "레이더의",
+      "koreanCandidates": [
+        "레이더의",
+        "습격자의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "HeistNPCDamageNotEscaping3",
+      "english": "Raider's",
+      "korean": "습격자의",
+      "koreanCandidates": [
+        "레이더의",
+        "습격자의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "BeltFlaskLifeRecoveryRate5",
+      "english": "Rejuvenating",
+      "korean": "회춘하는",
+      "koreanCandidates": [
+        "회춘",
+        "회춘하는"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MonsterArchnemesisRejuvenating",
+      "english": "Rejuvenating",
+      "korean": "회춘",
+      "koreanCandidates": [
+        "회춘",
+        "회춘하는"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "SanctumSpecialLifeRegenerationRate",
+      "english": "Rejuvenating",
+      "korean": "회춘하는",
+      "koreanCandidates": [
+        "회춘",
+        "회춘하는"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AbyssJewelAddedMana4",
+      "english": "Sapphire",
+      "korean": "사파이어색",
+      "koreanCandidates": [
+        "사파이어",
+        "사파이어색"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "AfflictionJewelSmallPassivesGrantManaSmall4_",
+      "english": "Sapphire",
+      "korean": "사파이어색",
+      "koreanCandidates": [
+        "사파이어",
+        "사파이어색"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "IncreasedMana4",
+      "english": "Sapphire",
+      "korean": "사파이어",
+      "koreanCandidates": [
+        "사파이어",
+        "사파이어색"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "IncreasedManaTwoHandWeapon4",
+      "english": "Sapphire",
+      "korean": "사파이어",
+      "koreanCandidates": [
+        "사파이어",
+        "사파이어색"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "IncreasedManaWeapon4",
+      "english": "Sapphire",
+      "korean": "사파이어",
+      "koreanCandidates": [
+        "사파이어",
+        "사파이어색"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "CorruptedSideAreaMultipleProjectiles",
+      "english": "Splitting",
+      "korean": "분할의",
+      "koreanCandidates": [
+        "분할",
+        "분할의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "HeistContractMonsterMultipleProjectiles",
+      "english": "Splitting",
+      "korean": "분할의",
+      "koreanCandidates": [
+        "분할",
+        "분할의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapCorruptedSideAreaMultipleProjectiles",
+      "english": "Splitting",
+      "korean": "분할의",
+      "koreanCandidates": [
+        "분할",
+        "분할의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapDeepwaterChartMonsterMultipleProjectilesHigh",
+      "english": "Splitting",
+      "korean": "분할의",
+      "koreanCandidates": [
+        "분할",
+        "분할의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapDeepwaterChartMonsterMultipleProjectilesMed",
+      "english": "Splitting",
+      "korean": "분할의",
+      "koreanCandidates": [
+        "분할",
+        "분할의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapMonsterMultipleProjectiles",
+      "english": "Splitting",
+      "korean": "분할의",
+      "koreanCandidates": [
+        "분할",
+        "분할의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapMonsterMultipleProjectiles2Map2Tier",
+      "english": "Splitting",
+      "korean": "분할의",
+      "koreanCandidates": [
+        "분할",
+        "분할의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapMonsterMultipleProjectiles3Map2Tier",
+      "english": "Splitting",
+      "korean": "분할의",
+      "koreanCandidates": [
+        "분할",
+        "분할의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapMonsterMultipleProjectilesMap2Tier",
+      "english": "Splitting",
+      "korean": "분할의",
+      "koreanCandidates": [
+        "분할",
+        "분할의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapMonsterMultipleProjectilesStrDexIntMission",
+      "english": "Splitting",
+      "korean": "분할의",
+      "koreanCandidates": [
+        "분할",
+        "분할의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapMonsterMultipleProjectilesWorlds",
+      "english": "Splitting",
+      "korean": "분할의",
+      "koreanCandidates": [
+        "분할",
+        "분할의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapMonsterMultipleProjectilesWorldsExpedition_",
+      "english": "Splitting",
+      "korean": "분할의",
+      "koreanCandidates": [
+        "분할",
+        "분할의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MapMonsterMultipleProjectilesWorldsMaven",
+      "english": "Splitting",
+      "korean": "분할의",
+      "koreanCandidates": [
+        "분할",
+        "분할의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MonsterArchnemesisSplitting_",
+      "english": "Splitting",
+      "korean": "분할",
+      "koreanCandidates": [
+        "분할",
+        "분할의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MonsterMultipleProjectiles1",
+      "english": "Splitting",
+      "korean": "분할의",
+      "koreanCandidates": [
+        "분할",
+        "분할의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "SentinelExtraBeams2",
+      "english": "Splitting",
+      "korean": "분할의",
+      "koreanCandidates": [
+        "분할",
+        "분할의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MonsterLightningStormBossSideArea",
+      "english": "Storm Herald",
+      "korean": "태풍 전령",
+      "koreanCandidates": [
+        "태풍 전령",
+        "태풍 전령의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MonsterLightningStormDaemonDescent2",
+      "english": "Storm Herald",
+      "korean": "태풍 전령",
+      "koreanCandidates": [
+        "태풍 전령",
+        "태풍 전령의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MonsterModStormHerald",
+      "english": "Storm Herald",
+      "korean": "태풍 전령의",
+      "koreanCandidates": [
+        "태풍 전령",
+        "태풍 전령의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MonsterNemesisLightningStormDaemon",
+      "english": "Storm Herald",
+      "korean": "태풍 전령",
+      "koreanCandidates": [
+        "태풍 전령",
+        "태풍 전령의"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "GraftPrefixUulnetolLifeLeech1",
+      "english": "Vampiric",
+      "korean": "흡혈귀",
+      "koreanCandidates": [
+        "흡혈",
+        "흡혈귀"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "MonsterArchnemesisVampiric",
+      "english": "Vampiric",
+      "korean": "흡혈",
+      "koreanCandidates": [
+        "흡혈",
+        "흡혈귀"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "VeiledPrefix",
+      "english": "Veiled",
+      "korean": "장막",
+      "koreanCandidates": [
+        "장막",
+        "장막에 가린"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "WatchstoneBetrayalAdditionalVeiledItemChance1",
+      "english": "Veiled",
+      "korean": "장막에 가린",
+      "koreanCandidates": [
+        "장막",
+        "장막에 가린"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "WatchstoneBetrayalAdditionalVeiledItemChance2",
+      "english": "Veiled",
+      "korean": "장막에 가린",
+      "koreanCandidates": [
+        "장막",
+        "장막에 가린"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "WatchstoneBetrayalAdditionalVeiledItemChance3",
+      "english": "Veiled",
+      "korean": "장막에 가린",
+      "koreanCandidates": [
+        "장막",
+        "장막에 가린"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "ChaosNonAilmentDamageOverTimeMultiplier1h2",
+      "english": "Wasting",
+      "korean": "소모시키는",
+      "koreanCandidates": [
+        "소모성",
+        "소모시키는"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "ChaosNonAilmentDamageOverTimeMultiplier2h2",
+      "english": "Wasting",
+      "korean": "소모시키는",
+      "koreanCandidates": [
+        "소모성",
+        "소모시키는"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    },
+    {
+      "id": "GraftPrefixXophFasterAilments1",
+      "english": "Wasting",
+      "korean": "소모성",
+      "koreanCandidates": [
+        "소모성",
+        "소모시키는"
+      ],
+      "reason": "One English mod name maps to multiple official Korean names"
+    }
+  ]
+}

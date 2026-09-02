@@ -1,0 +1,6246 @@
+{
+  "patch": "3.29.3.2",
+  "identity": "unique item id",
+  "rows": [
+    {
+      "id": "Abberath's Hooves",
+      "english": "Abberath's Hooves",
+      "korean": "아버라스의 발굽"
+    },
+    {
+      "id": "Abberath's Horn",
+      "english": "Abberath's Horn",
+      "korean": "아버라스의 뿔"
+    },
+    {
+      "id": "Abhorrent Interrogation",
+      "english": "Abhorrent Interrogation",
+      "korean": "혐오스러운 취조"
+    },
+    {
+      "id": "Abyssus",
+      "english": "Abyssus",
+      "korean": "깊은 심연"
+    },
+    {
+      "id": "Acton's Nightmare",
+      "english": "Acton's Nightmare",
+      "korean": "액턴의 악몽"
+    },
+    {
+      "id": "Actum",
+      "english": "Actum",
+      "korean": "액툼"
+    },
+    {
+      "id": "Admiral's Arrogance",
+      "english": "Admiral's Arrogance",
+      "korean": "제독의 오만"
+    },
+    {
+      "id": "Advancing Fortress",
+      "english": "Advancing Fortress",
+      "korean": "전진하는 요새"
+    },
+    {
+      "id": "Aegis Aurora",
+      "english": "Aegis Aurora",
+      "korean": "비호의 오로라"
+    },
+    {
+      "id": "Agnerod East",
+      "english": "Agnerod East",
+      "korean": "동쪽의 아그네로드"
+    },
+    {
+      "id": "Agnerod North",
+      "english": "Agnerod North",
+      "korean": "북쪽의 아그네로드"
+    },
+    {
+      "id": "Agnerod South",
+      "english": "Agnerod South",
+      "korean": "남쪽의 아그네로드"
+    },
+    {
+      "id": "Agnerod West",
+      "english": "Agnerod West",
+      "korean": "서쪽의 아그네로드"
+    },
+    {
+      "id": "Ahkeli's Meadow",
+      "english": "Ahkeli's Meadow",
+      "korean": "아켈리의 초원"
+    },
+    {
+      "id": "Ahkeli's Mountain",
+      "english": "Ahkeli's Mountain",
+      "korean": "아켈리의 산"
+    },
+    {
+      "id": "Ahkeli's Valley",
+      "english": "Ahkeli's Valley",
+      "korean": "아켈리의 계곡"
+    },
+    {
+      "id": "Ahn's Contempt",
+      "english": "Ahn's Contempt",
+      "korean": "안의 경멸"
+    },
+    {
+      "id": "Ahn's Heritage",
+      "english": "Ahn's Heritage",
+      "korean": "안의 유산"
+    },
+    {
+      "id": "Ahn's Might",
+      "english": "Ahn's Might",
+      "korean": "안의 완력"
+    },
+    {
+      "id": "Ahuana's Bite",
+      "english": "Ahuana's Bite",
+      "korean": "아후아나의 이빨"
+    },
+    {
+      "id": "Akoya's Gaze",
+      "english": "Akoya's Gaze",
+      "korean": "아코야의 응시"
+    },
+    {
+      "id": "Al Dhih",
+      "english": "Al Dhih",
+      "korean": "알 디"
+    },
+    {
+      "id": "Alberon's Warpath",
+      "english": "Alberon's Warpath",
+      "korean": "알베른의 적대"
+    },
+    {
+      "id": "Algor Mortis",
+      "english": "Algor Mortis",
+      "korean": "사후 냉각"
+    },
+    {
+      "id": "Allelopathy",
+      "english": "Allelopathy",
+      "korean": "생존 경쟁"
+    },
+    {
+      "id": "Allure",
+      "english": "Allure",
+      "korean": "매혹"
+    },
+    {
+      "id": "Altered Distant Memory",
+      "english": "Altered Distant Memory",
+      "korean": "뒤바뀐 희미한 기억"
+    },
+    {
+      "id": "Amanamu's Gaze",
+      "english": "Amanamu's Gaze",
+      "korean": "아마나무의 응시"
+    },
+    {
+      "id": "Ambu's Charge",
+      "english": "Ambu's Charge",
+      "korean": "앰부의 돌진"
+    },
+    {
+      "id": "Amplification Rod",
+      "english": "Amplification Rod",
+      "korean": "증폭 막대"
+    },
+    {
+      "id": "Anathema",
+      "english": "Anathema",
+      "korean": "극한의 혐오"
+    },
+    {
+      "id": "Anatomical Knowledge",
+      "english": "Anatomical Knowledge",
+      "korean": "육체에 대한 지식"
+    },
+    {
+      "id": "Ancestral Vision",
+      "english": "Ancestral Vision",
+      "korean": "선대의 환영"
+    },
+    {
+      "id": "Ancient Skull",
+      "english": "Ancient Skull",
+      "korean": "고대 해골"
+    },
+    {
+      "id": "Ancient Waystones",
+      "english": "Ancient Waystones",
+      "korean": "고대 경로석"
+    },
+    {
+      "id": "Angler's Plait",
+      "english": "Angler's Plait",
+      "korean": "낚시꾼의 고리"
+    },
+    {
+      "id": "Annihilation's Approach",
+      "english": "Annihilation's Approach",
+      "korean": "전멸의 접근"
+    },
+    {
+      "id": "Apep's Rage",
+      "english": "Apep's Rage",
+      "korean": "아펩의 격노"
+    },
+    {
+      "id": "Apep's Slumber",
+      "english": "Apep's Slumber",
+      "korean": "아펩의 수면"
+    },
+    {
+      "id": "Apep's Supremacy",
+      "english": "Apep's Supremacy",
+      "korean": "아펩의 패권"
+    },
+    {
+      "id": "Apex Mode",
+      "english": "Apex Mode",
+      "korean": "정점 모드"
+    },
+    {
+      "id": "Apparitions",
+      "english": "Apparitions",
+      "korean": "유령"
+    },
+    {
+      "id": "Arakaali's Fang",
+      "english": "Arakaali's Fang",
+      "korean": "아라칼리의 송곳니"
+    },
+    {
+      "id": "Araku Tiki",
+      "english": "Araku Tiki",
+      "korean": "아라쿠 티키"
+    },
+    {
+      "id": "Arborix",
+      "english": "Arborix",
+      "korean": "아보릭스"
+    },
+    {
+      "id": "Architect's Hand",
+      "english": "Architect's Hand",
+      "korean": "건축가의 손길"
+    },
+    {
+      "id": "Arn's Anguish",
+      "english": "Arn's Anguish",
+      "korean": "안의 비통"
+    },
+    {
+      "id": "Ascent From Flesh",
+      "english": "Ascent From Flesh",
+      "korean": "육체로부터의 해방"
+    },
+    {
+      "id": "Asenath's Chant",
+      "english": "Asenath's Chant",
+      "korean": "아세나스의 노래"
+    },
+    {
+      "id": "Asenath's Gentle Touch",
+      "english": "Asenath's Gentle Touch",
+      "korean": "아세나스의 부드러운 손길"
+    },
+    {
+      "id": "Asenath's Mark",
+      "english": "Asenath's Mark",
+      "korean": "아세나스의 징표"
+    },
+    {
+      "id": "Ashcaller",
+      "english": "Ashcaller",
+      "korean": "재 소환사"
+    },
+    {
+      "id": "Ashes of the Stars",
+      "english": "Ashes of the Stars",
+      "korean": "별의 재"
+    },
+    {
+      "id": "Ashrend",
+      "english": "Ashrend",
+      "korean": "부서진 잿더미"
+    },
+    {
+      "id": "Assailum",
+      "english": "Assailum",
+      "korean": "공격병동"
+    },
+    {
+      "id": "Assassin's Haste",
+      "english": "Assassin's Haste",
+      "korean": "암살자의 신속함"
+    },
+    {
+      "id": "Astral Projector",
+      "english": "Astral Projector",
+      "korean": "우주의 영사기"
+    },
+    {
+      "id": "Atop the Atlas",
+      "english": "Atop the Atlas",
+      "korean": "아틀라스의 꼭대기"
+    },
+    {
+      "id": "Atziri's Acuity",
+      "english": "Atziri's Acuity",
+      "korean": "앗지리의 예리함"
+    },
+    {
+      "id": "Atziri's Disfavour",
+      "english": "Atziri's Disfavour",
+      "korean": "앗지리의 경멸"
+    },
+    {
+      "id": "Atziri's Promise",
+      "english": "Atziri's Promise",
+      "korean": "앗지리의 약속"
+    },
+    {
+      "id": "Atziri's Reflection",
+      "english": "Atziri's Reflection",
+      "korean": "앗지리의 성찰"
+    },
+    {
+      "id": "Atziri's Reign",
+      "english": "Atziri's Reign",
+      "korean": "앗지리의 치세"
+    },
+    {
+      "id": "Atziri's Rule",
+      "english": "Atziri's Rule",
+      "korean": "앗지리의 통치"
+    },
+    {
+      "id": "Atziri's Splendour",
+      "english": "Atziri's Splendour",
+      "korean": "앗지리의 위풍"
+    },
+    {
+      "id": "Atziri's Step",
+      "english": "Atziri's Step",
+      "korean": "앗지리의 걸음"
+    },
+    {
+      "id": "Augmented Distant Memory",
+      "english": "Augmented Distant Memory",
+      "korean": "강화된 희미한 기억"
+    },
+    {
+      "id": "Augyre",
+      "english": "Augyre",
+      "korean": "오귀르"
+    },
+    {
+      "id": "Aukuna's Will",
+      "english": "Aukuna's Will",
+      "korean": "아우카나의 의지"
+    },
+    {
+      "id": "Aul's Uprising",
+      "english": "Aul's Uprising",
+      "korean": "아울의 반란"
+    },
+    {
+      "id": "Aurseize",
+      "english": "Aurseize",
+      "korean": "아우르시즈"
+    },
+    {
+      "id": "Axiom Perpetuum",
+      "english": "Axiom Perpetuum",
+      "korean": "액시옴의 무기징역"
+    },
+    {
+      "id": "Azadi Crest",
+      "english": "Azadi Crest",
+      "korean": "아자디 문양"
+    },
+    {
+      "id": "Badge of the Brotherhood",
+      "english": "Badge of the Brotherhood",
+      "korean": "형제단의 증표"
+    },
+    {
+      "id": "Balefire",
+      "english": "Balefire",
+      "korean": "대화재"
+    },
+    {
+      "id": "Baleful Dominion",
+      "english": "Baleful Dominion",
+      "korean": "사악한 통치"
+    },
+    {
+      "id": "Bated Breath",
+      "english": "Bated Breath",
+      "korean": "약해진 숨결"
+    },
+    {
+      "id": "Bear's Girdle",
+      "english": "Bear's Girdle",
+      "korean": "곰의 허리띠"
+    },
+    {
+      "id": "Belly of the Beast",
+      "english": "Belly of the Beast",
+      "korean": "짐승의 소굴"
+    },
+    {
+      "id": "Belt of the Deceiver",
+      "english": "Belt of the Deceiver",
+      "korean": "기만자의 허리띠"
+    },
+    {
+      "id": "Beltimber Blade",
+      "english": "Beltimber Blade",
+      "korean": "벨팀버 검"
+    },
+    {
+      "id": "Betrayal's Sting",
+      "english": "Betrayal's Sting",
+      "korean": "배신의 쓴맛"
+    },
+    {
+      "id": "Lash of Retribution",
+      "english": "Binds of Bloody Vengeance",
+      "korean": "피로 물든 복수의 구속구"
+    },
+    {
+      "id": "Bisco's Collar",
+      "english": "Bisco's Collar",
+      "korean": "비스코의 목걸이"
+    },
+    {
+      "id": "Bisco's Leash",
+      "english": "Bisco's Leash",
+      "korean": "비스코의 가죽끈"
+    },
+    {
+      "id": "Bitter Instinct",
+      "english": "Bitter Instinct",
+      "korean": "쓰라린 본능"
+    },
+    {
+      "id": "Bitterbind Point",
+      "english": "Bitterbind Point",
+      "korean": "쓰라린 속박의 끝"
+    },
+    {
+      "id": "Bitterdream",
+      "english": "Bitterdream",
+      "korean": "악몽"
+    },
+    {
+      "id": "Black Sun Crest",
+      "english": "Black Sun Crest",
+      "korean": "검은 태양 문양"
+    },
+    {
+      "id": "Black Zenith",
+      "english": "Black Zenith",
+      "korean": "검은 북극성"
+    },
+    {
+      "id": "Blackflame",
+      "english": "Blackflame",
+      "korean": "검은화염"
+    },
+    {
+      "id": "Blasphemer's Grasp",
+      "english": "Blasphemer's Grasp",
+      "korean": "신성 모독자의 장악"
+    },
+    {
+      "id": "Blightwell",
+      "english": "Blightwell",
+      "korean": "황폐한 샘"
+    },
+    {
+      "id": "Blood of Corruption",
+      "english": "Blood of Corruption",
+      "korean": "타락의 피"
+    },
+    {
+      "id": "Blood of the Karui",
+      "english": "Blood of the Karui",
+      "korean": "카루이의 피"
+    },
+    {
+      "id": "Blood Price",
+      "english": "Blood Price",
+      "korean": "피의 대가"
+    },
+    {
+      "id": "Blood Sacrifice",
+      "english": "Blood Sacrifice",
+      "korean": "피의 희생"
+    },
+    {
+      "id": "Bloodboil",
+      "english": "Bloodboil",
+      "korean": "끓는 피"
+    },
+    {
+      "id": "Bloodbond",
+      "english": "Bloodbond",
+      "korean": "피붙이"
+    },
+    {
+      "id": "Bloodnotch",
+      "english": "Bloodnotch",
+      "korean": "피의 오늬"
+    },
+    {
+      "id": "Bloodplay",
+      "english": "Bloodplay",
+      "korean": "피의 오락"
+    },
+    {
+      "id": "Bloodseeker",
+      "english": "Bloodseeker",
+      "korean": "피의 탐색자"
+    },
+    {
+      "id": "Bloodsoaked Medallion",
+      "english": "Bloodsoaked Medallion",
+      "korean": "피투성이 메달리온"
+    },
+    {
+      "id": "Blunderbore",
+      "english": "Blunderbore",
+      "korean": "블런더보어"
+    },
+    {
+      "id": "Bonemeld",
+      "english": "Bonemeld",
+      "korean": "뼈결합"
+    },
+    {
+      "id": "Bones of Ullr",
+      "english": "Bones of Ullr",
+      "korean": "울러의 뼈"
+    },
+    {
+      "id": "Booming Populace",
+      "english": "Booming Populace",
+      "korean": "불어나는 무리"
+    },
+    {
+      "id": "Bottled Faith",
+      "english": "Bottled Faith",
+      "korean": "병에 담긴 믿음"
+    },
+    {
+      "id": "Bound By Destiny",
+      "english": "Bound By Destiny",
+      "korean": "운명의 속박"
+    },
+    {
+      "id": "Bound Fate",
+      "english": "Bound Fate",
+      "korean": "속박된 운명"
+    },
+    {
+      "id": "Brain Rattler",
+      "english": "Brain Rattler",
+      "korean": "요동치는 두뇌"
+    },
+    {
+      "id": "Bramblejack",
+      "english": "Bramblejack",
+      "korean": "가시나무 갑옷"
+    },
+    {
+      "id": "Brawn",
+      "english": "Brawn",
+      "korean": "근육"
+    },
+    {
+      "id": "Breath of the Council",
+      "english": "Breath of the Council",
+      "korean": "의회의 숨결"
+    },
+    {
+      "id": "Breathstealer",
+      "english": "Breathstealer",
+      "korean": "숨결강탈자"
+    },
+    {
+      "id": "Brinerot Flag",
+      "english": "Brinerot Flag",
+      "korean": "부패한 염수단 깃발"
+    },
+    {
+      "id": "Brinerot Mark",
+      "english": "Brinerot Mark",
+      "korean": "부패한 염수단 징표"
+    },
+    {
+      "id": "Brinerot Whalers",
+      "english": "Brinerot Whalers",
+      "korean": "부패한 염수단 고래잡이 신발"
+    },
+    {
+      "id": "Briskwrap",
+      "english": "Briskwrap",
+      "korean": "활력의 겉옷"
+    },
+    {
+      "id": "Brittle Barrier",
+      "english": "Brittle Barrier",
+      "korean": "부실한 방어막"
+    },
+    {
+      "id": "Broadstroke",
+      "english": "Broadstroke",
+      "korean": "파괴의 살"
+    },
+    {
+      "id": "Broken Faith",
+      "english": "Broken Faith",
+      "korean": "부서진 믿음"
+    },
+    {
+      "id": "Bronn's Lithe",
+      "english": "Bronn's Lithe",
+      "korean": "브론의 융통성"
+    },
+    {
+      "id": "Brutal Restraint",
+      "english": "Brutal Restraint",
+      "korean": "잔인한 속박"
+    },
+    {
+      "id": "Brute Force Solution",
+      "english": "Brute Force Solution",
+      "korean": "완력 해결"
+    },
+    {
+      "id": "Brutus' Lead Sprinkler",
+      "english": "Brutus' Lead Sprinkler",
+      "korean": "브루투스의 리드 스프링클러"
+    },
+    {
+      "id": "Cadigan's Authority",
+      "english": "Cadigan's Authority",
+      "korean": "캐디건의 권위"
+    },
+    {
+      "id": "Cadigan's Crown",
+      "english": "Cadigan's Crown",
+      "korean": "캐디건의 왕관"
+    },
+    {
+      "id": "Caer Blaidd, Wolfpack's Den",
+      "english": "Caer Blaidd, Wolfpack's Den",
+      "korean": "캐어블레이드 늑대의 소굴"
+    },
+    {
+      "id": "Calamitous Visions",
+      "english": "Calamitous Visions",
+      "korean": "환란의 시각"
+    },
+    {
+      "id": "Call of the Void",
+      "english": "Call of the Void",
+      "korean": "공허의 부름"
+    },
+    {
+      "id": "Callinellus Malleus",
+      "english": "Callinellus Malleus",
+      "korean": "집게발 쇠망치"
+    },
+    {
+      "id": "Cameria's Avarice",
+      "english": "Cameria's Avarice",
+      "korean": "카메리아의 탐욕"
+    },
+    {
+      "id": "Cameria's Maul",
+      "english": "Cameria's Maul",
+      "korean": "카메리아의 대형 망치"
+    },
+    {
+      "id": "Cane of Kulemak",
+      "english": "Cane of Kulemak",
+      "korean": "쿨레막의 지팡이"
+    },
+    {
+      "id": "Cane of Unravelling",
+      "english": "Cane of Unravelling",
+      "korean": "해결의 지팡이"
+    },
+    {
+      "id": "Careful Planning",
+      "english": "Careful Planning",
+      "korean": "철저한 계획"
+    },
+    {
+      "id": "Ceaseless Feast",
+      "english": "Ceaseless Feast",
+      "korean": "끊임없는 연회"
+    },
+    {
+      "id": "Ceinture of Benevolence",
+      "english": "Ceinture of Benevolence",
+      "korean": "관대함의 띠"
+    },
+    {
+      "id": "Cerberus Limb",
+      "english": "Cerberus Limb",
+      "korean": "케르베로스의 발"
+    },
+    {
+      "id": "Chaber Cairn",
+      "english": "Chaber Cairn",
+      "korean": "차버 케른"
+    },
+    {
+      "id": "Chain of Endurance",
+      "english": "Chain of Endurance",
+      "korean": "인내의 사슬"
+    },
+    {
+      "id": "Chains of Command",
+      "english": "Chains of Command",
+      "korean": "지휘관의 사슬"
+    },
+    {
+      "id": "Chains of Emancipation",
+      "english": "Chains of Emancipation",
+      "korean": "해방의 사슬"
+    },
+    {
+      "id": "Chalice of Horrors",
+      "english": "Chalice of Horrors",
+      "korean": "공포의 성배"
+    },
+    {
+      "id": "Cheap Construction",
+      "english": "Cheap Construction",
+      "korean": "저렴한 건축"
+    },
+    {
+      "id": "Chernobog's Pillar",
+      "english": "Chernobog's Pillar",
+      "korean": "체르노보그의 기둥"
+    },
+    {
+      "id": "Cherrubim's Maleficence",
+      "english": "Cherrubim's Maleficence",
+      "korean": "체루빔의 악행"
+    },
+    {
+      "id": "Chill of Corruption",
+      "english": "Chill of Corruption",
+      "korean": "타락의 한기"
+    },
+    {
+      "id": "Chin Sol",
+      "english": "Chin Sol",
+      "korean": "친 솔"
+    },
+    {
+      "id": "Chitus' Apex",
+      "english": "Chitus' Apex",
+      "korean": "치투스의 정점"
+    },
+    {
+      "id": "Chitus' Needle",
+      "english": "Chitus' Needle",
+      "korean": "치투스의 바늘"
+    },
+    {
+      "id": "Chober Chaber",
+      "english": "Chober Chaber",
+      "korean": "초버 차버"
+    },
+    {
+      "id": "Choir of the Storm",
+      "english": "Choir of the Storm",
+      "korean": "태풍의 합창"
+    },
+    {
+      "id": "Cinderswallow Urn",
+      "english": "Cinderswallow Urn",
+      "korean": "잿더미 단지"
+    },
+    {
+      "id": "Circle of Ambition",
+      "english": "Circle of Ambition",
+      "korean": "야심의 고리"
+    },
+    {
+      "id": "Circle of Anguish",
+      "english": "Circle of Anguish",
+      "korean": "비통의 고리"
+    },
+    {
+      "id": "Circle of Fear",
+      "english": "Circle of Fear",
+      "korean": "두려움의 고리"
+    },
+    {
+      "id": "Circle of Guilt",
+      "english": "Circle of Guilt",
+      "korean": "유죄의 고리"
+    },
+    {
+      "id": "Circle of Nostalgia",
+      "english": "Circle of Nostalgia",
+      "korean": "그리움의 고리"
+    },
+    {
+      "id": "Circle of Regret",
+      "english": "Circle of Regret",
+      "korean": "후회의 고리"
+    },
+    {
+      "id": "Clayshaper",
+      "english": "Clayshaper",
+      "korean": "클레이쉐이퍼"
+    },
+    {
+      "id": "Clear Mind",
+      "english": "Clear Mind",
+      "korean": "맑은 정신"
+    },
+    {
+      "id": "Cloak of Defiance",
+      "english": "Cloak of Defiance",
+      "korean": "저항의 망토"
+    },
+    {
+      "id": "Cloak of Tawm'r Isley",
+      "english": "Cloak of Tawm'r Isley",
+      "korean": "탐위르 이슬리의 망토"
+    },
+    {
+      "id": "Coated Shrapnel",
+      "english": "Coated Shrapnel",
+      "korean": "뒤덮은 파편"
+    },
+    {
+      "id": "Coiling Whisper",
+      "english": "Coiling Whisper",
+      "korean": "똬리를 트는 속삭임"
+    },
+    {
+      "id": "Cold Iron Point",
+      "english": "Cold Iron Point",
+      "korean": "날붙이 끝"
+    },
+    {
+      "id": "Cold Steel",
+      "english": "Cold Steel",
+      "korean": "냉기의 강철"
+    },
+    {
+      "id": "Collateral Damage",
+      "english": "Collateral Damage",
+      "korean": "부가적 피해"
+    },
+    {
+      "id": "Combustibles",
+      "english": "Combustibles",
+      "korean": "가연성 보석"
+    },
+    {
+      "id": "Command of the Pit",
+      "english": "Command of the Pit",
+      "korean": "구덩이의 지배자"
+    },
+    {
+      "id": "Conqueror's Efficiency",
+      "english": "Conqueror's Efficiency",
+      "korean": "정복자의 효율"
+    },
+    {
+      "id": "Conqueror's Longevity",
+      "english": "Conqueror's Longevity",
+      "korean": "정복자의 수명"
+    },
+    {
+      "id": "Conqueror's Potency",
+      "english": "Conqueror's Potency",
+      "korean": "정복자의 능력"
+    },
+    {
+      "id": "Contract: Breaking the Unbreakable",
+      "english": "Contract: Breaking the Unbreakable",
+      "korean": "계약: 파괴 불가능한 존재 파괴하기"
+    },
+    {
+      "id": "Contract: Death to Darnaw",
+      "english": "Contract: Death to Darnaw",
+      "korean": "계약: 다나우에게 죽음을"
+    },
+    {
+      "id": "Contract: Heart of Glory",
+      "english": "Contract: Heart of Glory",
+      "korean": "계약: 영광의 심장"
+    },
+    {
+      "id": "Contract: Jamanra's Rest",
+      "english": "Contract: Jamanra's Rest",
+      "korean": "계약: 자만라의 휴식"
+    },
+    {
+      "id": "Contract: The Slaver King",
+      "english": "Contract: The Slaver King",
+      "korean": "계약: 노예상의 왕"
+    },
+    {
+      "id": "Contract: The Twins",
+      "english": "Contract: The Twins",
+      "korean": "계약: 쌍둥이"
+    },
+    {
+      "id": "Coralito's Signature",
+      "english": "Coralito's Signature",
+      "korean": "코랄리토의 서명"
+    },
+    {
+      "id": "Corona Solaris",
+      "english": "Corona Solaris",
+      "korean": "솔라리스의 광환"
+    },
+    {
+      "id": "Corpsewalker",
+      "english": "Corpsewalker",
+      "korean": "시체 보행자"
+    },
+    {
+      "id": "Corrupted Energy",
+      "english": "Corrupted Energy",
+      "korean": "타락한 에너지"
+    },
+    {
+      "id": "Cortex",
+      "english": "Cortex",
+      "korean": "코텍스"
+    },
+    {
+      "id": "Coruscating Elixir",
+      "english": "Coruscating Elixir",
+      "korean": "빛나는 묘약"
+    },
+    {
+      "id": "Cospri's Malice",
+      "english": "Cospri's Malice",
+      "korean": "코스프리의 장난"
+    },
+    {
+      "id": "Cospri's Will",
+      "english": "Cospri's Will",
+      "korean": "코스프리의 의지"
+    },
+    {
+      "id": "Coward's Chains",
+      "english": "Coward's Chains",
+      "korean": "겁쟁이의 사슬"
+    },
+    {
+      "id": "Coward's Legacy",
+      "english": "Coward's Legacy",
+      "korean": "겁쟁이의 유물"
+    },
+    {
+      "id": "Cowards' Wail",
+      "english": "Cowards' Wail",
+      "korean": "겁쟁이의 통곡"
+    },
+    {
+      "id": "Cowl of the Ceraunophile",
+      "english": "Cowl of the Ceraunophile",
+      "korean": "번개애호가의 고깔"
+    },
+    {
+      "id": "Cowl of the Cryophile",
+      "english": "Cowl of the Cryophile",
+      "korean": "냉동애호가의 고깔"
+    },
+    {
+      "id": "Cowl of the Thermophile",
+      "english": "Cowl of the Thermophile",
+      "korean": "고열애호가의 고깔"
+    },
+    {
+      "id": "Cragfall",
+      "english": "Cragfall",
+      "korean": "바위 폭포"
+    },
+    {
+      "id": "Craghead",
+      "english": "Craghead",
+      "korean": "바위 화살촉"
+    },
+    {
+      "id": "Craiceann's Carapace",
+      "english": "Craiceann's Carapace",
+      "korean": "크라칸의 등딱지"
+    },
+    {
+      "id": "Craiceann's Chitin",
+      "english": "Craiceann's Chitin",
+      "korean": "크라칸의 키틴질"
+    },
+    {
+      "id": "Craiceann's Pincers",
+      "english": "Craiceann's Pincers",
+      "korean": "크라칸의 집게"
+    },
+    {
+      "id": "Craiceann's Tracks",
+      "english": "Craiceann's Tracks",
+      "korean": "크라칸의 발자국"
+    },
+    {
+      "id": "Crest of Desire",
+      "english": "Crest of Desire",
+      "korean": "갈망의 문양"
+    },
+    {
+      "id": "Crown of Eyes",
+      "english": "Crown of Eyes",
+      "korean": "눈알 왕관"
+    },
+    {
+      "id": "Crown of the Inward Eye",
+      "english": "Crown of the Inward Eye",
+      "korean": "심안의 왕관"
+    },
+    {
+      "id": "Crown of the Pale King",
+      "english": "Crown of the Pale King",
+      "korean": "창백한 왕의 왕관"
+    },
+    {
+      "id": "Crown of the Tyrant",
+      "english": "Crown of the Tyrant",
+      "korean": "폭군의 왕관"
+    },
+    {
+      "id": "Crown of Thorns",
+      "english": "Crown of Thorns",
+      "korean": "가시 왕관"
+    },
+    {
+      "id": "Crystal Vault",
+      "english": "Crystal Vault",
+      "korean": "수정 금고"
+    },
+    {
+      "id": "Crystallised Omniscience",
+      "english": "Crystallised Omniscience",
+      "korean": "결정화된 전지력"
+    },
+    {
+      "id": "Curtain Call",
+      "english": "Curtain Call",
+      "korean": "커튼콜"
+    },
+    {
+      "id": "Cyclopean Coil",
+      "english": "Cyclopean Coil",
+      "korean": "키클로프의 고리"
+    },
+    {
+      "id": "Dance of the Offered",
+      "english": "Dance of the Offered",
+      "korean": "제물의 춤"
+    },
+    {
+      "id": "Daresso's Courage",
+      "english": "Daresso's Courage",
+      "korean": "다레소의 용기"
+    },
+    {
+      "id": "Daresso's Defiance",
+      "english": "Daresso's Defiance",
+      "korean": "다레소의 저항"
+    },
+    {
+      "id": "Daresso's Passion",
+      "english": "Daresso's Passion",
+      "korean": "다레소의 열정"
+    },
+    {
+      "id": "Darkness Enthroned",
+      "english": "Darkness Enthroned",
+      "korean": "어둠에 대한 경외"
+    },
+    {
+      "id": "Darkray Vectors",
+      "english": "Darkray Vectors",
+      "korean": "어두운 빛의 궤적"
+    },
+    {
+      "id": "Darkscorn",
+      "english": "Darkscorn",
+      "korean": "어두운 냉소"
+    },
+    {
+      "id": "Dawnbreaker",
+      "english": "Dawnbreaker",
+      "korean": "여명 분쇄기"
+    },
+    {
+      "id": "Dawnstrider",
+      "english": "Dawnstrider",
+      "korean": "여명 질주자"
+    },
+    {
+      "id": "Dead Reckoning",
+      "english": "Dead Reckoning",
+      "korean": "망자의 판단"
+    },
+    {
+      "id": "Death and Taxes",
+      "english": "Death and Taxes",
+      "korean": "죽음과 의무"
+    },
+    {
+      "id": "Death's Door",
+      "english": "Death's Door",
+      "korean": "죽음의 문턱"
+    },
+    {
+      "id": "Death's Hand",
+      "english": "Death's Hand",
+      "korean": "죽음의 손길"
+    },
+    {
+      "id": "Death's Oath",
+      "english": "Death's Oath",
+      "korean": "죽음의 서약"
+    },
+    {
+      "id": "Death's Opus",
+      "english": "Death's Opus",
+      "korean": "죽음의 작품"
+    },
+    {
+      "id": "Debeon's Dirge",
+      "english": "Debeon's Dirge",
+      "korean": "데비온의 장송곡"
+    },
+    {
+      "id": "Deerstalker",
+      "english": "Deerstalker",
+      "korean": "사슴 추적자"
+    },
+    {
+      "id": "Defiance of Destiny",
+      "english": "Defiance of Destiny",
+      "korean": "운명의 저항"
+    },
+    {
+      "id": "Deidbell",
+      "english": "Deidbell",
+      "korean": "죽음의 종"
+    },
+    {
+      "id": "Deidbellow",
+      "english": "Deidbellow",
+      "korean": "죽음의 괘종"
+    },
+    {
+      "id": "Demigod's Presence",
+      "english": "Demigod's Presence",
+      "korean": "반신의 존재"
+    },
+    {
+      "id": "Demigod's Stride",
+      "english": "Demigod's Stride",
+      "korean": "반신의 질주"
+    },
+    {
+      "id": "Demigod's Triumph",
+      "english": "Demigod's Triumph",
+      "korean": "반신의 성공"
+    },
+    {
+      "id": "Demon Stitcher",
+      "english": "Demon Stitcher",
+      "korean": "악마 봉합자"
+    },
+    {
+      "id": "Dendrobate",
+      "english": "Dendrobate",
+      "korean": "화살독 갑옷"
+    },
+    {
+      "id": "Destructive Aspiration",
+      "english": "Destructive Aspiration",
+      "korean": "파멸적인 열망"
+    },
+    {
+      "id": "Devoto's Devotion",
+      "english": "Devoto's Devotion",
+      "korean": "드보토의 헌신"
+    },
+    {
+      "id": "Dialla's Malefaction",
+      "english": "Dialla's Malefaction",
+      "korean": "디알라의 악행"
+    },
+    {
+      "id": "Disintegrator",
+      "english": "Disintegrator",
+      "korean": "파쇄자"
+    },
+    {
+      "id": "Dissolution of the Flesh",
+      "english": "Dissolution of the Flesh",
+      "korean": "살점의 융해"
+    },
+    {
+      "id": "Divine Inferno",
+      "english": "Divine Inferno",
+      "korean": "신성한 지옥불"
+    },
+    {
+      "id": "Doedre's Elixir",
+      "english": "Doedre's Elixir",
+      "korean": "도이드리의 묘약"
+    },
+    {
+      "id": "Doedre's Malevolence",
+      "english": "Doedre's Malevolence",
+      "korean": "도이드리의 악의"
+    },
+    {
+      "id": "Doedre's Scorn",
+      "english": "Doedre's Scorn",
+      "korean": "도이드리의 멸시"
+    },
+    {
+      "id": "Doedre's Skin",
+      "english": "Doedre's Skin",
+      "korean": "도이드리의 가죽"
+    },
+    {
+      "id": "Doedre's Tenure",
+      "english": "Doedre's Tenure",
+      "korean": "도이드리의 임기"
+    },
+    {
+      "id": "Doedre's Tongue",
+      "english": "Doedre's Tongue",
+      "korean": "도이드리의 혀"
+    },
+    {
+      "id": "Doomfletch",
+      "english": "Doomfletch",
+      "korean": "죽음의 깃"
+    },
+    {
+      "id": "Doomfletch's Prism",
+      "english": "Doomfletch's Prism",
+      "korean": "죽음의 깃의 분광기"
+    },
+    {
+      "id": "Doomsower",
+      "english": "Doomsower",
+      "korean": "멸망 유발자"
+    },
+    {
+      "id": "Doon Cuebiyari",
+      "english": "Doon Cuebiyari",
+      "korean": "둔 큐비야리"
+    },
+    {
+      "id": "Doppelgänger Guise",
+      "english": "Doppelgänger Guise",
+      "korean": "도플갱어 위장"
+    },
+    {
+      "id": "Doryani's Catalyst",
+      "english": "Doryani's Catalyst",
+      "korean": "도리아니의 기폭제"
+    },
+    {
+      "id": "Doryani's Fist",
+      "english": "Doryani's Fist",
+      "korean": "도리아니의 주먹"
+    },
+    {
+      "id": "Doryani's Invitation",
+      "english": "Doryani's Invitation",
+      "korean": "도리아니의 초대"
+    },
+    {
+      "id": "Doryani's Machinarium",
+      "english": "Doryani's Machinarium",
+      "korean": "도리아니의 기계실"
+    },
+    {
+      "id": "Doryani's Prototype",
+      "english": "Doryani's Prototype",
+      "korean": "도리아니의 프로토타입"
+    },
+    {
+      "id": "Dreadarc",
+      "english": "Dreadarc",
+      "korean": "접근하는 공포"
+    },
+    {
+      "id": "Dreadbeak",
+      "english": "Dreadbeak",
+      "korean": "공포의 부리"
+    },
+    {
+      "id": "Dreadsurge",
+      "english": "Dreadsurge",
+      "korean": "밀려드는 공포"
+    },
+    {
+      "id": "Dreamfeather",
+      "english": "Dreamfeather",
+      "korean": "꿈의 깃털"
+    },
+    {
+      "id": "Drillneck",
+      "english": "Drillneck",
+      "korean": "치명적 송곳"
+    },
+    {
+      "id": "Duskblight",
+      "english": "Duskblight",
+      "korean": "황혼의 황폐"
+    },
+    {
+      "id": "Duskdawn",
+      "english": "Duskdawn",
+      "korean": "황혼의 아침"
+    },
+    {
+      "id": "Dusktoe",
+      "english": "Dusktoe",
+      "korean": "황혼의 끝자락"
+    },
+    {
+      "id": "Dyadus",
+      "english": "Dyadus",
+      "korean": "디아두스"
+    },
+    {
+      "id": "Dying Breath",
+      "english": "Dying Breath",
+      "korean": "죽어가는 숨결"
+    },
+    {
+      "id": "Dying Sun",
+      "english": "Dying Sun",
+      "korean": "죽어가는 해"
+    },
+    {
+      "id": "Earendel's Embrace",
+      "english": "Earendel's Embrace",
+      "korean": "에아렌델의 포옹"
+    },
+    {
+      "id": "Eber's Unification",
+      "english": "Eber's Unification",
+      "korean": "이버의 통합"
+    },
+    {
+      "id": "Echoes of Creation",
+      "english": "Echoes of Creation",
+      "korean": "창조의 메아리"
+    },
+    {
+      "id": "Echoforge",
+      "english": "Echoforge",
+      "korean": "메아리의 탄생"
+    },
+    {
+      "id": "Eclipse Solaris",
+      "english": "Eclipse Solaris",
+      "korean": "솔라리스의 쇠퇴"
+    },
+    {
+      "id": "Efficient Training",
+      "english": "Efficient Training",
+      "korean": "효율적인 훈련"
+    },
+    {
+      "id": "El'Abin's Visage",
+      "english": "El'Abin's Visage",
+      "korean": "엘라빈의 얼굴"
+    },
+    {
+      "id": "Eldritch Knowledge",
+      "english": "Eldritch Knowledge",
+      "korean": "섬뜩한 지식"
+    },
+    {
+      "id": "Elegant Hubris",
+      "english": "Elegant Hubris",
+      "korean": "고상한 오만"
+    },
+    {
+      "id": "Elevore",
+      "english": "Elevore",
+      "korean": "원소포식"
+    },
+    {
+      "id": "Elixir of the Unbroken Circle",
+      "english": "Elixir of the Unbroken Circle",
+      "korean": "끊어진 원의 영액"
+    },
+    {
+      "id": "Emperor's Cunning",
+      "english": "Emperor's Cunning",
+      "korean": "황제의 잔꾀"
+    },
+    {
+      "id": "Emperor's Mastery",
+      "english": "Emperor's Mastery",
+      "korean": "황제의 숙련"
+    },
+    {
+      "id": "Emperor's Might",
+      "english": "Emperor's Might",
+      "korean": "황제의 완력"
+    },
+    {
+      "id": "Emperor’s Vigilance",
+      "english": "Emperor's Vigilance",
+      "korean": "황제의 철야"
+    },
+    {
+      "id": "Emperor's Wit",
+      "english": "Emperor's Wit",
+      "korean": "황제의 재치"
+    },
+    {
+      "id": "Empire's Grasp",
+      "english": "Empire's Grasp",
+      "korean": "제국의 손아귀"
+    },
+    {
+      "id": "Endless Misery",
+      "english": "Endless Misery",
+      "korean": "끝없는 불행"
+    },
+    {
+      "id": "Energised Armour",
+      "english": "Energised Armour",
+      "korean": "활력의 방어구"
+    },
+    {
+      "id": "Energy From Within",
+      "english": "Energy From Within",
+      "korean": "내재한 에너지"
+    },
+    {
+      "id": "Enmity's Embrace",
+      "english": "Enmity's Embrace",
+      "korean": "원한의 품"
+    },
+    {
+      "id": "Entropic Devastation",
+      "english": "Entropic Devastation",
+      "korean": "엔트로피의 유린"
+    },
+    {
+      "id": "Ephemeral Edge",
+      "english": "Ephemeral Edge",
+      "korean": "덧없는 칼날"
+    },
+    {
+      "id": "Esh's Mirror",
+      "english": "Esh's Mirror",
+      "korean": "에쉬의 거울"
+    },
+    {
+      "id": "Esh's Visage",
+      "english": "Esh's Visage",
+      "korean": "에쉬의 얼굴"
+    },
+    {
+      "id": "Essence Worm",
+      "english": "Essence Worm",
+      "korean": "에센스 웜"
+    },
+    {
+      "id": "Essentia Sanguis",
+      "english": "Essentia Sanguis",
+      "korean": "피의 정수"
+    },
+    {
+      "id": "Eternal Damnation",
+      "english": "Eternal Damnation",
+      "korean": "영원한 지옥"
+    },
+    {
+      "id": "Ewar's Mirage",
+      "english": "Ewar's Mirage",
+      "korean": "이워의 신기루"
+    },
+    {
+      "id": "Expedition's End",
+      "english": "Expedition's End",
+      "korean": "탐험의 끝"
+    },
+    {
+      "id": "Extinguishing Grasp",
+      "english": "Extinguishing Grasp",
+      "korean": "절망의 손아귀"
+    },
+    {
+      "id": "Extractor Mentis",
+      "english": "Extractor Mentis",
+      "korean": "정신 추출기"
+    },
+    {
+      "id": "Eye of Innocence",
+      "english": "Eye of Innocence",
+      "korean": "결백의 눈"
+    },
+    {
+      "id": "Eye of Malice",
+      "english": "Eye of Malice",
+      "korean": "적의의 눈"
+    },
+    {
+      "id": "Eyes of the Greatwolf",
+      "english": "Eyes of the Greatwolf",
+      "korean": "위대한 늑대의 눈"
+    },
+    {
+      "id": "Ezomyte Hold",
+      "english": "Ezomyte Hold",
+      "korean": "에조미어의 방호"
+    },
+    {
+      "id": "Ezomyte Peak",
+      "english": "Ezomyte Peak",
+      "korean": "에조미어의 면갑"
+    },
+    {
+      "id": "Faithguard",
+      "english": "Faithguard",
+      "korean": "신념의 수호"
+    },
+    {
+      "id": "Faminebind",
+      "english": "Faminebind",
+      "korean": "기근의 속박"
+    },
+    {
+      "id": "Farrul's Bite",
+      "english": "Farrul's Bite",
+      "korean": "페룰의 이빨"
+    },
+    {
+      "id": "Farrul's Chase",
+      "english": "Farrul's Chase",
+      "korean": "페룰의 추적"
+    },
+    {
+      "id": "Farrul's Fur",
+      "english": "Farrul's Fur",
+      "korean": "페룰의 모피"
+    },
+    {
+      "id": "Farrul's Pounce",
+      "english": "Farrul's Pounce",
+      "korean": "페룰의 급습"
+    },
+    {
+      "id": "Fate of the Vaal",
+      "english": "Fate of the Vaal",
+      "korean": "바알의 운명"
+    },
+    {
+      "id": "Fated End",
+      "english": "Fated End",
+      "korean": "예견된 최후"
+    },
+    {
+      "id": "Feastbind",
+      "english": "Feastbind",
+      "korean": "연회의 속박"
+    },
+    {
+      "id": "Femurs of the Saints",
+      "english": "Femurs of the Saints",
+      "korean": "성자의 대퇴골"
+    },
+    {
+      "id": "Fenumus' Shroud",
+      "english": "Fenumus' Shroud",
+      "korean": "페누무스의 연막"
+    },
+    {
+      "id": "Fenumus' Spinnerets",
+      "english": "Fenumus' Spinnerets",
+      "korean": "페누무스의 방사 돌기"
+    },
+    {
+      "id": "Fenumus' Toxins",
+      "english": "Fenumus' Toxins",
+      "korean": "페누무스의 독소"
+    },
+    {
+      "id": "Fenumus' Weave",
+      "english": "Fenumus' Weave",
+      "korean": "페누무스의 매듭"
+    },
+    {
+      "id": "Fertile Mind",
+      "english": "Fertile Mind",
+      "korean": "풍요로운 마음"
+    },
+    {
+      "id": "Festering Resentment",
+      "english": "Festering Resentment",
+      "korean": "짓무르는 원한"
+    },
+    {
+      "id": "Festering Vengeance",
+      "english": "Festering Vengeance",
+      "korean": "짓무르는 복수"
+    },
+    {
+      "id": "Fevered Mind",
+      "english": "Fevered Mind",
+      "korean": "흥분한 마음"
+    },
+    {
+      "id": "Fidelitas' Spike",
+      "english": "Fidelitas' Spike",
+      "korean": "피델리타스의 가시"
+    },
+    {
+      "id": "Fight for Survival",
+      "english": "Fight for Survival",
+      "korean": "처절한 분투"
+    },
+    {
+      "id": "Fireborn",
+      "english": "Fireborn",
+      "korean": "불의 체질"
+    },
+    {
+      "id": "Firesong",
+      "english": "Firesong",
+      "korean": "불의 노래"
+    },
+    {
+      "id": "First Snow",
+      "english": "First Snow",
+      "korean": "첫눈"
+    },
+    {
+      "id": "Flamesight",
+      "english": "Flamesight",
+      "korean": "불꽃 시야"
+    },
+    {
+      "id": "Flesh and Spirit",
+      "english": "Flesh and Spirit",
+      "korean": "육체와 영혼"
+    },
+    {
+      "id": "Flesh-Eater",
+      "english": "Flesh-Eater",
+      "korean": "식인종"
+    },
+    {
+      "id": "Fleshcrafter",
+      "english": "Fleshcrafter",
+      "korean": "살점조각사"
+    },
+    {
+      "id": "Fleshrender",
+      "english": "Fleshrender",
+      "korean": "살점난도자"
+    },
+    {
+      "id": "Fluid Motion",
+      "english": "Fluid Motion",
+      "korean": "유체 운동"
+    },
+    {
+      "id": "Font of Thunder",
+      "english": "Font of Thunder",
+      "korean": "천둥의 샘"
+    },
+    {
+      "id": "Forbidden Flame",
+      "english": "Forbidden Flame",
+      "korean": "금단의 화염"
+    },
+    {
+      "id": "Forbidden Flesh",
+      "english": "Forbidden Flesh",
+      "korean": "금단의 살점"
+    },
+    {
+      "id": "Forbidden Shako",
+      "english": "Forbidden Shako",
+      "korean": "금단의 샤코"
+    },
+    {
+      "id": "Forbidden Taste",
+      "english": "Forbidden Taste",
+      "korean": "금단의 맛"
+    },
+    {
+      "id": "Bulwark Legion",
+      "english": "Fortified Legion",
+      "korean": "견고한 부대"
+    },
+    {
+      "id": "Fortress Covenant",
+      "english": "Fortress Covenant",
+      "korean": "요새 계약"
+    },
+    {
+      "id": "Fox's Fortune",
+      "english": "Fox's Fortune",
+      "korean": "여우의 행운"
+    },
+    {
+      "id": "Foxshade",
+      "english": "Foxshade",
+      "korean": "여우 그림자"
+    },
+    {
+      "id": "Fractal Thoughts",
+      "english": "Fractal Thoughts",
+      "korean": "프랙털 사상"
+    },
+    {
+      "id": "Fragile Bloom",
+      "english": "Fragile Bloom",
+      "korean": "가냘픈 꽃"
+    },
+    {
+      "id": "Fragility",
+      "english": "Fragility",
+      "korean": "허약"
+    },
+    {
+      "id": "From Dust",
+      "english": "From Dust",
+      "korean": "먼지처럼 나타나라"
+    },
+    {
+      "id": "Frostbreath",
+      "english": "Frostbreath",
+      "korean": "서리 숨결"
+    },
+    {
+      "id": "Frostferno",
+      "english": "Frostferno",
+      "korean": "서리와 화염"
+    },
+    {
+      "id": "Frozen Trail",
+      "english": "Frozen Trail",
+      "korean": "얼어붙은 길"
+    },
+    {
+      "id": "Fury Valve",
+      "english": "Fury Valve",
+      "korean": "광분의 밸브"
+    },
+    {
+      "id": "Galesight",
+      "english": "Galesight",
+      "korean": "강풍 시야"
+    },
+    {
+      "id": "Gamblesprint",
+      "english": "Gamblesprint",
+      "korean": "도박질주"
+    },
+    {
+      "id": "Gang's Momentum",
+      "english": "Gang's Momentum",
+      "korean": "무리의 추진력"
+    },
+    {
+      "id": "Garb of the Ephemeral",
+      "english": "Garb of the Ephemeral",
+      "korean": "덧없는 자의 의복"
+    },
+    {
+      "id": "Garukhan's Flight",
+      "english": "Garukhan's Flight",
+      "korean": "가루칸의 비행"
+    },
+    {
+      "id": "Geofri's Crest",
+      "english": "Geofri's Crest",
+      "korean": "조프리의 문양"
+    },
+    {
+      "id": "Geofri's Devotion",
+      "english": "Geofri's Devotion",
+      "korean": "조프리의 헌신"
+    },
+    {
+      "id": "Geofri's Legacy",
+      "english": "Geofri's Legacy",
+      "korean": "조프리의 유산"
+    },
+    {
+      "id": "Geofri's Sanctuary",
+      "english": "Geofri's Sanctuary",
+      "korean": "조프리의 성역"
+    },
+    {
+      "id": "Ghostwrithe",
+      "english": "Ghostwrithe",
+      "korean": "유령의 몸서리"
+    },
+    {
+      "id": "Giantsbane",
+      "english": "Giantsbane",
+      "korean": "거대한 파멸"
+    },
+    {
+      "id": "Glimpse of Chaos",
+      "english": "Glimpse of Chaos",
+      "korean": "혼돈의 섬광"
+    },
+    {
+      "id": "Glitterdisc",
+      "english": "Glitterdisc",
+      "korean": "빛나는 원반"
+    },
+    {
+      "id": "Gloomfang",
+      "english": "Gloomfang",
+      "korean": "그롬팡"
+    },
+    {
+      "id": "Glorious Vanity",
+      "english": "Glorious Vanity",
+      "korean": "찬란한 허영심"
+    },
+    {
+      "id": "Gluttony",
+      "english": "Gluttony",
+      "korean": "폭식"
+    },
+    {
+      "id": "Goblinedge",
+      "english": "Goblinedge",
+      "korean": "고블린날"
+    },
+    {
+      "id": "Gorebreaker",
+      "english": "Gorebreaker",
+      "korean": "유혈 분쇄기"
+    },
+    {
+      "id": "Goredrill",
+      "english": "Goredrill",
+      "korean": "유혈 관통"
+    },
+    {
+      "id": "Gorgon's Gaze",
+      "english": "Gorgon's Gaze",
+      "korean": "고르곤의 응시"
+    },
+    {
+      "id": "Grace of the Goddess",
+      "english": "Grace of the Goddess",
+      "korean": "여신의 은총"
+    },
+    {
+      "id": "Grasping Nightshade",
+      "english": "Grasping Nightshade",
+      "korean": "탐욕스러운 까마중"
+    },
+    {
+      "id": "Grattus Signet",
+      "english": "Grattus Signet",
+      "korean": "그라투스 인장"
+    },
+    {
+      "id": "Gravebind",
+      "english": "Gravebind",
+      "korean": "무덤의 속박"
+    },
+    {
+      "id": "Graven's Secret",
+      "english": "Graven's Secret",
+      "korean": "그레이븐의 비밀"
+    },
+    {
+      "id": "Great Old One's Tentacles",
+      "english": "Great Old One's Tentacles",
+      "korean": "위대한 고대 신의 촉수"
+    },
+    {
+      "id": "Great Old One's Ward",
+      "english": "Great Old One's Ward",
+      "korean": "위대한 고대 신의 수호"
+    },
+    {
+      "id": "Greed's Embrace",
+      "english": "Greed's Embrace",
+      "korean": "탐욕의 포옹"
+    },
+    {
+      "id": "Greedtrap",
+      "english": "Greedtrap",
+      "korean": "탐욕의 발판"
+    },
+    {
+      "id": "Grelwood Shank",
+      "english": "Grelwood Shank",
+      "korean": "그렐나무 자루"
+    },
+    {
+      "id": "Grip of the Council",
+      "english": "Grip of the Council",
+      "korean": "의회의 장악"
+    },
+    {
+      "id": "Growing Agony",
+      "english": "Growing Agony",
+      "korean": "심해지는 고통"
+    },
+    {
+      "id": "Gruthkul's Pelt",
+      "english": "Gruthkul's Pelt",
+      "korean": "그루스컬의 가죽"
+    },
+    {
+      "id": "Haemophilia",
+      "english": "Haemophilia",
+      "korean": "혈우병"
+    },
+    {
+      "id": "Hair Trigger",
+      "english": "Hair Trigger",
+      "korean": "민감한 반응"
+    },
+    {
+      "id": "Hale Negator",
+      "english": "Hale Negator",
+      "korean": "건장한 부정자"
+    },
+    {
+      "id": "Hall of Grandmasters",
+      "english": "Hall of Grandmasters",
+      "korean": "명인의 전당"
+    },
+    {
+      "id": "Hallowed Ground",
+      "english": "Hallowed Ground",
+      "korean": "거룩한 대지"
+    },
+    {
+      "id": "Hand of Heresy",
+      "english": "Hand of Heresy",
+      "korean": "이단의 손"
+    },
+    {
+      "id": "Hand of the Fervent",
+      "english": "Hand of the Fervent",
+      "korean": "열렬한 자의 손"
+    },
+    {
+      "id": "Hand of the Lords",
+      "english": "Hand of the Lords",
+      "korean": "군주의 손"
+    },
+    {
+      "id": "Hand of Thought and Motion",
+      "english": "Hand of Thought and Motion",
+      "korean": "사고와 움직임의 손아귀"
+    },
+    {
+      "id": "Hand of Wisdom and Action",
+      "english": "Hand of Wisdom and Action",
+      "korean": "지혜와 행동의 손아귀"
+    },
+    {
+      "id": "Hands of the High Templar",
+      "english": "Hands of the High Templar",
+      "korean": "고위 템플러의 손"
+    },
+    {
+      "id": "Hateforge",
+      "english": "Hateforge",
+      "korean": "증오의 탄생"
+    },
+    {
+      "id": "Haunting Memories",
+      "english": "Haunting Memories",
+      "korean": "사로잡는 기억"
+    },
+    {
+      "id": "Hazardous Research",
+      "english": "Hazardous Research",
+      "korean": "위험한 연구"
+    },
+    {
+      "id": "Healthy Mind",
+      "english": "Healthy Mind",
+      "korean": "건강한 마음"
+    },
+    {
+      "id": "Heartbound Loop",
+      "english": "Heartbound Loop",
+      "korean": "마음에 묶인 고리"
+    },
+    {
+      "id": "Heartbreaker",
+      "english": "Heartbreaker",
+      "korean": "심장 분쇄기"
+    },
+    {
+      "id": "Hegemony's Era",
+      "english": "Hegemony's Era",
+      "korean": "패권의 시대"
+    },
+    {
+      "id": "Heretic's Veil",
+      "english": "Heretic's Veil",
+      "korean": "이단자의 면사포"
+    },
+    {
+      "id": "Heroic Tragedy",
+      "english": "Heroic Tragedy",
+      "korean": "영웅적인 비극"
+    },
+    {
+      "id": "Hezmana's Bloodlust",
+      "english": "Hezmana's Bloodlust",
+      "korean": "헤즈마나의 유혈 충동"
+    },
+    {
+      "id": "Hidden Potential",
+      "english": "Hidden Potential",
+      "korean": "숨겨진 잠재력"
+    },
+    {
+      "id": "Hiltless",
+      "english": "Hiltless",
+      "korean": "고통의 검"
+    },
+    {
+      "id": "Hinekora's Sight",
+      "english": "Hinekora's Sight",
+      "korean": "히네코라의 통찰력"
+    },
+    {
+      "id": "Honoured Alliance",
+      "english": "Honoured Alliance",
+      "korean": "명예로운 동맹"
+    },
+    {
+      "id": "Honourhome",
+      "english": "Honourhome",
+      "korean": "명예의 총본산"
+    },
+    {
+      "id": "Hopeshredder",
+      "english": "Hopeshredder",
+      "korean": "희망 종결자"
+    },
+    {
+      "id": "Hotfooted",
+      "english": "Hotheaded",
+      "korean": "핫헤드"
+    },
+    {
+      "id": "Howlcrack",
+      "english": "Howlcrack",
+      "korean": "포효균열"
+    },
+    {
+      "id": "Hrimburn",
+      "english": "Hrimburn",
+      "korean": "흐림번"
+    },
+    {
+      "id": "Hrimnor's Dirge",
+      "english": "Hrimnor's Dirge",
+      "korean": "흐림노르의 만가"
+    },
+    {
+      "id": "Hrimnor's Hymn",
+      "english": "Hrimnor's Hymn",
+      "korean": "흐림노르의 찬가"
+    },
+    {
+      "id": "Hrimsorrow",
+      "english": "Hrimsorrow",
+      "korean": "흐림소로우"
+    },
+    {
+      "id": "Hungry Abyss",
+      "english": "Hungry Abyss",
+      "korean": "굶주린 심연"
+    },
+    {
+      "id": "Hyaon's Fury",
+      "english": "Hyaon's Fury",
+      "korean": "하야온의 광분"
+    },
+    {
+      "id": "Hyperboreus",
+      "english": "Hyperboreus",
+      "korean": "북방 주민"
+    },
+    {
+      "id": "Hyrri's Bite",
+      "english": "Hyrri's Bite",
+      "korean": "하이리의 이빨"
+    },
+    {
+      "id": "Hyrri's Demise",
+      "english": "Hyrri's Demise",
+      "korean": "하이리의 소멸"
+    },
+    {
+      "id": "Hyrri's Ire",
+      "english": "Hyrri's Ire",
+      "korean": "하이리의 노여움"
+    },
+    {
+      "id": "Hyrri's Truth",
+      "english": "Hyrri's Truth",
+      "korean": "하이리의 진리"
+    },
+    {
+      "id": "Icefang Orbit",
+      "english": "Icefang Orbit",
+      "korean": "얼음송곳니의 위력"
+    },
+    {
+      "id": "Icetomb",
+      "english": "Icetomb",
+      "korean": "얼음 묘지"
+    },
+    {
+      "id": "Ichimonji",
+      "english": "Ichimonji",
+      "korean": "이치몬지"
+    },
+    {
+      "id": "Arohongui's Tending",
+      "english": "Ikiaho's Promise",
+      "korean": "이키아호의 약속"
+    },
+    {
+      "id": "Immutable Force",
+      "english": "Immutable Force",
+      "korean": "불변의 힘"
+    },
+    {
+      "id": "Impossible Escape",
+      "english": "Impossible Escape",
+      "korean": "불가능한 탈출"
+    },
+    {
+      "id": "Incandescent Heart",
+      "english": "Incandescent Heart",
+      "korean": "백열하는 심장"
+    },
+    {
+      "id": "Indigon",
+      "english": "Indigon",
+      "korean": "인디곤"
+    },
+    {
+      "id": "Inertia",
+      "english": "Inertia",
+      "korean": "관성"
+    },
+    {
+      "id": "Inevitability",
+      "english": "Inevitability",
+      "korean": "필연"
+    },
+    {
+      "id": "Inextricable Fate",
+      "english": "Inextricable Fate",
+      "korean": "불가분한 운명"
+    },
+    {
+      "id": "Infernal Mantle",
+      "english": "Infernal Mantle",
+      "korean": "지옥불 외투"
+    },
+    {
+      "id": "Infractem",
+      "english": "Infractem",
+      "korean": "침범자"
+    },
+    {
+      "id": "Infused Beachhead",
+      "english": "Infused Beachhead",
+      "korean": "주입된 교두보"
+    },
+    {
+      "id": "Innsbury Edge",
+      "english": "Innsbury Edge",
+      "korean": "인스뷰리 칼날"
+    },
+    {
+      "id": "Inpulsa's Broken Heart",
+      "english": "Inpulsa's Broken Heart",
+      "korean": "인펄사의 상심"
+    },
+    {
+      "id": "Inspired Learning",
+      "english": "Inspired Learning",
+      "korean": "탁월한 학습"
+    },
+    {
+      "id": "Intuitive Leap",
+      "english": "Intuitive Leap",
+      "korean": "직관의 도약"
+    },
+    {
+      "id": "Invictus Solaris",
+      "english": "Invictus Solaris",
+      "korean": "지지 않는 태양"
+    },
+    {
+      "id": "Inya's Epiphany",
+      "english": "Inya's Epiphany",
+      "korean": "이냐의 통찰"
+    },
+    {
+      "id": "Iron Commander",
+      "english": "Iron Commander",
+      "korean": "철의 지휘관"
+    },
+    {
+      "id": "Iron Heart",
+      "english": "Iron Heart",
+      "korean": "철 심장"
+    },
+    {
+      "id": "Irresistable Temptation",
+      "english": "Irresistible Temptation",
+      "korean": "뿌리칠 수 없는 유혹"
+    },
+    {
+      "id": "Ixchel's Temptation",
+      "english": "Ixchel's Temptation",
+      "korean": "익스첼의 유혹"
+    },
+    {
+      "id": "Izaro's Dilemma",
+      "english": "Izaro's Dilemma",
+      "korean": "이자로의 난제"
+    },
+    {
+      "id": "Izaro's Turmoil",
+      "english": "Izaro's Turmoil",
+      "korean": "이자로의 혼란"
+    },
+    {
+      "id": "Jack, The Axe",
+      "english": "Jack, the Axe",
+      "korean": "도끼마 잭"
+    },
+    {
+      "id": "Jaws of Agony",
+      "english": "Jaws of Agony",
+      "korean": "고통의 턱"
+    },
+    {
+      "id": "Jiquani's Potential",
+      "english": "Jiquani's Potential",
+      "korean": "지콰니의 잠재력"
+    },
+    {
+      "id": "Jorrhast's Blacksteel",
+      "english": "Jorrhast's Blacksteel",
+      "korean": "요르하스트의 강철"
+    },
+    {
+      "id": "Kahuturoa's Certainty",
+      "english": "Kahuturoa's Certainty",
+      "korean": "카후투로아의 확신"
+    },
+    {
+      "id": "Kalandra's Touch",
+      "english": "Kalandra's Touch",
+      "korean": "칼란드라의 손길"
+    },
+    {
+      "id": "Kalisa's Grace",
+      "english": "Kalisa's Grace",
+      "korean": "칼리사의 은총"
+    },
+    {
+      "id": "Kaltenhalt",
+      "english": "Kaltenhalt",
+      "korean": "붙잡은 냉기"
+    },
+    {
+      "id": "Kaltensoul",
+      "english": "Kaltensoul",
+      "korean": "붙잡은 영혼"
+    },
+    {
+      "id": "Kaom's Binding",
+      "english": "Kaom's Binding",
+      "korean": "카옴의 속박"
+    },
+    {
+      "id": "Kaom's Command",
+      "english": "Kaom's Command",
+      "korean": "카옴의 명령"
+    },
+    {
+      "id": "Kaom's Heart",
+      "english": "Kaom's Heart",
+      "korean": "카옴의 심장"
+    },
+    {
+      "id": "Kaom's Primacy",
+      "english": "Kaom's Primacy",
+      "korean": "카옴의 탁월함"
+    },
+    {
+      "id": "Kaom's Roots",
+      "english": "Kaom's Roots",
+      "korean": "카옴의 근본"
+    },
+    {
+      "id": "Kaom's Spirit",
+      "english": "Kaom's Spirit",
+      "korean": "카옴의 혼백"
+    },
+    {
+      "id": "Kaom's Way",
+      "english": "Kaom's Way",
+      "korean": "카옴의 길"
+    },
+    {
+      "id": "Karui Charge",
+      "english": "Karui Charge",
+      "korean": "카루이의 돌진"
+    },
+    {
+      "id": "Khatal's Geyser",
+      "english": "Khatal's Geyser",
+      "korean": "카탈의 간헐천"
+    },
+    {
+      "id": "Khatal's Weeping",
+      "english": "Khatal's Weeping",
+      "korean": "카탈의 흐느낌"
+    },
+    {
+      "id": "Kiara's Determination",
+      "english": "Kiara's Determination",
+      "korean": "키아라의 결의"
+    },
+    {
+      "id": "Kiloava's Bluster",
+      "english": "Kiloava's Bluster",
+      "korean": "킬로아바의 엄포"
+    },
+    {
+      "id": "Kingmaker",
+      "english": "Kingmaker",
+      "korean": "실세"
+    },
+    {
+      "id": "Kingsguard",
+      "english": "Kingsguard",
+      "korean": "왕의 보호구"
+    },
+    {
+      "id": "Kintsugi",
+      "english": "Kintsugi",
+      "korean": "킨츠키"
+    },
+    {
+      "id": "Kitava's Feast",
+      "english": "Kitava's Feast",
+      "korean": "키타바의 연회"
+    },
+    {
+      "id": "Kitava's Teachings",
+      "english": "Kitava's Teachings",
+      "korean": "키타바의 가르침"
+    },
+    {
+      "id": "Kitava's Thirst",
+      "english": "Kitava's Thirst",
+      "korean": "키타바의 갈증"
+    },
+    {
+      "id": "Kondo's Pride",
+      "english": "Kondo's Pride",
+      "korean": "콘도의 자부심"
+    },
+    {
+      "id": "Kongming's Stratagem",
+      "english": "Kongming's Stratagem",
+      "korean": "공명의 계략"
+    },
+    {
+      "id": "Kongor's Undying Rage",
+      "english": "Kongor's Undying Rage",
+      "korean": "콩고르의 끝없는 격노"
+    },
+    {
+      "id": "Kurgal's Gaze",
+      "english": "Kurgal's Gaze",
+      "korean": "쿠르갈의 응시"
+    },
+    {
+      "id": "Lakishu's Blade",
+      "english": "Lakishu's Blade",
+      "korean": "라키슈의 검"
+    },
+    {
+      "id": "Last Resort",
+      "english": "Last Resort",
+      "korean": "최후의 수단"
+    },
+    {
+      "id": "Lavianga's Wisdom",
+      "english": "Lavianga's Wisdom",
+      "korean": "라비앙가의 지혜"
+    },
+    {
+      "id": "Law of the Wilds",
+      "english": "Law of the Wilds",
+      "korean": "황야의 법칙"
+    },
+    {
+      "id": "Leadership’s Price",
+      "english": "Leadership's Price",
+      "korean": "통솔력의 가치"
+    },
+    {
+      "id": "Leash of Oblation",
+      "english": "Leash of Oblation",
+      "korean": "봉헌의 가죽끈"
+    },
+    {
+      "id": "Leer Cast",
+      "english": "Leer Cast",
+      "korean": "음흉한 시선"
+    },
+    {
+      "id": "Legacy of Fury",
+      "english": "Legacy of Fury",
+      "korean": "광분의 유산"
+    },
+    {
+      "id": "Legacy of the Rose",
+      "english": "Legacy of the Rose",
+      "korean": "장미의 유산"
+    },
+    {
+      "id": "Leper's Alms",
+      "english": "Leper's Alms",
+      "korean": "나병 환자의 자선"
+    },
+    {
+      "id": "Lethal Pride",
+      "english": "Lethal Pride",
+      "korean": "치명적인 긍지"
+    },
+    {
+      "id": "Light of Lunaris",
+      "english": "Light of Lunaris",
+      "korean": "루나리스의 빛"
+    },
+    {
+      "id": "Lightbane Raiment",
+      "english": "Lightbane Raiment",
+      "korean": "사그라든 빛의 의복"
+    },
+    {
+      "id": "Lightning Coil",
+      "english": "Lightning Coil",
+      "korean": "번개 도선"
+    },
+    {
+      "id": "Limbsplit",
+      "english": "Limbsplit",
+      "korean": "사지 분할기"
+    },
+    {
+      "id": "Lion's Roar",
+      "english": "Lion's Roar",
+      "korean": "사자의 포효"
+    },
+    {
+      "id": "Lioneye's Fall",
+      "english": "Lioneye's Fall",
+      "korean": "라이온아이의 몰락"
+    },
+    {
+      "id": "Lioneye's Glare",
+      "english": "Lioneye's Glare",
+      "korean": "라이온아이의 섬광"
+    },
+    {
+      "id": "Lioneye's Paws",
+      "english": "Lioneye's Paws",
+      "korean": "라이온아이의 발"
+    },
+    {
+      "id": "Lioneye's Remorse",
+      "english": "Lioneye's Remorse",
+      "korean": "라이온아이의 후회"
+    },
+    {
+      "id": "Lioneye's Vision",
+      "english": "Lioneye's Vision",
+      "korean": "라이온아이의 시각"
+    },
+    {
+      "id": "Lochtonial Caress",
+      "english": "Lochtonial Caress",
+      "korean": "록토니얼의 손길"
+    },
+    {
+      "id": "Loreweave",
+      "english": "Loreweave",
+      "korean": "지식의 매듭"
+    },
+    {
+      "id": "Lori's Lantern",
+      "english": "Lori's Lantern",
+      "korean": "로리의 등불"
+    },
+    {
+      "id": "Lost Unity",
+      "english": "Lost Unity",
+      "korean": "잃어버린 합일"
+    },
+    {
+      "id": "Lycosidae",
+      "english": "Lycosidae",
+      "korean": "늑대 거미"
+    },
+    {
+      "id": "Maata's Teaching",
+      "english": "Maata's Teaching",
+      "korean": "마아타의 가르침"
+    },
+    {
+      "id": "Machina Mitts",
+      "english": "Machina Mitts",
+      "korean": "마키나 미트"
+    },
+    {
+      "id": "Maelström of Chaos",
+      "english": "Maelström of Chaos",
+      "korean": "혼돈의 마엘스트롬"
+    },
+    {
+      "id": "Mageblood",
+      "english": "Mageblood",
+      "korean": "마법사의 피"
+    },
+    {
+      "id": "Magna Eclipsis",
+      "english": "Magna Eclipsis",
+      "korean": "커다란 일식"
+    },
+    {
+      "id": "Mahuxotl's Machination",
+      "english": "Mahuxotl's Machination",
+      "korean": "마훅소틀의 계책"
+    },
+    {
+      "id": "Malachai's Awakening",
+      "english": "Malachai's Awakening",
+      "korean": "말라카이의 각성"
+    },
+    {
+      "id": "Malachai's Loop",
+      "english": "Malachai's Loop",
+      "korean": "말라카이의 고리"
+    },
+    {
+      "id": "Malachai's Mark",
+      "english": "Malachai's Mark",
+      "korean": "말라카이의 징표"
+    },
+    {
+      "id": "Malachai's Simula",
+      "english": "Malachai's Simula",
+      "korean": "말라카이의 위장막"
+    },
+    {
+      "id": "Malachai's Vision",
+      "english": "Malachai's Vision",
+      "korean": "말라카이의 시각"
+    },
+    {
+      "id": "Malicious Intent",
+      "english": "Malicious Intent",
+      "korean": "불순한 의도"
+    },
+    {
+      "id": "Maligaro's Cruelty",
+      "english": "Maligaro's Cruelty",
+      "korean": "말리가로의 잔혹성"
+    },
+    {
+      "id": "Maligaro's Lens",
+      "english": "Maligaro's Lens",
+      "korean": "말리가로의 렌즈"
+    },
+    {
+      "id": "Maligaro's Restraint",
+      "english": "Maligaro's Restraint",
+      "korean": "말리가로의 속박"
+    },
+    {
+      "id": "Maloney's Mechanism",
+      "english": "Maloney's Mechanism",
+      "korean": "말로니의 기계 장치"
+    },
+    {
+      "id": "Maloney's Nightfall",
+      "english": "Maloney's Nightfall",
+      "korean": "말로니의 해질녘"
+    },
+    {
+      "id": "Manastorm",
+      "english": "Manastorm",
+      "korean": "마나폭풍"
+    },
+    {
+      "id": "Mantra of Flames",
+      "english": "Mantra of Flames",
+      "korean": "화염의 주문"
+    },
+    {
+      "id": "Mao Kun",
+      "english": "Mao Kun",
+      "korean": "마오 쿤"
+    },
+    {
+      "id": "March of the Legion",
+      "english": "March of the Legion",
+      "korean": "군단의 행진"
+    },
+    {
+      "id": "Mark of Submission",
+      "english": "Mark of Submission",
+      "korean": "복종의 징표"
+    },
+    {
+      "id": "Mark of the Doubting Knight",
+      "english": "Mark of the Doubting Knight",
+      "korean": "불안한 기사의 징표"
+    },
+    {
+      "id": "Mark of the Elder",
+      "english": "Mark of the Elder",
+      "korean": "엘더의 징표"
+    },
+    {
+      "id": "Mark of the Red Covenant",
+      "english": "Mark of the Red Covenant",
+      "korean": "붉은 계약의 징표"
+    },
+    {
+      "id": "Mark of the Shaper",
+      "english": "Mark of the Shaper",
+      "korean": "쉐이퍼의 징표"
+    },
+    {
+      "id": "Marohi Erqi",
+      "english": "Marohi Erqi",
+      "korean": "마로히 에르키"
+    },
+    {
+      "id": "Martial Artistry",
+      "english": "Martial Artistry",
+      "korean": "무도가의 기교"
+    },
+    {
+      "id": "Martyr of Innocence",
+      "english": "Martyr of Innocence",
+      "korean": "결백한 순교자"
+    },
+    {
+      "id": "Martyr's Crown",
+      "english": "Martyr's Crown",
+      "korean": "순교자의 왕관"
+    },
+    {
+      "id": "Marylene's Fallacy",
+      "english": "Marylene's Fallacy",
+      "korean": "마릴린의 오산"
+    },
+    {
+      "id": "Mask of the Spirit Drinker",
+      "english": "Mask of the Spirit Drinker",
+      "korean": "영혼 흡수자의 가면"
+    },
+    {
+      "id": "Mask of the Stitched Demon",
+      "english": "Mask of the Stitched Demon",
+      "korean": "꿰맨 악마의 가면"
+    },
+    {
+      "id": "Mask of the Tribunal",
+      "english": "Mask of the Tribunal",
+      "korean": "재판소의 가면"
+    },
+    {
+      "id": "Matua Tupuna",
+      "english": "Matua Tupuna",
+      "korean": "마투아 투푸나"
+    },
+    {
+      "id": "Maw of Conquest",
+      "english": "Maw of Conquest",
+      "korean": "정복지의 구렁텅이"
+    },
+    {
+      "id": "Maw of Mischief",
+      "english": "Maw of Mischief",
+      "korean": "말썽의 나락"
+    },
+    {
+      "id": "Medved's Challenge",
+      "english": "Medved's Challenge",
+      "korean": "메드베드의 도전"
+    },
+    {
+      "id": "Megalomaniac",
+      "english": "Megalomaniac",
+      "korean": "과대망상"
+    },
+    {
+      "id": "Meginord's Vise",
+      "english": "Meginord's Vise",
+      "korean": "메기노드의 조임쇠"
+    },
+    {
+      "id": "Melding of the Flesh",
+      "english": "Melding of the Flesh",
+      "korean": "살점의 융합"
+    },
+    {
+      "id": "Memory Vault",
+      "english": "Memory Vault",
+      "korean": "기억의 금고"
+    },
+    {
+      "id": "Mercenary’s Lot",
+      "english": "Mercenary's Lot",
+      "korean": "용병의 운명"
+    },
+    {
+      "id": "Midnight Bargain",
+      "english": "Midnight Bargain",
+      "korean": "심야의 교섭"
+    },
+    {
+      "id": "Might and Influence",
+      "english": "Might and Influence",
+      "korean": "권력과 영향력"
+    },
+    {
+      "id": "Might in All Forms",
+      "english": "Might in All Forms",
+      "korean": "만물의 힘"
+    },
+    {
+      "id": "Might of the Meek",
+      "english": "Might of the Meek",
+      "korean": "온유의 힘"
+    },
+    {
+      "id": "Mightblood Ire",
+      "english": "Mightblood Ire",
+      "korean": "힘의 피 진노"
+    },
+    {
+      "id": "Mightflay",
+      "english": "Mightflay",
+      "korean": "강력한 가죽칼"
+    },
+    {
+      "id": "Militant Faith",
+      "english": "Militant Faith",
+      "korean": "호전적인 신념"
+    },
+    {
+      "id": "Mind of the Council",
+      "english": "Mind of the Council",
+      "korean": "의회의 정신"
+    },
+    {
+      "id": "Mirebough",
+      "english": "Mirebough",
+      "korean": "늪 가지"
+    },
+    {
+      "id": "Misinformation",
+      "english": "Misinformation",
+      "korean": "와전"
+    },
+    {
+      "id": "Mistwall",
+      "english": "Mistwall",
+      "korean": "안개 벽"
+    },
+    {
+      "id": "Mjölner",
+      "english": "Mjölner",
+      "korean": "묠니르"
+    },
+    {
+      "id": "Mon'tregul's Grasp",
+      "english": "Mon'tregul's Grasp",
+      "korean": "몬트레굴의 장악"
+    },
+    {
+      "id": "Moonbender's Wing",
+      "english": "Moonbender's Wing",
+      "korean": "달을 구부리는 자의 날개"
+    },
+    {
+      "id": "Moonsorrow",
+      "english": "Moonsorrow",
+      "korean": "달의 슬픔"
+    },
+    {
+      "id": "Mortem Morsu",
+      "english": "Mortem Morsu",
+      "korean": "고통스러운 죽음"
+    },
+    {
+      "id": "Mother's Embrace",
+      "english": "Mother's Embrace",
+      "korean": "어머니의 포옹"
+    },
+    {
+      "id": "Mutated Growth",
+      "english": "Mutated Growth",
+      "korean": "변이한 종양"
+    },
+    {
+      "id": "Mutewind Pennant",
+      "english": "Mutewind Pennant",
+      "korean": "고요한 바람단 페넌트"
+    },
+    {
+      "id": "Mutewind Seal",
+      "english": "Mutewind Seal",
+      "korean": "고요한 바람단 봉인"
+    },
+    {
+      "id": "Mutewind Whispersteps",
+      "english": "Mutewind Whispersteps",
+      "korean": "고요한 바람단의 속삭임 신발"
+    },
+    {
+      "id": "Mystic Refractor",
+      "english": "Mystic Refractor",
+      "korean": "신비한 굴절기"
+    },
+    {
+      "id": "Nadir Mode",
+      "english": "Nadir Mode",
+      "korean": "저점 모드"
+    },
+    {
+      "id": "Nametaker",
+      "english": "Nametaker",
+      "korean": "이름강탈자"
+    },
+    {
+      "id": "Natural Affinity",
+      "english": "Natural Affinity",
+      "korean": "타고난 친화력"
+    },
+    {
+      "id": "Nebulis",
+      "english": "Nebulis",
+      "korean": "성운"
+    },
+    {
+      "id": "Nebuloch",
+      "english": "Nebuloch",
+      "korean": "네뷸록"
+    },
+    {
+      "id": "Nevalius Inheritance",
+      "english": "Nevalius Inheritance",
+      "korean": "네발리우스의 유산"
+    },
+    {
+      "id": "Ngamahu's Flame",
+      "english": "Ngamahu's Flame",
+      "korean": "나마후의 불꽃"
+    },
+    {
+      "id": "Ngamahu’s Sign",
+      "english": "Ngamahu's Sign",
+      "korean": "나마후의 표식"
+    },
+    {
+      "id": "Nightgrip",
+      "english": "Nightgrip",
+      "korean": "밤손아귀"
+    },
+    {
+      "id": "Nimis",
+      "english": "Nimis",
+      "korean": "니미스"
+    },
+    {
+      "id": "Nomic's Storm",
+      "english": "Nomic's Storm",
+      "korean": "노믹의 태풍"
+    },
+    {
+      "id": "Null and Void",
+      "english": "Null and Void",
+      "korean": "무효와 공허"
+    },
+    {
+      "id": "Null's Inclination",
+      "english": "Null's Inclination",
+      "korean": "몰살 의지"
+    },
+    {
+      "id": "Nuro's Harp",
+      "english": "Nuro's Harp",
+      "korean": "누로의 하프"
+    },
+    {
+      "id": "Nycta's Lantern",
+      "english": "Nycta's Lantern",
+      "korean": "닉타의 등불"
+    },
+    {
+      "id": "Oba's Cursed Trove",
+      "english": "Oba's Cursed Trove",
+      "korean": "오바의 저주받은 전리품"
+    },
+    {
+      "id": "Obliteration",
+      "english": "Obliteration",
+      "korean": "말살"
+    },
+    {
+      "id": "Obscurantis",
+      "english": "Obscurantis",
+      "korean": "몽매주의"
+    },
+    {
+      "id": "Offering to the Serpent",
+      "english": "Offering to the Serpent",
+      "korean": "독사에게 바치는 공물"
+    },
+    {
+      "id": "Olesya's Delight",
+      "english": "Olesya's Delight",
+      "korean": "올레샤의 기쁨"
+    },
+    {
+      "id": "Olmec's Sanctum",
+      "english": "Olmec's Sanctum",
+      "korean": "올멕의 지성소"
+    },
+    {
+      "id": "Olroth's Charge",
+      "english": "Olroth's Charge",
+      "korean": "올로스의 돌진"
+    },
+    {
+      "id": "Olroth's Resolve",
+      "english": "Olroth's Resolve",
+      "korean": "올로스의 결의"
+    },
+    {
+      "id": "Omen on the Winds",
+      "english": "Omen on the Winds",
+      "korean": "바람에 실린 전조"
+    },
+    {
+      "id": "Omeyocan",
+      "english": "Omeyocan",
+      "korean": "오메이오칸"
+    },
+    {
+      "id": "Ondar's Clasp",
+      "english": "Ondar's Clasp",
+      "korean": "온다르의 걸쇠"
+    },
+    {
+      "id": "One With Nothing",
+      "english": "One With Nothing",
+      "korean": "맨주먹"
+    },
+    {
+      "id": "Oni-Goroshi",
+      "english": "Oni-Goroshi",
+      "korean": "오니고로시"
+    },
+    {
+      "id": "Orbala's Stand",
+      "english": "Orbala's Stand",
+      "korean": "오발라의 항전"
+    },
+    {
+      "id": "Oriath's End",
+      "english": "Oriath's End",
+      "korean": "오리아스의 종말"
+    },
+    {
+      "id": "Original Sin",
+      "english": "Original Sin",
+      "korean": "원죄"
+    },
+    {
+      "id": "Ornament of the East",
+      "english": "Ornament of the East",
+      "korean": "동방의 장신구"
+    },
+    {
+      "id": "Oro's Sacrifice",
+      "english": "Oro's Sacrifice",
+      "korean": "오로의 희생"
+    },
+    {
+      "id": "Oskarm",
+      "english": "Oskarm",
+      "korean": "오스캄"
+    },
+    {
+      "id": "Overwhelming Odds",
+      "english": "Overwhelming Odds",
+      "korean": "압도적인 역경"
+    },
+    {
+      "id": "Pacifism",
+      "english": "Pacifism",
+      "korean": "평화주의"
+    },
+    {
+      "id": "Painseeker",
+      "english": "Painseeker",
+      "korean": "고통 탐구자"
+    },
+    {
+      "id": "Panquetzaliztli",
+      "english": "Panquetzaliztli",
+      "korean": "판케찰리스틀리"
+    },
+    {
+      "id": "Paradoxica",
+      "english": "Paradoxica",
+      "korean": "모순"
+    },
+    {
+      "id": "Pearl of Tsoatha",
+      "english": "Pearl of Tsoatha",
+      "korean": "소아사의 진주"
+    },
+    {
+      "id": "Perepiteia",
+      "english": "Perepiteia",
+      "korean": "영구장치"
+    },
+    {
+      "id": "Perfidy",
+      "english": "Perfidy",
+      "korean": "배반"
+    },
+    {
+      "id": "Perquil's Toe",
+      "english": "Perquil's Toe",
+      "korean": "퍼퀼의 발가락"
+    },
+    {
+      "id": "Perseverance",
+      "english": "Perseverance",
+      "korean": "인내"
+    },
+    {
+      "id": "Pillars of Arun",
+      "english": "Pillars of Arun",
+      "korean": "아룬의 기둥"
+    },
+    {
+      "id": "Piscator's Vigil",
+      "english": "Piscator's Vigil",
+      "korean": "피스카토의 기도"
+    },
+    {
+      "id": "Pitch Darkness",
+      "english": "Pitch Darkness",
+      "korean": "칠흑 같은 어둠"
+    },
+    {
+      "id": "Pledge of Hands",
+      "english": "Pledge of Hands",
+      "korean": "손으로 맺은 서약"
+    },
+    {
+      "id": "Plume of Pursuit",
+      "english": "Plume of Pursuit",
+      "korean": "추적의 깃털"
+    },
+    {
+      "id": "Poacher's Aim",
+      "english": "Poacher's Aim",
+      "korean": "밀렵꾼의 조준"
+    },
+    {
+      "id": "Polaric Devastation",
+      "english": "Polaric Devastation",
+      "korean": "극성의 유린"
+    },
+    {
+      "id": "Poorjoy's Asylum",
+      "english": "Poorjoy's Asylum",
+      "korean": "푸어조이의 은신처"
+    },
+    {
+      "id": "Powerlessness",
+      "english": "Powerlessness",
+      "korean": "무력함"
+    },
+    {
+      "id": "Pragmatism",
+      "english": "Pragmatism",
+      "korean": "실용주의"
+    },
+    {
+      "id": "Praxis",
+      "english": "Praxis",
+      "korean": "관습"
+    },
+    {
+      "id": "Presence of Chayula",
+      "english": "Presence of Chayula",
+      "korean": "차율라의 존재"
+    },
+    {
+      "id": "Primordial Eminence",
+      "english": "Primordial Eminence",
+      "korean": "태고의 고귀"
+    },
+    {
+      "id": "Primordial Harmony",
+      "english": "Primordial Harmony",
+      "korean": "태고의 조화"
+    },
+    {
+      "id": "Primordial Might",
+      "english": "Primordial Might",
+      "korean": "태고의 완력"
+    },
+    {
+      "id": "Prism Guardian",
+      "english": "Prism Guardian",
+      "korean": "분광의 수호자"
+    },
+    {
+      "id": "Prismweave",
+      "english": "Prismweave",
+      "korean": "빛의 매듭"
+    },
+    {
+      "id": "Profane Proxy",
+      "english": "Profane Proxy",
+      "korean": "부정한 대리자"
+    },
+    {
+      "id": "Progenesis",
+      "english": "Progenesis",
+      "korean": "전창조"
+    },
+    {
+      "id": "Prospero's Protection",
+      "english": "Prospero's Protection",
+      "korean": "프로스페로의 보호"
+    },
+    {
+      "id": "Pugilist",
+      "english": "Pugilist",
+      "korean": "권투가"
+    },
+    {
+      "id": "Pure Talent",
+      "english": "Pure Talent",
+      "korean": "타고난 재능"
+    },
+    {
+      "id": "Putembo's Meadow",
+      "english": "Putembo's Meadow",
+      "korean": "푸템보의 초원"
+    },
+    {
+      "id": "Putembo's Mountain",
+      "english": "Putembo's Mountain",
+      "korean": "푸템보의 산"
+    },
+    {
+      "id": "Putembo's Valley",
+      "english": "Putembo's Valley",
+      "korean": "푸템보의 계곡"
+    },
+    {
+      "id": "Pyroshock Clasp",
+      "english": "Pyroshock Clasp",
+      "korean": "화염격 걸쇠"
+    },
+    {
+      "id": "Qotra's Regulator",
+      "english": "Qotra's Regulator",
+      "korean": "쿼트라의 제어기"
+    },
+    {
+      "id": "Quecholli",
+      "english": "Quecholli",
+      "korean": "퀘촐리"
+    },
+    {
+      "id": "Queen of the Forest",
+      "english": "Queen of the Forest",
+      "korean": "숲의 여왕"
+    },
+    {
+      "id": "Queen's Escape",
+      "english": "Queen's Escape",
+      "korean": "여왕의 탈주"
+    },
+    {
+      "id": "Quickening Covenant",
+      "english": "Quickening Covenant",
+      "korean": "재촉의 계약"
+    },
+    {
+      "id": "Rain of Splinters",
+      "english": "Rain of Splinters",
+      "korean": "파편의 비"
+    },
+    {
+      "id": "Rakiata's Dance",
+      "english": "Rakiata's Dance",
+      "korean": "라키아타의 춤"
+    },
+    {
+      "id": "Ralakesh's Impatience",
+      "english": "Ralakesh's Impatience",
+      "korean": "랄라케쉬의 조바심"
+    },
+    {
+      "id": "Rapid Expansion",
+      "english": "Rapid Expansion",
+      "korean": "신속한 확장"
+    },
+    {
+      "id": "Rat's Nest",
+      "english": "Rat's Nest",
+      "korean": "쥐의 둥지"
+    },
+    {
+      "id": "Rational Doctrine",
+      "english": "Rational Doctrine",
+      "korean": "합리적인 교리"
+    },
+    {
+      "id": "Ravenous Passion",
+      "english": "Ravenous Passion",
+      "korean": "굶주린 열정"
+    },
+    {
+      "id": "Razor of the Seventh Sun",
+      "english": "Razor of the Seventh Sun",
+      "korean": "날카로운 일곱 번째 태양"
+    },
+    {
+      "id": "Reach of the Council",
+      "english": "Reach of the Council",
+      "korean": "의회의 역량"
+    },
+    {
+      "id": "Realm Ender",
+      "english": "Realm Ender",
+      "korean": "종결자"
+    },
+    {
+      "id": "Realmshaper",
+      "english": "Realmshaper",
+      "korean": "영역 형성자"
+    },
+    {
+      "id": "Rearguard",
+      "english": "Rearguard",
+      "korean": "후위 경계"
+    },
+    {
+      "id": "Rebuke of the Vaal",
+      "english": "Rebuke of the Vaal",
+      "korean": "바알의 질책"
+    },
+    {
+      "id": "Reckless Defence",
+      "english": "Reckless Defence",
+      "korean": "무모한 방어"
+    },
+    {
+      "id": "Reclaimed Malevolence",
+      "english": "Reclaimed Malevolence",
+      "korean": "되찾은 악의"
+    },
+    {
+      "id": "Redblade Band",
+      "english": "Redblade Band",
+      "korean": "적검단 가락지"
+    },
+    {
+      "id": "Redblade Banner",
+      "english": "Redblade Banner",
+      "korean": "적검단 깃발"
+    },
+    {
+      "id": "Redblade Tramplers",
+      "english": "Redblade Tramplers",
+      "korean": "적검단 유린자"
+    },
+    {
+      "id": "Reefbane",
+      "english": "Reefbane",
+      "korean": "암초의 파멸"
+    },
+    {
+      "id": "Refuge in Isolation",
+      "english": "Refuge in Isolation",
+      "korean": "고립 속의 피난처"
+    },
+    {
+      "id": "Relentless Fury",
+      "english": "Relentless Fury",
+      "korean": "맹렬한 광분"
+    },
+    {
+      "id": "Relic of the Pact",
+      "english": "Relic of the Pact",
+      "korean": "맹약의 유물"
+    },
+    {
+      "id": "Repentance",
+      "english": "Repentance",
+      "korean": "참회"
+    },
+    {
+      "id": "Replica Abyssus",
+      "english": "Replica Abyssus",
+      "korean": "깊은 심연 모조품"
+    },
+    {
+      "id": "Replica Advancing Fortress",
+      "english": "Replica Advancing Fortress",
+      "korean": "전진하는 요새 모조품"
+    },
+    {
+      "id": "Replica Alberon's Warpath",
+      "english": "Replica Alberon's Warpath",
+      "korean": "알베른의 적대 모조품"
+    },
+    {
+      "id": "Replica Allelopathy",
+      "english": "Replica Allelopathy",
+      "korean": "생존 경쟁 모조품"
+    },
+    {
+      "id": "Replica Allure",
+      "english": "Replica Allure",
+      "korean": "매혹 모조품"
+    },
+    {
+      "id": "Replica Alpha's Howl",
+      "english": "Replica Alpha's Howl",
+      "korean": "우두머리의 울부짖음 모조품"
+    },
+    {
+      "id": "Replica Ambu's Charge",
+      "english": "Replica Ambu's Charge",
+      "korean": "앰부의 돌진 모조품"
+    },
+    {
+      "id": "Replica Atziri's Acuity",
+      "english": "Replica Atziri's Acuity",
+      "korean": "앗지리의 예리함 모조품"
+    },
+    {
+      "id": "Replica Atziri's Foible",
+      "english": "Replica Atziri's Foible",
+      "korean": "앗지리의 결점 모조품"
+    },
+    {
+      "id": "Replica Badge of the Brotherhood",
+      "english": "Replica Badge of the Brotherhood",
+      "korean": "형제단의 증표 모조품"
+    },
+    {
+      "id": "Replica Bated Breath",
+      "english": "Replica Bated Breath",
+      "korean": "약해진 숨결 모조품"
+    },
+    {
+      "id": "Replica Bitterdream",
+      "english": "Replica Bitterdream",
+      "korean": "악몽 모조품"
+    },
+    {
+      "id": "Replica Blood Sacrifice",
+      "english": "Replica Blood Sacrifice",
+      "korean": "피의 희생 모조품"
+    },
+    {
+      "id": "Replica Blood Thorn",
+      "english": "Replica Blood Thorn",
+      "korean": "피의 가시 모조품"
+    },
+    {
+      "id": "Replica Bloodplay",
+      "english": "Replica Bloodplay",
+      "korean": "피의 오락 모조품"
+    },
+    {
+      "id": "Replica Bones of Ullr",
+      "english": "Replica Bones of Ullr",
+      "korean": "울러의 뼈 모조품"
+    },
+    {
+      "id": "Replica Cheap Construction",
+      "english": "Replica Cheap Construction",
+      "korean": "저렴한 건축 모조품"
+    },
+    {
+      "id": "Replica Cold Iron Point",
+      "english": "Replica Cold Iron Point",
+      "korean": "날붙이 끝 모조품"
+    },
+    {
+      "id": "Replica Conqueror's Efficiency",
+      "english": "Replica Conqueror's Efficiency",
+      "korean": "정복자의 효율 모조품"
+    },
+    {
+      "id": "Replica Cortex",
+      "english": "Replica Cortex",
+      "korean": "코텍스 모조품"
+    },
+    {
+      "id": "Replica Covenant",
+      "english": "Replica Covenant",
+      "korean": "계약 모조품"
+    },
+    {
+      "id": "Replica Doedre's Damning",
+      "english": "Replica Doedre's Damning",
+      "korean": "도이드리의 파멸 모조품"
+    },
+    {
+      "id": "Replica Dragonfang's Flight",
+      "english": "Replica Dragonfang's Flight",
+      "korean": "용송곳니의 비상 모조품"
+    },
+    {
+      "id": "Replica Dreamfeather",
+      "english": "Replica Dreamfeather",
+      "korean": "꿈의 깃털 모조품"
+    },
+    {
+      "id": "Replica Duskdawn",
+      "english": "Replica Duskdawn",
+      "korean": "황혼의 아침 모조품"
+    },
+    {
+      "id": "Replica Earendel's Embrace",
+      "english": "Replica Earendel's Embrace",
+      "korean": "에아렌델의 포옹 모조품"
+    },
+    {
+      "id": "Replica Emberwake",
+      "english": "Replica Emberwake",
+      "korean": "잉걸불 지피기 모조품"
+    },
+    {
+      "id": "Replica Eternity Shroud",
+      "english": "Replica Eternity Shroud",
+      "korean": "영원의 연막 모조품"
+    },
+    {
+      "id": "Replica Farrul's Fur",
+      "english": "Replica Farrul's Fur",
+      "korean": "페룰의 모피 모조품"
+    },
+    {
+      "id": "Replica Fencoil",
+      "english": "Replica Fencoil",
+      "korean": "늪 감긴 가지 모조품"
+    },
+    {
+      "id": "Replica Forbidden Shako",
+      "english": "Replica Forbidden Shako",
+      "korean": "금단의 샤코 모조품"
+    },
+    {
+      "id": "Replica Fragile Bloom",
+      "english": "Replica Fragile Bloom",
+      "korean": "가냘픈 꽃 모조품"
+    },
+    {
+      "id": "Replica Fragility",
+      "english": "Replica Fragility",
+      "korean": "허약 모조품"
+    },
+    {
+      "id": "Replica Frostbreath",
+      "english": "Replica Frostbreath",
+      "korean": "서리 숨결 모조품"
+    },
+    {
+      "id": "Replica Gifts from Above",
+      "english": "Replica Gifts from Above",
+      "korean": "하늘에서 내려준 모조품 선물"
+    },
+    {
+      "id": "Replica Grip of the Council",
+      "english": "Replica Grip of the Council",
+      "korean": "의회의 장악 모조품"
+    },
+    {
+      "id": "Replica Harvest",
+      "english": "Replica Harvest",
+      "korean": "수확 모조품"
+    },
+    {
+      "id": "Replica Headhunter",
+      "english": "Replica Headhunter",
+      "korean": "헤드헌터 모조품"
+    },
+    {
+      "id": "Replica Heartbreaker",
+      "english": "Replica Heartbreaker",
+      "korean": "심장 분쇄기 모조품"
+    },
+    {
+      "id": "Replica Heatshiver",
+      "english": "Replica Heatshiver",
+      "korean": "열기와 오한 모조품"
+    },
+    {
+      "id": "Replica Hinekora's Sight",
+      "english": "Replica Hinekora's Sight",
+      "korean": "히네코라의 통찰력 모조품"
+    },
+    {
+      "id": "Replica Hotheaded",
+      "english": "Replica Hotheaded",
+      "korean": "핫헤드 모조품"
+    },
+    {
+      "id": "Replica Hyrri's Ire",
+      "english": "Replica Hyrri's Ire",
+      "korean": "하이리의 노여움 모조품"
+    },
+    {
+      "id": "Replica Hyrri's Truth",
+      "english": "Replica Hyrri's Truth",
+      "korean": "하이리의 진리 모조품"
+    },
+    {
+      "id": "Replica Infractem",
+      "english": "Replica Infractem",
+      "korean": "침범자 모조품"
+    },
+    {
+      "id": "Replica Innsbury Edge",
+      "english": "Replica Innsbury Edge",
+      "korean": "인스뷰리 칼날 모조품"
+    },
+    {
+      "id": "Replica Inya's Epiphany",
+      "english": "Replica Inya's Epiphany",
+      "korean": "이냐의 통찰 모조품"
+    },
+    {
+      "id": "Replica Iron Commander",
+      "english": "Replica Iron Commander",
+      "korean": "철의 지휘관 모조품"
+    },
+    {
+      "id": "Replica Kalisa's Grace",
+      "english": "Replica Kalisa's Grace",
+      "korean": "칼리사의 은총 모조품"
+    },
+    {
+      "id": "Replica Kaom's Heart",
+      "english": "Replica Kaom's Heart",
+      "korean": "카옴의 심장 모조품"
+    },
+    {
+      "id": "Replica Karui Ward",
+      "english": "Replica Karui Ward",
+      "korean": "카루이의 수호 모조품"
+    },
+    {
+      "id": "Replica Kongor's Undying Rage",
+      "english": "Replica Kongor's Undying Rage",
+      "korean": "콩고르의 끝없는 격노 모조품"
+    },
+    {
+      "id": "Replica Last Resort",
+      "english": "Replica Last Resort",
+      "korean": "최후의 수단 모조품"
+    },
+    {
+      "id": "Replica Lavianga's Spirit",
+      "english": "Replica Lavianga's Spirit",
+      "korean": "라비앙가의 혼백 모조품"
+    },
+    {
+      "id": "Replica Leer Cast",
+      "english": "Replica Leer Cast",
+      "korean": "음흉한 시선 모조품"
+    },
+    {
+      "id": "Replica Lioneye's Paws",
+      "english": "Replica Lioneye's Paws",
+      "korean": "라이온아이의 발 모조품"
+    },
+    {
+      "id": "Replica Loreweave",
+      "english": "Replica Loreweave",
+      "korean": "지식의 매듭 모조품"
+    },
+    {
+      "id": "Replica Maata's Teaching",
+      "english": "Replica Maata's Teaching",
+      "korean": "마아타의 가르침 모조품"
+    },
+    {
+      "id": "Replica Malachai's Artifice",
+      "english": "Replica Malachai's Artifice",
+      "korean": "말라카이의 책략 모조품"
+    },
+    {
+      "id": "Replica Maloney's Mechanism",
+      "english": "Replica Maloney's Mechanism",
+      "korean": "말로니의 기계 장치 모조품"
+    },
+    {
+      "id": "Replica Midnight Bargain",
+      "english": "Replica Midnight Bargain",
+      "korean": "심야의 교섭 모조품"
+    },
+    {
+      "id": "Replica Mistwall",
+      "english": "Replica Mistwall",
+      "korean": "안개 벽 모조품"
+    },
+    {
+      "id": "Replica Nebulis",
+      "english": "Replica Nebulis",
+      "korean": "성운 모조품"
+    },
+    {
+      "id": "Replica Oro's Sacrifice",
+      "english": "Replica Oro's Sacrifice",
+      "korean": "오로의 희생 모조품"
+    },
+    {
+      "id": "Replica Pacifism",
+      "english": "Replica Pacifism",
+      "korean": "평화주의 모조품"
+    },
+    {
+      "id": "Replica Paradoxica",
+      "english": "Replica Paradoxica",
+      "korean": "모순 모조품"
+    },
+    {
+      "id": "Replica Perfect Form",
+      "english": "Replica Perfect Form",
+      "korean": "완벽한 구조 모조품"
+    },
+    {
+      "id": "Replica Pillars of Arun",
+      "english": "Replica Pillars of Arun",
+      "korean": "아룬의 기둥 모조품"
+    },
+    {
+      "id": "Replica Poorjoy's Asylum",
+      "english": "Replica Poorjoy's Asylum",
+      "korean": "푸어조이의 은신처 모조품"
+    },
+    {
+      "id": "Replica Powerlessness",
+      "english": "Replica Powerlessness",
+      "korean": "무력함 모조품"
+    },
+    {
+      "id": "Replica Primordial Might",
+      "english": "Replica Primordial Might",
+      "korean": "태고의 완력 모조품"
+    },
+    {
+      "id": "Replica Prismweave",
+      "english": "Replica Prismweave",
+      "korean": "빛의 매듭 모조품"
+    },
+    {
+      "id": "Replica Pure Talent",
+      "english": "Replica Pure Talent",
+      "korean": "타고난 재능 모조품"
+    },
+    {
+      "id": "Replica Quill Rain",
+      "english": "Replica Quill Rain",
+      "korean": "화살 비 모조품"
+    },
+    {
+      "id": "Replica Reckless Defence",
+      "english": "Replica Reckless Defence",
+      "korean": "무모한 방어 모조품"
+    },
+    {
+      "id": "Replica Red Trail",
+      "english": "Replica Red Trail",
+      "korean": "붉은 발자취 모조품"
+    },
+    {
+      "id": "Replica Restless Ward",
+      "english": "Replica Restless Ward",
+      "korean": "끊임없는 수호 모조품"
+    },
+    {
+      "id": "Replica Rumi's Concoction",
+      "english": "Replica Rumi's Concoction",
+      "korean": "루미의 혼합물 모조품"
+    },
+    {
+      "id": "Replica Shroud of the Lightless",
+      "english": "Replica Shroud of the Lightless",
+      "korean": "무광의 연막 모조품"
+    },
+    {
+      "id": "Replica Siegebreaker",
+      "english": "Replica Siegebreaker",
+      "korean": "공성분쇄기 모조품"
+    },
+    {
+      "id": "Replica Sorrow of the Divine",
+      "english": "Replica Sorrow of the Divine",
+      "korean": "신의 슬픔 모조품"
+    },
+    {
+      "id": "Replica Soul Strike",
+      "english": "Replica Soul Strike",
+      "korean": "영혼의 일격 모조품"
+    },
+    {
+      "id": "Replica Soul Taker",
+      "english": "Replica Soul Taker",
+      "korean": "영혼 수확자 모조품"
+    },
+    {
+      "id": "Replica Soul Tether",
+      "english": "Replica Soul Tether",
+      "korean": "영혼 올가미 모조품"
+    },
+    {
+      "id": "Replica Stampede",
+      "english": "Replica Stampede",
+      "korean": "쇄도 모조품"
+    },
+    {
+      "id": "Replica Tasalio’s Sign",
+      "english": "Replica Tasalio's Sign",
+      "korean": "타살리오의 표식 모조품"
+    },
+    {
+      "id": "Replica Tempestuous Steel",
+      "english": "Replica Tempestuous Steel",
+      "korean": "격렬한 강철 모조품"
+    },
+    {
+      "id": "Replica Three-step Assault",
+      "english": "Replica Three-step Assault",
+      "korean": "삼단 공격 모조품"
+    },
+    {
+      "id": "Replica Trypanon",
+      "english": "Replica Trypanon",
+      "korean": "트리파논 모조품"
+    },
+    {
+      "id": "Replica Tukohama's Fortress",
+      "english": "Replica Tukohama's Fortress",
+      "korean": "투코하마의 요새 모조품"
+    },
+    {
+      "id": "Replica Tulfall",
+      "english": "Replica Tulfall",
+      "korean": "툴의 몰락 모조품"
+    },
+    {
+      "id": "Replica Twyzel",
+      "english": "Replica Twyzel",
+      "korean": "트위즐 모조품"
+    },
+    {
+      "id": "Replica Ungil's Gauche",
+      "english": "Replica Ungil's Gauche",
+      "korean": "웅힐의 투박함 모조품"
+    },
+    {
+      "id": "Replica Unstable Payload",
+      "english": "Replica Unstable Payload",
+      "korean": "불안정한 하중 모조품"
+    },
+    {
+      "id": "Replica Veil of the Night",
+      "english": "Replica Veil of the Night",
+      "korean": "밤의 장막 모조품"
+    },
+    {
+      "id": "Replica Victario's Charity",
+      "english": "Replica Victario's Charity",
+      "korean": "빅타리오의 자비 모조품"
+    },
+    {
+      "id": "Replica Voideye",
+      "english": "Replica Voideye",
+      "korean": "공허의 눈 모조품"
+    },
+    {
+      "id": "Replica Voidwalker",
+      "english": "Replica Voidwalker",
+      "korean": "공허 보행자 모조품"
+    },
+    {
+      "id": "Replica Volkuur's Guidance",
+      "english": "Replica Volkuur's Guidance",
+      "korean": "볼쿠르의 인도 모조품"
+    },
+    {
+      "id": "Replica Windripper",
+      "english": "Replica Windripper",
+      "korean": "윈드리퍼 모조품"
+    },
+    {
+      "id": "Replica Wings of Entropy",
+      "english": "Replica Wings of Entropy",
+      "korean": "엔트로피의 날개 모조품"
+    },
+    {
+      "id": "Replica Winterheart",
+      "english": "Replica Winterheart",
+      "korean": "겨울심장 모조품"
+    },
+    {
+      "id": "Replica Witchfire Brew",
+      "english": "Replica Witchfire Brew",
+      "korean": "불타는 마녀의 술 모조품"
+    },
+    {
+      "id": "Restless Cycles",
+      "english": "Restless Cycles",
+      "korean": "쉴 수 없는 반복"
+    },
+    {
+      "id": "Retaliation Charm",
+      "english": "Retaliation Charm",
+      "korean": "보복 부적"
+    },
+    {
+      "id": "Reverberation Rod",
+      "english": "Reverberation Rod",
+      "korean": "울림의 막대"
+    },
+    {
+      "id": "Rewritten Distant Memory",
+      "english": "Rewritten Distant Memory",
+      "korean": "다시 쓰인 희미한 기억"
+    },
+    {
+      "id": "Rigvald's Charge",
+      "english": "Rigwald's Charge",
+      "korean": "리그월드의 돌진"
+    },
+    {
+      "id": "Rigwald's Command",
+      "english": "Rigwald's Command",
+      "korean": "리그월드의 명령"
+    },
+    {
+      "id": "Rigwald's Crest",
+      "english": "Rigwald's Crest",
+      "korean": "리그월드의 문양"
+    },
+    {
+      "id": "Rigwald's Curse",
+      "english": "Rigwald's Curse",
+      "korean": "리그월드의 저주"
+    },
+    {
+      "id": "Rigwald's Hunt",
+      "english": "Rigwald's Hunt",
+      "korean": "리그월드의 사냥"
+    },
+    {
+      "id": "Rigwald's Quills",
+      "english": "Rigwald's Quills",
+      "korean": "리그월드의 화살"
+    },
+    {
+      "id": "Rigwald's Savagery",
+      "english": "Rigwald's Savagery",
+      "korean": "리그월드의 야만"
+    },
+    {
+      "id": "Rime Gaze",
+      "english": "Rime Gaze",
+      "korean": "냉기의 시선"
+    },
+    {
+      "id": "Ring of Blades",
+      "english": "Ring of Blades",
+      "korean": "칼날 경기장"
+    },
+    {
+      "id": "Rise of the Phoenix",
+      "english": "Rise of the Phoenix",
+      "korean": "불사조의 비상"
+    },
+    {
+      "id": "Rive",
+      "english": "Rive",
+      "korean": "리브"
+    },
+    {
+      "id": "Rolling Flames",
+      "english": "Rolling Flames",
+      "korean": "몰려오는 불꽃"
+    },
+    {
+      "id": "Romira's Banquet",
+      "english": "Romira's Banquet",
+      "korean": "로미라의 연회"
+    },
+    {
+      "id": "Rotblood Promise",
+      "english": "Rotblood Promise",
+      "korean": "부식혈의 약속"
+    },
+    {
+      "id": "Rotgut",
+      "english": "Rotgut",
+      "korean": "썩은 내장"
+    },
+    {
+      "id": "Roth's Reach",
+      "english": "Roth's Reach",
+      "korean": "로스의 역량"
+    },
+    {
+      "id": "Rotmother's Mutiny",
+      "english": "Rotmother's Mutiny",
+      "korean": "부패모의 반란"
+    },
+    {
+      "id": "Rotting Legion",
+      "english": "Rotting Legion",
+      "korean": "썩어가는 군단"
+    },
+    {
+      "id": "Ryslatha's Coil",
+      "english": "Ryslatha's Coil",
+      "korean": "리슬라사의 감개"
+    },
+    {
+      "id": "Sacrificial Harvest",
+      "english": "Sacrificial Harvest",
+      "korean": "희생의 수확"
+    },
+    {
+      "id": "Sacrificial Heart",
+      "english": "Sacrificial Heart",
+      "korean": "희생의 심장"
+    },
+    {
+      "id": "Saemus' Gift",
+      "english": "Saemus' Gift",
+      "korean": "새무스의 선물"
+    },
+    {
+      "id": "Sandstorm Visage",
+      "english": "Sandstorm Visage",
+      "korean": "모래 폭풍의 얼굴"
+    },
+    {
+      "id": "Sanguine Gambol",
+      "english": "Sanguine Gambol",
+      "korean": "핏빛 장난"
+    },
+    {
+      "id": "Sap of the Seasons",
+      "english": "Sap of the Seasons",
+      "korean": "계절의 진액"
+    },
+    {
+      "id": "Saqawal's Flock",
+      "english": "Saqawal's Flock",
+      "korean": "사카왈의 무리"
+    },
+    {
+      "id": "Saqawal's Nest",
+      "english": "Saqawal's Nest",
+      "korean": "사카왈의 둥지"
+    },
+    {
+      "id": "Saqawal's Talons",
+      "english": "Saqawal's Talons",
+      "korean": "사카왈의 발톱"
+    },
+    {
+      "id": "Saqawal's Winds",
+      "english": "Saqawal's Winds",
+      "korean": "사카왈의 바람"
+    },
+    {
+      "id": "Saresh's Darkness",
+      "english": "Saresh's Darkness",
+      "korean": "사레쉬의 어둠"
+    },
+    {
+      "id": "Scaeva",
+      "english": "Scaeva",
+      "korean": "스카이바"
+    },
+    {
+      "id": "Scold's Bridle",
+      "english": "Scold's Bridle",
+      "korean": "꾸짖음의 굴레"
+    },
+    {
+      "id": "Scornflux",
+      "english": "Scornflux",
+      "korean": "경멸융합"
+    },
+    {
+      "id": "Scorpion's Call",
+      "english": "Scorpion's Call",
+      "korean": "전갈의 부름"
+    },
+    {
+      "id": "Screams of the Desiccated",
+      "english": "Screams of the Desiccated",
+      "korean": "바싹 마른 자의 비명"
+    },
+    {
+      "id": "Seablister",
+      "english": "Seablister",
+      "korean": "바다 물집"
+    },
+    {
+      "id": "Divide and Conquer",
+      "english": "Seething Fury",
+      "korean": "끓어오르는 광분"
+    },
+    {
+      "id": "Self-Flagellation",
+      "english": "Self-Flagellation",
+      "korean": "자학 채찍질"
+    },
+    {
+      "id": "Sentari's Answer",
+      "english": "Sentari's Answer",
+      "korean": "센타리의 응답"
+    },
+    {
+      "id": "Serle's Masterwork",
+      "english": "Serle's Masterwork",
+      "korean": "세를의 걸작"
+    },
+    {
+      "id": "Servant of Decay",
+      "english": "Servant of Decay",
+      "korean": "부패의 종복"
+    },
+    {
+      "id": "Seven Teachings",
+      "english": "Seven Teachings",
+      "korean": "일곱 개의 가르침"
+    },
+    {
+      "id": "Seven-League Step",
+      "english": "Seven-League Step",
+      "korean": "바람의 걸음"
+    },
+    {
+      "id": "Severed in Sleep",
+      "english": "Severed in Sleep",
+      "korean": "야습"
+    },
+    {
+      "id": "Shackles of the Wretched",
+      "english": "Shackles of the Wretched",
+      "korean": "불운아의 족쇄"
+    },
+    {
+      "id": "Shade of Solaris",
+      "english": "Shade of Solaris",
+      "korean": "솔라리스의 그늘"
+    },
+    {
+      "id": "Shadowstitch",
+      "english": "Shadowstitch",
+      "korean": "그림자 봉합"
+    },
+    {
+      "id": "Shaper's Seed",
+      "english": "Shaper's Seed",
+      "korean": "쉐이퍼의 씨앗"
+    },
+    {
+      "id": "Shaper's Touch",
+      "english": "Shaper's Touch",
+      "korean": "쉐이퍼의 손길"
+    },
+    {
+      "id": "Shattered Chains",
+      "english": "Shattered Chains",
+      "korean": "바스라진 사슬"
+    },
+    {
+      "id": "Shattershard",
+      "english": "Shattershard",
+      "korean": "파편 분쇄"
+    },
+    {
+      "id": "Shavronne's Gambit",
+      "english": "Shavronne's Gambit",
+      "korean": "샤브론의 책략"
+    },
+    {
+      "id": "Shavronne's Revelation",
+      "english": "Shavronne's Revelation",
+      "korean": "샤브론의 계시"
+    },
+    {
+      "id": "Shavronne's Wrappings",
+      "english": "Shavronne's Wrappings",
+      "korean": "샤브론의 겉옷"
+    },
+    {
+      "id": "Shimmeron",
+      "english": "Shimmeron",
+      "korean": "쉬머론"
+    },
+    {
+      "id": "Sibyl's Lament",
+      "english": "Sibyl's Lament",
+      "korean": "시빌의 한탄"
+    },
+    {
+      "id": "Siegebreaker",
+      "english": "Siegebreaker",
+      "korean": "공성분쇄기"
+    },
+    {
+      "id": "Sign of the Sin Eater",
+      "english": "Sign of the Sin Eater",
+      "korean": "죄악을 먹는 자의 흔적"
+    },
+    {
+      "id": "Silverbough",
+      "english": "Silverbough",
+      "korean": "은빛 나뭇가지"
+    },
+    {
+      "id": "Silverbranch",
+      "english": "Silverbranch",
+      "korean": "은빛 가지"
+    },
+    {
+      "id": "Sin's Rebirth",
+      "english": "Sin's Rebirth",
+      "korean": "씬의 부활"
+    },
+    {
+      "id": "Singularity",
+      "english": "Singularity",
+      "korean": "중력 붕괴"
+    },
+    {
+      "id": "Sinvicta's Mettle",
+      "english": "Sinvicta's Mettle",
+      "korean": "신빅타의 패기"
+    },
+    {
+      "id": "Sire of Shards",
+      "english": "Sire of Shards",
+      "korean": "파편의 영주"
+    },
+    {
+      "id": "Skin of the Lords",
+      "english": "Skin of the Lords",
+      "korean": "군주의 가죽"
+    },
+    {
+      "id": "Skin of the Loyal",
+      "english": "Skin of the Loyal",
+      "korean": "충신의 가죽"
+    },
+    {
+      "id": "Skirmish",
+      "english": "Skirmish",
+      "korean": "접전"
+    },
+    {
+      "id": "Skullhead",
+      "english": "Skullhead",
+      "korean": "두개골 투구"
+    },
+    {
+      "id": "Skyforth",
+      "english": "Skyforth",
+      "korean": "하늘 달리기"
+    },
+    {
+      "id": "Skysunder",
+      "english": "Skysunder",
+      "korean": "하늘작렬"
+    },
+    {
+      "id": "Slavedriver's Hand",
+      "english": "Slavedriver's Hand",
+      "korean": "노예 감독관의 손길"
+    },
+    {
+      "id": "Slitherpinch",
+      "english": "Slitherpinch",
+      "korean": "뱀의 손길"
+    },
+    {
+      "id": "Slivertongue",
+      "english": "Slivertongue",
+      "korean": "슬리버텅"
+    },
+    {
+      "id": "Snakebite",
+      "english": "Snakebite",
+      "korean": "뱀 이빨"
+    },
+    {
+      "id": "Snakepit",
+      "english": "Snakepit",
+      "korean": "뱀 구덩이"
+    },
+    {
+      "id": "Solaris Lorica",
+      "english": "Solaris Lorica",
+      "korean": "솔라리스 흉갑"
+    },
+    {
+      "id": "Solerai's Radiance",
+      "english": "Solerai's Radiance",
+      "korean": "솔레라이의 광휘"
+    },
+    {
+      "id": "Solstice Vigil",
+      "english": "Solstice Vigil",
+      "korean": "동짓날 밤"
+    },
+    {
+      "id": "Soul Ascension",
+      "english": "Soul Ascension",
+      "korean": "영혼 승천"
+    },
+    {
+      "id": "Soul Catcher",
+      "english": "Soul Catcher",
+      "korean": "영혼 포획자"
+    },
+    {
+      "id": "Soul Mantle",
+      "english": "Soul Mantle",
+      "korean": "영혼의 외투"
+    },
+    {
+      "id": "Soul Ripper",
+      "english": "Soul Ripper",
+      "korean": "영혼 거열기"
+    },
+    {
+      "id": "Soul Strike",
+      "english": "Soul Strike",
+      "korean": "영혼의 일격"
+    },
+    {
+      "id": "Soul Tether",
+      "english": "Soul Tether",
+      "korean": "영혼 올가미"
+    },
+    {
+      "id": "Soul's Wick",
+      "english": "Soul's Wick",
+      "korean": "영혼의 심지"
+    },
+    {
+      "id": "Soulbound",
+      "english": "Soulbound",
+      "korean": "속박된 영혼"
+    },
+    {
+      "id": "Soulwrest",
+      "english": "Soulwrest",
+      "korean": "영혼 착취"
+    },
+    {
+      "id": "Southbound",
+      "english": "Southbound",
+      "korean": "남행"
+    },
+    {
+      "id": "Speaker's Wreath",
+      "english": "Speaker's Wreath",
+      "korean": "연설가의 화관"
+    },
+    {
+      "id": "Spine of the First Claimant",
+      "english": "Spine of the First Claimant",
+      "korean": "최초 선구자의 척추"
+    },
+    {
+      "id": "Spinehail",
+      "english": "Spinehail",
+      "korean": "가시우박"
+    },
+    {
+      "id": "Spinesnatch",
+      "english": "Spinesnatch",
+      "korean": "척추강탈"
+    },
+    {
+      "id": "Spire of Stone",
+      "english": "Spire of Stone",
+      "korean": "첨탑"
+    },
+    {
+      "id": "Spirit Guards",
+      "english": "Spirit Guards",
+      "korean": "혼백의 수호"
+    },
+    {
+      "id": "Spirited Response",
+      "english": "Spirited Response",
+      "korean": "맹렬한 응답"
+    },
+    {
+      "id": "Split Personality",
+      "english": "Split Personality",
+      "korean": "이중 인격"
+    },
+    {
+      "id": "Sporeguard",
+      "english": "Sporeguard",
+      "korean": "포자 수호"
+    },
+    {
+      "id": "Spreading Rot",
+      "english": "Spreading Rot",
+      "korean": "퍼져가는 부패"
+    },
+    {
+      "id": "Springleaf",
+      "english": "Springleaf",
+      "korean": "생기의 잎사귀"
+    },
+    {
+      "id": "Squirming Terror",
+      "english": "Squirming Terror",
+      "korean": "꿈틀거리는 공포"
+    },
+    {
+      "id": "Stalwart Defenders",
+      "english": "Stalwart Defenders",
+      "korean": "강건한 수비병"
+    },
+    {
+      "id": "Star of Wraeclast",
+      "english": "Star of Wraeclast",
+      "korean": "레이클라스트의 별"
+    },
+    {
+      "id": "Starcaller",
+      "english": "Starcaller",
+      "korean": "별을 부르는 자"
+    },
+    {
+      "id": "Starforge",
+      "english": "Starforge",
+      "korean": "별의 탄생"
+    },
+    {
+      "id": "Starlight Chalice",
+      "english": "Starlight Chalice",
+      "korean": "별빛 성배"
+    },
+    {
+      "id": "Stasis Prison",
+      "english": "Stasis Prison",
+      "korean": "정체 감옥"
+    },
+    {
+      "id": "Static Electricity",
+      "english": "Static Electricity",
+      "korean": "정전기"
+    },
+    {
+      "id": "Steel Spirit",
+      "english": "Steel Spirit",
+      "korean": "강철 혼백"
+    },
+    {
+      "id": "Steelworm",
+      "english": "Steelworm",
+      "korean": "강철지렁이"
+    },
+    {
+      "id": "Steppan Eard",
+      "english": "Steppan Eard",
+      "korean": "스테판 야드"
+    },
+    {
+      "id": "Storm Prison",
+      "english": "Storm Prison",
+      "korean": "태풍 감옥"
+    },
+    {
+      "id": "Storm Secret",
+      "english": "Storm Secret",
+      "korean": "태풍의 비밀"
+    },
+    {
+      "id": "Storm's Gift",
+      "english": "Storm's Gift",
+      "korean": "태풍의 선물"
+    },
+    {
+      "id": "Stormcharger",
+      "english": "Stormcharger",
+      "korean": "태풍 돌격대"
+    },
+    {
+      "id": "Stormfire",
+      "english": "Stormfire",
+      "korean": "태풍불길"
+    },
+    {
+      "id": "Stormseeker",
+      "english": "Stormseeker",
+      "korean": "폭풍 탐구자"
+    },
+    {
+      "id": "Stormshroud",
+      "english": "Stormshroud",
+      "korean": "폭풍연막"
+    },
+    {
+      "id": "Story of the Vaal",
+      "english": "Story of the Vaal",
+      "korean": "바알의 사연"
+    },
+    {
+      "id": "Stranglegasp",
+      "english": "Stranglegasp",
+      "korean": "교살의 손아귀"
+    },
+    {
+      "id": "String of Servitude",
+      "english": "String of Servitude",
+      "korean": "노예의 끈"
+    },
+    {
+      "id": "Sublime Vision",
+      "english": "Sublime Vision",
+      "korean": "숭고한 환영"
+    },
+    {
+      "id": "Sudden Dawn",
+      "english": "Sudden Dawn",
+      "korean": "개벽"
+    },
+    {
+      "id": "Sudden Ignition",
+      "english": "Sudden Ignition",
+      "korean": "기습적인 점화"
+    },
+    {
+      "id": "Sunblast",
+      "english": "Sunblast",
+      "korean": "태양의 파동"
+    },
+    {
+      "id": "Sunspite",
+      "english": "Sunspite",
+      "korean": "태양의 원한"
+    },
+    {
+      "id": "Surgebinders",
+      "english": "Surgebinders",
+      "korean": "몰려드는 격동"
+    },
+    {
+      "id": "Survival Instincts",
+      "english": "Survival Instincts",
+      "korean": "생존 본능"
+    },
+    {
+      "id": "Survival Secrets",
+      "english": "Survival Secrets",
+      "korean": "생존 비결"
+    },
+    {
+      "id": "Survival Skills",
+      "english": "Survival Skills",
+      "korean": "생존 기술"
+    },
+    {
+      "id": "Survivor's Guilt",
+      "english": "Survivor's Guilt",
+      "korean": "생존자의 죄책감"
+    },
+    {
+      "id": "Svalinn",
+      "english": "Svalinn",
+      "korean": "스발린"
+    },
+    {
+      "id": "Tainted Pact",
+      "english": "Tainted Pact",
+      "korean": "더럽혀진 맹약"
+    },
+    {
+      "id": "Tanu Ahi",
+      "english": "Tanu Ahi",
+      "korean": "타누 아히"
+    },
+    {
+      "id": "Taproot",
+      "english": "Taproot",
+      "korean": "흡혈 뿌리"
+    },
+    {
+      "id": "Tasalio’s Sign",
+      "english": "Tasalio's Sign",
+      "korean": "타살리오의 표식"
+    },
+    {
+      "id": "Tavukai",
+      "english": "Tavukai",
+      "korean": "타부카이"
+    },
+    {
+      "id": "Tawhanuku's Timing",
+      "english": "Tawhanuku's Timing",
+      "korean": "타하누쿠의 때맞춤"
+    },
+    {
+      "id": "Tawhoa's Felling",
+      "english": "Tawhoa's Felling",
+      "korean": "타호아의 벌채"
+    },
+    {
+      "id": "Tecrod's Gaze",
+      "english": "Tecrod's Gaze",
+      "korean": "테크로드의 응시"
+    },
+    {
+      "id": "Tempered Flesh",
+      "english": "Tempered Flesh",
+      "korean": "조절된 육체"
+    },
+    {
+      "id": "Tempered Mind",
+      "english": "Tempered Mind",
+      "korean": "조절된 마음"
+    },
+    {
+      "id": "Tempered Spirit",
+      "english": "Tempered Spirit",
+      "korean": "조절된 정신"
+    },
+    {
+      "id": "Temptation Step",
+      "english": "Temptation Step",
+      "korean": "유혹의 발걸음"
+    },
+    {
+      "id": "Terminus Est",
+      "english": "Terminus Est",
+      "korean": "다가온 최후"
+    },
+    {
+      "id": "Territories Unknown",
+      "english": "Territories Unknown",
+      "korean": "미지의 영역"
+    },
+    {
+      "id": "Terror",
+      "english": "Terror",
+      "korean": "공포"
+    },
+    {
+      "id": "That Which Was Taken",
+      "english": "That Which Was Taken",
+      "korean": "빼앗긴 것"
+    },
+    {
+      "id": "The Admiral",
+      "english": "The Admiral",
+      "korean": "제독"
+    },
+    {
+      "id": "The Adorned",
+      "english": "The Adorned",
+      "korean": "치장한 자"
+    },
+    {
+      "id": "The Anima Stone",
+      "english": "The Anima Stone",
+      "korean": "생명의 돌"
+    },
+    {
+      "id": "The Annihilating Light",
+      "english": "The Annihilating Light",
+      "korean": "절멸의 빛"
+    },
+    {
+      "id": "The Anticipation",
+      "english": "The Anticipation",
+      "korean": "기대"
+    },
+    {
+      "id": "The Apostate",
+      "english": "The Apostate",
+      "korean": "배교자"
+    },
+    {
+      "id": "The Arkhon's Tools",
+      "english": "The Arkhon's Tools",
+      "korean": "기록관의 도구"
+    },
+    {
+      "id": "The Ascetic",
+      "english": "The Ascetic",
+      "korean": "고행자"
+    },
+    {
+      "id": "The Aylardex",
+      "english": "The Aylardex",
+      "korean": "에일러덱스"
+    },
+    {
+      "id": "The Balance of Terror",
+      "english": "The Balance of Terror",
+      "korean": "공포의 균형"
+    },
+    {
+      "id": "The Bandit Lord's Band",
+      "english": "The Bandit Lord's Band",
+      "korean": "도적 두목의 띠"
+    },
+    {
+      "id": "The Bane of Hope",
+      "english": "The Bane of Hope",
+      "korean": "희망의 파멸"
+    },
+    {
+      "id": "The Baron",
+      "english": "The Baron",
+      "korean": "남작"
+    },
+    {
+      "id": "The Battle Within",
+      "english": "The Battle Within",
+      "korean": "내면의 싸움"
+    },
+    {
+      "id": "The Beast Fur Shawl",
+      "english": "The Beast Fur Shawl",
+      "korean": "야수 모피 숄"
+    },
+    {
+      "id": "The Black Cane",
+      "english": "The Black Cane",
+      "korean": "검은 지팡이"
+    },
+    {
+      "id": "The Blood Reaper",
+      "english": "The Blood Reaper",
+      "korean": "피의 수확자"
+    },
+    {
+      "id": "The Blue Dream",
+      "english": "The Blue Dream",
+      "korean": "파란 꿈"
+    },
+    {
+      "id": "The Blue Nightmare",
+      "english": "The Blue Nightmare",
+      "korean": "파란 악몽"
+    },
+    {
+      "id": "The Brass Dome",
+      "english": "The Brass Dome",
+      "korean": "황동 철갑"
+    },
+    {
+      "id": "The Brine Crown",
+      "english": "The Brine Crown",
+      "korean": "염수 왕관"
+    },
+    {
+      "id": "The Broken Crown",
+      "english": "The Broken Crown",
+      "korean": "부서진 왕관"
+    },
+    {
+      "id": "Broken Elegy",
+      "english": "The Broken Elegy",
+      "korean": "망가진 비가"
+    },
+    {
+      "id": "The Builder",
+      "english": "The Builder",
+      "korean": "개척자"
+    },
+    {
+      "id": "The Burden of Shadows",
+      "english": "The Burden of Shadows",
+      "korean": "그림자의 짐"
+    },
+    {
+      "id": "The Burden of Truth",
+      "english": "The Burden of Truth",
+      "korean": "버거운 진실"
+    },
+    {
+      "id": "The Caged Mammoth",
+      "english": "The Caged Mammoth",
+      "korean": "감금된 매머드"
+    },
+    {
+      "id": "The Cauteriser",
+      "english": "The Cauteriser",
+      "korean": "소각로"
+    },
+    {
+      "id": "The Celestial Brace",
+      "english": "The Celestial Brace",
+      "korean": "천공의 죔쇠"
+    },
+    {
+      "id": "The Claim",
+      "english": "The Claim",
+      "korean": "소유권"
+    },
+    {
+      "id": "The Closest Peak",
+      "english": "The Closest Peak",
+      "korean": "근접한 봉우리"
+    },
+    {
+      "id": "The Coming Calamity",
+      "english": "The Coming Calamity",
+      "korean": "다가오는 대재난"
+    },
+    {
+      "id": "The Consuming Dark",
+      "english": "The Consuming Dark",
+      "korean": "타들어 가는 어둠"
+    },
+    {
+      "id": "The Covenant",
+      "english": "The Covenant",
+      "korean": "계약"
+    },
+    {
+      "id": "The Coward's Trial",
+      "english": "The Coward's Trial",
+      "korean": "겁쟁이의 시험"
+    },
+    {
+      "id": "The Crimson Storm",
+      "english": "The Crimson Storm",
+      "korean": "진홍색 태풍"
+    },
+    {
+      "id": "The Crustacean's Call",
+      "english": "The Crustacean's Call",
+      "korean": "갑각류의 부름"
+    },
+    {
+      "id": "The Dancing Dervish",
+      "english": "The Dancing Dervish",
+      "korean": "춤추는 수도승"
+    },
+    {
+      "id": "The Dancing Duo",
+      "english": "The Dancing Duo",
+      "korean": "춤추는 한 쌍"
+    },
+    {
+      "id": "The Dark Monarch",
+      "english": "The Dark Monarch",
+      "korean": "어둠의 국왕"
+    },
+    {
+      "id": "The Dark Seer",
+      "english": "The Dark Seer",
+      "korean": "어둠 예견자"
+    },
+    {
+      "id": "The Deep One's Hide",
+      "english": "The Deep One's Hide",
+      "korean": "심해의 가죽"
+    },
+    {
+      "id": "The Desecrated Chalice",
+      "english": "The Desecrated Chalice",
+      "korean": "훼손된 성배"
+    },
+    {
+      "id": "The Devourer of Minds",
+      "english": "The Devourer of Minds",
+      "korean": "정신 포식자"
+    },
+    {
+      "id": "The Devouring Diadem",
+      "english": "The Devouring Diadem",
+      "korean": "걸신들린 왕관"
+    },
+    {
+      "id": "The Draugur's Lantern",
+      "english": "The Draugur's Lantern",
+      "korean": "드라우구르의 등불"
+    },
+    {
+      "id": "The Druggery",
+      "english": "The Druggery",
+      "korean": "약품"
+    },
+    {
+      "id": "The Effigon",
+      "english": "The Effigon",
+      "korean": "에피곤"
+    },
+    {
+      "id": "The Embalmer",
+      "english": "The Embalmer",
+      "korean": "시체처리사의 장갑"
+    },
+    {
+      "id": "The Enmity Divine",
+      "english": "The Enmity Divine",
+      "korean": "증오의 신"
+    },
+    {
+      "id": "The Ephemeral Bond",
+      "english": "The Ephemeral Bond",
+      "korean": "덧없는 유대"
+    },
+    {
+      "id": "The Eternal Apple",
+      "english": "The Eternal Apple",
+      "korean": "영원한 사과"
+    },
+    {
+      "id": "The Eternal Struggle",
+      "english": "The Eternal Struggle",
+      "korean": "영원한 투쟁"
+    },
+    {
+      "id": "The Eternity Shroud",
+      "english": "The Eternity Shroud",
+      "korean": "영원의 연막"
+    },
+    {
+      "id": "The False Hope",
+      "english": "The False Hope",
+      "korean": "거짓 희망"
+    },
+    {
+      "id": "The Felbog Fang",
+      "english": "The Felbog Fang",
+      "korean": "펠보그 송곳니"
+    },
+    {
+      "id": "The Flame of Hope",
+      "english": "The Flame of Hope",
+      "korean": "희망의 불길"
+    },
+    {
+      "id": "The Flawed Refuge",
+      "english": "The Flawed Refuge",
+      "korean": "결함 있는 피난처"
+    },
+    {
+      "id": "The Fledgling",
+      "english": "The Fledgling",
+      "korean": "풋내기"
+    },
+    {
+      "id": "The Flow Untethered",
+      "english": "The Flow Untethered",
+      "korean": "얽매이지 않은 흐름"
+    },
+    {
+      "id": "The Formless Flame",
+      "english": "The Formless Flame",
+      "korean": "무형의 불꽃"
+    },
+    {
+      "id": "The Formless Inferno",
+      "english": "The Formless Inferno",
+      "korean": "무형의 지옥불"
+    },
+    {
+      "id": "The Fourth Vow",
+      "english": "The Fourth Vow",
+      "korean": "네 번째 맹세"
+    },
+    {
+      "id": "The Fracturing Spinner",
+      "english": "The Fracturing Spinner",
+      "korean": "분쇄형 회전기"
+    },
+    {
+      "id": "The Front Line",
+      "english": "The Front Line",
+      "korean": "최전방"
+    },
+    {
+      "id": "The Fulcrum",
+      "english": "The Fulcrum",
+      "korean": "버팀대"
+    },
+    {
+      "id": "The Geomantic Gyre",
+      "english": "The Geomantic Gyre",
+      "korean": "대지술 선회"
+    },
+    {
+      "id": "The Ghastly Theatre",
+      "english": "The Ghastly Theatre",
+      "korean": "무시무시한 극장"
+    },
+    {
+      "id": "The Gluttonous Tide",
+      "english": "The Gluttonous Tide",
+      "korean": "걸신들린 파도"
+    },
+    {
+      "id": "The Goddess Bound",
+      "english": "The Goddess Bound",
+      "korean": "속박된 여신"
+    },
+    {
+      "id": "The Goddess Scorned",
+      "english": "The Goddess Scorned",
+      "korean": "경멸받는 여신"
+    },
+    {
+      "id": "The GoddessUnleashed",
+      "english": "The Goddess Unleashed",
+      "korean": "해방된 여신"
+    },
+    {
+      "id": "The Golden Charlatan",
+      "english": "The Golden Charlatan",
+      "korean": "금빛 사기꾼"
+    },
+    {
+      "id": "The Golden Rule",
+      "english": "The Golden Rule",
+      "korean": "황금 법칙"
+    },
+    {
+      "id": "The Green Dream",
+      "english": "The Green Dream",
+      "korean": "녹색 꿈"
+    },
+    {
+      "id": "The Green Nightmare",
+      "english": "The Green Nightmare",
+      "korean": "녹색 악몽"
+    },
+    {
+      "id": "The Grey Spire",
+      "english": "The Grey Spire",
+      "korean": "회색 가지"
+    },
+    {
+      "id": "The Grey Wind",
+      "english": "The Grey Wind",
+      "korean": "회색 바람"
+    },
+    {
+      "id": "The Gryphon",
+      "english": "The Gryphon",
+      "korean": "그리폰"
+    },
+    {
+      "id": "The Gull",
+      "english": "The Gull",
+      "korean": "갈매기"
+    },
+    {
+      "id": "The Halcyon",
+      "english": "The Halcyon",
+      "korean": "평온"
+    },
+    {
+      "id": "The Hallowed Monarch",
+      "english": "The Hallowed Monarch",
+      "korean": "거룩한 국왕"
+    },
+    {
+      "id": "The Hand of Phrecia",
+      "english": "The Hand of Phrecia",
+      "korean": "프레시아의 손"
+    },
+    {
+      "id": "The Harvest",
+      "english": "The Harvest",
+      "korean": "수확"
+    },
+    {
+      "id": "The Hateful Accuser",
+      "english": "The Hateful Accuser",
+      "korean": "증오에 찬 고발인"
+    },
+    {
+      "id": "The Hidden Blade",
+      "english": "The Hidden Blade",
+      "korean": "숨겨진 칼날"
+    },
+    {
+      "id": "The Highwayman",
+      "english": "The Highwayman",
+      "korean": "노상강도"
+    },
+    {
+      "id": "The Hungry Loop",
+      "english": "The Hungry Loop",
+      "korean": "허기진 고리"
+    },
+    {
+      "id": "The Immortal Will",
+      "english": "The Immortal Will",
+      "korean": "불멸의 의지"
+    },
+    {
+      "id": "The Infinite Pursuit",
+      "english": "The Infinite Pursuit",
+      "korean": "끝없는 추적"
+    },
+    {
+      "id": "The Interrogation",
+      "english": "The Interrogation",
+      "korean": "취조"
+    },
+    {
+      "id": "The Iron Fortress",
+      "english": "The Iron Fortress",
+      "korean": "철의 요새"
+    },
+    {
+      "id": "The Iron Mass",
+      "english": "The Iron Mass",
+      "korean": "철제 운집"
+    },
+    {
+      "id": "The Ivory Tower",
+      "english": "The Ivory Tower",
+      "korean": "상아탑"
+    },
+    {
+      "id": "The Jinxed Juju",
+      "english": "The Jinxed Juju",
+      "korean": "징크스 액막이"
+    },
+    {
+      "id": "The Light of Meaning",
+      "english": "The Light of Meaning",
+      "korean": "의미의 빛"
+    },
+    {
+      "id": "The Living Blade",
+      "english": "The Living Blade",
+      "korean": "살아있는 칼날"
+    },
+    {
+      "id": "The Long Winter",
+      "english": "The Long Winter",
+      "korean": "기나긴 겨울"
+    },
+    {
+      "id": "The Magnate",
+      "english": "The Magnate",
+      "korean": "거물"
+    },
+    {
+      "id": "The Monastery Bell",
+      "english": "The Monastery Bell",
+      "korean": "수도원 종"
+    },
+    {
+      "id": "The Nomad",
+      "english": "The Nomad",
+      "korean": "유목민"
+    },
+    {
+      "id": "The Oak",
+      "english": "The Oak",
+      "korean": "참나무"
+    },
+    {
+      "id": "The Oppressor",
+      "english": "The Oppressor",
+      "korean": "억압자"
+    },
+    {
+      "id": "The Overflowing Chalice",
+      "english": "The Overflowing Chalice",
+      "korean": "넘치는 성배"
+    },
+    {
+      "id": "The Pandemonius",
+      "english": "The Pandemonius",
+      "korean": "대혼란"
+    },
+    {
+      "id": "The Pariah",
+      "english": "The Pariah",
+      "korean": "부랑자"
+    },
+    {
+      "id": "The Perandus Manor",
+      "english": "The Perandus Manor",
+      "korean": "페란두스 저택"
+    },
+    {
+      "id": "The Perandus Pact",
+      "english": "The Perandus Pact",
+      "korean": "페란두스 맹약"
+    },
+    {
+      "id": "The Peregrine",
+      "english": "The Peregrine",
+      "korean": "송골매"
+    },
+    {
+      "id": "The Perfect Form",
+      "english": "The Perfect Form",
+      "korean": "완벽한 구조"
+    },
+    {
+      "id": "The Poet's Pen",
+      "english": "The Poet's Pen",
+      "korean": "시인의 펜"
+    },
+    {
+      "id": "The Poised Prism",
+      "english": "The Poised Prism",
+      "korean": "평형의 분광기"
+    },
+    {
+      "id": "The Primordial Chain",
+      "english": "The Primordial Chain",
+      "korean": "태고의 사슬"
+    },
+    {
+      "id": "The Putrid Cloister",
+      "english": "The Putrid Cloister",
+      "korean": "악취 나는 수도원"
+    },
+    {
+      "id": "The Queen's Hunger",
+      "english": "The Queen's Hunger",
+      "korean": "여왕의 갈망"
+    },
+    {
+      "id": "The Queller of Minds",
+      "english": "The Queller of Minds",
+      "korean": "정신 억압자"
+    },
+    {
+      "id": "The Rat Cage",
+      "english": "The Rat Cage",
+      "korean": "쥐덫"
+    },
+    {
+      "id": "The Red Dream",
+      "english": "The Red Dream",
+      "korean": "붉은 꿈"
+    },
+    {
+      "id": "The Red Nightmare",
+      "english": "The Red Nightmare",
+      "korean": "붉은 악몽"
+    },
+    {
+      "id": "The Red Trail",
+      "english": "The Red Trail",
+      "korean": "붉은 발자취"
+    },
+    {
+      "id": "The Redblade",
+      "english": "The Redblade",
+      "korean": "적검"
+    },
+    {
+      "id": "The Restless Ward",
+      "english": "The Restless Ward",
+      "korean": "끊임없는 수호"
+    },
+    {
+      "id": "The Retch",
+      "english": "The Retch",
+      "korean": "레치"
+    },
+    {
+      "id": "The Rippling Thoughts",
+      "english": "The Rippling Thoughts",
+      "korean": "퍼져나가는 생각"
+    },
+    {
+      "id": "The Sacred Chalice",
+      "english": "The Sacred Chalice",
+      "korean": "신성한 성배"
+    },
+    {
+      "id": "The Sands of Time",
+      "english": "The Sands of Time",
+      "korean": "시간의 모래"
+    },
+    {
+      "id": "The Saviour",
+      "english": "The Saviour",
+      "korean": "구원자"
+    },
+    {
+      "id": "The Scales of Justice",
+      "english": "The Scales of Justice",
+      "korean": "정의의 저울"
+    },
+    {
+      "id": "The Scourge",
+      "english": "The Scourge",
+      "korean": "재앙"
+    },
+    {
+      "id": "The Screaming Eagle",
+      "english": "The Screaming Eagle",
+      "korean": "울부짖는 독수리"
+    },
+    {
+      "id": "The Selfish Shepherd",
+      "english": "The Selfish Shepherd",
+      "korean": "이기적인 목자"
+    },
+    {
+      "id": "The Shattered Divinity",
+      "english": "The Shattered Divinity",
+      "korean": "산산이 조각난 신성"
+    },
+    {
+      "id": "The Siege",
+      "english": "The Siege",
+      "korean": "포위 작전"
+    },
+    {
+      "id": "The Signal Fire",
+      "english": "The Signal Fire",
+      "korean": "봉화"
+    },
+    {
+      "id": "The Snowblind Grace",
+      "english": "The Snowblind Grace",
+      "korean": "설맹의 은총"
+    },
+    {
+      "id": "The Sorrow of the Divine",
+      "english": "The Sorrow of the Divine",
+      "korean": "신의 슬픔"
+    },
+    {
+      "id": "The Squire",
+      "english": "The Squire",
+      "korean": "종자"
+    },
+    {
+      "id": "The Stampede",
+      "english": "The Stampede",
+      "korean": "쇄도"
+    },
+    {
+      "id": "The Stormheart",
+      "english": "The Stormheart",
+      "korean": "태풍의 눈"
+    },
+    {
+      "id": "The Stormwall",
+      "english": "The Stormwall",
+      "korean": "태풍의 장벽"
+    },
+    {
+      "id": "The Sundered Will",
+      "english": "The Sundered Will",
+      "korean": "산산조각 난 의지"
+    },
+    {
+      "id": "The Supreme Truth",
+      "english": "The Supreme Truth",
+      "korean": "지고의 진리"
+    },
+    {
+      "id": "The Surging Thoughts",
+      "english": "The Surging Thoughts",
+      "korean": "쇄도하는 생각"
+    },
+    {
+      "id": "The Surrender",
+      "english": "The Surrender",
+      "korean": "포기"
+    },
+    {
+      "id": "The Tactician",
+      "english": "The Tactician",
+      "korean": "전술가"
+    },
+    {
+      "id": "The Tempest",
+      "english": "The Tempest",
+      "korean": "폭풍"
+    },
+    {
+      "id": "The Tempest Rising",
+      "english": "The Tempest Rising",
+      "korean": "몰려오는 폭풍"
+    },
+    {
+      "id": "The Tempest's Binding",
+      "english": "The Tempest's Binding",
+      "korean": "폭풍의 속박"
+    },
+    {
+      "id": "The Tempest's Liberation",
+      "english": "The Tempest's Liberation",
+      "korean": "폭풍의 해방"
+    },
+    {
+      "id": "The Tempestuous Steel",
+      "english": "The Tempestuous Steel",
+      "korean": "격렬한 강철"
+    },
+    {
+      "id": "The Tides of Time",
+      "english": "The Tides of Time",
+      "korean": "시간의 파도"
+    },
+    {
+      "id": "The Torrent's Reclamation",
+      "english": "The Torrent's Reclamation",
+      "korean": "격류의 교화"
+    },
+    {
+      "id": "The Tower of Ordeals",
+      "english": "The Tower of Ordeals",
+      "korean": "시련의 탑"
+    },
+    {
+      "id": "The Trickster's Smile",
+      "english": "The Trickster's Smile",
+      "korean": "협잡꾼의 미소"
+    },
+    {
+      "id": "The Twilight Temple",
+      "english": "The Twilight Temple",
+      "korean": "황혼의 사원"
+    },
+    {
+      "id": "The Unblinking Eye",
+      "english": "The Unblinking Eye",
+      "korean": "깜박이지 않는 눈"
+    },
+    {
+      "id": "The Unseen Hue",
+      "english": "The Unseen Hue",
+      "korean": "보이지 않는 빛깔"
+    },
+    {
+      "id": "The Unshattered Will",
+      "english": "The Unshattered Will",
+      "korean": "불굴의 의지"
+    },
+    {
+      "id": "The Untouched Soul",
+      "english": "The Untouched Soul",
+      "korean": "손길이 닿지 않은 영혼"
+    },
+    {
+      "id": "The Utmost",
+      "english": "The Utmost",
+      "korean": "극도"
+    },
+    {
+      "id": "The Vast Horizon",
+      "english": "The Vast Horizon",
+      "korean": "끝없는 지평선"
+    },
+    {
+      "id": "The Vertex",
+      "english": "The Vertex",
+      "korean": "최정점"
+    },
+    {
+      "id": "The Vigil",
+      "english": "The Vigil",
+      "korean": "철야 기도"
+    },
+    {
+      "id": "The Vinktar Square",
+      "english": "The Vinktar Square",
+      "korean": "빙타 광장"
+    },
+    {
+      "id": "The Walls",
+      "english": "The Walls",
+      "korean": "장벽"
+    },
+    {
+      "id": "The Warden's Brand",
+      "english": "The Warden's Brand",
+      "korean": "간수의 낙인"
+    },
+    {
+      "id": "The Wasp Nest",
+      "english": "The Wasp Nest",
+      "korean": "말벌의 독침"
+    },
+    {
+      "id": "The Wellhook",
+      "english": "The Wellhook",
+      "korean": "우물갈고리"
+    },
+    {
+      "id": "The Will of Esh",
+      "english": "The Will of Esh",
+      "korean": "에쉬의 의지"
+    },
+    {
+      "id": "The Will of Tul",
+      "english": "The Will of Tul",
+      "korean": "툴의 의지"
+    },
+    {
+      "id": "The Will of Uul-Netol",
+      "english": "The Will of Uul-Netol",
+      "korean": "울네톨의 의지"
+    },
+    {
+      "id": "The Will of Xoph",
+      "english": "The Will of Xoph",
+      "korean": "조프의 의지"
+    },
+    {
+      "id": "The Winds of Fate",
+      "english": "The Winds of Fate",
+      "korean": "숙명의 바람"
+    },
+    {
+      "id": "The Wise Oak",
+      "english": "The Wise Oak",
+      "korean": "지혜의 참나무"
+    },
+    {
+      "id": "The Writhing Jar",
+      "english": "The Writhing Jar",
+      "korean": "꿈틀거리는 단지"
+    },
+    {
+      "id": "The Yielding Mortality",
+      "english": "The Yielding Mortality",
+      "korean": "누그러진 필멸성"
+    },
+    {
+      "id": "Thirst for Horrors",
+      "english": "Thirst for Horrors",
+      "korean": "공포에 대한 갈증"
+    },
+    {
+      "id": "Thousand Teeth Temu",
+      "english": "Thousand Teeth Temu",
+      "korean": "천 개의 이빨 테무"
+    },
+    {
+      "id": "Thread of Hope",
+      "english": "Thread of Hope",
+      "korean": "희망의 실타래"
+    },
+    {
+      "id": "Three-step Assault",
+      "english": "Three-step Assault",
+      "korean": "삼단 공격"
+    },
+    {
+      "id": "Thrillsteel",
+      "english": "Thrillsteel",
+      "korean": "전율강철"
+    },
+    {
+      "id": "Thunderfist",
+      "english": "Thunderfist",
+      "korean": "천둥 주먹"
+    },
+    {
+      "id": "Thundersight",
+      "english": "Thundersight",
+      "korean": "천둥 시야"
+    },
+    {
+      "id": "Tidebreaker",
+      "english": "Tidebreaker",
+      "korean": "물결 분쇄기"
+    },
+    {
+      "id": "Timeclasp",
+      "english": "Timeclasp",
+      "korean": "시간의 속박"
+    },
+    {
+      "id": "Timetwist",
+      "english": "Timetwist",
+      "korean": "시간 왜곡"
+    },
+    {
+      "id": "Tinkerskin",
+      "english": "Tinkerskin",
+      "korean": "톱니의 보호"
+    },
+    {
+      "id": "Tipua Kaikohuru",
+      "english": "Tipua Kaikohuru",
+      "korean": "티푸아 카이코후루"
+    },
+    {
+      "id": "Titucius' Span",
+      "english": "Titucius' Span",
+      "korean": "티투시우스의 방패"
+    },
+    {
+      "id": "Titucus Span",
+      "english": "Titucus Span",
+      "korean": "티투커스 방패"
+    },
+    {
+      "id": "Army of Bones",
+      "english": "To Dust",
+      "korean": "먼지처럼 사라져라"
+    },
+    {
+      "id": "To Dust",
+      "english": "To Dust",
+      "korean": "먼지처럼 사라져라"
+    },
+    {
+      "id": "Torchoak Step",
+      "english": "Torchoak Step",
+      "korean": "횃불 참나무 층계"
+    },
+    {
+      "id": "Touch of Anguish",
+      "english": "Touch of Anguish",
+      "korean": "비통의 손길"
+    },
+    {
+      "id": "Transcendent Flesh",
+      "english": "Transcendent Flesh",
+      "korean": "초월한 육체"
+    },
+    {
+      "id": "Transcendent Mind",
+      "english": "Transcendent Mind",
+      "korean": "초월한 마음"
+    },
+    {
+      "id": "Transcendent Spirit",
+      "english": "Transcendent Spirit",
+      "korean": "초월한 정신"
+    },
+    {
+      "id": "Tremor Rod",
+      "english": "Tremor Rod",
+      "korean": "전율의 막대"
+    },
+    {
+      "id": "Triad Grip",
+      "english": "Triad Grip",
+      "korean": "삼합의 손아귀"
+    },
+    {
+      "id": "Triumvirate Authority",
+      "english": "Triumvirate Authority",
+      "korean": "삼두 정치의 권위"
+    },
+    {
+      "id": "Trolltimber Spire",
+      "english": "Trolltimber Spire",
+      "korean": "트롤나무 꼭대기"
+    },
+    {
+      "id": "Trypanon",
+      "english": "Trypanon",
+      "korean": "트리파논"
+    },
+    {
+      "id": "Tukohama's Fortress",
+      "english": "Tukohama's Fortress",
+      "korean": "투코하마의 요새"
+    },
+    {
+      "id": "Tulborn",
+      "english": "Tulborn",
+      "korean": "툴의 탄생"
+    },
+    {
+      "id": "Tulfall",
+      "english": "Tulfall",
+      "korean": "툴의 몰락"
+    },
+    {
+      "id": "Twisted Distant Memory",
+      "english": "Twisted Distant Memory",
+      "korean": "뒤틀린 희미한 기억"
+    },
+    {
+      "id": "Twyzel",
+      "english": "Twyzel",
+      "korean": "트위즐"
+    },
+    {
+      "id": "Ulaman's Gaze",
+      "english": "Ulaman's Gaze",
+      "korean": "울라만의 응시"
+    },
+    {
+      "id": "Umbilicus Immortalis",
+      "english": "Umbilicus Immortalis",
+      "korean": "불멸의 탯줄"
+    },
+    {
+      "id": "Unending Hunger",
+      "english": "Unending Hunger",
+      "korean": "끝없는 허기"
+    },
+    {
+      "id": "Unholy Accomplice",
+      "english": "Unholy Accomplice",
+      "korean": "불경한 공범"
+    },
+    {
+      "id": "United in Dream",
+      "english": "United in Dream",
+      "korean": "꿈속의 연합"
+    },
+    {
+      "id": "Unlight Extant",
+      "english": "Unlight Extant",
+      "korean": "무광의 잔존"
+    },
+    {
+      "id": "Unnatural Instinct",
+      "english": "Unnatural Instinct",
+      "korean": "기이한 본능"
+    },
+    {
+      "id": "Unstable Payload",
+      "english": "Unstable Payload",
+      "korean": "불안정한 하중"
+    },
+    {
+      "id": "Untainted Paradise",
+      "english": "Untainted Paradise",
+      "korean": "때묻지 않은 낙원"
+    },
+    {
+      "id": "Unyielding Flame",
+      "english": "Unyielding Flame",
+      "korean": "완고한 불꽃"
+    },
+    {
+      "id": "Usurper's Penance",
+      "english": "Usurper's Penance",
+      "korean": "찬탈자의 속죄"
+    },
+    {
+      "id": "Kitava's Hunger",
+      "english": "Utula's Hunger",
+      "korean": "우툴라의 굶주림"
+    },
+    {
+      "id": "Uul-Netol's Embrace",
+      "english": "Uul-Netol's Embrace",
+      "korean": "울네톨의 포옹"
+    },
+    {
+      "id": "Uul-Netol's Kiss",
+      "english": "Uul-Netol's Kiss",
+      "korean": "울네톨의 입맞춤"
+    },
+    {
+      "id": "Uul-Netol's Vow",
+      "english": "Uul-Netol's Vow",
+      "korean": "울네톨의 맹세"
+    },
+    {
+      "id": "Uzaza's Meadow",
+      "english": "Uzaza's Meadow",
+      "korean": "우자자의 초원"
+    },
+    {
+      "id": "Uzaza's Mountain",
+      "english": "Uzaza's Mountain",
+      "korean": "우자자의 산"
+    },
+    {
+      "id": "Uzaza's Valley",
+      "english": "Uzaza's Valley",
+      "korean": "우자자의 계곡"
+    },
+    {
+      "id": "Vaal Caress",
+      "english": "Vaal Caress",
+      "korean": "바알의 손길"
+    },
+    {
+      "id": "Vaal Sentencing",
+      "english": "Vaal Sentencing",
+      "korean": "바알의 판결"
+    },
+    {
+      "id": "Valako's Sign",
+      "english": "Valako's Sign",
+      "korean": "발라코의 표식"
+    },
+    {
+      "id": "Valyrium",
+      "english": "Valyrium",
+      "korean": "발리륨"
+    },
+    {
+      "id": "Varunastra",
+      "english": "Varunastra",
+      "korean": "바루나스트라"
+    },
+    {
+      "id": "Vaults of Atziri",
+      "english": "Vaults of Atziri",
+      "korean": "앗지리의 금고실"
+    },
+    {
+      "id": "Veil of the Night",
+      "english": "Veil of the Night",
+      "korean": "밤의 장막"
+    },
+    {
+      "id": "Venarius' Astrolabe",
+      "english": "Venarius' Astrolabe",
+      "korean": "베나리우스의 관측기"
+    },
+    {
+      "id": "Venopuncture",
+      "english": "Venopuncture",
+      "korean": "혈관 관통"
+    },
+    {
+      "id": "Ventor's Gamble",
+      "english": "Ventor's Gamble",
+      "korean": "벤토의 도박"
+    },
+    {
+      "id": "Veruso's Ambition",
+      "english": "Veruso's Ambition",
+      "korean": "베루소의 야심"
+    },
+    {
+      "id": "Veruso’s Battering Rams",
+      "english": "Veruso's Battering Rams",
+      "korean": "베루소의 공성추"
+    },
+    {
+      "id": "Vessel of Vinktar",
+      "english": "Vessel of Vinktar",
+      "korean": "빙타의 그릇"
+    },
+    {
+      "id": "Victario's Charity",
+      "english": "Victario's Charity",
+      "korean": "빅타리오의 자비"
+    },
+    {
+      "id": "Ondar's Flight",
+      "english": "Victario's Flight",
+      "korean": "빅타리오의 비상"
+    },
+    {
+      "id": "Victario's Influence",
+      "english": "Victario's Influence",
+      "korean": "빅타리오의 영향력"
+    },
+    {
+      "id": "Violent Dead",
+      "english": "Violent Dead",
+      "korean": "난폭한 망자"
+    },
+    {
+      "id": "Viper's Scales",
+      "english": "Viper's Scales",
+      "korean": "독사의 비늘"
+    },
+    {
+      "id": "Viridi's Veil",
+      "english": "Viridi's Veil",
+      "korean": "비리디의 장막"
+    },
+    {
+      "id": "Vis Mortis",
+      "english": "Vis Mortis",
+      "korean": "비스 모티스"
+    },
+    {
+      "id": "Vivinsect",
+      "english": "Vivinsect",
+      "korean": "생체 해부"
+    },
+    {
+      "id": "Vix Lunaris",
+      "english": "Vix Lunaris",
+      "korean": "불굴의 달"
+    },
+    {
+      "id": "Vixen's Entrapment",
+      "english": "Vixen's Entrapment",
+      "korean": "암여우의 함정"
+    },
+    {
+      "id": "Voice of the Storm",
+      "english": "Voice of the Storm",
+      "korean": "태풍의 목소리"
+    },
+    {
+      "id": "Voices",
+      "english": "Voices",
+      "korean": "목소리"
+    },
+    {
+      "id": "Voidbringer",
+      "english": "Voidbringer",
+      "korean": "공허 인도자"
+    },
+    {
+      "id": "Voideye",
+      "english": "Voideye",
+      "korean": "공허의 눈"
+    },
+    {
+      "id": "Voidfletcher",
+      "english": "Voidfletcher",
+      "korean": "공허 화살깃"
+    },
+    {
+      "id": "Voidforge",
+      "english": "Voidforge",
+      "korean": "공허의 탄생"
+    },
+    {
+      "id": "Voidheart",
+      "english": "Voidheart",
+      "korean": "공허의 심장"
+    },
+    {
+      "id": "Voidhome",
+      "english": "Voidhome",
+      "korean": "공허한 고향"
+    },
+    {
+      "id": "Voidwalker",
+      "english": "Voidwalker",
+      "korean": "공허 보행자"
+    },
+    {
+      "id": "Voll's Protector",
+      "english": "Voll's Protector",
+      "korean": "볼의 보호자"
+    },
+    {
+      "id": "Voll's Vision",
+      "english": "Voll's Vision",
+      "korean": "볼의 시각"
+    },
+    {
+      "id": "Volley Fire",
+      "english": "Volley Fire",
+      "korean": "일제 포격"
+    },
+    {
+      "id": "Voltaxic Rift",
+      "english": "Voltaxic Rift",
+      "korean": "전도성 균열"
+    },
+    {
+      "id": "Vorana's March",
+      "english": "Vorana's March",
+      "korean": "보라나의 행진"
+    },
+    {
+      "id": "Vorana's Preparation",
+      "english": "Vorana's Preparation",
+      "korean": "보라나의 준비"
+    },
+    {
+      "id": "Vulconus",
+      "english": "Vulconus",
+      "korean": "불커누스"
+    },
+    {
+      "id": "Wake of Destruction",
+      "english": "Wake of Destruction",
+      "korean": "파괴의 경야"
+    },
+    {
+      "id": "Wall of Brambles",
+      "english": "Wall of Brambles",
+      "korean": "가시나무 벽"
+    },
+    {
+      "id": "War Among the Stars",
+      "english": "War Among the Stars",
+      "korean": "별들의 전쟁"
+    },
+    {
+      "id": "Warlord's Reach",
+      "english": "Warlord's Reach",
+      "korean": "전쟁군주의 역량"
+    },
+    {
+      "id": "Warrior's Legacy",
+      "english": "Warrior's Legacy",
+      "korean": "전사의 유산"
+    },
+    {
+      "id": "Warrior's Tale",
+      "english": "Warrior's Tale",
+      "korean": "전사의 이야기"
+    },
+    {
+      "id": "Watcher's Eye",
+      "english": "Watcher's Eye",
+      "korean": "감시자의 눈"
+    },
+    {
+      "id": "Waxen Soul",
+      "english": "Waxen Soul",
+      "korean": "창백한 영혼"
+    },
+    {
+      "id": "Weight of Sin",
+      "english": "Weight of Sin",
+      "korean": "죄의 무게"
+    },
+    {
+      "id": "Weight of the Empire",
+      "english": "Weight of the Empire",
+      "korean": "제국의 무게"
+    },
+    {
+      "id": "Wellwater Phylactery",
+      "english": "Wellwater Phylactery",
+      "korean": "우물물 성구함"
+    },
+    {
+      "id": "Whakatutuki o Matua",
+      "english": "Whakatutuki o Matua",
+      "korean": "와카투투키 오 마투아"
+    },
+    {
+      "id": "Whakawairua Tuahu",
+      "english": "Whakawairua Tuahu",
+      "korean": "와카와 투아후"
+    },
+    {
+      "id": "Wheel of the Stormsail",
+      "english": "Wheel of the Stormsail",
+      "korean": "거친 항해의 타륜"
+    },
+    {
+      "id": "Whispers of Infinity",
+      "english": "Whispers of Infinity",
+      "korean": "무한의 속삭임"
+    },
+    {
+      "id": "White Wind",
+      "english": "White Wind",
+      "korean": "눈바람"
+    },
+    {
+      "id": "Wideswing",
+      "english": "Wideswing",
+      "korean": "넓은 자루 도끼"
+    },
+    {
+      "id": "Widowhail",
+      "english": "Widowhail",
+      "korean": "과부우박"
+    },
+    {
+      "id": "Widowmaker",
+      "english": "Widowmaker",
+      "korean": "위도우메이커"
+    },
+    {
+      "id": "Wildfire",
+      "english": "Wildfire",
+      "korean": "도깨비불"
+    },
+    {
+      "id": "Wildfire Phloem",
+      "english": "Wildfire Phloem",
+      "korean": "들불 체관"
+    },
+    {
+      "id": "Wildslash",
+      "english": "Wildslash",
+      "korean": "거친 베기"
+    },
+    {
+      "id": "Wildwrap",
+      "english": "Wildwrap",
+      "korean": "황야의 겉옷"
+    },
+    {
+      "id": "Willclash",
+      "english": "Willclash",
+      "korean": "의지의 충돌"
+    },
+    {
+      "id": "Willowgift",
+      "english": "Willowgift",
+      "korean": "버드나무 선물"
+    },
+    {
+      "id": "Wilma's Requital",
+      "english": "Wilma's Requital",
+      "korean": "윌마의 보답"
+    },
+    {
+      "id": "Windripper",
+      "english": "Windripper",
+      "korean": "윈드리퍼"
+    },
+    {
+      "id": "Winds of Change",
+      "english": "Winds of Change",
+      "korean": "변화의 바람"
+    },
+    {
+      "id": "Windshriek",
+      "english": "Windshriek",
+      "korean": "바람의 비명"
+    },
+    {
+      "id": "Wine of the Prophet",
+      "english": "Wine of the Prophet",
+      "korean": "예언자의 포도주"
+    },
+    {
+      "id": "Wing of the Wyvern",
+      "english": "Wing of the Wyvern",
+      "korean": "비룡의 날개"
+    },
+    {
+      "id": "Wings of Entropy",
+      "english": "Wings of Entropy",
+      "korean": "엔트로피의 날개"
+    },
+    {
+      "id": "Winter Burial",
+      "english": "Winter Burial",
+      "korean": "한겨울의 장례식"
+    },
+    {
+      "id": "Winter's Bounty",
+      "english": "Winter's Bounty",
+      "korean": "겨울의 하사품"
+    },
+    {
+      "id": "Winterweave",
+      "english": "Winterweave",
+      "korean": "겨울 매듭"
+    },
+    {
+      "id": "Witchbane",
+      "english": "Witchbane",
+      "korean": "마녀의 파멸"
+    },
+    {
+      "id": "Witchfire Brew",
+      "english": "Witchfire Brew",
+      "korean": "불타는 마녀의 술"
+    },
+    {
+      "id": "Witchhunter’s Judgment",
+      "english": "Witchhunter's Judgment",
+      "korean": "마녀 사냥꾼의 심판"
+    },
+    {
+      "id": "Woespike",
+      "english": "Woespike",
+      "korean": "비애의 가시"
+    },
+    {
+      "id": "Wondertrap",
+      "english": "Wondertrap",
+      "korean": "기적의 발판"
+    },
+    {
+      "id": "Worldcarver",
+      "english": "Worldcarver",
+      "korean": "세계분쇄기"
+    },
+    {
+      "id": "Wraithlord",
+      "english": "Wraithlord",
+      "korean": "악령 군주"
+    },
+    {
+      "id": "Wreath of Phrecia",
+      "english": "Wreath of Phrecia",
+      "korean": "프레시아의 화관"
+    },
+    {
+      "id": "Wyrmsign",
+      "english": "Wyrmsign",
+      "korean": "아룡의 징조"
+    },
+    {
+      "id": "Xirgil's Crank",
+      "english": "Xirgil's Crank",
+      "korean": "저글의 손잡이"
+    },
+    {
+      "id": "Xoph's Blood",
+      "english": "Xoph's Blood",
+      "korean": "조프의 피"
+    },
+    {
+      "id": "Xoph's Heart",
+      "english": "Xoph's Heart",
+      "korean": "조프의 심장"
+    },
+    {
+      "id": "Xoph's Inception",
+      "english": "Xoph's Inception",
+      "korean": "조프의 시초"
+    },
+    {
+      "id": "Xoph's Nurture",
+      "english": "Xoph's Nurture",
+      "korean": "조프의 보살핌"
+    },
+    {
+      "id": "Yaomac's Accord",
+      "english": "Yaomac's Accord",
+      "korean": "야오맥의 합의"
+    },
+    {
+      "id": "Ylfeban's Trickery",
+      "english": "Ylfeban's Trickery",
+      "korean": "일프밴의 계략"
+    },
+    {
+      "id": "Ynda's Stand",
+      "english": "Ynda's Stand",
+      "korean": "인다의 항전"
+    },
+    {
+      "id": "Yoke of Suffering",
+      "english": "Yoke of Suffering",
+      "korean": "고통의 멍에"
+    },
+    {
+      "id": "Yriel's Fostering",
+      "english": "Yriel's Fostering",
+      "korean": "이리엘의 훈육"
+    },
+    {
+      "id": "Zahndethus' Cassock",
+      "english": "Zahndethus' Cassock",
+      "korean": "잔데투스의 성직복"
+    },
+    {
+      "id": "Zana's Ingenuity",
+      "english": "Zana's Ingenuity",
+      "korean": "자나의 기발함"
+    },
+    {
+      "id": "Zeel's Amplifier",
+      "english": "Zeel's Amplifier",
+      "korean": "질의 증폭기"
+    },
+    {
+      "id": "Zerphi's Heart",
+      "english": "Zerphi's Heart",
+      "korean": "제르피의 심장"
+    },
+    {
+      "id": "Zerphi's Last Breath",
+      "english": "Zerphi's Last Breath",
+      "korean": "제르피의 마지막 숨결"
+    }
+  ]
+}

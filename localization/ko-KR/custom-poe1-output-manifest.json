@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "officialPoePatch": "3.29.3.2",
+  "hashPolicy": "crlf-to-lf-sha256",
+  "outputs": [
+    {
+      "path": "host/data/astrolabes_poe1.json",
+      "sha256": "E2E13B1C22F002C789D010D669F3050B4D766F1EC2839DA92A35153A8CA7CACB"
+    },
+    {
+      "path": "host/data/atlas_maps_poe1.json",
+      "sha256": "4A21A6F46915CE511DD95AB253B8B4553D0E3CE71488B4859CC4DF149182A47A"
+    },
+    {
+      "path": "host/data/atlas_versions/3.28.0/atlas_tree_zh.json",
+      "sha256": "51AEBDA352C2491F22B74A9AA4A3CB162D99B8DAC0AAEB151E0CB4B843A8F1AD"
+    },
+    {
+      "path": "host/data/atlas_versions/3.29.0/atlas_tree_zh.json",
+      "sha256": "D0A8260DE92F7F13FDFE7D763443528829D1ECB1FB5A608D6B84797BD5D9B0C2"
+    },
+    {
+      "path": "host/data/atlas_versions/3.29.1/atlas_tree_zh.json",
+      "sha256": "DCDC906B494272A20B590F1CA019D5E0FD28227FEFB2F4E177487EDBE35B245D"
+    },
+    {
+      "path": "host/data/regex_poe1.json",
+      "sha256": "8CF31320DCA5092EB2BAC0F98C453E70F9FCE48FB8FA406F9BA4541991663CEA"
+    },
+    {
+      "path": "host/data/scarabs_poe1.json",
+      "sha256": "5AAD5A582BF5FF542194ABF8864D74A0EA73F3A98E615F70B628698F5F573E1D"
+    },
+    {
+      "path": "host/data/timeless_jewels.json",
+      "sha256": "1A500A66F23C6E32E96B987432E6B001A9E4D411C567B95A29EF99AA791FC6A4"
+    }
+  ]
+}

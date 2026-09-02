@@ -1,0 +1,1625 @@
+{
+  "patch": "3.29.3.2",
+  "rows": [
+    {
+      "id": "Alpha's Howl",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Alpha's Howl"
+      ],
+      "koreanNames": [
+        "우두머리의 울부짖음"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Andvarius",
+      "englishCount": 3,
+      "koreanCount": 3,
+      "englishNames": [
+        "Andvarius"
+      ],
+      "koreanNames": [
+        "앤드바리우스"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Asphyxia's Wrath",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Asphyxia's Wrath"
+      ],
+      "koreanNames": [
+        "질식의 진노"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Astramentis",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Astramentis"
+      ],
+      "koreanNames": [
+        "별의 보석"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Atziri's Foible",
+      "englishCount": 3,
+      "koreanCount": 3,
+      "englishNames": [
+        "Atziri's Foible"
+      ],
+      "koreanNames": [
+        "앗지리의 결점"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Atziri's Mirror",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Atziri's Mirror"
+      ],
+      "koreanNames": [
+        "앗지리의 거울"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Aurumvorax",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Aurumvorax"
+      ],
+      "koreanNames": [
+        "금빛 욕망"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Auxium",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Auxium"
+      ],
+      "koreanNames": [
+        "오시움"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Beacon of Madness",
+      "englishCount": 3,
+      "koreanCount": 3,
+      "englishNames": [
+        "Beacon of Madness"
+      ],
+      "koreanNames": [
+        "광기의 신호"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Berek's Grip",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Berek's Grip"
+      ],
+      "koreanNames": [
+        "베렉의 손아귀"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Berek's Pass",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Berek's Pass"
+      ],
+      "koreanNames": [
+        "베렉의 길"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Berek's Respite",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Berek's Respite"
+      ],
+      "koreanNames": [
+        "베렉의 유예"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Bino's Kitchen Knife",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Bino's Kitchen Knife"
+      ],
+      "koreanNames": [
+        "비노의 부엌칼"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Blackgleam",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Blackgleam"
+      ],
+      "koreanNames": [
+        "검은 섬광"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Blackheart",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Blackheart"
+      ],
+      "koreanNames": [
+        "검은 심장"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Bloodgrip",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Bloodgrip"
+      ],
+      "koreanNames": [
+        "피의 지배"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Brightbeak",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Brightbeak"
+      ],
+      "koreanNames": [
+        "밝은 부리"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Bubonic Trail",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Bubonic Trail"
+      ],
+      "koreanNames": [
+        "죽음의 자취"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Call of the Brotherhood",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Call of the Brotherhood"
+      ],
+      "koreanNames": [
+        "형제의 부름"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Carcass Jack",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Carcass Jack"
+      ],
+      "koreanNames": [
+        "시체 상인"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Carnage Heart",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Carnage Heart"
+      ],
+      "koreanNames": [
+        "학살 심장"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Cloak of Flame",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Cloak of Flame"
+      ],
+      "koreanNames": [
+        "화염의 망토"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Combat Focus",
+      "englishCount": 3,
+      "koreanCount": 3,
+      "englishNames": [
+        "Combat Focus"
+      ],
+      "koreanNames": [
+        "집중 전투"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Crest of Perandus",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Crest of Perandus"
+      ],
+      "koreanNames": [
+        "페란두스의 문양"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Cybil's Paw",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Cybil's Paw"
+      ],
+      "koreanNames": [
+        "시빌의 발"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Daresso's Salute",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Daresso's Salute"
+      ],
+      "koreanNames": [
+        "다레소의 경례"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Death Rush",
+      "englishCount": 3,
+      "koreanCount": 3,
+      "englishNames": [
+        "Death Rush"
+      ],
+      "koreanNames": [
+        "죽음의 재촉"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Death's Harp",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Death's Harp"
+      ],
+      "koreanNames": [
+        "죽음의 하프"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Demigod's Beacon",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Demigod's Beacon"
+      ],
+      "koreanNames": [
+        "반신의 횃불"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Demigod's Bounty",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Demigod's Bounty"
+      ],
+      "koreanNames": [
+        "반신의 하사품"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Demigod's Dominance",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Demigod's Dominance"
+      ],
+      "koreanNames": [
+        "반신의 지배"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Demigod's Eye",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Demigod's Eye"
+      ],
+      "koreanNames": [
+        "반신의 눈"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Demigod's Immortality",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Demigod's Immortality"
+      ],
+      "koreanNames": [
+        "반신의 불멸"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Demigod's Touch",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Demigod's Touch"
+      ],
+      "koreanNames": [
+        "반신의 손길"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Divinarius",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Divinarius"
+      ],
+      "koreanNames": [
+        "디비나리우스"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Divination Distillate",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Divination Distillate"
+      ],
+      "koreanNames": [
+        "예언의 정수"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Doedre's Damning",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Doedre's Damning"
+      ],
+      "koreanNames": [
+        "도이드리의 파멸"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Doryani's Delusion",
+      "englishCount": 3,
+      "koreanCount": 3,
+      "englishNames": [
+        "Doryani's Delusion"
+      ],
+      "koreanNames": [
+        "도리아니의 기만"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Dread Captain's Cutlass",
+      "englishCount": 7,
+      "koreanCount": 7,
+      "englishNames": [
+        "Dread Captain's Cutlass"
+      ],
+      "koreanNames": [
+        "무시무시한 선장의 커틀라스"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Dream Fragments",
+      "englishCount": 3,
+      "koreanCount": 3,
+      "englishNames": [
+        "Dream Fragments"
+      ],
+      "koreanNames": [
+        "꿈의 조각"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Dyadian Dawn",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Dyadian Dawn"
+      ],
+      "koreanNames": [
+        "쌍둥이의 여명"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Edge of Madness",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Edge of Madness"
+      ],
+      "koreanNames": [
+        "광기의 칼날"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Emberwake",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Emberwake"
+      ],
+      "koreanNames": [
+        "잉걸불 지피기"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Eye of Chayula",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Eye of Chayula"
+      ],
+      "koreanNames": [
+        "차율라의 눈"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Facebreaker",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Facebreaker"
+      ],
+      "koreanNames": [
+        "페이스브레이커"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Fairgraves' Tricorne",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Fairgraves' Tricorne"
+      ],
+      "koreanNames": [
+        "페어그레이브즈의 삼각모"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Fencoil",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Fencoil"
+      ],
+      "koreanNames": [
+        "늪 감긴 가지"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Geofri's Baptism",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Geofri's Baptism"
+      ],
+      "koreanNames": [
+        "조프리의 세례"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Gifts from Above",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Gifts from Above"
+      ],
+      "koreanNames": [
+        "하늘에서 내려준 선물"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Goldrim",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Goldrim"
+      ],
+      "koreanNames": [
+        "금테"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Goldwyrm",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Goldwyrm"
+      ],
+      "koreanNames": [
+        "황금 아룡"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Grand Spectrum",
+      "englishCount": 9,
+      "koreanCount": 9,
+      "englishNames": [
+        "Grand Spectrum"
+      ],
+      "koreanNames": [
+        "장대한 파장"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Headhunter",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Headhunter"
+      ],
+      "koreanNames": [
+        "헤드헌터"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Heatshiver",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Heatshiver"
+      ],
+      "koreanNames": [
+        "열기와 오한"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Hrimnor's Resolve",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Hrimnor's Resolve"
+      ],
+      "koreanNames": [
+        "흐림노르의 결의"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Immortal Flesh",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Immortal Flesh"
+      ],
+      "koreanNames": [
+        "불멸의 육체"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Impresence",
+      "englishCount": 5,
+      "koreanCount": 5,
+      "englishNames": [
+        "Impresence"
+      ],
+      "koreanNames": [
+        "무존재"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Kaom's Sign",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Kaom's Sign"
+      ],
+      "koreanNames": [
+        "카옴의 표식"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Karui Ward",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Karui Ward"
+      ],
+      "koreanNames": [
+        "카루이의 수호"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Kikazaru",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Kikazaru"
+      ],
+      "koreanNames": [
+        "키카자루"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Lavianga's Spirit",
+      "englishCount": 3,
+      "koreanCount": 3,
+      "englishNames": [
+        "Lavianga's Spirit"
+      ],
+      "koreanNames": [
+        "라비앙가의 혼백"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Le Heup of All",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Le Heup of All"
+      ],
+      "koreanNames": [
+        "만인의 르 흐프"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Lifesprig",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Lifesprig"
+      ],
+      "koreanNames": [
+        "생명의 가지"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Lightpoacher",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Lightpoacher"
+      ],
+      "koreanNames": [
+        "빛의 밀렵꾼"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Lord of Steel",
+      "englishCount": 3,
+      "koreanCount": 3,
+      "englishNames": [
+        "Lord of Steel"
+      ],
+      "koreanNames": [
+        "강철의 군주"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Malachai's Artifice",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Malachai's Artifice"
+      ],
+      "koreanNames": [
+        "말라카이의 책략"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Maligaro's Virtuosity",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Maligaro's Virtuosity"
+      ],
+      "koreanNames": [
+        "말리가로의 기교"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Meginord's Girdle",
+      "englishCount": 3,
+      "koreanCount": 3,
+      "englishNames": [
+        "Meginord's Girdle"
+      ],
+      "koreanNames": [
+        "메기노드의 허리띠"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Mindspiral",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Mindspiral"
+      ],
+      "koreanNames": [
+        "정신의 소용돌이"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Ming's Heart",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Ming's Heart"
+      ],
+      "koreanNames": [
+        "밍의 심장"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Mokou's Embrace",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Mokou's Embrace"
+      ],
+      "koreanNames": [
+        "모코우의 포옹"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Natural Hierarchy",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Natural Hierarchy"
+      ],
+      "koreanNames": [
+        "순수의 지배"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Ngamahu Tiki",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Ngamahu Tiki"
+      ],
+      "koreanNames": [
+        "나마후 티키"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Night's Hold",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Night's Hold"
+      ],
+      "koreanNames": [
+        "밤의 연장"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Perandus Blazon",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Perandus Blazon"
+      ],
+      "koreanNames": [
+        "페란두스 문장"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Perandus Signet",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Perandus Signet"
+      ],
+      "koreanNames": [
+        "페란두스 인장"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Pillar of the Caged God",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Pillar of the Caged God"
+      ],
+      "koreanNames": [
+        "갇힌 신의 기둥"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Precursor's Emblem",
+      "englishCount": 7,
+      "koreanCount": 7,
+      "englishNames": [
+        "Precursor's Emblem"
+      ],
+      "koreanNames": [
+        "선도자의 상징"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Prismatic Eclipse",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Prismatic Eclipse"
+      ],
+      "koreanNames": [
+        "분광 월식"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Pyre",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Pyre"
+      ],
+      "koreanNames": [
+        "장작"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Queen's Decree",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Queen's Decree"
+      ],
+      "koreanNames": [
+        "여왕의 법령"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Quill Rain",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Quill Rain"
+      ],
+      "koreanNames": [
+        "화살 비"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Rainbowstride",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Rainbowstride"
+      ],
+      "koreanNames": [
+        "무지갯빛 발걸음"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Rashkaldor's Patience",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Rashkaldor's Patience"
+      ],
+      "koreanNames": [
+        "라시칼도어의 인내"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Rathpith Globe",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Rathpith Globe"
+      ],
+      "koreanNames": [
+        "래스피스 구체"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Reaper's Pursuit",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Reaper's Pursuit"
+      ],
+      "koreanNames": [
+        "수확자의 추적"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Redbeak",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Redbeak"
+      ],
+      "koreanNames": [
+        "붉은 부리"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Rumi's Concoction",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Rumi's Concoction"
+      ],
+      "koreanNames": [
+        "루미의 혼합물"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Sadima's Touch",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Sadima's Touch"
+      ],
+      "koreanNames": [
+        "사디마의 손길"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Saffell's Frame",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Saffell's Frame"
+      ],
+      "koreanNames": [
+        "사펠의 골격"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Shadows and Dust",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Shadows and Dust"
+      ],
+      "koreanNames": [
+        "그림자와 먼지"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Shavronne's Pace",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Shavronne's Pace"
+      ],
+      "koreanNames": [
+        "샤브론의 보폭"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Shiversting",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Shiversting"
+      ],
+      "koreanNames": [
+        "오한의 검"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Shroud of the Lightless",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Shroud of the Lightless"
+      ],
+      "koreanNames": [
+        "무광의 연막"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Sidhebreath",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Sidhebreath"
+      ],
+      "koreanNames": [
+        "요정의 숨결"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Sin Trek",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Sin Trek"
+      ],
+      "koreanNames": [
+        "죄악의 여정"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Song of the Sirens",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Song of the Sirens"
+      ],
+      "koreanNames": [
+        "사이렌의 노래"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Soul Taker",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Soul Taker"
+      ],
+      "koreanNames": [
+        "영혼 수확자"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Soulthirst",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Soulthirst"
+      ],
+      "koreanNames": [
+        "목마른 영혼"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Starkonja's Head",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Starkonja's Head"
+      ],
+      "koreanNames": [
+        "스타콘자의 머리"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Stone of Lazhwar",
+      "englishCount": 3,
+      "koreanCount": 3,
+      "englishNames": [
+        "Stone of Lazhwar"
+      ],
+      "koreanNames": [
+        "라즈워의 보석"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Storm Cloud",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Storm Cloud"
+      ],
+      "koreanNames": [
+        "태풍 구름"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Stormblood",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Stormblood"
+      ],
+      "koreanNames": [
+        "폭풍피"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Subsume the Source",
+      "englishCount": 5,
+      "koreanCount": 5,
+      "englishNames": [
+        "Subsume the Source"
+      ],
+      "koreanNames": [
+        "결합의 원천"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Sundance",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Sundance"
+      ],
+      "koreanNames": [
+        "태양을 보는 춤"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Tabula Rasa",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Tabula Rasa"
+      ],
+      "koreanNames": [
+        "타뷸라 라사"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Talisman of the Victor",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Talisman of the Victor"
+      ],
+      "koreanNames": [
+        "승리자의 부적"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Taryn's Shiver",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Taryn's Shiver"
+      ],
+      "koreanNames": [
+        "타린의 오한"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Taste of Hate",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Taste of Hate"
+      ],
+      "koreanNames": [
+        "증오의 맛"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Tear of Purity",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Tear of Purity"
+      ],
+      "koreanNames": [
+        "정화의 눈물"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "The Anvil",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "The Anvil"
+      ],
+      "koreanNames": [
+        "모루"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "The Beachhead",
+      "englishCount": 3,
+      "koreanCount": 3,
+      "englishNames": [
+        "The Beachhead"
+      ],
+      "koreanNames": [
+        "교두보"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "The Blood Dance",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "The Blood Dance"
+      ],
+      "koreanNames": [
+        "피의 춤"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "The Blood Thorn",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "The Blood Thorn"
+      ],
+      "koreanNames": [
+        "피의 가시"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "The Bringer of Rain",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "The Bringer of Rain"
+      ],
+      "koreanNames": [
+        "비의 인도자"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "The Ignomon",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "The Ignomon"
+      ],
+      "koreanNames": [
+        "이그노몬"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "The Princess",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "The Princess"
+      ],
+      "koreanNames": [
+        "공주"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "The Searing Touch",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "The Searing Touch"
+      ],
+      "koreanNames": [
+        "이글거리는 손길"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "The Taming",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "The Taming"
+      ],
+      "koreanNames": [
+        "조련"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "The Three Dragons",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "The Three Dragons"
+      ],
+      "koreanNames": [
+        "세 마리의 용"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "The Whispering Ice",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "The Whispering Ice"
+      ],
+      "koreanNames": [
+        "속삭이는 얼음"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Thief's Torment",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Thief's Torment"
+      ],
+      "koreanNames": [
+        "도둑의 고통"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Thousand Ribbons",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Thousand Ribbons"
+      ],
+      "koreanNames": [
+        "천 개의 리본"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Tombfist",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Tombfist"
+      ],
+      "koreanNames": [
+        "툼피스트"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Ungil's Gauche",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Ungil's Gauche"
+      ],
+      "koreanNames": [
+        "웅힐의 투박함"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Ungil's Harmony",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Ungil's Harmony"
+      ],
+      "koreanNames": [
+        "웅힐의 조화"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Victario's Acuity",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Victario's Acuity"
+      ],
+      "koreanNames": [
+        "빅타리오의 예리함"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Void Battery",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Void Battery"
+      ],
+      "koreanNames": [
+        "공허 충전기"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Volkuur's Guidance",
+      "englishCount": 3,
+      "koreanCount": 3,
+      "englishNames": [
+        "Volkuur's Guidance"
+      ],
+      "koreanNames": [
+        "볼쿠르의 인도"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Voll's Devotion",
+      "englishCount": 3,
+      "koreanCount": 3,
+      "englishNames": [
+        "Voll's Devotion"
+      ],
+      "koreanNames": [
+        "볼의 헌신"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Wanderlust",
+      "englishCount": 3,
+      "koreanCount": 3,
+      "englishNames": [
+        "Wanderlust"
+      ],
+      "koreanNames": [
+        "방랑벽"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Warped Timepiece",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Warped Timepiece"
+      ],
+      "koreanNames": [
+        "뒤틀린 시계"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Windscream",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Windscream"
+      ],
+      "koreanNames": [
+        "바람의 괴성"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Winterheart",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Winterheart"
+      ],
+      "koreanNames": [
+        "겨울심장"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    },
+    {
+      "id": "Wurm's Molt",
+      "englishCount": 2,
+      "koreanCount": 2,
+      "englishNames": [
+        "Wurm's Molt"
+      ],
+      "koreanNames": [
+        "웜의 허물"
+      ],
+      "reason": "Unique item id is not unique in both language exports"
+    }
+  ]
+}

@@ -1,0 +1,4512 @@
+{
+  "patch": "3.29.3.2",
+  "table": "ActiveSkills",
+  "rows": [
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "abberath_emerge"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "abberath_fireball_combo"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "abberath_hide"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "abberath_meteor_upheaval"
+    },
+    {
+      "english": null,
+      "korean": "아버라스의 광분",
+      "reason": "english displayed name is missing",
+      "id": "abberaths_fury"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "abyss_teleport_strike"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "add_buff_to_target"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "add_buff_to_target_triggered"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "add_corrupted_blood_to_target"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "affliction_boss_final_grow_beam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "affliction_daemon_destroy_corpse_projectile"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "affliction_daemon_destroy_corpse_spawn_monster"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "affliction_split"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "alira_rain_of_arrows"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ambush"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "animated_thrown_weapon"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "animated_weapon_explosive"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "arakaali_hide"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "architect_blood_beam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "architect_blood_explosion"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "architect_combo_stomp"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "architect_healing_beam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "atlas_aoe_projectile"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "atlas_charge"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "atlas_growing_maelstrom"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "atlas_lightning_golem_buff"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "atlas_lightning_golem_nova"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "atlas_random_maelstrom"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "atlas_spider_web"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "atlas_split_form"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "attached_vaal_charged_blast"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "attack_vortex"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "atziri_demon_self_sacrifice"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "atziri_flameblast"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "atziri_flameblast_empowered"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "atziri_mirror_image"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "atziri_spear_throw"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "atziri_spear_throw_empowered"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "atziri_storm_call"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "atziri_storm_call_empowered"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "atziri_summon_demons"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "avarius_charge"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "avarius_charge_past_enemy"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "avarius_cleave"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "avarius_delayed_blast"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "avarius_delayed_blast_triggered"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "avarius_divine_beam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "avarius_divine_slam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "avarius_kill_statues"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "avarius_offset_projectile"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "avarius_pentagon_projectile"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "avarius_raise_statues"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "avarius_rapid_projectile"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "avarius_summon_templars"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "avarius_super_projectile"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "awaken_gargoyle"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "axis_claim_soldier_minions"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ball_lightning_self_location"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "bat_screech"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "bat_screech_nova"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "beacon"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "beacon_izaro"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "beacon_self"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "beam_orb"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "bestiary_spider_ground_stab"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "bestiary_spider_hallucinate"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "bestiary_stampede"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "betrayal_siege_cannon"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "birdman_blood_projectile"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "birdman_consume"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "birdman_consume_corpse"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "black_star_comet_barrage"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "black_star_laser_spears"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "blackguard_zombie_enrage"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "blast_rain_triggerable"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "blight_old"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "blinding_gaze"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "blink_arrow_offset"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "blood_chieftain_summon_ghost_monkeys"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "bloodchieftain_summonmonkeys"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "bloodline_daemon_nova"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "bone_golem_cascade"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "bone_golem_multi_attack"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "bone_prison"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "bone_slam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "breach_ball_lightning"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "breach_blizzard"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "breach_bone_nova"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "breach_flame_vortex"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "breach_lightning_orbs"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "breach_mortar_in_line"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "breach_recall"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "breach_spell_barrage"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "breach_summon_monster_at_marker"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "breach_team_warp"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "brine_king_cleave"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "brine_king_flood_arena"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "brine_king_slam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "brine_king_storm_call"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "brine_king_tidal_rush"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "brine_king_upheaval"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "brutus_cage_summon"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "brutus_ground_slam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "brutus_hook"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "brutus_levitation_slam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "brutus_spiked_ground"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "brutus_wall_hook"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "bubble_shield"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "bull_charge"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "bull_thorns"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "burnwillow_target_area"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "camera_lens_expanding_donut"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "carpet_bomb_projectile"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "cascading_triangle_slam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "catarina_barrage"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "catarina_carpet_mortar"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "catarina_rollout"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "catarina_scythe"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "catarina_sideways_carpet_bomb"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "champion_of_light_teleport"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "change_stance"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "change_to_stance1"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "change_to_stance1_immediate"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "change_to_stance2"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "change_to_stance2_immediate"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "change_to_stance3"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "change_to_stance3_immediate"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "change_to_stance4"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "change_to_stance4_immediate"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "change_to_stance5"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "change_to_stance5_immediate"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "channelled_ground_laser"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "chaos_degen_aura"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "chieftain_enrage"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "chimera_charged_attack"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "chimera_combo_attack"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "chimera_flicker_lance"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "chimera_hide_attack"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "cleansing_fire_wall"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "cold_beam_retaliation"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "cold_thorns"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "concentrated_beam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "conversion"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "corpse_mortar"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "cover_in_ash"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "cover_in_spiders"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "crab_spirit_burrow_path"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "crab_spirit_charge"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "create_blocking_wall"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "create_cutout_circle"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "create_expanding_ring"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "create_monster_from_corpses"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "daemon_pulse_beam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "dance_on_corpse"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "daresso_attack_combo"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "daresso_charge"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "daresso_clone_charge"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "daresso_enrage"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "daresso_reave"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "daresso_summon_clones"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "daresso_summon_clones_spell"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "daresso_sword_trap"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "dash_to_target"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "death_clap"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "death_explode"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "death_projectile_spell"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "decelerating_projectile"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "delayed_area_barrage"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "delayed_blast"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "delayed_blast_location"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "delayed_skill_trigger"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "delayed_spell_projectile"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "delete_target"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "delete_target_delve"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "demon_female_ranged_projectile"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "despair_bear_earthquake"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "despair_bear_roar"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "despair_bear_upheaval"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "detonate_cutout_circle"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "detonate_dead_old_monster"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "discorectangle_slam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "do_nothing"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "doedre_bubble_burst"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "doedre_empty_cauldron"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "doedre_form_warp"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "doedre_screech"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "doedre_warp"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "dominus_blood_rain"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "dominus_chilling_bond"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "dominus_dash"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "dominus_death_teleport"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "dominus_demon_charge"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "dominus_demon_cleave"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "dominus_demon_projectile"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "dominus_grab"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "dominus_lightning_souls"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "dominus_mark"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "donut_circle"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "drop_bear_ambush"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "drop_bear_desecration"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "drop_bear_enrage"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "drop_bear_rain"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "dynamite_boom"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "earthquake_cascade"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "earthquake_test_skill"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "earthquake_triggerable"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "effect_driven_attack"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "effect_driven_spell"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "elder_clone_shot"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "elder_doom_projectile"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "elder_expanding_nova"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "elder_siphon"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "elder_slamming_tentacles"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "empty_action_attack"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "empty_action_attack_2"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "empty_action_attack_3"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "empty_action_attack_4"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "empty_action_attack_5"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "empty_action_loop_attack"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "empty_action_loop_attack_2"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "empty_action_loop_attack_3"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "empty_action_loop_attack_4"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "empty_action_loop_attack_5"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "empty_action_spell"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "empty_action_spell_2"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "empty_action_spell_3"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "empty_action_spell_4"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "empty_action_spell_5"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "empty_action_spell_5_no_los"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "empty_action_spell_ally"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "empty_action_spell_loop"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "empty_action_spell_loop2"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "empty_action_spell_loop3"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "empty_action_spell_loop4"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "empty_action_spell_loop5"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "empty_action_spell_no_los"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "enduring_cry_repeatable"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "enrage"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "epic_chest_pulse"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "execute_corpse_geal"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "execute_geal"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "execute_geal_no_los"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "expanding_cone_waves"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "expanding_effect"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "expanding_pulse"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "explosive_doom_arrow"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "eyrie_barrage"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "fire_blood_meteors"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "fire_elemental_meteor"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "fire_enrage"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "fire_orbs"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "fire_storm_cascade"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "fire_storm_ignore_los"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "fire_wake_arrow_combo"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "flare_impact"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "flask_draining_lasso"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "freeze"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "frog_god_chomp"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "frog_god_split"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "frontal_damage_wave"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "frontal_flamethrower"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "frost_wall_behind_target"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "gain_charges"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "garukhan_combo_attack"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "garukhan_stationary_tornado"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "garukhan_stationary_tornado_enemy"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "garukhan_tornado"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "geometry_attack"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "geometry_attack_channelled"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "geometry_mortars_attack"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "geometry_mortars_spell"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "geometry_projectiles_attack"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "geometry_projectiles_attack_channelled"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "geometry_projectiles_spell"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "geometry_projectiles_spell_channelled"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "geometry_spell"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "geometry_spell_channelled"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "geometry_thruster"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "geometry_trigger"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "gladiator_sword_throw"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "grasping_ornaments"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ground_caustic_cloud"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ground_crab"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ground_effect_ring"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ground_effect_slam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ground_searing_laser"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "hand_slam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "handfinger_hammer_throw"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "handfinger_hammer_throw_multiple_projectiles"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "harbinger_ailment_arc"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "harbinger_lightning_orb"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "harbinger_summon_monsters"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "harbinger_warp"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "harvest_cat_boss_prowl"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "haunt"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "heal"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "heart_grant_shield"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "heist_attach_snipe"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "heist_bouncing_sawblade"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "heist_mind_control"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "hellfire_barrage"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "hellscape_demon_boss_blood_drain"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "hellscape_demon_boss_fissure_slam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "hellscape_tentacle_grab"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "hide"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "hotdog_upheaval"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "hydra_barrage"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "hydra_doom_arrow"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "hydra_fork_arrow"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "hydra_teleport_shot"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "hydra_turret_projectile"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ice_flower"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ice_warp"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "iguana_flamethrower"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "inca_boss_ball_lightning"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "inca_boss_explosion"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "inca_boss_icestorm"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "inca_boss_icestorm_triggered"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "inca_boss_laser"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "inca_boss_rocks"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "inca_boss_rocks_triggered"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "inca_boss_spray"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "inca_boss_summon"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "inca_boss_travel"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "inca_minion_projectile"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "insect_spawner_spit"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "insectspawnerspawn"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "instant_spell"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "invisible_fire"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ion_cannon_cage"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "iron_oven_spawner"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "izaro_absorb_elemental"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "izaro_cascade"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "izaro_pedestal_buff"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "izaro_reave"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "izaro_taunt"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "kaom_fire_chasm"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "kaom_volcano_mortar"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "karui_elder_drop_arrow"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "kitava_beam_orb"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "kitava_beam_sweep"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "kitava_death_breath"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "kitava_devouring_darkness"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "kitava_heart_summon"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "kitava_slam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "kitava_swipe"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "kitava_throw_debris"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "kitava_ultimate_death_breath"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "kitava_x_blast"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "kitava_x_nuke"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "kite_west_boss_use_portal"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "lava_hound_charge"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "lb_arrow_trap"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "lb_beam_trap"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "lb_boss_flee"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "lb_boss_shield"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "lb_boss_spirit_mortar"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "lb_boss_summon_lieutenants"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "lb_edge_trap"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "lb_retractable_trap"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "legion_breakout"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "legion_revive"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "lightning_elder_bolt"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "lightning_elder_bouncing_orb"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "lightning_elder_teleport_spark"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "lightning_elder_tendrils"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "lightning_golem_arc"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "lightning_golem_wrath"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "lightning_orbs"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "lightning_thorns"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "lightning_tower_trap_triggerable"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "living_bomb"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "lunaris_combo_attack"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "lunaris_dark_projectile"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "lunaris_glaive_projectile"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "lunaris_spell_barrage"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "lunaris_super_dark_projectile"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "main_hand_attack"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "malachai_elemental_cone"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "malachai_impale"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "malachai_open_heart"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "malachai_shadow_barrage"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "malachai_shield"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "malachai_spawn_tri_bomb"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "malachai_teleport"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "malachai_teleport_slam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "malachai_transform_piety"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "maligaro_blade_flurry"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "maligaro_combo_attack"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "maligaro_soul_combo_attack"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "maligaro_telekinetic_blades"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "maligaro_telekinetic_blades_behind"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "maligaro_telekinetic_blades_in_front"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "maligaro_teleport_slam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "maligaro_vanish"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "marker_warp"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "marker_warp_triggered"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "mass_beam_barrage"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "mass_charge"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "mass_endurance"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "mass_frenzy"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "mass_power"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "mass_revive_undead"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "mass_special_beam_cannon"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "master_grant_buff"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "matriach_fire_mortar"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "maven_brain_charge_beam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "maven_memory_game"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "maven_rotating_beams"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "melee_thrust_attack"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "melee_triggered"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "merveil_animate_weapon"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "merveil_geyser"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "merveil_geyser_triggerable"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "merveil_ice_spear"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "merveil_multigeyser"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "merveil_summon_daughters"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "merveil_summon_spawn"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "merveil_summon_statue"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "merveil_teleport"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "miner_beacon"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "miner_excavate_elemental"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "miner_throw_fire"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "miner_throw_spawn"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "minion_taunt"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "minotaur_arc_trap"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "minotaur_burrow"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "minotaur_burrow_no_los"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "minotaur_slam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "minotaur_sweep"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "mirror_arrow_offset"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "monkey_throw"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "monster_area_of_effect_spell"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "monster_attack_ice_spear"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "monster_cast_ground_effect"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "monster_cast_ground_effect_location"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "monster_charged_dash"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "monster_cold_resist_aura"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "monster_detonate_dead_area"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "monster_dodge"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "monster_dodge_target"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "monster_fading_projectile_spell"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "monster_fire_resist_aura"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "monster_frost_fury"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "monster_haste"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "monster_hatred"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "monster_lightning_resist_aura"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "monster_mortar"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "monster_mortar_around_caster"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "monster_mortar_attack"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "monster_projectile_spell"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "monster_projectile_spell_ally"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "monster_projectile_spell_lightning"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "monster_projectile_spell_self"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "monster_projectile_weapon"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "monster_projectile_weapon_cast_triggerable"
+    },
+    {
+      "english": null,
+      "korean": "질주",
+      "reason": "english displayed name is missing",
+      "id": "monster_quick_dodge"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "monster_self_slam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "monster_slam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "monster_snipe"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "monster_soulrend"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "monster_storm_burst"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "monster_submerge_delete"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "monster_summon_animated_weapon"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "monster_summon_daemons_at_locators"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "monster_summon_raging_spirit"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "monster_teleport"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "monster_throw_equipped_weapon"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "monster_throw_random_weapon"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "monster_tornado"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "monster_use_flask"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "monster_wrath"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "mortar_in_rectangle"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "moss_monster_slam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "move_daemon"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "mtx_afk_podium"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "mtx_bestiary_stampede_quicksilver"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "mtx_encase_in_crystal"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "mtx_land_shark_consume"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "mtx_pied_piper_pet_hypnotize"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "mtx_sit_on_the_throne"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "mtx_wayward_wolf_pet_move"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "multi_reflection_beam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "multi_splitting_projectile"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "multi_teleport_blackhole_projectile"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "multi_trigger_beam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "necromancer_revive_skeleton"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "new_frog_charge"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "no_shield_charge"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "nova_projectile_spell"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "oak_rain_of_arrows"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "oak_sunder"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "off_hand_attack"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "offering_of_judgement"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "orion_beam_bomb"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "orion_beam_sweep"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "orion_circle_maze_blast"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "orion_corridor_blast"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "orion_meteor"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "oshabi_orb_projectile"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "pack_teleport"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "perandus_buff"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "perandus_revive"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "phoenix_firebomb"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "piety_activate_eye_spawner"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "piety_corrupted_ball_lightning"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "piety_corrupted_ball_lightning_triggered"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "piety_corrupted_lightning_beam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "piety_fire_form"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "piety_ice_form"
+    },
+    {
+      "english": null,
+      "korean": "얼음 화살",
+      "reason": "english displayed name is missing",
+      "id": "piety_ice_shot"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "piety_summon_blood_elementals"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "piety_transform_end"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "piety_transform_end_beast"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "piety_transform_piety"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "piety_transform_piety_from_beast"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "pilot_row_boat"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "pirate_boss_break_chest"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "pitbull_charge"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "place_objects_along_path"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "player_fire_chasm"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "player_projectile_spell"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "proto_abyss_slam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "proto_pizza_slam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "proto_pizza_slice"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "proto_projectile_shield"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "proximity_shield"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "proximity_shield_self"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "puitotem_monster_teleport"
+    },
+    {
+      "english": null,
+      "korean": "응징",
+      "reason": "english displayed name is missing",
+      "id": "punishment_old"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "purge_hound_whirling_blades"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "push_moving_flame_wall"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "qiongqi_tornadoes"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "rabbit_summon_tiger"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ralakesh_blessing"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "rampage_summon_animated_weapon"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "rapid_slam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "reaper_consume_minion"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "reaper_slam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "reaper_slash_dash"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "rectangle_mortar_with_rotating_orbs"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "relic_triggered_nova"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "repeatable_wave"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "repeated_pulse"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "restore"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "retract_arrow_nuke"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "revenant_revive_undead"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "reverse_expanding_ring"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "revive_after_duration"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "revive_all_with_onslaght"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "revive_monsters_in_cone"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "revive_specific_monsters"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "righteous_fire_sacrifice"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "rigwald_teleport"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "rigwald_wolf_barrage"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "rigwald_wolf_form"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "riker_bomb_shot"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "root_spider_ambush"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "root_spider_burrow"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "root_spider_emerge"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "rotate_daemon"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "rotate_object"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "rune_explosion"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ryslatha_parasite_ground"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "ryslatha_slide"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "sandspitter_projectile"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "sandspitter_spray"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "sandstorm"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "scavenger_throw_fire"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "screech_snipe"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "sea_witch_screech"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "seawitch_lightning_beam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "seawitch_wave"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "sentinel_tag_beam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "sequential_wifi_arcs"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "shakari_burrow"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "shakari_quicksand"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "shakari_tail_strike"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "shakari_trail_burrow"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "shakari_upheaval"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "shaper_banish_player"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "shaper_banish_zana"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "shaper_bullet_hell"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "shaper_open_portal"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "shavronne_ball_lightning"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "shavronne_empower_beam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "shavronne_ghost_brutus_slam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "shavronne_levitating_projectile"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "shavronne_lightning_pulse"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "shavronne_lightning_tendrils"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "shavronne_lightning_thorns"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "shavronne_projectile_barrage"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "shavronne_teleport"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "shock_rifle_disco"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "shrine_player_smoke_trail"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "shrine_smoke_cloud"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "shrink"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "shrink_no_los"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "silence"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "single_ground_laser"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "skeleton_explosion_slam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "skeleton_projectile_cold"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "skeleton_projectile_fire"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "skeleton_projectile_lightning"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "skeleton_soldier_arrow_spray"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "skitterbot_detonate_mines"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "slide_emerge"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "solaris_backflip"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "solaris_energy_lance"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "solaris_lunaris_transform"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "solaris_sky_beam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "solaris_solar_flare"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "solaris_super_sky_beam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "spawn_arakaali_hatchling"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "spawn_blood_meteors"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "spawn_object"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "special_beam_cannon"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "spectral_sawblade"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "spell_nova"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "spell_nova_self"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "spider_god_acid_lightning_spray"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "spider_god_activate_laser"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "spider_god_combo_strike"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "spider_god_laser_barrage"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "spider_god_riptide"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "spider_god_web_zone"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "spiky_donut"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "spinning_ground_laser"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "spirit_bomb"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "split_spell_projectile"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "statue_spear_throw"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "storm_cascade"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "storm_whip"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "stormflay_lightning_strike"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "strongbox_corpse_explode"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "suicide_explosion"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "suicide_explosion_self"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "summon_critters"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "summon_exile"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "summon_eye"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "summon_gold_animated_armour"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "summon_kaom_totems"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "summon_mass_blood_ravens"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "summon_monsters"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "summon_monsters_triggerable"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "summon_moving_flame_wall"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "summon_sandspitters"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "summon_skeletons_on_self"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "summon_spawn"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "summon_specific_barrels"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "summon_specific_barrels_from_mortar"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "summon_specific_barrels_in_front"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "summon_specific_monster_behind_enemy"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "summon_specific_monster_behind_enemy_no_los"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "summon_specific_monster_in_front_of_enemy"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "summon_specific_monster_in_front_of_enemy_no_los"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "summon_specific_monsters_cannot_die_on_self"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "summon_specific_monsters_from_mortar"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "summon_specific_monsters_in_front"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "summon_specific_monsters_on_self"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "summon_specific_monsters_on_target"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "summon_specific_monsters_on_target_no_los"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "summon_standalone_map_boss"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "summon_storms"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "summon_taniwha_tail"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "summon_warband_pack"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "summon_water_elementals"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "summoning_arrow"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "sunder_monster"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "super_goat_emerge"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "synthesis_beam_refraction"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "synthesis_turret_charge_projectile"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "tangled_minion_arc"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "taunt_target"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "teleport"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "teleport_explode_kill"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "teleport_no_los"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "teleport_strike"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "thrown_shield_projectile_triggerable"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "thrown_weapon_triggered"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "tiger_spirit_fangs"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "tiger_spirit_lacerate"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "tiger_spirit_teleport_slam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "titucius_combo_attack"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "tora_monster_trap"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "torment_spirit_pause"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "tormented_spirit_tether"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "totem_charged_beam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "totem_taunt_triggerable"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "tracking_slam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "transform"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "transition_beam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "transition_object"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "translate_rotate"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "translate_rotate_fast"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "translate_rotate_no_translate"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "translate_rotate_slow"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "translate_rotate_to_middle"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "trap_blade"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "trap_ground_caustic_cloud"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "trap_ground_ice"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "trap_ground_smoke"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "trialmaster_chaos_shrine"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "trialmaster_tether_spike"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "trialmaster_timestop"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "trigger_beam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "trigger_beam_no_los"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "trigger_cascade"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "trigger_charge"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "trigger_kaom_archer_spawners"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "trigger_kaom_skull_spawners"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "trigger_projectile_spell"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "trigger_spawners"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "trigger_wave"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "triggered_lightning_cones"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "trio_add_doedre_stack"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "tukohama_slam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "tukohama_sunder"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "tukohama_totem_shield"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "unholy_trio_ball_lightning"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "unholy_trio_hide"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "upheaval_to_target"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "utula_remote_slam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "vaal_cloud"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "vaal_summon_skeletons_on_self"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "viking_upheaval"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "vilenta_bomb_toss"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "vilenta_gas_mortar"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "vilenta_pillar_hop"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "vilenta_reflection"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "vinktar_hide"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "volatile_dead_detonate"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "volatile_wormhole_slam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "voll_charge"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "voll_charge_entity"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "voll_revive_undead"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "voll_slam"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "vulnerable"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "vulture_parasite_take_off"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "wait"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "walk_emerge"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "walking_double_slash"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "wand_strike"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "water_vortex"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "whirling_charge"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "yeena_fire_breath"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "zana_disrupt_portal"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "zana_extend_shield"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "zana_player_bubble"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "zana_retreat"
+    },
+    {
+      "english": null,
+      "korean": null,
+      "reason": "both displayed names are empty",
+      "id": "zombie_boss_extract"
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "targetBaseCommit": "ba33ed80de67d8301baad930456131d581df6ae1",
+  "entries": [
+    {
+      "path": ".gitattributes",
+      "kind": "file"
+    },
+    {
+      "path": ".gitignore",
+      "kind": "file"
+    },
+    {
+      "path": ".github/workflows",
+      "kind": "tree"
+    },
+    {
+      "path": "localization/ko-KR",
+      "kind": "tree"
+    },
+    {
+      "path": "tests/ko-KR",
+      "kind": "tree"
+    },
+    {
+      "path": "reports",
+      "kind": "tree"
+    },
+    {
+      "path": "NOTICE.md",
+      "kind": "file"
+    },
+    {
+      "path": "LICENSE",
+      "kind": "file"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-09-01-pobtools-ko-maintenance-automation.md",
+      "kind": "file"
+    },
+    {
+      "path": "docs/superpowers/specs/2026-09-01-pobtools-ko-maintenance-automation-design.md",
+      "kind": "file"
+    },
+    {
+      "path": "docs/ko-KR",
+      "kind": "tree",
+      "required": false
+    },
+    {
+      "path": "pob-zh-engine/dist/Data/poe1/ko-KR",
+      "kind": "tree"
+    },
+    {
+      "path": "pob-zh-engine/dist/Fonts/NotoSansKR-Variable.ttf",
+      "kind": "file",
+      "sha256": "194018E6B2B293A7964F037B25C0249CE1418BC9AB3C971060A03AA57861E252"
+    },
+    {
+      "path": "pob-zh-engine/dist/Fonts/OFL-NotoSansKR.txt",
+      "kind": "file",
+      "sha256": "1C05C68C34F9708415AADA51F17E1B0092D2CEA709BF4A94CD38114F9E73D7D9"
+    },
+    {
+      "path": "pob-zh-engine/dist/pob-zh.ini",
+      "kind": "file",
+      "sha256": "A75345BD3CC9AB480BD55C5B10B35364160EA426D21BFA65C2870E08982E7669"
+    }
+  ]
+}

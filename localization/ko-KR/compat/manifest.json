@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "baseCommit": "baf07d41d2df524d4330a58b411826339c93fac1",
+  "sha256": "2D3963E980C2E48604BA7FA91CDF784AB3E70485FBFEFB51DC5195E25B123959",
+  "allowedPaths": [
+    "pob-zh-engine/CMakeLists.txt",
+    "pob-zh-engine/host/app_update.cpp",
+    "pob-zh-engine/host/app_update.h",
+    "pob-zh-engine/host/atlas_update.cpp",
+    "pob-zh-engine/host/filter_i18n.cpp",
+    "pob-zh-engine/host/filter_item_import.cpp"
+  ],
+  "requiredContracts": [
+    "korean-atlas-path",
+    "korean-filter-maps",
+    "korean-item-prefixes",
+    "korean-release-cmake",
+    "korean-update-disable"
+  ]
+}

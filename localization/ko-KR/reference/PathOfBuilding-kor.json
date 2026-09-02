@@ -1,0 +1,7 @@
+{
+  "repository": "https://github.com/antonio-kim-77/PathOfBuilding-kor",
+  "commit": "4b4129ef80818f38a221e51ac4cee17cb680b94b",
+  "tag": "v2.60.0-kor-a6",
+  "license": "MIT",
+  "allowedUse": "PoB-only UI wording reference; game terminology is replaced by official patch mappings"
+}

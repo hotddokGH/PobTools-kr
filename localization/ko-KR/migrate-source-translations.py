@@ -1,0 +1,3011 @@
+"""Migrate the pinned PoE1 Korean source baseline into reviewed overlay data.
+
+The pinned upstream tree is read with Git object commands only.  No source from
+that tree is imported, compiled, or executed.
+"""
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import re
+import subprocess
+import sys
+from collections import defaultdict
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Any, Iterable
+
+
+LOCALE_ROOT = Path(__file__).resolve().parent
+REPOSITORY_ROOT = LOCALE_ROOT.parent.parent
+LIB_ROOT = LOCALE_ROOT / "lib"
+if str(LIB_ROOT) not in sys.path:
+    sys.path.insert(0, str(LIB_ROOT))
+
+import source_overlay  # noqa: E402
+from source_overlay import Literal, format_signature  # noqa: E402
+
+
+PINNED_UPSTREAM = "baf07d41d2df524d4330a58b411826339c93fac1"
+PINNED_LOCALIZED = "2997715df0d6257192107d799a9f414b54e6c02b"
+PINNED_LOCALIZED_TREE = "6c113669065ed84d160fb186ce3dfa2701e839cb"
+OFFICIAL_PATCH = "3.29.3.2"
+HAN = re.compile(
+    r"[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF"
+    r"\U00020000-\U0002FA1F\U00030000-\U000323AF]"
+)
+HANGUL = re.compile(r"[가-힣]")
+SOURCE_SUFFIXES = frozenset({".cpp", ".h"})
+DICTIONARIES = ("tags", "items", "gems", "ui", "stats", "passives", "uniques", "monsters")
+TRUSTED_ZH_REFERENCE_HASHES = {
+    "tags": "BF43C0CD0A0AB7EED1B5E7D2AB192FA1844C1D08E86B08DF83B860C9F2730BF3",
+    "items": "4766379F2A3BD0DD8DFE4D6F8133E676CBE78D2CA09F92C3BADB5E28A676522D",
+    "gems": "B8E1C839B03BBC7D23E4030797477D92536F224D9202B5E76E45EADFD91B7F97",
+    "ui": "CBBE60B7E26C131127713B5A7E2FADF222203B2C8C66ED61E1A7759D6DF785C6",
+    "stats": "A78A893E027FA93518841621DF1AEE082D3CCE1512909523CF20E9C65CD99B3A",
+    "passives": "92C9B7F034537FC25E630BEED69D94B1D208E7A79B66757E28EFE684B5D960AC",
+    "uniques": "86F473E66445896C9AE9C187549D106D68F3046A2915A84D6658C976981B63A0",
+    "monsters": "DE92D3D9FFA7F362419A618C1AB398DEEDA8F64E45A5667D16DD8C47FFD3A132",
+}
+
+
+@dataclass(frozen=True)
+class Alignment:
+    path: str
+    function: str
+    source: str
+    target: str
+    occurrence_index: int
+    line: int
+    components: tuple[tuple[str, str], ...] = ()
+
+
+@dataclass(frozen=True)
+class MigrationResult:
+    accepted: dict[str, Any]
+    suggestions: dict[str, Any]
+    report: dict[str, Any]
+
+
+@dataclass(frozen=True)
+class RemediationValidation:
+    overrides: dict[str, Any]
+    internal_fixtures: tuple[dict[str, str], ...]
+    consumed_consumer_identities: frozenset[tuple[str, str, int, str]]
+    consumed_supporting_context_identities: frozenset[tuple[str, str, int, str]]
+    reflow_context_identities: frozenset[tuple[str, str, str, int]]
+    issues: tuple[dict[str, Any], ...]
+
+
+@dataclass
+class _StructuralUnit:
+    tokens: list[tuple[str, str]]
+    literals: list[Literal]
+
+
+class OfficialEvidenceError(ValueError):
+    def __init__(self, issues: list[dict[str, Any]]) -> None:
+        super().__init__(f"official evidence validation failed with {len(issues)} issue(s)")
+        self.issues = issues
+
+
+def _component_document(
+    components: tuple[tuple[str, str], ...],
+) -> list[dict[str, str]]:
+    return [
+        {"source": component_source, "target": component_target}
+        for component_source, component_target in components
+    ]
+
+
+def _entry(
+    target: str,
+    status: str,
+    provenance: str,
+    source: str,
+    components: tuple[tuple[str, str], ...] = (),
+) -> dict[str, Any]:
+    row = {
+        "target": target,
+        "status": status,
+        "provenance": provenance,
+        "formatSignature": list(format_signature(source)),
+    }
+    if components:
+        row["components"] = _component_document(components)
+    return row
+
+
+def _target(value: Any) -> str | None:
+    if isinstance(value, str):
+        return value
+    if isinstance(value, dict) and isinstance(value.get("target"), str):
+        return value["target"]
+    return None
+
+
+def _aligned_component_plan(
+    upstream: Literal, current: Literal
+) -> tuple[tuple[str, str], ...] | None:
+    if len(upstream.components) <= 1 and len(current.components) <= 1:
+        return ()
+    if len(upstream.components) != len(current.components):
+        return None
+    plan = tuple(
+        (source.decoded, target.decoded)
+        for source, target in zip(upstream.components, current.components, strict=True)
+    )
+    if (
+        "".join(source for source, _ in plan) != upstream.decoded
+        or "".join(target for _, target in plan) != current.decoded
+        or any(
+            format_signature(source) != format_signature(target)
+            for source, target in plan
+        )
+    ):
+        return None
+    return plan
+
+
+def _manual_component_plan(
+    value: dict[str, Any], upstream: Literal, current: Literal
+) -> tuple[tuple[str, str], ...] | None:
+    raw_components = value.get("components")
+    if raw_components is None:
+        return (
+            ()
+            if len(upstream.components) <= 1 and len(current.components) <= 1
+            else None
+        )
+    if (
+        not isinstance(raw_components, list)
+        or len(raw_components) != len(upstream.components)
+        or len(raw_components) != len(current.components)
+    ):
+        return None
+    if any(
+        not isinstance(component, dict)
+        or set(component) != {"source", "target"}
+        or not isinstance(component["source"], str)
+        or not isinstance(component["target"], str)
+        for component in raw_components
+    ):
+        return None
+    plan = tuple(
+        (component["source"], component["target"])
+        for component in raw_components
+    )
+    if (
+        [source for source, _ in plan]
+        != [component.decoded for component in upstream.components]
+        or [component_target for _, component_target in plan]
+        != [component.decoded for component in current.components]
+        or "".join(source for source, _ in plan) != upstream.decoded
+        or "".join(component_target for _, component_target in plan) != current.decoded
+    ):
+        return None
+    return plan
+
+
+def _validated_reflow_component_plan(
+    value: dict[str, Any], upstream: Literal
+) -> tuple[tuple[str, str], ...] | None:
+    """Read a component plan already bounded by the remediation validator.
+
+    Reflow rows cannot be re-validated against the localized expression's
+    component boundaries: those boundaries are exactly what changed in the
+    reviewed Korean snapshot.  The caller receives these rows only from
+    ``validate_remediation_document``; retain the upstream structure checks
+    here so a future caller cannot flatten a concatenation by accident.
+    """
+    raw_components = value.get("components")
+    if raw_components is None:
+        return () if len(upstream.components) <= 1 else None
+    if (
+        not isinstance(raw_components, list)
+        or len(raw_components) != len(upstream.components)
+        or any(
+            not isinstance(component, dict)
+            or set(component) != {"source", "target"}
+            or not isinstance(component["source"], str)
+            or not isinstance(component["target"], str)
+            for component in raw_components
+        )
+    ):
+        return None
+    plan = tuple(
+        (component["source"], component["target"])
+        for component in raw_components
+    )
+    if (
+        [source for source, _ in plan]
+        != [component.decoded for component in upstream.components]
+        or "".join(source for source, _ in plan) != upstream.decoded
+        or "".join(target for _, target in plan) != value["target"]
+        or any(
+            format_signature(source) != format_signature(target)
+            for source, target in plan
+        )
+    ):
+        return None
+    return plan
+
+
+def _component_plan_has_exact_evidence(
+    components: tuple[tuple[str, str], ...], official: dict[str, str]
+) -> bool:
+    return not components or all(
+        official.get(source) == target for source, target in components
+    )
+
+
+def _manual_override_component_plan(
+    value: dict[str, Any],
+    source: str,
+    target: str,
+    context_inventories: dict[str, tuple[list[Literal], list[Literal]]],
+) -> tuple[tuple[str, str], ...] | None:
+    upstream_matches: list[tuple[str, Literal, list[Literal]]] = []
+    for path, (upstream_literals, current_literals) in sorted(
+        context_inventories.items()
+    ):
+        for upstream in upstream_literals:
+            if upstream.decoded == source:
+                current_matches = [
+                    current
+                    for current in current_literals
+                    if current.function == upstream.function
+                    and current.decoded == target
+                ]
+                upstream_matches.append((path, upstream, current_matches))
+    if not upstream_matches:
+        return None if "components" in value else ()
+    if "components" not in value:
+        return (
+            None
+            if any(len(upstream.components) > 1 for _, upstream, _ in upstream_matches)
+            else ()
+        )
+    plans: set[tuple[tuple[str, str], ...]] = set()
+    for _, upstream, current_matches in upstream_matches:
+        if len(current_matches) != 1:
+            return None
+        plan = _manual_component_plan(value, upstream, current_matches[0])
+        if plan is None:
+            return None
+        plans.add(plan)
+    return next(iter(plans)) if len(plans) == 1 else None
+
+
+def _issue_sort_key(row: dict[str, Any]) -> tuple[Any, ...]:
+    return (
+        str(row.get("path", "")),
+        str(row.get("function", "")),
+        int(row.get("occurrenceIndex", -1)),
+        str(row.get("source", "")),
+        str(row.get("code", "")),
+    )
+
+
+def _alignment_issue(code: str, row: Alignment, **extra: Any) -> dict[str, Any]:
+    return {
+        "code": code,
+        "path": row.path,
+        "function": row.function,
+        "line": row.line,
+        "occurrenceIndex": row.occurrence_index,
+        "source": row.source,
+        **extra,
+    }
+
+
+def _safe_context_path(value: str) -> str | None:
+    normalized = value.replace("\\", "/")
+    parts = normalized.split("/")
+    if (
+        not normalized
+        or normalized.startswith("/")
+        or re.match(r"^[A-Za-z]:", normalized)
+        or any(part in {"", ".", ".."} for part in parts)
+    ):
+        return None
+    return normalized
+
+
+_REMEDIATION_REQUIRED_ROOT = {
+    "schemaVersion",
+    "upstreamCommit",
+    "localizedCommit",
+    "localizedEngineTree",
+    "entries",
+    "contexts",
+    "supportingContexts",
+    "internalFixtures",
+}
+_REMEDIATION_CONTEXT_FIELDS = {
+    "path",
+    "function",
+    "source",
+    "occurrenceIndex",
+    "target",
+    "formatSignature",
+    "provenance",
+    "evidencePath",
+    "evidenceFunction",
+    "upstreamOccurrenceIndex",
+    "localizedOccurrenceIndex",
+    "sourceSha256",
+    "localizedEvidenceSha256",
+    "evidenceMode",
+}
+_REMEDIATION_FIXTURES = {
+    (
+        "host/atlas_diff.cpp",
+        "1A2ED60F14281831146207077202F262ABB8309174390CA0936DD65C0555D02C",
+    ),
+    (
+        "host/atlas_diff.cpp",
+        "547E964D403E6AD927F15CC0D02021ABFEEE8B3D711DB3E7EF6D2666003F3BBF",
+    ),
+}
+_CHANGELOG_REMEDIATION_IDENTITY = ("host/changelog.h", "", 0)
+_POEDB_REMEDIATION_IDENTITY = ("host/launcher_ui.cpp", "", 20)
+_POEDB_REMEDIATION_TARGET = "PoeDB 패스 오브 엑자일 위키"
+_POEDB_REMEDIATION_URL = "https://poedb.tw/kr/"
+_SUPPORTING_CONTEXT_PROVENANCE = "manual-reviewed-supporting-context"
+_SUPPORTING_CONTEXT_IDENTITIES = frozenset(
+    {
+        (
+            "host/app_update.cpp",
+            "",
+            60,
+            "已取消回應為空連線失敗（網路無法使用？）建立 HTTP 請求 HTTPS 初始化無法建立解壓目錄格式無效條目資訊讀取路徑非法檔案寫入失敗回滾備份",
+        ),
+        ("host/atlas_planner.cpp", "Frame", 21, "匯入"),
+        ("host/atlas_planner.cpp", "Frame", 54, "中"),
+        ("host/editor_shell.cpp", "DrawTopToolbar", 14, "重新載入"),
+        ("host/filter_batch.cpp", "DrawBatchModal", 27, "中"),
+        ("host/filter_card_ui.cpp", "DrawMinimapIconWidget", 1, "中"),
+        ("host/filter_i18n.cpp", "FilterI18n::Load", 47, "地圖階級"),
+        ("host/filter_i18n.cpp", "FilterI18n::Load", 49, "堆疊數量"),
+        ("host/filter_i18n.cpp", "ns_tier_seg_zh", 7, "最終"),
+        ("host/filter_i18n.cpp", "ns_type_seg_zh", 35, "召喚"),
+        ("host/filter_i18n.cpp", "ns_type_seg_zh", 43, "神化聖物"),
+        ("host/filter_i18n.cpp", "ns_type_seg_zh", 133, "功能"),
+        ("host/filter_i18n.cpp", "ns_type_seg_zh", 147, "裝備"),
+        ("host/filter_i18n.cpp", "ns_type_seg_zh", 179, "固定詞綴"),
+        ("host/filter_i18n.cpp", "ns_type_seg_zh", 217, "瓦爾神殿"),
+        ("host/filter_preview.cpp", "DrawDropPreviewSection", 27, "未鑑定"),
+        ("host/filter_preview.cpp", "DrawDropPreviewSection", 33, "聖戰士"),
+        ("host/filter_preview.cpp", "DrawDropPreviewSection", 57, "稀有度"),
+        ("host/filter_schema.cpp", "build_table", 9, "稀有度"),
+        ("host/filter_schema.cpp", "build_table", 149, "固定詞綴"),
+        ("host/launcher_editor.cpp", "Frame", 15, "儲存失敗："),
+        ("host/launcher_editor.cpp", "Frame", 16, "重新載入"),
+        ("host/regex_tool_ui.cpp", "drawOutput", 13, "已複製"),
+        ("host/timeless_jewel_ui.cpp", "Frame", 85, "詞綴"),
+        ("host/timeless_jewel_ui.cpp", "Frame", 121, "稀有度"),
+    }
+)
+
+
+def _remediation_identity(value: dict[str, Any]) -> tuple[str, str, int, str] | None:
+    path = value.get("path")
+    function = value.get("function")
+    occurrence_index = value.get("occurrenceIndex")
+    source = value.get("source")
+    if (
+        not isinstance(path, str)
+        or not isinstance(function, str)
+        or type(occurrence_index) is not int
+        or occurrence_index < 0
+        or not isinstance(source, str)
+    ):
+        return None
+    normalized = _safe_context_path(path)
+    if normalized is None:
+        return None
+    return normalized, function, occurrence_index, source
+
+
+def blocker_consumer_identities(
+    blocker_report: dict[str, Any],
+) -> frozenset[tuple[str, str, int, str]]:
+    rows = blocker_report.get("issues") if isinstance(blocker_report, dict) else None
+    identities: set[tuple[str, str, int, str]] = set()
+    if not isinstance(rows, list):
+        return frozenset()
+    for row in rows:
+        if not isinstance(row, dict):
+            continue
+        identity = _remediation_identity(row)
+        if identity is not None:
+            identities.add(identity)
+    return frozenset(identities)
+
+
+def supporting_context_identities() -> frozenset[tuple[str, str, int, str]]:
+    """Return the fixed migration-only contexts permitted by Task 3."""
+    return _SUPPORTING_CONTEXT_IDENTITIES
+
+
+def _remediation_sha256(value: str) -> str:
+    return hashlib.sha256(value.encode("utf-8")).hexdigest().upper()
+
+
+def remove_validated_internal_fixture_rows(
+    alignments: Iterable[Alignment],
+    alignment_issues: Iterable[dict[str, Any]],
+    fixtures: Iterable[dict[str, str]],
+) -> tuple[list[Alignment], list[dict[str, Any]]]:
+    """Remove only the two exact validated non-display fixture identities."""
+    fixture_rows = list(fixtures)
+    fixture_identities = {
+        (row.get("path"), row.get("sha256"))
+        for row in fixture_rows
+        if isinstance(row, dict)
+        and isinstance(row.get("path"), str)
+        and isinstance(row.get("sha256"), str)
+        and isinstance(row.get("reason"), str)
+        and bool(row["reason"].strip())
+    }
+    if fixture_identities != _REMEDIATION_FIXTURES or len(fixture_rows) != len(
+        _REMEDIATION_FIXTURES
+    ):
+        return list(alignments), [dict(issue) for issue in alignment_issues]
+
+    def is_fixture(path: Any, source: Any) -> bool:
+        return (
+            isinstance(path, str)
+            and isinstance(source, str)
+            and (path, _remediation_sha256(source)) in fixture_identities
+        )
+
+    return (
+        [row for row in alignments if not is_fixture(row.path, row.source)],
+        [
+            dict(issue)
+            for issue in alignment_issues
+            if not is_fixture(issue.get("path"), issue.get("source"))
+        ],
+    )
+
+
+def validate_remediation_document(
+    document: Any,
+    blocker_report: dict[str, Any],
+    *,
+    repository_root: Path,
+) -> RemediationValidation:
+    """Fail closed before reviewed remediation rows can reach the accepted map."""
+    issues: list[dict[str, Any]] = []
+    expected = blocker_consumer_identities(blocker_report)
+    overrides: dict[str, Any] = {"entries": {}, "contexts": []}
+    fixtures: list[dict[str, str]] = []
+    consumed: set[tuple[str, str, int, str]] = set()
+    consumed_supporting: set[tuple[str, str, int, str]] = set()
+    reflows: set[tuple[str, str, str, int]] = set()
+    if not isinstance(document, dict) or set(document) != _REMEDIATION_REQUIRED_ROOT:
+        issues.append({"code": "INVALID_REMEDIATION_DOCUMENT"})
+        return RemediationValidation(
+            overrides, (), frozenset(), frozenset(), frozenset(), tuple(issues)
+        )
+    if (
+        document.get("schemaVersion") != 1
+        or document.get("upstreamCommit") != PINNED_UPSTREAM
+        or document.get("localizedCommit") != PINNED_LOCALIZED
+        or document.get("localizedEngineTree") != PINNED_LOCALIZED_TREE
+    ):
+        issues.append({"code": "INVALID_REMEDIATION_PIN"})
+    if not isinstance(document["entries"], list) or document["entries"]:
+        issues.append({"code": "INVALID_REMEDIATION_ENTRIES"})
+    contexts = document.get("contexts")
+    if not isinstance(contexts, list):
+        issues.append({"code": "INVALID_REMEDIATION_CONTEXTS"})
+        contexts = []
+    supporting_contexts = document.get("supportingContexts")
+    if not isinstance(supporting_contexts, list):
+        issues.append({"code": "INVALID_SUPPORTING_CONTEXTS"})
+        supporting_contexts = []
+
+    policy_path = repository_root / "localization/ko-KR/source-display-policy.json"
+    try:
+        policy = json.loads(policy_path.read_text(encoding="utf-8"))
+        recovery = source_overlay.validate_parse_recovery_allowlist(
+            policy.get("parseRecoveryAllowlist") if isinstance(policy, dict) else None
+        )
+    except (OSError, ValueError, json.JSONDecodeError) as error:
+        issues.append({"code": "INVALID_REMEDIATION_POLICY", "detail": str(error)})
+        recovery = ()
+
+    upstream_by_path: dict[str, list[Literal]] = {}
+    localized_by_path: dict[str, list[Literal]] = {}
+
+    def inventory(path: str) -> tuple[list[Literal], list[Literal]] | None:
+        if path in upstream_by_path:
+            return upstream_by_path[path], localized_by_path[path]
+        try:
+            upstream = _git_source_bytes(
+                PINNED_UPSTREAM, f"pob-zh-engine/{path}", "upstream"
+            )
+            localized = _git_source_bytes(
+                PINNED_LOCALIZED, f"pob-zh-engine/{path}", "localized"
+            )
+            upstream_by_path[path] = _context_inventory(
+                Path(path),
+                upstream,
+                parse_recovery_allowlist=recovery,
+                source_role="upstream",
+                source_commit=PINNED_UPSTREAM,
+            )
+            localized_by_path[path] = _context_inventory(
+                Path(path),
+                localized,
+                parse_recovery_allowlist=recovery,
+                source_role="localized",
+                source_commit=PINNED_LOCALIZED,
+            )
+        except (ValueError, source_overlay.CppParseError, source_overlay.UnsupportedEscape) as error:
+            issues.append({"code": "INVALID_REMEDIATION_INVENTORY", "path": path, "detail": str(error)})
+            return None
+        return upstream_by_path[path], localized_by_path[path]
+
+    seen: set[tuple[str, str, int, str]] = set()
+    for value in contexts:
+        if not isinstance(value, dict):
+            issues.append({"code": "INVALID_REMEDIATION_CONTEXT"})
+            continue
+        identity = _remediation_identity(value)
+        if identity is None:
+            issues.append({"code": "INVALID_REMEDIATION_CONTEXT"})
+            continue
+        path, function, occurrence_index, source = identity
+        if identity in seen:
+            issues.append({"code": "DUPLICATE_REMEDIATION_DECISION", "path": path, "function": function, "occurrenceIndex": occurrence_index, "source": source})
+            continue
+        seen.add(identity)
+        allowed_fields = _REMEDIATION_CONTEXT_FIELDS | ({"components"} if "components" in value else set()) | ({"evidenceUrl"} if "evidenceUrl" in value else set())
+        if set(value) != allowed_fields:
+            issues.append({"code": "INVALID_REMEDIATION_CONTEXT", "path": path})
+            continue
+        target = value.get("target")
+        mode = value.get("evidenceMode")
+        if (
+            not isinstance(target, str)
+            or value.get("provenance") != "manual-reviewed-remediation"
+        ):
+            issues.append({"code": "INVALID_REMEDIATION_PROVENANCE", "path": path})
+            continue
+        if identity not in expected:
+            code = (
+                "INVALID_REMEDIATION_SOURCE"
+                if any(
+                    candidate_path == path
+                    and candidate_function == function
+                    and candidate_index == occurrence_index
+                    for candidate_path, candidate_function, candidate_index, _ in expected
+                )
+                else "UNCONSUMED_REMEDIATION_DECISION"
+            )
+            issues.append({"code": code, "path": path, "function": function, "occurrenceIndex": occurrence_index, "source": source})
+            continue
+        if (
+            value.get("evidencePath") != path
+            or value.get("evidenceFunction") != function
+            or value.get("upstreamOccurrenceIndex") != occurrence_index
+            or value.get("sourceSha256") != _remediation_sha256(source)
+        ):
+            issues.append({"code": "INVALID_REMEDIATION_SOURCE", "path": path, "function": function, "occurrenceIndex": occurrence_index, "source": source})
+            continue
+        pair = inventory(path)
+        if pair is None:
+            continue
+        upstream, localized = pair
+        upstream_matches = [
+            row for row in upstream
+            if row.function == function
+            and row.occurrence_index == occurrence_index
+            and row.decoded == source
+        ]
+        if len(upstream_matches) != 1:
+            issues.append({"code": "INVALID_REMEDIATION_SOURCE", "path": path, "function": function, "occurrenceIndex": occurrence_index, "source": source})
+            continue
+        localized_index = value.get("localizedOccurrenceIndex")
+        localized_matches = [
+            row for row in localized
+            if row.function == function and row.occurrence_index == localized_index
+        ]
+        if (
+            type(localized_index) is not int
+            or len(localized_matches) != 1
+            or value.get("localizedEvidenceSha256")
+            != _remediation_sha256(localized_matches[0].decoded)
+        ):
+            issues.append({"code": "INVALID_REMEDIATION_TARGET_EVIDENCE", "path": path, "function": function, "occurrenceIndex": occurrence_index, "source": source})
+            continue
+        upstream_literal = upstream_matches[0]
+        localized_literal = localized_matches[0]
+        expected_signature = list(format_signature(source))
+        if (
+            value.get("formatSignature") != expected_signature
+            or list(format_signature(target)) != expected_signature
+        ):
+            issues.append({"code": "INVALID_REMEDIATION_SIGNATURE", "path": path, "function": function, "occurrenceIndex": occurrence_index, "source": source})
+            continue
+        is_changelog = (path, function, occurrence_index) == _CHANGELOG_REMEDIATION_IDENTITY
+        is_poedb = (path, function, occurrence_index) == _POEDB_REMEDIATION_IDENTITY
+        if mode == "manual-ui-reflow":
+            if not is_changelog:
+                issues.append({"code": "INVALID_REMEDIATION_EVIDENCE_MODE", "path": path})
+                continue
+        elif mode == "manual-third-party-ui":
+            if (
+                not is_poedb
+                or target != _POEDB_REMEDIATION_TARGET
+                or value.get("evidenceUrl") != _POEDB_REMEDIATION_URL
+            ):
+                issues.append({"code": "INVALID_REMEDIATION_EVIDENCE_MODE", "path": path})
+                continue
+        elif mode == "localized-literal":
+            if target != localized_literal.decoded:
+                issues.append({"code": "INVALID_REMEDIATION_TARGET_EVIDENCE", "path": path, "function": function, "occurrenceIndex": occurrence_index, "source": source})
+                continue
+        elif mode == "localized-expression-reflow":
+            if target and target not in localized_literal.decoded:
+                issues.append({"code": "INVALID_REMEDIATION_TARGET_EVIDENCE", "path": path, "function": function, "occurrenceIndex": occurrence_index, "source": source})
+                continue
+        else:
+            issues.append({"code": "INVALID_REMEDIATION_EVIDENCE_MODE", "path": path})
+            continue
+        components = value.get("components")
+        component_plan: tuple[tuple[str, str], ...] = ()
+        if len(upstream_literal.components) > 1:
+            if not isinstance(components, list) or len(components) != len(upstream_literal.components):
+                issues.append({"code": "INVALID_REMEDIATION_COMPONENTS", "path": path, "function": function, "occurrenceIndex": occurrence_index, "source": source})
+                continue
+            if not all(isinstance(row, dict) and set(row) == {"source", "target"} and isinstance(row["source"], str) and isinstance(row["target"], str) for row in components):
+                issues.append({"code": "INVALID_REMEDIATION_COMPONENTS", "path": path, "function": function, "occurrenceIndex": occurrence_index, "source": source})
+                continue
+            component_plan = tuple((row["source"], row["target"]) for row in components)
+            if (
+                tuple(source for source, _ in component_plan) != tuple(row.decoded for row in upstream_literal.components)
+                or "".join(target for _, target in component_plan) != target
+                or any(format_signature(component_source) != format_signature(component_target) for component_source, component_target in component_plan)
+            ):
+                issues.append({"code": "INVALID_REMEDIATION_COMPONENTS", "path": path, "function": function, "occurrenceIndex": occurrence_index, "source": source})
+                continue
+            if mode == "localized-literal" and tuple(target for _, target in component_plan) != tuple(row.decoded for row in localized_literal.components):
+                issues.append({"code": "INVALID_REMEDIATION_COMPONENTS", "path": path, "function": function, "occurrenceIndex": occurrence_index, "source": source})
+                continue
+            if is_changelog:
+                invalid_changelog_component = any(
+                    (
+                        bool(HAN.search(component_source))
+                        and not HANGUL.search(component_target)
+                    )
+                    or (
+                        bool(re.search(r"\bv[0-9]+(?:\.[0-9]+)+", component_source))
+                        and not all(
+                            version in component_target
+                            for version in re.findall(
+                                r"\bv[0-9]+(?:\.[0-9]+)+", component_source
+                            )
+                        )
+                    )
+                    for component_source, component_target in component_plan
+                )
+                if invalid_changelog_component:
+                    issues.append(
+                        {
+                            "code": "INVALID_REMEDIATION_CHANGELOG_REFLOW",
+                            "path": path,
+                            "function": function,
+                            "occurrenceIndex": occurrence_index,
+                            "source": source,
+                        }
+                    )
+                    continue
+        elif components is not None:
+            issues.append({"code": "INVALID_REMEDIATION_COMPONENTS", "path": path, "function": function, "occurrenceIndex": occurrence_index, "source": source})
+            continue
+        if mode not in {"localized-expression-reflow"} and not HANGUL.search(target):
+            issues.append({"code": "INVALID_REMEDIATION_TARGET_EVIDENCE", "path": path, "function": function, "occurrenceIndex": occurrence_index, "source": source})
+            continue
+        consumed.add(identity)
+        if mode in {"manual-ui-reflow", "localized-expression-reflow", "manual-third-party-ui"}:
+            reflows.add((path, function, source, occurrence_index))
+        overrides["contexts"].append({
+            "path": path,
+            "function": function,
+            "source": source,
+            "occurrenceIndex": occurrence_index,
+            "target": target,
+            **({"components": _component_document(component_plan)} if component_plan else {}),
+        })
+
+    seen_supporting: set[tuple[str, str, int, str]] = set()
+    for value in supporting_contexts:
+        if not isinstance(value, dict):
+            issues.append({"code": "INVALID_SUPPORTING_CONTEXT"})
+            continue
+        identity = _remediation_identity(value)
+        if identity is None:
+            issues.append({"code": "INVALID_SUPPORTING_CONTEXT"})
+            continue
+        path, function, occurrence_index, source = identity
+        issue_identity = {
+            "path": path,
+            "function": function,
+            "occurrenceIndex": occurrence_index,
+            "source": source,
+        }
+        if identity in seen_supporting:
+            issues.append({"code": "DUPLICATE_SUPPORTING_CONTEXT", **issue_identity})
+            continue
+        seen_supporting.add(identity)
+        if set(value) != (_REMEDIATION_CONTEXT_FIELDS | {"components"}):
+            issues.append({"code": "INVALID_SUPPORTING_CONTEXT", **issue_identity})
+            continue
+        if identity not in _SUPPORTING_CONTEXT_IDENTITIES:
+            code = (
+                "INVALID_SUPPORTING_CONTEXT_SOURCE"
+                if any(
+                    candidate_path == path
+                    and candidate_function == function
+                    and candidate_index == occurrence_index
+                    for candidate_path, candidate_function, candidate_index, _
+                    in _SUPPORTING_CONTEXT_IDENTITIES
+                )
+                else "UNCONSUMED_SUPPORTING_CONTEXT"
+            )
+            issues.append({"code": code, **issue_identity})
+            continue
+        if value.get("provenance") != _SUPPORTING_CONTEXT_PROVENANCE:
+            issues.append(
+                {"code": "INVALID_SUPPORTING_CONTEXT_PROVENANCE", **issue_identity}
+            )
+            continue
+        target = value.get("target")
+        if not isinstance(target, str) or value.get("evidenceMode") != "localized-literal":
+            issues.append(
+                {"code": "INVALID_SUPPORTING_CONTEXT_EVIDENCE", **issue_identity}
+            )
+            continue
+        if (
+            value.get("evidencePath") != path
+            or value.get("evidenceFunction") != function
+            or value.get("upstreamOccurrenceIndex") != occurrence_index
+            or value.get("sourceSha256") != _remediation_sha256(source)
+        ):
+            issues.append(
+                {"code": "INVALID_SUPPORTING_CONTEXT_SOURCE", **issue_identity}
+            )
+            continue
+        pair = inventory(path)
+        if pair is None:
+            continue
+        upstream, localized = pair
+        upstream_matches = [
+            row
+            for row in upstream
+            if row.function == function
+            and row.occurrence_index == occurrence_index
+            and row.decoded == source
+        ]
+        localized_index = value.get("localizedOccurrenceIndex")
+        localized_matches = [
+            row
+            for row in localized
+            if row.function == function and row.occurrence_index == localized_index
+        ]
+        if len(upstream_matches) != 1 or len(localized_matches) != 1:
+            issues.append(
+                {"code": "INVALID_SUPPORTING_CONTEXT_EVIDENCE", **issue_identity}
+            )
+            continue
+        upstream_literal = upstream_matches[0]
+        localized_literal = localized_matches[0]
+        if (
+            value.get("localizedEvidenceSha256")
+            != _remediation_sha256(localized_literal.decoded)
+            or target != localized_literal.decoded
+            or value.get("formatSignature") != list(format_signature(source))
+            or list(format_signature(target)) != list(format_signature(source))
+            or not HANGUL.search(target)
+        ):
+            issues.append(
+                {"code": "INVALID_SUPPORTING_CONTEXT_EVIDENCE", **issue_identity}
+            )
+            continue
+        components = value.get("components")
+        if (
+            not isinstance(components, list)
+            or len(components) != len(upstream_literal.components)
+            or len(components) != len(localized_literal.components)
+            or not all(
+                isinstance(component, dict)
+                and set(component) == {"source", "target"}
+                and isinstance(component["source"], str)
+                and isinstance(component["target"], str)
+                for component in components
+            )
+        ):
+            issues.append(
+                {"code": "INVALID_SUPPORTING_CONTEXT_COMPONENTS", **issue_identity}
+            )
+            continue
+        component_plan = tuple(
+            (component["source"], component["target"]) for component in components
+        )
+        if (
+            tuple(component_source for component_source, _ in component_plan)
+            != tuple(component.decoded for component in upstream_literal.components)
+            or tuple(component_target for _, component_target in component_plan)
+            != tuple(component.decoded for component in localized_literal.components)
+            or "".join(component_target for _, component_target in component_plan)
+            != target
+            or any(
+                format_signature(component_source)
+                != format_signature(component_target)
+                for component_source, component_target in component_plan
+            )
+        ):
+            issues.append(
+                {"code": "INVALID_SUPPORTING_CONTEXT_COMPONENTS", **issue_identity}
+            )
+            continue
+        consumed_supporting.add(identity)
+        overrides["contexts"].append(
+            {
+                "path": path,
+                "function": function,
+                "source": source,
+                "occurrenceIndex": occurrence_index,
+                "target": target,
+                "components": _component_document(component_plan),
+            }
+        )
+
+    for identity in sorted(_SUPPORTING_CONTEXT_IDENTITIES - consumed_supporting):
+        issues.append(
+            {
+                "code": "MISSING_SUPPORTING_CONTEXT",
+                "path": identity[0],
+                "function": identity[1],
+                "occurrenceIndex": identity[2],
+                "source": identity[3],
+            }
+        )
+
+    fixture_rows = document.get("internalFixtures")
+    if not isinstance(fixture_rows, list):
+        issues.append({"code": "INVALID_REMEDIATION_FIXTURES"})
+        fixture_rows = []
+    seen_fixtures: set[tuple[str, str]] = set()
+    fixture_by_identity: dict[tuple[str, str], tuple[str, str, int, str]] = {}
+    for identity in expected:
+        path, function, occurrence_index, source = identity
+        digest = _remediation_sha256(source)
+        if (path, digest) in _REMEDIATION_FIXTURES:
+            fixture_by_identity[(path, digest)] = identity
+    for row in fixture_rows:
+        if not isinstance(row, dict) or set(row) != {"path", "sha256", "reason"}:
+            issues.append({"code": "UNEXPECTED_INTERNAL_FIXTURE"})
+            continue
+        path, digest, reason = row["path"], row["sha256"], row["reason"]
+        key = (path, digest)
+        if (
+            not isinstance(path, str)
+            or not isinstance(digest, str)
+            or not isinstance(reason, str)
+            or not reason.strip()
+            or key not in _REMEDIATION_FIXTURES
+            or key in seen_fixtures
+            or key not in fixture_by_identity
+        ):
+            issues.append({"code": "UNEXPECTED_INTERNAL_FIXTURE"})
+            continue
+        seen_fixtures.add(key)
+        consumed.add(fixture_by_identity[key])
+        fixtures.append({"path": path, "sha256": digest, "reason": reason})
+    if seen_fixtures != _REMEDIATION_FIXTURES:
+        issues.append({"code": "MISSING_INTERNAL_FIXTURE"})
+    for identity in sorted(expected - consumed):
+        issues.append({"code": "MISSING_REMEDIATION_DECISION", "path": identity[0], "function": identity[1], "occurrenceIndex": identity[2], "source": identity[3]})
+    overrides["contexts"].sort(key=lambda row: (row["path"], row["function"], row["source"], row["occurrenceIndex"], row["target"]))
+    issues.sort(key=_issue_sort_key)
+    return RemediationValidation(
+        overrides,
+        tuple(fixtures),
+        frozenset(consumed),
+        frozenset(consumed_supporting),
+        frozenset(reflows),
+        tuple(issues),
+    )
+
+
+def migrate(
+    *,
+    legacy: dict[str, Any],
+    overrides: dict[str, Any],
+    official: dict[str, str],
+    alignments: Iterable[Alignment] = (),
+    alignment_issues: Iterable[dict[str, Any]] = (),
+    context_inventories: dict[str, tuple[list[Literal], list[Literal]]] | None = None,
+    validated_reflow_contexts: frozenset[tuple[str, str, str, int]] = frozenset(),
+    validated_official_contexts: frozenset[tuple[str, str, str, int]] = frozenset(),
+) -> MigrationResult:
+    """Apply the binding acceptance precedence without promoting suggestions."""
+    accepted_entries: dict[str, dict[str, Any]] = {}
+    contexts: list[dict[str, Any]] = []
+    issues: list[dict[str, Any]] = []
+    alignment_issue_rows = [dict(issue) for issue in alignment_issues]
+    failed_contexts: set[tuple[str, str, str, int]] = set()
+    failed_sources: set[str] = set()
+    context_inventories = context_inventories or {}
+
+    for source, target in sorted(official.items()):
+        if not isinstance(source, str) or not isinstance(target, str):
+            continue
+        if format_signature(source) != format_signature(target):
+            issues.append(
+                {
+                    "code": "FORMAT_SIGNATURE_MISMATCH",
+                    "source": source,
+                    "provenance": "official-runtime-identity",
+                    "sourceSignature": list(format_signature(source)),
+                    "targetSignature": list(format_signature(target)),
+                }
+            )
+            continue
+        accepted_entries[source] = _entry(target, "official", "official-runtime-identity", source)
+
+    override_entries = overrides.get("entries", {}) if isinstance(overrides, dict) else {}
+    if isinstance(override_entries, dict):
+        for source, value in sorted(override_entries.items()):
+            if source in accepted_entries or not isinstance(source, str):
+                continue
+            target = _target(value)
+            if target is None:
+                issues.append({"code": "INVALID_REVIEWED_OVERRIDE", "source": str(source)})
+                continue
+            if format_signature(source) != format_signature(target):
+                issues.append(
+                    {
+                        "code": "FORMAT_SIGNATURE_MISMATCH",
+                        "source": source,
+                        "provenance": "manual-reviewed-override",
+                        "sourceSignature": list(format_signature(source)),
+                        "targetSignature": list(format_signature(target)),
+                    }
+                )
+                continue
+            component_plan = _manual_override_component_plan(
+                value if isinstance(value, dict) else {},
+                source,
+                target,
+                context_inventories,
+            )
+            if component_plan is None:
+                issues.append(
+                    {
+                        "code": "INVALID_REVIEWED_OVERRIDE_COMPONENTS",
+                        "source": source,
+                        "target": target,
+                    }
+                )
+                continue
+            accepted_entries[source] = _entry(
+                target,
+                "reviewed",
+                "manual-reviewed-override",
+                source,
+                component_plan,
+            )
+
+    reviewed_contexts: set[tuple[str, str, str, int]] = set()
+    override_contexts = overrides.get("contexts", []) if isinstance(overrides, dict) else []
+    if isinstance(override_contexts, list):
+        prepared_contexts: list[dict[str, Any]] = []
+        for value in override_contexts:
+            if not isinstance(value, dict) or not all(
+                isinstance(value.get(field), str)
+                for field in ("path", "function", "source", "target")
+            ) or type(value.get("occurrenceIndex")) is not int or value["occurrenceIndex"] < 0:
+                issues.append({"code": "INVALID_REVIEWED_CONTEXT"})
+                continue
+            normalized_path = _safe_context_path(value["path"])
+            if normalized_path is None:
+                issues.append(
+                    {
+                        "code": "INVALID_REVIEWED_CONTEXT_PATH",
+                        "path": value["path"].replace("\\", "/"),
+                        "function": value["function"],
+                        "source": value["source"],
+                    }
+                )
+                continue
+            prepared_contexts.append({**value, "path": normalized_path})
+
+        contexts_by_consumer_identity: dict[
+            tuple[str, str, str, int], list[dict[str, Any]]
+        ] = (
+            defaultdict(list)
+        )
+        for value in prepared_contexts:
+            contexts_by_consumer_identity[
+                (
+                    value["path"],
+                    value["function"],
+                    value["source"],
+                    value["occurrenceIndex"],
+                )
+            ].append(value)
+        duplicate_identities = {
+            key for key, values in contexts_by_consumer_identity.items() if len(values) != 1
+        }
+        for path, function, source, occurrence_index in sorted(duplicate_identities):
+            issues.append(
+                {
+                    "code": "DUPLICATE_REVIEWED_CONTEXT",
+                    "path": path,
+                    "function": function,
+                    "source": source,
+                    "occurrenceIndex": occurrence_index,
+                }
+            )
+
+        for value in sorted(
+            prepared_contexts,
+            key=lambda row: (
+                row["path"],
+                row["function"],
+                row["source"],
+                row["occurrenceIndex"],
+                row["target"],
+            ),
+        ):
+            path = value["path"]
+            function = value["function"]
+            source = value["source"]
+            target = value["target"]
+            occurrence_index = value["occurrenceIndex"]
+            identity = (path, function, source, occurrence_index)
+            is_validated_reflow = identity in validated_reflow_contexts
+            if (path, function, source, occurrence_index) in duplicate_identities:
+                continue
+            if path not in context_inventories:
+                issues.append(
+                    {
+                        "code": "INVALID_REVIEWED_CONTEXT_PATH",
+                        "path": path,
+                        "function": function,
+                        "source": source,
+                    }
+                )
+                continue
+            upstream_literals, current_literals = context_inventories[path]
+            upstream_function = sorted(
+                (row for row in upstream_literals if row.function == function),
+                key=lambda row: (row.start, row.end),
+            )
+            current_function = sorted(
+                (row for row in current_literals if row.function == function),
+                key=lambda row: (row.start, row.end),
+            )
+            if not upstream_function or not current_function:
+                issues.append(
+                    {
+                        "code": "INVALID_REVIEWED_CONTEXT_FUNCTION",
+                        "path": path,
+                        "function": function,
+                        "source": source,
+                    }
+                )
+                continue
+            upstream_identity_matches = [
+                row
+                for row in upstream_function
+                if row.occurrence_index == occurrence_index and row.decoded == source
+            ]
+            if len(upstream_identity_matches) > 1:
+                issues.append(
+                    {
+                        "code": "AMBIGUOUS_REVIEWED_CONTEXT_SOURCE",
+                        "path": path,
+                        "function": function,
+                        "source": source,
+                        "occurrenceIndex": occurrence_index,
+                    }
+                )
+                continue
+            if len(upstream_identity_matches) != 1 or not HAN.search(source):
+                issues.append(
+                    {
+                        "code": "INVALID_REVIEWED_CONTEXT_SOURCE",
+                        "path": path,
+                        "function": function,
+                        "source": source,
+                        "occurrenceIndex": occurrence_index,
+                    }
+                )
+                continue
+            upstream_literal = upstream_identity_matches[0]
+            if (
+                accepted_entries.get(source, {}).get("status") == "official"
+                and identity not in validated_official_contexts
+            ):
+                continue
+            if not HANGUL.search(target) and not is_validated_reflow:
+                issues.append(
+                    {
+                        "code": "CURRENT_NOT_HANGUL",
+                        "path": path,
+                        "function": function,
+                        "source": source,
+                        "occurrenceIndex": occurrence_index,
+                    }
+                )
+                continue
+            if format_signature(source) != format_signature(target):
+                issues.append(
+                    {
+                        "code": "FORMAT_SIGNATURE_MISMATCH",
+                        "path": path,
+                        "function": function,
+                        "source": source,
+                        "provenance": "manual-reviewed-context",
+                        "sourceSignature": list(format_signature(source)),
+                        "targetSignature": list(format_signature(target)),
+                    }
+                )
+                continue
+            if is_validated_reflow:
+                component_plan = _validated_reflow_component_plan(value, upstream_literal)
+            else:
+                target_matches = [
+                    row for row in current_function if row.decoded == target
+                ]
+                if not target_matches:
+                    issues.append(
+                        {
+                            "code": "INVALID_REVIEWED_CONTEXT_TARGET",
+                            "path": path,
+                            "function": function,
+                            "source": source,
+                            "occurrenceIndex": occurrence_index,
+                            "target": target,
+                        }
+                    )
+                    continue
+                if len(target_matches) != 1:
+                    issues.append(
+                        {
+                            "code": "AMBIGUOUS_REVIEWED_CONTEXT_TARGET",
+                            "path": path,
+                            "function": function,
+                            "source": source,
+                            "occurrenceIndex": occurrence_index,
+                            "target": target,
+                        }
+                    )
+                    continue
+                component_plan = _manual_component_plan(
+                    value, upstream_literal, target_matches[0]
+                )
+            if component_plan is None:
+                issues.append(
+                    {
+                        "code": "INVALID_REVIEWED_CONTEXT_COMPONENTS",
+                        "path": path,
+                        "function": function,
+                        "source": source,
+                        "occurrenceIndex": occurrence_index,
+                        "target": target,
+                    }
+                )
+                continue
+            key = (path, function, source, occurrence_index)
+            reviewed_contexts.add(key)
+            contexts.append(
+                {
+                    "path": path,
+                    "function": function,
+                    "source": source,
+                    "occurrenceIndex": occurrence_index,
+                    "target": target,
+                    "status": "reviewed",
+                    "provenance": "manual-reviewed-context",
+                    "formatSignature": list(format_signature(source)),
+                    **(
+                        {"components": _component_document(component_plan)}
+                        if component_plan
+                        else {}
+                    ),
+                }
+            )
+
+    filtered_alignment_issues: list[dict[str, Any]] = []
+    for issue in alignment_issue_rows:
+        path = str(issue.get("path", "")).replace("\\", "/")
+        function = str(issue.get("function", ""))
+        occurrence_index = issue.get("occurrenceIndex")
+        source = issue.get("source")
+        if (
+            isinstance(source, str)
+            and type(occurrence_index) is int
+            and (path, function, source, occurrence_index) in reviewed_contexts
+        ):
+            continue
+        filtered_alignment_issues.append(issue)
+    alignment_issue_rows = filtered_alignment_issues
+
+    for issue in alignment_issue_rows:
+        source = issue.get("source")
+        if isinstance(source, str):
+            failed_sources.add(source)
+            occurrence_index = issue.get("occurrenceIndex")
+            if type(occurrence_index) is int:
+                failed_contexts.add(
+                    (
+                        str(issue.get("path", "")),
+                        str(issue.get("function", "")),
+                        source,
+                        occurrence_index,
+                    )
+                )
+
+    candidates: dict[str, list[Alignment]] = defaultdict(list)
+    official_component_rows: dict[str, list[Alignment]] = defaultdict(list)
+    for row in sorted(
+        alignments,
+        key=lambda item: (
+            item.path,
+            item.function,
+            item.occurrence_index,
+            item.source,
+            item.target,
+        ),
+    ):
+        if accepted_entries.get(row.source, {}).get("status") == "official":
+            if (
+                row.path,
+                row.function,
+                row.source,
+                row.occurrence_index,
+            ) in reviewed_contexts:
+                continue
+            official_component_rows[row.source].append(row)
+            continue
+        if (
+            row.path,
+            row.function,
+            row.source,
+            row.occurrence_index,
+        ) in reviewed_contexts:
+            continue
+        if not HAN.search(row.source):
+            issues.append(_alignment_issue("UPSTREAM_NOT_HAN", row))
+            continue
+        if not HANGUL.search(row.target):
+            issues.append(_alignment_issue("CURRENT_NOT_HANGUL", row))
+            continue
+        source_signature = format_signature(row.source)
+        target_signature = format_signature(row.target)
+        if source_signature != target_signature:
+            issues.append(
+                _alignment_issue(
+                    "FORMAT_SIGNATURE_MISMATCH",
+                    row,
+                    sourceSignature=list(source_signature),
+                    targetSignature=list(target_signature),
+                )
+            )
+            continue
+        if row.components and not _component_plan_has_exact_evidence(
+            row.components, official
+        ):
+            issues.append(_alignment_issue("COMPONENT_ALIGNMENT_REQUIRED", row))
+            continue
+        candidates[row.source].append(row)
+
+    for source, rows in sorted(official_component_rows.items()):
+        target = accepted_entries[source]["target"]
+        component_plans = {row.components for row in rows}
+        if (
+            all(row.target == target for row in rows)
+            and len(component_plans) == 1
+            and _component_plan_has_exact_evidence(
+                next(iter(component_plans)), official
+            )
+        ):
+            component_plan = next(iter(component_plans))
+            if component_plan:
+                accepted_entries[source]["components"] = _component_document(
+                    component_plan
+                )
+            continue
+        for row in rows:
+            issues.append(
+                _alignment_issue(
+                    "COMPONENT_ALIGNMENT_REQUIRED",
+                    row,
+                    acceptedTarget=target,
+                )
+            )
+
+    for source, rows in sorted(candidates.items()):
+        targets = {row.target for row in rows}
+        component_plans = {row.components for row in rows}
+        if (
+            len(targets) == 1
+            and len(component_plans) == 1
+            and source not in failed_sources
+            and source not in {key[2] for key in reviewed_contexts}
+        ):
+            accepted_entries[source] = _entry(
+                next(iter(targets)),
+                "reviewed",
+                "current-ko-baseline",
+                source,
+                next(iter(component_plans)),
+            )
+            continue
+        by_context: dict[tuple[str, str, int], list[Alignment]] = defaultdict(list)
+        for row in rows:
+            by_context[(row.path, row.function, row.occurrence_index)].append(row)
+        if any(
+            len({(row.target, row.components) for row in values}) != 1
+            for values in by_context.values()
+        ):
+            first = rows[0]
+            issues.append(
+                _alignment_issue(
+                    "ALIGNMENT_COLLISION",
+                    first,
+                    targets=sorted(targets),
+                )
+            )
+            continue
+        for (path, function, occurrence_index), values in sorted(by_context.items()):
+            if (path, function, source, occurrence_index) in failed_contexts:
+                continue
+            target = values[0].target
+            component_plan = values[0].components
+            contexts.append(
+                {
+                    "path": path,
+                    "function": function,
+                    "source": source,
+                    "occurrenceIndex": occurrence_index,
+                    "target": target,
+                    "status": "reviewed",
+                    "provenance": "current-ko-baseline",
+                    "formatSignature": list(format_signature(source)),
+                    **(
+                        {"components": _component_document(component_plan)}
+                        if component_plan
+                        else {}
+                    ),
+                }
+            )
+
+    issues.extend(alignment_issue_rows)
+
+    legacy_entries = legacy.get("entries", {}) if isinstance(legacy, dict) else {}
+    suggestion_entries: dict[str, dict[str, Any]] = {}
+    if isinstance(legacy_entries, dict):
+        for source, value in sorted(legacy_entries.items()):
+            target = _target(value)
+            if not isinstance(source, str) or target is None:
+                continue
+            suggestion_entries[source] = _entry(
+                target, "suggested", "legacy-machine-suggestion", source
+            )
+
+    accepted_entries = dict(sorted(accepted_entries.items()))
+    contexts.sort(
+        key=lambda row: (
+            row["path"],
+            row["function"],
+            row["source"],
+            row["occurrenceIndex"],
+            row["target"],
+        )
+    )
+    issues.sort(key=_issue_sort_key)
+    accepted = {"schemaVersion": 2, "entries": accepted_entries, "contexts": contexts}
+    suggestions: dict[str, Any] = {
+        "schemaVersion": 2,
+        "source": str(legacy.get("source", "legacy source-literal machine draft")),
+    }
+    for field in ("models", "licenses"):
+        if field in legacy:
+            suggestions[field] = legacy[field]
+    suggestions["entries"] = suggestion_entries
+    suggestions["contexts"] = []
+
+    ambiguous_codes = {"AMBIGUOUS_ALIGNMENT", "ALIGNMENT_COLLISION"}
+    unmapped_codes = {
+        "CURRENT_NOT_HANGUL",
+        "UNMAPPED_ALIGNMENT",
+        "CURRENT_PATH_MISSING",
+        "UNSUPPORTED_ESCAPE",
+        "FORMAT_SIGNATURE_MISMATCH",
+        "INVALID_REVIEWED_CONTEXT",
+        "INVALID_REVIEWED_CONTEXT_PATH",
+        "INVALID_REVIEWED_CONTEXT_FUNCTION",
+        "INVALID_REVIEWED_CONTEXT_SOURCE",
+        "INVALID_REVIEWED_CONTEXT_TARGET",
+        "DUPLICATE_REVIEWED_CONTEXT",
+        "AMBIGUOUS_REVIEWED_CONTEXT_TARGET",
+        "AMBIGUOUS_REVIEWED_CONTEXT_SOURCE",
+        "INVALID_REVIEWED_CONTEXT_COMPONENTS",
+        "INVALID_REVIEWED_OVERRIDE_COMPONENTS",
+        "COMPONENT_ALIGNMENT_REQUIRED",
+    }
+    report = {
+        "counts": {
+            "official": sum(row["status"] == "official" for row in accepted_entries.values()),
+            "reviewed": sum(row["status"] == "reviewed" for row in accepted_entries.values())
+            + len(contexts),
+            "suggested": len(suggestion_entries),
+            "ambiguous": sum(row.get("code") in ambiguous_codes for row in issues),
+            "unmapped": sum(row.get("code") in unmapped_codes for row in issues),
+        },
+        "issues": issues,
+    }
+    return MigrationResult(accepted=accepted, suggestions=suggestions, report=report)
+
+
+def _decoded_literal(node: Any, text: bytes, function: str) -> Literal:
+    line = text.count(b"\n", 0, node.start_byte) + 1
+    if node.type == "concatenated_string":
+        children = [
+            child
+            for child in node.named_children
+            if child.type in {"string_literal", "raw_string_literal"}
+        ]
+        components: list[source_overlay.LiteralComponent] = []
+        for child in children:
+            child_line = text.count(b"\n", 0, child.start_byte) + 1
+            decoded, prefix = source_overlay._decode_literal(
+                child, text, function, child_line, allow_legacy_nul=True
+            )
+            components.append(
+                source_overlay.LiteralComponent(
+                    child.start_byte,
+                    child.end_byte,
+                    decoded,
+                    prefix,
+                    "raw" if child.type == "raw_string_literal" else "regular",
+                    child_line,
+                )
+            )
+        return Literal(
+            "",
+            node.start_byte,
+            node.end_byte,
+            "".join(component.decoded for component in components),
+            components[0].prefix,
+            function,
+            line,
+            components=tuple(components),
+        )
+    decoded, prefix = source_overlay._decode_literal(
+        node, text, function, line, allow_legacy_nul=True
+    )
+    component = source_overlay.LiteralComponent(
+        node.start_byte,
+        node.end_byte,
+        decoded,
+        prefix,
+        "raw" if node.type == "raw_string_literal" else "regular",
+        line,
+    )
+    return Literal(
+        "",
+        node.start_byte,
+        node.end_byte,
+        decoded,
+        prefix,
+        function,
+        line,
+        components=(component,),
+    )
+
+
+def _unit_for_literal(node: Any) -> Any:
+    unit = node
+    while unit.parent is not None:
+        if unit is not node and (
+            unit.type.endswith("_statement")
+            or unit.type
+            in {
+                "assignment_expression",
+                "call_expression",
+                "declaration",
+                "field_declaration",
+                "parameter_declaration",
+            }
+        ):
+            break
+        parent = unit.parent
+        if parent.type in {"function_definition", "translation_unit"}:
+            break
+        if parent.type == "compound_statement":
+            break
+        unit = parent
+    return unit
+
+
+def _normalized_unit(unit: Any, text: bytes, function: str) -> _StructuralUnit:
+    tokens: list[tuple[str, str]] = []
+    literals: list[Literal] = []
+
+    def visit(node: Any) -> None:
+        if node.type == "comment":
+            return
+        if node.type == "concatenated_string":
+            owner = _unit_for_literal(node)
+            if (owner.start_byte, owner.end_byte) != (unit.start_byte, unit.end_byte):
+                return
+            tokens.append(("LITERAL", ""))
+            literals.append(_decoded_literal(node, text, function))
+            return
+        if node.type in {"string_literal", "raw_string_literal"}:
+            owner = _unit_for_literal(node)
+            if (owner.start_byte, owner.end_byte) != (unit.start_byte, unit.end_byte):
+                return
+            tokens.append(("LITERAL", ""))
+            literals.append(_decoded_literal(node, text, function))
+            return
+        if not node.named_children:
+            tokens.append(
+                (
+                    node.type,
+                    text[node.start_byte : node.end_byte].decode("utf-8", errors="replace"),
+                )
+            )
+            return
+        for child in node.named_children:
+            visit(child)
+
+    visit(unit)
+    return _StructuralUnit(tokens=tokens, literals=literals)
+
+
+def _structural_groups(
+    path: Path,
+    original: bytes,
+    *,
+    parse_recovery_allowlist: tuple[source_overlay.ParseRecoveryEvidence, ...] = (),
+    source_role: str = "",
+    source_commit: str = "",
+    used_recovery_evidence: set[source_overlay.ParseRecoveryEvidence] | None = None,
+) -> dict[tuple[str, tuple[Any, ...], int], list[Literal]]:
+    text = original
+    tree = source_overlay._PARSER.parse(text)
+    scanner_rows = source_overlay.scan_cpp_literals(
+        path,
+        text,
+        parse_recovery_allowlist=parse_recovery_allowlist,
+        source_role=source_role,
+        source_commit=source_commit,
+        used_recovery_evidence=used_recovery_evidence,
+        allow_legacy_nul=True,
+    )
+    scanner_by_span = {(row.start, row.end): row for row in scanner_rows}
+    groups: dict[tuple[str, tuple[Any, ...], int], list[Literal]] = defaultdict(list)
+    seen_units: set[tuple[int, int, str]] = set()
+    grouped_spans: set[tuple[int, int]] = set()
+
+    def walk(node: Any, function: str) -> None:
+        if node.type == "function_definition":
+            function = source_overlay._function_name(node, text)
+        if node.type == "concatenated_string" or node.type in {
+            "string_literal",
+            "raw_string_literal",
+        }:
+            unit = _unit_for_literal(node)
+            identity = (unit.start_byte, unit.end_byte, function)
+            if identity not in seen_units:
+                seen_units.add(identity)
+                normalized = _normalized_unit(unit, text, function)
+                fingerprint = tuple(normalized.tokens)
+                for marker_index, literal in enumerate(normalized.literals):
+                    scanner_literal = scanner_by_span.get((literal.start, literal.end))
+                    if scanner_literal is None:
+                        raise ValueError(
+                            "AST literal is absent from the shared scanner inventory: "
+                            f"{path.as_posix()}:{literal.start}:{literal.end}"
+                        )
+                    groups[(function, fingerprint, marker_index)].append(
+                        scanner_literal
+                    )
+                    grouped_spans.add((literal.start, literal.end))
+            return
+        for child in node.named_children:
+            walk(child, function)
+
+    walk(tree.root_node, "")
+
+    # The shared scanner deliberately sub-parses opaque preprocessor arguments.
+    # The raw AST walk above cannot see those expressions, so group only its
+    # remaining macro rows by macro-definition ordinal and local literal order.
+    # This keeps ordinary structural grouping unchanged and makes any scanner
+    # row that cannot be tied to a macro a fail-closed inventory error.
+    lexical_text, original_left_boundaries, original_boundaries = (
+        source_overlay._phase2_lexical_view(text)
+    )
+    lexical_tree = source_overlay._PARSER.parse(lexical_text)
+    macro_ranges: list[tuple[int, int, str]] = []
+
+    def collect_macro_ranges(node: Any, function: str) -> None:
+        if node.type == "function_definition":
+            function = source_overlay._function_name(node, lexical_text)
+        if node.type in {"preproc_def", "preproc_function_def"}:
+            macro_ranges.append(
+                (
+                    original_left_boundaries[node.start_byte],
+                    original_boundaries[node.end_byte],
+                    function,
+                )
+            )
+        for child in node.named_children:
+            collect_macro_ranges(child, function)
+
+    collect_macro_ranges(lexical_tree.root_node, "")
+    macro_ordinals = {
+        identity: index for index, identity in enumerate(macro_ranges)
+    }
+    macro_literal_ordinals: dict[tuple[int, int, str], int] = defaultdict(int)
+    for literal in scanner_rows:
+        if (literal.start, literal.end) in grouped_spans:
+            continue
+        macro_identity = next(
+            (
+                identity
+                for identity in macro_ranges
+                if identity[0] <= literal.start and literal.end <= identity[1]
+            ),
+            None,
+        )
+        if macro_identity is None:
+            raise ValueError(
+                "shared scanner literal is not covered by an ordinary or macro "
+                f"structural group: {path.as_posix()}:{literal.start}:{literal.end}"
+            )
+        local_index = macro_literal_ordinals[macro_identity]
+        macro_literal_ordinals[macro_identity] += 1
+        component_shape = tuple(
+            (component.kind, component.prefix) for component in literal.components
+        )
+        fingerprint = (
+            "MACRO_REPLACEMENT",
+            macro_ordinals[macro_identity],
+            component_shape,
+        )
+        groups[(literal.function, fingerprint, local_index)].append(literal)
+    return groups
+
+
+def _context_inventory(
+    path: Path,
+    original: bytes,
+    *,
+    parse_recovery_allowlist: tuple[source_overlay.ParseRecoveryEvidence, ...] = (),
+    source_role: str = "",
+    source_commit: str = "",
+    used_recovery_evidence: set[source_overlay.ParseRecoveryEvidence] | None = None,
+) -> list[Literal]:
+    rows: dict[tuple[str, int, int], Literal] = {}
+    for values in _structural_groups(
+        path,
+        original,
+        parse_recovery_allowlist=parse_recovery_allowlist,
+        source_role=source_role,
+        source_commit=source_commit,
+        used_recovery_evidence=used_recovery_evidence,
+    ).values():
+        for row in values:
+            rows[(row.function, row.start, row.end)] = row
+    return sorted(rows.values(), key=lambda row: (row.function, row.start, row.end))
+
+
+def align_file_literals(
+    path: Path,
+    upstream_text: bytes,
+    current_text: bytes,
+    *,
+    parse_recovery_allowlist: tuple[source_overlay.ParseRecoveryEvidence, ...] = (),
+    used_recovery_evidence: set[source_overlay.ParseRecoveryEvidence] | None = None,
+) -> tuple[list[Alignment], list[dict[str, Any]]]:
+    """Align literals only when a structural fingerprint has one ordered match."""
+    upstream = _structural_groups(
+        path,
+        upstream_text,
+        parse_recovery_allowlist=parse_recovery_allowlist,
+        source_role="upstream",
+        source_commit=PINNED_UPSTREAM,
+        used_recovery_evidence=used_recovery_evidence,
+    )
+    current = _structural_groups(
+        path,
+        current_text,
+        parse_recovery_allowlist=parse_recovery_allowlist,
+        source_role="localized",
+        source_commit=PINNED_LOCALIZED,
+        used_recovery_evidence=used_recovery_evidence,
+    )
+    alignments: list[Alignment] = []
+    issues: list[dict[str, Any]] = []
+    occurrence_by_span = {
+        (function, row.start, row.end): row.occurrence_index
+        for (function, _, _), rows in upstream.items()
+        for row in rows
+    }
+    handled_spans: set[tuple[str, int, int]] = set()
+
+    for key, upstream_rows in sorted(
+        upstream.items(), key=lambda item: (item[0][0], item[1][0].start)
+    ):
+        function = key[0]
+        current_rows = current.get(key, [])
+        indexed_rows: list[tuple[Literal, int]] = []
+        for row in upstream_rows:
+            index = occurrence_by_span[(function, row.start, row.end)]
+            indexed_rows.append((row, index))
+        visible_rows = [(row, index) for row, index in indexed_rows if HAN.search(row.decoded)]
+        if not visible_rows:
+            continue
+        if len(upstream_rows) != len(current_rows):
+            if len(visible_rows) == 1:
+                upstream_row, occurrence_index = visible_rows[0]
+                viable = [
+                    row
+                    for row in current_rows
+                    if HANGUL.search(row.decoded)
+                    and format_signature(row.decoded) == format_signature(upstream_row.decoded)
+                ]
+                if len(viable) == 1:
+                    candidate = viable[0]
+                    component_plan = _aligned_component_plan(upstream_row, candidate)
+                    if component_plan is None:
+                        issues.append(
+                            _alignment_issue(
+                                "COMPONENT_ALIGNMENT_REQUIRED",
+                                Alignment(
+                                    path.as_posix(),
+                                    function,
+                                    upstream_row.decoded,
+                                    candidate.decoded,
+                                    occurrence_index,
+                                    upstream_row.line,
+                                ),
+                            )
+                        )
+                        handled_spans.add(
+                            (function, upstream_row.start, upstream_row.end)
+                        )
+                        continue
+                    alignments.append(
+                        Alignment(
+                            path=path.as_posix(),
+                            function=function,
+                            source=upstream_row.decoded,
+                            target=candidate.decoded,
+                            occurrence_index=occurrence_index,
+                            line=upstream_row.line,
+                            components=component_plan,
+                        )
+                    )
+                    handled_spans.add((function, upstream_row.start, upstream_row.end))
+                    continue
+            candidates = [
+                row.decoded
+                for row in current_rows
+                if HANGUL.search(row.decoded)
+            ]
+            code = "AMBIGUOUS_ALIGNMENT" if candidates else "UNMAPPED_ALIGNMENT"
+            for upstream_row, occurrence_index in visible_rows:
+                issues.append(
+                    {
+                        "code": code,
+                        "path": path.as_posix(),
+                        "function": function,
+                        "line": upstream_row.line,
+                        "occurrenceIndex": occurrence_index,
+                        "source": upstream_row.decoded,
+                        "currentCandidates": candidates,
+                    }
+                )
+            continue
+        for (upstream_row, occurrence_index), current_row in zip(
+            indexed_rows, current_rows, strict=True
+        ):
+            if not HAN.search(upstream_row.decoded):
+                continue
+            identity = (function, upstream_row.start, upstream_row.end)
+            if identity in handled_spans:
+                continue
+            handled_spans.add(identity)
+            component_plan = _aligned_component_plan(upstream_row, current_row)
+            alignment = Alignment(
+                path=path.as_posix(),
+                function=function,
+                source=upstream_row.decoded,
+                target=current_row.decoded,
+                occurrence_index=occurrence_index,
+                line=upstream_row.line,
+                components=component_plan or (),
+            )
+            if component_plan is None:
+                issues.append(_alignment_issue("COMPONENT_ALIGNMENT_REQUIRED", alignment))
+            elif not HANGUL.search(current_row.decoded):
+                issues.append(_alignment_issue("CURRENT_NOT_HANGUL", alignment))
+            elif format_signature(upstream_row.decoded) != format_signature(current_row.decoded):
+                issues.append(
+                    _alignment_issue(
+                        "FORMAT_SIGNATURE_MISMATCH",
+                        alignment,
+                        sourceSignature=list(format_signature(upstream_row.decoded)),
+                        targetSignature=list(format_signature(current_row.decoded)),
+                    )
+                )
+            else:
+                alignments.append(alignment)
+
+    alignments.sort(
+        key=lambda row: (row.path, row.function, row.occurrence_index, row.source, row.target)
+    )
+    issues.sort(key=_issue_sort_key)
+    return alignments, issues
+
+
+def _git_bytes(arguments: list[str]) -> bytes:
+    return subprocess.check_output(["git", *arguments], cwd=REPOSITORY_ROOT)
+
+
+def _source_paths(source_ref: str, source_role: str) -> list[str]:
+    try:
+        raw_names = _git_bytes(
+            ["ls-tree", "-r", "--name-only", source_ref, "--", "pob-zh-engine"]
+        )
+    except subprocess.CalledProcessError as error:
+        raise ValueError(
+            f"pinned {source_role} Git tree is unavailable: {source_ref}"
+        ) from error
+    names = raw_names.decode("utf-8").splitlines()
+    paths = {
+        name
+        for name in names
+        if (
+            name.startswith("pob-zh-engine/host/")
+            and Path(name).suffix.lower() in SOURCE_SUFFIXES
+        )
+        or (
+            Path(name).parent.as_posix() == "pob-zh-engine"
+            and re.fullmatch(r"ui_.*\.(?:cpp|h)", Path(name).name)
+        )
+    }
+    return sorted(paths)
+
+
+def _validate_pinned_source_ref(
+    source_ref: str,
+    expected: str,
+    source_role: str,
+    *,
+    expected_tree: str | None = None,
+) -> None:
+    if source_ref != expected:
+        raise ValueError(f"{source_role} ref must be pinned to {expected}")
+    try:
+        resolved = _git_bytes(["rev-parse", "--verify", f"{source_ref}^{{commit}}"])
+    except subprocess.CalledProcessError as error:
+        raise ValueError(f"pinned {source_role} ref is unavailable: {source_ref}") from error
+    if resolved.decode("ascii").strip() != expected:
+        raise ValueError(f"pinned {source_role} ref resolved to an unexpected commit")
+    if expected_tree is not None:
+        try:
+            resolved_tree = _git_bytes(["rev-parse", f"{source_ref}:pob-zh-engine"])
+        except subprocess.CalledProcessError as error:
+            raise ValueError(
+                f"pinned {source_role} engine tree is unavailable: {source_ref}"
+            ) from error
+        if resolved_tree.decode("ascii").strip() != expected_tree:
+            raise ValueError(
+                f"pinned {source_role} engine tree resolved to an unexpected object"
+            )
+
+
+def _git_source_bytes(source_ref: str, repository_path: str, source_role: str) -> bytes:
+    try:
+        return _git_bytes(["show", f"{source_ref}:{repository_path}"])
+    except subprocess.CalledProcessError as error:
+        raise ValueError(
+            f"pinned {source_role} Git blob is unavailable: {repository_path}"
+        ) from error
+
+
+def _excluded_paths(policy: dict[str, Any] | None = None) -> set[str]:
+    if policy is None:
+        policy = json.loads(
+            (LOCALE_ROOT / "source-display-policy.json").read_text(encoding="utf-8")
+        )
+    return {
+        str(row.get("path", "")).replace("\\", "/")
+        for row in policy.get("excludedPaths", [])
+        if isinstance(row, dict) and str(row.get("reason", "")).strip()
+    }
+
+
+def _evidence_issue(code: str, path: Path, detail: str) -> dict[str, str]:
+    return {"code": code, "path": path.as_posix(), "detail": detail}
+
+
+def _read_evidence_json(path: Path) -> tuple[Any | None, list[dict[str, str]]]:
+    if not path.is_file():
+        return None, [_evidence_issue("OFFICIAL_MANIFEST_MISSING", path, "required file is missing")]
+    try:
+        return json.loads(path.read_text(encoding="utf-8")), []
+    except (OSError, UnicodeError, json.JSONDecodeError) as error:
+        return None, [_evidence_issue("OFFICIAL_EVIDENCE_INVALID", path, str(error))]
+
+
+def _file_sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as source:
+        for chunk in iter(lambda: source.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest().upper()
+
+
+def _matches_manifest_sha256(path: Path, expected: str) -> bool:
+    expected = expected.upper()
+    if _file_sha256(path) == expected:
+        return True
+    # Git may materialize text evidence with CRLF even though the pinned
+    # manifest hashes the repository's LF blob. Only this reversible checkout
+    # normalization is accepted; all other byte changes remain failures.
+    normalized = path.read_bytes().replace(b"\r\n", b"\n")
+    return hashlib.sha256(normalized).hexdigest().upper() == expected
+
+
+def verify_stable_id_evidence(
+    manifest_path: Path,
+    english_path: Path,
+    korean_path: Path,
+    accepted_path: Path,
+    *,
+    expected_table: str,
+) -> list[dict[str, str]]:
+    """Validate pinned table hashes and every accepted stable-ID join."""
+    issues: list[dict[str, str]] = []
+    manifest, manifest_issues = _read_evidence_json(manifest_path)
+    issues.extend(manifest_issues)
+    if not isinstance(manifest, dict):
+        return issues
+    if manifest.get("patch") != OFFICIAL_PATCH:
+        issues.append(
+            _evidence_issue(
+                "OFFICIAL_PATCH_MISMATCH",
+                manifest_path,
+                f"expected {OFFICIAL_PATCH}, got {manifest.get('patch')}",
+            )
+        )
+    if manifest.get("table") != expected_table:
+        issues.append(
+            _evidence_issue(
+                "OFFICIAL_EVIDENCE_INVALID", manifest_path, "unexpected table identity"
+            )
+        )
+    client = manifest.get("clientEvidence", {})
+    if (
+        not isinstance(client, dict)
+        or client.get("detectedPatch") != OFFICIAL_PATCH
+        or client.get("matchesExportPatch") is not True
+    ):
+        issues.append(
+            _evidence_issue(
+                "OFFICIAL_PATCH_MISMATCH", manifest_path, "client patch evidence is stale"
+            )
+        )
+
+    inputs = manifest.get("inputs", {})
+    documents: list[Any] = []
+    for language, path in (("english", english_path), ("korean", korean_path)):
+        document, document_issues = _read_evidence_json(path)
+        if document_issues:
+            issues.extend(
+                _evidence_issue("OFFICIAL_INPUT_MISSING", path, row["detail"])
+                for row in document_issues
+            )
+            documents.append(None)
+            continue
+        documents.append(document)
+        expected_hash = str(inputs.get(f"{language}Sha256", "")).upper()
+        if not expected_hash or not _matches_manifest_sha256(path, expected_hash):
+            issues.append(
+                _evidence_issue(
+                    "OFFICIAL_INPUT_HASH_MISMATCH", path, f"{language} SHA-256 differs"
+                )
+            )
+        expected_rows = inputs.get(f"{language}Rows")
+        if not isinstance(document, list) or len(document) != expected_rows:
+            issues.append(
+                _evidence_issue(
+                    "OFFICIAL_STABLE_ID_MISMATCH", path, f"{language} row count differs"
+                )
+            )
+
+    english_rows, korean_rows = documents
+    if not isinstance(english_rows, list) or not isinstance(korean_rows, list):
+        return sorted(issues, key=lambda row: (row["path"], row["code"], row["detail"]))
+    name_column = str(manifest.get("nameColumn", "Name"))
+
+    def grouped(rows: list[Any]) -> dict[str, set[str]]:
+        result: dict[str, set[str]] = defaultdict(set)
+        for row in rows:
+            if not isinstance(row, dict):
+                continue
+            stable_id = str(row.get("Id", ""))
+            name = str(row.get(name_column, ""))
+            if stable_id.strip() and name.strip():
+                result[stable_id].add(name)
+        return result
+
+    english_by_id = grouped(english_rows)
+    korean_by_id = grouped(korean_rows)
+    stable_ids = {
+        str(row.get("Id", ""))
+        for row in [*english_rows, *korean_rows]
+        if isinstance(row, dict) and str(row.get("Id", "")).strip()
+    }
+    if len(stable_ids) != inputs.get("stableIds"):
+        issues.append(
+            _evidence_issue(
+                "OFFICIAL_STABLE_ID_MISMATCH", manifest_path, "stable-ID count differs"
+            )
+        )
+
+    accepted, accepted_issues = _read_evidence_json(accepted_path)
+    issues.extend(accepted_issues)
+    rows = accepted.get("rows") if isinstance(accepted, dict) else None
+    if (
+        not isinstance(accepted, dict)
+        or accepted.get("patch") != OFFICIAL_PATCH
+        or accepted.get("table") != expected_table
+        or accepted.get("join") != "Id"
+        or not isinstance(rows, list)
+        or len(rows) != manifest.get("counts", {}).get("accepted")
+    ):
+        issues.append(
+            _evidence_issue(
+                "OFFICIAL_EVIDENCE_INVALID", accepted_path, "accepted report metadata differs"
+            )
+        )
+    else:
+        for row in rows:
+            if not isinstance(row, dict):
+                issues.append(
+                    _evidence_issue(
+                        "OFFICIAL_STABLE_ID_MISMATCH", accepted_path, "accepted row is invalid"
+                    )
+                )
+                continue
+            stable_id = str(row.get("id", ""))
+            if (
+                english_by_id.get(stable_id) != {row.get("english")}
+                or korean_by_id.get(stable_id) != {row.get("korean")}
+            ):
+                issues.append(
+                    _evidence_issue(
+                        "OFFICIAL_STABLE_ID_MISMATCH",
+                        accepted_path,
+                        f"accepted stable-ID join differs: {stable_id}",
+                    )
+                )
+    return sorted(issues, key=lambda row: (row["path"], row["code"], row["detail"]))
+
+
+def _verify_structured_evidence(
+    report_manifest_path: Path,
+    source_manifest_path: Path,
+    english_path: Path,
+    korean_path: Path,
+    accepted_path: Path,
+    *,
+    identity_kind: str,
+) -> list[dict[str, str]]:
+    issues: list[dict[str, str]] = []
+    report_manifest, rows = _read_evidence_json(report_manifest_path)
+    issues.extend(rows)
+    source_manifest, rows = _read_evidence_json(source_manifest_path)
+    issues.extend(rows)
+    accepted, rows = _read_evidence_json(accepted_path)
+    issues.extend(rows)
+    if not all(isinstance(row, dict) for row in (report_manifest, source_manifest, accepted)):
+        return issues
+    for path, document in (
+        (report_manifest_path, report_manifest),
+        (source_manifest_path, source_manifest),
+        (accepted_path, accepted),
+    ):
+        if document.get("patch") != OFFICIAL_PATCH:
+            issues.append(
+                _evidence_issue(
+                    "OFFICIAL_PATCH_MISMATCH",
+                    path,
+                    f"expected {OFFICIAL_PATCH}, got {document.get('patch')}",
+                )
+            )
+    client = report_manifest.get("clientEvidence", {})
+    if (
+        not isinstance(client, dict)
+        or client.get("detectedPatch") != OFFICIAL_PATCH
+        or client.get("matchesExportPatch") is not True
+    ):
+        issues.append(
+            _evidence_issue(
+                "OFFICIAL_PATCH_MISMATCH",
+                report_manifest_path,
+                "client patch evidence is stale",
+            )
+        )
+
+    documents: dict[str, Any] = {}
+    for language, path in (("english", english_path), ("korean", korean_path)):
+        document, document_issues = _read_evidence_json(path)
+        if document_issues:
+            issues.extend(
+                _evidence_issue("OFFICIAL_INPUT_MISSING", path, row["detail"])
+                for row in document_issues
+            )
+            continue
+        documents[language] = document
+        source_metadata = source_manifest.get(language, {})
+        report_metadata = report_manifest.get("sources", {}).get(language, {})
+        if source_metadata != report_metadata:
+            issues.append(
+                _evidence_issue(
+                    "OFFICIAL_MANIFEST_MISMATCH",
+                    report_manifest_path,
+                    f"{language} source metadata differs",
+                )
+            )
+        if (
+            not isinstance(source_metadata, dict)
+            or path.name != source_metadata.get("file")
+            or path.stat().st_size != source_metadata.get("bytes")
+            or not _matches_manifest_sha256(
+                path, str(source_metadata.get("sha256", "")).upper()
+            )
+        ):
+            issues.append(
+                _evidence_issue(
+                    "OFFICIAL_INPUT_HASH_MISMATCH", path, f"{language} source differs"
+                )
+            )
+        expected_entries = report_manifest.get("inputs", {}).get(f"{language}Entries")
+        if not hasattr(document, "__len__") or len(document) != expected_entries:
+            issues.append(
+                _evidence_issue(
+                    "OFFICIAL_STABLE_ID_MISMATCH", path, f"{language} entry count differs"
+                )
+            )
+
+    accepted_rows = accepted.get("rows")
+    if (
+        accepted.get("identity") != report_manifest.get("identity")
+        or not isinstance(accepted_rows, list)
+        or len(accepted_rows) != report_manifest.get("counts", {}).get("accepted")
+    ):
+        issues.append(
+            _evidence_issue(
+                "OFFICIAL_EVIDENCE_INVALID", accepted_path, "accepted report metadata differs"
+            )
+        )
+    elif "english" in documents and "korean" in documents:
+        english = documents["english"]
+        korean = documents["korean"]
+        if identity_kind == "mapping-key":
+            english_ids = set(english)
+            korean_ids = set(korean)
+            valid_ids = english_ids | korean_ids
+            for row in accepted_rows:
+                stable_id = row.get("id") if isinstance(row, dict) else None
+                english_entry = english.get(stable_id) if stable_id in valid_ids else None
+                korean_entry = korean.get(stable_id) if stable_id in valid_ids else None
+                if (
+                    not isinstance(row, dict)
+                    or not isinstance(english_entry, dict)
+                    or not isinstance(korean_entry, dict)
+                    or str(english_entry.get("name", "")).strip() != row.get("english")
+                    or str(korean_entry.get("name", "")).strip() != row.get("korean")
+                ):
+                    issues.append(
+                        _evidence_issue(
+                            "OFFICIAL_STABLE_ID_MISMATCH",
+                            accepted_path,
+                            f"accepted mod identity differs: {stable_id or ''}",
+                        )
+                    )
+        elif identity_kind == "unique-id":
+            english_by_id: dict[str, list[dict[str, Any]]] = defaultdict(list)
+            korean_by_id: dict[str, list[dict[str, Any]]] = defaultdict(list)
+            for row in english.values():
+                if isinstance(row, dict):
+                    english_by_id[str(row.get("id", "")).strip()].append(row)
+            for row in korean.values():
+                if isinstance(row, dict):
+                    korean_by_id[str(row.get("id", "")).strip()].append(row)
+            for row in accepted_rows:
+                stable_id = str(row.get("id", "")) if isinstance(row, dict) else ""
+                english_matches = english_by_id.get(stable_id, [])
+                korean_matches = korean_by_id.get(stable_id, [])
+                if (
+                    not isinstance(row, dict)
+                    or len(english_matches) != 1
+                    or len(korean_matches) != 1
+                    or str(english_matches[0].get("name", "")).strip() != row.get("english")
+                    or str(korean_matches[0].get("name", "")).strip() != row.get("korean")
+                ):
+                    issues.append(
+                        _evidence_issue(
+                            "OFFICIAL_STABLE_ID_MISMATCH",
+                            accepted_path,
+                            f"accepted unique identity differs: {stable_id}",
+                        )
+                    )
+        else:
+            english_variant_count = sum(
+                len(row.get("English", []))
+                for row in english.values()
+                if isinstance(row, dict)
+            ) if isinstance(english, dict) else sum(
+                len(row.get("English", [])) for row in english if isinstance(row, dict)
+            )
+            korean_variant_count = sum(
+                len(row.get("Korean", [])) for row in korean if isinstance(row, dict)
+            )
+            if (
+                english_variant_count
+                != report_manifest.get("inputs", {}).get("englishVariants")
+                or korean_variant_count
+                != report_manifest.get("inputs", {}).get("koreanVariants")
+            ):
+                issues.append(
+                    _evidence_issue(
+                        "OFFICIAL_STABLE_ID_MISMATCH",
+                        report_manifest_path,
+                        "stat variant counts differ",
+                    )
+                )
+
+            def variant_key(variant: dict[str, Any]) -> str:
+                identity = {
+                    "condition": variant.get("condition", []),
+                    "format": variant.get("format", []),
+                    "index_handlers": variant.get("index_handlers", []),
+                }
+                encoded = json.dumps(identity, ensure_ascii=False, separators=(",", ":"))
+                return hashlib.sha256(encoded.encode("utf-8")).hexdigest().upper()
+
+            korean_by_ids: dict[tuple[str, ...], list[dict[str, Any]]] = defaultdict(list)
+            for entry in korean:
+                if isinstance(entry, dict):
+                    korean_by_ids[tuple(entry.get("ids", []))].append(entry)
+            valid_rows: dict[tuple[tuple[str, ...], str, str], tuple[str, str]] = {}
+            for english_entry in english:
+                if not isinstance(english_entry, dict):
+                    continue
+                ids = tuple(english_entry.get("ids", []))
+                korean_matches = korean_by_ids.get(ids, [])
+                if not ids or len(korean_matches) != 1:
+                    continue
+                english_variants: dict[str, list[dict[str, Any]]] = defaultdict(list)
+                korean_variants: dict[str, list[dict[str, Any]]] = defaultdict(list)
+                for variant in english_entry.get("English", []):
+                    if isinstance(variant, dict):
+                        english_variants[variant_key(variant)].append(variant)
+                for variant in korean_matches[0].get("Korean", []):
+                    if isinstance(variant, dict):
+                        korean_variants[variant_key(variant)].append(variant)
+                for identity in english_variants.keys() & korean_variants.keys():
+                    if len(english_variants[identity]) != 1 or len(korean_variants[identity]) != 1:
+                        continue
+                    for kind in ("string", "reminder_text"):
+                        english_text = str(english_variants[identity][0].get(kind, "")).replace(
+                            "\r\n", "\n"
+                        )
+                        korean_text = str(korean_variants[identity][0].get(kind, "")).replace(
+                            "\r\n", "\n"
+                        )
+                        if english_text and korean_text:
+                            valid_rows[(ids, identity, kind)] = (english_text, korean_text)
+            for row in accepted_rows:
+                key = (
+                    tuple(row.get("ids", [])),
+                    row.get("variantIdentity"),
+                    row.get("kind"),
+                ) if isinstance(row, dict) else ((), None, None)
+                if (
+                    not isinstance(row, dict)
+                    or valid_rows.get(key) != (row.get("english"), row.get("korean"))
+                ):
+                    issues.append(
+                        _evidence_issue(
+                            "OFFICIAL_STABLE_ID_MISMATCH",
+                            accepted_path,
+                            "accepted stat identity differs",
+                        )
+                    )
+    return sorted(issues, key=lambda row: (row["path"], row["code"], row["detail"]))
+
+
+def verify_official_evidence(repository_root: Path) -> list[dict[str, str]]:
+    locale_root = repository_root / "localization/ko-KR"
+    source_root = locale_root / "official-terms"
+    report_root = repository_root / "reports/official-terms"
+    issues: list[dict[str, str]] = []
+    stable_tables = (
+        ("BaseItemTypes", report_root, source_root / "tables"),
+        *(
+            (table, report_root / "tables" / table, source_root / "tables")
+            for table in (
+                "ActiveSkills",
+                "PassiveSkills",
+                "MonsterVarieties",
+                "ClientStrings",
+                "ClientStrings2",
+            )
+        ),
+    )
+    for table, reports, sources in stable_tables:
+        issues.extend(
+            verify_stable_id_evidence(
+                reports / "manifest.json",
+                sources / "English" / f"{table}.json",
+                sources / "Korean" / f"{table}.json",
+                reports / "accepted.json",
+                expected_table=table,
+            )
+        )
+    structured = (
+        (
+            "unique-items",
+            source_root / "names/sources.json",
+            source_root / "names/English.uniques.min.json",
+            source_root / "names/Korean.uniques.min.json",
+            "unique-id",
+        ),
+        (
+            "mod-names",
+            source_root / "names/mod-sources.json",
+            source_root / "names/English.mods.min.json",
+            source_root / "names/Korean.mods.min.json",
+            "mapping-key",
+        ),
+        (
+            "stat-descriptions",
+            source_root / "stat-descriptions/sources.json",
+            source_root / "stat-descriptions/English.stat_translations.min.json",
+            source_root / "stat-descriptions/Korean.stat_translations.min.json",
+            "stat-ids",
+        ),
+    )
+    for name, source_manifest, english, korean, identity_kind in structured:
+        reports = report_root / name
+        issues.extend(
+            _verify_structured_evidence(
+                reports / "manifest.json",
+                source_manifest,
+                english,
+                korean,
+                reports / "accepted.json",
+                identity_kind=identity_kind,
+            )
+        )
+    provenance_path = repository_root / "reports/display-closure/provenance.json"
+    provenance, rows = _read_evidence_json(provenance_path)
+    issues.extend(rows)
+    if not isinstance(provenance, dict) or provenance.get("patch") != OFFICIAL_PATCH:
+        issues.append(
+            _evidence_issue(
+                "OFFICIAL_PATCH_MISMATCH", provenance_path, "derived provenance patch differs"
+            )
+        )
+    return sorted(issues, key=lambda row: (row["path"], row["code"], row["detail"]))
+
+
+def _official_identity(report_name: str, row: dict[str, Any]) -> str:
+    if row.get("id"):
+        return f"{report_name}:{row['id']}"
+    if isinstance(row.get("ids"), list):
+        joined = ",".join(str(value) for value in row["ids"])
+        return f"{report_name}:{joined}#{row.get('variantIdentity', 'no-variant')}"
+    return report_name
+
+
+def _collect_official_candidates(
+    named_reports: Iterable[tuple[str, dict[str, Any]]],
+) -> dict[str, dict[str, str]]:
+    candidates: dict[str, dict[str, set[str]]] = defaultdict(lambda: defaultdict(set))
+    for name, report in named_reports:
+        for row in report.get("rows", []):
+            if not isinstance(row, dict):
+                continue
+            english = row.get("english")
+            korean = row.get("korean")
+            if not isinstance(english, str) or not isinstance(korean, str):
+                continue
+            candidates[english][korean].add(_official_identity(name, row))
+    exact: dict[str, dict[str, str]] = {}
+    for english, values in candidates.items():
+        if len(values) != 1:
+            continue
+        korean, sources = next(iter(values.items()))
+        exact[english] = {"value": korean, "source": " | ".join(sorted(sources))}
+    return exact
+
+
+def _add_official_fallback(
+    primary: dict[str, dict[str, str]], fallback: dict[str, dict[str, str]]
+) -> dict[str, dict[str, str]]:
+    return {**fallback, **primary}
+
+
+def _accepted_official_by_dictionary(
+    repository_root: Path,
+) -> dict[str, dict[str, dict[str, str]]]:
+    report_root = repository_root / "reports/official-terms"
+    paths = {
+        "baseItems": ("BaseItemTypes", report_root / "accepted.json"),
+        "activeSkills": (
+            "ActiveSkills",
+            report_root / "tables/ActiveSkills/accepted.json",
+        ),
+        "passiveSkills": (
+            "PassiveSkills",
+            report_root / "tables/PassiveSkills/accepted.json",
+        ),
+        "monsters": (
+            "MonsterVarieties",
+            report_root / "tables/MonsterVarieties/accepted.json",
+        ),
+        "clientStrings": (
+            "ClientStrings",
+            report_root / "tables/ClientStrings/accepted.json",
+        ),
+        "clientStrings2": (
+            "ClientStrings2",
+            report_root / "tables/ClientStrings2/accepted.json",
+        ),
+        "stats": (
+            "stat-descriptions",
+            report_root / "stat-descriptions/accepted.json",
+        ),
+        "uniques": ("unique-items", report_root / "unique-items/accepted.json"),
+        "modNames": ("mod-names", report_root / "mod-names/accepted.json"),
+    }
+    reports: dict[str, tuple[str, dict[str, Any]]] = {}
+    issues: list[dict[str, str]] = []
+    for key, (name, path) in paths.items():
+        document, rows = _read_evidence_json(path)
+        issues.extend(rows)
+        if not isinstance(document, dict) or document.get("patch") != OFFICIAL_PATCH:
+            issues.append(
+                _evidence_issue(
+                    "OFFICIAL_PATCH_MISMATCH",
+                    path,
+                    "accepted report cannot bind runtime identity",
+                )
+            )
+            continue
+        reports[key] = (name, document)
+    if issues:
+        raise OfficialEvidenceError(issues)
+
+    def collect(*keys: str) -> dict[str, dict[str, str]]:
+        return _collect_official_candidates(reports[key] for key in keys)
+
+    direct = {
+        "baseItems": collect("baseItems"),
+        "activeAndItems": collect("activeSkills", "baseItems"),
+        "passives": collect("passiveSkills"),
+        "monsters": collect("monsters"),
+        "stats": collect("stats"),
+        "uniques": collect("uniques"),
+        "modNames": collect("modNames"),
+        "passiveSupplement": collect("stats", "clientStrings", "clientStrings2"),
+        "uiPrimary": collect("clientStrings", "clientStrings2", "stats"),
+        "uiSupplement": collect(
+            "baseItems",
+            "activeSkills",
+            "passiveSkills",
+            "monsters",
+            "uniques",
+            "modNames",
+        ),
+    }
+    return {
+        "tags": direct["modNames"],
+        "items": direct["baseItems"],
+        "gems": direct["activeAndItems"],
+        "ui": _add_official_fallback(direct["uiPrimary"], direct["uiSupplement"]),
+        "stats": direct["stats"],
+        "passives": _add_official_fallback(
+            direct["passives"], direct["passiveSupplement"]
+        ),
+        "uniques": direct["uniques"],
+        "monsters": direct["monsters"],
+    }
+
+
+def load_trusted_zh_reference_hashes(repository_root: Path) -> dict[str, str]:
+    manifest_path = repository_root / "reports/baseline/original-distribution.sha256.json"
+    document, issues = _read_evidence_json(manifest_path)
+    expected_paths = {
+        f"Data/poe1/zh-rTW/{dictionary}.json": dictionary
+        for dictionary in DICTIONARIES
+    }
+    observed: dict[str, list[str]] = defaultdict(list)
+    seen_paths: set[str] = set()
+    relevant_hash_paths: dict[str, list[str]] = defaultdict(list)
+    if not isinstance(document, dict) or document.get("algorithm") != "SHA256":
+        issues.append(
+            _evidence_issue(
+                "OFFICIAL_REFERENCE_MANIFEST_MISMATCH",
+                manifest_path,
+                "baseline manifest must declare SHA256",
+            )
+        )
+    else:
+        rows = document.get("files")
+        if not isinstance(rows, list):
+            issues.append(
+                _evidence_issue(
+                    "OFFICIAL_REFERENCE_MANIFEST_MISMATCH",
+                    manifest_path,
+                    "baseline manifest files must be an array",
+                )
+            )
+        else:
+            for index, row in enumerate(rows):
+                if not isinstance(row, dict):
+                    issues.append(
+                        _evidence_issue(
+                            "OFFICIAL_REFERENCE_MANIFEST_INVALID_ROW",
+                            manifest_path,
+                            f"baseline manifest row {index} must be an object",
+                        )
+                    )
+                    continue
+                if set(row) != {"path", "sha256"}:
+                    issues.append(
+                        _evidence_issue(
+                            "OFFICIAL_REFERENCE_MANIFEST_INVALID_ROW",
+                            manifest_path,
+                            f"baseline manifest row {index} fields differ",
+                        )
+                    )
+                path_value = row.get("path")
+                sha256 = row.get("sha256")
+                if not isinstance(path_value, str) or not path_value:
+                    issues.append(
+                        _evidence_issue(
+                            "OFFICIAL_REFERENCE_MANIFEST_INVALID_ROW",
+                            manifest_path,
+                            f"baseline manifest row {index} path must be a string",
+                        )
+                    )
+                    continue
+                if path_value in seen_paths:
+                    issues.append(
+                        _evidence_issue(
+                            "OFFICIAL_REFERENCE_MANIFEST_DUPLICATE_PATH",
+                            manifest_path,
+                            f"baseline manifest path is duplicated: {path_value}",
+                        )
+                    )
+                seen_paths.add(path_value)
+                if not isinstance(sha256, str) or not re.fullmatch(r"[0-9A-Fa-f]{64}", sha256):
+                    issues.append(
+                        _evidence_issue(
+                            "OFFICIAL_REFERENCE_MANIFEST_INVALID_ROW",
+                            manifest_path,
+                            f"baseline manifest row {index} sha256 is malformed",
+                        )
+                    )
+                    continue
+                dictionary = expected_paths.get(path_value)
+                if dictionary is not None:
+                    normalized_hash = sha256.upper()
+                    observed[dictionary].append(normalized_hash)
+                    relevant_hash_paths[normalized_hash].append(path_value)
+            for sha256, paths in sorted(relevant_hash_paths.items()):
+                if len(paths) > 1:
+                    issues.append(
+                        _evidence_issue(
+                            "OFFICIAL_REFERENCE_MANIFEST_DUPLICATE_HASH",
+                            manifest_path,
+                            f"trusted zh hash is reused by: {', '.join(sorted(paths))}",
+                        )
+                    )
+    for dictionary in DICTIONARIES:
+        values = observed.get(dictionary, [])
+        expected = TRUSTED_ZH_REFERENCE_HASHES[dictionary]
+        if values != [expected]:
+            issues.append(
+                _evidence_issue(
+                    "OFFICIAL_REFERENCE_MANIFEST_MISMATCH",
+                    manifest_path,
+                    f"{dictionary} pinned baseline hash differs or is not unique",
+                )
+            )
+    if issues:
+        raise OfficialEvidenceError(
+            sorted(issues, key=lambda row: (row["path"], row["code"], row["detail"]))
+        )
+    return dict(TRUSTED_ZH_REFERENCE_HASHES)
+
+
+def load_official_runtime_identity(
+    repository_root: Path,
+    *,
+    trusted_reference_hashes: dict[str, str] | None = None,
+) -> dict[str, str]:
+    provenance = json.loads(
+        (repository_root / "reports/display-closure/provenance.json").read_text(encoding="utf-8")
+    )
+    locale_root = repository_root / "pob-zh-engine/dist/Data/poe1"
+    accepted = _accepted_official_by_dictionary(repository_root)
+    dynamic_path = repository_root / "localization/ko-KR/manual/dynamic-patterns.json"
+    dynamic = (
+        json.loads(dynamic_path.read_text(encoding="utf-8"))
+        if dynamic_path.is_file()
+        else {"patterns": []}
+    )
+    corrected_by_dictionary: dict[str, set[str]] = defaultdict(set)
+    for row in dynamic.get("patterns", []):
+        if isinstance(row, dict) and isinstance(row.get("source"), str):
+            corrected_by_dictionary[str(row.get("dictionary", "stats"))].add(row["source"])
+    candidates: dict[str, set[str]] = defaultdict(set)
+    issues: list[dict[str, str]] = []
+    trusted_hashes = (
+        load_trusted_zh_reference_hashes(repository_root)
+        if trusted_reference_hashes is None
+        else trusted_reference_hashes
+    )
+    for dictionary in DICTIONARIES:
+        chinese_path = locale_root / "zh-rTW" / f"{dictionary}.json"
+        korean_path = locale_root / "ko-KR" / f"{dictionary}.json"
+        expected_hash = trusted_hashes.get(dictionary, "")
+        if not expected_hash or not _matches_manifest_sha256(chinese_path, expected_hash):
+            issues.append(
+                _evidence_issue(
+                    "OFFICIAL_REFERENCE_HASH_MISMATCH",
+                    chinese_path,
+                    f"{dictionary} Traditional Chinese reference differs from pinned bytes",
+                )
+            )
+            continue
+        chinese = json.loads(chinese_path.read_text(encoding="utf-8"))["entries"]
+        korean = json.loads(korean_path.read_text(encoding="utf-8"))["entries"]
+        dictionary_provenance = provenance["dictionaries"][dictionary]
+        for english, record in accepted[dictionary].items():
+            if english in corrected_by_dictionary[dictionary] or english not in chinese:
+                continue
+            target = record["value"]
+            actual_target = korean.get(english)
+            actual_provenance = dictionary_provenance.get(english)
+            if actual_target != target:
+                issues.append(
+                    _evidence_issue(
+                        "OFFICIAL_DERIVED_TARGET_MISMATCH",
+                        korean_path,
+                        f"{dictionary}/{english} differs from accepted evidence",
+                    )
+                )
+                continue
+            expected_sources = set(record["source"].split(" | "))
+            actual_sources = (
+                set(str(actual_provenance.get("source", "")).split(" | "))
+                if isinstance(actual_provenance, dict)
+                else set()
+            )
+            if (
+                not isinstance(actual_provenance, dict)
+                or actual_provenance.get("layer") != "official-exact"
+                or actual_sources != expected_sources
+            ):
+                issues.append(
+                    _evidence_issue(
+                        "OFFICIAL_DERIVED_PROVENANCE_MISMATCH",
+                        repository_root / "reports/display-closure/provenance.json",
+                        f"{dictionary}/{english} provenance differs from accepted evidence",
+                    )
+                )
+                continue
+            source = chinese.get(english)
+            if isinstance(source, str) and isinstance(actual_target, str):
+                candidates[source].add(actual_target)
+    if issues:
+        raise OfficialEvidenceError(
+            sorted(issues, key=lambda row: (row["path"], row["code"], row["detail"]))
+        )
+    return {
+        source: next(iter(targets))
+        for source, targets in sorted(candidates.items())
+        if len(targets) == 1
+    }
+
+
+def write_json(path: Path, document: dict[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(
+        json.dumps(document, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+        newline="",
+    )
+
+
+def validate_output_paths(output: Path, suggestions: Path, report: Path) -> None:
+    resolved = [path.resolve() for path in (output, suggestions, report)]
+    if len(set(resolved)) != len(resolved):
+        raise ValueError("output paths must be distinct after resolution")
+
+
+def run_migration(
+    *,
+    upstream_ref: str,
+    localized_ref: str = PINNED_LOCALIZED,
+    localized_root: Path,
+    output: Path,
+    suggestions: Path,
+    report_path: Path,
+    repository_root: Path = REPOSITORY_ROOT,
+) -> MigrationResult:
+    validate_output_paths(output, suggestions, report_path)
+    evidence_issues = verify_official_evidence(repository_root)
+    if evidence_issues:
+        failure_report = {
+            "schemaVersion": 1,
+            "upstreamRef": PINNED_UPSTREAM,
+            "counts": {
+                "official": 0,
+                "reviewed": 0,
+                "suggested": 0,
+                "ambiguous": 0,
+                "unmapped": len(evidence_issues),
+            },
+            "issues": evidence_issues,
+        }
+        write_json(report_path, failure_report)
+        raise OfficialEvidenceError(evidence_issues)
+    _validate_pinned_source_ref(upstream_ref, PINNED_UPSTREAM, "upstream")
+    _validate_pinned_source_ref(
+        localized_ref,
+        PINNED_LOCALIZED,
+        "localized",
+        expected_tree=PINNED_LOCALIZED_TREE,
+    )
+
+    # localized_root remains a CLI compatibility input. It deliberately never
+    # supplies C++ bytes; those come only from the immutable Git objects above.
+    policy = json.loads(
+        (LOCALE_ROOT / "source-display-policy.json").read_text(encoding="utf-8")
+    )
+    if not isinstance(policy, dict):
+        raise source_overlay.PolicyValidationError(["policy root must be an object"])
+    parse_recovery_allowlist = source_overlay.validate_parse_recovery_allowlist(
+        policy.get("parseRecoveryAllowlist")
+    )
+    excluded = _excluded_paths(policy)
+    used_recovery_evidence: set[source_overlay.ParseRecoveryEvidence] = set()
+    alignments: list[Alignment] = []
+    alignment_issues: list[dict[str, Any]] = []
+    context_inventories: dict[str, tuple[list[Literal], list[Literal]]] = {}
+    upstream_sources: set[str] = set()
+    files_scanned = 0
+    upstream_paths = _source_paths(upstream_ref, "upstream")
+    localized_paths = _source_paths(localized_ref, "localized")
+    if upstream_paths != localized_paths:
+        raise ValueError("pinned upstream and localized source inventories differ")
+    for repository_path in upstream_paths:
+        relative = repository_path.removeprefix("pob-zh-engine/")
+        if relative in excluded:
+            continue
+        files_scanned += 1
+        upstream_text = _git_source_bytes(upstream_ref, repository_path, "upstream")
+        current_text = _git_source_bytes(localized_ref, repository_path, "localized")
+        file_alignments, file_issues = align_file_literals(
+            Path(relative),
+            upstream_text,
+            current_text,
+            parse_recovery_allowlist=parse_recovery_allowlist,
+            used_recovery_evidence=used_recovery_evidence,
+        )
+        alignments.extend(file_alignments)
+        alignment_issues.extend(file_issues)
+        context_inventories[relative] = (
+            _context_inventory(
+                Path(relative),
+                upstream_text,
+                parse_recovery_allowlist=parse_recovery_allowlist,
+                source_role="upstream",
+                source_commit=PINNED_UPSTREAM,
+                used_recovery_evidence=used_recovery_evidence,
+            ),
+            _context_inventory(
+                Path(relative),
+                current_text,
+                parse_recovery_allowlist=parse_recovery_allowlist,
+                source_role="localized",
+                source_commit=PINNED_LOCALIZED,
+                used_recovery_evidence=used_recovery_evidence,
+            ),
+        )
+        for rows in _structural_groups(
+            Path(relative),
+            upstream_text,
+            parse_recovery_allowlist=parse_recovery_allowlist,
+            source_role="upstream",
+            source_commit=PINNED_UPSTREAM,
+            used_recovery_evidence=used_recovery_evidence,
+        ).values():
+            upstream_sources.update(row.decoded for row in rows if HAN.search(row.decoded))
+
+    legacy = json.loads(
+        (LOCALE_ROOT / "manual/source-literal-translations.json").read_text(encoding="utf-8")
+    )
+    base_overrides = json.loads(
+        (LOCALE_ROOT / "manual/source-literal-overrides.json").read_text(encoding="utf-8")
+    )
+    remediation_document = json.loads(
+        (LOCALE_ROOT / "manual/source-overlay-remediation.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    blocker_report = json.loads(
+        (repository_root / "reports/maintenance/baseline-overlay-blockers.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    remediation = validate_remediation_document(
+        remediation_document,
+        blocker_report,
+        repository_root=repository_root,
+    )
+    if remediation.issues:
+        failure_report = {
+            "schemaVersion": 1,
+            "upstreamRef": PINNED_UPSTREAM,
+            "filesScanned": files_scanned,
+            "upstreamHanSources": len(upstream_sources),
+            "parseRecoveryEvidence": source_overlay.recovery_evidence_report(
+                used_recovery_evidence
+            ),
+            "counts": {
+                "official": 0,
+                "reviewed": 0,
+                "suggested": 0,
+                "ambiguous": 0,
+                "unmapped": len(remediation.issues),
+            },
+            "issues": list(remediation.issues),
+        }
+        write_json(report_path, failure_report)
+        raise ValueError(
+            "source-overlay-remediation validation failed with "
+            f"{len(remediation.issues)} issue(s)"
+        )
+    official = {
+        source: target
+        for source, target in load_official_runtime_identity(repository_root).items()
+        if source in upstream_sources
+    }
+    override_entries = base_overrides.get("entries", {})
+    overrides = {
+        **{
+            key: value
+            for key, value in base_overrides.items()
+            if key not in {"entries", "contexts"}
+        },
+        "entries": {
+            source: target
+            for source, target in override_entries.items()
+            if source in upstream_sources
+        },
+        "contexts": [
+            *(
+                base_overrides.get("contexts", [])
+                if isinstance(base_overrides.get("contexts", []), list)
+                else []
+            ),
+            *remediation.overrides["contexts"],
+        ],
+    }
+    alignments, alignment_issues = remove_validated_internal_fixture_rows(
+        alignments, alignment_issues, remediation.internal_fixtures
+    )
+    result = migrate(
+        legacy=legacy,
+        overrides=overrides,
+        official=official,
+        alignments=alignments,
+        alignment_issues=alignment_issues,
+        context_inventories=context_inventories,
+        validated_reflow_contexts=frozenset(
+            {
+                *remediation.reflow_context_identities,
+                *{
+                    (
+                        row["path"],
+                        row["function"],
+                        row["source"],
+                        row["occurrenceIndex"],
+                    )
+                    for row in remediation.overrides["contexts"]
+                },
+            }
+        ),
+        validated_official_contexts=frozenset(
+            {
+                (path, function, source, occurrence_index)
+                for path, function, occurrence_index, source
+                in remediation.consumed_supporting_context_identities
+            }
+        ),
+    )
+    report = {
+        "schemaVersion": 1,
+        "upstreamRef": PINNED_UPSTREAM,
+        "filesScanned": files_scanned,
+        "upstreamHanSources": len(upstream_sources),
+        "parseRecoveryEvidence": source_overlay.recovery_evidence_report(
+            used_recovery_evidence
+        ),
+        **result.report,
+    }
+    result = MigrationResult(result.accepted, result.suggestions, report)
+    write_json(output, result.accepted)
+    write_json(suggestions, result.suggestions)
+    write_json(report_path, result.report)
+    if not result.report["issues"]:
+        policy = {
+            **policy,
+            "internalLiteralAllowlist": list(remediation.internal_fixtures),
+        }
+        write_json(LOCALE_ROOT / "source-display-policy.json", policy)
+    return result
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--upstream-ref", required=True)
+    parser.add_argument("--localized-root", type=Path, required=True)
+    parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--suggestions", type=Path, required=True)
+    parser.add_argument("--report", dest="report_path", type=Path, required=True)
+    arguments = parser.parse_args(argv)
+    try:
+        result = run_migration(**vars(arguments))
+    except (OSError, ValueError, subprocess.CalledProcessError, json.JSONDecodeError) as error:
+        parser.error(str(error))
+    counts = result.report["counts"]
+    print(
+        "source migration: "
+        f"official={counts['official']}; reviewed={counts['reviewed']}; "
+        f"suggested={counts['suggested']}; ambiguous={counts['ambiguous']}; "
+        f"unmapped={counts['unmapped']}"
+    )
+    return 1 if result.report["issues"] else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

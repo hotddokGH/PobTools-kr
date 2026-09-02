@@ -1,0 +1,51 @@
+{
+  "patch": "3.29.3.2",
+  "translations": [
+    "English",
+    "Korean"
+  ],
+  "tables": [
+    {
+      "name": "BaseItemTypes",
+      "columns": [
+        "Id",
+        "Name"
+      ]
+    },
+    {
+      "name": "ActiveSkills",
+      "columns": [
+        "Id",
+        "DisplayedName"
+      ]
+    },
+    {
+      "name": "PassiveSkills",
+      "columns": [
+        "Id",
+        "Name"
+      ]
+    },
+    {
+      "name": "MonsterVarieties",
+      "columns": [
+        "Id",
+        "Name"
+      ]
+    },
+    {
+      "name": "ClientStrings",
+      "columns": [
+        "Id",
+        "Text"
+      ]
+    },
+    {
+      "name": "ClientStrings2",
+      "columns": [
+        "Id",
+        "Text"
+      ]
+    }
+  ]
+}

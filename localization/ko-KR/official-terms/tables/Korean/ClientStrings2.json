@@ -1,0 +1,1557 @@
+[
+  {
+    "_index": 0,
+    "Id": "GamepadActionSocketJewelInPassiveTree",
+    "Text": "패시브 트리에 장착하기"
+  },
+  {
+    "_index": 1,
+    "Id": "MtxOptionBuyMore",
+    "Text": "더 구입하기"
+  },
+  {
+    "_index": 2,
+    "Id": "ConsoleActionClearSearch",
+    "Text": "검색 초기화"
+  },
+  {
+    "_index": 3,
+    "Id": "WorldPanelGamepadToHideout",
+    "Text": "은신처로 차원 이동"
+  },
+  {
+    "_index": 4,
+    "Id": "WorldPanelGamepadToLastArea",
+    "Text": "{0}(으)로 돌아가기"
+  },
+  {
+    "_index": 5,
+    "Id": "GamepadTargetingModeTitleMelee",
+    "Text": "대상 지정 모드\r\n<bigger>{<valuedefault>{근접}}"
+  },
+  {
+    "_index": 6,
+    "Id": "GamepadTargetingModeTitleRanged",
+    "Text": "대상 지정 모드\r\n<bigger>{<valuedefault>{원거리}}"
+  },
+  {
+    "_index": 7,
+    "Id": "GamepadTargetingModeTitleCustom",
+    "Text": "대상 지정 모드\r\n<bigger>{<valuedefault>{사용자 지정}}"
+  },
+  {
+    "_index": 8,
+    "Id": "GamepadTargetingSelectTitle",
+    "Text": "대상 지정 모드 선택"
+  },
+  {
+    "_index": 9,
+    "Id": "GamepadTargetingMeleeDescription",
+    "Text": "<subtitle>{근접}\r\n정밀하고 반응이 빠른 대상 지정 모드입니다.\r\n\r\n<italic>{<subtitle>{선택하면 항상 근접 모드를 사용합니다.}}"
+  },
+  {
+    "_index": 10,
+    "Id": "GamepadTargetingRangedDescription",
+    "Text": "<subtitle>{원거리}\r\n위험을 피하면서 대상 지정을 유지합니다.\r\n\r\n<italic>{<subtitle>{선택하면 항상 원거리 모드를 사용합니다.}}"
+  },
+  {
+    "_index": 11,
+    "Id": "GamepadTargetingCustomDescription",
+    "Text": "<subtitle>{사용자 지정}\r\n직접 설정하고 싶은 분을 위한 모드입니다."
+  },
+  {
+    "_index": 12,
+    "Id": "GamepadTargetingCustomOptionLargeSelectionArea",
+    "Text": "대상 지정 범위"
+  },
+  {
+    "_index": 13,
+    "Id": "GamepadTargetingCustomOptionDistanceWeighting",
+    "Text": "거리 편향"
+  },
+  {
+    "_index": 14,
+    "Id": "GamepadTargetingCustomOptionAimOverrideSoftlock",
+    "Text": "{0} 대상 고정"
+  },
+  {
+    "_index": 15,
+    "Id": "GamepadTargetingCustomOptionPriortiseCombatDirection",
+    "Text": "방향 우선순위"
+  },
+  {
+    "_index": 16,
+    "Id": "GamepadTargetingCustomOptionLargeSelectionAreaDesc",
+    "Text": "{0}\r\n대상 자동 지정 반경이 조준 방향으로 치우칩니다.\r\n\r\n{1}\r\n대상 자동 지정 반경이 전 방향에서 동일합니다."
+  },
+  {
+    "_index": 17,
+    "Id": "GamepadTargetingCustomOptionDistanceWeightingDesc",
+    "Text": "{0}\r\n주변 적들에 대한 자동 대상 지정 편향이 감소합니다.\r\n\r\n{1}\r\n주변 적들에 대한 자동 대상 지정 편향이 증가합니다."
+  },
+  {
+    "_index": 18,
+    "Id": "GamepadTargetingCustomOptionAimOverrideSoftlockDesc",
+    "Text": "{0}\r\n대상 고정을 사용하지 않습니다. {2} 사용 시 대상을 수동으로 조준합니다.\r\n\r\n{1}\r\n대상 고정을 사용합니다. {2} 사용 시 짧은 시간 동안 적이 대상으로 고정됩니다."
+  },
+  {
+    "_index": 19,
+    "Id": "GamepadTargetingCustomOptionPriortiseCombatDirectionDesc",
+    "Text": "{0}\r\n자동 대상 지정이 {2} 이동 방향을 우선으로 합니다.\r\n\r\n{1}\r\n자동 대상 지정이 캐릭터가 바라보는 방향에 있는 대상을 우선으로 합니다."
+  },
+  {
+    "_index": 20,
+    "Id": "GamepadTargetingModeTitleAuto",
+    "Text": "대상 지정 모드\r\n<bigger>{<valuedefault>{자동}}"
+  },
+  {
+    "_index": 21,
+    "Id": "GamepadTargetingAutoDescription",
+    "Text": "<subtitle>{자동(권장)}\r\n무기와 스킬에 따라 자동으로 원거리 모드와 근접 모드를 전환합니다. \r\n\r\n<italic>{<subtitle>{대상 지정 모드를 변경하는 스킬}}"
+  },
+  {
+    "_index": 22,
+    "Id": "QuickMoveToRelicsInventory",
+    "Text": "유물 놓기"
+  },
+  {
+    "_index": 23,
+    "Id": "ConsoleActionToggleItemAdvancedInfo",
+    "Text": "심화 정보 켜기/끄기"
+  },
+  {
+    "_index": 24,
+    "Id": "GamepadSettingAdvancedInfoOnPromotePopup",
+    "Text": "살펴보기 시 심화 정보 표시"
+  },
+  {
+    "_index": 25,
+    "Id": "GamepadSettingAdvancedInfoOnPromotePopupDesc",
+    "Text": "살펴보기 모드에 들어가면 심화 정보를 표시합니다."
+  },
+  {
+    "_index": 26,
+    "Id": "GamepadTargetingOptionMeleeDefaultTag",
+    "Text": "(근접 기본값)"
+  },
+  {
+    "_index": 27,
+    "Id": "GamepadTargetingOptionRangedDefaultTag",
+    "Text": "(원거리 기본값)"
+  },
+  {
+    "_index": 28,
+    "Id": "UISettingsHideCharmBar",
+    "Text": "호신부 표시 숨기기"
+  },
+  {
+    "_index": 29,
+    "Id": "WorldScreenContentListTitle",
+    "Text": "관심 지점"
+  },
+  {
+    "_index": 30,
+    "Id": "WorldScreenContentListCompletedSubtitle",
+    "Text": "완료"
+  },
+  {
+    "_index": 31,
+    "Id": "WorldScreenNodeInfoPrompt",
+    "Text": "관심 지점 표시"
+  },
+  {
+    "_index": 32,
+    "Id": "GamepadHighlightOffTitle",
+    "Text": "이름표 표시 꺼짐"
+  },
+  {
+    "_index": 33,
+    "Id": "GamepadActionToggleHighlight",
+    "Text": "이름표 표시 켜기/끄기"
+  },
+  {
+    "_index": 34,
+    "Id": "GamepadHelpToggleHighlightUnbound",
+    "Text": "<bigger>{<<gamepad_toggle_highlight>>} 이름표를 모두 표시하는 행동을 지정합니다."
+  },
+  {
+    "_index": 35,
+    "Id": "GamepadTargetingCustomOptionLargeSelectionAreaOffTitle",
+    "Text": "정밀함"
+  },
+  {
+    "_index": 36,
+    "Id": "GamepadTargetingCustomOptionDistanceWeightingOffTitle",
+    "Text": "꺼짐"
+  },
+  {
+    "_index": 37,
+    "Id": "GamepadTargetingCustomOptionAimOverrideSoftlockOffTitle",
+    "Text": "꺼짐"
+  },
+  {
+    "_index": 38,
+    "Id": "GamepadTargetingCustomOptionPriortiseCombatDirectionOffTitle",
+    "Text": "이동 방향"
+  },
+  {
+    "_index": 39,
+    "Id": "GamepadTargetingCustomOptionLargeSelectionAreaOnTitle",
+    "Text": "넓음"
+  },
+  {
+    "_index": 40,
+    "Id": "GamepadTargetingCustomOptionDistanceWeightingOnTitle",
+    "Text": "켜짐"
+  },
+  {
+    "_index": 41,
+    "Id": "GamepadTargetingCustomOptionAimOverrideSoftlockOnTitle",
+    "Text": "켜짐"
+  },
+  {
+    "_index": 42,
+    "Id": "GamepadTargetingCustomOptionPriortiseCombatDirectionOnTitle",
+    "Text": "바라보는 방향"
+  },
+  {
+    "_index": 43,
+    "Id": "GamepadLegendEditKeywordSearch",
+    "Text": "필터 메뉴"
+  },
+  {
+    "_index": 44,
+    "Id": "PassiveSkillKeywordNewFilterButton",
+    "Text": "새 필터 추가"
+  },
+  {
+    "_index": 45,
+    "Id": "GamepadLegendKeywordSearchClear",
+    "Text": "필터 초기화"
+  },
+  {
+    "_index": 46,
+    "Id": "PassiveSkillKeywordEditorCurrentSearchTitle",
+    "Text": "현재 필터"
+  },
+  {
+    "_index": 47,
+    "Id": "PassiveSkillKeywordEntryEmpty",
+    "Text": "없음"
+  },
+  {
+    "_index": 48,
+    "Id": "GamepadLegendKeywordAddInclude",
+    "Text": "포함 내용에 추가"
+  },
+  {
+    "_index": 49,
+    "Id": "GamepadLegendKeywordAddExclude",
+    "Text": "제외 내용에 추가"
+  },
+  {
+    "_index": 50,
+    "Id": "GamepadLegendKeywordRemoveEntry",
+    "Text": "제거"
+  },
+  {
+    "_index": 51,
+    "Id": "GamepadCycleFilterResults",
+    "Text": "검색 결과 넘기기"
+  },
+  {
+    "_index": 52,
+    "Id": "GamepadLegendKeywordLegendShowAllOptions",
+    "Text": "모든 선택지 보기"
+  },
+  {
+    "_index": 53,
+    "Id": "GamepadLegendKeywordLegendShowSuggestedOptions",
+    "Text": "추천 선택지 보기"
+  },
+  {
+    "_index": 54,
+    "Id": "GamepadLegendKeywordShowSuggestedTitle",
+    "Text": "스킬과 장비에 따른 추천 키워드"
+  },
+  {
+    "_index": 55,
+    "Id": "GamepadLegendKeywordLegendToggleEntryActive",
+    "Text": "활성 켜기/끄기"
+  },
+  {
+    "_index": 56,
+    "Id": "GamepadLegendKeywordLegendDeleteEntry",
+    "Text": "필터 삭제"
+  },
+  {
+    "_index": 57,
+    "Id": "GamepadLegendKeywordLegendEditEntry",
+    "Text": "필터 편집"
+  },
+  {
+    "_index": 58,
+    "Id": "GamepadLegendKeywordFilteredOutBrightness",
+    "Text": "필터로 제외한 내용의 밝기"
+  },
+  {
+    "_index": 59,
+    "Id": "GamepadLegendKeywordHighlightBrightness",
+    "Text": "강조 표시 강도"
+  },
+  {
+    "_index": 60,
+    "Id": "GamepadToggleSkillTargetingMode",
+    "Text": "대상 지정 모드 전환"
+  },
+  {
+    "_index": 61,
+    "Id": "GamepadToggleSkillTargetingRangedPopup",
+    "Text": "<bigger>{<<targeting_mode_ranged>> 원거리 모드}\r\n\r\n<<xbox_button_a>> <default>{로 이 스킬에 근접 모드를 사용할 수 있습니다.}"
+  },
+  {
+    "_index": 62,
+    "Id": "GamepadToggleSkillTargetingMeleePopup",
+    "Text": "<bigger>{<<targeting_mode_melee>> 근접 모드}\r\n\r\n<<xbox_button_a>> <default>{로 이 스킬에 원거리 모드를 사용할 수 있습니다.}"
+  },
+  {
+    "_index": 63,
+    "Id": "GamepadLegendUndoLastChange",
+    "Text": "실행 취소"
+  },
+  {
+    "_index": 64,
+    "Id": "InstillCraftingWarningRemoveAmuletToClose",
+    "Text": "목걸이를 제거하면 창이 닫힙니다."
+  },
+  {
+    "_index": 65,
+    "Id": "PassiveSkillKeywordEditorTitle",
+    "Text": "필터 편집기"
+  },
+  {
+    "_index": 66,
+    "Id": "ResetChanges",
+    "Text": "변경 사항 초기화"
+  },
+  {
+    "_index": 67,
+    "Id": "HUDMapPortalsRemaining1",
+    "Text": "지도 포탈 <<map_portal_icon>> x1 남음"
+  },
+  {
+    "_index": 68,
+    "Id": "HUDMapPortalsRemainingN",
+    "Text": "지도 포탈 <<map_portal_icon>> x{0} 남음"
+  },
+  {
+    "_index": 69,
+    "Id": "PassiveSkillKeywordFilterActiveTitle",
+    "Text": "필터 검색"
+  },
+  {
+    "_index": 70,
+    "Id": "PassiveSkillKeywordSavedFiltersTitle",
+    "Text": "저장된 필터"
+  },
+  {
+    "_index": 71,
+    "Id": "PassiveSkillKeywordOptionsTitle",
+    "Text": "추가 옵션"
+  },
+  {
+    "_index": 72,
+    "Id": "CloseOptionsMenu",
+    "Text": "옵션 숨기기"
+  },
+  {
+    "_index": 73,
+    "Id": "PassiveSkillKeywordFilterInactiveTitle",
+    "Text": "텍스트 검색"
+  },
+  {
+    "_index": 74,
+    "Id": "PassiveSkillKeywordUnsavedChangesWarning",
+    "Text": "필터 변경 내용을 저장하시겠습니까?"
+  },
+  {
+    "_index": 75,
+    "Id": "SideEncounterCastawayBombTitle",
+    "Text": "썩은 가방 화약"
+  },
+  {
+    "_index": 76,
+    "Id": "GamepadSpiritManagementNoSpiritCost",
+    "Text": "무료 소환수 x{0}"
+  },
+  {
+    "_index": 77,
+    "Id": "ReservationErrorCompanionLimitReached1",
+    "Text": "반려수 한도 도달"
+  },
+  {
+    "_index": 78,
+    "Id": "PassiveSkillKeywordSmallNodeSetting",
+    "Text": "소형 노드"
+  },
+  {
+    "_index": 79,
+    "Id": "PassiveSkillKeywordNotableSetting",
+    "Text": "주요 스킬"
+  },
+  {
+    "_index": 80,
+    "Id": "PassiveSkillKeywordKeystoneSetting",
+    "Text": "핵심노드"
+  },
+  {
+    "_index": 81,
+    "Id": "PassiveSkillKeywordNodeTypeSettingTitle",
+    "Text": "노드 유형 필터"
+  },
+  {
+    "_index": 82,
+    "Id": "GamepadInitTargetingModeTitle",
+    "Text": "대상 지정 모드 선택"
+  },
+  {
+    "_index": 83,
+    "Id": "GamepadInitTargetingModeSubtitle",
+    "Text": "대상 지정 모드는 나중에 지정 화면에서 변경할 수 있습니다."
+  },
+  {
+    "_index": 84,
+    "Id": "GamepadInitTargetingModeDescAuto",
+    "Text": "<bigger>{자동(권장)}\r\n\r\n자동으로 원거리 모드와 근접 모드를 전환합니다."
+  },
+  {
+    "_index": 85,
+    "Id": "GamepadInitTargetingModeDescMelee",
+    "Text": "<bigger>{근접}\r\n\r\n이 모드는 항상 플레이어가 움직이는 방향에 있는 대상을 우선으로 합니다."
+  },
+  {
+    "_index": 86,
+    "Id": "GamepadInitTargetingModeDescRanged",
+    "Text": "<bigger>{원거리}\r\n\r\n이 모드는 멀리 있는 적에게 초점을 맞출 때 적합합니다."
+  },
+  {
+    "_index": 87,
+    "Id": "GamepadInitTargetingModeLegend",
+    "Text": "{0} 길게 누르기: 모드 선택"
+  },
+  {
+    "_index": 88,
+    "Id": "ConsoleActionUndoPropagateEquipment",
+    "Text": "무기 세트 공유 취소"
+  },
+  {
+    "_index": 89,
+    "Id": "CosmeticsPanelHelpInfo",
+    "Text": "<valuedefault>{Ctrl + Alt + 좌클릭}<default>{으로 채팅창에 아이템을 링크하십시오.}\r\n<valuedefault>{우클릭}<default>{으로 포인트 아이템 슬롯을 비우십시오.}"
+  },
+  {
+    "_index": 90,
+    "Id": "GamepadSpectateLegendChangeViewpoint",
+    "Text": "시점 변경"
+  },
+  {
+    "_index": 91,
+    "Id": "GamepadSpectateLegendExit",
+    "Text": "관전 모드 종료"
+  },
+  {
+    "_index": 92,
+    "Id": "MtxStatisticLabelNumArbiterOfAshPinnacleBossKilled",
+    "Text": "재의 중재자"
+  },
+  {
+    "_index": 93,
+    "Id": "MtxStatisticLabelNumXeshPinnacleBossKilled",
+    "Text": "하나인 우리, 제쉬트"
+  },
+  {
+    "_index": 94,
+    "Id": "MtxStatisticLabelNumOlrothPinnacleBossKilled",
+    "Text": "몰락의 기원 올로스"
+  },
+  {
+    "_index": 95,
+    "Id": "MtxStatisticLabelNumKingInTheMistsPinnacleBossKilled",
+    "Text": "연무 속의 왕"
+  },
+  {
+    "_index": 96,
+    "Id": "ConsoleActionPlayExampleVideo",
+    "Text": "예시 영상 재생"
+  },
+  {
+    "_index": 97,
+    "Id": "GamepadEquippedWithWeaponSet",
+    "Text": "장착 중: [WeaponSets|무기 세트]{0}"
+  },
+  {
+    "_index": 98,
+    "Id": "PassiveSkillRefundGrantedSpecialisationPointsError",
+    "Text": "특화 포인트가 부족합니다.\r\n이 스킬의 비용을 돌려받으려면 특화 패시브 스킬 중\r\n몇 개의 할당을 해제해야 합니다. \r\n\r\n필요한 잔여 특화 포인트: {0}\r\n현재 잔여 특화 포인트: {1}"
+  },
+  {
+    "_index": 99,
+    "Id": "ItemErrorDuplicateSupportGemInSkill",
+    "Text": "이 스킬 젬에는 중복 보조 젬이 장착되어 있습니다.\r\n스킬 하나당 하나의 보조 젬 유형만 유효합니다."
+  },
+  {
+    "_index": 100,
+    "Id": "GamepadAscendancyTreePopupOverview",
+    "Text": "전직했습니다.\r\n[AscendancyPoints|전직 포인트]를 사용해\r\n전직 패시브 스킬을 할당하십시오."
+  },
+  {
+    "_index": 101,
+    "Id": "RecombinatorUILastResultLabelSuccess",
+    "Text": "<rareitem>{재조합 성공}"
+  },
+  {
+    "_index": 102,
+    "Id": "RecombinatorUILastResultLabelFailed",
+    "Text": "<red>{재조합 실패}"
+  },
+  {
+    "_index": 103,
+    "Id": "SkillWarningNoValidWeaponEquipped",
+    "Text": "유효한 무기가 장착되어 있지 않아 스킬을 사용할 수 없습니다."
+  },
+  {
+    "_index": 104,
+    "Id": "ConsoleActionSetToggledMinion",
+    "Text": "소환수 설정"
+  },
+  {
+    "_index": 105,
+    "Id": "SkillCraftingEquippedGemsFilter",
+    "Text": "장착 중인 젬"
+  },
+  {
+    "_index": 106,
+    "Id": "MapAreaStatsTitle",
+    "Text": "지도 속성"
+  },
+  {
+    "_index": 107,
+    "Id": "FavouriteMapsWindowKeepPinsOnScreenCheckboxLabel",
+    "Text": "가장자리 표시"
+  },
+  {
+    "_index": 108,
+    "Id": "FavouriteMapsWindowKeepPinsOnScreenCheckboxPopup",
+    "Text": ""
+  },
+  {
+    "_index": 109,
+    "Id": "GamepadOptionPriortiseInteractOverSkills",
+    "Text": "스킬보다 상호작용 우선"
+  },
+  {
+    "_index": 110,
+    "Id": "GamepadOptionPriortiseInteractOverSkillsDesc",
+    "Text": "상호작용이 항상 스킬보다 우선적으로 실행되게 합니다.\r\n\r\n이 설정을 끄면 지역 이동 등의 특정 상호작용만 우선적으로 실행됩니다."
+  },
+  {
+    "_index": 111,
+    "Id": "GamepadActionShowStashOptions",
+    "Text": "탭 설정 편집"
+  },
+  {
+    "_index": 112,
+    "Id": "GamepadActionCollapseFolder",
+    "Text": "폴더 접기"
+  },
+  {
+    "_index": 113,
+    "Id": "GamepadActionExpandFolder",
+    "Text": "폴더 펼치기"
+  },
+  {
+    "_index": 114,
+    "Id": "StashTabSettingsTitle",
+    "Text": "보관함 탭 설정"
+  },
+  {
+    "_index": 115,
+    "Id": "Colour",
+    "Text": "색상"
+  },
+  {
+    "_index": 116,
+    "Id": "GamepadReorderStashTabsTitle",
+    "Text": "탭 정리"
+  },
+  {
+    "_index": 117,
+    "Id": "GamepadReorderStashTabsLegends",
+    "Text": "<bigger>{<<xbox_button_a>>} 탭 선택\r\n<bigger>{<<xbox_button_x>>} 탭을 상단으로 이동\r\n<bigger>{<<xbox_button_b>>} 순서 변경 완료"
+  },
+  {
+    "_index": 118,
+    "Id": "GamepadReorderStashFolderSubTabsTitle",
+    "Text": "폴더로 탭 정리"
+  },
+  {
+    "_index": 119,
+    "Id": "GoddessOfJusticeEternalFlameLandmark",
+    "Text": "정의의 여신"
+  },
+  {
+    "_index": 120,
+    "Id": "LogInToTownTitle",
+    "Text": "로그인 시 마을 또는 은신처에서 시작"
+  },
+  {
+    "_index": 121,
+    "Id": "LogInToTownWarning",
+    "Text": "로그인 시 마지막으로 로그아웃했던 지역으로 돌아가지 않고, 최근 방문했던 마을 또는 은신처에서 시작하시겠습니까?\r\n\r\n이전 위치에서 진행했던 기록은 사라집니다."
+  },
+  {
+    "_index": 122,
+    "Id": "LogInToTownWarningMap",
+    "Text": "로그인 시 마지막으로 로그아웃했던 지역으로 돌아가지 않고, 최근 방문했던 마을 또는 은신처에서 시작하시겠습니까?\r\n\r\n엔드게임 지도 포탈이 하나 소모되고, 지도를 사용할 수 없게 될 수도 있습니다."
+  },
+  {
+    "_index": 123,
+    "Id": "WarpWaypointButtonHover",
+    "Text": "거점으로 이동"
+  },
+  {
+    "_index": 124,
+    "Id": "GamepadActionStartGameInTown",
+    "Text": "마을/은신처에서 게임 시작"
+  },
+  {
+    "_index": 125,
+    "Id": "WorldPanelWarpToArea",
+    "Text": "{0}으(로) 이동"
+  },
+  {
+    "_index": 126,
+    "Id": "WorldPanelWarpErrorNoWaypoint",
+    "Text": "지역에 거점이 없습니다."
+  },
+  {
+    "_index": 127,
+    "Id": "WorldPanelWarpErrorWaypointInactive",
+    "Text": "이 지역의 거점이 활성화되지 않았습니다."
+  },
+  {
+    "_index": 128,
+    "Id": "WorldPanelWarpErrorNotVisited",
+    "Text": "가 본 적 없는 지역입니다."
+  },
+  {
+    "_index": 129,
+    "Id": "GamepadStashEditorModeTitle",
+    "Text": "보관함 편집 모드"
+  },
+  {
+    "_index": 130,
+    "Id": "GamepadActionEditStash",
+    "Text": "보관함 옵션"
+  },
+  {
+    "_index": 131,
+    "Id": "GamepadActionMoveStashTab",
+    "Text": "탭 이동"
+  },
+  {
+    "_index": 132,
+    "Id": "GamepadActionStopMoveTab",
+    "Text": "탭 배치"
+  },
+  {
+    "_index": 133,
+    "Id": "GamepadActionMoveStashTabToTop",
+    "Text": "제일 위로 이동"
+  },
+  {
+    "_index": 134,
+    "Id": "SkillPanelWarningSupportCapacityExceeded",
+    "Text": "보조 젬 사용량 초과"
+  },
+  {
+    "_index": 135,
+    "Id": "GamepadQuickNavigateApplyMode",
+    "Text": "빠른 찾기 (해당되는 아이템에만 적용)"
+  },
+  {
+    "_index": 136,
+    "Id": "GamepadActionStopSalvaging",
+    "Text": "분해 작업대 나가기"
+  },
+  {
+    "_index": 137,
+    "Id": "GamepadActionShowFolderOptions",
+    "Text": "폴더 설정 편집"
+  },
+  {
+    "_index": 138,
+    "Id": "GamepadActionExitEditStashMode",
+    "Text": "보관함 편집 모드 나가기"
+  },
+  {
+    "_index": 139,
+    "Id": "GamepadActionAddNewFolder",
+    "Text": "폴더 추가"
+  },
+  {
+    "_index": 140,
+    "Id": "StashNewFolderDefaultName",
+    "Text": "폴더 새로 만들기"
+  },
+  {
+    "_index": 141,
+    "Id": "StashNewFolderSelectablesTitle",
+    "Text": "폴더에 추가할 탭을 선택하세요."
+  },
+  {
+    "_index": 142,
+    "Id": "StashNewFolderDescription",
+    "Text": "폴더는 보관함 탭을 1개 이상 포함해야 합니다."
+  },
+  {
+    "_index": 143,
+    "Id": "MicrotransactionTrackedStatisticTitleNumUltimatumTrialMasterBossKills",
+    "Text": "시련의 대가 처치"
+  },
+  {
+    "_index": 144,
+    "Id": "MicrotransactionTrackedStatisticTitleNumUltimatumEncountersFailed",
+    "Text": "실패한 결전"
+  },
+  {
+    "_index": 145,
+    "Id": "MicrotransactionTrackedStatisticTitleNumUltimatumEncountersSucceeded",
+    "Text": "완료한 결전"
+  },
+  {
+    "_index": 146,
+    "Id": "MicrotransactionTrackedStatisticTitleNumUltimatumEncounterWavesCompleted",
+    "Text": "완료한 총 웨이브 수"
+  },
+  {
+    "_index": 147,
+    "Id": "MicrotransactionHallowedCryptMapDeviceTrackedStatisticTitleBreach",
+    "Text": "균열"
+  },
+  {
+    "_index": 148,
+    "Id": "MicrotransactionHallowedCryptMapDeviceTrackedStatisticTitleAbyss",
+    "Text": "심연"
+  },
+  {
+    "_index": 149,
+    "Id": "MicrotransactionHallowedCryptMapDeviceTrackedStatisticTitleExpedition",
+    "Text": "탐험"
+  },
+  {
+    "_index": 150,
+    "Id": "MicrotransactionHallowedCryptMapDeviceTrackedStatisticTitleHarvest",
+    "Text": "수확"
+  },
+  {
+    "_index": 151,
+    "Id": "MicrotransactionHallowedCryptMapDeviceTrackedStatisticTitleLegion",
+    "Text": "군단"
+  },
+  {
+    "_index": 152,
+    "Id": "MicrotransactionHallowedCryptMapDeviceTrackedStatisticTitleSettlers",
+    "Text": "정착자들"
+  },
+  {
+    "_index": 153,
+    "Id": "MicrotransactionHallowedCryptMapDeviceTrackedStatisticTitleDelirium",
+    "Text": "환영"
+  },
+  {
+    "_index": 154,
+    "Id": "MicrotransactionHallowedCryptMapDeviceTrackedStatisticTitleUltimatum",
+    "Text": "결전"
+  },
+  {
+    "_index": 155,
+    "Id": "MicrotransactionHallowedCryptMapDeviceTrackedStatisticTitleBlight",
+    "Text": "역병"
+  },
+  {
+    "_index": 156,
+    "Id": "MicrotransactionHallowedCryptMapDeviceTrackedStatisticTitleRitual",
+    "Text": "의식"
+  },
+  {
+    "_index": 157,
+    "Id": "EShopPanelViewBundlesContainingItemButtonPopup",
+    "Text": "포함 꾸러미 보기"
+  },
+  {
+    "_index": 158,
+    "Id": "MicrotransactionTrackedStatisticTitleNumKillDeathRatio",
+    "Text": "처치/사망 비율"
+  },
+  {
+    "_index": 159,
+    "Id": "MicrotransactionTrackedStatisticTitleNumKills",
+    "Text": "처치"
+  },
+  {
+    "_index": 160,
+    "Id": "MicrotransactionTrackedStatisticTitleNumDeaths",
+    "Text": "사망"
+  },
+  {
+    "_index": 161,
+    "Id": "GamepadActionUnstash",
+    "Text": "보관함에서 꺼내기"
+  },
+  {
+    "_index": 162,
+    "Id": "StashTabEditorPublicDesc",
+    "Text": "다른 플레이어들이 보관함 탭 안에 있는 아이템을 보고\r\n구매 요청을 할 수 있습니다."
+  },
+  {
+    "_index": 163,
+    "Id": "StashTabEditorAffinityDesc",
+    "Text": "보관함 속성을 지정하면 특정 아이템 유형이 이곳에 보관되게 할 수 있습니다.\r\n보관함 탭 여러 개에 하나의 보관함 속성을 지정할 수는 없습니다."
+  },
+  {
+    "_index": 164,
+    "Id": "GamepadActionClearSearch",
+    "Text": "검색 초기화"
+  },
+  {
+    "_index": 165,
+    "Id": "AsyncTradeSoldItemNotification",
+    "Text": "파우스투스가 {}을(를) {}에 팔았습니다.\r\n은신처에 있는 파우스투스와 대화해서 수익금을 받으십시오."
+  },
+  {
+    "_index": 166,
+    "Id": "AsyncTradeSoldItemNotificationShort",
+    "Text": "{} 판매 완료 (판매가: {})"
+  },
+  {
+    "_index": 167,
+    "Id": "AsyncTradeSoldItemInAnotherLeagueNotification",
+    "Text": "{}이(가) 다른 리그에서 {}에 팔렸습니다.\r\n은신처에 있는 파우스투스와 대화해서 수익금을 받으십시오."
+  },
+  {
+    "_index": 168,
+    "Id": "AsyncTradeSoldItemInAnotherLeagueNotificationShort",
+    "Text": "{}이(가) 다른 리그에서 {}에 팔렸습니다."
+  },
+  {
+    "_index": 169,
+    "Id": "AsyncTradeStashPanelHelpPopup",
+    "Text": "<valuedefault>{이 시스템을 사용해 아이템을 판매하려면 상인 탭이 있어야 합니다.}\r\n\r\n<cxinfocolour>{상인 탭을 여는 방법:}\r\n<valuedefault>{- 2025년 8월 30일 전에 구매한 프리미엄 보관함 탭은 무료로 상인 탭으로 전환할 수 있습니다.\r\n보관함 탭 전환은 웹사이트에서만 할 수 있습니다.\r\n  참고: 전환 후에는 선택한 프리미엄 탭이 개인 보관함에서 사라지고, 상인 탭이 됩니다.  \r\n- 상인 탭을 포인트 아이템 상점에서 구매할 수 있습니다.}\r\n\r\n<cxinfocolour>{판매자일 경우:}\r\n<valuedefault>{아이템을 매물로 등록하려면, 상점 탭 중 한 곳에 아이템을 넣고 가격을 선택합니다.\r\n아이템을 \"찜\"하고 가지러 오는 플레이어가 있을 경우, 일정 시간 동안 아이템의 가격을 변경할 수 없습니다.\r\n아이템의 골드 수수료는 시스템이 책정합니다.\r\n구매자는 상인 탭에 있는 아이템을 사러 은신처로 순간이동합니다.\r\n거래가 완료되면 알림이 전송됩니다.\r\n판매로 얻은 화폐는 수익 탭에서 수령할 수 있습니다.\r\n판매 내역 버튼을 누르면 최근 판매 내역 100건을 확인할 수 있습니다.}\r\n<default>{탭을} <valuedefault>{우클릭}<default>{하면 이름과 색상을 변경할 수 있습니다.}\r\n\r\n<cxinfocolour>{구매자일 경우:}\r\n<valuedefault>{시장 화면 또는 거래 웹사이트에서 \"찜 가능\" 매물을 찾습니다.\r\n아이템을 찜하면 캐릭터가 판매자의 은신처로 순간이동합니다.\r\n판매자의 상인 탭에서 아이템을 구매합니다.}\r\n<default>{판매자의 탭을} <valuedefault>{우클릭}<default>{하면 부적절한 이름을 신고할 수 있습니다.}"
+  },
+  {
+    "_index": 170,
+    "Id": "AsyncTradeStashTabName",
+    "Text": "상점"
+  },
+  {
+    "_index": 171,
+    "Id": "AsyncTradeStashPanelTitle",
+    "Text": "상인"
+  },
+  {
+    "_index": 172,
+    "Id": "AsyncTradeStashPanelPriceItemConfirmationTitle",
+    "Text": "아이템 가격 설정"
+  },
+  {
+    "_index": 173,
+    "Id": "AsyncTradeStashPanelPriceItemConfirmationMessage",
+    "Text": "판매할 아이템을 등록하려면 우선 즉시 구입 가격을 선택해야 합니다."
+  },
+  {
+    "_index": 174,
+    "Id": "AsyncTradeStashPanelPriceItemConfirmationActionButton",
+    "Text": "아이템 등록"
+  },
+  {
+    "_index": 175,
+    "Id": "AsyncTradeVendorPanelTitle",
+    "Text": "상인"
+  },
+  {
+    "_index": 176,
+    "Id": "AsyncTradeVendorPanelReportTabPopupText",
+    "Text": "우클릭하여 이 탭 신고하기"
+  },
+  {
+    "_index": 177,
+    "Id": "ReportWindowAsyncTradeTabLabel",
+    "Text": "탭 이름"
+  },
+  {
+    "_index": 178,
+    "Id": "AsyncTradeStashPanelSellerCurrencyStashName",
+    "Text": "수익"
+  },
+  {
+    "_index": 179,
+    "Id": "AsyncTradeStashPanelSellerCurrencyStashPopup",
+    "Text": "판매 수익은 이 탭에서 찾을 수 있습니다."
+  },
+  {
+    "_index": 180,
+    "Id": "AsyncTradeStashPanelSellLogTitle",
+    "Text": "판매 내역"
+  },
+  {
+    "_index": 181,
+    "Id": "AsyncTradeStashPanelSellLogHelpInfo",
+    "Text": "정보 / 판매 내역"
+  },
+  {
+    "_index": 182,
+    "Id": "AsyncTradeStashPanelSellLogFilter",
+    "Text": "판매된 아이템 이름으로 목록을 필터링합니다."
+  },
+  {
+    "_index": 183,
+    "Id": "AsyncTradeStashPanelSellLogEntrySoldItemLabel",
+    "Text": "판매됨:"
+  },
+  {
+    "_index": 184,
+    "Id": "AsyncTradeStashPanelSellLogEntryCostItemLabel",
+    "Text": "가격:"
+  },
+  {
+    "_index": 185,
+    "Id": "GamepadActionReportAsyncTradeTabName",
+    "Text": "탭 이름 신고"
+  },
+  {
+    "_index": 186,
+    "Id": "GamepadActionQuickMoveAsyncTrade",
+    "Text": "상품 등록"
+  },
+  {
+    "_index": 187,
+    "Id": "StashTabEditorCantEditDesc",
+    "Text": "이 보관함 탭은 편집할 수 없습니다."
+  },
+  {
+    "_index": 188,
+    "Id": "GamepadActionUnlistAsyncTradeItem",
+    "Text": "상품 등록 취소"
+  },
+  {
+    "_index": 189,
+    "Id": "GamepadActionEditAsyncTradeItemPrice",
+    "Text": "가격 편집"
+  },
+  {
+    "_index": 190,
+    "Id": "AsyncTradeCloseSaleHistoryList",
+    "Text": "판매 내역 닫기"
+  },
+  {
+    "_index": 191,
+    "Id": "GampadActionAdjustListingPrice",
+    "Text": "등록 가격 조정"
+  },
+  {
+    "_index": 192,
+    "Id": "HUDLeaveUnownedHideoutButtonLabel",
+    "Text": "은신처 떠나기"
+  },
+  {
+    "_index": 193,
+    "Id": "HUDLeaveUnownedHideoutButtonPopupText",
+    "Text": ""
+  },
+  {
+    "_index": 194,
+    "Id": "ETradeMarketMessageWhisperFailedDNDModeEnabled",
+    "Text": "쿼리가 유효하지 않습니다. 계정이 방해금지 모드인 동안에는 이 기능을 사용할 수 없습니다."
+  },
+  {
+    "_index": 195,
+    "Id": "ETradeMarketQuickSearchStats",
+    "Text": "능력치 빠른 검색"
+  },
+  {
+    "_index": 196,
+    "Id": "ETradeMarketEditStatsSearch",
+    "Text": "능력치 검색 편집"
+  },
+  {
+    "_index": 197,
+    "Id": "ETradeMarketClearStatsSearch",
+    "Text": "능력치 검색 초기화"
+  },
+  {
+    "_index": 198,
+    "Id": "ETradeMarketCopyItemButtonHoverText",
+    "Text": "아이템 복사"
+  },
+  {
+    "_index": 199,
+    "Id": "ETradeMarketCopyItemSuccessMessage",
+    "Text": "아이템 문구를 복사했습니다."
+  },
+  {
+    "_index": 200,
+    "Id": "ETradeMarketRedSocketFilterEmptyMessage",
+    "Text": "R"
+  },
+  {
+    "_index": 201,
+    "Id": "ETradeMarketGreenSocketFilterEmptyMessage",
+    "Text": "G"
+  },
+  {
+    "_index": 202,
+    "Id": "ETradeMarketBlueSocketFilterEmptyMessage",
+    "Text": "B"
+  },
+  {
+    "_index": 203,
+    "Id": "ETradeMarketWhiteSocketFilterEmptyMessage",
+    "Text": "W"
+  },
+  {
+    "_index": 204,
+    "Id": "MonasteryPortalString",
+    "Text": "수호자들의 수도원"
+  },
+  {
+    "_index": 205,
+    "Id": "AilithBrequelGlyphObjectClickable",
+    "Text": "이상한 불길"
+  },
+  {
+    "_index": 206,
+    "Id": "ConsoleActionUseVaalOrb",
+    "Text": "바알 오브 사용"
+  },
+  {
+    "_index": 207,
+    "Id": "BrequelEncounterUseSkillNameViaHotkey",
+    "Text": "{0} [{1}]"
+  },
+  {
+    "_index": 208,
+    "Id": "AsyncTradeConfirmationTitle",
+    "Text": "구매 확인"
+  },
+  {
+    "_index": 209,
+    "Id": "AsyncTradeConfirmationInfoLabel",
+    "Text": "(CurrencyIconMarkerDontTranslate){1} {0}개로 {2}을(를) 구매하시겠습니까?"
+  },
+  {
+    "_index": 210,
+    "Id": "AsyncTradeConfirmationForUsingStashCurrencyInfoLabel",
+    "Text": "(RedDontTranslate){{stash}}에 있는 (CurrencyIconMarkerDontTranslate){1} {0}개로 {2}을(를) 구매하시겠습니까?"
+  },
+  {
+    "_index": 211,
+    "Id": "AsyncTradeConfirmationDontShowAgainLabel",
+    "Text": "다시 표시하지 않음"
+  },
+  {
+    "_index": 212,
+    "Id": "AsyncTradeConfirmationSettingsOption",
+    "Text": "비동기 거래 확인 표시"
+  },
+  {
+    "_index": 213,
+    "Id": "AsyncTradeConfirmationForUsingStashCurrencySettingsOption",
+    "Text": "보관함에 있는 화폐를 사용할 경우 비동기 거래 확인 표시"
+  },
+  {
+    "_index": 214,
+    "Id": "AsyncTradeCurrencyMismatchWarning",
+    "Text": "참고: 이 아이템의 가격이 이 상점으로 오기 전에 보았던 가격과 다릅니다."
+  },
+  {
+    "_index": 215,
+    "Id": "AstronomersLevelUpEffectEquippingWillResetDataConfirmationText",
+    "Text": "이 포인트 아이템을 장착하면 해당 포인트 아이템이 기록했던 기존의 통계 정보가 모두 삭제됩니다.\n정말 이 정보를 삭제하고 장착하시겠습니까?\n<yellow>{이 행동은 돌이킬 수 없습니다.}"
+  },
+  {
+    "_index": 216,
+    "Id": "UnstableDriverVulkanCompilePipelinesReason",
+    "Text": "이 드라이버 버전을 사용하면 불러오기 화면이 매우 길어질 수 있습니다. {0}"
+  },
+  {
+    "_index": 217,
+    "Id": "UnstableDriverResolvedAction",
+    "Text": "드라이버를 {0} 이후 버전으로 업데이트해 주십시오."
+  },
+  {
+    "_index": 218,
+    "Id": "BlightedMapAtlasNodeDisplayName",
+    "Text": "역병 걸린 땅"
+  },
+  {
+    "_index": 219,
+    "Id": "ValdoMapAtlasNodeDisplayName",
+    "Text": "발도의 지하 감옥"
+  },
+  {
+    "_index": 220,
+    "Id": "ReliquaryAtlasNodeDisplayName",
+    "Text": "성유물 보관실 금고"
+  },
+  {
+    "_index": 221,
+    "Id": "UberCortexAtlasNodeDisplayName",
+    "Text": "해방된 코텍스"
+  },
+  {
+    "_index": 222,
+    "Id": "RandomLogbookDisplayName",
+    "Text": "미개척지 탐험"
+  },
+  {
+    "_index": 223,
+    "Id": "RandomBlueprintDisplayName",
+    "Text": "계획된 강탈"
+  },
+  {
+    "_index": 224,
+    "Id": "MirageCompleteHudNotificationText",
+    "Text": "허상 완료"
+  },
+  {
+    "_index": 225,
+    "Id": "TemplarVaultCaseDisplayName",
+    "Text": "금지된 성유물 보관실"
+  },
+  {
+    "_index": 226,
+    "Id": "RitualCompleteHudNotificationText",
+    "Text": "모든 의식 완료됨"
+  },
+  {
+    "_index": 227,
+    "Id": "IncubationBenchTitle",
+    "Text": "인큐베이션 샘"
+  },
+  {
+    "_index": 228,
+    "Id": "IncubationBenchDescription2",
+    "Text": "장착 중인 아이템에 현재 적용된 인큐베이터를 최대 2개까지 완료합니다."
+  },
+  {
+    "_index": 229,
+    "Id": "IncubationBenchDescription4",
+    "Text": "장착 중인 아이템에 현재 적용된 인큐베이터를 최대 4개까지 완료합니다."
+  },
+  {
+    "_index": 230,
+    "Id": "IncubationBenchDescription6",
+    "Text": "장착 중인 아이템에 현재 적용된 인큐베이터를 최대 6개까지 완료합니다."
+  },
+  {
+    "_index": 231,
+    "Id": "ArbiterofDivinityMapDeviceWhiteMapsPopup",
+    "Text": "완료한 하얀 지도 수"
+  },
+  {
+    "_index": 232,
+    "Id": "ArbiterofDivinityMapDeviceYellowMapsPopup",
+    "Text": "완료한 노란 지도 수"
+  },
+  {
+    "_index": 233,
+    "Id": "ArbiterofDivinityMapDeviceRedMapsPopup",
+    "Text": "완료한 빨간 지도 수"
+  },
+  {
+    "_index": 234,
+    "Id": "SimpleValueOutOfValue",
+    "Text": "{0}/{1}"
+  },
+  {
+    "_index": 235,
+    "Id": "LegionCocoonCrystalTitle",
+    "Text": "치환의 수정"
+  },
+  {
+    "_index": 236,
+    "Id": "LegionCocoonCrystalDescription",
+    "Text": "상호작용해 [Enshroud|휩싸인] 아이템을 넣으십시오."
+  },
+  {
+    "_index": 237,
+    "Id": "DeepwaterHubBoatString",
+    "Text": "군왕호 방문하기"
+  },
+  {
+    "_index": 238,
+    "Id": "DeepwaterTormentedSpiritsTitle",
+    "Text": "고통받는 혼백의 창살"
+  },
+  {
+    "_index": 239,
+    "Id": "DeepwaterTormentedSpiritsDescription",
+    "Text": "갇힌 고통받는 혼백을 해방하십시오."
+  },
+  {
+    "_index": 240,
+    "Id": "DeepwaterLanternReplenishTitle",
+    "Text": "올플레임 불쏘시개"
+  },
+  {
+    "_index": 241,
+    "Id": "MtxLeaderboardMapDeviceNumNormalMonsterKills",
+    "Text": "일반 몬스터 처치 횟수"
+  },
+  {
+    "_index": 242,
+    "Id": "MtxLeaderboardMapDeviceNumMagicMonsterKills",
+    "Text": "마법 몬스터 처치 횟수"
+  },
+  {
+    "_index": 243,
+    "Id": "MtxLeaderboardMapDeviceNumRareMonsterKills",
+    "Text": "희귀 몬스터 처치 횟수"
+  },
+  {
+    "_index": 244,
+    "Id": "MtxLeaderboardMapDeviceNumUniqueMonsterKills",
+    "Text": "고유 몬스터 처치 횟수"
+  },
+  {
+    "_index": 245,
+    "Id": "MtxLeaderboardMapDeviceNumMarkersUnearthedByDynamite",
+    "Text": "발굴한 표시물"
+  },
+  {
+    "_index": 246,
+    "Id": "MtxLeaderboardMapDeviceNumEliteMarkersUnearthedByDynamite",
+    "Text": "발굴한 정예 표시물"
+  },
+  {
+    "_index": 247,
+    "Id": "MtxLeaderboardMapDeviceNumChestsUnearthedByDynamite",
+    "Text": "발굴한 상자"
+  },
+  {
+    "_index": 248,
+    "Id": "MtxLeaderboardMapDeviceNumSpecialUnearthedByDynamite",
+    "Text": ""
+  },
+  {
+    "_index": 249,
+    "Id": "MtxLeaderboardMapDeviceNumTributeGenerated",
+    "Text": "생성한 공물 점수"
+  },
+  {
+    "_index": 250,
+    "Id": "SideEncounterAbyssPinnacleBoss",
+    "Text": "[DNT] UNUSED"
+  },
+  {
+    "_index": 251,
+    "Id": "VaalSacrificeDeviceTitle",
+    "Text": "혼돈에게 제물 바치기"
+  },
+  {
+    "_index": 252,
+    "Id": "VaalSacrificeDeviceDescription",
+    "Text": "혼돈에게 고유 아이템을 바쳐\n막대한 재물을 얻습니다."
+  },
+  {
+    "_index": 253,
+    "Id": "MercenaryLevel",
+    "Text": "용병 레벨"
+  },
+  {
+    "_index": 254,
+    "Id": "MercenaryBuild",
+    "Text": "빌드"
+  },
+  {
+    "_index": 255,
+    "Id": "AbyssPinnacleExchangeJewelsString",
+    "Text": "회수"
+  },
+  {
+    "_index": 256,
+    "Id": "BottledUniqueBelt",
+    "Text": "키의 손잡이를 꽉 잡아라, 나의 좋은 친구여."
+  },
+  {
+    "_index": 257,
+    "Id": "BottledUniqueJewel",
+    "Text": "계속 빛나라, 나의 소중한 이여."
+  },
+  {
+    "_index": 258,
+    "Id": "BottledUniqueRing",
+    "Text": "난 이 반지를 갖고 싶었어. 근데 그가 내주지 않더군... 그래서 손가락째로 가져왔지."
+  },
+  {
+    "_index": 259,
+    "Id": "BottledUniqueAmulet",
+    "Text": "이것이 축복이든 맷돌이든, 이제 네가 지고 가야 한다."
+  },
+  {
+    "_index": 260,
+    "Id": "BottledUniqueFlask",
+    "Text": "생명의 원천을 깊이 들이마셔라."
+  },
+  {
+    "_index": 261,
+    "Id": "BottledHinekorasLock",
+    "Text": "그대의 항로가 올곧고 그대의 마음이 진실하기를."
+  },
+  {
+    "_index": 262,
+    "Id": "BottledFracturingOrb",
+    "Text": "혼란스러운 세상에서 확실한 것을 찾는 이들을 위해."
+  },
+  {
+    "_index": 263,
+    "Id": "BottledDivineOrb",
+    "Text": "이것이 나에게 가져다준 것보다 나은 운명을 그대에게 가져다주기를."
+  },
+  {
+    "_index": 264,
+    "Id": "BottledDivineOrbStack",
+    "Text": "이 약탈품은 끝도 없는 골칫거리를 가져왔다. 이제 바다에 돌려주겠다."
+  },
+  {
+    "_index": 265,
+    "Id": "BottledReflectingMist",
+    "Text": "잘 기억해라. 안개는 모든 것을 비춰 보인다. 하지만 그 반영은 진실이 아니다."
+  },
+  {
+    "_index": 266,
+    "Id": "BottledStackedDeckStack",
+    "Text": "내가 수집에 몰두하던 나날은 갔다. 그대의 나날은 이제 시작이다."
+  },
+  {
+    "_index": 267,
+    "Id": "BottledBrokenMirror",
+    "Text": "일평생에 넘칠 만큼 불운을 겪었다."
+  },
+  {
+    "_index": 268,
+    "Id": "BottledAlbinoCrabClaw",
+    "Text": "얼마 전 이것을 꼬집었다. 그 후로는 비참한 일밖에 일어나지 않았다."
+  },
+  {
+    "_index": 269,
+    "Id": "BottledChainHookOfAngling",
+    "Text": "적이 바다 건너 멀리 있는 것처럼 느껴지더라도... 그 상태는 오래가지 않을 것이다."
+  },
+  {
+    "_index": 270,
+    "Id": "BottledUniqueKalandrasTouch",
+    "Text": "거울 속을 깊이 들여다봐라. 눈에 보이는 것을 외면하지 마라."
+  },
+  {
+    "_index": 271,
+    "Id": "BottledUniqueReplicaDragonfangsFlight",
+    "Text": "나의 사랑하는 이에게 이걸 전해 주시오. 그녀는 이것이 가짜라 주장했습니다."
+  },
+  {
+    "_index": 272,
+    "Id": "BottledUniqueDefianceOfDestiny",
+    "Text": "가장 암울한 때에, 이것을 보고 운명은 직접 만들어 가는 것임을 되새기기를."
+  },
+  {
+    "_index": 273,
+    "Id": "BottledUniqueRyslathasCoil",
+    "Text": "이것을 받는 사람에게. 그대는 이제 리슬라사의 아이다."
+  },
+  {
+    "_index": 274,
+    "Id": "BottledUniqueHeadhunter",
+    "Text": "적을 죽일 때마다 내 힘은 커져 갔다... 그와 함께 내 목에 걸린 현상금도 커져 갔다."
+  },
+  {
+    "_index": 275,
+    "Id": "BottledUniqueMageblood",
+    "Text": "이것을 읽는 이에게 경고하건대, 이것을 착용하면 만인의 부러움을 사게 된다. 나는 익명성을 선호한다."
+  },
+  {
+    "_index": 276,
+    "Id": "BottledUniqueInspiredLearning",
+    "Text": "그대의 적들이 가진 가장 큰 힘이 그들의 치명적인 결함이 되기를."
+  },
+  {
+    "_index": 277,
+    "Id": "BottledUniqueUnnaturalInstinct",
+    "Text": "대부분의 사람들은 경험을 통해 본능을 믿게 된다. 하지만 나는 믿지 않게 되었다."
+  },
+  {
+    "_index": 278,
+    "Id": "BottledUniqueBloodnotch",
+    "Text": "조언 한마디. 적이 우위에 있다고 생각하게 만들어라. 그러면 죽이기가 더 쉬워지니."
+  },
+  {
+    "_index": 279,
+    "Id": "BottledUniqueTasteOfHate",
+    "Text": "바닷바람이 소금이 묻은 이빨로 물 때, 이것이 그대를 따뜻하게 해 주길."
+  },
+  {
+    "_index": 280,
+    "Id": "BottledUniqueRainOfSplinters",
+    "Text": "카옴은 나를 끝까지 쫓겠다고 맹세했다. 나는 그에게 잡힐 때 이것을 가지고 있고 싶지 않다."
+  },
+  {
+    "_index": 281,
+    "Id": "MercenaryEncounterOptInCostIndicator",
+    "Text": "내기: {0} <<village_gold>>"
+  },
+  {
+    "_index": 282,
+    "Id": "MercenaryReserveWarning",
+    "Text": "정말 이 용병을 보류하시겠습니까? 이 용병이 이 지역에서 동행하지 않습니다."
+  },
+  {
+    "_index": 283,
+    "Id": "AbyssJumpInteractableText",
+    "Text": "뛰어들기"
+  },
+  {
+    "_index": 284,
+    "Id": "MercenaryWaitingForEncounter",
+    "Text": "결투 대기 중"
+  },
+  {
+    "_index": 285,
+    "Id": "MercenaryCannotItemiseError",
+    "Text": "레벨이 {0} 이상인 용병에게만 도전해서 소환장을 받을 수 있습니다."
+  },
+  {
+    "_index": 286,
+    "Id": "MercenaryWagerCostInfoHover",
+    "Text": "이 용병과 결투하기 위해 판돈으로 걸어야 하는 골드의 양입니다.\r\n결투에서 승리하면 골드를 돌려받습니다."
+  },
+  {
+    "_index": 287,
+    "Id": "MercenaryShouldRecruit",
+    "Text": "고용해야 함"
+  },
+  {
+    "_index": 288,
+    "Id": "MercenaryCannotReItemiseError",
+    "Text": "소환장으로 부른 용병에게는 재대결을 요청할 수 없습니다."
+  },
+  {
+    "_index": 289,
+    "Id": "MercenaryPermanentMinionDisplayPopup",
+    "Text": "고용 중인 용병:\r\n{0}\r\n{1}레벨 {2}\r\n\r\n<italic>{{<grey>{{(우클릭하여 살펴보기)}}}}"
+  },
+  {
+    "_index": 290,
+    "Id": "MercenaryTemporaryMinionDisplayPopup",
+    "Text": "임시 고용 중인 용병:\r\n{0}\r\n{1}레벨 {2}\r\n\r\n<italic>{{<grey>{{(우클릭하여 살펴보기)}}}}"
+  },
+  {
+    "_index": 291,
+    "Id": "MercenaryTemporaryLoadoutInfoHover",
+    "Text": "이 용병은 몇 개 지역을 탐험하는 동안 따라다니며 전투를 돕습니다. 지도에서는 현재 지도를 탐험하는 동안에만 따라다닙니다.\r\n\r\n임시로 고용한 용병들이 장착한 아이템은 변경할 수 없습니다."
+  },
+  {
+    "_index": 292,
+    "Id": "MercenaryTemporaryDismissButtonHover",
+    "Text": "이 용병을 해고하면 용병이 플레이어를 따라다니기를 중단하고 지역을 떠납니다."
+  },
+  {
+    "_index": 293,
+    "Id": "MercenaryTemporaryDismissConfirmation",
+    "Text": "정말 이 용병을 해고하시겠습니까?\r\n이 용병이 플레이어를 따라다니기를 중단하고 즉시 이 지역을 떠납니다."
+  },
+  {
+    "_index": 294,
+    "Id": "VesperCraftingBenchTitle",
+    "Text": "베스퍼"
+  },
+  {
+    "_index": 295,
+    "Id": "ObjectDisplayTextDive",
+    "Text": "잠수"
+  },
+  {
+    "_index": 296,
+    "Id": "MercenaryGiveItemLegend",
+    "Text": "주기"
+  },
+  {
+    "_index": 297,
+    "Id": "MercenaryTakeItemLegend",
+    "Text": "받기"
+  },
+  {
+    "_index": 298,
+    "Id": "ShowTemporaryMercenaryLegend",
+    "Text": "임시 용병 보기"
+  },
+  {
+    "_index": 299,
+    "Id": "ShowHiredMercenaryLegend",
+    "Text": "고용 중인 용병 보기"
+  },
+  {
+    "_index": 300,
+    "Id": "MercenaryEncounterOptInCostIndicatorError",
+    "Text": "<red>{{내기: {0}}} <<village_gold>>"
+  },
+  {
+    "_index": 301,
+    "Id": "AnimatedGuardianMinionDisplayPopup",
+    "Text": "기동된 수호자\r\n\r\n<italic>{<grey>{(우클릭하여 장착한 아이템 살펴보기)}}"
+  },
+  {
+    "_index": 302,
+    "Id": "AnimatedGuardianLoadoutInfoHover",
+    "Text": "현재 기동된 수호자에게 장착된 아이템을 표시합니다. 해당 아이템들은 제거할 수 없지만, 바닥에 있는 아이템에 수호자 기동 스킬을 사용해 교체할 수 있습니다."
+  },
+  {
+    "_index": 303,
+    "Id": "PromoCenterTipText",
+    "Text": "새로운 보상을 받을 수 있습니다."
+  },
+  {
+    "_index": 304,
+    "Id": "DeepwaterLanternReplenishDescription",
+    "Text": "추가 올플레임 등불을 획득합니다."
+  },
+  {
+    "_index": 305,
+    "Id": "CourtOfChaosChest",
+    "Text": "혼돈의 재물"
+  },
+  {
+    "_index": 306,
+    "Id": "StashAllButton",
+    "Text": "[DNT] Quick Stash"
+  },
+  {
+    "_index": 307,
+    "Id": "InspectMode",
+    "Text": "살펴보기 모드"
+  },
+  {
+    "_index": 308,
+    "Id": "ConsoleActionExpandPopup",
+    "Text": "확장"
+  },
+  {
+    "_index": 309,
+    "Id": "InspectLegend",
+    "Text": "살펴보기"
+  },
+  {
+    "_index": 310,
+    "Id": "DeepwaterFinalLanternWarning",
+    "Text": "올플레임 등불 1개 남음"
+  }
+]

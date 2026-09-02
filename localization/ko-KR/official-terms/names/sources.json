@@ -1,0 +1,17 @@
+{
+  "patch": "3.29.3.2",
+  "retrieved": "2026-09-01",
+  "index": "https://repoe-fork.github.io/poe1.html",
+  "english": {
+    "url": "https://repoe-fork.github.io/uniques.min.json",
+    "file": "English.uniques.min.json",
+    "sha256": "10785E6126CE6DAFF402D3379622BC228D6D5F989B3BB3FDE33A9B09F7ED3A6E",
+    "bytes": 396415
+  },
+  "korean": {
+    "url": "https://repoe-fork.github.io/Korean/uniques.min.json",
+    "file": "Korean.uniques.min.json",
+    "sha256": "2D1D3FB5D913900416D792498C9DA452B3D77F592F03281E5A2AF464BCDB15E6",
+    "bytes": 401137
+  }
+}

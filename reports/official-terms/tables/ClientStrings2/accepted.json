@@ -1,0 +1,1548 @@
+{
+  "patch": "3.29.3.2",
+  "table": "ClientStrings2",
+  "join": "Id",
+  "nameColumn": "Text",
+  "rows": [
+    {
+      "english": "Jump In",
+      "korean": "뛰어들기",
+      "id": "AbyssJumpInteractableText"
+    },
+    {
+      "english": "Reclaim",
+      "korean": "회수",
+      "id": "AbyssPinnacleExchangeJewelsString"
+    },
+    {
+      "english": "Strange Flame",
+      "korean": "이상한 불길",
+      "id": "AilithBrequelGlyphObjectClickable"
+    },
+    {
+      "english": "Shows the items currently equipped to your Animated Guardian. These items cannot be removed, but can be replaced by using the Animate Guardian skill on items on the ground.",
+      "korean": "현재 기동된 수호자에게 장착된 아이템을 표시합니다. 해당 아이템들은 제거할 수 없지만, 바닥에 있는 아이템에 수호자 기동 스킬을 사용해 교체할 수 있습니다.",
+      "id": "AnimatedGuardianLoadoutInfoHover"
+    },
+    {
+      "english": "Animated Guardian\r\n\r\n<italic>{<grey>{(Right click to inspect equipped items)}}",
+      "korean": "기동된 수호자\r\n\r\n<italic>{<grey>{(우클릭하여 장착한 아이템 살펴보기)}}",
+      "id": "AnimatedGuardianMinionDisplayPopup"
+    },
+    {
+      "english": "Number of red Maps completed",
+      "korean": "완료한 빨간 지도 수",
+      "id": "ArbiterofDivinityMapDeviceRedMapsPopup"
+    },
+    {
+      "english": "Number of white Maps completed",
+      "korean": "완료한 하얀 지도 수",
+      "id": "ArbiterofDivinityMapDeviceWhiteMapsPopup"
+    },
+    {
+      "english": "Number of yellow Maps completed",
+      "korean": "완료한 노란 지도 수",
+      "id": "ArbiterofDivinityMapDeviceYellowMapsPopup"
+    },
+    {
+      "english": "Equipping this microtransaction will delete all the existing statistic information tracked by this microtransaction.\nDo you wish to delete this information and equip?\n<yellow>{This action cannot be undone.}",
+      "korean": "이 포인트 아이템을 장착하면 해당 포인트 아이템이 기록했던 기존의 통계 정보가 모두 삭제됩니다.\n정말 이 정보를 삭제하고 장착하시겠습니까?\n<yellow>{이 행동은 돌이킬 수 없습니다.}",
+      "id": "AstronomersLevelUpEffectEquippingWillResetDataConfirmationText"
+    },
+    {
+      "english": "Close Sale History",
+      "korean": "판매 내역 닫기",
+      "id": "AsyncTradeCloseSaleHistoryList"
+    },
+    {
+      "english": "Don't Show Again",
+      "korean": "다시 표시하지 않음",
+      "id": "AsyncTradeConfirmationDontShowAgainLabel"
+    },
+    {
+      "english": "Use {0}x(CurrencyIconMarkerDontTranslate){1} in (RedDontTranslate){{stash}} to purchase {2}?",
+      "korean": "(RedDontTranslate){{stash}}에 있는 (CurrencyIconMarkerDontTranslate){1} {0}개로 {2}을(를) 구매하시겠습니까?",
+      "id": "AsyncTradeConfirmationForUsingStashCurrencyInfoLabel"
+    },
+    {
+      "english": "Show Async Trade Confirmation For Using Stash Currency",
+      "korean": "보관함에 있는 화폐를 사용할 경우 비동기 거래 확인 표시",
+      "id": "AsyncTradeConfirmationForUsingStashCurrencySettingsOption"
+    },
+    {
+      "english": "Use {0}x(CurrencyIconMarkerDontTranslate){1} to purchase {2}?",
+      "korean": "(CurrencyIconMarkerDontTranslate){1} {0}개로 {2}을(를) 구매하시겠습니까?",
+      "id": "AsyncTradeConfirmationInfoLabel"
+    },
+    {
+      "english": "Show Async Trade Confirmation",
+      "korean": "비동기 거래 확인 표시",
+      "id": "AsyncTradeConfirmationSettingsOption"
+    },
+    {
+      "english": "Purchase Confirmation",
+      "korean": "구매 확인",
+      "id": "AsyncTradeConfirmationTitle"
+    },
+    {
+      "english": "Note: This item's price differs from the one you initially travelled to this shop for.",
+      "korean": "참고: 이 아이템의 가격이 이 상점으로 오기 전에 보았던 가격과 다릅니다.",
+      "id": "AsyncTradeCurrencyMismatchWarning"
+    },
+    {
+      "english": "{} has sold for {} in another league.\r\nSpeak to Faustus in your hideout in that league to collect your earnings.",
+      "korean": "{}이(가) 다른 리그에서 {}에 팔렸습니다.\r\n은신처에 있는 파우스투스와 대화해서 수익금을 받으십시오.",
+      "id": "AsyncTradeSoldItemInAnotherLeagueNotification"
+    },
+    {
+      "english": "{} has sold for {} in another league.",
+      "korean": "{}이(가) 다른 리그에서 {}에 팔렸습니다.",
+      "id": "AsyncTradeSoldItemInAnotherLeagueNotificationShort"
+    },
+    {
+      "english": "{} has sold for {}.\r\nSpeak to Faustus in your hideout to collect your earnings.",
+      "korean": "파우스투스가 {}을(를) {}에 팔았습니다.\r\n은신처에 있는 파우스투스와 대화해서 수익금을 받으십시오.",
+      "id": "AsyncTradeSoldItemNotification"
+    },
+    {
+      "english": "{} has sold for {}.",
+      "korean": "{} 판매 완료 (판매가: {})",
+      "id": "AsyncTradeSoldItemNotificationShort"
+    },
+    {
+      "english": "<valuedefault>{In order to sell items using this system you need to have a Merchant's Tab}\r\n\r\n<cxinfocolour>{How to get a Merchant's Tab:}\r\n<valuedefault>{Premium Stash Tabs bought before 30th August 2025 can be converted to Merchant's Tabs for free.\r\nStash Tab conversion can only be done through the Website.\r\nNOTE: After conversion your chosen Premium Tabs will be gone from your personal Stash as it will now be a Merchant's Tab.  \r\nYou can buy a Merchant's Tab in the Microtransaction Shop.}\r\n\r\n<cxinfocolour>{As a Seller:}\r\n<valuedefault>{To list an item for sale, place the item in one of the Shop tabs and set a price.\r\nYou can't reprice an item for a duration once it has been \"Secured\" by someone coming to get it.\r\nAn item's gold fee is assigned by the system.\r\nBuyers will be teleported to your hideout to buy the item from your Merchant's Tab.\r\nYou'll receive a notification when a trade has been completed.\r\nThe currency from your sales can be collected from the Earnings tab.\r\nYou can view the last 100 sales by clicking the Sales History button.}\r\n<default>{You can} <valuedefault>{Right-Click} <default>{the tab to rename and recolour it.}\r\n\r\n<cxinfocolour>{As a Buyer:}\r\n<valuedefault>{Find \"Securable\" Listings on the Market Panel or the Trade Website.\r\nSecuring the item will teleport your character to the Seller's hideout.\r\nBuy the item from the Seller's Merchant's Tab.}\r\n<default>{You can} <valuedefault>{Right-Click} <default>{the Seller's tab to report it for inappropriate naming.}",
+      "korean": "<valuedefault>{이 시스템을 사용해 아이템을 판매하려면 상인 탭이 있어야 합니다.}\r\n\r\n<cxinfocolour>{상인 탭을 여는 방법:}\r\n<valuedefault>{- 2025년 8월 30일 전에 구매한 프리미엄 보관함 탭은 무료로 상인 탭으로 전환할 수 있습니다.\r\n보관함 탭 전환은 웹사이트에서만 할 수 있습니다.\r\n  참고: 전환 후에는 선택한 프리미엄 탭이 개인 보관함에서 사라지고, 상인 탭이 됩니다.  \r\n- 상인 탭을 포인트 아이템 상점에서 구매할 수 있습니다.}\r\n\r\n<cxinfocolour>{판매자일 경우:}\r\n<valuedefault>{아이템을 매물로 등록하려면, 상점 탭 중 한 곳에 아이템을 넣고 가격을 선택합니다.\r\n아이템을 \"찜\"하고 가지러 오는 플레이어가 있을 경우, 일정 시간 동안 아이템의 가격을 변경할 수 없습니다.\r\n아이템의 골드 수수료는 시스템이 책정합니다.\r\n구매자는 상인 탭에 있는 아이템을 사러 은신처로 순간이동합니다.\r\n거래가 완료되면 알림이 전송됩니다.\r\n판매로 얻은 화폐는 수익 탭에서 수령할 수 있습니다.\r\n판매 내역 버튼을 누르면 최근 판매 내역 100건을 확인할 수 있습니다.}\r\n<default>{탭을} <valuedefault>{우클릭}<default>{하면 이름과 색상을 변경할 수 있습니다.}\r\n\r\n<cxinfocolour>{구매자일 경우:}\r\n<valuedefault>{시장 화면 또는 거래 웹사이트에서 \"찜 가능\" 매물을 찾습니다.\r\n아이템을 찜하면 캐릭터가 판매자의 은신처로 순간이동합니다.\r\n판매자의 상인 탭에서 아이템을 구매합니다.}\r\n<default>{판매자의 탭을} <valuedefault>{우클릭}<default>{하면 부적절한 이름을 신고할 수 있습니다.}",
+      "id": "AsyncTradeStashPanelHelpPopup"
+    },
+    {
+      "english": "List Item",
+      "korean": "아이템 등록",
+      "id": "AsyncTradeStashPanelPriceItemConfirmationActionButton"
+    },
+    {
+      "english": "In order to list an item for sale, you must first select a buyout price.",
+      "korean": "판매할 아이템을 등록하려면 우선 즉시 구입 가격을 선택해야 합니다.",
+      "id": "AsyncTradeStashPanelPriceItemConfirmationMessage"
+    },
+    {
+      "english": "Set Item Price",
+      "korean": "아이템 가격 설정",
+      "id": "AsyncTradeStashPanelPriceItemConfirmationTitle"
+    },
+    {
+      "english": "Earnings",
+      "korean": "수익",
+      "id": "AsyncTradeStashPanelSellerCurrencyStashName"
+    },
+    {
+      "english": "Earning from your sales can be collected from this tab.",
+      "korean": "판매 수익은 이 탭에서 찾을 수 있습니다.",
+      "id": "AsyncTradeStashPanelSellerCurrencyStashPopup"
+    },
+    {
+      "english": "For:",
+      "korean": "가격:",
+      "id": "AsyncTradeStashPanelSellLogEntryCostItemLabel"
+    },
+    {
+      "english": "Sold:",
+      "korean": "판매됨:",
+      "id": "AsyncTradeStashPanelSellLogEntrySoldItemLabel"
+    },
+    {
+      "english": "Filter list by the name of the sold item.",
+      "korean": "판매된 아이템 이름으로 목록을 필터링합니다.",
+      "id": "AsyncTradeStashPanelSellLogFilter"
+    },
+    {
+      "english": "Information / Sales History",
+      "korean": "정보 / 판매 내역",
+      "id": "AsyncTradeStashPanelSellLogHelpInfo"
+    },
+    {
+      "english": "Sales History",
+      "korean": "판매 내역",
+      "id": "AsyncTradeStashPanelSellLogTitle"
+    },
+    {
+      "english": "Merchant",
+      "korean": "상인",
+      "id": "AsyncTradeStashPanelTitle"
+    },
+    {
+      "english": "Shop",
+      "korean": "상점",
+      "id": "AsyncTradeStashTabName"
+    },
+    {
+      "english": "Right click to report this tab",
+      "korean": "우클릭하여 이 탭 신고하기",
+      "id": "AsyncTradeVendorPanelReportTabPopupText"
+    },
+    {
+      "english": "Merchant",
+      "korean": "상인",
+      "id": "AsyncTradeVendorPanelTitle"
+    },
+    {
+      "english": "Blighted Lands",
+      "korean": "역병 걸린 땅",
+      "id": "BlightedMapAtlasNodeDisplayName"
+    },
+    {
+      "english": "'Pinched' this one a while back. Had nothing but misery ever since.",
+      "korean": "얼마 전 이것을 꼬집었다. 그 후로는 비참한 일밖에 일어나지 않았다.",
+      "id": "BottledAlbinoCrabClaw"
+    },
+    {
+      "english": "Had enough bad luck for one lifetime.",
+      "korean": "일평생에 넘칠 만큼 불운을 겪었다.",
+      "id": "BottledBrokenMirror"
+    },
+    {
+      "english": "Should your foe feel an ocean away... they shan't be for long.",
+      "korean": "적이 바다 건너 멀리 있는 것처럼 느껴지더라도... 그 상태는 오래가지 않을 것이다.",
+      "id": "BottledChainHookOfAngling"
+    },
+    {
+      "english": "May this bring you better fortune than it did me.",
+      "korean": "이것이 나에게 가져다준 것보다 나은 운명을 그대에게 가져다주기를.",
+      "id": "BottledDivineOrb"
+    },
+    {
+      "english": "This plunder brought me no end of trouble. I return it to the sea.",
+      "korean": "이 약탈품은 끝도 없는 골칫거리를 가져왔다. 이제 바다에 돌려주겠다.",
+      "id": "BottledDivineOrbStack"
+    },
+    {
+      "english": "For those seeking surety in a chaotic world.",
+      "korean": "혼란스러운 세상에서 확실한 것을 찾는 이들을 위해.",
+      "id": "BottledFracturingOrb"
+    },
+    {
+      "english": "May your course be straight and your heart be true.",
+      "korean": "그대의 항로가 올곧고 그대의 마음이 진실하기를.",
+      "id": "BottledHinekorasLock"
+    },
+    {
+      "english": "Remember this well: the mist reflects all. But reflection is not truth.",
+      "korean": "잘 기억해라. 안개는 모든 것을 비춰 보인다. 하지만 그 반영은 진실이 아니다.",
+      "id": "BottledReflectingMist"
+    },
+    {
+      "english": "My collecting days are done. Yours are just beginning. ",
+      "korean": "내가 수집에 몰두하던 나날은 갔다. 그대의 나날은 이제 시작이다.",
+      "id": "BottledStackedDeckStack"
+    },
+    {
+      "english": "Be this blessing or millstone, it is now yours to wear.",
+      "korean": "이것이 축복이든 맷돌이든, 이제 네가 지고 가야 한다.",
+      "id": "BottledUniqueAmulet"
+    },
+    {
+      "english": "Hold fast the tiller, my good friend.",
+      "korean": "키의 손잡이를 꽉 잡아라, 나의 좋은 친구여.",
+      "id": "BottledUniqueBelt"
+    },
+    {
+      "english": "A word of advice: let them think they have the advantage. Makes them easier to kill.",
+      "korean": "조언 한마디. 적이 우위에 있다고 생각하게 만들어라. 그러면 죽이기가 더 쉬워지니.",
+      "id": "BottledUniqueBloodnotch"
+    },
+    {
+      "english": "In the darkest of hours, may this serve as a reminder: your fate is yours to forge.",
+      "korean": "가장 암울한 때에, 이것을 보고 운명은 직접 만들어 가는 것임을 되새기기를.",
+      "id": "BottledUniqueDefianceOfDestiny"
+    },
+    {
+      "english": "Drink deep from the wellspring of life.",
+      "korean": "생명의 원천을 깊이 들이마셔라.",
+      "id": "BottledUniqueFlask"
+    },
+    {
+      "english": "My strength grew with every kill... but so too did the bounty on my head. ",
+      "korean": "적을 죽일 때마다 내 힘은 커져 갔다... 그와 함께 내 목에 걸린 현상금도 커져 갔다.",
+      "id": "BottledUniqueHeadhunter"
+    },
+    {
+      "english": "May your enemies' greatest strength become their fatal flaw.",
+      "korean": "그대의 적들이 가진 가장 큰 힘이 그들의 치명적인 결함이 되기를.",
+      "id": "BottledUniqueInspiredLearning"
+    },
+    {
+      "english": "Shine on, my sweet. ",
+      "korean": "계속 빛나라, 나의 소중한 이여.",
+      "id": "BottledUniqueJewel"
+    },
+    {
+      "english": "Stare deep into the mirror. Do not turn from what you see.",
+      "korean": "거울 속을 깊이 들여다봐라. 눈에 보이는 것을 외면하지 마라.",
+      "id": "BottledUniqueKalandrasTouch"
+    },
+    {
+      "english": "Reader beware: to don this is to be the envy of all. I prefer anonymity.",
+      "korean": "이것을 읽는 이에게 경고하건대, 이것을 착용하면 만인의 부러움을 사게 된다. 나는 익명성을 선호한다.",
+      "id": "BottledUniqueMageblood"
+    },
+    {
+      "english": "Kaom swore he'd hunt me down. I'd rather not have this when he does.",
+      "korean": "카옴은 나를 끝까지 쫓겠다고 맹세했다. 나는 그에게 잡힐 때 이것을 가지고 있고 싶지 않다.",
+      "id": "BottledUniqueRainOfSplinters"
+    },
+    {
+      "english": "Gave this to my beloved. She claimed it was a fake.",
+      "korean": "나의 사랑하는 이에게 이걸 전해 주시오. 그녀는 이것이 가짜라 주장했습니다.",
+      "id": "BottledUniqueReplicaDragonfangsFlight"
+    },
+    {
+      "english": "I wanted his ring. He wouldn't yield it... so I took his finger too.",
+      "korean": "난 이 반지를 갖고 싶었어. 근데 그가 내주지 않더군... 그래서 손가락째로 가져왔지.",
+      "id": "BottledUniqueRing"
+    },
+    {
+      "english": "To whosoever receives this: you are now another of Ryslatha's children.",
+      "korean": "이것을 받는 사람에게. 그대는 이제 리슬라사의 아이다.",
+      "id": "BottledUniqueRyslathasCoil"
+    },
+    {
+      "english": "For when the ocean wind bites with salt-speckled teeth, may this keep you warm.",
+      "korean": "바닷바람이 소금이 묻은 이빨로 물 때, 이것이 그대를 따뜻하게 해 주길.",
+      "id": "BottledUniqueTasteOfHate"
+    },
+    {
+      "english": "Most learn to trust their instincts. I learned not to.",
+      "korean": "대부분의 사람들은 경험을 통해 본능을 믿게 된다. 하지만 나는 믿지 않게 되었다.",
+      "id": "BottledUniqueUnnaturalInstinct"
+    },
+    {
+      "english": "{0} [{1}]",
+      "korean": "{0} [{1}]",
+      "id": "BrequelEncounterUseSkillNameViaHotkey"
+    },
+    {
+      "english": "Hide Options",
+      "korean": "옵션 숨기기",
+      "id": "CloseOptionsMenu"
+    },
+    {
+      "english": "Colour",
+      "korean": "색상",
+      "id": "Colour"
+    },
+    {
+      "english": "Clear Search",
+      "korean": "검색 초기화",
+      "id": "ConsoleActionClearSearch"
+    },
+    {
+      "english": "Expand",
+      "korean": "확장",
+      "id": "ConsoleActionExpandPopup"
+    },
+    {
+      "english": "Play Example Video",
+      "korean": "예시 영상 재생",
+      "id": "ConsoleActionPlayExampleVideo"
+    },
+    {
+      "english": "Set Minion",
+      "korean": "소환수 설정",
+      "id": "ConsoleActionSetToggledMinion"
+    },
+    {
+      "english": "Toggle Advanced Info",
+      "korean": "심화 정보 켜기/끄기",
+      "id": "ConsoleActionToggleItemAdvancedInfo"
+    },
+    {
+      "english": "Unshare Weapon Set",
+      "korean": "무기 세트 공유 취소",
+      "id": "ConsoleActionUndoPropagateEquipment"
+    },
+    {
+      "english": "Use Vaal Orb",
+      "korean": "바알 오브 사용",
+      "id": "ConsoleActionUseVaalOrb"
+    },
+    {
+      "english": "<valuedefault>{Ctrl + Alt + L-Click}<default>{ to link item in the chat.}\r\n<valuedefault>{R-Click}<default>{ to clear MTX slot.}",
+      "korean": "<valuedefault>{Ctrl + Alt + 좌클릭}<default>{으로 채팅창에 아이템을 링크하십시오.}\r\n<valuedefault>{우클릭}<default>{으로 포인트 아이템 슬롯을 비우십시오.}",
+      "id": "CosmeticsPanelHelpInfo"
+    },
+    {
+      "english": "Wealth of Chaos",
+      "korean": "혼돈의 재물",
+      "id": "CourtOfChaosChest"
+    },
+    {
+      "english": "One Allflame Lantern remaining",
+      "korean": "올플레임 등불 1개 남음",
+      "id": "DeepwaterFinalLanternWarning"
+    },
+    {
+      "english": "Visit The Sovereign",
+      "korean": "군왕호 방문하기",
+      "id": "DeepwaterHubBoatString"
+    },
+    {
+      "english": "Gain additional Allflame Lanterns",
+      "korean": "추가 올플레임 등불을 획득합니다.",
+      "id": "DeepwaterLanternReplenishDescription"
+    },
+    {
+      "english": "Allflame Kindling ",
+      "korean": "올플레임 불쏘시개",
+      "id": "DeepwaterLanternReplenishTitle"
+    },
+    {
+      "english": "Release trapped Tormented Spirits",
+      "korean": "갇힌 고통받는 혼백을 해방하십시오.",
+      "id": "DeepwaterTormentedSpiritsDescription"
+    },
+    {
+      "english": "Cage of Tormented Spirits",
+      "korean": "고통받는 혼백의 창살",
+      "id": "DeepwaterTormentedSpiritsTitle"
+    },
+    {
+      "english": "View in Bundle",
+      "korean": "포함 꾸러미 보기",
+      "id": "EShopPanelViewBundlesContainingItemButtonPopup"
+    },
+    {
+      "english": "B",
+      "korean": "B",
+      "id": "ETradeMarketBlueSocketFilterEmptyMessage"
+    },
+    {
+      "english": "Clear Stats Search",
+      "korean": "능력치 검색 초기화",
+      "id": "ETradeMarketClearStatsSearch"
+    },
+    {
+      "english": "Copy Item",
+      "korean": "아이템 복사",
+      "id": "ETradeMarketCopyItemButtonHoverText"
+    },
+    {
+      "english": "Item text copied.",
+      "korean": "아이템 문구를 복사했습니다.",
+      "id": "ETradeMarketCopyItemSuccessMessage"
+    },
+    {
+      "english": "Edit Stats Search",
+      "korean": "능력치 검색 편집",
+      "id": "ETradeMarketEditStatsSearch"
+    },
+    {
+      "english": "G",
+      "korean": "G",
+      "id": "ETradeMarketGreenSocketFilterEmptyMessage"
+    },
+    {
+      "english": "Invalid Query. Your account must not be marked as DND in-game to use this feature.",
+      "korean": "쿼리가 유효하지 않습니다. 계정이 방해금지 모드인 동안에는 이 기능을 사용할 수 없습니다.",
+      "id": "ETradeMarketMessageWhisperFailedDNDModeEnabled"
+    },
+    {
+      "english": "Quick Search Stats",
+      "korean": "능력치 빠른 검색",
+      "id": "ETradeMarketQuickSearchStats"
+    },
+    {
+      "english": "R",
+      "korean": "R",
+      "id": "ETradeMarketRedSocketFilterEmptyMessage"
+    },
+    {
+      "english": "W",
+      "korean": "W",
+      "id": "ETradeMarketWhiteSocketFilterEmptyMessage"
+    },
+    {
+      "english": "Edge Display",
+      "korean": "가장자리 표시",
+      "id": "FavouriteMapsWindowKeepPinsOnScreenCheckboxLabel"
+    },
+    {
+      "english": "Add Folder",
+      "korean": "폴더 추가",
+      "id": "GamepadActionAddNewFolder"
+    },
+    {
+      "english": "Clear Search",
+      "korean": "검색 초기화",
+      "id": "GamepadActionClearSearch"
+    },
+    {
+      "english": "Collapse Folder",
+      "korean": "폴더 접기",
+      "id": "GamepadActionCollapseFolder"
+    },
+    {
+      "english": "Edit Price",
+      "korean": "가격 편집",
+      "id": "GamepadActionEditAsyncTradeItemPrice"
+    },
+    {
+      "english": "Stash Options",
+      "korean": "보관함 옵션",
+      "id": "GamepadActionEditStash"
+    },
+    {
+      "english": "Exit Edit Stash Mode",
+      "korean": "보관함 편집 모드 나가기",
+      "id": "GamepadActionExitEditStashMode"
+    },
+    {
+      "english": "Expand Folder",
+      "korean": "폴더 펼치기",
+      "id": "GamepadActionExpandFolder"
+    },
+    {
+      "english": "Move Tab",
+      "korean": "탭 이동",
+      "id": "GamepadActionMoveStashTab"
+    },
+    {
+      "english": "Move to Top",
+      "korean": "제일 위로 이동",
+      "id": "GamepadActionMoveStashTabToTop"
+    },
+    {
+      "english": "List For Sale",
+      "korean": "상품 등록",
+      "id": "GamepadActionQuickMoveAsyncTrade"
+    },
+    {
+      "english": "Report Tab Name",
+      "korean": "탭 이름 신고",
+      "id": "GamepadActionReportAsyncTradeTabName"
+    },
+    {
+      "english": "Edit Folder Settings",
+      "korean": "폴더 설정 편집",
+      "id": "GamepadActionShowFolderOptions"
+    },
+    {
+      "english": "Edit Tab Settings",
+      "korean": "탭 설정 편집",
+      "id": "GamepadActionShowStashOptions"
+    },
+    {
+      "english": "Socket In Passive Tree",
+      "korean": "패시브 트리에 장착하기",
+      "id": "GamepadActionSocketJewelInPassiveTree"
+    },
+    {
+      "english": "Start Game in Town/Hideout",
+      "korean": "마을/은신처에서 게임 시작",
+      "id": "GamepadActionStartGameInTown"
+    },
+    {
+      "english": "Place Tab",
+      "korean": "탭 배치",
+      "id": "GamepadActionStopMoveTab"
+    },
+    {
+      "english": "Exit Salvage Bench",
+      "korean": "분해 작업대 나가기",
+      "id": "GamepadActionStopSalvaging"
+    },
+    {
+      "english": "Toggle Label Visibility",
+      "korean": "이름표 표시 켜기/끄기",
+      "id": "GamepadActionToggleHighlight"
+    },
+    {
+      "english": "Unlist",
+      "korean": "상품 등록 취소",
+      "id": "GamepadActionUnlistAsyncTradeItem"
+    },
+    {
+      "english": "Unstash",
+      "korean": "보관함에서 꺼내기",
+      "id": "GamepadActionUnstash"
+    },
+    {
+      "english": "You have ascended.\r\nUse [AscendancyPoints|Ascendancy Points] to allocate\r\nAscendancy Passive Skills. ",
+      "korean": "전직했습니다.\r\n[AscendancyPoints|전직 포인트]를 사용해\r\n전직 패시브 스킬을 할당하십시오.",
+      "id": "GamepadAscendancyTreePopupOverview"
+    },
+    {
+      "english": "Cycle Search Results",
+      "korean": "검색 결과 넘기기",
+      "id": "GamepadCycleFilterResults"
+    },
+    {
+      "english": "Equipped: [WeaponSets|Weapon Set]{0}",
+      "korean": "장착 중: [WeaponSets|무기 세트]{0}",
+      "id": "GamepadEquippedWithWeaponSet"
+    },
+    {
+      "english": "<bigger>{<<gamepad_toggle_highlight>>} Bind action to show all labels.",
+      "korean": "<bigger>{<<gamepad_toggle_highlight>>} 이름표를 모두 표시하는 행동을 지정합니다.",
+      "id": "GamepadHelpToggleHighlightUnbound"
+    },
+    {
+      "english": "Label Visibility Off",
+      "korean": "이름표 표시 꺼짐",
+      "id": "GamepadHighlightOffTitle"
+    },
+    {
+      "english": "<bigger>{Automatic (recommended)}\r\n\r\nSwitch between Ranged and Melee modes automatically.",
+      "korean": "<bigger>{자동(권장)}\r\n\r\n자동으로 원거리 모드와 근접 모드를 전환합니다.",
+      "id": "GamepadInitTargetingModeDescAuto"
+    },
+    {
+      "english": "<bigger>{Melee}\r\n\r\nThis mode will always priortise targets you move towards.",
+      "korean": "<bigger>{근접}\r\n\r\n이 모드는 항상 플레이어가 움직이는 방향에 있는 대상을 우선으로 합니다.",
+      "id": "GamepadInitTargetingModeDescMelee"
+    },
+    {
+      "english": "<bigger>{Ranged}\r\n\r\nThis mode is ideal for focusing down enemies from afar.",
+      "korean": "<bigger>{원거리}\r\n\r\n이 모드는 멀리 있는 적에게 초점을 맞출 때 적합합니다.",
+      "id": "GamepadInitTargetingModeDescRanged"
+    },
+    {
+      "english": "Hold {0} to Select Mode.",
+      "korean": "{0} 길게 누르기: 모드 선택",
+      "id": "GamepadInitTargetingModeLegend"
+    },
+    {
+      "english": "Targeting modes can changed later in the Bind Screen.",
+      "korean": "대상 지정 모드는 나중에 지정 화면에서 변경할 수 있습니다.",
+      "id": "GamepadInitTargetingModeSubtitle"
+    },
+    {
+      "english": "Select Targeting Mode",
+      "korean": "대상 지정 모드 선택",
+      "id": "GamepadInitTargetingModeTitle"
+    },
+    {
+      "english": "Filter Menu",
+      "korean": "필터 메뉴",
+      "id": "GamepadLegendEditKeywordSearch"
+    },
+    {
+      "english": "Add to Excludes",
+      "korean": "제외 내용에 추가",
+      "id": "GamepadLegendKeywordAddExclude"
+    },
+    {
+      "english": "Add to Includes",
+      "korean": "포함 내용에 추가",
+      "id": "GamepadLegendKeywordAddInclude"
+    },
+    {
+      "english": "Filtered Out Brightness",
+      "korean": "필터로 제외한 내용의 밝기",
+      "id": "GamepadLegendKeywordFilteredOutBrightness"
+    },
+    {
+      "english": "Highlight Glow Intensity",
+      "korean": "강조 표시 강도",
+      "id": "GamepadLegendKeywordHighlightBrightness"
+    },
+    {
+      "english": "Delete Filter",
+      "korean": "필터 삭제",
+      "id": "GamepadLegendKeywordLegendDeleteEntry"
+    },
+    {
+      "english": "Edit Filter",
+      "korean": "필터 편집",
+      "id": "GamepadLegendKeywordLegendEditEntry"
+    },
+    {
+      "english": "Show All Options",
+      "korean": "모든 선택지 보기",
+      "id": "GamepadLegendKeywordLegendShowAllOptions"
+    },
+    {
+      "english": "Show Suggested Options",
+      "korean": "추천 선택지 보기",
+      "id": "GamepadLegendKeywordLegendShowSuggestedOptions"
+    },
+    {
+      "english": "Toggle Active",
+      "korean": "활성 켜기/끄기",
+      "id": "GamepadLegendKeywordLegendToggleEntryActive"
+    },
+    {
+      "english": "Remove",
+      "korean": "제거",
+      "id": "GamepadLegendKeywordRemoveEntry"
+    },
+    {
+      "english": "Reset Filter",
+      "korean": "필터 초기화",
+      "id": "GamepadLegendKeywordSearchClear"
+    },
+    {
+      "english": "Suggested Keywords based on your Skills and Equipment",
+      "korean": "스킬과 장비에 따른 추천 키워드",
+      "id": "GamepadLegendKeywordShowSuggestedTitle"
+    },
+    {
+      "english": "Undo",
+      "korean": "실행 취소",
+      "id": "GamepadLegendUndoLastChange"
+    },
+    {
+      "english": "Prioritise Interact Over Skills",
+      "korean": "스킬보다 상호작용 우선",
+      "id": "GamepadOptionPriortiseInteractOverSkills"
+    },
+    {
+      "english": "Forces interact to always take priority over Skills.\r\n\r\nWith this Setting off, only certain Interactions will have priority, such as Area Transitions.",
+      "korean": "상호작용이 항상 스킬보다 우선적으로 실행되게 합니다.\r\n\r\n이 설정을 끄면 지역 이동 등의 특정 상호작용만 우선적으로 실행됩니다.",
+      "id": "GamepadOptionPriortiseInteractOverSkillsDesc"
+    },
+    {
+      "english": "Quick Navigate (Applicable Items Only)",
+      "korean": "빠른 찾기 (해당되는 아이템에만 적용)",
+      "id": "GamepadQuickNavigateApplyMode"
+    },
+    {
+      "english": "Organise Tabs In Folder",
+      "korean": "폴더로 탭 정리",
+      "id": "GamepadReorderStashFolderSubTabsTitle"
+    },
+    {
+      "english": "<bigger>{<<xbox_button_a>>} Select Tab\r\n<bigger>{<<xbox_button_x>>} Move Tab To Top\r\n<bigger>{<<xbox_button_b>>} Finish Reordering",
+      "korean": "<bigger>{<<xbox_button_a>>} 탭 선택\r\n<bigger>{<<xbox_button_x>>} 탭을 상단으로 이동\r\n<bigger>{<<xbox_button_b>>} 순서 변경 완료",
+      "id": "GamepadReorderStashTabsLegends"
+    },
+    {
+      "english": "Organise Tabs",
+      "korean": "탭 정리",
+      "id": "GamepadReorderStashTabsTitle"
+    },
+    {
+      "english": "Advanced Info on Inspect",
+      "korean": "살펴보기 시 심화 정보 표시",
+      "id": "GamepadSettingAdvancedInfoOnPromotePopup"
+    },
+    {
+      "english": "Show advanced information when entering Inspect Mode.",
+      "korean": "살펴보기 모드에 들어가면 심화 정보를 표시합니다.",
+      "id": "GamepadSettingAdvancedInfoOnPromotePopupDesc"
+    },
+    {
+      "english": "Change Viewpoint",
+      "korean": "시점 변경",
+      "id": "GamepadSpectateLegendChangeViewpoint"
+    },
+    {
+      "english": "Exit Spectate Mode",
+      "korean": "관전 모드 종료",
+      "id": "GamepadSpectateLegendExit"
+    },
+    {
+      "english": "{0}x Free Minions",
+      "korean": "무료 소환수 x{0}",
+      "id": "GamepadSpiritManagementNoSpiritCost"
+    },
+    {
+      "english": "Edit Stash Mode",
+      "korean": "보관함 편집 모드",
+      "id": "GamepadStashEditorModeTitle"
+    },
+    {
+      "english": "<subtitle>{Automatic (recommended)}\r\nSwitch between Ranged and Melee modes automatically depending on your weapon and skills. \r\n\r\n<italic>{<subtitle>{Skills which change targeting modes}}",
+      "korean": "<subtitle>{자동(권장)}\r\n무기와 스킬에 따라 자동으로 원거리 모드와 근접 모드를 전환합니다. \r\n\r\n<italic>{<subtitle>{대상 지정 모드를 변경하는 스킬}}",
+      "id": "GamepadTargetingAutoDescription"
+    },
+    {
+      "english": "<subtitle>{Custom}\r\nFor those that prefer to create their own settings.",
+      "korean": "<subtitle>{사용자 지정}\r\n직접 설정하고 싶은 분을 위한 모드입니다.",
+      "id": "GamepadTargetingCustomDescription"
+    },
+    {
+      "english": "{0} Softlock",
+      "korean": "{0} 대상 고정",
+      "id": "GamepadTargetingCustomOptionAimOverrideSoftlock"
+    },
+    {
+      "english": "{0}\r\nTarget Softlock is disabled. Use {2} to aim manually on targets.\r\n\r\n{1}\r\nTarget Softlock is enabled. Use {2} to target lock an enemy for a short duration.",
+      "korean": "{0}\r\n대상 고정을 사용하지 않습니다. {2} 사용 시 대상을 수동으로 조준합니다.\r\n\r\n{1}\r\n대상 고정을 사용합니다. {2} 사용 시 짧은 시간 동안 적이 대상으로 고정됩니다.",
+      "id": "GamepadTargetingCustomOptionAimOverrideSoftlockDesc"
+    },
+    {
+      "english": "Off",
+      "korean": "꺼짐",
+      "id": "GamepadTargetingCustomOptionAimOverrideSoftlockOffTitle"
+    },
+    {
+      "english": "On",
+      "korean": "켜짐",
+      "id": "GamepadTargetingCustomOptionAimOverrideSoftlockOnTitle"
+    },
+    {
+      "english": "Range Bias ",
+      "korean": "거리 편향",
+      "id": "GamepadTargetingCustomOptionDistanceWeighting"
+    },
+    {
+      "english": "{0}\r\nDecreased Auto-target bias for nearby enemies.\r\n\r\n{1}\r\nIncreased Auto-target bias for nearby enemies.",
+      "korean": "{0}\r\n주변 적들에 대한 자동 대상 지정 편향이 감소합니다.\r\n\r\n{1}\r\n주변 적들에 대한 자동 대상 지정 편향이 증가합니다.",
+      "id": "GamepadTargetingCustomOptionDistanceWeightingDesc"
+    },
+    {
+      "english": "Off",
+      "korean": "꺼짐",
+      "id": "GamepadTargetingCustomOptionDistanceWeightingOffTitle"
+    },
+    {
+      "english": "On",
+      "korean": "켜짐",
+      "id": "GamepadTargetingCustomOptionDistanceWeightingOnTitle"
+    },
+    {
+      "english": "Targeting Area",
+      "korean": "대상 지정 범위",
+      "id": "GamepadTargetingCustomOptionLargeSelectionArea"
+    },
+    {
+      "english": "{0}\r\nAuto-targeting radius is biased toward your aim direction.\r\n\r\n{1}\r\nAuto-targeting radius is equal in all directions.",
+      "korean": "{0}\r\n대상 자동 지정 반경이 조준 방향으로 치우칩니다.\r\n\r\n{1}\r\n대상 자동 지정 반경이 전 방향에서 동일합니다.",
+      "id": "GamepadTargetingCustomOptionLargeSelectionAreaDesc"
+    },
+    {
+      "english": "Precise",
+      "korean": "정밀함",
+      "id": "GamepadTargetingCustomOptionLargeSelectionAreaOffTitle"
+    },
+    {
+      "english": "Wide",
+      "korean": "넓음",
+      "id": "GamepadTargetingCustomOptionLargeSelectionAreaOnTitle"
+    },
+    {
+      "english": "Direction Priority",
+      "korean": "방향 우선순위",
+      "id": "GamepadTargetingCustomOptionPriortiseCombatDirection"
+    },
+    {
+      "english": "{0}\r\nAuto-targeting priortises your {2} move direction.\r\n\r\n{1}\r\nAuto-targeting priotises targets in the direction your character is facing.",
+      "korean": "{0}\r\n자동 대상 지정이 {2} 이동 방향을 우선으로 합니다.\r\n\r\n{1}\r\n자동 대상 지정이 캐릭터가 바라보는 방향에 있는 대상을 우선으로 합니다.",
+      "id": "GamepadTargetingCustomOptionPriortiseCombatDirectionDesc"
+    },
+    {
+      "english": "Move Direction",
+      "korean": "이동 방향",
+      "id": "GamepadTargetingCustomOptionPriortiseCombatDirectionOffTitle"
+    },
+    {
+      "english": "Facing Direction",
+      "korean": "바라보는 방향",
+      "id": "GamepadTargetingCustomOptionPriortiseCombatDirectionOnTitle"
+    },
+    {
+      "english": "<subtitle>{Melee}\r\nPrecise and responsive targeting.\r\n\r\n<italic>{<subtitle>{Select to always use Melee mode.}}",
+      "korean": "<subtitle>{근접}\r\n정밀하고 반응이 빠른 대상 지정 모드입니다.\r\n\r\n<italic>{<subtitle>{선택하면 항상 근접 모드를 사용합니다.}}",
+      "id": "GamepadTargetingMeleeDescription"
+    },
+    {
+      "english": "Targeting Mode\r\n<bigger>{<valuedefault>{Automatic}}",
+      "korean": "대상 지정 모드\r\n<bigger>{<valuedefault>{자동}}",
+      "id": "GamepadTargetingModeTitleAuto"
+    },
+    {
+      "english": "Targeting Mode\r\n<bigger>{<valuedefault>{Custom}}",
+      "korean": "대상 지정 모드\r\n<bigger>{<valuedefault>{사용자 지정}}",
+      "id": "GamepadTargetingModeTitleCustom"
+    },
+    {
+      "english": "Targeting Mode\r\n<bigger>{<valuedefault>{Melee}}",
+      "korean": "대상 지정 모드\r\n<bigger>{<valuedefault>{근접}}",
+      "id": "GamepadTargetingModeTitleMelee"
+    },
+    {
+      "english": "Targeting Mode\r\n<bigger>{<valuedefault>{Ranged}}",
+      "korean": "대상 지정 모드\r\n<bigger>{<valuedefault>{원거리}}",
+      "id": "GamepadTargetingModeTitleRanged"
+    },
+    {
+      "english": "(Default for Melee)",
+      "korean": "(근접 기본값)",
+      "id": "GamepadTargetingOptionMeleeDefaultTag"
+    },
+    {
+      "english": "(Default for Ranged)",
+      "korean": "(원거리 기본값)",
+      "id": "GamepadTargetingOptionRangedDefaultTag"
+    },
+    {
+      "english": "<subtitle>{Ranged}\r\nStay on target while avoiding dangers.\r\n\r\n<italic>{<subtitle>{Select to always use Ranged mode.}}",
+      "korean": "<subtitle>{원거리}\r\n위험을 피하면서 대상 지정을 유지합니다.\r\n\r\n<italic>{<subtitle>{선택하면 항상 원거리 모드를 사용합니다.}}",
+      "id": "GamepadTargetingRangedDescription"
+    },
+    {
+      "english": "Select Targeting Mode",
+      "korean": "대상 지정 모드 선택",
+      "id": "GamepadTargetingSelectTitle"
+    },
+    {
+      "english": "<bigger>{<<targeting_mode_melee>> Melee Mode}\r\n\r\n<<xbox_button_a>> <default>{to use ranged mode for this Skill.}",
+      "korean": "<bigger>{<<targeting_mode_melee>> 근접 모드}\r\n\r\n<<xbox_button_a>> <default>{로 이 스킬에 원거리 모드를 사용할 수 있습니다.}",
+      "id": "GamepadToggleSkillTargetingMeleePopup"
+    },
+    {
+      "english": "Toggle Targeting Mode",
+      "korean": "대상 지정 모드 전환",
+      "id": "GamepadToggleSkillTargetingMode"
+    },
+    {
+      "english": "<bigger>{<<targeting_mode_ranged>> Ranged Mode}\r\n\r\n<<xbox_button_a>> <default>{to use melee mode for this Skill.}",
+      "korean": "<bigger>{<<targeting_mode_ranged>> 원거리 모드}\r\n\r\n<<xbox_button_a>> <default>{로 이 스킬에 근접 모드를 사용할 수 있습니다.}",
+      "id": "GamepadToggleSkillTargetingRangedPopup"
+    },
+    {
+      "english": "Adjust Listing Price",
+      "korean": "등록 가격 조정",
+      "id": "GampadActionAdjustListingPrice"
+    },
+    {
+      "english": "Goddess of Justice",
+      "korean": "정의의 여신",
+      "id": "GoddessOfJusticeEternalFlameLandmark"
+    },
+    {
+      "english": "Leave Hideout",
+      "korean": "은신처 떠나기",
+      "id": "HUDLeaveUnownedHideoutButtonLabel"
+    },
+    {
+      "english": "1x<<map_portal_icon>>Map Portal Remaining",
+      "korean": "지도 포탈 <<map_portal_icon>> x1 남음",
+      "id": "HUDMapPortalsRemaining1"
+    },
+    {
+      "english": "{0}x<<map_portal_icon>>Map Portals Remaining",
+      "korean": "지도 포탈 <<map_portal_icon>> x{0} 남음",
+      "id": "HUDMapPortalsRemainingN"
+    },
+    {
+      "english": "Completes up to 2 Incubators currently applied to your Equipped Items",
+      "korean": "장착 중인 아이템에 현재 적용된 인큐베이터를 최대 2개까지 완료합니다.",
+      "id": "IncubationBenchDescription2"
+    },
+    {
+      "english": "Completes up to 4 Incubators currently applied to your Equipped Items",
+      "korean": "장착 중인 아이템에 현재 적용된 인큐베이터를 최대 4개까지 완료합니다.",
+      "id": "IncubationBenchDescription4"
+    },
+    {
+      "english": "Completes up to 6 Incubators currently applied to your Equipped Items",
+      "korean": "장착 중인 아이템에 현재 적용된 인큐베이터를 최대 6개까지 완료합니다.",
+      "id": "IncubationBenchDescription6"
+    },
+    {
+      "english": "Incubation Font",
+      "korean": "인큐베이션 샘",
+      "id": "IncubationBenchTitle"
+    },
+    {
+      "english": "Inspect",
+      "korean": "살펴보기",
+      "id": "InspectLegend"
+    },
+    {
+      "english": "Inspect Mode",
+      "korean": "살펴보기 모드",
+      "id": "InspectMode"
+    },
+    {
+      "english": "Remove Amulet to close Window.",
+      "korean": "목걸이를 제거하면 창이 닫힙니다.",
+      "id": "InstillCraftingWarningRemoveAmuletToClose"
+    },
+    {
+      "english": "This Skill gem contains duplicate Support gems.\r\nOnly one Support gem type is valid per skill.",
+      "korean": "이 스킬 젬에는 중복 보조 젬이 장착되어 있습니다.\r\n스킬 하나당 하나의 보조 젬 유형만 유효합니다.",
+      "id": "ItemErrorDuplicateSupportGemInSkill"
+    },
+    {
+      "english": "Interact to insert an [Enshroud|Enshrouded] Item",
+      "korean": "상호작용해 [Enshroud|휩싸인] 아이템을 넣으십시오.",
+      "id": "LegionCocoonCrystalDescription"
+    },
+    {
+      "english": "Crystal of Permutation",
+      "korean": "치환의 수정",
+      "id": "LegionCocoonCrystalTitle"
+    },
+    {
+      "english": "Log in to Town or Hideout",
+      "korean": "로그인 시 마을 또는 은신처에서 시작",
+      "id": "LogInToTownTitle"
+    },
+    {
+      "english": "Are you sure you want to log in to your most recent Town or Hideout instead of attempting to return to the Area where you last logged out?\r\n\r\nAny progression at your previous location will be lost.",
+      "korean": "로그인 시 마지막으로 로그아웃했던 지역으로 돌아가지 않고, 최근 방문했던 마을 또는 은신처에서 시작하시겠습니까?\r\n\r\n이전 위치에서 진행했던 기록은 사라집니다.",
+      "id": "LogInToTownWarning"
+    },
+    {
+      "english": "Are you sure you want to log in to your most recent Town or Hideout instead of attempting to return to the Area where you last logged out?\r\n\r\nThis will cost an endgame Map Portal, and may result in you being unable to access the Map.",
+      "korean": "로그인 시 마지막으로 로그아웃했던 지역으로 돌아가지 않고, 최근 방문했던 마을 또는 은신처에서 시작하시겠습니까?\r\n\r\n엔드게임 지도 포탈이 하나 소모되고, 지도를 사용할 수 없게 될 수도 있습니다.",
+      "id": "LogInToTownWarningMap"
+    },
+    {
+      "english": "Map Modifiers",
+      "korean": "지도 속성",
+      "id": "MapAreaStatsTitle"
+    },
+    {
+      "english": "Build",
+      "korean": "빌드",
+      "id": "MercenaryBuild"
+    },
+    {
+      "english": "Only Mercenaries of level {0} or higher can be challenged for their Warrant.",
+      "korean": "레벨이 {0} 이상인 용병에게만 도전해서 소환장을 받을 수 있습니다.",
+      "id": "MercenaryCannotItemiseError"
+    },
+    {
+      "english": "You cannot request a rematch with a Mercenary called upon with a Warrant.",
+      "korean": "소환장으로 부른 용병에게는 재대결을 요청할 수 없습니다.",
+      "id": "MercenaryCannotReItemiseError"
+    },
+    {
+      "english": "Wager: {0} <<village_gold>>",
+      "korean": "내기: {0} <<village_gold>>",
+      "id": "MercenaryEncounterOptInCostIndicator"
+    },
+    {
+      "english": "<red>{{Wager: {0}}} <<village_gold>>",
+      "korean": "<red>{{내기: {0}}} <<village_gold>>",
+      "id": "MercenaryEncounterOptInCostIndicatorError"
+    },
+    {
+      "english": "Give",
+      "korean": "주기",
+      "id": "MercenaryGiveItemLegend"
+    },
+    {
+      "english": "Mercenary Level",
+      "korean": "용병 레벨",
+      "id": "MercenaryLevel"
+    },
+    {
+      "english": "Hired Mercenary:\r\n{0}\r\nLevel {1} {2}\r\n\r\n<italic>{{<grey>{{(Right click to inspect Mercenary)}}}}",
+      "korean": "고용 중인 용병:\r\n{0}\r\n{1}레벨 {2}\r\n\r\n<italic>{{<grey>{{(우클릭하여 살펴보기)}}}}",
+      "id": "MercenaryPermanentMinionDisplayPopup"
+    },
+    {
+      "english": "Are you sure you want to reserve this Mercenary? They will no longer accompany you in this area.",
+      "korean": "정말 이 용병을 보류하시겠습니까? 이 용병이 이 지역에서 동행하지 않습니다.",
+      "id": "MercenaryReserveWarning"
+    },
+    {
+      "english": "Should Recruit",
+      "korean": "고용해야 함",
+      "id": "MercenaryShouldRecruit"
+    },
+    {
+      "english": "Take",
+      "korean": "받기",
+      "id": "MercenaryTakeItemLegend"
+    },
+    {
+      "english": "Dismissing this Mercenary will cause them to stop following you and they will leave the area.",
+      "korean": "이 용병을 해고하면 용병이 플레이어를 따라다니기를 중단하고 지역을 떠납니다.",
+      "id": "MercenaryTemporaryDismissButtonHover"
+    },
+    {
+      "english": "Are you sure you want to dismiss this Mercenary?\r\nThey will no longer follow you and will leave the area immediately.",
+      "korean": "정말 이 용병을 해고하시겠습니까?\r\n이 용병이 플레이어를 따라다니기를 중단하고 즉시 이 지역을 떠납니다.",
+      "id": "MercenaryTemporaryDismissConfirmation"
+    },
+    {
+      "english": "This Mercenary will follow and aid you in combat for a few areas. In Maps they will only follow you for the current Map.\r\n\r\nYou cannot change the items that temporarily hired Mercenaries have equipped.",
+      "korean": "이 용병은 몇 개 지역을 탐험하는 동안 따라다니며 전투를 돕습니다. 지도에서는 현재 지도를 탐험하는 동안에만 따라다닙니다.\r\n\r\n임시로 고용한 용병들이 장착한 아이템은 변경할 수 없습니다.",
+      "id": "MercenaryTemporaryLoadoutInfoHover"
+    },
+    {
+      "english": "Temporary Hired Mercenary:\r\n{0}\r\nLevel {1} {2}\r\n\r\n<italic>{{<grey>{{(Right click to inspect Mercenary)}}}}",
+      "korean": "임시 고용 중인 용병:\r\n{0}\r\n{1}레벨 {2}\r\n\r\n<italic>{{<grey>{{(우클릭하여 살펴보기)}}}}",
+      "id": "MercenaryTemporaryMinionDisplayPopup"
+    },
+    {
+      "english": "How much Gold you must stake to duel this Mercenary.\r\nIf you win the duel, you will get your Gold back.",
+      "korean": "이 용병과 결투하기 위해 판돈으로 걸어야 하는 골드의 양입니다.\r\n결투에서 승리하면 골드를 돌려받습니다.",
+      "id": "MercenaryWagerCostInfoHover"
+    },
+    {
+      "english": "Waiting for Duel",
+      "korean": "결투 대기 중",
+      "id": "MercenaryWaitingForEncounter"
+    },
+    {
+      "english": "Abyss",
+      "korean": "심연",
+      "id": "MicrotransactionHallowedCryptMapDeviceTrackedStatisticTitleAbyss"
+    },
+    {
+      "english": "Blight",
+      "korean": "역병",
+      "id": "MicrotransactionHallowedCryptMapDeviceTrackedStatisticTitleBlight"
+    },
+    {
+      "english": "Breach",
+      "korean": "균열",
+      "id": "MicrotransactionHallowedCryptMapDeviceTrackedStatisticTitleBreach"
+    },
+    {
+      "english": "Delirium",
+      "korean": "환영",
+      "id": "MicrotransactionHallowedCryptMapDeviceTrackedStatisticTitleDelirium"
+    },
+    {
+      "english": "Expedition",
+      "korean": "탐험",
+      "id": "MicrotransactionHallowedCryptMapDeviceTrackedStatisticTitleExpedition"
+    },
+    {
+      "english": "Harvest",
+      "korean": "수확",
+      "id": "MicrotransactionHallowedCryptMapDeviceTrackedStatisticTitleHarvest"
+    },
+    {
+      "english": "Legion",
+      "korean": "군단",
+      "id": "MicrotransactionHallowedCryptMapDeviceTrackedStatisticTitleLegion"
+    },
+    {
+      "english": "Ritual",
+      "korean": "의식",
+      "id": "MicrotransactionHallowedCryptMapDeviceTrackedStatisticTitleRitual"
+    },
+    {
+      "english": "Settlers",
+      "korean": "정착자들",
+      "id": "MicrotransactionHallowedCryptMapDeviceTrackedStatisticTitleSettlers"
+    },
+    {
+      "english": "Ultimatum",
+      "korean": "결전",
+      "id": "MicrotransactionHallowedCryptMapDeviceTrackedStatisticTitleUltimatum"
+    },
+    {
+      "english": "Deaths",
+      "korean": "사망",
+      "id": "MicrotransactionTrackedStatisticTitleNumDeaths"
+    },
+    {
+      "english": "K/D Ratio",
+      "korean": "처치/사망 비율",
+      "id": "MicrotransactionTrackedStatisticTitleNumKillDeathRatio"
+    },
+    {
+      "english": "Kills",
+      "korean": "처치",
+      "id": "MicrotransactionTrackedStatisticTitleNumKills"
+    },
+    {
+      "english": "Failed Ultimatums",
+      "korean": "실패한 결전",
+      "id": "MicrotransactionTrackedStatisticTitleNumUltimatumEncountersFailed"
+    },
+    {
+      "english": "Completed Ultimatums",
+      "korean": "완료한 결전",
+      "id": "MicrotransactionTrackedStatisticTitleNumUltimatumEncountersSucceeded"
+    },
+    {
+      "english": "Total waves completed",
+      "korean": "완료한 총 웨이브 수",
+      "id": "MicrotransactionTrackedStatisticTitleNumUltimatumEncounterWavesCompleted"
+    },
+    {
+      "english": "Trial Master Kills",
+      "korean": "시련의 대가 처치",
+      "id": "MicrotransactionTrackedStatisticTitleNumUltimatumTrialMasterBossKills"
+    },
+    {
+      "english": "Mirage Complete",
+      "korean": "허상 완료",
+      "id": "MirageCompleteHudNotificationText"
+    },
+    {
+      "english": "Monastery of the Keepers",
+      "korean": "수호자들의 수도원",
+      "id": "MonasteryPortalString"
+    },
+    {
+      "english": "Chests unearthed",
+      "korean": "발굴한 상자",
+      "id": "MtxLeaderboardMapDeviceNumChestsUnearthedByDynamite"
+    },
+    {
+      "english": "Elite markers unearthed",
+      "korean": "발굴한 정예 표시물",
+      "id": "MtxLeaderboardMapDeviceNumEliteMarkersUnearthedByDynamite"
+    },
+    {
+      "english": "Magic monster kills",
+      "korean": "마법 몬스터 처치 횟수",
+      "id": "MtxLeaderboardMapDeviceNumMagicMonsterKills"
+    },
+    {
+      "english": "Markers unearthed",
+      "korean": "발굴한 표시물",
+      "id": "MtxLeaderboardMapDeviceNumMarkersUnearthedByDynamite"
+    },
+    {
+      "english": "Normal monster kills",
+      "korean": "일반 몬스터 처치 횟수",
+      "id": "MtxLeaderboardMapDeviceNumNormalMonsterKills"
+    },
+    {
+      "english": "Rare monster kills",
+      "korean": "희귀 몬스터 처치 횟수",
+      "id": "MtxLeaderboardMapDeviceNumRareMonsterKills"
+    },
+    {
+      "english": "Tribute generated",
+      "korean": "생성한 공물 점수",
+      "id": "MtxLeaderboardMapDeviceNumTributeGenerated"
+    },
+    {
+      "english": "Unique monster kills",
+      "korean": "고유 몬스터 처치 횟수",
+      "id": "MtxLeaderboardMapDeviceNumUniqueMonsterKills"
+    },
+    {
+      "english": "Buy More",
+      "korean": "더 구입하기",
+      "id": "MtxOptionBuyMore"
+    },
+    {
+      "english": "The Arbiter of Ash",
+      "korean": "재의 중재자",
+      "id": "MtxStatisticLabelNumArbiterOfAshPinnacleBossKilled"
+    },
+    {
+      "english": "The King in the Mists",
+      "korean": "연무 속의 왕",
+      "id": "MtxStatisticLabelNumKingInTheMistsPinnacleBossKilled"
+    },
+    {
+      "english": "Olroth, Origin of the Fall",
+      "korean": "몰락의 기원 올로스",
+      "id": "MtxStatisticLabelNumOlrothPinnacleBossKilled"
+    },
+    {
+      "english": "Xesht, We That Are One",
+      "korean": "하나인 우리, 제쉬트",
+      "id": "MtxStatisticLabelNumXeshPinnacleBossKilled"
+    },
+    {
+      "english": "Dive",
+      "korean": "잠수",
+      "id": "ObjectDisplayTextDive"
+    },
+    {
+      "english": "Current Filter",
+      "korean": "현재 필터",
+      "id": "PassiveSkillKeywordEditorCurrentSearchTitle"
+    },
+    {
+      "english": "Filter Editor",
+      "korean": "필터 편집기",
+      "id": "PassiveSkillKeywordEditorTitle"
+    },
+    {
+      "english": "None",
+      "korean": "없음",
+      "id": "PassiveSkillKeywordEntryEmpty"
+    },
+    {
+      "english": "Filter Search",
+      "korean": "필터 검색",
+      "id": "PassiveSkillKeywordFilterActiveTitle"
+    },
+    {
+      "english": "Text Search",
+      "korean": "텍스트 검색",
+      "id": "PassiveSkillKeywordFilterInactiveTitle"
+    },
+    {
+      "english": "Keystone",
+      "korean": "핵심노드",
+      "id": "PassiveSkillKeywordKeystoneSetting"
+    },
+    {
+      "english": "Add New Filter",
+      "korean": "새 필터 추가",
+      "id": "PassiveSkillKeywordNewFilterButton"
+    },
+    {
+      "english": "Filter Node Types",
+      "korean": "노드 유형 필터",
+      "id": "PassiveSkillKeywordNodeTypeSettingTitle"
+    },
+    {
+      "english": "Notable",
+      "korean": "주요 스킬",
+      "id": "PassiveSkillKeywordNotableSetting"
+    },
+    {
+      "english": "Additional Options",
+      "korean": "추가 옵션",
+      "id": "PassiveSkillKeywordOptionsTitle"
+    },
+    {
+      "english": "Saved Filters",
+      "korean": "저장된 필터",
+      "id": "PassiveSkillKeywordSavedFiltersTitle"
+    },
+    {
+      "english": "Small Nodes",
+      "korean": "소형 노드",
+      "id": "PassiveSkillKeywordSmallNodeSetting"
+    },
+    {
+      "english": "Would you like to save changes made to the filter?",
+      "korean": "필터 변경 내용을 저장하시겠습니까?",
+      "id": "PassiveSkillKeywordUnsavedChangesWarning"
+    },
+    {
+      "english": "Insufficent Specialisation Points.\r\nTo refund this Skill, unallocate some of your\r\nSpecialisation Passive Skills. \r\n\r\nRequired Available Specialisation Points: {0}\r\nCurrent Available Specialisation Points: {1}",
+      "korean": "특화 포인트가 부족합니다.\r\n이 스킬의 비용을 돌려받으려면 특화 패시브 스킬 중\r\n몇 개의 할당을 해제해야 합니다. \r\n\r\n필요한 잔여 특화 포인트: {0}\r\n현재 잔여 특화 포인트: {1}",
+      "id": "PassiveSkillRefundGrantedSpecialisationPointsError"
+    },
+    {
+      "english": "You have a new reward to claim",
+      "korean": "새로운 보상을 받을 수 있습니다.",
+      "id": "PromoCenterTipText"
+    },
+    {
+      "english": "Place Relic",
+      "korean": "유물 놓기",
+      "id": "QuickMoveToRelicsInventory"
+    },
+    {
+      "english": "Planned Heist",
+      "korean": "계획된 강탈",
+      "id": "RandomBlueprintDisplayName"
+    },
+    {
+      "english": "Uncharted Expedition",
+      "korean": "미개척지 탐험",
+      "id": "RandomLogbookDisplayName"
+    },
+    {
+      "english": "<red>{Recombination Failed}",
+      "korean": "<red>{재조합 실패}",
+      "id": "RecombinatorUILastResultLabelFailed"
+    },
+    {
+      "english": "<rareitem>{Recombination Succeeded}",
+      "korean": "<rareitem>{재조합 성공}",
+      "id": "RecombinatorUILastResultLabelSuccess"
+    },
+    {
+      "english": "Reliquary Vault",
+      "korean": "성유물 보관실 금고",
+      "id": "ReliquaryAtlasNodeDisplayName"
+    },
+    {
+      "english": "Tab Name",
+      "korean": "탭 이름",
+      "id": "ReportWindowAsyncTradeTabLabel"
+    },
+    {
+      "english": "Companion Limit Reached",
+      "korean": "반려수 한도 도달",
+      "id": "ReservationErrorCompanionLimitReached1"
+    },
+    {
+      "english": "Reset Changes",
+      "korean": "변경 사항 초기화",
+      "id": "ResetChanges"
+    },
+    {
+      "english": "All Rituals Complete",
+      "korean": "모든 의식 완료됨",
+      "id": "RitualCompleteHudNotificationText"
+    },
+    {
+      "english": "Show Hired Mercenary",
+      "korean": "고용 중인 용병 보기",
+      "id": "ShowHiredMercenaryLegend"
+    },
+    {
+      "english": "Show Temporary Mercenary",
+      "korean": "임시 용병 보기",
+      "id": "ShowTemporaryMercenaryLegend"
+    },
+    {
+      "english": "[DNT] UNUSED",
+      "korean": "[DNT] UNUSED",
+      "id": "SideEncounterAbyssPinnacleBoss"
+    },
+    {
+      "english": "Rotten Satchel Charge",
+      "korean": "썩은 가방 화약",
+      "id": "SideEncounterCastawayBombTitle"
+    },
+    {
+      "english": "{0}/{1}",
+      "korean": "{0}/{1}",
+      "id": "SimpleValueOutOfValue"
+    },
+    {
+      "english": "Equipped Gems",
+      "korean": "장착 중인 젬",
+      "id": "SkillCraftingEquippedGemsFilter"
+    },
+    {
+      "english": "Support Gem Capacity Exceeded",
+      "korean": "보조 젬 사용량 초과",
+      "id": "SkillPanelWarningSupportCapacityExceeded"
+    },
+    {
+      "english": "No valid Weapon equipped to use Skill.",
+      "korean": "유효한 무기가 장착되어 있지 않아 스킬을 사용할 수 없습니다.",
+      "id": "SkillWarningNoValidWeaponEquipped"
+    },
+    {
+      "english": "[DNT] Quick Stash",
+      "korean": "[DNT] Quick Stash",
+      "id": "StashAllButton"
+    },
+    {
+      "english": "New Folder",
+      "korean": "폴더 새로 만들기",
+      "id": "StashNewFolderDefaultName"
+    },
+    {
+      "english": "A Folder must contain at least one Stash Tab",
+      "korean": "폴더는 보관함 탭을 1개 이상 포함해야 합니다.",
+      "id": "StashNewFolderDescription"
+    },
+    {
+      "english": "Select Tabs to be added to Folder",
+      "korean": "폴더에 추가할 탭을 선택하세요.",
+      "id": "StashNewFolderSelectablesTitle"
+    },
+    {
+      "english": "Assign stash affinities to force item types to be stashed here.\r\nMultiple Stash tabs cannot share the same stash affinity.",
+      "korean": "보관함 속성을 지정하면 특정 아이템 유형이 이곳에 보관되게 할 수 있습니다.\r\n보관함 탭 여러 개에 하나의 보관함 속성을 지정할 수는 없습니다.",
+      "id": "StashTabEditorAffinityDesc"
+    },
+    {
+      "english": "This Stash Tab cannot be edited.",
+      "korean": "이 보관함 탭은 편집할 수 없습니다.",
+      "id": "StashTabEditorCantEditDesc"
+    },
+    {
+      "english": "Allow other players to view and request to \r\npurchase items within the stash tab.",
+      "korean": "다른 플레이어들이 보관함 탭 안에 있는 아이템을 보고\r\n구매 요청을 할 수 있습니다.",
+      "id": "StashTabEditorPublicDesc"
+    },
+    {
+      "english": "Stash Tab Settings",
+      "korean": "보관함 탭 설정",
+      "id": "StashTabSettingsTitle"
+    },
+    {
+      "english": "Forbidden Reliquary",
+      "korean": "금지된 성유물 보관실",
+      "id": "TemplarVaultCaseDisplayName"
+    },
+    {
+      "english": "The Unleashed Cortex",
+      "korean": "해방된 코텍스",
+      "id": "UberCortexAtlasNodeDisplayName"
+    },
+    {
+      "english": "Hide Charm Display",
+      "korean": "호신부 표시 숨기기",
+      "id": "UISettingsHideCharmBar"
+    },
+    {
+      "english": "please update your driver to version {0} or newer",
+      "korean": "드라이버를 {0} 이후 버전으로 업데이트해 주십시오.",
+      "id": "UnstableDriverResolvedAction"
+    },
+    {
+      "english": "This driver version can cause very long loading screens, {0}",
+      "korean": "이 드라이버 버전을 사용하면 불러오기 화면이 매우 길어질 수 있습니다. {0}",
+      "id": "UnstableDriverVulkanCompilePipelinesReason"
+    },
+    {
+      "english": "Offer a Unique Item to Chaos\nfor untold wealth",
+      "korean": "혼돈에게 고유 아이템을 바쳐\n막대한 재물을 얻습니다.",
+      "id": "VaalSacrificeDeviceDescription"
+    },
+    {
+      "english": "Sacrifice to Chaos",
+      "korean": "혼돈에게 제물 바치기",
+      "id": "VaalSacrificeDeviceTitle"
+    },
+    {
+      "english": "Valdo's Oubliette",
+      "korean": "발도의 지하 감옥",
+      "id": "ValdoMapAtlasNodeDisplayName"
+    },
+    {
+      "english": "Vesper",
+      "korean": "베스퍼",
+      "id": "VesperCraftingBenchTitle"
+    },
+    {
+      "english": "Travel to Waypoint",
+      "korean": "거점으로 이동",
+      "id": "WarpWaypointButtonHover"
+    },
+    {
+      "english": "Warp to Hideout",
+      "korean": "은신처로 차원 이동",
+      "id": "WorldPanelGamepadToHideout"
+    },
+    {
+      "english": "Return to {0}",
+      "korean": "{0}(으)로 돌아가기",
+      "id": "WorldPanelGamepadToLastArea"
+    },
+    {
+      "english": "You have not visited this Area.",
+      "korean": "가 본 적 없는 지역입니다.",
+      "id": "WorldPanelWarpErrorNotVisited"
+    },
+    {
+      "english": "Area does not contain a Waypoint.",
+      "korean": "지역에 거점이 없습니다.",
+      "id": "WorldPanelWarpErrorNoWaypoint"
+    },
+    {
+      "english": "Waypoint for Area has not been Activated.",
+      "korean": "이 지역의 거점이 활성화되지 않았습니다.",
+      "id": "WorldPanelWarpErrorWaypointInactive"
+    },
+    {
+      "english": "Warp to {0}",
+      "korean": "{0}으(로) 이동",
+      "id": "WorldPanelWarpToArea"
+    },
+    {
+      "english": "Completed",
+      "korean": "완료",
+      "id": "WorldScreenContentListCompletedSubtitle"
+    },
+    {
+      "english": "Points Of Interest",
+      "korean": "관심 지점",
+      "id": "WorldScreenContentListTitle"
+    },
+    {
+      "english": "Show Points of Interest",
+      "korean": "관심 지점 표시",
+      "id": "WorldScreenNodeInfoPrompt"
+    }
+  ]
+}

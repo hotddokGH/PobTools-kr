@@ -1,0 +1,9707 @@
+[
+  {
+    "_index": 0,
+    "Id": "sweep",
+    "DisplayedName": "Holy Sweep"
+  },
+  {
+    "_index": 1,
+    "Id": "sweep_alt_x",
+    "DisplayedName": "Holy Sweep of Hammerfalls"
+  },
+  {
+    "_index": 2,
+    "Id": "sweep_alt_y",
+    "DisplayedName": "[DNT] SweepAltY"
+  },
+  {
+    "_index": 3,
+    "Id": "vaal_sweep",
+    "DisplayedName": "Vaal Sweep"
+  },
+  {
+    "_index": 4,
+    "Id": "ground_slam_old",
+    "DisplayedName": "Ground Slam"
+  },
+  {
+    "_index": 5,
+    "Id": "vaal_ground_slam_old",
+    "DisplayedName": "Vaal Ground Slam"
+  },
+  {
+    "_index": 6,
+    "Id": "ground_slam",
+    "DisplayedName": "Ground Slam"
+  },
+  {
+    "_index": 7,
+    "Id": "ground_slam_alt_x",
+    "DisplayedName": "Ground Slam of Earthshaking"
+  },
+  {
+    "_index": 8,
+    "Id": "ground_slam_alt_y",
+    "DisplayedName": "[DNT] GroundSlamAltY"
+  },
+  {
+    "_index": 9,
+    "Id": "vaal_ground_slam",
+    "DisplayedName": "Vaal Ground Slam"
+  },
+  {
+    "_index": 10,
+    "Id": "cleave",
+    "DisplayedName": "Cleave"
+  },
+  {
+    "_index": 11,
+    "Id": "cleave_alt_x",
+    "DisplayedName": "Cleave of Rage"
+  },
+  {
+    "_index": 12,
+    "Id": "cleave_alt_y",
+    "DisplayedName": "[DNT] CleaveAltY"
+  },
+  {
+    "_index": 13,
+    "Id": "table_charge",
+    "DisplayedName": "Table Charge"
+  },
+  {
+    "_index": 14,
+    "Id": "shield_charge_old",
+    "DisplayedName": "Shield Charge"
+  },
+  {
+    "_index": 15,
+    "Id": "new_shield_charge",
+    "DisplayedName": "Shield Charge"
+  },
+  {
+    "_index": 16,
+    "Id": "shield_charge",
+    "DisplayedName": "Shield Charge"
+  },
+  {
+    "_index": 17,
+    "Id": "shield_charge_alt_x",
+    "DisplayedName": "[DNT] ShieldChargeAltX"
+  },
+  {
+    "_index": 18,
+    "Id": "shield_charge_alt_y",
+    "DisplayedName": "[DNT] ShieldChargeAltY"
+  },
+  {
+    "_index": 19,
+    "Id": "shield_charge_cooldown",
+    "DisplayedName": "Shield Charge"
+  },
+  {
+    "_index": 20,
+    "Id": "enduring_cry",
+    "DisplayedName": "Enduring Cry"
+  },
+  {
+    "_index": 21,
+    "Id": "enduring_cry_repeatable",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 22,
+    "Id": "inspiring_cry",
+    "DisplayedName": "[DNT] Old Rallying Cry"
+  },
+  {
+    "_index": 23,
+    "Id": "abyssal_cry",
+    "DisplayedName": "Abyssal Cry"
+  },
+  {
+    "_index": 24,
+    "Id": "leap_slam",
+    "DisplayedName": "Leap Slam"
+  },
+  {
+    "_index": 25,
+    "Id": "leap_slam_alt_x",
+    "DisplayedName": "Leap Slam of Groundbreaking"
+  },
+  {
+    "_index": 26,
+    "Id": "leap_slam_alt_y",
+    "DisplayedName": "[DNT] LeapSlamAltY"
+  },
+  {
+    "_index": 27,
+    "Id": "leap_slam_cooldown",
+    "DisplayedName": "Leap Slam"
+  },
+  {
+    "_index": 28,
+    "Id": "leap_slam_behind",
+    "DisplayedName": "Leap Slam"
+  },
+  {
+    "_index": 29,
+    "Id": "double_strike",
+    "DisplayedName": "Double Strike"
+  },
+  {
+    "_index": 30,
+    "Id": "double_strike_alt_x",
+    "DisplayedName": "Double Strike of Impaling"
+  },
+  {
+    "_index": 31,
+    "Id": "double_strike_alt_y",
+    "DisplayedName": "Double Strike of Momentum"
+  },
+  {
+    "_index": 32,
+    "Id": "vaal_double_strike",
+    "DisplayedName": "Vaal Double Strike"
+  },
+  {
+    "_index": 33,
+    "Id": "vaal_double_strike_old",
+    "DisplayedName": "Vaal Double Strike"
+  },
+  {
+    "_index": 34,
+    "Id": "elemental_hit",
+    "DisplayedName": "Elemental Hit"
+  },
+  {
+    "_index": 35,
+    "Id": "elemental_hit_alt_x",
+    "DisplayedName": "Elemental Hit of the Spectrum"
+  },
+  {
+    "_index": 36,
+    "Id": "elemental_hit_alt_y",
+    "DisplayedName": "[DNT] ElementalHitAltY"
+  },
+  {
+    "_index": 37,
+    "Id": "elemental_hit_monster",
+    "DisplayedName": "Elemental Hit"
+  },
+  {
+    "_index": 38,
+    "Id": "immortal_call_old",
+    "DisplayedName": "Immortal Call"
+  },
+  {
+    "_index": 39,
+    "Id": "immortal_call",
+    "DisplayedName": "Immortal Call"
+  },
+  {
+    "_index": 40,
+    "Id": "vaal_immortal_call",
+    "DisplayedName": "Vaal Immortal Call"
+  },
+  {
+    "_index": 41,
+    "Id": "dual_strike",
+    "DisplayedName": "Dual Strike"
+  },
+  {
+    "_index": 42,
+    "Id": "dual_strike_alt_x",
+    "DisplayedName": "Dual Strike of Ambidexterity"
+  },
+  {
+    "_index": 43,
+    "Id": "dual_strike_alt_y",
+    "DisplayedName": "[DNT] DualStrikeAltY"
+  },
+  {
+    "_index": 44,
+    "Id": "whirling_blades",
+    "DisplayedName": "Whirling Blades"
+  },
+  {
+    "_index": 45,
+    "Id": "whirling_blades_alt_x",
+    "DisplayedName": "[DNT] WhirlingBladesAltX"
+  },
+  {
+    "_index": 46,
+    "Id": "whirling_blades_alt_y",
+    "DisplayedName": "[DNT] WhirlingBladesAltY"
+  },
+  {
+    "_index": 47,
+    "Id": "whirling_blades_cooldown",
+    "DisplayedName": "Whirling Blades"
+  },
+  {
+    "_index": 48,
+    "Id": "frenzy",
+    "DisplayedName": "Frenzy"
+  },
+  {
+    "_index": 49,
+    "Id": "frenzy_alt_x",
+    "DisplayedName": "Frenzy of Onslaught"
+  },
+  {
+    "_index": 50,
+    "Id": "frenzy_alt_y",
+    "DisplayedName": "[DNT] FrenzyAltY"
+  },
+  {
+    "_index": 51,
+    "Id": "monster_frenzy",
+    "DisplayedName": "Frenzy"
+  },
+  {
+    "_index": 52,
+    "Id": "caustic_arrow",
+    "DisplayedName": "Caustic Arrow"
+  },
+  {
+    "_index": 53,
+    "Id": "caustic_arrow_alt_x",
+    "DisplayedName": "Caustic Arrow of Poison"
+  },
+  {
+    "_index": 54,
+    "Id": "caustic_arrow_alt_y",
+    "DisplayedName": "[DNT] PoisonArrowAltY"
+  },
+  {
+    "_index": 55,
+    "Id": "vaal_caustic_arrow",
+    "DisplayedName": "Vaal Caustic Arrow"
+  },
+  {
+    "_index": 56,
+    "Id": "backstab",
+    "DisplayedName": "Backstab"
+  },
+  {
+    "_index": 57,
+    "Id": "detonate_dead_old_monster",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 58,
+    "Id": "detonate_dead",
+    "DisplayedName": "Detonate Dead"
+  },
+  {
+    "_index": 59,
+    "Id": "detonate_dead_alt_x",
+    "DisplayedName": "Detonate Dead of Scavenging"
+  },
+  {
+    "_index": 60,
+    "Id": "detonate_dead_alt_y",
+    "DisplayedName": "Detonate Dead of Chain Reaction"
+  },
+  {
+    "_index": 61,
+    "Id": "vaal_detonate_dead",
+    "DisplayedName": "Vaal Detonate Dead"
+  },
+  {
+    "_index": 62,
+    "Id": "vaal_detonate_dead_old",
+    "DisplayedName": "Vaal Detonate Dead"
+  },
+  {
+    "_index": 63,
+    "Id": "flicker_strike",
+    "DisplayedName": "Flicker Strike"
+  },
+  {
+    "_index": 64,
+    "Id": "flicker_strike_alt_x",
+    "DisplayedName": "Flicker Strike of Power"
+  },
+  {
+    "_index": 65,
+    "Id": "flicker_strike_alt_y",
+    "DisplayedName": "[DNT] FlickerStrikeAltY"
+  },
+  {
+    "_index": 66,
+    "Id": "vaal_flicker_strike",
+    "DisplayedName": "Vaal Flicker Strike"
+  },
+  {
+    "_index": 67,
+    "Id": "blood_rage",
+    "DisplayedName": "Blood Rage"
+  },
+  {
+    "_index": 68,
+    "Id": "split_arrow",
+    "DisplayedName": "Split Arrow"
+  },
+  {
+    "_index": 69,
+    "Id": "split_arrow_alt_x",
+    "DisplayedName": "Split Arrow of Splitting"
+  },
+  {
+    "_index": 70,
+    "Id": "split_arrow_alt_y",
+    "DisplayedName": "[DNT] SplitArrowAltY"
+  },
+  {
+    "_index": 71,
+    "Id": "vaal_split_arrow",
+    "DisplayedName": "Vaal Split Arrow"
+  },
+  {
+    "_index": 72,
+    "Id": "cold_snap_old",
+    "DisplayedName": "Cold Snap"
+  },
+  {
+    "_index": 73,
+    "Id": "vaal_cold_snap_old",
+    "DisplayedName": "Vaal Cold Snap"
+  },
+  {
+    "_index": 74,
+    "Id": "cold_snap",
+    "DisplayedName": "Cold Snap"
+  },
+  {
+    "_index": 75,
+    "Id": "cold_snap_alt_x",
+    "DisplayedName": "Cold Snap of Power"
+  },
+  {
+    "_index": 76,
+    "Id": "cold_snap_alt_y",
+    "DisplayedName": "[DNT] ColdSnapAltY"
+  },
+  {
+    "_index": 77,
+    "Id": "vaal_cold_snap",
+    "DisplayedName": "Vaal Cold Snap"
+  },
+  {
+    "_index": 78,
+    "Id": "ice_nova",
+    "DisplayedName": "Ice Nova"
+  },
+  {
+    "_index": 79,
+    "Id": "ice_nova_alt_x",
+    "DisplayedName": "Ice Nova of Frostbolts"
+  },
+  {
+    "_index": 80,
+    "Id": "ice_nova_alt_y",
+    "DisplayedName": "Ice Nova of Deep Freeze"
+  },
+  {
+    "_index": 81,
+    "Id": "vaal_ice_nova",
+    "DisplayedName": "Vaal Ice Nova"
+  },
+  {
+    "_index": 82,
+    "Id": "ice_nova_triggered",
+    "DisplayedName": "Ice Nova"
+  },
+  {
+    "_index": 83,
+    "Id": "ignite",
+    "DisplayedName": "Ignite"
+  },
+  {
+    "_index": 84,
+    "Id": "fireball",
+    "DisplayedName": "Fireball"
+  },
+  {
+    "_index": 85,
+    "Id": "fireball_alt_x",
+    "DisplayedName": "[DNT] FireballAltX"
+  },
+  {
+    "_index": 86,
+    "Id": "fireball_alt_y",
+    "DisplayedName": "[DNT] FireballAltY"
+  },
+  {
+    "_index": 87,
+    "Id": "vaal_fireball",
+    "DisplayedName": "Vaal Fireball"
+  },
+  {
+    "_index": 88,
+    "Id": "arc",
+    "DisplayedName": "Arc"
+  },
+  {
+    "_index": 89,
+    "Id": "arc_alt_x",
+    "DisplayedName": "Arc of Surging"
+  },
+  {
+    "_index": 90,
+    "Id": "arc_alt_y",
+    "DisplayedName": "Arc of Oscillating"
+  },
+  {
+    "_index": 91,
+    "Id": "vaal_arc",
+    "DisplayedName": "Vaal Arc"
+  },
+  {
+    "_index": 92,
+    "Id": "raise_zombie",
+    "DisplayedName": "Raise Zombie"
+  },
+  {
+    "_index": 93,
+    "Id": "raise_zombie_alt_x",
+    "DisplayedName": "Raise Zombie of Slamming"
+  },
+  {
+    "_index": 94,
+    "Id": "raise_zombie_alt_y",
+    "DisplayedName": "Raise Zombie of Falling"
+  },
+  {
+    "_index": 95,
+    "Id": "righteous_fire",
+    "DisplayedName": "Righteous Fire"
+  },
+  {
+    "_index": 96,
+    "Id": "righteous_fire_alt_x",
+    "DisplayedName": "Righteous Fire of Arcane Devotion"
+  },
+  {
+    "_index": 97,
+    "Id": "righteous_fire_alt_y",
+    "DisplayedName": "[DNT] RighteousFireAltY"
+  },
+  {
+    "_index": 98,
+    "Id": "vaal_righteous_fire",
+    "DisplayedName": "Vaal Righteous Fire"
+  },
+  {
+    "_index": 99,
+    "Id": "vaal_righteous_fire_old",
+    "DisplayedName": "Vaal Righteous Fire"
+  },
+  {
+    "_index": 100,
+    "Id": "fire_weapon",
+    "DisplayedName": "Fire Weapon"
+  },
+  {
+    "_index": 101,
+    "Id": "damage_infusion",
+    "DisplayedName": "Damage Infusion"
+  },
+  {
+    "_index": 102,
+    "Id": "discharge",
+    "DisplayedName": "Discharge"
+  },
+  {
+    "_index": 103,
+    "Id": "discharge_alt_x",
+    "DisplayedName": "Discharge of Misery"
+  },
+  {
+    "_index": 104,
+    "Id": "discharge_alt_y",
+    "DisplayedName": "[DNT] DischargeAltY"
+  },
+  {
+    "_index": 105,
+    "Id": "town_portal",
+    "DisplayedName": "Portal"
+  },
+  {
+    "_index": 106,
+    "Id": "mirage_portal_return",
+    "DisplayedName": "Return to Mirage Portal"
+  },
+  {
+    "_index": 107,
+    "Id": "vaal_breach",
+    "DisplayedName": "Vaal Breach"
+  },
+  {
+    "_index": 108,
+    "Id": "melee",
+    "DisplayedName": "Default Attack"
+  },
+  {
+    "_index": 109,
+    "Id": "melee_triggered",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 110,
+    "Id": "sandspitter_projectile",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 111,
+    "Id": "seawitch_wave",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 112,
+    "Id": "monster_projectile_weapon",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 113,
+    "Id": "monster_projectile_weapon_cast_triggerable",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 114,
+    "Id": "cobra_lash",
+    "DisplayedName": "Cobra Lash"
+  },
+  {
+    "_index": 115,
+    "Id": "cobra_lash_alt_x",
+    "DisplayedName": "[DNT] CobraLashAltX"
+  },
+  {
+    "_index": 116,
+    "Id": "cobra_lash_alt_y",
+    "DisplayedName": "[DNT] CobraLashAltY"
+  },
+  {
+    "_index": 117,
+    "Id": "bloodchieftain_summonmonkeys",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 118,
+    "Id": "blood_chieftain_summon_ghost_monkeys",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 119,
+    "Id": "skeleton_projectile_fire",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 120,
+    "Id": "skeleton_projectile_cold",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 121,
+    "Id": "skeleton_projectile_lightning",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 122,
+    "Id": "spark",
+    "DisplayedName": "Spark"
+  },
+  {
+    "_index": 123,
+    "Id": "spark_alt_x",
+    "DisplayedName": "Spark of the Nova"
+  },
+  {
+    "_index": 124,
+    "Id": "spark_alt_y",
+    "DisplayedName": "Spark of Unpredictability"
+  },
+  {
+    "_index": 125,
+    "Id": "vaal_spark",
+    "DisplayedName": "Vaal Spark"
+  },
+  {
+    "_index": 126,
+    "Id": "ice_spear",
+    "DisplayedName": "Ice Spear"
+  },
+  {
+    "_index": 127,
+    "Id": "ice_spear_alt_x",
+    "DisplayedName": "Ice Spear of Splitting"
+  },
+  {
+    "_index": 128,
+    "Id": "ice_spear_alt_y",
+    "DisplayedName": "[DNT] IceSpearAltY"
+  },
+  {
+    "_index": 129,
+    "Id": "raise_spectre",
+    "DisplayedName": "Raise Spectre"
+  },
+  {
+    "_index": 130,
+    "Id": "raise_spectre_alt_x",
+    "DisplayedName": "Raise Spectre of Transience"
+  },
+  {
+    "_index": 131,
+    "Id": "raise_spectre_alt_y",
+    "DisplayedName": "[DNT] RaiseSpectreAltY"
+  },
+  {
+    "_index": 132,
+    "Id": "infernal_blow_old",
+    "DisplayedName": "Infernal Blow"
+  },
+  {
+    "_index": 133,
+    "Id": "infernal_blow",
+    "DisplayedName": "Infernal Blow"
+  },
+  {
+    "_index": 134,
+    "Id": "infernal_blow_alt_x",
+    "DisplayedName": "Infernal Blow of Immolation"
+  },
+  {
+    "_index": 135,
+    "Id": "infernal_blow_alt_y",
+    "DisplayedName": "[DNT] InfernalBlowAltY"
+  },
+  {
+    "_index": 136,
+    "Id": "glacial_hammer",
+    "DisplayedName": "Glacial Hammer"
+  },
+  {
+    "_index": 137,
+    "Id": "glacial_hammer_alt_x",
+    "DisplayedName": "Glacial Hammer of Shattering"
+  },
+  {
+    "_index": 138,
+    "Id": "glacial_hammer_alt_y",
+    "DisplayedName": "[DNT] GlacialHammerAltY"
+  },
+  {
+    "_index": 139,
+    "Id": "vaal_glacial_hammer",
+    "DisplayedName": "Vaal Glacial Hammer"
+  },
+  {
+    "_index": 140,
+    "Id": "wall_of_force",
+    "DisplayedName": "Wall of Force"
+  },
+  {
+    "_index": 141,
+    "Id": "frost_wall",
+    "DisplayedName": "Frost Wall"
+  },
+  {
+    "_index": 142,
+    "Id": "frost_wall_alt_x",
+    "DisplayedName": "Frost Wall of Encroachment"
+  },
+  {
+    "_index": 143,
+    "Id": "frost_wall_alt_y",
+    "DisplayedName": "[DNT] FrostWallAltY"
+  },
+  {
+    "_index": 144,
+    "Id": "frost_wall_behind_target",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 145,
+    "Id": "freezing_pulse",
+    "DisplayedName": "Freezing Pulse"
+  },
+  {
+    "_index": 146,
+    "Id": "freezing_pulse_alt_x",
+    "DisplayedName": "[DNT] FreezingPulseAltX"
+  },
+  {
+    "_index": 147,
+    "Id": "freezing_pulse_alt_y",
+    "DisplayedName": "[DNT] FreezingPulseAltY"
+  },
+  {
+    "_index": 148,
+    "Id": "shock_nova_monster",
+    "DisplayedName": "Shock Nova"
+  },
+  {
+    "_index": 149,
+    "Id": "viper_strike",
+    "DisplayedName": "Viper Strike"
+  },
+  {
+    "_index": 150,
+    "Id": "viper_strike_alt_x",
+    "DisplayedName": "Viper Strike of the Mamba"
+  },
+  {
+    "_index": 151,
+    "Id": "viper_strike_alt_y",
+    "DisplayedName": "[DNT] ViperStrikeAltY"
+  },
+  {
+    "_index": 152,
+    "Id": "phase_run_old",
+    "DisplayedName": "Phase Run"
+  },
+  {
+    "_index": 153,
+    "Id": "explosive_arrow_old",
+    "DisplayedName": "Explosive Arrow"
+  },
+  {
+    "_index": 154,
+    "Id": "explosive_arrow",
+    "DisplayedName": "Explosive Arrow"
+  },
+  {
+    "_index": 155,
+    "Id": "explosive_arrow_alt_x",
+    "DisplayedName": "[DNT] ExplosiveArrowAltX"
+  },
+  {
+    "_index": 156,
+    "Id": "explosive_arrow_alt_y",
+    "DisplayedName": "[DNT] ExplosiveArrowAltY"
+  },
+  {
+    "_index": 157,
+    "Id": "inca_boss_explosion",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 158,
+    "Id": "inca_boss_summon",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 159,
+    "Id": "inca_boss_laser",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 160,
+    "Id": "inca_boss_travel",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 161,
+    "Id": "inca_boss_spray",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 162,
+    "Id": "inca_boss_rocks",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 163,
+    "Id": "inca_boss_rocks_triggered",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 164,
+    "Id": "inca_boss_ball_lightning",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 165,
+    "Id": "inca_boss_icestorm",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 166,
+    "Id": "inca_boss_icestorm_triggered",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 167,
+    "Id": "temporal_chains",
+    "DisplayedName": "Temporal Chains"
+  },
+  {
+    "_index": 168,
+    "Id": "elemental_weakness",
+    "DisplayedName": "Elemental Weakness"
+  },
+  {
+    "_index": 169,
+    "Id": "warlords_mark",
+    "DisplayedName": "Warlord's Mark"
+  },
+  {
+    "_index": 170,
+    "Id": "warlords_mark_triggered",
+    "DisplayedName": "Warlord's Mark"
+  },
+  {
+    "_index": 171,
+    "Id": "punishment_old",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 172,
+    "Id": "enfeeble",
+    "DisplayedName": "Enfeeble"
+  },
+  {
+    "_index": 173,
+    "Id": "assassins_mark",
+    "DisplayedName": "Assassin's Mark"
+  },
+  {
+    "_index": 174,
+    "Id": "assassins_mark_triggered",
+    "DisplayedName": "Assassin's Mark"
+  },
+  {
+    "_index": 175,
+    "Id": "snipers_mark",
+    "DisplayedName": "Sniper's Mark"
+  },
+  {
+    "_index": 176,
+    "Id": "vulnerability",
+    "DisplayedName": "Vulnerability"
+  },
+  {
+    "_index": 177,
+    "Id": "inca_minion_projectile",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 178,
+    "Id": "lightning_warp",
+    "DisplayedName": "Lightning Warp"
+  },
+  {
+    "_index": 179,
+    "Id": "lightning_warp_alt_x",
+    "DisplayedName": "[DNT] LightningWarpAltX"
+  },
+  {
+    "_index": 180,
+    "Id": "lightning_warp_alt_y",
+    "DisplayedName": "[DNT] LightningWarpAltY"
+  },
+  {
+    "_index": 181,
+    "Id": "vaal_lightning_warp",
+    "DisplayedName": "Vaal Lightning Warp"
+  },
+  {
+    "_index": 182,
+    "Id": "gladiator_boss_vaal_lightning_warp",
+    "DisplayedName": "Vaal Lightning Warp"
+  },
+  {
+    "_index": 183,
+    "Id": "summon_skeletons",
+    "DisplayedName": "Summon Skeletons"
+  },
+  {
+    "_index": 184,
+    "Id": "summon_skeletons_alt_x",
+    "DisplayedName": "Summon Skeletons of Archers"
+  },
+  {
+    "_index": 185,
+    "Id": "summon_skeletons_alt_y",
+    "DisplayedName": "Summon Skeletons of Mages"
+  },
+  {
+    "_index": 186,
+    "Id": "vaal_summon_skeletons",
+    "DisplayedName": "Vaal Summon Skeletons"
+  },
+  {
+    "_index": 187,
+    "Id": "summon_skeletons_on_self",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 188,
+    "Id": "vaal_summon_skeletons_on_self",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 189,
+    "Id": "heavy_strike",
+    "DisplayedName": "Heavy Strike"
+  },
+  {
+    "_index": 190,
+    "Id": "heavy_strike_alt_x",
+    "DisplayedName": "[DNT] Heavy Strike of Clobbering"
+  },
+  {
+    "_index": 191,
+    "Id": "heavy_strike_alt_y",
+    "DisplayedName": "Heavy Strike of Trarthus"
+  },
+  {
+    "_index": 192,
+    "Id": "vaal_heavy_strike",
+    "DisplayedName": "Vaal Heavy Strike"
+  },
+  {
+    "_index": 193,
+    "Id": "dominating_blow",
+    "DisplayedName": "Dominating Blow"
+  },
+  {
+    "_index": 194,
+    "Id": "dominating_blow_alt_x",
+    "DisplayedName": "Dominating Blow of Inspiring"
+  },
+  {
+    "_index": 195,
+    "Id": "dominating_blow_alt_y",
+    "DisplayedName": "[DNT] DominatingBlowAltY"
+  },
+  {
+    "_index": 196,
+    "Id": "vaal_dominating_blow",
+    "DisplayedName": "Vaal Domination"
+  },
+  {
+    "_index": 197,
+    "Id": "alira_rain_of_arrows",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 198,
+    "Id": "oak_rain_of_arrows",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 199,
+    "Id": "rain_of_arrows_old",
+    "DisplayedName": "Rain of Arrows"
+  },
+  {
+    "_index": 200,
+    "Id": "vaal_rain_of_arrows_old",
+    "DisplayedName": "Vaal Rain of Arrows"
+  },
+  {
+    "_index": 201,
+    "Id": "rain_of_arrows",
+    "DisplayedName": "Rain of Arrows"
+  },
+  {
+    "_index": 202,
+    "Id": "rain_of_arrows_alt_x",
+    "DisplayedName": "Rain of Arrows of Artillery"
+  },
+  {
+    "_index": 203,
+    "Id": "rain_of_arrows_alt_y",
+    "DisplayedName": "Rain of Arrows of Saturation"
+  },
+  {
+    "_index": 204,
+    "Id": "rain_of_arrows_triggered",
+    "DisplayedName": "Rain of Arrows"
+  },
+  {
+    "_index": 205,
+    "Id": "vaal_rain_of_arrows",
+    "DisplayedName": "Vaal Rain of Arrows"
+  },
+  {
+    "_index": 206,
+    "Id": "firestorm",
+    "DisplayedName": "Firestorm"
+  },
+  {
+    "_index": 207,
+    "Id": "firestorm_alt_x",
+    "DisplayedName": "Firestorm of Meteors"
+  },
+  {
+    "_index": 208,
+    "Id": "firestorm_alt_y",
+    "DisplayedName": "Firestorm of Pelting"
+  },
+  {
+    "_index": 209,
+    "Id": "fire_storm_ignore_los",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 210,
+    "Id": "vaal_fire_storm",
+    "DisplayedName": "Vaal Firestorm"
+  },
+  {
+    "_index": 211,
+    "Id": "icestorm",
+    "DisplayedName": "Icestorm"
+  },
+  {
+    "_index": 212,
+    "Id": "lightning_strike",
+    "DisplayedName": "Lightning Strike"
+  },
+  {
+    "_index": 213,
+    "Id": "lightning_strike_alt_x",
+    "DisplayedName": "Lightning Strike of Arcing"
+  },
+  {
+    "_index": 214,
+    "Id": "lightning_strike_alt_y",
+    "DisplayedName": "[DNT] LightningStrikeAltY"
+  },
+  {
+    "_index": 215,
+    "Id": "vaal_lightning_strike",
+    "DisplayedName": "Vaal Lightning Strike"
+  },
+  {
+    "_index": 216,
+    "Id": "vaal_lightning_strike_old",
+    "DisplayedName": "Vaal Lightning Strike"
+  },
+  {
+    "_index": 217,
+    "Id": "tempest_shield",
+    "DisplayedName": "Tempest Shield"
+  },
+  {
+    "_index": 218,
+    "Id": "molten_shell_monster",
+    "DisplayedName": "Molten Shell"
+  },
+  {
+    "_index": 219,
+    "Id": "molten_shell",
+    "DisplayedName": "Molten Shell"
+  },
+  {
+    "_index": 220,
+    "Id": "vaal_molten_shell",
+    "DisplayedName": "Vaal Molten Shell"
+  },
+  {
+    "_index": 221,
+    "Id": "monster_vaal_molten_shell",
+    "DisplayedName": "Vaal Molten Shell"
+  },
+  {
+    "_index": 222,
+    "Id": "power_siphon",
+    "DisplayedName": "Power Siphon"
+  },
+  {
+    "_index": 223,
+    "Id": "power_siphon_alt_x",
+    "DisplayedName": "Power Siphon of the Archmage"
+  },
+  {
+    "_index": 224,
+    "Id": "power_siphon_alt_y",
+    "DisplayedName": "[DNT] PowerSiphonAltY"
+  },
+  {
+    "_index": 225,
+    "Id": "vaal_power_siphon",
+    "DisplayedName": "Vaal Power Siphon"
+  },
+  {
+    "_index": 226,
+    "Id": "mass_frenzy",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 227,
+    "Id": "mass_endurance",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 228,
+    "Id": "mass_power",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 229,
+    "Id": "puncture",
+    "DisplayedName": "Puncture"
+  },
+  {
+    "_index": 230,
+    "Id": "puncture_alt_x",
+    "DisplayedName": "Puncture of Shanking"
+  },
+  {
+    "_index": 231,
+    "Id": "puncture_alt_y",
+    "DisplayedName": "[DNT] PunctureAltY"
+  },
+  {
+    "_index": 232,
+    "Id": "monster_puncture",
+    "DisplayedName": "Puncture"
+  },
+  {
+    "_index": 233,
+    "Id": "lightning_arrow",
+    "DisplayedName": "Lightning Arrow"
+  },
+  {
+    "_index": 234,
+    "Id": "lightning_arrow_alt_x",
+    "DisplayedName": "Lightning Arrow of Electrocution"
+  },
+  {
+    "_index": 235,
+    "Id": "lightning_arrow_alt_y",
+    "DisplayedName": "[DNT] LightningArrowAltY"
+  },
+  {
+    "_index": 236,
+    "Id": "vaal_lightning_arrow",
+    "DisplayedName": "Vaal Lightning Arrow"
+  },
+  {
+    "_index": 237,
+    "Id": "taunt",
+    "DisplayedName": "Taunt"
+  },
+  {
+    "_index": 238,
+    "Id": "haste",
+    "DisplayedName": "Haste"
+  },
+  {
+    "_index": 239,
+    "Id": "vaal_haste",
+    "DisplayedName": "Vaal Haste"
+  },
+  {
+    "_index": 240,
+    "Id": "purity_of_elements",
+    "DisplayedName": "Purity of Elements"
+  },
+  {
+    "_index": 241,
+    "Id": "vitality",
+    "DisplayedName": "Vitality"
+  },
+  {
+    "_index": 242,
+    "Id": "vaal_vitality",
+    "DisplayedName": "Vaal Vitality"
+  },
+  {
+    "_index": 243,
+    "Id": "discipline",
+    "DisplayedName": "Discipline"
+  },
+  {
+    "_index": 244,
+    "Id": "vaal_discipline",
+    "DisplayedName": "Vaal Discipline"
+  },
+  {
+    "_index": 245,
+    "Id": "precision",
+    "DisplayedName": "Precision"
+  },
+  {
+    "_index": 246,
+    "Id": "grace",
+    "DisplayedName": "Grace"
+  },
+  {
+    "_index": 247,
+    "Id": "vaal_grace",
+    "DisplayedName": "Vaal Grace"
+  },
+  {
+    "_index": 248,
+    "Id": "determination",
+    "DisplayedName": "Determination"
+  },
+  {
+    "_index": 249,
+    "Id": "vaal_determination",
+    "DisplayedName": "Determination"
+  },
+  {
+    "_index": 250,
+    "Id": "anger",
+    "DisplayedName": "Anger"
+  },
+  {
+    "_index": 251,
+    "Id": "hatred",
+    "DisplayedName": "Hatred"
+  },
+  {
+    "_index": 252,
+    "Id": "monster_hatred",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 253,
+    "Id": "wrath",
+    "DisplayedName": "Wrath"
+  },
+  {
+    "_index": 254,
+    "Id": "burning_arrow",
+    "DisplayedName": "Burning Arrow"
+  },
+  {
+    "_index": 255,
+    "Id": "burning_arrow_alt_x",
+    "DisplayedName": "Burning Arrow of Vigour"
+  },
+  {
+    "_index": 256,
+    "Id": "burning_arrow_alt_y",
+    "DisplayedName": "[DNT] BurningArrowAltY"
+  },
+  {
+    "_index": 257,
+    "Id": "vaal_burning_arrow",
+    "DisplayedName": "Vaal Burning Arrow"
+  },
+  {
+    "_index": 258,
+    "Id": "clarity",
+    "DisplayedName": "Clarity"
+  },
+  {
+    "_index": 259,
+    "Id": "vaal_clarity",
+    "DisplayedName": "Vaal Clarity"
+  },
+  {
+    "_index": 260,
+    "Id": "insectspawnerspawn",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 261,
+    "Id": "detonate_mines",
+    "DisplayedName": "Detonate Mines"
+  },
+  {
+    "_index": 262,
+    "Id": "shockwave_totem",
+    "DisplayedName": "Shockwave Totem"
+  },
+  {
+    "_index": 263,
+    "Id": "shockwave_totem_alt_x",
+    "DisplayedName": "Shockwave Totem of Authority"
+  },
+  {
+    "_index": 264,
+    "Id": "shockwave_totem_alt_y",
+    "DisplayedName": "[DNT] ShockwaveTotemAltY"
+  },
+  {
+    "_index": 265,
+    "Id": "rejuvenation_totem",
+    "DisplayedName": "Rejuvenation Totem"
+  },
+  {
+    "_index": 266,
+    "Id": "vaal_rejuvenation_totem",
+    "DisplayedName": "Vaal Rejuvenation Totem"
+  },
+  {
+    "_index": 267,
+    "Id": "conversion_trap",
+    "DisplayedName": "Conversion Trap"
+  },
+  {
+    "_index": 268,
+    "Id": "bear_trap",
+    "DisplayedName": "Bear Trap"
+  },
+  {
+    "_index": 269,
+    "Id": "bear_trap_alt_x",
+    "DisplayedName": "Bear Trap of Skewers"
+  },
+  {
+    "_index": 270,
+    "Id": "bear_trap_alt_y",
+    "DisplayedName": "[DNT] BearTrapAltY"
+  },
+  {
+    "_index": 271,
+    "Id": "freeze_mine",
+    "DisplayedName": "Freeze Mine"
+  },
+  {
+    "_index": 272,
+    "Id": "fire_trap",
+    "DisplayedName": "Fire Trap"
+  },
+  {
+    "_index": 273,
+    "Id": "fire_trap_alt_x",
+    "DisplayedName": "Fire Trap of Blasting"
+  },
+  {
+    "_index": 274,
+    "Id": "fire_trap_alt_y",
+    "DisplayedName": "[DNT] FireTrapAltY"
+  },
+  {
+    "_index": 275,
+    "Id": "ground_fire_self",
+    "DisplayedName": "Fire Trap"
+  },
+  {
+    "_index": 276,
+    "Id": "vaal_fire_trap",
+    "DisplayedName": "Vaal Fire Trap"
+  },
+  {
+    "_index": 277,
+    "Id": "breach_hand_trap",
+    "DisplayedName": "Will of the Lords"
+  },
+  {
+    "_index": 278,
+    "Id": "trap_ground_caustic_cloud",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 279,
+    "Id": "ground_caustic_cloud",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 280,
+    "Id": "trap_ground_ice",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 281,
+    "Id": "decoy_totem",
+    "DisplayedName": "Decoy Totem"
+  },
+  {
+    "_index": 282,
+    "Id": "devouring_totem",
+    "DisplayedName": "Devouring Totem"
+  },
+  {
+    "_index": 283,
+    "Id": "necromancer_revive_skeleton",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 284,
+    "Id": "suicide_explosion",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 285,
+    "Id": "suicide_explosion_self",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 286,
+    "Id": "summon_spawn",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 287,
+    "Id": "ethereal_knives",
+    "DisplayedName": "Ethereal Knives"
+  },
+  {
+    "_index": 288,
+    "Id": "ethereal_knives_alt_x",
+    "DisplayedName": "Ethereal Knives of Lingering Blades"
+  },
+  {
+    "_index": 289,
+    "Id": "ethereal_knives_alt_y",
+    "DisplayedName": "Ethereal Knives of the Massacre"
+  },
+  {
+    "_index": 290,
+    "Id": "shadow_projectiles_no_los",
+    "DisplayedName": "Ethereal Knives"
+  },
+  {
+    "_index": 291,
+    "Id": "insect_spawner_spit",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 292,
+    "Id": "scavenger_throw_fire",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 293,
+    "Id": "ice_shot",
+    "DisplayedName": "Ice Shot"
+  },
+  {
+    "_index": 294,
+    "Id": "ice_shot_alt_x",
+    "DisplayedName": "Ice Shot of Penetration"
+  },
+  {
+    "_index": 295,
+    "Id": "ice_shot_alt_y",
+    "DisplayedName": "[DNT] IceShotAltY"
+  },
+  {
+    "_index": 296,
+    "Id": "vaal_ice_shot",
+    "DisplayedName": "Vaal Ice Shot"
+  },
+  {
+    "_index": 297,
+    "Id": "piety_ice_shot",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 298,
+    "Id": "creeping_frost",
+    "DisplayedName": "Creeping Frost"
+  },
+  {
+    "_index": 299,
+    "Id": "creeping_frost_alt_x",
+    "DisplayedName": "Creeping Frost of Floes"
+  },
+  {
+    "_index": 300,
+    "Id": "creeping_frost_alt_y",
+    "DisplayedName": "[DNT] ArcticBreathAltY"
+  },
+  {
+    "_index": 301,
+    "Id": "arctic_armour_old",
+    "DisplayedName": "Arctic Armour"
+  },
+  {
+    "_index": 302,
+    "Id": "totem_fire_spray",
+    "DisplayedName": "Holy Flame Totem"
+  },
+  {
+    "_index": 303,
+    "Id": "totem_fire_spray_triggerable",
+    "DisplayedName": "Holy Flame Totem"
+  },
+  {
+    "_index": 304,
+    "Id": "brutus_hook",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 305,
+    "Id": "flammability",
+    "DisplayedName": "Flammability"
+  },
+  {
+    "_index": 306,
+    "Id": "frostbite",
+    "DisplayedName": "Frostbite"
+  },
+  {
+    "_index": 307,
+    "Id": "conductivity",
+    "DisplayedName": "Conductivity"
+  },
+  {
+    "_index": 308,
+    "Id": "lightning_thorns",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 309,
+    "Id": "demon_female_ranged_projectile",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 310,
+    "Id": "statue_spear_throw",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 311,
+    "Id": "summon_water_elementals",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 312,
+    "Id": "ball_lightning",
+    "DisplayedName": "Ball Lightning"
+  },
+  {
+    "_index": 313,
+    "Id": "ball_lightning_alt_x",
+    "DisplayedName": "Ball Lightning of Orbiting"
+  },
+  {
+    "_index": 314,
+    "Id": "ball_lightning_alt_y",
+    "DisplayedName": "Ball Lightning of Static"
+  },
+  {
+    "_index": 315,
+    "Id": "ball_lightning_self_location",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 316,
+    "Id": "piety_fire_form",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 317,
+    "Id": "piety_ice_form",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 318,
+    "Id": "piety_summon_blood_elementals",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 319,
+    "Id": "axis_claim_soldier_minions",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 320,
+    "Id": "incinerate_old",
+    "DisplayedName": "Incinerate"
+  },
+  {
+    "_index": 321,
+    "Id": "incinerate_channel",
+    "DisplayedName": "Incinerate"
+  },
+  {
+    "_index": 322,
+    "Id": "incinerate",
+    "DisplayedName": "Incinerate"
+  },
+  {
+    "_index": 323,
+    "Id": "incinerate_alt_x",
+    "DisplayedName": "Incinerate of Expanse"
+  },
+  {
+    "_index": 324,
+    "Id": "incinerate_alt_y",
+    "DisplayedName": "Incinerate of Venting"
+  },
+  {
+    "_index": 325,
+    "Id": "cyclone_old",
+    "DisplayedName": "Cyclone"
+  },
+  {
+    "_index": 326,
+    "Id": "vaal_cyclone",
+    "DisplayedName": "Vaal Cyclone"
+  },
+  {
+    "_index": 327,
+    "Id": "cyclone",
+    "DisplayedName": "Cyclone"
+  },
+  {
+    "_index": 328,
+    "Id": "cyclone_alt_x",
+    "DisplayedName": "Cyclone of Tumult"
+  },
+  {
+    "_index": 329,
+    "Id": "cyclone_alt_y",
+    "DisplayedName": "[DNT] CycloneAltY"
+  },
+  {
+    "_index": 330,
+    "Id": "mass_revive_undead",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 331,
+    "Id": "searing_bond",
+    "DisplayedName": "Searing Bond"
+  },
+  {
+    "_index": 332,
+    "Id": "searing_bond_alt_x",
+    "DisplayedName": "Searing Bond of Detonation"
+  },
+  {
+    "_index": 333,
+    "Id": "searing_bond_alt_y",
+    "DisplayedName": "[DNT] SearingBondAltY"
+  },
+  {
+    "_index": 334,
+    "Id": "zombie_boss_extract",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 335,
+    "Id": "birdman_consume_corpse",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 336,
+    "Id": "birdman_blood_projectile",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 337,
+    "Id": "root_spider_burrow",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 338,
+    "Id": "root_spider_emerge",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 339,
+    "Id": "minion_taunt",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 340,
+    "Id": "reave",
+    "DisplayedName": "Reave"
+  },
+  {
+    "_index": 341,
+    "Id": "reave_alt_x",
+    "DisplayedName": "Reave of Refraction"
+  },
+  {
+    "_index": 342,
+    "Id": "reave_alt_y",
+    "DisplayedName": "[DNT] ReaveAltY"
+  },
+  {
+    "_index": 343,
+    "Id": "vaal_reave",
+    "DisplayedName": "Vaal Reave"
+  },
+  {
+    "_index": 344,
+    "Id": "dominus_chilling_bond",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 345,
+    "Id": "dominus_lightning_souls",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 346,
+    "Id": "dominus_lightning_slam",
+    "DisplayedName": "Touch Of God"
+  },
+  {
+    "_index": 347,
+    "Id": "dominus_mark",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 348,
+    "Id": "chaos_degen_aura",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 349,
+    "Id": "hide",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 350,
+    "Id": "dominus_demon_cleave",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 351,
+    "Id": "dominus_demon_projectile",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 352,
+    "Id": "delayed_blast",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 353,
+    "Id": "delayed_blast_location",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 354,
+    "Id": "dominus_demon_charge",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 355,
+    "Id": "dominus_dash",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 356,
+    "Id": "lightning_trap",
+    "DisplayedName": "Lightning Trap"
+  },
+  {
+    "_index": 357,
+    "Id": "lightning_trap_alt_x",
+    "DisplayedName": "Lightning Trap of Sparking"
+  },
+  {
+    "_index": 358,
+    "Id": "lightning_trap_alt_y",
+    "DisplayedName": "[DNT] LightningTrapAltY"
+  },
+  {
+    "_index": 359,
+    "Id": "vaal_lightning_trap",
+    "DisplayedName": "Vaal Lightning Trap"
+  },
+  {
+    "_index": 360,
+    "Id": "smoke_mine",
+    "DisplayedName": "Smoke Mine"
+  },
+  {
+    "_index": 361,
+    "Id": "proximity_shield",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 362,
+    "Id": "proximity_shield_self",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 363,
+    "Id": "animate_guardian",
+    "DisplayedName": "Animate Guardian"
+  },
+  {
+    "_index": 364,
+    "Id": "animate_guardian_alt_x",
+    "DisplayedName": "Animate Guardian of Smiting"
+  },
+  {
+    "_index": 365,
+    "Id": "animate_guardian_alt_y",
+    "DisplayedName": "[DNT] AnimateArmourAltY"
+  },
+  {
+    "_index": 366,
+    "Id": "dominus_blood_rain",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 367,
+    "Id": "spectral_throw",
+    "DisplayedName": "Spectral Throw"
+  },
+  {
+    "_index": 368,
+    "Id": "spectral_throw_alt_x",
+    "DisplayedName": "Spectral Throw of Materialising"
+  },
+  {
+    "_index": 369,
+    "Id": "spectral_throw_alt_y",
+    "DisplayedName": "Spectral Throw of Trarthus"
+  },
+  {
+    "_index": 370,
+    "Id": "vaal_spectral_throw",
+    "DisplayedName": "Vaal Spectral Throw"
+  },
+  {
+    "_index": 371,
+    "Id": "thrown_weapon_triggered",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 372,
+    "Id": "vaal_thrown_weapon",
+    "DisplayedName": "Vaal Spectral Throw"
+  },
+  {
+    "_index": 373,
+    "Id": "dominus_grab",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 374,
+    "Id": "dominus_death_teleport",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 375,
+    "Id": "shrine_smoke_cloud",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 376,
+    "Id": "shrine_player_smoke_trail",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 377,
+    "Id": "animate_weapon",
+    "DisplayedName": "Animate Weapon"
+  },
+  {
+    "_index": 378,
+    "Id": "animate_weapon_alt_x",
+    "DisplayedName": "Animate Weapon of Self Reflection"
+  },
+  {
+    "_index": 379,
+    "Id": "animate_weapon_alt_y",
+    "DisplayedName": "Animate Weapon of Ranged Arms"
+  },
+  {
+    "_index": 380,
+    "Id": "animate_weapon_trigger",
+    "DisplayedName": "Animate Weapon"
+  },
+  {
+    "_index": 381,
+    "Id": "vaal_animate_weapon",
+    "DisplayedName": "Vaal Animate Weapon"
+  },
+  {
+    "_index": 382,
+    "Id": "silence",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 383,
+    "Id": "trigger_spawners",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 384,
+    "Id": "purity_of_fire",
+    "DisplayedName": "Purity of Fire"
+  },
+  {
+    "_index": 385,
+    "Id": "purity_of_ice",
+    "DisplayedName": "Purity of Ice"
+  },
+  {
+    "_index": 386,
+    "Id": "purity_of_lightning",
+    "DisplayedName": "Purity of Lightning"
+  },
+  {
+    "_index": 387,
+    "Id": "storm_call",
+    "DisplayedName": "Storm Call"
+  },
+  {
+    "_index": 388,
+    "Id": "storm_call_alt_x",
+    "DisplayedName": "Storm Call of Trarthus"
+  },
+  {
+    "_index": 389,
+    "Id": "storm_call_alt_y",
+    "DisplayedName": "[DNT] StormCallAltY"
+  },
+  {
+    "_index": 390,
+    "Id": "storm_call_no_los",
+    "DisplayedName": "Storm Call"
+  },
+  {
+    "_index": 391,
+    "Id": "storm_call_self",
+    "DisplayedName": "Storm Call"
+  },
+  {
+    "_index": 392,
+    "Id": "storm_call_attached",
+    "DisplayedName": "Storm Call"
+  },
+  {
+    "_index": 393,
+    "Id": "vaal_storm_call",
+    "DisplayedName": "Vaal Storm Call"
+  },
+  {
+    "_index": 394,
+    "Id": "atziri_unique_staff_storm_call",
+    "DisplayedName": "Storm of Judgement"
+  },
+  {
+    "_index": 395,
+    "Id": "charged_blast",
+    "DisplayedName": "Flameblast"
+  },
+  {
+    "_index": 396,
+    "Id": "flameblast",
+    "DisplayedName": "Flameblast"
+  },
+  {
+    "_index": 397,
+    "Id": "flameblast_alt_x",
+    "DisplayedName": "Flameblast of Celerity"
+  },
+  {
+    "_index": 398,
+    "Id": "flameblast_alt_y",
+    "DisplayedName": "Flameblast of Contraction"
+  },
+  {
+    "_index": 399,
+    "Id": "blood_sacrament",
+    "DisplayedName": "Blood Sacrament"
+  },
+  {
+    "_index": 400,
+    "Id": "vaal_flameblast",
+    "DisplayedName": "Vaal Flameblast"
+  },
+  {
+    "_index": 401,
+    "Id": "vaal_charged_blast",
+    "DisplayedName": "Vaal Flameblast"
+  },
+  {
+    "_index": 402,
+    "Id": "vaal_charged_blast_triggerable",
+    "DisplayedName": "Vaal Flameblast"
+  },
+  {
+    "_index": 403,
+    "Id": "atziri_unique_staff_flameblast",
+    "DisplayedName": "Flames of Judgement"
+  },
+  {
+    "_index": 404,
+    "Id": "seawitch_lightning_beam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 405,
+    "Id": "root_spider_ambush",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 406,
+    "Id": "blinding_gaze",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 407,
+    "Id": "barrage",
+    "DisplayedName": "Barrage"
+  },
+  {
+    "_index": 408,
+    "Id": "barrage_alt_x",
+    "DisplayedName": "Barrage of Volley Fire"
+  },
+  {
+    "_index": 409,
+    "Id": "barrage_alt_y",
+    "DisplayedName": "[DNT] BarrageAltY"
+  },
+  {
+    "_index": 410,
+    "Id": "vortex_old",
+    "DisplayedName": "Unnamed2"
+  },
+  {
+    "_index": 411,
+    "Id": "infernal_swarm",
+    "DisplayedName": "Wildfire"
+  },
+  {
+    "_index": 412,
+    "Id": "summon_raging_spirit",
+    "DisplayedName": "Summon Raging Spirit"
+  },
+  {
+    "_index": 413,
+    "Id": "summon_raging_spirit_alt_x",
+    "DisplayedName": "Summon Raging Spirit of Enormity"
+  },
+  {
+    "_index": 414,
+    "Id": "summon_raging_spirit_alt_y",
+    "DisplayedName": "[DNT] SummonRagingSpiritAltY"
+  },
+  {
+    "_index": 415,
+    "Id": "summon_raging_spirit_triggered",
+    "DisplayedName": "Summon Raging Spirit"
+  },
+  {
+    "_index": 416,
+    "Id": "monster_summon_raging_spirit",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 417,
+    "Id": "flame_surge",
+    "DisplayedName": "Flame Surge"
+  },
+  {
+    "_index": 418,
+    "Id": "flame_surge_alt_x",
+    "DisplayedName": "Flame Surge of Combusting"
+  },
+  {
+    "_index": 419,
+    "Id": "flame_surge_alt_y",
+    "DisplayedName": "[DNT] FlameWhipAltY"
+  },
+  {
+    "_index": 420,
+    "Id": "sea_witch_screech",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 421,
+    "Id": "bat_screech_nova",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 422,
+    "Id": "desecrate",
+    "DisplayedName": "Desecrate"
+  },
+  {
+    "_index": 423,
+    "Id": "flesh_offering",
+    "DisplayedName": "Flesh Offering"
+  },
+  {
+    "_index": 424,
+    "Id": "vaal_flesh_offering",
+    "DisplayedName": "Vaal Flesh Offering"
+  },
+  {
+    "_index": 425,
+    "Id": "bone_offering",
+    "DisplayedName": "Bone Offering"
+  },
+  {
+    "_index": 426,
+    "Id": "glacial_cascade",
+    "DisplayedName": "Glacial Cascade"
+  },
+  {
+    "_index": 427,
+    "Id": "storm_cascade_player",
+    "DisplayedName": "Storm Cascade"
+  },
+  {
+    "_index": 428,
+    "Id": "izaro_cascade",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 429,
+    "Id": "freeze",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 430,
+    "Id": "fire_enrage",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 431,
+    "Id": "mass_charge",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 432,
+    "Id": "atziri_demon_self_sacrifice",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 433,
+    "Id": "atziri_summon_demons",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 434,
+    "Id": "atziri_storm_call",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 435,
+    "Id": "atziri_storm_call_empowered",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 436,
+    "Id": "atziri_flameblast",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 437,
+    "Id": "atziri_flameblast_empowered",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 438,
+    "Id": "atziri_spear_throw",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 439,
+    "Id": "atziri_spear_throw_empowered",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 440,
+    "Id": "atziri_mirror_image",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 441,
+    "Id": "summon_monsters",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 442,
+    "Id": "summon_monsters_triggerable",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 443,
+    "Id": "summon_warband_pack",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 444,
+    "Id": "revive_all_with_onslaght",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 445,
+    "Id": "summon_exile",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 446,
+    "Id": "summon_standalone_map_boss",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 447,
+    "Id": "birdman_consume",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 448,
+    "Id": "sandspitter_spray",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 449,
+    "Id": "vaal_cloud",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 450,
+    "Id": "monster_summon_animated_weapon",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 451,
+    "Id": "summon_sandspitters",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 452,
+    "Id": "skeleton_explosion_slam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 453,
+    "Id": "molten_strike",
+    "DisplayedName": "Molten Strike"
+  },
+  {
+    "_index": 454,
+    "Id": "molten_strike_alt_x",
+    "DisplayedName": "Molten Strike of the Zenith"
+  },
+  {
+    "_index": 455,
+    "Id": "molten_strike_alt_y",
+    "DisplayedName": "[DNT] MoltenStrikeAltY"
+  },
+  {
+    "_index": 456,
+    "Id": "vaal_molten_strike",
+    "DisplayedName": "Vaal Molten Strike"
+  },
+  {
+    "_index": 457,
+    "Id": "convocation",
+    "DisplayedName": "Convocation"
+  },
+  {
+    "_index": 458,
+    "Id": "summon_kaom_totems",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 459,
+    "Id": "combo_strike",
+    "DisplayedName": "..."
+  },
+  {
+    "_index": 460,
+    "Id": "drop_bear_ambush",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 461,
+    "Id": "kite_west_boss_use_portal",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 462,
+    "Id": "merveil_ice_spear",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 463,
+    "Id": "merveil_geyser",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 464,
+    "Id": "merveil_geyser_triggerable",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 465,
+    "Id": "brutus_cage_summon",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 466,
+    "Id": "brutus_spiked_ground",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 467,
+    "Id": "fire_nova",
+    "DisplayedName": "Fire Nova Mine"
+  },
+  {
+    "_index": 468,
+    "Id": "tornado_shot",
+    "DisplayedName": "Tornado Shot"
+  },
+  {
+    "_index": 469,
+    "Id": "tornado_shot_alt_x",
+    "DisplayedName": "Tornado Shot of Cloudburst"
+  },
+  {
+    "_index": 470,
+    "Id": "tornado_shot_alt_y",
+    "DisplayedName": "[DNT] TornadoShotAltY"
+  },
+  {
+    "_index": 471,
+    "Id": "brutus_ground_slam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 472,
+    "Id": "illusory_warp",
+    "DisplayedName": "Illusory Warp"
+  },
+  {
+    "_index": 473,
+    "Id": "merveil_teleport",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 474,
+    "Id": "monster_projectile_spell",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 475,
+    "Id": "monster_projectile_spell_self",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 476,
+    "Id": "monster_projectile_spell_lightning",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 477,
+    "Id": "monster_projectile_spell_ally",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 478,
+    "Id": "merveil_animate_weapon",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 479,
+    "Id": "moss_monster_slam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 480,
+    "Id": "lava_hound_charge",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 481,
+    "Id": "merveil_summon_statue",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 482,
+    "Id": "merveil_summon_daughters",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 483,
+    "Id": "merveil_summon_spawn",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 484,
+    "Id": "merveil_multigeyser",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 485,
+    "Id": "heal",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 486,
+    "Id": "herald_of_ash",
+    "DisplayedName": "Herald of Ash"
+  },
+  {
+    "_index": 487,
+    "Id": "herald_of_ice",
+    "DisplayedName": "Herald of Ice"
+  },
+  {
+    "_index": 488,
+    "Id": "herald_of_thunder",
+    "DisplayedName": "Herald of Thunder"
+  },
+  {
+    "_index": 489,
+    "Id": "herald_of_agony",
+    "DisplayedName": "Herald of Agony"
+  },
+  {
+    "_index": 490,
+    "Id": "herald_of_purity",
+    "DisplayedName": "Herald of Purity"
+  },
+  {
+    "_index": 491,
+    "Id": "herald_of_the_breach",
+    "DisplayedName": "Herald of the Hive"
+  },
+  {
+    "_index": 492,
+    "Id": "rampage_summon_animated_weapon",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 493,
+    "Id": "ground_effect_ring",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 494,
+    "Id": "consecrate",
+    "DisplayedName": "Consecrate"
+  },
+  {
+    "_index": 495,
+    "Id": "triggered_consecrate",
+    "DisplayedName": "Consecrate"
+  },
+  {
+    "_index": 496,
+    "Id": "poachers_mark",
+    "DisplayedName": "Poacher's Mark"
+  },
+  {
+    "_index": 497,
+    "Id": "poachers_mark_triggered",
+    "DisplayedName": "Poacher's Mark"
+  },
+  {
+    "_index": 498,
+    "Id": "summon_critters",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 499,
+    "Id": "summon_specific_monsters_on_self",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 500,
+    "Id": "summon_specific_monsters_on_target",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 501,
+    "Id": "summon_specific_monsters_on_target_no_los",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 502,
+    "Id": "summon_specific_monster_in_front_of_enemy",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 503,
+    "Id": "summon_specific_monster_in_front_of_enemy_no_los",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 504,
+    "Id": "summon_specific_monster_behind_enemy",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 505,
+    "Id": "summon_specific_monster_behind_enemy_no_los",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 506,
+    "Id": "summon_specific_monsters_cannot_die_on_self",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 507,
+    "Id": "monster_use_flask",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 508,
+    "Id": "lightning_tendrils_old",
+    "DisplayedName": "Lightning Tendrils"
+  },
+  {
+    "_index": 509,
+    "Id": "lightning_tendrils",
+    "DisplayedName": "Lightning Tendrils"
+  },
+  {
+    "_index": 510,
+    "Id": "lightning_tendrils_alt_x",
+    "DisplayedName": "Lightning Tendrils of Eccentricity"
+  },
+  {
+    "_index": 511,
+    "Id": "lightning_tendrils_alt_y",
+    "DisplayedName": "Lightning Tendrils of Escalation"
+  },
+  {
+    "_index": 512,
+    "Id": "beacon",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 513,
+    "Id": "beacon_izaro",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 514,
+    "Id": "beacon_self",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 515,
+    "Id": "lightning_circle",
+    "DisplayedName": "..."
+  },
+  {
+    "_index": 516,
+    "Id": "dance_on_corpse",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 517,
+    "Id": "bat_screech",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 518,
+    "Id": "sandstorm",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 519,
+    "Id": "drop_bear_rain",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 520,
+    "Id": "drop_bear_enrage",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 521,
+    "Id": "lightning_channel",
+    "DisplayedName": "..."
+  },
+  {
+    "_index": 522,
+    "Id": "bull_charge",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 523,
+    "Id": "voll_charge",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 524,
+    "Id": "pitbull_charge",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 525,
+    "Id": "miner_throw_fire",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 526,
+    "Id": "voll_slam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 527,
+    "Id": "water_vortex",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 528,
+    "Id": "word_of_winter_when_hit",
+    "DisplayedName": "Word of Winter"
+  },
+  {
+    "_index": 529,
+    "Id": "edict_of_winter_when_hit",
+    "DisplayedName": "Edict of Winter"
+  },
+  {
+    "_index": 530,
+    "Id": "decree_of_winter_when_hit",
+    "DisplayedName": "Decree of Winter"
+  },
+  {
+    "_index": 531,
+    "Id": "commandment_of_winter_when_hit",
+    "DisplayedName": "Commandment of Winter"
+  },
+  {
+    "_index": 532,
+    "Id": "monster_dodge",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 533,
+    "Id": "monster_dodge_target",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 534,
+    "Id": "voll_revive_undead",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 535,
+    "Id": "summon_taniwha_tail",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 536,
+    "Id": "monster_mortar",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 537,
+    "Id": "monster_mortar_attack",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 538,
+    "Id": "earthquake_test_skill",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 539,
+    "Id": "kinetic_blast",
+    "DisplayedName": "Kinetic Blast"
+  },
+  {
+    "_index": 540,
+    "Id": "kinetic_blast_alt_x",
+    "DisplayedName": "Kinetic Blast of Clustering"
+  },
+  {
+    "_index": 541,
+    "Id": "kinetic_blast_alt_y",
+    "DisplayedName": "[DNT] KineticBlastAltY"
+  },
+  {
+    "_index": 542,
+    "Id": "haunt",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 543,
+    "Id": "bloodline_daemon_nova",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 544,
+    "Id": "daresso_clone_charge",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 545,
+    "Id": "daresso_summon_clones",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 546,
+    "Id": "daresso_summon_clones_spell",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 547,
+    "Id": "blink_arrow",
+    "DisplayedName": "Blink Arrow"
+  },
+  {
+    "_index": 548,
+    "Id": "blink_arrow_alt_x",
+    "DisplayedName": "Blink Arrow of Bombarding Clones"
+  },
+  {
+    "_index": 549,
+    "Id": "blink_arrow_alt_y",
+    "DisplayedName": "Blink Arrow of Prismatic Clones"
+  },
+  {
+    "_index": 550,
+    "Id": "blink_arrow_offset",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 551,
+    "Id": "blink_arrow_triggered",
+    "DisplayedName": "Blink Arrow"
+  },
+  {
+    "_index": 552,
+    "Id": "mirror_arrow",
+    "DisplayedName": "Mirror Arrow"
+  },
+  {
+    "_index": 553,
+    "Id": "mirror_arrow_alt_x",
+    "DisplayedName": "Mirror Arrow of Bombarding Clones"
+  },
+  {
+    "_index": 554,
+    "Id": "mirror_arrow_alt_y",
+    "DisplayedName": "Mirror Arrow of Prismatic Clones"
+  },
+  {
+    "_index": 555,
+    "Id": "mirror_arrow_offset",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 556,
+    "Id": "mirror_arrow_triggered",
+    "DisplayedName": "Mirror Arrow"
+  },
+  {
+    "_index": 557,
+    "Id": "daresso_enrage",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 558,
+    "Id": "monster_teleport",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 559,
+    "Id": "cold_thorns",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 560,
+    "Id": "daemon_pulse_beam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 561,
+    "Id": "summon_storms",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 562,
+    "Id": "riposte",
+    "DisplayedName": "Riposte"
+  },
+  {
+    "_index": 563,
+    "Id": "reckoning",
+    "DisplayedName": "Reckoning"
+  },
+  {
+    "_index": 564,
+    "Id": "static_strike_old",
+    "DisplayedName": "Static Strike"
+  },
+  {
+    "_index": 565,
+    "Id": "static_strike",
+    "DisplayedName": "Static Strike"
+  },
+  {
+    "_index": 566,
+    "Id": "static_strike_alt_x",
+    "DisplayedName": "Static Strike of Gathering Lightning"
+  },
+  {
+    "_index": 567,
+    "Id": "static_strike_alt_y",
+    "DisplayedName": "[DNT] StaticStrikeAltY"
+  },
+  {
+    "_index": 568,
+    "Id": "living_bomb",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 569,
+    "Id": "word_of_tempest_on_hit",
+    "DisplayedName": "Word of the Tempest"
+  },
+  {
+    "_index": 570,
+    "Id": "edict_of_tempest_on_hit",
+    "DisplayedName": "Edict of the Tempest"
+  },
+  {
+    "_index": 571,
+    "Id": "decree_of_tempest_on_hit",
+    "DisplayedName": "Decree of the Tempest"
+  },
+  {
+    "_index": 572,
+    "Id": "commandment_of_tempest_on_hit",
+    "DisplayedName": "Commandment of the Tempest"
+  },
+  {
+    "_index": 573,
+    "Id": "vengeance",
+    "DisplayedName": "Vengeance"
+  },
+  {
+    "_index": 574,
+    "Id": "rune_explosion",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 575,
+    "Id": "torment_spirit_pause",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 576,
+    "Id": "daresso_attack_combo",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 577,
+    "Id": "summon_chaos_golem",
+    "DisplayedName": "Summon Chaos Golem"
+  },
+  {
+    "_index": 578,
+    "Id": "summon_chaos_golem_alt_x",
+    "DisplayedName": "Summon Chaos Golem of Hordes"
+  },
+  {
+    "_index": 579,
+    "Id": "summon_chaos_golem_alt_y",
+    "DisplayedName": "Summon Chaos Golem of the Maelström"
+  },
+  {
+    "_index": 580,
+    "Id": "summon_ice_golem",
+    "DisplayedName": "Summon Ice Golem"
+  },
+  {
+    "_index": 581,
+    "Id": "summon_ice_golem_alt_x",
+    "DisplayedName": "Summon Ice Golem of Hordes"
+  },
+  {
+    "_index": 582,
+    "Id": "summon_ice_golem_alt_y",
+    "DisplayedName": "Summon Ice Golem of Shattering"
+  },
+  {
+    "_index": 583,
+    "Id": "summon_flame_golem",
+    "DisplayedName": "Summon Flame Golem"
+  },
+  {
+    "_index": 584,
+    "Id": "summon_flame_golem_alt_x",
+    "DisplayedName": "Summon Flame Golem of Hordes"
+  },
+  {
+    "_index": 585,
+    "Id": "summon_flame_golem_alt_y",
+    "DisplayedName": "Summon Flame Golem of the Meteor"
+  },
+  {
+    "_index": 586,
+    "Id": "bull_thorns",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 587,
+    "Id": "gladiator_sword_throw",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 588,
+    "Id": "handfinger_hammer_throw",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 589,
+    "Id": "handfinger_hammer_throw_multiple_projectiles",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 590,
+    "Id": "totem_charged_beam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 591,
+    "Id": "ice_crash",
+    "DisplayedName": "Ice Crash"
+  },
+  {
+    "_index": 592,
+    "Id": "ice_crash_triggered",
+    "DisplayedName": "Ice Crash"
+  },
+  {
+    "_index": 593,
+    "Id": "ice_crash_alt_x",
+    "DisplayedName": "Ice Crash of Cadence"
+  },
+  {
+    "_index": 594,
+    "Id": "ice_crash_alt_y",
+    "DisplayedName": "[DNT] IceCrashAltY"
+  },
+  {
+    "_index": 595,
+    "Id": "death_explode",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 596,
+    "Id": "miner_throw_spawn",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 597,
+    "Id": "miner_excavate_elemental",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 598,
+    "Id": "wait",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 599,
+    "Id": "skeleton_soldier_arrow_spray",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 600,
+    "Id": "shock_nova",
+    "DisplayedName": "Shock Nova"
+  },
+  {
+    "_index": 601,
+    "Id": "shock_nova_alt_x",
+    "DisplayedName": "Shock Nova of Procession"
+  },
+  {
+    "_index": 602,
+    "Id": "shock_nova_alt_y",
+    "DisplayedName": "[DNT] ShockNovaAltY"
+  },
+  {
+    "_index": 603,
+    "Id": "flame_dash",
+    "DisplayedName": "Flame Dash"
+  },
+  {
+    "_index": 604,
+    "Id": "flame_dash_alt_x",
+    "DisplayedName": "Flame Dash of Incinerating"
+  },
+  {
+    "_index": 605,
+    "Id": "flame_dash_alt_y",
+    "DisplayedName": "Flame Dash of Return"
+  },
+  {
+    "_index": 606,
+    "Id": "vulture_parasite_take_off",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 607,
+    "Id": "piety_corrupted_ball_lightning",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 608,
+    "Id": "piety_corrupted_ball_lightning_triggered",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 609,
+    "Id": "piety_corrupted_lightning_beam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 610,
+    "Id": "gluttony_of_elements",
+    "DisplayedName": "Gluttony of Elements"
+  },
+  {
+    "_index": 611,
+    "Id": "curse_transfer",
+    "DisplayedName": "Curse Transfer"
+  },
+  {
+    "_index": 612,
+    "Id": "barrel_explosion",
+    "DisplayedName": "Barrel Explosion"
+  },
+  {
+    "_index": 613,
+    "Id": "malachai_elemental_cone",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 614,
+    "Id": "malachai_teleport_slam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 615,
+    "Id": "malachai_shadow_barrage",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 616,
+    "Id": "malachai_teleport",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 617,
+    "Id": "shavronne_lightning_thorns",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 618,
+    "Id": "vigilant_strike",
+    "DisplayedName": "Vigilant Strike"
+  },
+  {
+    "_index": 619,
+    "Id": "vigilant_strike_alt_x",
+    "DisplayedName": "[DNT] VigilantStrikeAltX"
+  },
+  {
+    "_index": 620,
+    "Id": "vigilant_strike_alt_y",
+    "DisplayedName": "[DNT] VigilantStrikeAltY"
+  },
+  {
+    "_index": 621,
+    "Id": "ice_elemental_spear",
+    "DisplayedName": "Ice Elemental Spear"
+  },
+  {
+    "_index": 622,
+    "Id": "kaom_fire_chasm",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 623,
+    "Id": "kaom_volcano_mortar",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 624,
+    "Id": "frost_blades",
+    "DisplayedName": "Frost Blades"
+  },
+  {
+    "_index": 625,
+    "Id": "frost_blades_alt_x",
+    "DisplayedName": "Frost Blades of Katabasis"
+  },
+  {
+    "_index": 626,
+    "Id": "frost_blades_alt_y",
+    "DisplayedName": "[DNT] FrostBladesAltY"
+  },
+  {
+    "_index": 627,
+    "Id": "fire_elemental_cone",
+    "DisplayedName": "Fire Elemental Cone"
+  },
+  {
+    "_index": 628,
+    "Id": "shavronne_lightning_tendrils",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 629,
+    "Id": "shavronne_teleport",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 630,
+    "Id": "daresso_reave",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 631,
+    "Id": "puitotem_monster_teleport",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 632,
+    "Id": "daresso_charge",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 633,
+    "Id": "vulture_leap_slam",
+    "DisplayedName": "Leap Slam"
+  },
+  {
+    "_index": 634,
+    "Id": "curse_consume",
+    "DisplayedName": "Curse Consume"
+  },
+  {
+    "_index": 635,
+    "Id": "rolling_magma",
+    "DisplayedName": "Rolling Magma"
+  },
+  {
+    "_index": 636,
+    "Id": "rolling_magma_alt_x",
+    "DisplayedName": "[DNT] MagmaOrbAltX"
+  },
+  {
+    "_index": 637,
+    "Id": "rolling_magma_alt_y",
+    "DisplayedName": "[DNT] MagmaOrbAltY"
+  },
+  {
+    "_index": 638,
+    "Id": "viking_upheaval",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 639,
+    "Id": "summon_eye",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 640,
+    "Id": "trigger_kaom_archer_spawners",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 641,
+    "Id": "trigger_kaom_skull_spawners",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 642,
+    "Id": "punishment",
+    "DisplayedName": "Punishment"
+  },
+  {
+    "_index": 643,
+    "Id": "arctic_armour",
+    "DisplayedName": "Arctic Armour"
+  },
+  {
+    "_index": 644,
+    "Id": "vaal_arctic_armour",
+    "DisplayedName": "Vaal Arctic Armour"
+  },
+  {
+    "_index": 645,
+    "Id": "monster_arctic_armour_trigger",
+    "DisplayedName": "Arctic Armour"
+  },
+  {
+    "_index": 646,
+    "Id": "revenant_revive_undead",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 647,
+    "Id": "monster_snipe",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 648,
+    "Id": "wild_strike",
+    "DisplayedName": "Wild Strike"
+  },
+  {
+    "_index": 649,
+    "Id": "wild_strike_alt_x",
+    "DisplayedName": "Wild Strike of Extremes"
+  },
+  {
+    "_index": 650,
+    "Id": "wild_strike_alt_y",
+    "DisplayedName": "[DNT] WildStrikeAltY"
+  },
+  {
+    "_index": 651,
+    "Id": "piety_ally_beam",
+    "DisplayedName": "Piety Beam"
+  },
+  {
+    "_index": 652,
+    "Id": "ice_trap",
+    "DisplayedName": "Ice Trap"
+  },
+  {
+    "_index": 653,
+    "Id": "ice_trap_alt_x",
+    "DisplayedName": "Ice Trap of Hollowness"
+  },
+  {
+    "_index": 654,
+    "Id": "ice_trap_alt_y",
+    "DisplayedName": "[DNT] IceTrapAltY"
+  },
+  {
+    "_index": 655,
+    "Id": "invisible_fire",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 656,
+    "Id": "malachai_shield",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 657,
+    "Id": "mortar_with_ground_effects",
+    "DisplayedName": "Mortar"
+  },
+  {
+    "_index": 658,
+    "Id": "miner_beacon",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 659,
+    "Id": "malachai_transform_piety",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 660,
+    "Id": "piety_transform_piety",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 661,
+    "Id": "piety_transform_piety_from_beast",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 662,
+    "Id": "piety_transform_end",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 663,
+    "Id": "piety_transform_end_beast",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 664,
+    "Id": "malachai_impale",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 665,
+    "Id": "piety_activate_eye_spawner",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 666,
+    "Id": "malachai_open_heart",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 667,
+    "Id": "heart_grant_shield",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 668,
+    "Id": "gain_charges",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 669,
+    "Id": "daresso_sword_trap",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 670,
+    "Id": "malachai_spawn_tri_bomb",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 671,
+    "Id": "repeatable_wave",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 672,
+    "Id": "phase_run",
+    "DisplayedName": "Phase Run"
+  },
+  {
+    "_index": 673,
+    "Id": "fire_elemental_meteor",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 674,
+    "Id": "blast_rain",
+    "DisplayedName": "Blast Rain"
+  },
+  {
+    "_index": 675,
+    "Id": "blast_rain_alt_x",
+    "DisplayedName": "Blast Rain of Trarthus"
+  },
+  {
+    "_index": 676,
+    "Id": "blast_rain_alt_y",
+    "DisplayedName": "[DNT] BlastRainAltY"
+  },
+  {
+    "_index": 677,
+    "Id": "blast_rain_triggerable",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 678,
+    "Id": "galvanic_arrow",
+    "DisplayedName": "Galvanic Arrow"
+  },
+  {
+    "_index": 679,
+    "Id": "galvanic_arrow_alt_x",
+    "DisplayedName": "Galvanic Arrow of Energy"
+  },
+  {
+    "_index": 680,
+    "Id": "galvanic_arrow_alt_y",
+    "DisplayedName": "Galvanic Arrow of Surging"
+  },
+  {
+    "_index": 681,
+    "Id": "burnwillow_target_area",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 682,
+    "Id": "static_tether",
+    "DisplayedName": "Static Tether"
+  },
+  {
+    "_index": 683,
+    "Id": "piety_reverse_cleave",
+    "DisplayedName": "Piety Reverse Cleave"
+  },
+  {
+    "_index": 684,
+    "Id": "bladefall",
+    "DisplayedName": "Bladefall"
+  },
+  {
+    "_index": 685,
+    "Id": "bladefall_alt_x",
+    "DisplayedName": "Bladefall of Volleys"
+  },
+  {
+    "_index": 686,
+    "Id": "bladefall_alt_y",
+    "DisplayedName": "Bladefall of Impaling"
+  },
+  {
+    "_index": 687,
+    "Id": "bladefall_alt_z",
+    "DisplayedName": "Bladefall of Trarthus"
+  },
+  {
+    "_index": 688,
+    "Id": "labyrinth_boss_rain_of_blades",
+    "DisplayedName": "Rain Of Blades"
+  },
+  {
+    "_index": 689,
+    "Id": "blade_vortex_old",
+    "DisplayedName": "Blade Vortex"
+  },
+  {
+    "_index": 690,
+    "Id": "vaal_blade_vortex",
+    "DisplayedName": "Vaal Blade Vortex"
+  },
+  {
+    "_index": 691,
+    "Id": "frost_bomb",
+    "DisplayedName": "Frost Bomb"
+  },
+  {
+    "_index": 692,
+    "Id": "frost_bomb_alt_x",
+    "DisplayedName": "Frost Bomb of Instability"
+  },
+  {
+    "_index": 693,
+    "Id": "frost_bomb_alt_y",
+    "DisplayedName": "Frost Bomb of Forthcoming"
+  },
+  {
+    "_index": 694,
+    "Id": "word_of_flames",
+    "DisplayedName": "Word of Flames"
+  },
+  {
+    "_index": 695,
+    "Id": "edict_of_flames",
+    "DisplayedName": "Edict of Flames"
+  },
+  {
+    "_index": 696,
+    "Id": "decree_of_flames",
+    "DisplayedName": "Decree of Flames"
+  },
+  {
+    "_index": 697,
+    "Id": "commandment_of_flames",
+    "DisplayedName": "Commandment of Flames"
+  },
+  {
+    "_index": 698,
+    "Id": "manifest_dancing_dervishes",
+    "DisplayedName": "Manifest Dancing Dervishes"
+  },
+  {
+    "_index": 699,
+    "Id": "orb_of_storms",
+    "DisplayedName": "Orb of Storms"
+  },
+  {
+    "_index": 700,
+    "Id": "orb_of_storms_alt_x",
+    "DisplayedName": "Orb of Storms of Squalls"
+  },
+  {
+    "_index": 701,
+    "Id": "orb_of_storms_alt_y",
+    "DisplayedName": "[DNT] OrbOfStormsAltY"
+  },
+  {
+    "_index": 702,
+    "Id": "lb_retractable_trap",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 703,
+    "Id": "word_of_the_grave_on_kill",
+    "DisplayedName": "Word of the Grave"
+  },
+  {
+    "_index": 704,
+    "Id": "edict_of_the_grave_on_kill",
+    "DisplayedName": "Edict of the Grave"
+  },
+  {
+    "_index": 705,
+    "Id": "decree_of_the_grave_on_kill",
+    "DisplayedName": "Decree of the Grave"
+  },
+  {
+    "_index": 706,
+    "Id": "commandment_of_the_grave_on_kill",
+    "DisplayedName": "Commandment of the Grave"
+  },
+  {
+    "_index": 707,
+    "Id": "word_of_reflection_when_hit",
+    "DisplayedName": "Word of Reflection"
+  },
+  {
+    "_index": 708,
+    "Id": "edict_of_reflection_when_hit",
+    "DisplayedName": "Edict of Reflection"
+  },
+  {
+    "_index": 709,
+    "Id": "decree_of_reflection_when_hit",
+    "DisplayedName": "Decree of Reflection"
+  },
+  {
+    "_index": 710,
+    "Id": "commandment_of_reflection_when_hit",
+    "DisplayedName": "Commandment of Reflection"
+  },
+  {
+    "_index": 711,
+    "Id": "word_of_light_when_critically_hit",
+    "DisplayedName": "Word of Light"
+  },
+  {
+    "_index": 712,
+    "Id": "edict_of_light_when_critically_hit",
+    "DisplayedName": "Edict of Light"
+  },
+  {
+    "_index": 713,
+    "Id": "decree_of_light_when_critically_hit",
+    "DisplayedName": "Decree of Light"
+  },
+  {
+    "_index": 714,
+    "Id": "commandment_of_light_when_critically_hit",
+    "DisplayedName": "Commandment of Light"
+  },
+  {
+    "_index": 715,
+    "Id": "word_of_thunder_on_kill",
+    "DisplayedName": "Word of Thunder"
+  },
+  {
+    "_index": 716,
+    "Id": "edict_of_thunder_on_kill",
+    "DisplayedName": "Edict of Thunder"
+  },
+  {
+    "_index": 717,
+    "Id": "decree_of_thunder_on_kill",
+    "DisplayedName": "Decree of Thunder"
+  },
+  {
+    "_index": 718,
+    "Id": "commandment_of_thunder_on_kill",
+    "DisplayedName": "Commandment of Thunder"
+  },
+  {
+    "_index": 719,
+    "Id": "triggered_lightning_cones",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 720,
+    "Id": "summon_stone_golem",
+    "DisplayedName": "Summon Stone Golem"
+  },
+  {
+    "_index": 721,
+    "Id": "summon_stone_golem_alt_x",
+    "DisplayedName": "Summon Stone Golem of Hordes"
+  },
+  {
+    "_index": 722,
+    "Id": "summon_stone_golem_alt_y",
+    "DisplayedName": "Summon Stone Golem of Safeguarding"
+  },
+  {
+    "_index": 723,
+    "Id": "word_of_force_on_hit",
+    "DisplayedName": "Word of Force"
+  },
+  {
+    "_index": 724,
+    "Id": "edict_of_force_on_hit",
+    "DisplayedName": "Edict of Force"
+  },
+  {
+    "_index": 725,
+    "Id": "decree_of_force_on_hit",
+    "DisplayedName": "Decree of Force"
+  },
+  {
+    "_index": 726,
+    "Id": "commandment_of_force_on_hit",
+    "DisplayedName": "Commandment of Force"
+  },
+  {
+    "_index": 727,
+    "Id": "whirling_leap",
+    "DisplayedName": "Whirling Leap"
+  },
+  {
+    "_index": 728,
+    "Id": "word_of_war_on_kill",
+    "DisplayedName": "Word of War"
+  },
+  {
+    "_index": 729,
+    "Id": "edict_of_war_on_kill",
+    "DisplayedName": "Edict of War"
+  },
+  {
+    "_index": 730,
+    "Id": "decree_of_war_on_kill",
+    "DisplayedName": "Decree of War"
+  },
+  {
+    "_index": 731,
+    "Id": "commandment_of_war_on_kill",
+    "DisplayedName": "Commandment of War"
+  },
+  {
+    "_index": 732,
+    "Id": "righteous_lightning",
+    "DisplayedName": "Righteous Lightning"
+  },
+  {
+    "_index": 733,
+    "Id": "lb_arrow_trap",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 734,
+    "Id": "earthquake",
+    "DisplayedName": "Earthquake"
+  },
+  {
+    "_index": 735,
+    "Id": "earthquake_alt_x",
+    "DisplayedName": "Earthquake of Amplification"
+  },
+  {
+    "_index": 736,
+    "Id": "earthquake_alt_y",
+    "DisplayedName": "[DNT] EarthquakeAltY"
+  },
+  {
+    "_index": 737,
+    "Id": "vaal_earthquake_old",
+    "DisplayedName": "Vaal Earthquake"
+  },
+  {
+    "_index": 738,
+    "Id": "vaal_earthquake",
+    "DisplayedName": "Vaal Earthquake"
+  },
+  {
+    "_index": 739,
+    "Id": "earthquake_triggerable",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 740,
+    "Id": "animated_weapon_explosive",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 741,
+    "Id": "contagion",
+    "DisplayedName": "Contagion"
+  },
+  {
+    "_index": 742,
+    "Id": "contagion_alt_x",
+    "DisplayedName": "Contagion of Subsiding"
+  },
+  {
+    "_index": 743,
+    "Id": "contagion_alt_y",
+    "DisplayedName": "Contagion of Transference"
+  },
+  {
+    "_index": 744,
+    "Id": "wither_old",
+    "DisplayedName": "Wither"
+  },
+  {
+    "_index": 745,
+    "Id": "wither",
+    "DisplayedName": "Wither"
+  },
+  {
+    "_index": 746,
+    "Id": "essence_drain",
+    "DisplayedName": "Essence Drain"
+  },
+  {
+    "_index": 747,
+    "Id": "essence_drain_alt_x",
+    "DisplayedName": "Essence Drain of Desperation"
+  },
+  {
+    "_index": 748,
+    "Id": "essence_drain_alt_y",
+    "DisplayedName": "Essence Drain of Wickedness"
+  },
+  {
+    "_index": 749,
+    "Id": "word_of_inferno_on_kill",
+    "DisplayedName": "Word of Inferno"
+  },
+  {
+    "_index": 750,
+    "Id": "edict_of_inferno_on_kill",
+    "DisplayedName": "Edict of Inferno"
+  },
+  {
+    "_index": 751,
+    "Id": "decree_of_inferno_on_kill",
+    "DisplayedName": "Decree of Inferno"
+  },
+  {
+    "_index": 752,
+    "Id": "commandment_of_inferno_on_kill",
+    "DisplayedName": "Commandment of Inferno"
+  },
+  {
+    "_index": 753,
+    "Id": "commandment_of_inferno_unique",
+    "DisplayedName": "Commandment of Inferno"
+  },
+  {
+    "_index": 754,
+    "Id": "revive_after_duration",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 755,
+    "Id": "grasping_ornaments",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 756,
+    "Id": "offering_of_judgement",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 757,
+    "Id": "player_projectile_spell",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 758,
+    "Id": "word_of_frost",
+    "DisplayedName": "Word of Frost"
+  },
+  {
+    "_index": 759,
+    "Id": "edict_of_frost",
+    "DisplayedName": "Edict of Frost"
+  },
+  {
+    "_index": 760,
+    "Id": "decree_of_frost",
+    "DisplayedName": "Decree of Frost"
+  },
+  {
+    "_index": 761,
+    "Id": "commandment_of_frost",
+    "DisplayedName": "Commandment of Frost"
+  },
+  {
+    "_index": 762,
+    "Id": "word_of_blades",
+    "DisplayedName": "Word of Blades"
+  },
+  {
+    "_index": 763,
+    "Id": "edict_of_blades",
+    "DisplayedName": "Edict of Blades"
+  },
+  {
+    "_index": 764,
+    "Id": "decree_of_blades",
+    "DisplayedName": "Decree of Blades"
+  },
+  {
+    "_index": 765,
+    "Id": "commandment_of_blades",
+    "DisplayedName": "Commandment of Blades"
+  },
+  {
+    "_index": 766,
+    "Id": "word_of_spite_when_hit",
+    "DisplayedName": "Word of Spite"
+  },
+  {
+    "_index": 767,
+    "Id": "edict_of_spite_when_hit",
+    "DisplayedName": "Edict of Spite"
+  },
+  {
+    "_index": 768,
+    "Id": "decree_of_spite_when_hit",
+    "DisplayedName": "Decree of Spite"
+  },
+  {
+    "_index": 769,
+    "Id": "commandment_of_spite_when_hit",
+    "DisplayedName": "Commandment of Spite"
+  },
+  {
+    "_index": 770,
+    "Id": "word_of_fury_on_hit",
+    "DisplayedName": "Word of Fury"
+  },
+  {
+    "_index": 771,
+    "Id": "edict_of_fury_on_hit",
+    "DisplayedName": "Edict of Fury"
+  },
+  {
+    "_index": 772,
+    "Id": "decree_of_fury_on_hit",
+    "DisplayedName": "Decree of Fury"
+  },
+  {
+    "_index": 773,
+    "Id": "commandment_of_fury_on_hit",
+    "DisplayedName": "Commandment of Fury"
+  },
+  {
+    "_index": 774,
+    "Id": "siege_ballista",
+    "DisplayedName": "Siege Ballista"
+  },
+  {
+    "_index": 775,
+    "Id": "siege_ballista_alt_x",
+    "DisplayedName": "Siege Ballista of Splintering"
+  },
+  {
+    "_index": 776,
+    "Id": "siege_ballista_alt_y",
+    "DisplayedName": "Siege Ballista of Trarthus"
+  },
+  {
+    "_index": 777,
+    "Id": "lb_edge_trap",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 778,
+    "Id": "drop_bear_desecration",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 779,
+    "Id": "lb_beam_trap",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 780,
+    "Id": "ancestral_protector",
+    "DisplayedName": "Ancestral Protector"
+  },
+  {
+    "_index": 781,
+    "Id": "ancestral_protector_alt_x",
+    "DisplayedName": "[DNT] MeleeTotemAltX"
+  },
+  {
+    "_index": 782,
+    "Id": "ancestral_protector_alt_y",
+    "DisplayedName": "[DNT] MeleeTotemAltY"
+  },
+  {
+    "_index": 783,
+    "Id": "storm_cloud_lightning_warp",
+    "DisplayedName": "Storm Cloud Lightning Warp"
+  },
+  {
+    "_index": 784,
+    "Id": "lb_boss_flee",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 785,
+    "Id": "vinktar_hide",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 786,
+    "Id": "vinktar_lightning_bond",
+    "DisplayedName": "Vinktar Lightning Bond"
+  },
+  {
+    "_index": 787,
+    "Id": "shadow_blades",
+    "DisplayedName": "Shadow Blades"
+  },
+  {
+    "_index": 788,
+    "Id": "summon_specific_monsters_from_mortar",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 789,
+    "Id": "lb_boss_summon_lieutenants",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 790,
+    "Id": "lb_boss_spirit_mortar",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 791,
+    "Id": "triggered_explosion",
+    "DisplayedName": "Fire Burst"
+  },
+  {
+    "_index": 792,
+    "Id": "lb_boss_shield",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 793,
+    "Id": "iron_oven_spawner",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 794,
+    "Id": "summon_specific_monsters_in_front",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 795,
+    "Id": "izaro_taunt",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 796,
+    "Id": "shrink",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 797,
+    "Id": "shrink_no_los",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 798,
+    "Id": "monster_slam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 799,
+    "Id": "rigwald_wolf_form",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 800,
+    "Id": "rigwald_wolf_barrage",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 801,
+    "Id": "rigwald_teleport",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 802,
+    "Id": "oak_sunder",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 803,
+    "Id": "sunder_old",
+    "DisplayedName": "Sunder"
+  },
+  {
+    "_index": 804,
+    "Id": "sunder",
+    "DisplayedName": "Sunder"
+  },
+  {
+    "_index": 805,
+    "Id": "sunder_alt_x",
+    "DisplayedName": "Sunder of Earthbreaking"
+  },
+  {
+    "_index": 806,
+    "Id": "sunder_alt_y",
+    "DisplayedName": "Sunder of Trarthus"
+  },
+  {
+    "_index": 807,
+    "Id": "sunder_monster",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 808,
+    "Id": "range_finder",
+    "DisplayedName": "Range Finder"
+  },
+  {
+    "_index": 809,
+    "Id": "talisman_degen",
+    "DisplayedName": "Talisman Degen"
+  },
+  {
+    "_index": 810,
+    "Id": "talisman_summon_lightning_spiral",
+    "DisplayedName": "Talisman Summon Lightning Spiral"
+  },
+  {
+    "_index": 811,
+    "Id": "monster_submerge_delete",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 812,
+    "Id": "summon_spectral_wolf",
+    "DisplayedName": "Summon Spectral Wolf"
+  },
+  {
+    "_index": 813,
+    "Id": "summon_spectral_wolf_triggered",
+    "DisplayedName": "Summon Spectral Wolf"
+  },
+  {
+    "_index": 814,
+    "Id": "summon_spectral_tiger",
+    "DisplayedName": "Summon Spectral Tiger"
+  },
+  {
+    "_index": 815,
+    "Id": "monster_cast_ground_effect",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 816,
+    "Id": "monster_cast_ground_effect_location",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 817,
+    "Id": "shock_ground",
+    "DisplayedName": "Shock Ground"
+  },
+  {
+    "_index": 818,
+    "Id": "shock_ground_on_hit",
+    "DisplayedName": "Shock Ground"
+  },
+  {
+    "_index": 819,
+    "Id": "frost_bolt",
+    "DisplayedName": "Frostbolt"
+  },
+  {
+    "_index": 820,
+    "Id": "frost_bolt_alt_x",
+    "DisplayedName": "[DNT] FrostBoltAltX"
+  },
+  {
+    "_index": 821,
+    "Id": "frost_bolt_alt_y",
+    "DisplayedName": "[DNT] FrostBoltAltY"
+  },
+  {
+    "_index": 822,
+    "Id": "frost_bolt_channel",
+    "DisplayedName": "Frost Bolt Channel"
+  },
+  {
+    "_index": 823,
+    "Id": "vortex",
+    "DisplayedName": "Vortex"
+  },
+  {
+    "_index": 824,
+    "Id": "vortex_alt_x",
+    "DisplayedName": "Vortex of Projection"
+  },
+  {
+    "_index": 825,
+    "Id": "vortex_alt_y",
+    "DisplayedName": "[DNT] FrostBoltNovaAltY"
+  },
+  {
+    "_index": 826,
+    "Id": "blight",
+    "DisplayedName": "Blight"
+  },
+  {
+    "_index": 827,
+    "Id": "blight_alt_x",
+    "DisplayedName": "Blight of Contagion"
+  },
+  {
+    "_index": 828,
+    "Id": "blight_alt_y",
+    "DisplayedName": "Blight of Atrophy"
+  },
+  {
+    "_index": 829,
+    "Id": "vaal_blight",
+    "DisplayedName": "Vaal Blight"
+  },
+  {
+    "_index": 830,
+    "Id": "blight_old",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 831,
+    "Id": "riptide",
+    "DisplayedName": "Riptide"
+  },
+  {
+    "_index": 832,
+    "Id": "molten_burst",
+    "DisplayedName": "Molten Burst"
+  },
+  {
+    "_index": 833,
+    "Id": "word_of_ire_when_hit",
+    "DisplayedName": "Word of Ire"
+  },
+  {
+    "_index": 834,
+    "Id": "edict_of_ire_when_hit",
+    "DisplayedName": "Edict of Ire"
+  },
+  {
+    "_index": 835,
+    "Id": "decree_of_ire_when_hit",
+    "DisplayedName": "Decree of Ire"
+  },
+  {
+    "_index": 836,
+    "Id": "commandment_of_ire_when_hit",
+    "DisplayedName": "Commandment of Ire"
+  },
+  {
+    "_index": 837,
+    "Id": "izaro_absorb_elemental",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 838,
+    "Id": "charged_attack",
+    "DisplayedName": "Blade Flurry"
+  },
+  {
+    "_index": 839,
+    "Id": "blade_flurry",
+    "DisplayedName": "Blade Flurry"
+  },
+  {
+    "_index": 840,
+    "Id": "blade_flurry_alt_x",
+    "DisplayedName": "Blade Flurry of Incision"
+  },
+  {
+    "_index": 841,
+    "Id": "blade_flurry_alt_y",
+    "DisplayedName": "[DNT] ChargedAttackAltY"
+  },
+  {
+    "_index": 842,
+    "Id": "vaal_blade_flurry",
+    "DisplayedName": "Vaal Blade Flurry"
+  },
+  {
+    "_index": 843,
+    "Id": "abberaths_fury_explosion",
+    "DisplayedName": "Abberath's Fury"
+  },
+  {
+    "_index": 844,
+    "Id": "violent_pace",
+    "DisplayedName": "[DNT] Violent Pace"
+  },
+  {
+    "_index": 845,
+    "Id": "awaken_gargoyle",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 846,
+    "Id": "spirit_offering",
+    "DisplayedName": "Spirit Offering"
+  },
+  {
+    "_index": 847,
+    "Id": "trap_blade",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 848,
+    "Id": "izaro_pedestal_buff",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 849,
+    "Id": "doom_arrow",
+    "DisplayedName": "Doom Arrow"
+  },
+  {
+    "_index": 850,
+    "Id": "hydra_doom_arrow",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 851,
+    "Id": "ice_fire",
+    "DisplayedName": "Icefire"
+  },
+  {
+    "_index": 852,
+    "Id": "face_last_target",
+    "DisplayedName": "Face Last Target"
+  },
+  {
+    "_index": 853,
+    "Id": "lightning_golem_wrath",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 854,
+    "Id": "lightning_golem_arc",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 855,
+    "Id": "summon_lightning_golem",
+    "DisplayedName": "Summon Lightning Golem"
+  },
+  {
+    "_index": 856,
+    "Id": "summon_lightning_golem_alt_x",
+    "DisplayedName": "Summon Lightning Golem of Hordes"
+  },
+  {
+    "_index": 857,
+    "Id": "summon_lightning_golem_alt_y",
+    "DisplayedName": "[DNT] SummonLightningGolemAltY"
+  },
+  {
+    "_index": 858,
+    "Id": "chronos_statues_cast",
+    "DisplayedName": "WIP"
+  },
+  {
+    "_index": 859,
+    "Id": "izaro_temporal_chains",
+    "DisplayedName": "Temporal Chains"
+  },
+  {
+    "_index": 860,
+    "Id": "izaro_vulnerability",
+    "DisplayedName": "Vulnerability"
+  },
+  {
+    "_index": 861,
+    "Id": "izaro_elemental_weakness",
+    "DisplayedName": "Elemental Weakness"
+  },
+  {
+    "_index": 862,
+    "Id": "izaro_reave",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 863,
+    "Id": "enrage",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 864,
+    "Id": "perandus_revive",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 865,
+    "Id": "perandus_buff",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 866,
+    "Id": "izaro_warp",
+    "DisplayedName": "Izaro Warp"
+  },
+  {
+    "_index": 867,
+    "Id": "monster_throw_equipped_weapon",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 868,
+    "Id": "delete_target",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 869,
+    "Id": "ancestor_totem_slash",
+    "DisplayedName": "Ancestral Blademaster"
+  },
+  {
+    "_index": 870,
+    "Id": "ancestral_warchief",
+    "DisplayedName": "Ancestral Warchief"
+  },
+  {
+    "_index": 871,
+    "Id": "ancestral_warchief_alt_x",
+    "DisplayedName": "[DNT] AncestralWarchiefAltX"
+  },
+  {
+    "_index": 872,
+    "Id": "ancestral_warchief_alt_y",
+    "DisplayedName": "[DNT] AncestralWarchiefAltY"
+  },
+  {
+    "_index": 873,
+    "Id": "vaal_ancestral_warchief",
+    "DisplayedName": "Vaal Ancestral Warchief"
+  },
+  {
+    "_index": 874,
+    "Id": "lacerate",
+    "DisplayedName": "Lacerate"
+  },
+  {
+    "_index": 875,
+    "Id": "lacerate_alt_x",
+    "DisplayedName": "Lacerate of Butchering"
+  },
+  {
+    "_index": 876,
+    "Id": "lacerate_alt_y",
+    "DisplayedName": "Lacerate of Haemorrhage"
+  },
+  {
+    "_index": 877,
+    "Id": "walking_double_slash",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 878,
+    "Id": "elemental_projectiles",
+    "DisplayedName": "Elemental Projectiles"
+  },
+  {
+    "_index": 879,
+    "Id": "monster_aura_slow",
+    "DisplayedName": "Slow Aura"
+  },
+  {
+    "_index": 880,
+    "Id": "monster_aura_physical_degeneration",
+    "DisplayedName": "Physical Degeneration Aura"
+  },
+  {
+    "_index": 881,
+    "Id": "dark_pact",
+    "DisplayedName": "Dark Bargain"
+  },
+  {
+    "_index": 882,
+    "Id": "dark_pact_alt_x",
+    "DisplayedName": "Dark Bargain of Trarthus"
+  },
+  {
+    "_index": 883,
+    "Id": "dark_pact_alt_y",
+    "DisplayedName": "[DNT] DarkPactAltY"
+  },
+  {
+    "_index": 884,
+    "Id": "monster_aura_increased_damage_taken",
+    "DisplayedName": "Increased Damage Taken Aura"
+  },
+  {
+    "_index": 885,
+    "Id": "monster_summon_daemons_at_locators",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 886,
+    "Id": "monster_aura_take_damage_on_movement_skill_use",
+    "DisplayedName": "Damage On Movement Skill Use Aura"
+  },
+  {
+    "_index": 887,
+    "Id": "monster_flask_charge_nova",
+    "DisplayedName": "Flask Charge Nova"
+  },
+  {
+    "_index": 888,
+    "Id": "monster_bleed_nova",
+    "DisplayedName": "Bleed Nova"
+  },
+  {
+    "_index": 889,
+    "Id": "kill",
+    "DisplayedName": "Kill"
+  },
+  {
+    "_index": 890,
+    "Id": "wand_teleport",
+    "DisplayedName": "Wand Teleport"
+  },
+  {
+    "_index": 891,
+    "Id": "goddess_warp",
+    "DisplayedName": "Goddess Warp"
+  },
+  {
+    "_index": 892,
+    "Id": "goddess_beam",
+    "DisplayedName": "Goddess Beam"
+  },
+  {
+    "_index": 893,
+    "Id": "monster_throw_random_weapon",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 894,
+    "Id": "inca_boss_freezing_pulse",
+    "DisplayedName": "Inca Boss Freezing Pulse"
+  },
+  {
+    "_index": 895,
+    "Id": "whirling_charge",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 896,
+    "Id": "strongbox_corpse_explode",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 897,
+    "Id": "phoenix_firebomb",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 898,
+    "Id": "repeated_pulse",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 899,
+    "Id": "taunt_target",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 900,
+    "Id": "elemental_warding",
+    "DisplayedName": "Elemental Warding"
+  },
+  {
+    "_index": 901,
+    "Id": "vulnerable",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 902,
+    "Id": "super_goat_emerge",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 903,
+    "Id": "fire_orbs",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 904,
+    "Id": "hydra_turret_projectile",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 905,
+    "Id": "atlas_aoe_projectile",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 906,
+    "Id": "ground_effect_slam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 907,
+    "Id": "hydra_barrage",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 908,
+    "Id": "minotaur_arc_trap",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 909,
+    "Id": "ice_warp",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 910,
+    "Id": "atlas_riftwalk",
+    "DisplayedName": "Atlas Riftwalk"
+  },
+  {
+    "_index": 911,
+    "Id": "hydra_teleport_shot",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 912,
+    "Id": "scorching_ray",
+    "DisplayedName": "Scorching Ray"
+  },
+  {
+    "_index": 913,
+    "Id": "scorching_ray_alt_x",
+    "DisplayedName": "Scorching Ray of Immolation"
+  },
+  {
+    "_index": 914,
+    "Id": "scorching_ray_alt_y",
+    "DisplayedName": "[DNT] FireBeamAltY"
+  },
+  {
+    "_index": 915,
+    "Id": "marker_warp",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 916,
+    "Id": "marker_warp_triggered",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 917,
+    "Id": "minotaur_slam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 918,
+    "Id": "shaper_banish_zana",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 919,
+    "Id": "shaper_open_portal",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 920,
+    "Id": "shaper_teleport_slam",
+    "DisplayedName": "Shaper's Devastation"
+  },
+  {
+    "_index": 921,
+    "Id": "shaper_banish_player",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 922,
+    "Id": "shaper_beam",
+    "DisplayedName": "Shaper's Ire"
+  },
+  {
+    "_index": 923,
+    "Id": "minotaur_burrow",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 924,
+    "Id": "minotaur_burrow_no_los",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 925,
+    "Id": "trap_ground_smoke",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 926,
+    "Id": "minotaur_sweep",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 927,
+    "Id": "shaper_projectile",
+    "DisplayedName": "Shaper's Despair"
+  },
+  {
+    "_index": 928,
+    "Id": "chimera_hide_attack",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 929,
+    "Id": "shaper_bullet_hell",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 930,
+    "Id": "chimera_flicker_lance",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 931,
+    "Id": "fire_burst",
+    "DisplayedName": "Fire Burst"
+  },
+  {
+    "_index": 932,
+    "Id": "ignition_blast",
+    "DisplayedName": "Ignition Blast"
+  },
+  {
+    "_index": 933,
+    "Id": "atlas_charge",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 934,
+    "Id": "storm_cascade",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 935,
+    "Id": "spectral_spirits",
+    "DisplayedName": "Spectral Spirits"
+  },
+  {
+    "_index": 936,
+    "Id": "summon_specific_barrels",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 937,
+    "Id": "summon_specific_barrels_in_front",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 938,
+    "Id": "summon_specific_barrels_from_mortar",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 939,
+    "Id": "chimera_combo_attack",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 940,
+    "Id": "hellfire_barrage",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 941,
+    "Id": "change_stance",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 942,
+    "Id": "chieftain_enrage",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 943,
+    "Id": "pirate_boss_break_chest",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 944,
+    "Id": "chimera_charged_attack",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 945,
+    "Id": "fire_storm_cascade",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 946,
+    "Id": "atlas_split_form",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 947,
+    "Id": "bone_prison",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 948,
+    "Id": "monster_mortar_around_caster",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 949,
+    "Id": "new_blade_vortex",
+    "DisplayedName": "Blade Vortex"
+  },
+  {
+    "_index": 950,
+    "Id": "hydra_fork_arrow",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 951,
+    "Id": "restore",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 952,
+    "Id": "change_to_stance1",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 953,
+    "Id": "change_to_stance2",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 954,
+    "Id": "change_to_stance3",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 955,
+    "Id": "change_to_stance4",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 956,
+    "Id": "change_to_stance5",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 957,
+    "Id": "change_to_stance1_immediate",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 958,
+    "Id": "change_to_stance2_immediate",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 959,
+    "Id": "change_to_stance3_immediate",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 960,
+    "Id": "change_to_stance4_immediate",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 961,
+    "Id": "change_to_stance5_immediate",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 962,
+    "Id": "atlas_growing_maelstrom",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 963,
+    "Id": "atlas_spider_web",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 964,
+    "Id": "cover_in_spiders",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 965,
+    "Id": "revive_specific_monsters",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 966,
+    "Id": "atlas_lightning_golem_buff",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 967,
+    "Id": "atlas_lightning_golem_nova",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 968,
+    "Id": "zana_disrupt_portal",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 969,
+    "Id": "summon_gold_animated_armour",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 970,
+    "Id": "stormflay_lightning_strike",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 971,
+    "Id": "lightning_orbs",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 972,
+    "Id": "zana_extend_shield",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 973,
+    "Id": "zana_retreat",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 974,
+    "Id": "atlas_random_maelstrom",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 975,
+    "Id": "summon_mass_blood_ravens",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 976,
+    "Id": "hotdog_upheaval",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 977,
+    "Id": "cover_in_ash",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 978,
+    "Id": "empowering_howl",
+    "DisplayedName": "Empowering Howl"
+  },
+  {
+    "_index": 979,
+    "Id": "flame_breath",
+    "DisplayedName": "Flame Breath"
+  },
+  {
+    "_index": 980,
+    "Id": "blade_vortex",
+    "DisplayedName": "Blade Vortex"
+  },
+  {
+    "_index": 981,
+    "Id": "blade_vortex_alt_x",
+    "DisplayedName": "Blade Vortex of the Scythe"
+  },
+  {
+    "_index": 982,
+    "Id": "blade_vortex_alt_y",
+    "DisplayedName": "[DNT] BladeVortexAltY"
+  },
+  {
+    "_index": 983,
+    "Id": "spectral_shield_throw",
+    "DisplayedName": "Spectral Shield Throw"
+  },
+  {
+    "_index": 984,
+    "Id": "spectral_shield_throw_alt_x",
+    "DisplayedName": "Spectral Shield Throw of Shattering"
+  },
+  {
+    "_index": 985,
+    "Id": "spectral_shield_throw_alt_y",
+    "DisplayedName": "Spectral Shield Throw of Trarthus"
+  },
+  {
+    "_index": 986,
+    "Id": "thrown_shield_projectile_triggerable",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 987,
+    "Id": "avarius_cleave",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 988,
+    "Id": "avarius_offset_projectile",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 989,
+    "Id": "avarius_super_projectile",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 990,
+    "Id": "avarius_pentagon_projectile",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 991,
+    "Id": "avarius_rapid_projectile",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 992,
+    "Id": "avarius_divine_slam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 993,
+    "Id": "avarius_summon_templars",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 994,
+    "Id": "avarius_raise_statues",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 995,
+    "Id": "breach_consume_bones",
+    "DisplayedName": "Consume Bones"
+  },
+  {
+    "_index": 996,
+    "Id": "breach_bone_mortar",
+    "DisplayedName": "Bone Mortar"
+  },
+  {
+    "_index": 997,
+    "Id": "breach_blizzard",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 998,
+    "Id": "breach_team_warp",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 999,
+    "Id": "brine_king_tidal_rush",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1000,
+    "Id": "brine_king_upheaval",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1001,
+    "Id": "brine_king_flood_arena",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1002,
+    "Id": "brine_king_storm_call",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1003,
+    "Id": "brutus_wall_hook",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1004,
+    "Id": "breach_bone_nova",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1005,
+    "Id": "breach_flicker_strike",
+    "DisplayedName": "Flicker Strike"
+  },
+  {
+    "_index": 1006,
+    "Id": "breach_mass_flicker_strike",
+    "DisplayedName": "Flicker Strike"
+  },
+  {
+    "_index": 1007,
+    "Id": "breach_mortar_in_line",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1008,
+    "Id": "envy",
+    "DisplayedName": "Envy"
+  },
+  {
+    "_index": 1009,
+    "Id": "bone_nova",
+    "DisplayedName": "Bone Nova"
+  },
+  {
+    "_index": 1010,
+    "Id": "icicle_burst",
+    "DisplayedName": "Icicle Burst"
+  },
+  {
+    "_index": 1011,
+    "Id": "transition_object",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1012,
+    "Id": "breach_ball_lightning",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1013,
+    "Id": "breach_recall",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1014,
+    "Id": "breach_summon_monster_at_marker",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1015,
+    "Id": "breach_spell_barrage",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1016,
+    "Id": "maligaro_teleport_slam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1017,
+    "Id": "maligaro_combo_attack",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1018,
+    "Id": "maligaro_soul_combo_attack",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1019,
+    "Id": "maligaro_telekinetic_blades",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1020,
+    "Id": "maligaro_telekinetic_blades_in_front",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1021,
+    "Id": "maligaro_telekinetic_blades_behind",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1022,
+    "Id": "maligaro_vanish",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1023,
+    "Id": "nova_projectile_spell",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1024,
+    "Id": "rapid_slam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1025,
+    "Id": "maligaro_blade_flurry",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1026,
+    "Id": "triggered_lightning_spell",
+    "DisplayedName": "Lightning Bolt"
+  },
+  {
+    "_index": 1027,
+    "Id": "triggered_lightning_spell_on_hit",
+    "DisplayedName": "Lightning Bolt"
+  },
+  {
+    "_index": 1028,
+    "Id": "wand_strike",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1029,
+    "Id": "doedre_bubble_burst",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1030,
+    "Id": "doedre_warp",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1031,
+    "Id": "doedre_form_warp",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1032,
+    "Id": "raise_spiders",
+    "DisplayedName": "Raise Spiders"
+  },
+  {
+    "_index": 1033,
+    "Id": "breach_lightning_orbs",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1034,
+    "Id": "lunaris_combo_attack",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1035,
+    "Id": "melee_thrust_attack",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1036,
+    "Id": "solaris_sky_beam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1037,
+    "Id": "solaris_energy_lance",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1038,
+    "Id": "lunaris_spell_barrage",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1039,
+    "Id": "lunaris_dark_projectile",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1040,
+    "Id": "death_projectile_spell",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1041,
+    "Id": "solaris_solar_flare",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1042,
+    "Id": "lunaris_glaive_projectile",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1043,
+    "Id": "solaris_backflip",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1044,
+    "Id": "spider_god_combo_strike",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1045,
+    "Id": "spider_god_acid_lightning_spray",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1046,
+    "Id": "spider_god_laser_barrage",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1047,
+    "Id": "spider_god_riptide",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1048,
+    "Id": "yeena_fire_breath",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1049,
+    "Id": "breach_flame_vortex",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1050,
+    "Id": "avarius_divine_beam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1051,
+    "Id": "avarius_charge",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1052,
+    "Id": "avarius_charge_past_enemy",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1053,
+    "Id": "explosive_doom_arrow",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1054,
+    "Id": "spectral_sawblade",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1055,
+    "Id": "spider_god_web_zone",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1056,
+    "Id": "purge_hound_whirling_blades",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1057,
+    "Id": "storm_burst",
+    "DisplayedName": "Storm Burst"
+  },
+  {
+    "_index": 1058,
+    "Id": "avarius_delayed_blast",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1059,
+    "Id": "avarius_delayed_blast_triggered",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1060,
+    "Id": "summon_skeletons_channelled",
+    "DisplayedName": "Summon Skeletons Channelled"
+  },
+  {
+    "_index": 1061,
+    "Id": "avarius_kill_statues",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1062,
+    "Id": "matriach_fire_mortar",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1063,
+    "Id": "monster_area_of_effect_spell",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1064,
+    "Id": "shavronne_lightning_pulse",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1065,
+    "Id": "tukohama_sunder",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1066,
+    "Id": "tukohama_totem_shield",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1067,
+    "Id": "tukohama_slam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1068,
+    "Id": "brine_king_slam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1069,
+    "Id": "monster_self_slam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1070,
+    "Id": "shavronne_levitating_projectile",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1071,
+    "Id": "blood_offering",
+    "DisplayedName": "Blood Offering"
+  },
+  {
+    "_index": 1072,
+    "Id": "teleport_strike",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1073,
+    "Id": "shavronne_empower_beam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1074,
+    "Id": "main_hand_attack",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1075,
+    "Id": "off_hand_attack",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1076,
+    "Id": "blackguard_zombie_enrage",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1077,
+    "Id": "shavronne_projectile_barrage",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1078,
+    "Id": "create_lesser_shrine",
+    "DisplayedName": "Create Lesser Shrine"
+  },
+  {
+    "_index": 1079,
+    "Id": "figurehead_incinerate",
+    "DisplayedName": "FigureHead Incinerate"
+  },
+  {
+    "_index": 1080,
+    "Id": "solaris_lunaris_transform",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1081,
+    "Id": "summoning_arrow",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1082,
+    "Id": "kitava_x_blast",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1083,
+    "Id": "kitava_x_nuke",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1084,
+    "Id": "kitava_swipe",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1085,
+    "Id": "kitava_slam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1086,
+    "Id": "kitava_devouring_darkness",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1087,
+    "Id": "kitava_throw_debris",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1088,
+    "Id": "kitava_heart_summon",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1089,
+    "Id": "doedre_empty_cauldron",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1090,
+    "Id": "abberaths_fury",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1091,
+    "Id": "abberath_meteor_upheaval",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1092,
+    "Id": "abberath_fireball_combo",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1093,
+    "Id": "abberath_emerge",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1094,
+    "Id": "abberath_hide",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1095,
+    "Id": "charged_dash_old",
+    "DisplayedName": "Charged Dash"
+  },
+  {
+    "_index": 1096,
+    "Id": "charged_dash",
+    "DisplayedName": "Charged Dash"
+  },
+  {
+    "_index": 1097,
+    "Id": "charged_dash_alt_x",
+    "DisplayedName": "Charged Dash of Projection"
+  },
+  {
+    "_index": 1098,
+    "Id": "charged_dash_alt_y",
+    "DisplayedName": "[DNT] ChargedDashAltY"
+  },
+  {
+    "_index": 1099,
+    "Id": "death_aura",
+    "DisplayedName": "Death Aura"
+  },
+  {
+    "_index": 1100,
+    "Id": "brine_king_cleave",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1101,
+    "Id": "despair_bear_upheaval",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1102,
+    "Id": "despair_bear_earthquake",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1103,
+    "Id": "despair_bear_roar",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1104,
+    "Id": "earthquake_cascade",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1105,
+    "Id": "utula_remote_slam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1106,
+    "Id": "voll_charge_entity",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1107,
+    "Id": "monster_storm_burst",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1108,
+    "Id": "animated_thrown_weapon",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1109,
+    "Id": "frog_god_split",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1110,
+    "Id": "frog_god_chomp",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1111,
+    "Id": "new_frog_charge",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1112,
+    "Id": "righteous_fire_sacrifice",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1113,
+    "Id": "teleport",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1114,
+    "Id": "teleport_no_los",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1115,
+    "Id": "add_buff_to_target",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1116,
+    "Id": "add_buff_to_target_triggered",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1117,
+    "Id": "karui_elder_drop_arrow",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1118,
+    "Id": "spider_god_activate_laser",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1119,
+    "Id": "storm_whip",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1120,
+    "Id": "arakaali_hide",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1121,
+    "Id": "brutus_levitation_slam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1122,
+    "Id": "spell_nova",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1123,
+    "Id": "spell_nova_self",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1124,
+    "Id": "spawn_arakaali_hatchling",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1125,
+    "Id": "attack_vortex",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1126,
+    "Id": "delayed_skill_trigger",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1127,
+    "Id": "trigger_charge",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1128,
+    "Id": "doryanis_touch",
+    "DisplayedName": "Doryani's Touch"
+  },
+  {
+    "_index": 1129,
+    "Id": "player_fire_chasm",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1130,
+    "Id": "empty_action_spell",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1131,
+    "Id": "empty_action_spell_ally",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1132,
+    "Id": "empty_action_spell_no_los",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1133,
+    "Id": "trigger_cascade",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1134,
+    "Id": "garukhan_combo_attack",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1135,
+    "Id": "garukhan_tornado",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1136,
+    "Id": "ryslatha_slide",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1137,
+    "Id": "ralakesh_blessing",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1138,
+    "Id": "trigger_projectile_spell",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1139,
+    "Id": "summon_beastial_rhoa",
+    "DisplayedName": "Summon Bestial Rhoa"
+  },
+  {
+    "_index": 1140,
+    "Id": "summon_beastial_ursa",
+    "DisplayedName": "Summon Bestial Ursa"
+  },
+  {
+    "_index": 1141,
+    "Id": "summon_beastial_snake",
+    "DisplayedName": "Summon Bestial Snake"
+  },
+  {
+    "_index": 1142,
+    "Id": "ambush",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1143,
+    "Id": "plague",
+    "DisplayedName": "Plague"
+  },
+  {
+    "_index": 1144,
+    "Id": "monster_charged_dash",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1145,
+    "Id": "split_spell_projectile",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1146,
+    "Id": "titucius_combo_attack",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1147,
+    "Id": "special_beam_cannon",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1148,
+    "Id": "solaris_super_sky_beam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1149,
+    "Id": "lunaris_super_dark_projectile",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1150,
+    "Id": "kitava_beam_sweep",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1151,
+    "Id": "kitava_death_breath",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1152,
+    "Id": "shavronne_ghost_brutus_slam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1153,
+    "Id": "shavronne_ball_lightning",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1154,
+    "Id": "carpet_bomb_projectile",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1155,
+    "Id": "mortar_in_rectangle",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1156,
+    "Id": "unholy_trio_hide",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1157,
+    "Id": "summon_harbinger_of_the_arcane",
+    "DisplayedName": "Summon Harbinger of the Arcane"
+  },
+  {
+    "_index": 1158,
+    "Id": "summon_harbinger_of_time",
+    "DisplayedName": "Summon Harbinger of Time"
+  },
+  {
+    "_index": 1159,
+    "Id": "summon_harbinger_of_focus",
+    "DisplayedName": "Summon Harbinger of Focus"
+  },
+  {
+    "_index": 1160,
+    "Id": "summon_harbinger_of_directons",
+    "DisplayedName": "Summon Harbinger of Directions"
+  },
+  {
+    "_index": 1161,
+    "Id": "summon_harbinger_of_storms",
+    "DisplayedName": "Summon Harbinger of Storms"
+  },
+  {
+    "_index": 1162,
+    "Id": "summon_harbinger_of_brutality",
+    "DisplayedName": "Summon Harbinger of Brutality"
+  },
+  {
+    "_index": 1163,
+    "Id": "summon_harbinger_of_the_arcane_uber",
+    "DisplayedName": "Summon Greater Harbinger of the Arcane"
+  },
+  {
+    "_index": 1164,
+    "Id": "summon_harbinger_of_time_uber",
+    "DisplayedName": "Summon Greater Harbinger of Time"
+  },
+  {
+    "_index": 1165,
+    "Id": "summon_harbinger_of_focus_uber",
+    "DisplayedName": "Summon Greater Harbinger of Focus"
+  },
+  {
+    "_index": 1166,
+    "Id": "summon_harbinger_of_directons_uber",
+    "DisplayedName": "Summon Greater Harbinger of Directions"
+  },
+  {
+    "_index": 1167,
+    "Id": "summon_harbinger_of_storms_uber",
+    "DisplayedName": "Summon Greater Harbinger of Storms"
+  },
+  {
+    "_index": 1168,
+    "Id": "summon_harbinger_of_brutality_uber",
+    "DisplayedName": "Summon Greater Harbinger of Brutality"
+  },
+  {
+    "_index": 1169,
+    "Id": "summon_harbinger_of_the_arcane_ascendancy",
+    "DisplayedName": "Summon Visiting Harbinger of the Arcane"
+  },
+  {
+    "_index": 1170,
+    "Id": "summon_harbinger_of_time_ascendancy",
+    "DisplayedName": "Summon Visiting Harbinger of Time"
+  },
+  {
+    "_index": 1171,
+    "Id": "summon_harbinger_of_focus_ascendancy",
+    "DisplayedName": "Summon Visiting Harbinger of Focus"
+  },
+  {
+    "_index": 1172,
+    "Id": "upheaval_to_target",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1173,
+    "Id": "darktongue_kiss",
+    "DisplayedName": "Darktongue's Kiss"
+  },
+  {
+    "_index": 1174,
+    "Id": "move_daemon",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1175,
+    "Id": "rotate_daemon",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1176,
+    "Id": "rotate_object",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1177,
+    "Id": "harbinger_summon_monsters",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1178,
+    "Id": "kitava_beam_orb",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1179,
+    "Id": "kitava_ultimate_death_breath",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1180,
+    "Id": "void_gaze",
+    "DisplayedName": "Void Gaze"
+  },
+  {
+    "_index": 1181,
+    "Id": "doedre_screech",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1182,
+    "Id": "attached_vaal_charged_blast",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1183,
+    "Id": "harbinger_warp",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1184,
+    "Id": "harbinger_ailment_arc",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1185,
+    "Id": "trio_add_doedre_stack",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1186,
+    "Id": "iguana_flamethrower",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1187,
+    "Id": "harbinger_lightning_orb",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1188,
+    "Id": "volatile_dead",
+    "DisplayedName": "Volatile Dead"
+  },
+  {
+    "_index": 1189,
+    "Id": "volatile_dead_alt_x",
+    "DisplayedName": "Volatile Dead of Confinement"
+  },
+  {
+    "_index": 1190,
+    "Id": "volatile_dead_alt_y",
+    "DisplayedName": "Volatile Dead of Seething"
+  },
+  {
+    "_index": 1191,
+    "Id": "stalking_pustule",
+    "DisplayedName": "Stalking Pustule"
+  },
+  {
+    "_index": 1192,
+    "Id": "volatile_dead_detonate",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1193,
+    "Id": "fog_of_war",
+    "DisplayedName": "Fog of War"
+  },
+  {
+    "_index": 1194,
+    "Id": "walk_emerge",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1195,
+    "Id": "discorectangle_slam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1196,
+    "Id": "unearth",
+    "DisplayedName": "Unearth"
+  },
+  {
+    "_index": 1197,
+    "Id": "shakari_tail_strike",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1198,
+    "Id": "shakari_upheaval",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1199,
+    "Id": "infernal_sweep",
+    "DisplayedName": "Infernal Sweep"
+  },
+  {
+    "_index": 1200,
+    "Id": "shakari_burrow",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1201,
+    "Id": "cremation",
+    "DisplayedName": "Cremation"
+  },
+  {
+    "_index": 1202,
+    "Id": "cremation_alt_x",
+    "DisplayedName": "Cremation of Exhuming"
+  },
+  {
+    "_index": 1203,
+    "Id": "cremation_alt_y",
+    "DisplayedName": "Cremation of the Volcano"
+  },
+  {
+    "_index": 1204,
+    "Id": "corpse_erruption_monster",
+    "DisplayedName": "Cremation"
+  },
+  {
+    "_index": 1205,
+    "Id": "shakari_quicksand",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1206,
+    "Id": "corpse_mortar",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1207,
+    "Id": "garukhan_stationary_tornado",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1208,
+    "Id": "garukhan_stationary_tornado_enemy",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1209,
+    "Id": "bodyswap",
+    "DisplayedName": "Bodyswap"
+  },
+  {
+    "_index": 1210,
+    "Id": "bodyswap_alt_x",
+    "DisplayedName": "Bodyswap of Sacrifice"
+  },
+  {
+    "_index": 1211,
+    "Id": "bodyswap_alt_y",
+    "DisplayedName": "[DNT] CorpseWarpAltY"
+  },
+  {
+    "_index": 1212,
+    "Id": "bodyswap_triggered",
+    "DisplayedName": "Bodyswap"
+  },
+  {
+    "_index": 1213,
+    "Id": "shakari_trail_burrow",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1214,
+    "Id": "unholy_trio_ball_lightning",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1215,
+    "Id": "decelerating_projectile",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1216,
+    "Id": "vilenta_reflection",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1217,
+    "Id": "vilenta_gas_mortar",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1218,
+    "Id": "spectral_spinning_weapon",
+    "DisplayedName": "Spectral Spinning Weapon"
+  },
+  {
+    "_index": 1219,
+    "Id": "vilenta_pillar_hop",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1220,
+    "Id": "trigger_wave",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1221,
+    "Id": "aegis_fire",
+    "DisplayedName": "Fire Aegis"
+  },
+  {
+    "_index": 1222,
+    "Id": "aegis_cold",
+    "DisplayedName": "Cold Aegis"
+  },
+  {
+    "_index": 1223,
+    "Id": "aegis_elemental",
+    "DisplayedName": "Elemental Aegis"
+  },
+  {
+    "_index": 1224,
+    "Id": "aegis_lightning",
+    "DisplayedName": "Lightning Aegis"
+  },
+  {
+    "_index": 1225,
+    "Id": "aegis_physical",
+    "DisplayedName": "Physical Aegis"
+  },
+  {
+    "_index": 1226,
+    "Id": "abyss_teleport_strike",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1227,
+    "Id": "vaal_impurity_of_fire",
+    "DisplayedName": "Vaal Impurity of Fire"
+  },
+  {
+    "_index": 1228,
+    "Id": "vaal_impurity_of_ice",
+    "DisplayedName": "Vaal Impurity of Ice"
+  },
+  {
+    "_index": 1229,
+    "Id": "vaal_impurity_of_lightning",
+    "DisplayedName": "Vaal Impurity of Lightning"
+  },
+  {
+    "_index": 1230,
+    "Id": "summon_doedres_effigy",
+    "DisplayedName": "Summon Doedre's Effigy"
+  },
+  {
+    "_index": 1231,
+    "Id": "lightning_elder_teleport_spark",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1232,
+    "Id": "tectonic_slam",
+    "DisplayedName": "Tectonic Slam"
+  },
+  {
+    "_index": 1233,
+    "Id": "tectonic_slam_alt_x",
+    "DisplayedName": "Tectonic Slam of Cataclysm"
+  },
+  {
+    "_index": 1234,
+    "Id": "tectonic_slam_alt_y",
+    "DisplayedName": "[DNT] TectonicSlamAltY"
+  },
+  {
+    "_index": 1235,
+    "Id": "tectonic_slam_mercenary",
+    "DisplayedName": "Tectonic Slam"
+  },
+  {
+    "_index": 1236,
+    "Id": "lightning_elder_bolt",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1237,
+    "Id": "lightning_elder_tendrils",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1238,
+    "Id": "slide_emerge",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1239,
+    "Id": "lightning_elder_bouncing_orb",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1240,
+    "Id": "beam_orb",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1241,
+    "Id": "geometry_attack",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1242,
+    "Id": "geometry_spell",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1243,
+    "Id": "geometry_thruster",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1244,
+    "Id": "elder_clone_shot",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1245,
+    "Id": "death_walk",
+    "DisplayedName": "Death Walk"
+  },
+  {
+    "_index": 1246,
+    "Id": "empty_action_spell_2",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1247,
+    "Id": "empty_action_spell_3",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1248,
+    "Id": "empty_action_spell_4",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1249,
+    "Id": "empty_action_spell_5",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1250,
+    "Id": "empty_action_spell_5_no_los",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1251,
+    "Id": "elder_siphon",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1252,
+    "Id": "elder_slamming_tentacles",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1253,
+    "Id": "elder_doom_projectile",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1254,
+    "Id": "elder_expanding_nova",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1255,
+    "Id": "spirit_burst",
+    "DisplayedName": "Spirit Burst"
+  },
+  {
+    "_index": 1256,
+    "Id": "despair",
+    "DisplayedName": "Despair"
+  },
+  {
+    "_index": 1257,
+    "Id": "shade_form",
+    "DisplayedName": "Shade Form"
+  },
+  {
+    "_index": 1258,
+    "Id": "summon_petrification_statue",
+    "DisplayedName": "Petrification Statue"
+  },
+  {
+    "_index": 1259,
+    "Id": "ryslatha_parasite_ground",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1260,
+    "Id": "ice_flower",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1261,
+    "Id": "void_shot",
+    "DisplayedName": "Void Shot"
+  },
+  {
+    "_index": 1262,
+    "Id": "tentacle_smash",
+    "DisplayedName": "Tentacle Whip"
+  },
+  {
+    "_index": 1263,
+    "Id": "glimpse_of_eternity",
+    "DisplayedName": "Glimpse of Eternity"
+  },
+  {
+    "_index": 1264,
+    "Id": "volatile_anomaly",
+    "DisplayedName": "Volatile Anomaly"
+  },
+  {
+    "_index": 1265,
+    "Id": "empty_action_spell_loop",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1266,
+    "Id": "empty_action_spell_loop2",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1267,
+    "Id": "empty_action_spell_loop3",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1268,
+    "Id": "empty_action_spell_loop4",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1269,
+    "Id": "empty_action_spell_loop5",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1270,
+    "Id": "mass_special_beam_cannon",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1271,
+    "Id": "bestiary_stampede",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1272,
+    "Id": "tiger_spirit_fangs",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1273,
+    "Id": "tiger_spirit_lacerate",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1274,
+    "Id": "tiger_spirit_teleport_slam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1275,
+    "Id": "tora_monster_trap",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1276,
+    "Id": "intimidating_cry",
+    "DisplayedName": "Intimidating Cry"
+  },
+  {
+    "_index": 1277,
+    "Id": "intimidating_cry_triggered",
+    "DisplayedName": "Intimidating Cry"
+  },
+  {
+    "_index": 1278,
+    "Id": "monster_detonate_dead_area",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1279,
+    "Id": "aspect_cat",
+    "DisplayedName": "Aspect of the Cat"
+  },
+  {
+    "_index": 1280,
+    "Id": "aspect_bird",
+    "DisplayedName": "Aspect of the Avian"
+  },
+  {
+    "_index": 1281,
+    "Id": "aspect_spider",
+    "DisplayedName": "Aspect of the Spider"
+  },
+  {
+    "_index": 1282,
+    "Id": "aspect_crab",
+    "DisplayedName": "Aspect of the Crab"
+  },
+  {
+    "_index": 1283,
+    "Id": "aspect_brine_king",
+    "DisplayedName": "Aspect of the Brine King"
+  },
+  {
+    "_index": 1284,
+    "Id": "aspect_lunaris",
+    "DisplayedName": "Aspect of Lunaris"
+  },
+  {
+    "_index": 1285,
+    "Id": "aspect_solaris",
+    "DisplayedName": "Aspect of Solaris"
+  },
+  {
+    "_index": 1286,
+    "Id": "aspect_arakaali",
+    "DisplayedName": "Aspect of Arakaali"
+  },
+  {
+    "_index": 1287,
+    "Id": "vilenta_bomb_toss",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1288,
+    "Id": "crab_spirit_burrow_path",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1289,
+    "Id": "crab_spirit_charge",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1290,
+    "Id": "fire_projectile_retaliation",
+    "DisplayedName": "Fire Projectile Retaliation"
+  },
+  {
+    "_index": 1291,
+    "Id": "physical_projectile_retaliation",
+    "DisplayedName": "Physical Projectile Retaliation"
+  },
+  {
+    "_index": 1292,
+    "Id": "avian_tornado",
+    "DisplayedName": "Twister"
+  },
+  {
+    "_index": 1293,
+    "Id": "master_grant_buff",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1294,
+    "Id": "monster_fading_projectile_spell",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1295,
+    "Id": "empty_action_attack",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1296,
+    "Id": "empty_action_attack_2",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1297,
+    "Id": "empty_action_attack_3",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1298,
+    "Id": "empty_action_attack_4",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1299,
+    "Id": "empty_action_attack_5",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1300,
+    "Id": "empty_action_loop_attack",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1301,
+    "Id": "empty_action_loop_attack_2",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1302,
+    "Id": "empty_action_loop_attack_3",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1303,
+    "Id": "empty_action_loop_attack_4",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1304,
+    "Id": "empty_action_loop_attack_5",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1305,
+    "Id": "bestiary_spider_ground_stab",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1306,
+    "Id": "bestiary_spider_hallucinate",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1307,
+    "Id": "lightning_clone_retaliation",
+    "DisplayedName": "Lightning Clone Retaliation"
+  },
+  {
+    "_index": 1308,
+    "Id": "capture_monster",
+    "DisplayedName": "Capture Monster"
+  },
+  {
+    "_index": 1309,
+    "Id": "cold_beam_retaliation",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1310,
+    "Id": "rabbit_summon_tiger",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1311,
+    "Id": "ground_crab",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1312,
+    "Id": "animate_guardian_weapon",
+    "DisplayedName": "Animate Guardian's Weapon"
+  },
+  {
+    "_index": 1313,
+    "Id": "blinding_aura",
+    "DisplayedName": "Blinding Aura"
+  },
+  {
+    "_index": 1314,
+    "Id": "explosive_trap",
+    "DisplayedName": "Explosive Trap"
+  },
+  {
+    "_index": 1315,
+    "Id": "explosive_trap_alt_x",
+    "DisplayedName": "Explosive Trap of Shrapnel"
+  },
+  {
+    "_index": 1316,
+    "Id": "explosive_trap_alt_y",
+    "DisplayedName": "Explosive Trap of Magnitude"
+  },
+  {
+    "_index": 1317,
+    "Id": "lightning_tower_trap",
+    "DisplayedName": "Lightning Spire Trap"
+  },
+  {
+    "_index": 1318,
+    "Id": "lightning_tower_trap_alt_x",
+    "DisplayedName": "Lightning Spire Trap of Zapping"
+  },
+  {
+    "_index": 1319,
+    "Id": "lightning_tower_trap_alt_y",
+    "DisplayedName": "Lightning Spire Trap of Overloading"
+  },
+  {
+    "_index": 1320,
+    "Id": "lightning_tower_trap_triggerable",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1321,
+    "Id": "flamethrower_trap",
+    "DisplayedName": "Flamethrower Trap"
+  },
+  {
+    "_index": 1322,
+    "Id": "flamethrower_trap_alt_x",
+    "DisplayedName": "Flamethrower Trap of Stability"
+  },
+  {
+    "_index": 1323,
+    "Id": "flamethrower_trap_alt_y",
+    "DisplayedName": "[DNT] FlamethrowerTrapAltY"
+  },
+  {
+    "_index": 1324,
+    "Id": "siphoning_trap",
+    "DisplayedName": "Siphoning Trap"
+  },
+  {
+    "_index": 1325,
+    "Id": "siphoning_trap_alt_x",
+    "DisplayedName": "Siphoning Trap of Pain"
+  },
+  {
+    "_index": 1326,
+    "Id": "siphoning_trap_alt_y",
+    "DisplayedName": "[DNT] IceSiphonTrapAltY"
+  },
+  {
+    "_index": 1327,
+    "Id": "seismic_trap",
+    "DisplayedName": "Seismic Trap"
+  },
+  {
+    "_index": 1328,
+    "Id": "seismic_trap_alt_x",
+    "DisplayedName": "Seismic Trap of Swells"
+  },
+  {
+    "_index": 1329,
+    "Id": "seismic_trap_alt_y",
+    "DisplayedName": "[DNT] PhysCascadeTrapAltY"
+  },
+  {
+    "_index": 1330,
+    "Id": "expanding_pulse",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1331,
+    "Id": "trigger_beam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1332,
+    "Id": "trigger_beam_no_los",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1333,
+    "Id": "multi_trigger_beam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1334,
+    "Id": "delayed_spell_projectile",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1335,
+    "Id": "channelled_ground_laser",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1336,
+    "Id": "architect_healing_beam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1337,
+    "Id": "monster_tornado",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1338,
+    "Id": "architect_combo_stomp",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1339,
+    "Id": "architect_blood_explosion",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1340,
+    "Id": "architect_blood_beam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1341,
+    "Id": "translate_rotate",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1342,
+    "Id": "translate_rotate_no_translate",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1343,
+    "Id": "translate_rotate_to_middle",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1344,
+    "Id": "translate_rotate_fast",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1345,
+    "Id": "translate_rotate_slow",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1346,
+    "Id": "frontal_flamethrower",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1347,
+    "Id": "frontal_damage_wave",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1348,
+    "Id": "triggered_summon_phantasm",
+    "DisplayedName": "Summon Phantasm"
+  },
+  {
+    "_index": 1349,
+    "Id": "consecrated_path",
+    "DisplayedName": "Consecrated Path"
+  },
+  {
+    "_index": 1350,
+    "Id": "consecrated_path_alt_x",
+    "DisplayedName": "Consecrated Path of Endurance"
+  },
+  {
+    "_index": 1351,
+    "Id": "consecrated_path_alt_y",
+    "DisplayedName": "[DNT] ConsecratedPathAltY"
+  },
+  {
+    "_index": 1352,
+    "Id": "smite",
+    "DisplayedName": "Smite"
+  },
+  {
+    "_index": 1353,
+    "Id": "smite_alt_x",
+    "DisplayedName": "Smite of Divine Judgement"
+  },
+  {
+    "_index": 1354,
+    "Id": "smite_alt_y",
+    "DisplayedName": "[DNT] SmiteAltY"
+  },
+  {
+    "_index": 1355,
+    "Id": "vaal_smite",
+    "DisplayedName": "Vaal Smite"
+  },
+  {
+    "_index": 1356,
+    "Id": "flare",
+    "DisplayedName": "Throw Flare"
+  },
+  {
+    "_index": 1357,
+    "Id": "execute_geal",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1358,
+    "Id": "execute_corpse_geal",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1359,
+    "Id": "dynamite",
+    "DisplayedName": "Throw Dynamite"
+  },
+  {
+    "_index": 1360,
+    "Id": "scourge_arrow",
+    "DisplayedName": "Scourge Arrow"
+  },
+  {
+    "_index": 1361,
+    "Id": "scourge_arrow_alt_x",
+    "DisplayedName": "Scourge Arrow of Menace"
+  },
+  {
+    "_index": 1362,
+    "Id": "scourge_arrow_alt_y",
+    "DisplayedName": "[DNT] ScourgeArrowAltY"
+  },
+  {
+    "_index": 1363,
+    "Id": "dynamite_boom",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1364,
+    "Id": "flare_impact",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1365,
+    "Id": "toxic_rain",
+    "DisplayedName": "Toxic Rain"
+  },
+  {
+    "_index": 1366,
+    "Id": "toxic_rain_alt_x",
+    "DisplayedName": "Toxic Rain of Sporeburst"
+  },
+  {
+    "_index": 1367,
+    "Id": "toxic_rain_alt_y",
+    "DisplayedName": "Toxic Rain of Withering"
+  },
+  {
+    "_index": 1368,
+    "Id": "toxic_rain_triggered",
+    "DisplayedName": "Toxic Rain"
+  },
+  {
+    "_index": 1369,
+    "Id": "summon_holy_relic",
+    "DisplayedName": "Summon Holy Relic"
+  },
+  {
+    "_index": 1370,
+    "Id": "summon_holy_relic_alt_x",
+    "DisplayedName": "Summon Holy Relic of Conviction"
+  },
+  {
+    "_index": 1371,
+    "Id": "summon_holy_relic_alt_y",
+    "DisplayedName": "[DNT] SummonRelicAltY"
+  },
+  {
+    "_index": 1372,
+    "Id": "champion_of_light_teleport",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1373,
+    "Id": "proto_pizza_slam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1374,
+    "Id": "proto_abyss_slam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1375,
+    "Id": "proto_pizza_slice",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1376,
+    "Id": "proto_projectile_shield",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1377,
+    "Id": "spawn_object",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1378,
+    "Id": "spawn_object_mtx_pale_boss",
+    "DisplayedName": "Summon an image of Beidat, Archangel of Death"
+  },
+  {
+    "_index": 1379,
+    "Id": "spawn_object_mtx_pale_elite",
+    "DisplayedName": "Summon Pale Angel"
+  },
+  {
+    "_index": 1380,
+    "Id": "spawn_object_mtx_pale_fodder_1",
+    "DisplayedName": "Summon Pale Cherubim"
+  },
+  {
+    "_index": 1381,
+    "Id": "spawn_object_mtx_pale_fodder_2",
+    "DisplayedName": "Summon Pale Servitor"
+  },
+  {
+    "_index": 1382,
+    "Id": "spawn_object_mtx_demon_boss",
+    "DisplayedName": "Summon an image of K'Tash, the Hate Shepherd"
+  },
+  {
+    "_index": 1383,
+    "Id": "spawn_object_mtx_demon_elite",
+    "DisplayedName": "Summon Demon Harpy"
+  },
+  {
+    "_index": 1384,
+    "Id": "spawn_object_mtx_demon_fodder_1",
+    "DisplayedName": "Summon Demon Imp"
+  },
+  {
+    "_index": 1385,
+    "Id": "spawn_object_mtx_demon_fodder_2",
+    "DisplayedName": "Summon Demon Beast"
+  },
+  {
+    "_index": 1386,
+    "Id": "relic_triggered_nova",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1387,
+    "Id": "single_ground_laser",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1388,
+    "Id": "epic_chest_pulse",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1389,
+    "Id": "delete_target_delve",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1390,
+    "Id": "create_expanding_ring",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1391,
+    "Id": "reverse_expanding_ring",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1392,
+    "Id": "spawn_blood_meteors",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1393,
+    "Id": "fire_blood_meteors",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1394,
+    "Id": "spirit_bomb",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1395,
+    "Id": "place_objects_along_path",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1396,
+    "Id": "create_cutout_circle",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1397,
+    "Id": "detonate_cutout_circle",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1398,
+    "Id": "transition_beam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1399,
+    "Id": "qiongqi_tornadoes",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1400,
+    "Id": "winter_orb",
+    "DisplayedName": "Winter Orb"
+  },
+  {
+    "_index": 1401,
+    "Id": "winter_orb_alt_x",
+    "DisplayedName": "[DNT] WinterOrbAltX"
+  },
+  {
+    "_index": 1402,
+    "Id": "winter_orb_alt_y",
+    "DisplayedName": "[DNT] WinterOrbAltY"
+  },
+  {
+    "_index": 1403,
+    "Id": "flicker_thrust",
+    "DisplayedName": "Flicker Thrust"
+  },
+  {
+    "_index": 1404,
+    "Id": "monster_haste",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1405,
+    "Id": "monster_wrath",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1406,
+    "Id": "monster_fire_resist_aura",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1407,
+    "Id": "monster_cold_resist_aura",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1408,
+    "Id": "monster_lightning_resist_aura",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1409,
+    "Id": "rending_steel",
+    "DisplayedName": "Rending Steel (NOT CURRENTLY USED)"
+  },
+  {
+    "_index": 1410,
+    "Id": "lancing_steel",
+    "DisplayedName": "Lancing Steel"
+  },
+  {
+    "_index": 1411,
+    "Id": "storm_brand",
+    "DisplayedName": "Storm Brand"
+  },
+  {
+    "_index": 1412,
+    "Id": "storm_brand_alt_x",
+    "DisplayedName": "Storm Brand of Indecision"
+  },
+  {
+    "_index": 1413,
+    "Id": "storm_brand_alt_y",
+    "DisplayedName": "[DNT] StormBrandAltY"
+  },
+  {
+    "_index": 1414,
+    "Id": "zana_player_bubble",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1415,
+    "Id": "focus",
+    "DisplayedName": "Focus"
+  },
+  {
+    "_index": 1416,
+    "Id": "war_banner",
+    "DisplayedName": "War Banner"
+  },
+  {
+    "_index": 1417,
+    "Id": "dread_banner",
+    "DisplayedName": "Dread Banner"
+  },
+  {
+    "_index": 1418,
+    "Id": "betrayal_siege_cannon",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1419,
+    "Id": "feast_of_flesh",
+    "DisplayedName": "Feast of Flesh"
+  },
+  {
+    "_index": 1420,
+    "Id": "shattering_steel",
+    "DisplayedName": "Shattering Steel"
+  },
+  {
+    "_index": 1421,
+    "Id": "shattering_steel_alt_x",
+    "DisplayedName": "Shattering Steel of Ammunition"
+  },
+  {
+    "_index": 1422,
+    "Id": "shattering_steel_alt_y",
+    "DisplayedName": "[DNT] ShatteringSteelAltY"
+  },
+  {
+    "_index": 1423,
+    "Id": "donut_circle",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1424,
+    "Id": "revive_monsters_in_cone",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1425,
+    "Id": "create_monster_from_corpses",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1426,
+    "Id": "arcane_wake",
+    "DisplayedName": "Arcane Wake"
+  },
+  {
+    "_index": 1427,
+    "Id": "armageddon_brand",
+    "DisplayedName": "Armageddon Brand"
+  },
+  {
+    "_index": 1428,
+    "Id": "armageddon_brand_alt_x",
+    "DisplayedName": "Armageddon Brand of Volatility"
+  },
+  {
+    "_index": 1429,
+    "Id": "armageddon_brand_alt_y",
+    "DisplayedName": "Armageddon Brand of Recall"
+  },
+  {
+    "_index": 1430,
+    "Id": "multi_reflection_beam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1431,
+    "Id": "brand_recall",
+    "DisplayedName": "Brand Recall"
+  },
+  {
+    "_index": 1432,
+    "Id": "monster_frost_fury",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1433,
+    "Id": "geometry_projectiles_spell",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1434,
+    "Id": "geometry_projectiles_attack",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1435,
+    "Id": "death_clap",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1436,
+    "Id": "riker_bomb_shot",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1437,
+    "Id": "catarina_carpet_mortar",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1438,
+    "Id": "hand_slam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1439,
+    "Id": "spiky_donut",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1440,
+    "Id": "reaper_slam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1441,
+    "Id": "bone_slam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1442,
+    "Id": "catarina_sideways_carpet_bomb",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1443,
+    "Id": "catarina_rollout",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1444,
+    "Id": "catarina_scythe",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1445,
+    "Id": "catarina_barrage",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1446,
+    "Id": "monkey_throw",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1447,
+    "Id": "effect_driven_attack",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1448,
+    "Id": "effect_driven_spell",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1449,
+    "Id": "geometry_trigger",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1450,
+    "Id": "volatile_wormhole_slam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1451,
+    "Id": "purifying_flame",
+    "DisplayedName": "Purifying Flame"
+  },
+  {
+    "_index": 1452,
+    "Id": "purifying_flame_alt_x",
+    "DisplayedName": "Purifying Flame of Revelations"
+  },
+  {
+    "_index": 1453,
+    "Id": "purifying_flame_alt_y",
+    "DisplayedName": "[DNT] SanctifyAltY"
+  },
+  {
+    "_index": 1454,
+    "Id": "multi_teleport_blackhole_projectile",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1455,
+    "Id": "rectangle_mortar_with_rotating_orbs",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1456,
+    "Id": "camera_lens_expanding_donut",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1457,
+    "Id": "soulrend",
+    "DisplayedName": "Soulrend"
+  },
+  {
+    "_index": 1458,
+    "Id": "soulrend_alt_x",
+    "DisplayedName": "Soulrend of Reaping"
+  },
+  {
+    "_index": 1459,
+    "Id": "soulrend_alt_y",
+    "DisplayedName": "Soulrend of the Spiral"
+  },
+  {
+    "_index": 1460,
+    "Id": "bane",
+    "DisplayedName": "Bane"
+  },
+  {
+    "_index": 1461,
+    "Id": "bane_alt_x",
+    "DisplayedName": "Bane of Condemnation"
+  },
+  {
+    "_index": 1462,
+    "Id": "bane_alt_y",
+    "DisplayedName": "[DNT] DarkRitualAltY"
+  },
+  {
+    "_index": 1463,
+    "Id": "wave_of_conviction",
+    "DisplayedName": "Wave of Conviction"
+  },
+  {
+    "_index": 1464,
+    "Id": "wave_of_conviction_alt_x",
+    "DisplayedName": "[DNT] PurgeAltX"
+  },
+  {
+    "_index": 1465,
+    "Id": "wave_of_conviction_alt_y",
+    "DisplayedName": "Wave of Conviction of Trarthus"
+  },
+  {
+    "_index": 1466,
+    "Id": "zealotry",
+    "DisplayedName": "Zealotry"
+  },
+  {
+    "_index": 1467,
+    "Id": "storm_burst_new",
+    "DisplayedName": "Storm Burst"
+  },
+  {
+    "_index": 1468,
+    "Id": "storm_burst_new_alt_x",
+    "DisplayedName": "Storm Burst of Repulsion"
+  },
+  {
+    "_index": 1469,
+    "Id": "storm_burst_new_alt_y",
+    "DisplayedName": "[DNT] StormBurstAltY"
+  },
+  {
+    "_index": 1470,
+    "Id": "divine_ire",
+    "DisplayedName": "Divine Ire"
+  },
+  {
+    "_index": 1471,
+    "Id": "divine_ire_alt_x",
+    "DisplayedName": "Divine Ire of Holy Lightning"
+  },
+  {
+    "_index": 1472,
+    "Id": "divine_ire_alt_y",
+    "DisplayedName": "Divine Ire of Disintegration"
+  },
+  {
+    "_index": 1473,
+    "Id": "malevolence",
+    "DisplayedName": "Malevolence"
+  },
+  {
+    "_index": 1474,
+    "Id": "cascading_triangle_slam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1475,
+    "Id": "synthesis_beam_refraction",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1476,
+    "Id": "sequential_wifi_arcs",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1477,
+    "Id": "dash_to_target",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1478,
+    "Id": "spinning_ground_laser",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1479,
+    "Id": "monster_soulrend",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1480,
+    "Id": "holy_flame_totem",
+    "DisplayedName": "Holy Flame Totem"
+  },
+  {
+    "_index": 1481,
+    "Id": "holy_flame_totem_alt_x",
+    "DisplayedName": "Holy Flame Totem of Ire"
+  },
+  {
+    "_index": 1482,
+    "Id": "holy_flame_totem_alt_y",
+    "DisplayedName": "[DNT] FlameTotemAltY"
+  },
+  {
+    "_index": 1483,
+    "Id": "synthesis_turret_charge_projectile",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1484,
+    "Id": "mass_beam_barrage",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1485,
+    "Id": "concentrated_beam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1486,
+    "Id": "shock_rifle_disco",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1487,
+    "Id": "expanding_cone_waves",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1488,
+    "Id": "expanding_effect",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1489,
+    "Id": "steelskin",
+    "DisplayedName": "Steelskin"
+  },
+  {
+    "_index": 1490,
+    "Id": "dash",
+    "DisplayedName": "Dash"
+  },
+  {
+    "_index": 1491,
+    "Id": "quick_block",
+    "DisplayedName": "[UNUSED] Quick Block  (NOT CURRENTLY USED)"
+  },
+  {
+    "_index": 1492,
+    "Id": "misty_reflection",
+    "DisplayedName": "Misty Reflection"
+  },
+  {
+    "_index": 1493,
+    "Id": "replicate",
+    "DisplayedName": "[UNUSED] Replicate  (NOT CURRENTLY USED)"
+  },
+  {
+    "_index": 1494,
+    "Id": "bladestorm",
+    "DisplayedName": "Bladestorm"
+  },
+  {
+    "_index": 1495,
+    "Id": "bladestorm_alt_x",
+    "DisplayedName": "Bladestorm of Uncertainty"
+  },
+  {
+    "_index": 1496,
+    "Id": "bladestorm_alt_y",
+    "DisplayedName": "[DNT] BladestormAltY"
+  },
+  {
+    "_index": 1497,
+    "Id": "blood_and_sand",
+    "DisplayedName": "Blood and Sand"
+  },
+  {
+    "_index": 1498,
+    "Id": "berserk",
+    "DisplayedName": "Berserk"
+  },
+  {
+    "_index": 1499,
+    "Id": "perforate",
+    "DisplayedName": "Perforate"
+  },
+  {
+    "_index": 1500,
+    "Id": "perforate_alt_x",
+    "DisplayedName": "Perforate of Duality"
+  },
+  {
+    "_index": 1501,
+    "Id": "perforate_alt_y",
+    "DisplayedName": "Perforate of Bloodshed"
+  },
+  {
+    "_index": 1502,
+    "Id": "chain_hook",
+    "DisplayedName": "Chain Hook"
+  },
+  {
+    "_index": 1503,
+    "Id": "chain_hook_alt_x",
+    "DisplayedName": "Chain Hook of Angling"
+  },
+  {
+    "_index": 1504,
+    "Id": "chain_hook_alt_y",
+    "DisplayedName": "Chain Hook of Trarthus"
+  },
+  {
+    "_index": 1505,
+    "Id": "tormented_spirit_tether",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1506,
+    "Id": "blitz",
+    "DisplayedName": "[UNUSED] Blitz (NOT CURRENTLY USED)"
+  },
+  {
+    "_index": 1507,
+    "Id": "legion_breakout",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1508,
+    "Id": "support_blunt_shockwave",
+    "DisplayedName": "Shockwave"
+  },
+  {
+    "_index": 1509,
+    "Id": "gore_shockwave",
+    "DisplayedName": "Gore Shockwave"
+  },
+  {
+    "_index": 1510,
+    "Id": "frostblink",
+    "DisplayedName": "Frostblink"
+  },
+  {
+    "_index": 1511,
+    "Id": "frostblink_alt_x",
+    "DisplayedName": "Frostblink of Wintry Blast"
+  },
+  {
+    "_index": 1512,
+    "Id": "frostblink_alt_y",
+    "DisplayedName": "[DNT] FrostblinkAltY"
+  },
+  {
+    "_index": 1513,
+    "Id": "flesh_and_stone",
+    "DisplayedName": "Flesh and Stone"
+  },
+  {
+    "_index": 1514,
+    "Id": "monster_attack_ice_spear",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1515,
+    "Id": "slice_and_dice",
+    "DisplayedName": "[UNUSED] Slice and Dice (NOT CURRENTLY USED)"
+  },
+  {
+    "_index": 1516,
+    "Id": "pride",
+    "DisplayedName": "Pride"
+  },
+  {
+    "_index": 1517,
+    "Id": "delayed_area_barrage",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1518,
+    "Id": "flask_draining_lasso",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1519,
+    "Id": "retract_arrow_nuke",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1520,
+    "Id": "multi_splitting_projectile",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1521,
+    "Id": "legion_revive",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1522,
+    "Id": "screech_snipe",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1523,
+    "Id": "fire_wake_arrow_combo",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1524,
+    "Id": "summon_carrion_golem",
+    "DisplayedName": "Summon Carrion Golem"
+  },
+  {
+    "_index": 1525,
+    "Id": "summon_carrion_golem_alt_x",
+    "DisplayedName": "Summon Carrion Golem of Hordes"
+  },
+  {
+    "_index": 1526,
+    "Id": "summon_carrion_golem_alt_y",
+    "DisplayedName": "Summon Carrion Golem of Scavenging"
+  },
+  {
+    "_index": 1527,
+    "Id": "bone_golem_cascade",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1528,
+    "Id": "bone_golem_multi_attack",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1529,
+    "Id": "withering_step",
+    "DisplayedName": "Withering Step"
+  },
+  {
+    "_index": 1530,
+    "Id": "plague_bearer",
+    "DisplayedName": "Plague Bearer"
+  },
+  {
+    "_index": 1531,
+    "Id": "bone_armour",
+    "DisplayedName": "Bone Armour"
+  },
+  {
+    "_index": 1532,
+    "Id": "signal_prey",
+    "DisplayedName": "Signal Prey"
+  },
+  {
+    "_index": 1533,
+    "Id": "serpent_strike",
+    "DisplayedName": "[UNUSED] DISCONTINUED"
+  },
+  {
+    "_index": 1534,
+    "Id": "coiling_assault",
+    "DisplayedName": "[UNUSED] DISCONTINUED"
+  },
+  {
+    "_index": 1535,
+    "Id": "pyroclast_mine",
+    "DisplayedName": "Pyroclast Mine"
+  },
+  {
+    "_index": 1536,
+    "Id": "pyroclast_mine_alt_x",
+    "DisplayedName": "Pyroclast Mine of Sabotage"
+  },
+  {
+    "_index": 1537,
+    "Id": "pyroclast_mine_alt_y",
+    "DisplayedName": "[DNT] FireNovaMineAltY"
+  },
+  {
+    "_index": 1538,
+    "Id": "stormblast_mine",
+    "DisplayedName": "Stormblast Mine"
+  },
+  {
+    "_index": 1539,
+    "Id": "stormblast_mine_alt_x",
+    "DisplayedName": "[DNT] StormblastMineAltX"
+  },
+  {
+    "_index": 1540,
+    "Id": "stormblast_mine_alt_y",
+    "DisplayedName": "[DNT] StormblastMineAltY"
+  },
+  {
+    "_index": 1541,
+    "Id": "icicle_mine",
+    "DisplayedName": "Icicle Mine"
+  },
+  {
+    "_index": 1542,
+    "Id": "icicle_mine_alt_x",
+    "DisplayedName": "Icicle Mine of Fanning"
+  },
+  {
+    "_index": 1543,
+    "Id": "icicle_mine_alt_y",
+    "DisplayedName": "Icicle Mine of Sabotage"
+  },
+  {
+    "_index": 1544,
+    "Id": "summon_skitterbots",
+    "DisplayedName": "Summon Skitterbots"
+  },
+  {
+    "_index": 1545,
+    "Id": "blight_tower_aura",
+    "DisplayedName": "[UNUSED] Blight Tower Aura"
+  },
+  {
+    "_index": 1546,
+    "Id": "blight_tower_petrify",
+    "DisplayedName": "[UNUSED] Blight Tower Petrify"
+  },
+  {
+    "_index": 1547,
+    "Id": "monster_quick_dodge",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1548,
+    "Id": "pestilent_strike",
+    "DisplayedName": "Pestilent Strike"
+  },
+  {
+    "_index": 1549,
+    "Id": "pestilent_strike_alt_x",
+    "DisplayedName": "[DNT] PestilentStrikeAltX"
+  },
+  {
+    "_index": 1550,
+    "Id": "pestilent_strike_alt_y",
+    "DisplayedName": "[DNT] PestilentStrikeAltY"
+  },
+  {
+    "_index": 1551,
+    "Id": "venom_gyre",
+    "DisplayedName": "Venom Gyre"
+  },
+  {
+    "_index": 1552,
+    "Id": "venom_gyre_alt_x",
+    "DisplayedName": "[DNT] VenomGyreAltX"
+  },
+  {
+    "_index": 1553,
+    "Id": "venom_gyre_alt_y",
+    "DisplayedName": "[DNT] VenomGyreAltY"
+  },
+  {
+    "_index": 1554,
+    "Id": "vaal_venom_gyre",
+    "DisplayedName": "Vaal Venom Gyre"
+  },
+  {
+    "_index": 1555,
+    "Id": "create_fungal_ground_on_kill",
+    "DisplayedName": "Contaminate"
+  },
+  {
+    "_index": 1556,
+    "Id": "skitterbot_detonate_mines",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1557,
+    "Id": "shrapnel_ballista",
+    "DisplayedName": "Shrapnel Ballista"
+  },
+  {
+    "_index": 1558,
+    "Id": "shrapnel_ballista_alt_x",
+    "DisplayedName": "Shrapnel Ballista of Steel"
+  },
+  {
+    "_index": 1559,
+    "Id": "shrapnel_ballista_alt_y",
+    "DisplayedName": "[DNT] ShrapnelBallistaAltY"
+  },
+  {
+    "_index": 1560,
+    "Id": "ensnaring_arrow",
+    "DisplayedName": "Ensnaring Arrow"
+  },
+  {
+    "_index": 1561,
+    "Id": "ensnaring_arrow_alt_x",
+    "DisplayedName": "[DNT] EnsnaringArrowAltX"
+  },
+  {
+    "_index": 1562,
+    "Id": "ensnaring_arrow_alt_y",
+    "DisplayedName": "[DNT] EnsnaringArrowAltY"
+  },
+  {
+    "_index": 1563,
+    "Id": "artillery_ballista",
+    "DisplayedName": "Artillery Ballista"
+  },
+  {
+    "_index": 1564,
+    "Id": "artillery_ballista_alt_x",
+    "DisplayedName": "Artillery Ballista of Cross Strafe"
+  },
+  {
+    "_index": 1565,
+    "Id": "artillery_ballista_alt_y",
+    "DisplayedName": "Artillery Ballista of Focus Fire"
+  },
+  {
+    "_index": 1566,
+    "Id": "living_lightning_zap",
+    "DisplayedName": "Living Lightning Zap"
+  },
+  {
+    "_index": 1567,
+    "Id": "eyrie_barrage",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1568,
+    "Id": "transform",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1569,
+    "Id": "orion_beam_sweep",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1570,
+    "Id": "orion_meteor",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1571,
+    "Id": "orion_corridor_blast",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1572,
+    "Id": "orion_circle_maze_blast",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1573,
+    "Id": "unique_mirage_warriors",
+    "DisplayedName": "Reflection"
+  },
+  {
+    "_index": 1574,
+    "Id": "orion_beam_bomb",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1575,
+    "Id": "arcane_cloak",
+    "DisplayedName": "Arcane Cloak"
+  },
+  {
+    "_index": 1576,
+    "Id": "projectile_portal",
+    "DisplayedName": "[UNUSED] Projectile Portal"
+  },
+  {
+    "_index": 1577,
+    "Id": "stormbind",
+    "DisplayedName": "Stormbind"
+  },
+  {
+    "_index": 1578,
+    "Id": "stormbind_alt_x",
+    "DisplayedName": "Stormbind of Teleportation"
+  },
+  {
+    "_index": 1579,
+    "Id": "stormbind_alt_y",
+    "DisplayedName": "[DNT] StormBindAltY"
+  },
+  {
+    "_index": 1580,
+    "Id": "rune_blast",
+    "DisplayedName": "Rune Blast"
+  },
+  {
+    "_index": 1581,
+    "Id": "rune_blast_alt_x",
+    "DisplayedName": "Rune Blast of Teleportation"
+  },
+  {
+    "_index": 1582,
+    "Id": "kinetic_bolt",
+    "DisplayedName": "Kinetic Bolt"
+  },
+  {
+    "_index": 1583,
+    "Id": "kinetic_bolt_alt_x",
+    "DisplayedName": "Kinetic Bolt of Fragmentation"
+  },
+  {
+    "_index": 1584,
+    "Id": "kinetic_bolt_alt_y",
+    "DisplayedName": "[DNT] KineticBoltAltY"
+  },
+  {
+    "_index": 1585,
+    "Id": "blade_blast",
+    "DisplayedName": "Blade Blast"
+  },
+  {
+    "_index": 1586,
+    "Id": "blade_blast_alt_x",
+    "DisplayedName": "Blade Blast of Unloading"
+  },
+  {
+    "_index": 1587,
+    "Id": "blade_blast_alt_y",
+    "DisplayedName": "Blade Blast of Dagger Detonation"
+  },
+  {
+    "_index": 1588,
+    "Id": "blood_whirl",
+    "DisplayedName": "[UNUSED] Blood Whirl"
+  },
+  {
+    "_index": 1589,
+    "Id": "affliction_boss_final_grow_beam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1590,
+    "Id": "affliction_split",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1591,
+    "Id": "channelled_snipe",
+    "DisplayedName": "Snipe"
+  },
+  {
+    "_index": 1592,
+    "Id": "napalm_arrows",
+    "DisplayedName": "Conflagration"
+  },
+  {
+    "_index": 1593,
+    "Id": "kinetic_rain",
+    "DisplayedName": "Kinetic Rain"
+  },
+  {
+    "_index": 1594,
+    "Id": "kinetic_rain_kinetic_instability",
+    "DisplayedName": "Kinetic Anomaly"
+  },
+  {
+    "_index": 1595,
+    "Id": "kinetic_rain_alt_x",
+    "DisplayedName": "Kinetic Rain of Impact"
+  },
+  {
+    "_index": 1596,
+    "Id": "kinetic_shell",
+    "DisplayedName": "Somatic Shell"
+  },
+  {
+    "_index": 1597,
+    "Id": "thunderstorm",
+    "DisplayedName": "Thunderstorm"
+  },
+  {
+    "_index": 1598,
+    "Id": "thunderstorm_thunderburst",
+    "DisplayedName": "Thunderburst"
+  },
+  {
+    "_index": 1599,
+    "Id": "kinetic_fusillade",
+    "DisplayedName": "Kinetic Fusillade"
+  },
+  {
+    "_index": 1600,
+    "Id": "kinetic_fusillade_alt_x",
+    "DisplayedName": "Kinetic Fusillade of Detonation"
+  },
+  {
+    "_index": 1601,
+    "Id": "holy_hammers",
+    "DisplayedName": "Holy Hammers"
+  },
+  {
+    "_index": 1602,
+    "Id": "holy_hammers_alt_x",
+    "DisplayedName": "Holy Hammers of Spirals"
+  },
+  {
+    "_index": 1603,
+    "Id": "shield_of_light",
+    "DisplayedName": "Shield of Light"
+  },
+  {
+    "_index": 1604,
+    "Id": "holy_strike",
+    "DisplayedName": "Holy Strike"
+  },
+  {
+    "_index": 1605,
+    "Id": "discus_slam",
+    "DisplayedName": "Divine Blast"
+  },
+  {
+    "_index": 1606,
+    "Id": "discus_slam_alt_x",
+    "DisplayedName": "Divine Blast of Radiance"
+  },
+  {
+    "_index": 1607,
+    "Id": "suspend_in_time",
+    "DisplayedName": "Suspend in Time"
+  },
+  {
+    "_index": 1608,
+    "Id": "pack_teleport",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1609,
+    "Id": "teleport_explode_kill",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1610,
+    "Id": "affliction_daemon_destroy_corpse_projectile",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1611,
+    "Id": "affliction_daemon_destroy_corpse_spawn_monster",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1612,
+    "Id": "spellslinger",
+    "DisplayedName": "Spellslinger"
+  },
+  {
+    "_index": 1613,
+    "Id": "embrace_madness",
+    "DisplayedName": "Embrace Madness"
+  },
+  {
+    "_index": 1614,
+    "Id": "arcanist_brand",
+    "DisplayedName": "Arcanist Brand"
+  },
+  {
+    "_index": 1615,
+    "Id": "rallying_cry",
+    "DisplayedName": "Rallying Cry"
+  },
+  {
+    "_index": 1616,
+    "Id": "infernal_cry",
+    "DisplayedName": "Infernal Cry"
+  },
+  {
+    "_index": 1617,
+    "Id": "brandsurge",
+    "DisplayedName": "Brandsurge"
+  },
+  {
+    "_index": 1618,
+    "Id": "seismic_cry",
+    "DisplayedName": "Seismic Cry"
+  },
+  {
+    "_index": 1619,
+    "Id": "ancestral_cry",
+    "DisplayedName": "Ancestral Cry"
+  },
+  {
+    "_index": 1620,
+    "Id": "infernal_cry_on_hit_explosion",
+    "DisplayedName": "Combust"
+  },
+  {
+    "_index": 1621,
+    "Id": "fiery_impact",
+    "DisplayedName": "Fiery Impact"
+  },
+  {
+    "_index": 1622,
+    "Id": "penance_brand",
+    "DisplayedName": "Penance Brand"
+  },
+  {
+    "_index": 1623,
+    "Id": "penance_brand_alt_x",
+    "DisplayedName": "Penance Brand of Dissipation"
+  },
+  {
+    "_index": 1624,
+    "Id": "penance_brand_alt_y",
+    "DisplayedName": "Penance Brand of Conduction"
+  },
+  {
+    "_index": 1625,
+    "Id": "wintertide_brand",
+    "DisplayedName": "Wintertide Brand"
+  },
+  {
+    "_index": 1626,
+    "Id": "wintertide_brand_alt_x",
+    "DisplayedName": "[DNT] WintertideBrandAltX"
+  },
+  {
+    "_index": 1627,
+    "Id": "wintertide_brand_alt_y",
+    "DisplayedName": "[DNT] WintertideBrandAltY"
+  },
+  {
+    "_index": 1628,
+    "Id": "earthshatter",
+    "DisplayedName": "Earthshatter"
+  },
+  {
+    "_index": 1629,
+    "Id": "earthshatter_alt_x",
+    "DisplayedName": "Earthshatter of Fragility"
+  },
+  {
+    "_index": 1630,
+    "Id": "earthshatter_alt_y",
+    "DisplayedName": "Earthshatter of Prominence"
+  },
+  {
+    "_index": 1631,
+    "Id": "generals_cry",
+    "DisplayedName": "General's Cry"
+  },
+  {
+    "_index": 1632,
+    "Id": "generals_cry_alt_x",
+    "DisplayedName": "[DNT] GeneralsCryAltX"
+  },
+  {
+    "_index": 1633,
+    "Id": "generals_cry_alt_y",
+    "DisplayedName": "[DNT] GeneralsCryAltY"
+  },
+  {
+    "_index": 1634,
+    "Id": "create_blocking_wall",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1635,
+    "Id": "summon_mirage_chieftain",
+    "DisplayedName": "Tawhoa's Chosen"
+  },
+  {
+    "_index": 1636,
+    "Id": "harvest_cat_boss_prowl",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1637,
+    "Id": "oshabi_orb_projectile",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1638,
+    "Id": "heist_lock_pick",
+    "DisplayedName": "[UNUSED] You son of a ****"
+  },
+  {
+    "_index": 1639,
+    "Id": "blazing_salvo",
+    "DisplayedName": "Blazing Salvo"
+  },
+  {
+    "_index": 1640,
+    "Id": "blazing_salvo_alt_x",
+    "DisplayedName": "[DNT] Blazing Salvo of Wildfire"
+  },
+  {
+    "_index": 1641,
+    "Id": "blazing_salvo_alt_y",
+    "DisplayedName": "[DNT] BlazingSalvoAltY"
+  },
+  {
+    "_index": 1642,
+    "Id": "do_nothing",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1643,
+    "Id": "void_sphere",
+    "DisplayedName": "Void Sphere"
+  },
+  {
+    "_index": 1644,
+    "Id": "void_sphere_alt_x",
+    "DisplayedName": "Void Sphere of Rending"
+  },
+  {
+    "_index": 1645,
+    "Id": "void_sphere_alt_y",
+    "DisplayedName": "[DNT] VoidSphereAltY"
+  },
+  {
+    "_index": 1646,
+    "Id": "abyssal_well",
+    "DisplayedName": "Abyssal Maw"
+  },
+  {
+    "_index": 1647,
+    "Id": "crackling_lance",
+    "DisplayedName": "Crackling Lance"
+  },
+  {
+    "_index": 1648,
+    "Id": "crackling_lance_alt_x",
+    "DisplayedName": "Crackling Lance of Branching"
+  },
+  {
+    "_index": 1649,
+    "Id": "crackling_lance_alt_y",
+    "DisplayedName": "Crackling Lance of Disintegration"
+  },
+  {
+    "_index": 1650,
+    "Id": "frost_shield",
+    "DisplayedName": "Frost Shield"
+  },
+  {
+    "_index": 1651,
+    "Id": "splitting_steel",
+    "DisplayedName": "Splitting Steel"
+  },
+  {
+    "_index": 1652,
+    "Id": "splitting_steel_alt_x",
+    "DisplayedName": "Splitting Steel of Ammunition"
+  },
+  {
+    "_index": 1653,
+    "Id": "splitting_steel_alt_y",
+    "DisplayedName": "[DNT] SplittingSteelAltY"
+  },
+  {
+    "_index": 1654,
+    "Id": "sigil_of_power",
+    "DisplayedName": "Sigil of Power"
+  },
+  {
+    "_index": 1655,
+    "Id": "flame_wall",
+    "DisplayedName": "Flame Wall"
+  },
+  {
+    "_index": 1656,
+    "Id": "flame_wall_alt_x",
+    "DisplayedName": "[DNT] Flame Wall of Forking"
+  },
+  {
+    "_index": 1657,
+    "Id": "flame_wall_alt_y",
+    "DisplayedName": "[DNT] Flame Wall of Surging"
+  },
+  {
+    "_index": 1658,
+    "Id": "conversion",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1659,
+    "Id": "heist_mind_control",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1660,
+    "Id": "call_of_steel",
+    "DisplayedName": "Call of Steel"
+  },
+  {
+    "_index": 1661,
+    "Id": "doom_blast",
+    "DisplayedName": "Doom Blast"
+  },
+  {
+    "_index": 1662,
+    "Id": "heist_bouncing_sawblade",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1663,
+    "Id": "lancing_steel_new",
+    "DisplayedName": "Lancing Steel"
+  },
+  {
+    "_index": 1664,
+    "Id": "lancing_steel_new_alt_x",
+    "DisplayedName": "Lancing Steel of Spraying"
+  },
+  {
+    "_index": 1665,
+    "Id": "lancing_steel_new_alt_y",
+    "DisplayedName": "[DNT] LancingSteelAltY"
+  },
+  {
+    "_index": 1666,
+    "Id": "corpse_walk",
+    "DisplayedName": "Corpse Walk"
+  },
+  {
+    "_index": 1667,
+    "Id": "no_shield_charge",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1668,
+    "Id": "player_glacial_cascade",
+    "DisplayedName": "Glacial Cascade"
+  },
+  {
+    "_index": 1669,
+    "Id": "player_glacial_cascade_alt_x",
+    "DisplayedName": "Glacial Cascade of the Fissure"
+  },
+  {
+    "_index": 1670,
+    "Id": "player_glacial_cascade_alt_y",
+    "DisplayedName": "[DNT] GlacialCascadeAltY"
+  },
+  {
+    "_index": 1671,
+    "Id": "death_wish",
+    "DisplayedName": "Death Wish"
+  },
+  {
+    "_index": 1672,
+    "Id": "hexblast",
+    "DisplayedName": "Hexblast"
+  },
+  {
+    "_index": 1673,
+    "Id": "hexblast_alt_x",
+    "DisplayedName": "Hexblast of Contradiction"
+  },
+  {
+    "_index": 1674,
+    "Id": "hexblast_alt_y",
+    "DisplayedName": "Hexblast of Havoc"
+  },
+  {
+    "_index": 1675,
+    "Id": "heist_attach_snipe",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1676,
+    "Id": "execute_geal_no_los",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1677,
+    "Id": "unseen_strike",
+    "DisplayedName": "Unseen Strike"
+  },
+  {
+    "_index": 1678,
+    "Id": "shield_shatter",
+    "DisplayedName": "Shield Shatter"
+  },
+  {
+    "_index": 1679,
+    "Id": "ward_shatter",
+    "DisplayedName": "Ward Shatter"
+  },
+  {
+    "_index": 1680,
+    "Id": "summon_taunting_contraption",
+    "DisplayedName": "Summon Taunting Contraption"
+  },
+  {
+    "_index": 1681,
+    "Id": "totem_taunt_triggerable",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1682,
+    "Id": "oil_arrow",
+    "DisplayedName": "Flammable Shot"
+  },
+  {
+    "_index": 1683,
+    "Id": "hydrosphere",
+    "DisplayedName": "Hydrosphere"
+  },
+  {
+    "_index": 1684,
+    "Id": "hydrosphere_alt_x",
+    "DisplayedName": "[DNT] HydrosphereAltX"
+  },
+  {
+    "_index": 1685,
+    "Id": "hydrosphere_alt_y",
+    "DisplayedName": "[DNT] HydrosphereAltY"
+  },
+  {
+    "_index": 1686,
+    "Id": "hydrosphere_triggered",
+    "DisplayedName": "Hydrosphere"
+  },
+  {
+    "_index": 1687,
+    "Id": "tracking_slam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1688,
+    "Id": "aegis_elementalist",
+    "DisplayedName": "Primal Aegis"
+  },
+  {
+    "_index": 1689,
+    "Id": "thirst_for_blood",
+    "DisplayedName": "Thirst for Blood"
+  },
+  {
+    "_index": 1690,
+    "Id": "unhinge",
+    "DisplayedName": "Unhinge"
+  },
+  {
+    "_index": 1691,
+    "Id": "geometry_spell_channelled",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1692,
+    "Id": "geometry_attack_channelled",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1693,
+    "Id": "geometry_projectiles_spell_channelled",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1694,
+    "Id": "geometry_projectiles_attack_channelled",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1695,
+    "Id": "maven_brain_charge_beam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1696,
+    "Id": "maven_rotating_beams",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1697,
+    "Id": "maven_memory_game",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1698,
+    "Id": "steelskin_ally",
+    "DisplayedName": "Steelskin"
+  },
+  {
+    "_index": 1699,
+    "Id": "unearth_channelled",
+    "DisplayedName": "Unearth"
+  },
+  {
+    "_index": 1700,
+    "Id": "chain_grab",
+    "DisplayedName": "[DNT] Chain Grab"
+  },
+  {
+    "_index": 1701,
+    "Id": "exsanguinate",
+    "DisplayedName": "Exsanguinate"
+  },
+  {
+    "_index": 1702,
+    "Id": "exsanguinate_alt_x",
+    "DisplayedName": "Exsanguinate of Transmission"
+  },
+  {
+    "_index": 1703,
+    "Id": "exsanguinate_alt_y",
+    "DisplayedName": "[DNT] ExsanguinateAltY"
+  },
+  {
+    "_index": 1704,
+    "Id": "corrupting_fever",
+    "DisplayedName": "Corrupting Fever"
+  },
+  {
+    "_index": 1705,
+    "Id": "resentment",
+    "DisplayedName": "Cinders"
+  },
+  {
+    "_index": 1706,
+    "Id": "animosity",
+    "DisplayedName": "Tears of Rot"
+  },
+  {
+    "_index": 1707,
+    "Id": "trialmaster_tether_spike",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1708,
+    "Id": "trialmaster_chaos_shrine",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1709,
+    "Id": "trialmaster_timestop",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1710,
+    "Id": "reap",
+    "DisplayedName": "Reap"
+  },
+  {
+    "_index": 1711,
+    "Id": "reap_alt_x",
+    "DisplayedName": "Reap of Butchery"
+  },
+  {
+    "_index": 1712,
+    "Id": "reap_alt_y",
+    "DisplayedName": "[DNT] BloodreapAltY"
+  },
+  {
+    "_index": 1713,
+    "Id": "vaal_reap",
+    "DisplayedName": "Vaal Reap"
+  },
+  {
+    "_index": 1714,
+    "Id": "petrified_blood",
+    "DisplayedName": "Petrified Blood"
+  },
+  {
+    "_index": 1715,
+    "Id": "queens_demand",
+    "DisplayedName": "Queen's Demand"
+  },
+  {
+    "_index": 1716,
+    "Id": "add_corrupted_blood_to_target",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1717,
+    "Id": "geometry_mortars_spell",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1718,
+    "Id": "geometry_mortars_attack",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1719,
+    "Id": "defiance_banner",
+    "DisplayedName": "Defiance Banner"
+  },
+  {
+    "_index": 1720,
+    "Id": "voltaxic_burst",
+    "DisplayedName": "Voltaxic Burst"
+  },
+  {
+    "_index": 1721,
+    "Id": "voltaxic_burst_alt_x",
+    "DisplayedName": "[DNT] VoltaxicBurstAltX"
+  },
+  {
+    "_index": 1722,
+    "Id": "voltaxic_burst_alt_y",
+    "DisplayedName": "[DNT] VoltaxicBurstAltY"
+  },
+  {
+    "_index": 1723,
+    "Id": "rage_vortex",
+    "DisplayedName": "Rage Vortex"
+  },
+  {
+    "_index": 1724,
+    "Id": "rage_vortex_alt_x",
+    "DisplayedName": "Rage Vortex of Berserking"
+  },
+  {
+    "_index": 1725,
+    "Id": "rage_vortex_alt_y",
+    "DisplayedName": "[DNT] RageVortexAltY"
+  },
+  {
+    "_index": 1726,
+    "Id": "battlemages_cry",
+    "DisplayedName": "Battlemage's Cry"
+  },
+  {
+    "_index": 1727,
+    "Id": "absolution",
+    "DisplayedName": "Absolution"
+  },
+  {
+    "_index": 1728,
+    "Id": "absolution_alt_x",
+    "DisplayedName": "Absolution of Inspiring"
+  },
+  {
+    "_index": 1729,
+    "Id": "absolution_alt_y",
+    "DisplayedName": "[DNT] AbsolutionAltY"
+  },
+  {
+    "_index": 1730,
+    "Id": "vaal_absolution",
+    "DisplayedName": "Vaal Absolution"
+  },
+  {
+    "_index": 1731,
+    "Id": "ambush_player",
+    "DisplayedName": "Ambush"
+  },
+  {
+    "_index": 1732,
+    "Id": "blade_trap",
+    "DisplayedName": "Blade Trap"
+  },
+  {
+    "_index": 1733,
+    "Id": "blade_trap_alt_x",
+    "DisplayedName": "Blade Trap of Greatswords"
+  },
+  {
+    "_index": 1734,
+    "Id": "blade_trap_alt_y",
+    "DisplayedName": "Blade Trap of Laceration"
+  },
+  {
+    "_index": 1735,
+    "Id": "forbidden_rite",
+    "DisplayedName": "Forbidden Rite"
+  },
+  {
+    "_index": 1736,
+    "Id": "forbidden_rite_alt_x",
+    "DisplayedName": "Forbidden Rite of Soul Sacrifice"
+  },
+  {
+    "_index": 1737,
+    "Id": "forbidden_rite_alt_y",
+    "DisplayedName": "[DNT] ForbiddenRiteAltY"
+  },
+  {
+    "_index": 1738,
+    "Id": "manabond",
+    "DisplayedName": "Manabond"
+  },
+  {
+    "_index": 1739,
+    "Id": "manabond_alt_x",
+    "DisplayedName": "[DNT] ManabondAltX"
+  },
+  {
+    "_index": 1740,
+    "Id": "manabond_alt_y",
+    "DisplayedName": "[DNT] ManabondAltY"
+  },
+  {
+    "_index": 1741,
+    "Id": "storm_rain",
+    "DisplayedName": "Storm Rain"
+  },
+  {
+    "_index": 1742,
+    "Id": "storm_rain_alt_x",
+    "DisplayedName": "Storm Rain of the Conduit"
+  },
+  {
+    "_index": 1743,
+    "Id": "storm_rain_alt_y",
+    "DisplayedName": "Storm Rain of the Fence"
+  },
+  {
+    "_index": 1744,
+    "Id": "shield_crush",
+    "DisplayedName": "Shield Crush"
+  },
+  {
+    "_index": 1745,
+    "Id": "shield_crush_alt_x",
+    "DisplayedName": "Shield Crush of the Chieftain"
+  },
+  {
+    "_index": 1746,
+    "Id": "shield_crush_alt_y",
+    "DisplayedName": "[DNT] ShieldCrushAltY"
+  },
+  {
+    "_index": 1747,
+    "Id": "spectral_helix",
+    "DisplayedName": "Spectral Helix"
+  },
+  {
+    "_index": 1748,
+    "Id": "spectral_helix_alt_x",
+    "DisplayedName": "[DNT] SpectralHelixAltX"
+  },
+  {
+    "_index": 1749,
+    "Id": "spectral_helix_alt_y",
+    "DisplayedName": "Spectral Helix of Trarthus"
+  },
+  {
+    "_index": 1750,
+    "Id": "summon_reaper",
+    "DisplayedName": "Summon Reaper"
+  },
+  {
+    "_index": 1751,
+    "Id": "summon_reaper_alt_x",
+    "DisplayedName": "Summon Reaper of Revenants"
+  },
+  {
+    "_index": 1752,
+    "Id": "summon_reaper_alt_y",
+    "DisplayedName": "Summon Reaper of Eviscerating"
+  },
+  {
+    "_index": 1753,
+    "Id": "reaper_consume_minion",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1754,
+    "Id": "boneshatter",
+    "DisplayedName": "Boneshatter"
+  },
+  {
+    "_index": 1755,
+    "Id": "boneshatter_alt_x",
+    "DisplayedName": "Boneshatter of Complex Trauma"
+  },
+  {
+    "_index": 1756,
+    "Id": "boneshatter_alt_y",
+    "DisplayedName": "Boneshatter of Carnage"
+  },
+  {
+    "_index": 1757,
+    "Id": "ion_cannon_cage",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1758,
+    "Id": "explosive_concoction",
+    "DisplayedName": "Explosive Concoction"
+  },
+  {
+    "_index": 1759,
+    "Id": "explosive_concoction_alt_x",
+    "DisplayedName": "Explosive Concoction of Destruction"
+  },
+  {
+    "_index": 1760,
+    "Id": "explosive_concoction_alt_y",
+    "DisplayedName": "[DNT] ExplosiveConcoctionAltY"
+  },
+  {
+    "_index": 1761,
+    "Id": "eye_of_winter",
+    "DisplayedName": "Eye of Winter"
+  },
+  {
+    "_index": 1762,
+    "Id": "eye_of_winter_alt_x",
+    "DisplayedName": "Eye of Winter of Finality"
+  },
+  {
+    "_index": 1763,
+    "Id": "eye_of_winter_alt_y",
+    "DisplayedName": "Eye of Winter of Transience"
+  },
+  {
+    "_index": 1764,
+    "Id": "reaper_slash_dash",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1765,
+    "Id": "summon_arbalists",
+    "DisplayedName": "Summon Arbalists"
+  },
+  {
+    "_index": 1766,
+    "Id": "ground_searing_laser",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1767,
+    "Id": "poisonous_concoction",
+    "DisplayedName": "Poisonous Concoction"
+  },
+  {
+    "_index": 1768,
+    "Id": "poisonous_concoction_alt_x",
+    "DisplayedName": "Poisonous Concoction of Bouncing"
+  },
+  {
+    "_index": 1769,
+    "Id": "poisonous_concoction_alt_y",
+    "DisplayedName": "[DNT] PoisonousConcoctionAltY"
+  },
+  {
+    "_index": 1770,
+    "Id": "call_of_the_wild",
+    "DisplayedName": "[DNT] Call of the Wild"
+  },
+  {
+    "_index": 1771,
+    "Id": "temporal_rift",
+    "DisplayedName": "Temporal Rift"
+  },
+  {
+    "_index": 1772,
+    "Id": "hellscape_demon_boss_blood_drain",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1773,
+    "Id": "tornado",
+    "DisplayedName": "Tornado"
+  },
+  {
+    "_index": 1774,
+    "Id": "tornado_alt_x",
+    "DisplayedName": "[DNT] TornadoAltX"
+  },
+  {
+    "_index": 1775,
+    "Id": "tornado_alt_y",
+    "DisplayedName": "Tornado of Elemental Turbulence"
+  },
+  {
+    "_index": 1776,
+    "Id": "tornado_triggered",
+    "DisplayedName": "Tornado"
+  },
+  {
+    "_index": 1777,
+    "Id": "energy_blade",
+    "DisplayedName": "Energy Blade"
+  },
+  {
+    "_index": 1778,
+    "Id": "soul_link",
+    "DisplayedName": "Soul Link"
+  },
+  {
+    "_index": 1779,
+    "Id": "flame_link",
+    "DisplayedName": "Flame Link"
+  },
+  {
+    "_index": 1780,
+    "Id": "vampiric_link",
+    "DisplayedName": "Vampiric Link"
+  },
+  {
+    "_index": 1781,
+    "Id": "protective_link",
+    "DisplayedName": "Protective Link"
+  },
+  {
+    "_index": 1782,
+    "Id": "intuitive_link",
+    "DisplayedName": "Intuitive Link"
+  },
+  {
+    "_index": 1783,
+    "Id": "destructive_link",
+    "DisplayedName": "Destructive Link"
+  },
+  {
+    "_index": 1784,
+    "Id": "hellscape_demon_boss_fissure_slam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1785,
+    "Id": "hellscape_tentacle_grab",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1786,
+    "Id": "tangled_minion_arc",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1787,
+    "Id": "bubble_shield",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1788,
+    "Id": "cleansing_fire_wall",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1789,
+    "Id": "summon_moving_flame_wall",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1790,
+    "Id": "push_moving_flame_wall",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1791,
+    "Id": "black_star_comet_barrage",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1792,
+    "Id": "black_star_laser_spears",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1793,
+    "Id": "sentinel_tag_beam",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1794,
+    "Id": "lightning_conduit",
+    "DisplayedName": "Lightning Conduit"
+  },
+  {
+    "_index": 1795,
+    "Id": "lightning_conduit_alt_x",
+    "DisplayedName": "Lightning Conduit of the Heavens"
+  },
+  {
+    "_index": 1796,
+    "Id": "lightning_conduit_alt_y",
+    "DisplayedName": "[DNT] LightningConduitAltY"
+  },
+  {
+    "_index": 1797,
+    "Id": "approaching_flames",
+    "DisplayedName": "Approaching Flames"
+  },
+  {
+    "_index": 1798,
+    "Id": "galvanic_field",
+    "DisplayedName": "Galvanic Field"
+  },
+  {
+    "_index": 1799,
+    "Id": "galvanic_field_alt_x",
+    "DisplayedName": "Galvanic Field of Intensity"
+  },
+  {
+    "_index": 1800,
+    "Id": "galvanic_field_alt_y",
+    "DisplayedName": "[DNT] GalvanicFieldAltY"
+  },
+  {
+    "_index": 1801,
+    "Id": "alchemists_mark",
+    "DisplayedName": "Alchemist's Mark"
+  },
+  {
+    "_index": 1802,
+    "Id": "mtx_direct_line_of_ants",
+    "DisplayedName": "Direct Ants"
+  },
+  {
+    "_index": 1803,
+    "Id": "mtx_polymorph_player",
+    "DisplayedName": "Polymorph"
+  },
+  {
+    "_index": 1804,
+    "Id": "mtx_bestiary_stampede_quicksilver",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1805,
+    "Id": "vaal_cleave",
+    "DisplayedName": "Vaal Cleave"
+  },
+  {
+    "_index": 1806,
+    "Id": "frozen_legion",
+    "DisplayedName": "Frozen Legion"
+  },
+  {
+    "_index": 1807,
+    "Id": "frozen_legion_alt_x",
+    "DisplayedName": "Frozen Legion of Rallying"
+  },
+  {
+    "_index": 1808,
+    "Id": "frozen_legion_alt_y",
+    "DisplayedName": "[DNT] FrozenLegionAltY"
+  },
+  {
+    "_index": 1809,
+    "Id": "frozen_sweep",
+    "DisplayedName": "Frozen Sweep"
+  },
+  {
+    "_index": 1810,
+    "Id": "triggered_ghost_cannons",
+    "DisplayedName": "Ghostly Artillery"
+  },
+  {
+    "_index": 1811,
+    "Id": "volcanic_fissure",
+    "DisplayedName": "Volcanic Fissure"
+  },
+  {
+    "_index": 1812,
+    "Id": "volcanic_fissure_alt_x",
+    "DisplayedName": "Volcanic Fissure of Snaking"
+  },
+  {
+    "_index": 1813,
+    "Id": "volcanic_fissure_alt_y",
+    "DisplayedName": "[DNT] VolcanicFissureAltY"
+  },
+  {
+    "_index": 1814,
+    "Id": "vaal_volcanic_fissure",
+    "DisplayedName": "Vaal Volcanic Fissure"
+  },
+  {
+    "_index": 1815,
+    "Id": "crucible_channel",
+    "DisplayedName": "[DNT] Crucible Channel"
+  },
+  {
+    "_index": 1816,
+    "Id": "summon_triggerbots",
+    "DisplayedName": "Summon Triggerbots"
+  },
+  {
+    "_index": 1817,
+    "Id": "summon_abyssal_constructs",
+    "DisplayedName": "Summon Bone Feeders"
+  },
+  {
+    "_index": 1818,
+    "Id": "mtx_coin_flip",
+    "DisplayedName": "Flip a coin"
+  },
+  {
+    "_index": 1819,
+    "Id": "blood_sand_triggered",
+    "DisplayedName": "Stance Swap"
+  },
+  {
+    "_index": 1820,
+    "Id": "gravity_sphere_triggered",
+    "DisplayedName": "Gravity Sphere"
+  },
+  {
+    "_index": 1821,
+    "Id": "bone_corpses",
+    "DisplayedName": "Bone Corpses"
+  },
+  {
+    "_index": 1822,
+    "Id": "mtx_raccoon_trash",
+    "DisplayedName": "Summon Barrel"
+  },
+  {
+    "_index": 1823,
+    "Id": "prismatic_burst",
+    "DisplayedName": "Prismatic Burst"
+  },
+  {
+    "_index": 1824,
+    "Id": "windburst",
+    "DisplayedName": "Windburst"
+  },
+  {
+    "_index": 1825,
+    "Id": "support_triggered_kinetic_instability",
+    "DisplayedName": "Kinetic Flux"
+  },
+  {
+    "_index": 1826,
+    "Id": "support_triggered_living_lightning",
+    "DisplayedName": "Summon Living Lightning"
+  },
+  {
+    "_index": 1827,
+    "Id": "support_triggered_rings_of_light",
+    "DisplayedName": "Rings of Light"
+  },
+  {
+    "_index": 1828,
+    "Id": "slow_dodge",
+    "DisplayedName": "Quickstep"
+  },
+  {
+    "_index": 1829,
+    "Id": "summon_sentinel_of_radiance",
+    "DisplayedName": "Summon Sentinel of Radiance"
+  },
+  {
+    "_index": 1830,
+    "Id": "summon_elemental_relic",
+    "DisplayedName": "Summon Elemental Relic"
+  },
+  {
+    "_index": 1831,
+    "Id": "avenging_flame",
+    "DisplayedName": "Avenging Flame"
+  },
+  {
+    "_index": 1832,
+    "Id": "playtest_attack",
+    "DisplayedName": "Playtest Attack"
+  },
+  {
+    "_index": 1833,
+    "Id": "playtest_spell",
+    "DisplayedName": "Playtest Spell"
+  },
+  {
+    "_index": 1834,
+    "Id": "playtest_slam",
+    "DisplayedName": "Playtest Slam"
+  },
+  {
+    "_index": 1835,
+    "Id": "mtx_hunting_dog_sit",
+    "DisplayedName": "Sit!"
+  },
+  {
+    "_index": 1836,
+    "Id": "mtx_hunting_dog_roll_over",
+    "DisplayedName": "Roll Over!"
+  },
+  {
+    "_index": 1837,
+    "Id": "mtx_hunting_dog_play_dead",
+    "DisplayedName": "Play Dead!"
+  },
+  {
+    "_index": 1838,
+    "Id": "mtx_hunting_dog_pet",
+    "DisplayedName": "Who's a Good Doggy?"
+  },
+  {
+    "_index": 1839,
+    "Id": "summon_spirit_of_kaom",
+    "DisplayedName": "Summon Spirit of Kaom"
+  },
+  {
+    "_index": 1840,
+    "Id": "summon_spirit_of_utula",
+    "DisplayedName": "Summon Spirit of Utula"
+  },
+  {
+    "_index": 1841,
+    "Id": "summon_spirit_of_akoya",
+    "DisplayedName": "Summon Spirit of Akoya"
+  },
+  {
+    "_index": 1842,
+    "Id": "summon_spirit_of_kahuturoa",
+    "DisplayedName": "Summon Spirit of Kahuturoa"
+  },
+  {
+    "_index": 1843,
+    "Id": "summon_spirit_of_rakiata",
+    "DisplayedName": "Summon Spirit of Rakiata"
+  },
+  {
+    "_index": 1844,
+    "Id": "summon_spirit_of_ikiaho",
+    "DisplayedName": "Summon Spirit of Ikiaho"
+  },
+  {
+    "_index": 1845,
+    "Id": "summon_spirit_of_ahuana",
+    "DisplayedName": "Summon Spirit of Ahuana"
+  },
+  {
+    "_index": 1846,
+    "Id": "summon_spirit_of_tawhanuku",
+    "DisplayedName": "Summon Spirit of Tawhanuku"
+  },
+  {
+    "_index": 1847,
+    "Id": "summon_spirit_of_maata",
+    "DisplayedName": "Summon Spirit of Maata"
+  },
+  {
+    "_index": 1848,
+    "Id": "summon_spirit_of_kiloava",
+    "DisplayedName": "Summon Spirit of Kiloava"
+  },
+  {
+    "_index": 1849,
+    "Id": "spray_paint_celestial",
+    "DisplayedName": "Spray Paint Celestial"
+  },
+  {
+    "_index": 1850,
+    "Id": "spray_paint_magmatic",
+    "DisplayedName": "Spray Paint Magmatic"
+  },
+  {
+    "_index": 1851,
+    "Id": "spray_paint_blood",
+    "DisplayedName": "Spray Paint Blood"
+  },
+  {
+    "_index": 1852,
+    "Id": "summon_dark_effigy",
+    "DisplayedName": "Summon Dark Effigy"
+  },
+  {
+    "_index": 1853,
+    "Id": "mtx_mimic_transform",
+    "DisplayedName": "Transform into Mimic"
+  },
+  {
+    "_index": 1854,
+    "Id": "barkskin",
+    "DisplayedName": "Barkskin"
+  },
+  {
+    "_index": 1855,
+    "Id": "penance_mark",
+    "DisplayedName": "Penance Mark"
+  },
+  {
+    "_index": 1856,
+    "Id": "minion_sacrifice",
+    "DisplayedName": "Affliction"
+  },
+  {
+    "_index": 1857,
+    "Id": "pacify",
+    "DisplayedName": "Pacify"
+  },
+  {
+    "_index": 1858,
+    "Id": "ravenous",
+    "DisplayedName": "Ravenous"
+  },
+  {
+    "_index": 1859,
+    "Id": "instant_spell",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1860,
+    "Id": "automation",
+    "DisplayedName": "Automation"
+  },
+  {
+    "_index": 1861,
+    "Id": "call_to_arms",
+    "DisplayedName": "Autoexertion"
+  },
+  {
+    "_index": 1862,
+    "Id": "summon_sacred_wisp",
+    "DisplayedName": "Summon Sacred Wisps"
+  },
+  {
+    "_index": 1863,
+    "Id": "triggered_detonate_mines",
+    "DisplayedName": "Detonate Mines"
+  },
+  {
+    "_index": 1864,
+    "Id": "retaliation_swords",
+    "DisplayedName": "[DNT] Retaliation Swords"
+  },
+  {
+    "_index": 1865,
+    "Id": "glacial_shield_swipe",
+    "DisplayedName": "Glacial Shield Swipe"
+  },
+  {
+    "_index": 1866,
+    "Id": "crushing_fist",
+    "DisplayedName": "Crushing Fist"
+  },
+  {
+    "_index": 1867,
+    "Id": "divine_retribution",
+    "DisplayedName": "Divine Retribution"
+  },
+  {
+    "_index": 1868,
+    "Id": "vengeful_cry",
+    "DisplayedName": "Vengeful Cry"
+  },
+  {
+    "_index": 1869,
+    "Id": "swordstorm",
+    "DisplayedName": "Swordstorm"
+  },
+  {
+    "_index": 1870,
+    "Id": "eviscerate",
+    "DisplayedName": "Eviscerate"
+  },
+  {
+    "_index": 1871,
+    "Id": "mtx_flamethrower",
+    "DisplayedName": "Jet of Flame"
+  },
+  {
+    "_index": 1872,
+    "Id": "ailment_bearer",
+    "DisplayedName": "Unbound Avatar"
+  },
+  {
+    "_index": 1873,
+    "Id": "mtx_player_die_beam",
+    "DisplayedName": "Fury of the Awakener"
+  },
+  {
+    "_index": 1874,
+    "Id": "mtx_disguise",
+    "DisplayedName": "Assume Disguise"
+  },
+  {
+    "_index": 1875,
+    "Id": "mtx_sit_on_the_throne",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1876,
+    "Id": "pilot_row_boat",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1877,
+    "Id": "triggered_starfall",
+    "DisplayedName": "Starfall"
+  },
+  {
+    "_index": 1878,
+    "Id": "summon_void_spawn",
+    "DisplayedName": "Summon Void Spawn"
+  },
+  {
+    "_index": 1879,
+    "Id": "summon_shaper_apparition",
+    "DisplayedName": "Summon Shaper Memory"
+  },
+  {
+    "_index": 1880,
+    "Id": "zana_influence_memory_of_disbelief",
+    "DisplayedName": "Memory of Disbelief"
+  },
+  {
+    "_index": 1881,
+    "Id": "zana_influence_memory_of_panic",
+    "DisplayedName": "Memory of Panic"
+  },
+  {
+    "_index": 1882,
+    "Id": "zana_influence_memory_of_impatience",
+    "DisplayedName": "Memory of Impatience"
+  },
+  {
+    "_index": 1883,
+    "Id": "zana_influence_memory_of_familiarity",
+    "DisplayedName": "Memory of Familiarity"
+  },
+  {
+    "_index": 1884,
+    "Id": "zana_influence_memory_of_impulsiveness",
+    "DisplayedName": "Memory of Impulsiveness"
+  },
+  {
+    "_index": 1885,
+    "Id": "zana_influence_memory_of_desire",
+    "DisplayedName": "Memory of Desire"
+  },
+  {
+    "_index": 1886,
+    "Id": "zana_influence_memory_of_suspicion",
+    "DisplayedName": "Memory of Suspicion"
+  },
+  {
+    "_index": 1887,
+    "Id": "zana_influence_memory_of_mocking",
+    "DisplayedName": "Memory of Mocking"
+  },
+  {
+    "_index": 1888,
+    "Id": "unleash_power",
+    "DisplayedName": "[DNT] Unleash Power"
+  },
+  {
+    "_index": 1889,
+    "Id": "call_mercenary",
+    "DisplayedName": "Order: To me!"
+  },
+  {
+    "_index": 1890,
+    "Id": "mtx_cruelty_killer_bird_consume",
+    "DisplayedName": "[DNT] mtx_cruelty_killer_bird_consume"
+  },
+  {
+    "_index": 1891,
+    "Id": "mtx_command_cruelty_killer_bird",
+    "DisplayedName": "Mark as prey"
+  },
+  {
+    "_index": 1892,
+    "Id": "manual_graft_trigger",
+    "DisplayedName": "Command Graft"
+  },
+  {
+    "_index": 1893,
+    "Id": "graft_skill_xoph_molten_shell",
+    "DisplayedName": "Heart of Flame"
+  },
+  {
+    "_index": 1894,
+    "Id": "graft_skill_xoph_geyser_explosion",
+    "DisplayedName": "His Burning Message"
+  },
+  {
+    "_index": 1895,
+    "Id": "graft_skill_xoph_flame_pillars",
+    "DisplayedName": "Call the Pyre"
+  },
+  {
+    "_index": 1896,
+    "Id": "graft_skill_xoph_ailment_buff",
+    "DisplayedName": "The Grey Wind Howls"
+  },
+  {
+    "_index": 1897,
+    "Id": "graft_skill_uulnetol_hand_slam",
+    "DisplayedName": "Return to Dust"
+  },
+  {
+    "_index": 1898,
+    "Id": "graft_skill_uulnetol_bone_spires",
+    "DisplayedName": "Seize the Flesh"
+  },
+  {
+    "_index": 1899,
+    "Id": "graft_skill_uulnetol_impale_buff",
+    "DisplayedName": "Violent Desire"
+  },
+  {
+    "_index": 1900,
+    "Id": "graft_skill_uulnetol_lowlife_buff",
+    "DisplayedName": "Tender Embrace"
+  },
+  {
+    "_index": 1901,
+    "Id": "graft_skill_esh_lightning_ring",
+    "DisplayedName": "Wreathed in Light"
+  },
+  {
+    "_index": 1902,
+    "Id": "graft_skill_esh_lightning_clones",
+    "DisplayedName": "Glowing Silhouette"
+  },
+  {
+    "_index": 1903,
+    "Id": "graft_skill_esh_lightning_hands",
+    "DisplayedName": "Enervating Grasp"
+  },
+  {
+    "_index": 1904,
+    "Id": "graft_skill_esh_jolt_buff",
+    "DisplayedName": "Overcharged Sinews"
+  },
+  {
+    "_index": 1905,
+    "Id": "graft_skill_tul_mortars",
+    "DisplayedName": "Falling Crystals"
+  },
+  {
+    "_index": 1906,
+    "Id": "graft_skill_tul_tornado",
+    "DisplayedName": "Dance in the White"
+  },
+  {
+    "_index": 1907,
+    "Id": "graft_skill_tul_tornado_projectile",
+    "DisplayedName": "Icicles"
+  },
+  {
+    "_index": 1908,
+    "Id": "graft_skill_tul_summon",
+    "DisplayedName": "The Great Avalanche"
+  },
+  {
+    "_index": 1909,
+    "Id": "graft_skill_tul_aegis",
+    "DisplayedName": "Preserving Stillness"
+  },
+  {
+    "_index": 1910,
+    "Id": "mtx_severed_arm_slap",
+    "DisplayedName": "Arm Whack"
+  },
+  {
+    "_index": 1911,
+    "Id": "mtx_wayward_wolf_pet_move",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1912,
+    "Id": "solartwine_nova",
+    "DisplayedName": "Blazing Glare"
+  },
+  {
+    "_index": 1913,
+    "Id": "biting_braid_nova",
+    "DisplayedName": "Caustic Retribution"
+  },
+  {
+    "_index": 1914,
+    "Id": "restless_dead",
+    "DisplayedName": "Ceaseless Flesh"
+  },
+  {
+    "_index": 1915,
+    "Id": "mtx_afk_podium",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1916,
+    "Id": "mtx_encase_in_crystal",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1917,
+    "Id": "call_the_pyre",
+    "DisplayedName": "Call the Pyre"
+  },
+  {
+    "_index": 1918,
+    "Id": "seize_the_flesh",
+    "DisplayedName": "Seize the Flesh"
+  },
+  {
+    "_index": 1919,
+    "Id": "enervating_grasp",
+    "DisplayedName": "Foulgrasp"
+  },
+  {
+    "_index": 1920,
+    "Id": "the_great_avalanche",
+    "DisplayedName": "Summon Hiveborn"
+  },
+  {
+    "_index": 1921,
+    "Id": "support_void_shockwave",
+    "DisplayedName": "Void Shockwave"
+  },
+  {
+    "_index": 1922,
+    "Id": "exploding_poison_toad",
+    "DisplayedName": "Bursting Toad"
+  },
+  {
+    "_index": 1923,
+    "Id": "exploding_blood_toad",
+    "DisplayedName": "Explosive Toad"
+  },
+  {
+    "_index": 1924,
+    "Id": "triggered_fissure",
+    "DisplayedName": "Fissure"
+  },
+  {
+    "_index": 1925,
+    "Id": "triggered_voidstorm",
+    "DisplayedName": "Voidstorm"
+  },
+  {
+    "_index": 1926,
+    "Id": "mtx_command_pied_piper_pet",
+    "DisplayedName": "Mesmerize"
+  },
+  {
+    "_index": 1927,
+    "Id": "mtx_pied_piper_pet_hypnotize",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1928,
+    "Id": "barnacle_snap",
+    "DisplayedName": "Savage Barnacle"
+  },
+  {
+    "_index": 1929,
+    "Id": "ghost_furnace",
+    "DisplayedName": "[DNT] Ghost Furnace"
+  },
+  {
+    "_index": 1930,
+    "Id": "mtx_command_land_shark_pet",
+    "DisplayedName": "Set Shark Bait"
+  },
+  {
+    "_index": 1931,
+    "Id": "mtx_land_shark_consume",
+    "DisplayedName": ""
+  },
+  {
+    "_index": 1932,
+    "Id": "crystalfall",
+    "DisplayedName": "Falling Crystal"
+  },
+  {
+    "_index": 1933,
+    "Id": "brine_torrent",
+    "DisplayedName": "Surging Torrent"
+  },
+  {
+    "_index": 1934,
+    "Id": "mana_infused_staff",
+    "DisplayedName": "Mana-Infused Staff"
+  },
+  {
+    "_index": 1935,
+    "Id": "pact_of_beidat",
+    "DisplayedName": "Pact of Beidat"
+  },
+  {
+    "_index": 1936,
+    "Id": "pact_of_ghorr",
+    "DisplayedName": "Pact of Ghorr"
+  },
+  {
+    "_index": 1937,
+    "Id": "pact_of_ktash",
+    "DisplayedName": "Pact of K'Tash"
+  },
+  {
+    "_index": 1938,
+    "Id": "pact_of_lycia",
+    "DisplayedName": "Pact of Lycia"
+  },
+  {
+    "_index": 1939,
+    "Id": "triggered_bloodrend",
+    "DisplayedName": "Fleshrend"
+  },
+  {
+    "_index": 1940,
+    "Id": "triggered_heavens_scourge",
+    "DisplayedName": "Heaven's Scourge"
+  }
+]

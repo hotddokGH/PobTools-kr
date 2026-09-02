@@ -1,0 +1,34 @@
+{
+  "source": "official Path of Exile patch data",
+  "patch": "3.29.3.2",
+  "table": "MonsterVarieties",
+  "idColumn": "Id",
+  "nameColumn": "Name",
+  "languages": {
+    "english": "Data",
+    "korean": "Data/Korean"
+  },
+  "tool": {
+    "name": "pathofexile-dat",
+    "version": "15.2.0",
+    "license": "MIT"
+  },
+  "clientEvidence": {
+    "log": "C:\\Daum Games\\Path of Exile\\logs\\KakaoClient.txt",
+    "detectedPatch": "3.29.3.2",
+    "matchesExportPatch": true
+  },
+  "inputs": {
+    "englishRows": 10691,
+    "koreanRows": 10691,
+    "stableIds": 10691,
+    "englishSha256": "3F2E7DC1D7A5CEC2F9F87D56E402801965E84B88B6A0C7245F28EEBEA673925E",
+    "koreanSha256": "B014D3857B99C7ECC2312A42AA5DAC8847F68649C116B7F8AA0072672A2B3260"
+  },
+  "counts": {
+    "accepted": 9772,
+    "conflicts": 919,
+    "unmatched": 0
+  },
+  "generatedAtUtc": "2026-09-01T02:07:38.3123118Z"
+}
