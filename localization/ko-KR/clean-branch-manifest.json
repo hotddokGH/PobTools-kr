@@ -52,6 +52,10 @@
       "kind": "tree"
     },
     {
+      "path": "pob-zh-engine/dist/Data/launcher/ko-KR",
+      "kind": "tree"
+    },
+    {
       "path": "pob-zh-engine/dist/Fonts/NotoSansKR-Variable.ttf",
       "kind": "file",
       "sha256": "194018E6B2B293A7964F037B25C0249CE1418BC9AB3C971060A03AA57861E252"

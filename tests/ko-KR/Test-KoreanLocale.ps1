@@ -1,7 +1,21 @@
+[CmdletBinding()]
+param(
+    [string]$EngineRoot
+)
+
 $ErrorActionPreference = 'Stop'
 
 $repoRoot = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
-$rootPath = Join-Path $repoRoot 'pob-zh-engine\dist'
+$resolvedEngineRoot = if ($PSBoundParameters.ContainsKey('EngineRoot')) {
+    if (-not (Test-Path -LiteralPath $EngineRoot -PathType Container)) {
+        throw 'EngineRoot must be an existing directory'
+    }
+    (Resolve-Path -LiteralPath $EngineRoot).Path
+}
+else {
+    Join-Path $repoRoot 'pob-zh-engine'
+}
+$rootPath = Join-Path $resolvedEngineRoot 'dist'
 $failures = [System.Collections.Generic.List[string]]::new()
 
 function Read-JsonFile {

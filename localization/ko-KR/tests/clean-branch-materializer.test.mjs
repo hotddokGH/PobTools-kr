@@ -115,6 +115,7 @@ test('the exact real manifest expands only the reviewed inventory in sorted orde
   assert.equal(paths.includes('docs/superpowers/specs/2026-09-01-pobtools-ko-maintenance-automation-design.md'), true);
   assert.equal(paths.includes(fontRelativePath), true);
   assert.equal(paths.includes('pob-zh-engine/dist/pob-zh.ini'), true);
+  assert.equal(paths.includes('pob-zh-engine/dist/Data/launcher/ko-KR/fixture.txt'), true);
   assert.equal(paths.some((path) => /^pob-zh-engine\/host\//u.test(path)), false);
   assert.equal(paths.some((path) => /(?:^|\/)poe2(?:\/|$)/iu.test(path)), false);
 });

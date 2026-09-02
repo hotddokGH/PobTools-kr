@@ -92,6 +92,51 @@ function writeJson(path, value) {
   writeFileSync(path, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
 }
 
+function pathPattern(path) {
+  return String(path)
+    .replace(/[\\/]+$/u, '')
+    .split(/[\\/]+/u)
+    .map((part) => part.replace(/[.*+?^${}()|[\]\\]/gu, '\\$&'))
+    .join('[\\\\/]');
+}
+
+function canonicalizePathString(value, replacements) {
+  let output = value;
+  let replaced = false;
+  for (const { path, token, root } of replacements) {
+    if (!path) continue;
+    const before = '(^|[\\s"\'=(:,;\\[])';
+    const after = root ? '(?=$|[\\\\/\\s"\'),;:\\]])' : '(?=$|[\\s"\'),;:\\]])';
+    const expression = new RegExp(`${before}${pathPattern(path)}${after}`, process.platform === 'win32' ? 'giu' : 'gu');
+    output = output.replace(expression, (_match, prefix) => {
+      replaced = true;
+      return `${prefix}${token}`;
+    });
+  }
+  return replaced ? output.replaceAll('\\', '/') : output;
+}
+
+export function canonicalizeMaintenanceReport(report, {
+  repositoryRoot,
+  workspaceRoot,
+  nodePath = process.execPath,
+}) {
+  const replacements = [
+    { path: workspaceRoot, token: '$WORKSPACE_ROOT', root: true },
+    { path: repositoryRoot, token: '$REPOSITORY_ROOT', root: true },
+    { path: nodePath, token: '$NODE', root: false },
+  ];
+  const visit = (value) => {
+    if (typeof value === 'string') return canonicalizePathString(value, replacements);
+    if (Array.isArray(value)) return value.map(visit);
+    if (value !== null && typeof value === 'object') {
+      return Object.fromEntries(Object.entries(value).map(([key, nested]) => [key, visit(nested)]));
+    }
+    return value;
+  };
+  return visit(report);
+}
+
 async function run(command, arguments_, options = {}) {
   try {
     const { stdout, stderr } = await execFileAsync(command, arguments_, {
@@ -461,10 +506,11 @@ async function runTrusted(report, name, command, arguments_, options = {}) {
   return result;
 }
 
-function finish(report, state, reportPath) {
+function finish(report, state, reportPath, roots) {
   report.classification = classifyMaintenanceReport(report, state);
-  writeJson(reportPath, report);
-  return report;
+  const canonical = canonicalizeMaintenanceReport(report, roots);
+  writeJson(reportPath, canonical);
+  return canonical;
 }
 
 export async function prepareMaintenanceRun({
@@ -481,8 +527,12 @@ export async function prepareMaintenanceRun({
   const state = readJson(join(localeRoot, 'upstream-state.json'));
   const outputPath = resolve(reportPath ?? join(trustedRoot, 'reports', 'maintenance', 'upstream-update.json'));
   const report = newReport(commit, upstreamRef);
+  const finishReport = () => finish(report, state, outputPath, {
+    repositoryRoot: trustedRoot,
+    workspaceRoot: resolve(workspaceRoot),
+  });
   if (commit === state.lastReviewedCommit && !forcePrepare) {
-    return { commit, workspace: resolve(workspaceRoot), report: finish(report, state, outputPath) };
+    return { commit, workspace: resolve(workspaceRoot), report: finishReport() };
   }
 
   const trustedManifestPhase = 'trusted-custom-poe1-output-manifest';
@@ -505,7 +555,7 @@ export async function prepareMaintenanceRun({
       phase: trustedManifestPhase,
       detail,
     });
-    return { commit, workspace: resolve(workspaceRoot), report: finish(report, state, outputPath) };
+    return { commit, workspace: resolve(workspaceRoot), report: finishReport() };
   }
 
   const preparedWorktree = await prepareWorktree(trustedRoot, workspaceRoot, commit);
@@ -518,7 +568,7 @@ export async function prepareMaintenanceRun({
       phase: name,
       detail: result.stderr,
     });
-    return { commit, workspace, report: finish(report, state, outputPath) };
+    return { commit, workspace, report: finishReport() };
   }
   const engineRoot = join(workspace, 'pob-zh-engine');
   const reportsRoot = join(trustedRoot, 'reports');
@@ -526,7 +576,7 @@ export async function prepareMaintenanceRun({
   assertNotReparse(reportsRoot, 'report root');
 
   if (!await applyCompatibilityPatch({ repositoryRoot: trustedRoot, workspace, report })) {
-    return { commit, workspace, report: finish(report, state, outputPath) };
+    return { commit, workspace, report: finishReport() };
   }
 
   const overlayReportPath = join(reportsRoot, 'maintenance', 'source-overlay.json');
@@ -544,12 +594,12 @@ export async function prepareMaintenanceRun({
     if (report.newStrings.length + report.suggestedStrings.length + report.ambiguousStrings.length === 0) {
       report.commandFailures.push({ path: 'localization/ko-KR/lib/source_overlay.py', phase: 'source-overlay-audit', detail: audit.stderr });
     }
-    return { commit, workspace, report: finish(report, state, outputPath) };
+    return { commit, workspace, report: finishReport() };
   }
   const apply = await runTrusted(report, 'source-overlay-apply', 'python', [overlayScript, 'apply', ...overlayBase], { cwd: trustedRoot });
   if (apply.exitCode !== 0) {
     report.commandFailures.push({ path: 'localization/ko-KR/lib/source_overlay.py', phase: 'source-overlay-apply', detail: apply.stderr });
-    return { commit, workspace, report: finish(report, state, outputPath) };
+    return { commit, workspace, report: finishReport() };
   }
 
   let customOutputScopes;
@@ -558,7 +608,7 @@ export async function prepareMaintenanceRun({
   } catch (error) {
     report.phases.push({ name: 'writable-scope-preflight', command: [], exitCode: 1, stderr: bounded(error.message) });
     report.auditFailures.push({ path: 'pob-zh-engine', phase: 'writable-scope-preflight', detail: bounded(error.message) });
-    return { commit, workspace, report: finish(report, state, outputPath) };
+    return { commit, workspace, report: finishReport() };
   }
 
   const runtimeScript = join(localeRoot, 'build-runtime-locale.mjs');
@@ -567,14 +617,14 @@ export async function prepareMaintenanceRun({
   const runtime1 = await runTrusted(report, 'runtime-locale-build-1', process.execPath, runtimeArguments, { cwd: trustedRoot });
   if (runtime1.exitCode !== 0) {
     report.commandFailures.push({ path: 'localization/ko-KR/build-runtime-locale.mjs', phase: 'runtime-locale-build', detail: runtime1.stderr });
-    return { commit, workspace, report: finish(report, state, outputPath) };
+    return { commit, workspace, report: finishReport() };
   }
   const runtimeHash1 = digestScopes(runtimeScopes);
   const runtime2 = await runTrusted(report, 'runtime-locale-build-2', process.execPath, runtimeArguments, { cwd: trustedRoot });
   const runtimeHash2 = runtime2.exitCode === 0 ? digestScopes(runtimeScopes) : '';
   if (runtime2.exitCode !== 0 || runtimeHash1 !== runtimeHash2) {
     report.deterministicFailures.push({ path: 'pob-zh-engine/dist/Data/poe1/ko-KR', phase: 'runtime-locale-build', firstSha256: runtimeHash1, secondSha256: runtimeHash2, detail: runtime2.stderr });
-    return { commit, workspace, report: finish(report, state, outputPath) };
+    return { commit, workspace, report: finishReport() };
   }
 
   const customScript = join(localeRoot, 'build-custom-poe1-data.mjs');
@@ -586,19 +636,19 @@ export async function prepareMaintenanceRun({
     'custom-poe1-data-host-data-snapshot-before-build-1',
     () => snapshotFiles(customDataRoot),
   );
-  if (customBeforeBoundary.failed) return { commit, workspace, report: finish(report, state, outputPath) };
+  if (customBeforeBoundary.failed) return { commit, workspace, report: finishReport() };
   const customBefore = customBeforeBoundary.value;
   const custom1 = await runTrusted(report, 'custom-poe1-data-build-1', process.execPath, customArguments, { cwd: trustedRoot });
   if (custom1.exitCode !== 0) {
     report.commandFailures.push({ path: 'localization/ko-KR/build-custom-poe1-data.mjs', phase: 'custom-poe1-data-build', detail: custom1.stderr });
-    return { commit, workspace, report: finish(report, state, outputPath) };
+    return { commit, workspace, report: finishReport() };
   }
   const customAfter1Boundary = captureHostDataBoundary(
     report,
     'custom-poe1-data-host-data-snapshot-after-build-1',
     () => snapshotFiles(customDataRoot),
   );
-  if (customAfter1Boundary.failed) return { commit, workspace, report: finish(report, state, outputPath) };
+  if (customAfter1Boundary.failed) return { commit, workspace, report: finishReport() };
   const customAfter1 = customAfter1Boundary.value;
   const customChangedPaths = changedSnapshotPaths(customBefore, customAfter1);
   const customHash1Boundary = captureHostDataBoundary(
@@ -606,7 +656,7 @@ export async function prepareMaintenanceRun({
     'custom-poe1-data-host-data-digest-after-build-1',
     () => digestScopes(customScopes),
   );
-  if (customHash1Boundary.failed) return { commit, workspace, report: finish(report, state, outputPath) };
+  if (customHash1Boundary.failed) return { commit, workspace, report: finishReport() };
   const customHash1 = customHash1Boundary.value;
   const custom2 = await runTrusted(report, 'custom-poe1-data-build-2', process.execPath, customArguments, { cwd: trustedRoot });
   const customHash2Boundary = custom2.exitCode === 0
@@ -616,11 +666,11 @@ export async function prepareMaintenanceRun({
       () => digestScopes(customScopes),
     )
     : { value: '' };
-  if (customHash2Boundary.failed) return { commit, workspace, report: finish(report, state, outputPath) };
+  if (customHash2Boundary.failed) return { commit, workspace, report: finishReport() };
   const customHash2 = customHash2Boundary.value;
   if (custom2.exitCode !== 0 || customHash1 !== customHash2) {
     report.deterministicFailures.push({ path: 'pob-zh-engine/host/data/*_poe1.json', phase: 'custom-poe1-data-build', firstSha256: customHash1, secondSha256: customHash2, detail: custom2.stderr });
-    return { commit, workspace, report: finish(report, state, outputPath) };
+    return { commit, workspace, report: finishReport() };
   }
   const changedPoe2Paths = customChangedPaths.filter((path) => /(?:^|[/_-])poe2(?:[/_.-]|$)/iu.test(path));
   if (changedPoe2Paths.length) {
@@ -629,14 +679,14 @@ export async function prepareMaintenanceRun({
       phase: 'custom-poe1-data-output-boundary',
       detail: 'custom PoE1 builder changed a PoE2-labelled output',
     });
-    return { commit, workspace, report: finish(report, state, outputPath) };
+    return { commit, workspace, report: finishReport() };
   }
 
   const displayScript = join(localeRoot, 'audit-display-closure.mjs');
   const display = await runTrusted(report, 'runtime-display-audit', process.execPath, [displayScript, '--engine-root', engineRoot, '--report-root', reportsRoot], { cwd: trustedRoot });
   if (display.exitCode !== 0) {
     report.auditFailures.push({ path: 'pob-zh-engine/dist/Data/poe1/ko-KR', phase: 'runtime-display-audit', detail: display.stderr });
-    return { commit, workspace, report: finish(report, state, outputPath) };
+    return { commit, workspace, report: finishReport() };
   }
 
   const sourceScript = join(localeRoot, 'audit-source-display.mjs');
@@ -644,7 +694,7 @@ export async function prepareMaintenanceRun({
   const source = await runTrusted(report, 'generated-source-display-audit', process.execPath, [sourceScript, '--engine-root', engineRoot, '--overlay-report', overlayReportPath, '--report', sourceReportPath], { cwd: trustedRoot });
   if (source.exitCode !== 0) {
     report.auditFailures.push({ path: 'pob-zh-engine', phase: 'generated-source-display-audit', detail: source.stderr });
-    return { commit, workspace, report: finish(report, state, outputPath) };
+    return { commit, workspace, report: finishReport() };
   }
 
   const trustedInputPhase = 'trusted-distribution-input-stage';
@@ -655,7 +705,7 @@ export async function prepareMaintenanceRun({
     const detail = bounded(error.message);
     report.phases.push({ name: trustedInputPhase, command: [], exitCode: 1, stderr: detail });
     report.commandFailures.push({ path: 'pob-zh-engine/dist/pob-zh.ini', phase: trustedInputPhase, detail });
-    return { commit, workspace, report: finish(report, state, outputPath) };
+    return { commit, workspace, report: finishReport() };
   }
 
   const contractPaths = [
@@ -670,12 +720,12 @@ export async function prepareMaintenanceRun({
   });
   if (contracts.exitCode !== 0) {
     report.commandFailures.push({ path: 'localization/ko-KR/tests', phase: 'static-korean-behavior-contracts', detail: contracts.stderr });
-    return { commit, workspace, report: finish(report, state, outputPath) };
+    return { commit, workspace, report: finishReport() };
   }
 
   report.officialDataChanges.push(
     ...changedFiles(join(trustedRoot, 'pob-zh-engine', 'dist', 'Data', 'poe1', 'ko-KR'), runtimeScopes[0], 'pob-zh-engine/dist/Data/poe1/ko-KR'),
     ...changedCustomPoe1Outputs(customOutputManifest, engineRoot, customChangedPaths.map((path) => `host/data/${path}`)),
   );
-  return { commit, workspace, report: finish(report, state, outputPath) };
+  return { commit, workspace, report: finishReport() };
 }

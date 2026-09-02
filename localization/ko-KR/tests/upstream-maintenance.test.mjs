@@ -16,6 +16,7 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import {
+  canonicalizeMaintenanceReport,
   classifyMaintenanceReport,
   prepareMaintenanceRun,
   validateCustomPoe1OutputManifest,
@@ -83,6 +84,42 @@ function comparableCustomSha(contents) {
 }
 
 const STABLE_CUSTOM_OUTPUT = '{"locale":"ko-KR","value":"stable"}\n';
+
+test('maintenance report canonicalization replaces only nested path-boundary matches', () => {
+  const repositoryRoot = String.raw`C:\review\trusted-ko`;
+  const workspaceRoot = String.raw`C:\review\trusted-ko\.ko-worktrees\update`;
+  const nodePath = String.raw`C:\Program Files\nodejs\node.exe`;
+  const input = {
+    phases: [{
+      command: [
+        nodePath,
+        String.raw`C:\review\trusted-ko\.ko-worktrees\update\pob-zh-engine\script.mjs`,
+        String.raw`--mapping=C:\review\trusted-ko\localization\ko-KR\source-translations.json`,
+        String.raw`prefixC:\review\trusted-ko\must-not-change`,
+      ],
+      stderr: String.raw`failed at C:\review\trusted-ko\.ko-worktrees\update\pob-zh-engine\host\view.cpp`,
+    }],
+    auditFailures: [{
+      detail: String.raw`repository C:\review\trusted-ko\reports\detail.json and C:\Program Files\nodejs\node.exe`,
+    }],
+  };
+  const canonical = canonicalizeMaintenanceReport(input, { repositoryRoot, workspaceRoot, nodePath });
+  assert.deepEqual(canonical, {
+    phases: [{
+      command: [
+        '$NODE',
+        '$WORKSPACE_ROOT/pob-zh-engine/script.mjs',
+        '--mapping=$REPOSITORY_ROOT/localization/ko-KR/source-translations.json',
+        String.raw`prefixC:\review\trusted-ko\must-not-change`,
+      ],
+      stderr: 'failed at $WORKSPACE_ROOT/pob-zh-engine/host/view.cpp',
+    }],
+    auditFailures: [{
+      detail: 'repository $REPOSITORY_ROOT/reports/detail.json and $NODE',
+    }],
+  });
+  assert.notEqual(canonical, input);
+});
 
 test('custom PoE1 output manifest schema and real inventory fail closed', () => {
   const state = { officialPoePatch: '3.29.3.2' };
@@ -477,6 +514,42 @@ test('unchanged upstream prepares a reusable detached workspace and a ready repo
   assert.equal(git(fixture.workspace, 'rev-parse', 'HEAD'), fixture.secondCommit);
   assert.equal(firstReport, secondReport);
   assert.equal(firstReport.includes('timestamp'), false);
+});
+
+test('identical fixture runs persist byte-identical reports across checkout roots', async (t) => {
+  const fixture = await makeUpstreamFixture(t);
+  const cloneContainer = mkdtempSync(join(tmpdir(), 'pobtools-ko-cross-root-'));
+  t.after(() => rmSync(cloneContainer, { recursive: true, force: true }));
+  const clonedRoot = join(cloneContainer, 'trusted-ko-clone');
+  execFileSync('git', [
+    '-c', 'core.autocrlf=false',
+    '-c', 'core.eol=lf',
+    'clone', '--quiet', fixture.koRoot, clonedRoot,
+  ], { encoding: 'utf8' });
+  const clonedWorkspace = join(clonedRoot, '.ko-worktrees', 'update');
+
+  const first = await prepareMaintenanceRun({
+    repositoryRoot: fixture.koRoot,
+    upstreamRef: fixture.secondCommit,
+    workspaceRoot: fixture.workspace,
+    forcePrepare: true,
+  });
+  const second = await prepareMaintenanceRun({
+    repositoryRoot: clonedRoot,
+    upstreamRef: fixture.secondCommit,
+    workspaceRoot: clonedWorkspace,
+    forcePrepare: true,
+  });
+  const firstBytes = readFileSync(join(fixture.koRoot, 'reports', 'maintenance', 'upstream-update.json'), 'utf8');
+  const secondBytes = readFileSync(join(clonedRoot, 'reports', 'maintenance', 'upstream-update.json'), 'utf8');
+
+  assert.equal(firstBytes, secondBytes);
+  assert.deepEqual(first.report, second.report);
+  assert.equal(firstBytes.includes(fixture.koRoot), false);
+  assert.equal(firstBytes.includes(clonedRoot), false);
+  assert.match(firstBytes, /\$WORKSPACE_ROOT/u);
+  assert.match(firstBytes, /\$REPOSITORY_ROOT/u);
+  assert.match(firstBytes, /\$NODE/u);
 });
 
 test('worktree preparation keeps policy-reviewed C++ bytes LF under core.autocrlf=true', async (t) => {

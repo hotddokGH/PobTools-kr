@@ -1,10 +1,25 @@
 import assert from 'node:assert/strict';
-import { readFileSync, readdirSync } from 'node:fs';
-import { join } from 'node:path';
+import { readFileSync, readdirSync, statSync } from 'node:fs';
+import { join, resolve } from 'node:path';
 import test from 'node:test';
 
 const root = process.cwd();
-const dataRoot = join(root, 'pob-zh-engine', 'host', 'data');
+function explicitDirectory(environmentName, fallback) {
+  const value = process.env[environmentName];
+  const path = resolve(value ?? fallback);
+  if (value !== undefined) {
+    try {
+      if (!statSync(path).isDirectory()) throw new Error('not a directory');
+    } catch {
+      throw new Error(`${environmentName} must be an existing directory: ${path}`);
+    }
+  }
+  return path;
+}
+
+const engineRoot = explicitDirectory('POBTOOLS_ENGINE_ROOT', join(root, 'pob-zh-engine'));
+const reportRoot = explicitDirectory('POBTOOLS_REPORT_ROOT', join(root, 'reports'));
+const dataRoot = join(engineRoot, 'host', 'data');
 const officialRoot = join(root, 'localization', 'ko-KR', 'official-terms', 'custom-data');
 const han = /[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]/u;
 const hangul = /[가-힣]/u;
@@ -89,6 +104,6 @@ test('custom catalogue provenance is deterministic and appears exactly once', ()
     assert.equal(source.split(marker).length - 1, 1, `${name} must contain one provenance marker`);
   }
 
-  const report = readJson(join(root, 'reports', 'official-terms', 'custom-data.json'));
+  const report = readJson(join(reportRoot, 'official-terms', 'custom-data.json'));
   assert.equal(Object.hasOwn(report, 'generatedAtUtc'), false, 'custom-data report must not contain a wall-clock timestamp');
 });

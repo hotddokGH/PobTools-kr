@@ -18,6 +18,8 @@ const approvedBinaryPaths = new Set([
 const pinnedAssetHashes = new Map([
   ['pob-zh-engine/dist/Fonts/NotoSansKR-Variable.ttf', '194018E6B2B293A7964F037B25C0249CE1418BC9AB3C971060A03AA57861E252'],
   ['pob-zh-engine/dist/Fonts/OFL-NotoSansKR.txt', '1C05C68C34F9708415AADA51F17E1B0092D2CEA709BF4A94CD38114F9E73D7D9'],
+  ['pob-zh-engine/dist/Data/launcher/ko-KR/launcher.json', '83401B058CD4F93029C5C87EE633DCE21D8A006357A1E02C483DD3E67ECCBBB0'],
+  ['pob-zh-engine/dist/Data/launcher/ko-KR/meta.json', 'D7B59E5EB50FAA03877FC401393B18572AB89C7A296125D0D0D8B9751E3D790A'],
 ]);
 const approvedTextExtensions = new Set(['.ini', '.json', '.md', '.mjs', '.patch', '.ps1', '.py', '.txt', '.yaml', '.yml']);
 const extensionlessTextPaths = new Set(['.gitattributes', '.gitignore', 'LICENSE']);
@@ -38,6 +40,7 @@ const authorizedTrees = [
   'tests/ko-KR',
   'reports',
   'docs/ko-KR',
+  'pob-zh-engine/dist/Data/launcher/ko-KR',
   'pob-zh-engine/dist/Data/poe1/ko-KR',
 ];
 const forbiddenOutputSegments = new Set([

@@ -1,0 +1,170 @@
+name: Validate Korean maintenance
+
+on:
+  push:
+    branches: [ko/main]
+  pull_request:
+    branches: [ko/main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: windows-2025-vs2026
+    timeout-minutes: 45
+    steps:
+      - name: Check out the reviewed branch
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: '22'
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+        with:
+          python-version: '3.13'
+
+      - name: Prepare external evidence directory
+        shell: pwsh
+        run: |
+          $evidenceRoot = '${{ runner.temp }}/ko-validation-evidence'
+          New-Item -ItemType Directory -Force -Path (Join-Path $evidenceRoot 'logs') | Out-Null
+          New-Item -ItemType Directory -Force -Path (Join-Path $evidenceRoot 'reports') | Out-Null
+          "EVIDENCE_ROOT=$evidenceRoot" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
+      - name: Install overlay test requirements
+        shell: pwsh
+        run: |
+          python -m pip install -r localization/ko-KR/requirements-overlay.txt *>&1 |
+            Tee-Object -FilePath (Join-Path $env:EVIDENCE_ROOT 'logs/python-install.log')
+          if ($LASTEXITCODE -ne 0) { throw 'Python dependency installation failed' }
+
+      - name: Run Python overlay and remediation tests
+        shell: pwsh
+        run: |
+          python -m unittest `
+            localization/ko-KR/tests/test_source_overlay.py `
+            localization/ko-KR/tests/test_overlay_remediation.py *>&1 |
+            Tee-Object -FilePath (Join-Path $env:EVIDENCE_ROOT 'logs/python-tests.log')
+          if ($LASTEXITCODE -ne 0) { throw 'Python validation failed' }
+
+      - name: Prepare and validate the pinned upstream engine
+        shell: pwsh
+        run: |
+          $maintenanceReport = Join-Path $env:EVIDENCE_ROOT 'reports/maintenance.json'
+          node localization/ko-KR/update-upstream.mjs `
+            --repository-root '${{ github.workspace }}' `
+            --upstream-ref ba33ed80de67d8301baad930456131d581df6ae1 `
+            --workspace .ko-worktrees/validate-ko `
+            --report $maintenanceReport `
+            --force-prepare *>&1 |
+            Tee-Object -FilePath (Join-Path $env:EVIDENCE_ROOT 'logs/maintenance.log')
+          if ($LASTEXITCODE -ne 0) { throw 'Pinned maintenance preparation failed' }
+
+          $report = Get-Content -LiteralPath $maintenanceReport -Raw -Encoding UTF8 | ConvertFrom-Json
+          if ($report.classification -ne 'already-processed') { throw "Unexpected classification: $($report.classification)" }
+          if ($report.phases.Count -ne 12) { throw "Expected 12 phases, found $($report.phases.Count)" }
+          if (@($report.phases | Where-Object exitCode -ne 0).Count -ne 0) { throw 'A maintenance phase failed' }
+          foreach ($arrayName in @(
+            'newStrings', 'suggestedStrings', 'ambiguousStrings', 'officialDataChanges',
+            'compatibilityFailures', 'deterministicFailures', 'commandFailures', 'auditFailures'
+          )) {
+            if (@($report.$arrayName).Count -ne 0) { throw "$arrayName must be empty" }
+          }
+          $phaseNames = @($report.phases.name)
+          foreach ($phaseName in @(
+            'runtime-locale-build-1', 'runtime-locale-build-2',
+            'custom-poe1-data-build-1', 'custom-poe1-data-build-2'
+          )) {
+            if ($phaseName -notin $phaseNames) { throw "Missing deterministic phase: $phaseName" }
+          }
+
+      - name: Preserve reports and restore only generated report working files
+        shell: pwsh
+        run: |
+          $evidenceReports = Join-Path $env:EVIDENCE_ROOT 'reports'
+          foreach ($source in @(
+            'reports/maintenance/source-overlay.json',
+            'reports/maintenance/source-display.json',
+            'reports/display-closure/locale-audit.json',
+            'reports/display-closure/locale-audit-summary.json',
+            'reports/display-closure/provenance.json',
+            'reports/official-terms/custom-data.json',
+            'reports/official-terms/custom-data-pending.json',
+            'reports/official-terms/item-metadata.json'
+          )) {
+            if (Test-Path -LiteralPath $source -PathType Leaf) {
+              $destination = Join-Path $evidenceReports ($source -replace '/', '__')
+              Copy-Item -LiteralPath $source -Destination $destination
+            }
+          }
+          git restore --worktree -- reports/display-closure/locale-audit-summary.json reports/display-closure/provenance.json reports/official-terms/custom-data.json reports/official-terms/custom-data-pending.json reports/official-terms/item-metadata.json
+          if ($LASTEXITCODE -ne 0) { throw 'Known tracked report restoration failed' }
+          foreach ($generatedReport in @(
+            'reports/maintenance/source-overlay.json',
+            'reports/maintenance/source-display.json',
+            'reports/display-closure/locale-audit.json'
+          )) {
+            if (Test-Path -LiteralPath $generatedReport) { Remove-Item -LiteralPath $generatedReport -Force }
+          }
+          if ((git status --porcelain=v1 --untracked-files=all).Count -ne 0) { throw 'Repository changed during read-only validation' }
+
+      - name: Stage exact retained distribution assets in the detached engine
+        shell: pwsh
+        run: |
+          $engineRoot = Join-Path '${{ github.workspace }}' '.ko-worktrees/validate-ko/pob-zh-engine'
+          $retainedAssets = [ordered]@{
+            'dist/Data/launcher/ko-KR/launcher.json' = '83401B058CD4F93029C5C87EE633DCE21D8A006357A1E02C483DD3E67ECCBBB0'
+            'dist/Data/launcher/ko-KR/meta.json' = 'D7B59E5EB50FAA03877FC401393B18572AB89C7A296125D0D0D8B9751E3D790A'
+            'dist/Fonts/NotoSansKR-Variable.ttf' = '194018E6B2B293A7964F037B25C0249CE1418BC9AB3C971060A03AA57861E252'
+            'dist/Fonts/OFL-NotoSansKR.txt' = '1C05C68C34F9708415AADA51F17E1B0092D2CEA709BF4A94CD38114F9E73D7D9'
+          }
+          foreach ($relativePath in $retainedAssets.Keys) {
+            $source = Join-Path '${{ github.workspace }}/pob-zh-engine' $relativePath
+            $destination = Join-Path $engineRoot $relativePath
+            if ((Get-FileHash -LiteralPath $source -Algorithm SHA256).Hash -ne $retainedAssets[$relativePath]) {
+              throw "Retained source hash mismatch: $relativePath"
+            }
+            New-Item -ItemType Directory -Force -Path (Split-Path -Parent $destination) | Out-Null
+            Copy-Item -LiteralPath $source -Destination $destination
+            if ((Get-FileHash -LiteralPath $destination -Algorithm SHA256).Hash -ne $retainedAssets[$relativePath]) {
+              throw "Staged asset hash mismatch: $relativePath"
+            }
+          }
+
+      - name: Run all Node contracts against the detached engine
+        shell: pwsh
+        env:
+          POBTOOLS_ENGINE_ROOT: ${{ github.workspace }}/.ko-worktrees/validate-ko/pob-zh-engine
+          POBTOOLS_REPORT_ROOT: ${{ github.workspace }}/reports
+        run: |
+          node --test localization/ko-KR/tests/*.test.mjs *>&1 |
+            Tee-Object -FilePath (Join-Path $env:EVIDENCE_ROOT 'logs/node-tests.log')
+          if ($LASTEXITCODE -ne 0) { throw 'Node validation failed' }
+
+      - name: Run PowerShell contracts against the detached engine
+        shell: pwsh
+        run: |
+          $engineRoot = Join-Path '${{ github.workspace }}' '.ko-worktrees/validate-ko/pob-zh-engine'
+          $reportRoot = Join-Path '${{ github.workspace }}' 'reports'
+          & tests/ko-KR/Test-KoreanLocale.ps1 -EngineRoot $engineRoot *>&1 |
+            Tee-Object -FilePath (Join-Path $env:EVIDENCE_ROOT 'logs/korean-locale.log')
+          if ($LASTEXITCODE -ne 0) { throw 'Korean locale contract failed' }
+          & tests/ko-KR/Test-OfficialTerms.ps1 -EngineRoot $engineRoot -ReportRoot $reportRoot *>&1 |
+            Tee-Object -FilePath (Join-Path $env:EVIDENCE_ROOT 'logs/official-terms.log')
+          if ($LASTEXITCODE -ne 0) { throw 'Official terms contract failed' }
+
+      - name: Upload validation evidence only
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: ko-validation-evidence
+          path: ${{ runner.temp }}/ko-validation-evidence
+          if-no-files-found: error
+          retention-days: 14

@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "commit": "ba33ed80de67d8301baad930456131d581df6ae1",
   "upstreamRef": "ba33ed80de67d8301baad930456131d581df6ae1",
-  "classification": "ready",
+  "classification": "already-processed",
   "newStrings": [],
   "suggestedStrings": [],
   "ambiguousStrings": [],
@@ -23,7 +23,7 @@
         "apply",
         "--check",
         "--whitespace=nowarn",
-        "C:\\Users\\hotdd\\OneDrive\\문서\\pob_korean\\PobTools-ko-source\\.worktrees\\ko-maintenance-automation\\localization\\ko-KR\\compat\\pobtools-ko.patch"
+        "$REPOSITORY_ROOT/localization/ko-KR/compat/pobtools-ko.patch"
       ],
       "exitCode": 0,
       "stderr": ""
@@ -38,7 +38,7 @@
         "core.eol=lf",
         "apply",
         "--whitespace=nowarn",
-        "C:\\Users\\hotdd\\OneDrive\\문서\\pob_korean\\PobTools-ko-source\\.worktrees\\ko-maintenance-automation\\localization\\ko-KR\\compat\\pobtools-ko.patch"
+        "$REPOSITORY_ROOT/localization/ko-KR/compat/pobtools-ko.patch"
       ],
       "exitCode": 0,
       "stderr": ""
@@ -47,18 +47,18 @@
       "name": "source-overlay-audit",
       "command": [
         "python",
-        "C:\\Users\\hotdd\\OneDrive\\문서\\pob_korean\\PobTools-ko-source\\.worktrees\\ko-maintenance-automation\\localization\\ko-KR\\lib\\source_overlay.py",
+        "$REPOSITORY_ROOT/localization/ko-KR/lib/source_overlay.py",
         "audit",
         "--source-root",
-        "C:\\Users\\hotdd\\OneDrive\\문서\\pob_korean\\PobTools-ko-source\\.worktrees\\ko-maintenance-automation\\.ko-worktrees\\ba33ed8\\pob-zh-engine",
+        "$WORKSPACE_ROOT/pob-zh-engine",
         "--mapping",
-        "C:\\Users\\hotdd\\OneDrive\\문서\\pob_korean\\PobTools-ko-source\\.worktrees\\ko-maintenance-automation\\localization\\ko-KR\\source-translations.json",
+        "$REPOSITORY_ROOT/localization/ko-KR/source-translations.json",
         "--policy",
-        "C:\\Users\\hotdd\\OneDrive\\문서\\pob_korean\\PobTools-ko-source\\.worktrees\\ko-maintenance-automation\\localization\\ko-KR\\source-display-policy.json",
+        "$REPOSITORY_ROOT/localization/ko-KR/source-display-policy.json",
         "--report",
-        "C:\\Users\\hotdd\\OneDrive\\문서\\pob_korean\\PobTools-ko-source\\.worktrees\\ko-maintenance-automation\\reports\\maintenance\\source-overlay.json",
+        "$REPOSITORY_ROOT/reports/maintenance/source-overlay.json",
         "--compatibility-patch",
-        "C:\\Users\\hotdd\\OneDrive\\문서\\pob_korean\\PobTools-ko-source\\.worktrees\\ko-maintenance-automation\\localization\\ko-KR\\compat\\pobtools-ko.patch"
+        "$REPOSITORY_ROOT/localization/ko-KR/compat/pobtools-ko.patch"
       ],
       "exitCode": 0,
       "stderr": ""
@@ -67,18 +67,18 @@
       "name": "source-overlay-apply",
       "command": [
         "python",
-        "C:\\Users\\hotdd\\OneDrive\\문서\\pob_korean\\PobTools-ko-source\\.worktrees\\ko-maintenance-automation\\localization\\ko-KR\\lib\\source_overlay.py",
+        "$REPOSITORY_ROOT/localization/ko-KR/lib/source_overlay.py",
         "apply",
         "--source-root",
-        "C:\\Users\\hotdd\\OneDrive\\문서\\pob_korean\\PobTools-ko-source\\.worktrees\\ko-maintenance-automation\\.ko-worktrees\\ba33ed8\\pob-zh-engine",
+        "$WORKSPACE_ROOT/pob-zh-engine",
         "--mapping",
-        "C:\\Users\\hotdd\\OneDrive\\문서\\pob_korean\\PobTools-ko-source\\.worktrees\\ko-maintenance-automation\\localization\\ko-KR\\source-translations.json",
+        "$REPOSITORY_ROOT/localization/ko-KR/source-translations.json",
         "--policy",
-        "C:\\Users\\hotdd\\OneDrive\\문서\\pob_korean\\PobTools-ko-source\\.worktrees\\ko-maintenance-automation\\localization\\ko-KR\\source-display-policy.json",
+        "$REPOSITORY_ROOT/localization/ko-KR/source-display-policy.json",
         "--report",
-        "C:\\Users\\hotdd\\OneDrive\\문서\\pob_korean\\PobTools-ko-source\\.worktrees\\ko-maintenance-automation\\reports\\maintenance\\source-overlay.json",
+        "$REPOSITORY_ROOT/reports/maintenance/source-overlay.json",
         "--compatibility-patch",
-        "C:\\Users\\hotdd\\OneDrive\\문서\\pob_korean\\PobTools-ko-source\\.worktrees\\ko-maintenance-automation\\localization\\ko-KR\\compat\\pobtools-ko.patch"
+        "$REPOSITORY_ROOT/localization/ko-KR/compat/pobtools-ko.patch"
       ],
       "exitCode": 0,
       "stderr": ""
@@ -86,12 +86,12 @@
     {
       "name": "runtime-locale-build-1",
       "command": [
-        "C:\\Program Files\\nodejs\\node.exe",
-        "C:\\Users\\hotdd\\OneDrive\\문서\\pob_korean\\PobTools-ko-source\\.worktrees\\ko-maintenance-automation\\localization\\ko-KR\\build-runtime-locale.mjs",
+        "$NODE",
+        "$REPOSITORY_ROOT/localization/ko-KR/build-runtime-locale.mjs",
         "--engine-root",
-        "C:\\Users\\hotdd\\OneDrive\\문서\\pob_korean\\PobTools-ko-source\\.worktrees\\ko-maintenance-automation\\.ko-worktrees\\ba33ed8\\pob-zh-engine",
+        "$WORKSPACE_ROOT/pob-zh-engine",
         "--report-root",
-        "C:\\Users\\hotdd\\OneDrive\\문서\\pob_korean\\PobTools-ko-source\\.worktrees\\ko-maintenance-automation\\reports"
+        "$REPOSITORY_ROOT/reports"
       ],
       "exitCode": 0,
       "stderr": ""
@@ -99,12 +99,12 @@
     {
       "name": "runtime-locale-build-2",
       "command": [
-        "C:\\Program Files\\nodejs\\node.exe",
-        "C:\\Users\\hotdd\\OneDrive\\문서\\pob_korean\\PobTools-ko-source\\.worktrees\\ko-maintenance-automation\\localization\\ko-KR\\build-runtime-locale.mjs",
+        "$NODE",
+        "$REPOSITORY_ROOT/localization/ko-KR/build-runtime-locale.mjs",
         "--engine-root",
-        "C:\\Users\\hotdd\\OneDrive\\문서\\pob_korean\\PobTools-ko-source\\.worktrees\\ko-maintenance-automation\\.ko-worktrees\\ba33ed8\\pob-zh-engine",
+        "$WORKSPACE_ROOT/pob-zh-engine",
         "--report-root",
-        "C:\\Users\\hotdd\\OneDrive\\문서\\pob_korean\\PobTools-ko-source\\.worktrees\\ko-maintenance-automation\\reports"
+        "$REPOSITORY_ROOT/reports"
       ],
       "exitCode": 0,
       "stderr": ""
@@ -112,12 +112,12 @@
     {
       "name": "custom-poe1-data-build-1",
       "command": [
-        "C:\\Program Files\\nodejs\\node.exe",
-        "C:\\Users\\hotdd\\OneDrive\\문서\\pob_korean\\PobTools-ko-source\\.worktrees\\ko-maintenance-automation\\localization\\ko-KR\\build-custom-poe1-data.mjs",
+        "$NODE",
+        "$REPOSITORY_ROOT/localization/ko-KR/build-custom-poe1-data.mjs",
         "--engine-root",
-        "C:\\Users\\hotdd\\OneDrive\\문서\\pob_korean\\PobTools-ko-source\\.worktrees\\ko-maintenance-automation\\.ko-worktrees\\ba33ed8\\pob-zh-engine",
+        "$WORKSPACE_ROOT/pob-zh-engine",
         "--report-root",
-        "C:\\Users\\hotdd\\OneDrive\\문서\\pob_korean\\PobTools-ko-source\\.worktrees\\ko-maintenance-automation\\reports"
+        "$REPOSITORY_ROOT/reports"
       ],
       "exitCode": 0,
       "stderr": ""
@@ -125,12 +125,12 @@
     {
       "name": "custom-poe1-data-build-2",
       "command": [
-        "C:\\Program Files\\nodejs\\node.exe",
-        "C:\\Users\\hotdd\\OneDrive\\문서\\pob_korean\\PobTools-ko-source\\.worktrees\\ko-maintenance-automation\\localization\\ko-KR\\build-custom-poe1-data.mjs",
+        "$NODE",
+        "$REPOSITORY_ROOT/localization/ko-KR/build-custom-poe1-data.mjs",
         "--engine-root",
-        "C:\\Users\\hotdd\\OneDrive\\문서\\pob_korean\\PobTools-ko-source\\.worktrees\\ko-maintenance-automation\\.ko-worktrees\\ba33ed8\\pob-zh-engine",
+        "$WORKSPACE_ROOT/pob-zh-engine",
         "--report-root",
-        "C:\\Users\\hotdd\\OneDrive\\문서\\pob_korean\\PobTools-ko-source\\.worktrees\\ko-maintenance-automation\\reports"
+        "$REPOSITORY_ROOT/reports"
       ],
       "exitCode": 0,
       "stderr": ""
@@ -138,12 +138,12 @@
     {
       "name": "runtime-display-audit",
       "command": [
-        "C:\\Program Files\\nodejs\\node.exe",
-        "C:\\Users\\hotdd\\OneDrive\\문서\\pob_korean\\PobTools-ko-source\\.worktrees\\ko-maintenance-automation\\localization\\ko-KR\\audit-display-closure.mjs",
+        "$NODE",
+        "$REPOSITORY_ROOT/localization/ko-KR/audit-display-closure.mjs",
         "--engine-root",
-        "C:\\Users\\hotdd\\OneDrive\\문서\\pob_korean\\PobTools-ko-source\\.worktrees\\ko-maintenance-automation\\.ko-worktrees\\ba33ed8\\pob-zh-engine",
+        "$WORKSPACE_ROOT/pob-zh-engine",
         "--report-root",
-        "C:\\Users\\hotdd\\OneDrive\\문서\\pob_korean\\PobTools-ko-source\\.worktrees\\ko-maintenance-automation\\reports"
+        "$REPOSITORY_ROOT/reports"
       ],
       "exitCode": 0,
       "stderr": ""
@@ -151,14 +151,14 @@
     {
       "name": "generated-source-display-audit",
       "command": [
-        "C:\\Program Files\\nodejs\\node.exe",
-        "C:\\Users\\hotdd\\OneDrive\\문서\\pob_korean\\PobTools-ko-source\\.worktrees\\ko-maintenance-automation\\localization\\ko-KR\\audit-source-display.mjs",
+        "$NODE",
+        "$REPOSITORY_ROOT/localization/ko-KR/audit-source-display.mjs",
         "--engine-root",
-        "C:\\Users\\hotdd\\OneDrive\\문서\\pob_korean\\PobTools-ko-source\\.worktrees\\ko-maintenance-automation\\.ko-worktrees\\ba33ed8\\pob-zh-engine",
+        "$WORKSPACE_ROOT/pob-zh-engine",
         "--overlay-report",
-        "C:\\Users\\hotdd\\OneDrive\\문서\\pob_korean\\PobTools-ko-source\\.worktrees\\ko-maintenance-automation\\reports\\maintenance\\source-overlay.json",
+        "$REPOSITORY_ROOT/reports/maintenance/source-overlay.json",
         "--report",
-        "C:\\Users\\hotdd\\OneDrive\\문서\\pob_korean\\PobTools-ko-source\\.worktrees\\ko-maintenance-automation\\reports\\maintenance\\source-display.json"
+        "$REPOSITORY_ROOT/reports/maintenance/source-display.json"
       ],
       "exitCode": 0,
       "stderr": ""
@@ -172,10 +172,10 @@
     {
       "name": "static-korean-behavior-contracts",
       "command": [
-        "C:\\Program Files\\nodejs\\node.exe",
+        "$NODE",
         "--test",
-        "C:\\Users\\hotdd\\OneDrive\\문서\\pob_korean\\PobTools-ko-source\\.worktrees\\ko-maintenance-automation\\localization\\ko-KR\\tests\\korean-update-contract.test.mjs",
-        "C:\\Users\\hotdd\\OneDrive\\문서\\pob_korean\\PobTools-ko-source\\.worktrees\\ko-maintenance-automation\\localization\\ko-KR\\tests\\filter-i18n-contract.test.mjs"
+        "$REPOSITORY_ROOT/localization/ko-KR/tests/korean-update-contract.test.mjs",
+        "$REPOSITORY_ROOT/localization/ko-KR/tests/filter-i18n-contract.test.mjs"
       ],
       "exitCode": 0,
       "stderr": ""

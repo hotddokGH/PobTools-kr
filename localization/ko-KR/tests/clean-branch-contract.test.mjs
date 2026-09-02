@@ -11,6 +11,10 @@ const repositoryRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..', '.
 const pinnedBase = 'ba33ed80de67d8301baad930456131d581df6ae1';
 const expectedFontSha256 = '194018E6B2B293A7964F037B25C0249CE1418BC9AB3C971060A03AA57861E252';
 const fontPath = 'pob-zh-engine/dist/Fonts/NotoSansKR-Variable.ttf';
+const retainedAssetHashes = new Map([
+  ['pob-zh-engine/dist/Data/launcher/ko-KR/launcher.json', '83401B058CD4F93029C5C87EE633DCE21D8A006357A1E02C483DD3E67ECCBBB0'],
+  ['pob-zh-engine/dist/Data/launcher/ko-KR/meta.json', 'D7B59E5EB50FAA03877FC401393B18572AB89C7A296125D0D0D8B9751E3D790A'],
+]);
 
 function gitBytes(...arguments_) {
   return execFileSync('git', arguments_, { cwd: repositoryRoot, encoding: null, maxBuffer: 16 * 1024 * 1024 });
@@ -78,4 +82,8 @@ test('ko/main retains exact upstream sources and only the manifest inventory', {
 
   const fontBytes = gitBytes('cat-file', 'blob', `${head}:${fontPath}`);
   assert.equal(createHash('sha256').update(fontBytes).digest('hex').toUpperCase(), expectedFontSha256);
+  for (const [path, expectedSha256] of retainedAssetHashes) {
+    const bytes = gitBytes('cat-file', 'blob', `${head}:${path}`);
+    assert.equal(createHash('sha256').update(bytes).digest('hex').toUpperCase(), expectedSha256, path);
+  }
 });

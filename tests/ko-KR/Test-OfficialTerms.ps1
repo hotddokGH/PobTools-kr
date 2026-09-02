@@ -1,8 +1,32 @@
+[CmdletBinding()]
+param(
+    [string]$EngineRoot,
+    [string]$ReportRoot
+)
+
 $ErrorActionPreference = 'Stop'
 
 $repoRoot = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
-$rootPath = Join-Path $repoRoot 'pob-zh-engine\dist'
-$reportRoot = Join-Path $repoRoot 'reports\official-terms'
+$resolvedEngineRoot = if ($PSBoundParameters.ContainsKey('EngineRoot')) {
+    if (-not (Test-Path -LiteralPath $EngineRoot -PathType Container)) {
+        throw 'EngineRoot must be an existing directory'
+    }
+    (Resolve-Path -LiteralPath $EngineRoot).Path
+}
+else {
+    Join-Path $repoRoot 'pob-zh-engine'
+}
+$resolvedReportRoot = if ($PSBoundParameters.ContainsKey('ReportRoot')) {
+    if (-not (Test-Path -LiteralPath $ReportRoot -PathType Container)) {
+        throw 'ReportRoot must be an existing directory'
+    }
+    (Resolve-Path -LiteralPath $ReportRoot).Path
+}
+else {
+    Join-Path $repoRoot 'reports'
+}
+$rootPath = Join-Path $resolvedEngineRoot 'dist'
+$reportRoot = Join-Path $resolvedReportRoot 'official-terms'
 $failures = [System.Collections.Generic.List[string]]::new()
 
 function Read-JsonFile {
@@ -27,7 +51,7 @@ function Get-NumberedPlaceholders {
     return @([regex]::Matches($Text, '\{\d+\}') | ForEach-Object { $_.Value } | Sort-Object)
 }
 
-$provenance = Read-JsonFile -Path (Join-Path $repoRoot 'reports\display-closure\provenance.json')
+$provenance = Read-JsonFile -Path (Join-Path $resolvedReportRoot 'display-closure\provenance.json')
 
 function Test-OfficialStructuralProvenance {
     param(
