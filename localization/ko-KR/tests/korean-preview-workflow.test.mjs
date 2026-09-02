@@ -6,7 +6,11 @@ import { fileURLToPath } from 'node:url';
 
 const repositoryRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..', '..');
 const workflowPath = join(repositoryRoot, '.github', 'workflows', 'build-ko-preview.yml');
+const vcpkgConfigurationPath = join(repositoryRoot, 'pob-zh-engine', 'vcpkg-configuration.json');
 const readWorkflow = () => readFileSync(workflowPath, 'utf8').replaceAll('\r\n', '\n');
+
+const VCPKG_TOOLCHAIN_COMMIT = '30ef65cad98f08e7197c9a1656fbd871bcb72f2d';
+const VCPKG_DEPENDENCY_BASELINE = '3d72d8c930e1b6a1b2432b262c61af7d3287dcd0';
 
 test('preview workflow is manual, read-only, pinned, and bound to exact ko/main identity', () => {
   const workflow = readWorkflow();
@@ -50,10 +54,20 @@ test('preview workflow prepares and gates the reviewed detached engine before na
   assert.match(workflow, /git -C \$engineRoot rev-parse HEAD/u);
   assert.doesNotMatch(workflow, /cmake\s+(?:-S|--build|--install)\s+pob-zh-engine(?:\s|$)/u);
   assert.match(workflow, /git clone[^\n]*microsoft\/vcpkg[^\n]*\.ko-worktrees\/release\/pob-zh-engine\/vcpkg/u);
-  assert.match(workflow, /3d72d8c930e1b6a1b2432b262c61af7d3287dcd0/u);
+  assert.equal(workflow.match(new RegExp(VCPKG_TOOLCHAIN_COMMIT, 'gu'))?.length, 2);
   assert.match(workflow, /cmake -S \$engineRoot -B \$buildRoot[\s\S]*-DPOBTOOLS_KOREAN_RELEASE=ON/u);
   assert.match(workflow, /cmake --build \$buildRoot --config Release/u);
   assert.match(workflow, /cmake --install \$buildRoot --config Release --prefix \$installRoot/u);
+});
+
+test('preview workflow refreshes vcpkg tooling without changing the reviewed dependency baseline', () => {
+  const workflow = readWorkflow();
+  const configuration = JSON.parse(readFileSync(vcpkgConfigurationPath, 'utf8'));
+
+  assert.equal(configuration['default-registry'].baseline, VCPKG_DEPENDENCY_BASELINE);
+  assert.notEqual(VCPKG_TOOLCHAIN_COMMIT, VCPKG_DEPENDENCY_BASELINE);
+  assert.equal(workflow.match(new RegExp(VCPKG_TOOLCHAIN_COMMIT, 'gu'))?.length, 2);
+  assert.doesNotMatch(workflow, new RegExp(`checkout ${VCPKG_DEPENDENCY_BASELINE}`, 'u'));
 });
 
 test('preview workflow verifies offline unsigned executable, generated assets, package, provenance, and extracted ZIP', () => {

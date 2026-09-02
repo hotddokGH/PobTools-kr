@@ -172,10 +172,10 @@ jobs:
           $vcpkgRoot = Join-Path $env:ENGINE_ROOT 'vcpkg'
           git clone --filter=blob:none https://github.com/microsoft/vcpkg .ko-worktrees/release/pob-zh-engine/vcpkg
           if ($LASTEXITCODE -ne 0) { throw 'vcpkg clone failed' }
-          git -C $vcpkgRoot checkout 3d72d8c930e1b6a1b2432b262c61af7d3287dcd0
+          git -C $vcpkgRoot checkout 30ef65cad98f08e7197c9a1656fbd871bcb72f2d
           if ($LASTEXITCODE -ne 0) { throw 'vcpkg checkout failed' }
           $vcpkgCommit = (git -C $vcpkgRoot rev-parse HEAD).Trim().ToLowerInvariant()
-          if ($LASTEXITCODE -ne 0 -or $vcpkgCommit -cne '3d72d8c930e1b6a1b2432b262c61af7d3287dcd0') { throw 'vcpkg identity mismatch' }
+          if ($LASTEXITCODE -ne 0 -or $vcpkgCommit -cne '30ef65cad98f08e7197c9a1656fbd871bcb72f2d') { throw 'vcpkg identity mismatch' }
           & (Join-Path $vcpkgRoot 'bootstrap-vcpkg.bat') -disableMetrics
           if ($LASTEXITCODE -ne 0) { throw 'vcpkg bootstrap failed' }
 
