@@ -81,6 +81,10 @@ function assertNoTransactionTemporaries(destinationRoot) {
   assert.equal(snapshotTree(destinationRoot).some((row) => String(row[1]).includes('.pobtools-')), false);
 }
 
+function brokenDirectoryLink(target, path) {
+  symlinkSync(target, path, process.platform === 'win32' ? 'junction' : 'dir');
+}
+
 test('creates a deterministic sorted data-only bundle and reproduces it across roots', (t) => {
   const first = fixture(t);
   const second = fixture(t);
@@ -330,6 +334,106 @@ test('a partial temporary write failure leaves no destination changes or tempora
   }), /injected partial temporary write failure/u);
   assert.deepEqual(snapshotTree(damaged.destinationRoot), before);
   assertNoTransactionTemporaries(damaged.destinationRoot);
+});
+
+test('a broken junction substituted for a verified temporary is removed without residue or traversal', (t) => {
+  const attacked = fixture(t);
+  createMaintenanceBundle({ sourceRoot: attacked.sourceRoot, bundleRoot: attacked.bundleRoot });
+  const verifiedBundle = verifyMaintenanceBundle({ bundleRoot: attacked.bundleRoot, stagingRoot: join(attacked.root, 'staging') });
+  mkdirSync(attacked.destinationRoot);
+  write(join(attacked.destinationRoot, 'sentinel.txt'), 'destination-original');
+  const before = snapshotTree(attacked.destinationRoot);
+  const missingOutside = join(attacked.root, 'missing-outside-directory');
+  let substituted = false;
+  assert.throws(() => copyVerifiedMaintenanceBundle({
+    verifiedBundle,
+    destinationRoot: attacked.destinationRoot,
+    operations: {
+      beforeReplace({ relativePath }) {
+        if (substituted) return;
+        substituted = true;
+        const temporary = findTransactionTemporary(attacked.destinationRoot, relativePath);
+        unlinkSync(temporary);
+        brokenDirectoryLink(missingOutside, temporary);
+      },
+    },
+  }));
+  assert.equal(existsSync(missingOutside), false);
+  assert.deepEqual(snapshotTree(attacked.destinationRoot), before);
+  assertNoTransactionTemporaries(attacked.destinationRoot);
+});
+
+test('a broken junction occupying the first temporary name is treated as a collision without traversal', (t) => {
+  const attacked = fixture(t);
+  createMaintenanceBundle({ sourceRoot: attacked.sourceRoot, bundleRoot: attacked.bundleRoot });
+  const verifiedBundle = verifyMaintenanceBundle({ bundleRoot: attacked.bundleRoot, stagingRoot: join(attacked.root, 'staging') });
+  const firstRelative = 'localization/ko-KR/source-translation-suggestions.json';
+  const parent = dirname(join(attacked.destinationRoot, ...firstRelative.split('/')));
+  mkdirSync(parent, { recursive: true });
+  const collision = join(parent, `.source-translation-suggestions.json.pobtools-${process.pid}-0-0.tmp`);
+  const missingOutside = join(attacked.root, 'missing-collision-target');
+  brokenDirectoryLink(missingOutside, collision);
+  copyVerifiedMaintenanceBundle({ verifiedBundle, destinationRoot: attacked.destinationRoot });
+  assert.equal(existsSync(missingOutside), false);
+  assert.equal(lstatSync(collision).isSymbolicLink(), true);
+  assert.equal(readFileSync(join(attacked.destinationRoot, ...firstRelative.split('/')), 'utf8'), '{"rows":[]}\n');
+  unlinkSync(collision);
+  assertNoTransactionTemporaries(attacked.destinationRoot);
+});
+
+test('a broken junction appearing on a newly installed target is rolled back exactly', (t) => {
+  const attacked = fixture(t);
+  createMaintenanceBundle({ sourceRoot: attacked.sourceRoot, bundleRoot: attacked.bundleRoot });
+  const verifiedBundle = verifyMaintenanceBundle({ bundleRoot: attacked.bundleRoot, stagingRoot: join(attacked.root, 'staging') });
+  mkdirSync(attacked.destinationRoot);
+  write(join(attacked.destinationRoot, 'sentinel.txt'), 'destination-original');
+  const before = snapshotTree(attacked.destinationRoot);
+  const missingOutside = join(attacked.root, 'missing-post-install-target');
+  let substituted = false;
+  assert.throws(() => copyVerifiedMaintenanceBundle({
+    verifiedBundle,
+    destinationRoot: attacked.destinationRoot,
+    operations: {
+      afterInstall({ relativePath }) {
+        if (substituted) return;
+        substituted = true;
+        const target = join(attacked.destinationRoot, ...relativePath.split('/'));
+        unlinkSync(target);
+        brokenDirectoryLink(missingOutside, target);
+      },
+    },
+  }));
+  assert.equal(existsSync(missingOutside), false);
+  assert.deepEqual(snapshotTree(attacked.destinationRoot), before);
+  assertNoTransactionTemporaries(attacked.destinationRoot);
+});
+
+test('a broken junction appearing after replacement restores pre-existing destination bytes', (t) => {
+  const attacked = fixture(t);
+  createMaintenanceBundle({ sourceRoot: attacked.sourceRoot, bundleRoot: attacked.bundleRoot });
+  const verifiedBundle = verifyMaintenanceBundle({ bundleRoot: attacked.bundleRoot, stagingRoot: join(attacked.root, 'staging') });
+  const firstRelative = 'localization/ko-KR/source-translation-suggestions.json';
+  write(join(attacked.destinationRoot, ...firstRelative.split('/')), 'pre-existing destination bytes');
+  write(join(attacked.destinationRoot, 'sentinel.txt'), 'destination-original');
+  const before = snapshotTree(attacked.destinationRoot);
+  const missingOutside = join(attacked.root, 'missing-restore-target');
+  let substituted = false;
+  assert.throws(() => copyVerifiedMaintenanceBundle({
+    verifiedBundle,
+    destinationRoot: attacked.destinationRoot,
+    operations: {
+      afterInstall({ relativePath }) {
+        if (substituted) return;
+        substituted = true;
+        const target = join(attacked.destinationRoot, ...relativePath.split('/'));
+        unlinkSync(target);
+        brokenDirectoryLink(missingOutside, target);
+      },
+    },
+  }));
+  assert.equal(existsSync(missingOutside), false);
+  assert.deepEqual(snapshotTree(attacked.destinationRoot), before);
+  assertNoTransactionTemporaries(attacked.destinationRoot);
 });
 
 test('rejects non-empty output directories instead of overwriting existing bundle or staging data', (t) => {

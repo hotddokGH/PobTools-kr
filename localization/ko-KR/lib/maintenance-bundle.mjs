@@ -41,6 +41,15 @@ function isInside(path, root) {
   return normalized(path) === normalized(root) || normalized(path).startsWith(`${normalized(root)}${sep}`);
 }
 
+function lstatEntry(path) {
+  try {
+    return lstatSync(path);
+  } catch (error) {
+    if (error?.code === 'ENOENT') return undefined;
+    throw error;
+  }
+}
+
 function assertRegularRoot(path, label) {
   if (!existsSync(path)) throw new Error(`${label} does not exist`);
   const metadata = lstatSync(path);
@@ -237,19 +246,23 @@ export function verifyMaintenanceBundle({ bundleRoot, stagingRoot }) {
 
 function assertDestinationSafe(destinationRoot, paths) {
   const root = resolve(destinationRoot);
-  if (existsSync(root)) assertRegularRoot(root, 'destination root');
+  const rootMetadata = lstatEntry(root);
+  if (rootMetadata && (rootMetadata.isSymbolicLink() || !rootMetadata.isDirectory())) {
+    throw new Error('destination root must be a regular directory');
+  }
+  const realRoot = rootMetadata ? realpathSync(root) : undefined;
   for (const path of paths) {
     const target = join(root, ...path.split('/'));
     if (!isInside(target, root)) throw new Error(`bundle destination escapes its root: ${path}`);
     let cursor = root;
     for (const segment of path.split('/')) {
       cursor = join(cursor, segment);
-      if (!existsSync(cursor)) break;
-      const metadata = lstatSync(cursor);
+      const metadata = lstatEntry(cursor);
+      if (!metadata) break;
       if (metadata.isSymbolicLink()) throw new Error(`bundle destination contains a symbolic link, junction, or reparse point: ${path}`);
       if (cursor !== target && !metadata.isDirectory()) throw new Error(`bundle destination ancestor is not a directory: ${path}`);
       if (cursor === target && !metadata.isFile()) throw new Error(`bundle destination is not a regular file: ${path}`);
-      if (existsSync(root) && !isInside(realpathSync(cursor), realpathSync(root))) throw new Error(`bundle destination resolves outside its root: ${path}`);
+      if (realRoot && !isInside(realpathSync(cursor), realRoot)) throw new Error(`bundle destination resolves outside its root: ${path}`);
     }
   }
 }
@@ -257,47 +270,46 @@ function assertDestinationSafe(destinationRoot, paths) {
 function ensureSafeDirectoryChain(root, parent, createdDirectories) {
   const relativeParent = relative(root, parent);
   let cursor = root;
-  if (!existsSync(root)) {
+  if (!lstatEntry(root)) {
     mkdirSync(root);
     createdDirectories.push(root);
   }
-  assertRegularRoot(root, 'destination root');
+  const rootMetadata = lstatEntry(root);
+  if (!rootMetadata || rootMetadata.isSymbolicLink() || !rootMetadata.isDirectory()) {
+    throw new Error('destination root must be a regular directory');
+  }
+  const realRoot = realpathSync(root);
   if (!relativeParent) return;
   for (const segment of relativeParent.split(sep)) {
     cursor = join(cursor, segment);
-    if (!existsSync(cursor)) {
+    if (!lstatEntry(cursor)) {
       mkdirSync(cursor);
       createdDirectories.push(cursor);
     }
-    const metadata = lstatSync(cursor);
+    const metadata = lstatEntry(cursor);
     if (metadata.isSymbolicLink() || !metadata.isDirectory()) {
       throw new Error(`bundle destination ancestor is not a regular directory: ${relativeParent.split(sep).join('/')}`);
     }
-    if (!isInside(realpathSync(cursor), realpathSync(root))) {
+    if (!isInside(realpathSync(cursor), realRoot)) {
       throw new Error(`bundle destination ancestor resolves outside its root: ${relativeParent.split(sep).join('/')}`);
     }
   }
 }
 
-function removeIfPresent(path) {
-  if (!existsSync(path)) return;
-  const metadata = lstatSync(path);
-  if (metadata.isSymbolicLink() || !metadata.isFile()) {
-    throw new Error(`transaction entry is no longer a regular file: ${path}`);
-  }
-  unlinkSync(path);
-}
-
 function assertSafeDestinationParent(destination, path) {
   const parent = dirname(path);
   if (!isInside(parent, destination)) throw new Error('transaction path escapes the destination root');
-  assertRegularRoot(destination, 'destination root');
+  const rootMetadata = lstatEntry(destination);
+  if (!rootMetadata || rootMetadata.isSymbolicLink() || !rootMetadata.isDirectory()) {
+    throw new Error('destination root must be a regular directory');
+  }
+  const realRoot = realpathSync(destination);
   let cursor = destination;
   for (const segment of relative(destination, parent).split(sep).filter(Boolean)) {
     cursor = join(cursor, segment);
-    if (!existsSync(cursor)) throw new Error(`transaction parent is missing: ${relative(destination, parent).split(sep).join('/')}`);
-    const metadata = lstatSync(cursor);
-    if (metadata.isSymbolicLink() || !metadata.isDirectory() || !isInside(realpathSync(cursor), realpathSync(destination))) {
+    const metadata = lstatEntry(cursor);
+    if (!metadata) throw new Error(`transaction parent is missing: ${relative(destination, parent).split(sep).join('/')}`);
+    if (metadata.isSymbolicLink() || !metadata.isDirectory() || !isInside(realpathSync(cursor), realRoot)) {
       throw new Error(`transaction parent is not a safe regular directory: ${relative(destination, parent).split(sep).join('/')}`);
     }
   }
@@ -305,15 +317,23 @@ function assertSafeDestinationParent(destination, path) {
 
 function removeTransactionTemporary(path, destination) {
   assertSafeDestinationParent(destination, path);
-  if (!existsSync(path)) return;
-  const metadata = lstatSync(path);
+  const metadata = lstatEntry(path);
+  if (!metadata) return;
   if (!metadata.isFile() && !metadata.isSymbolicLink()) throw new Error(`transaction temporary is not removable: ${path}`);
   unlinkSync(path);
 }
 
+function removeDestinationLeaf(path, destination) {
+  assertSafeDestinationParent(destination, path);
+  const metadata = lstatEntry(path);
+  if (!metadata) return;
+  if (!metadata.isFile() && !metadata.isSymbolicLink()) throw new Error(`transaction destination is not removable: ${path}`);
+  unlinkSync(path);
+}
+
 function assertIndependentExpectedFile(path, row, label) {
-  if (!existsSync(path)) throw new Error(`${label} must be an independent regular file with exactly one hard link: ${row.path}`);
-  const metadata = lstatSync(path);
+  const metadata = lstatEntry(path);
+  if (!metadata) throw new Error(`${label} must be an independent regular file with exactly one hard link: ${row.path}`);
   if (metadata.isSymbolicLink() || !metadata.isFile() || metadata.nlink !== 1
       || normalized(realpathSync(path)) !== normalized(path)) {
     throw new Error(`${label} must be an independent regular file with exactly one hard link: ${row.path}`);
@@ -324,11 +344,20 @@ function assertIndependentExpectedFile(path, row, label) {
   }
 }
 
+function assertIndependentBytes(path, bytes, label) {
+  const metadata = lstatEntry(path);
+  if (!metadata || metadata.isSymbolicLink() || !metadata.isFile() || metadata.nlink !== 1
+      || normalized(realpathSync(path)) !== normalized(path)) {
+    throw new Error(`${label} must be an independent regular file with exactly one hard link: ${path}`);
+  }
+  if (!readFileSync(path).equals(bytes)) throw new Error(`${label} does not contain the snapshot bytes: ${path}`);
+}
+
 function uniqueTemporaryPath(target, index) {
   let attempt = 0;
   while (true) {
     const candidate = join(dirname(target), `.${target.split(sep).at(-1)}.pobtools-${process.pid}-${index}-${attempt}.tmp`);
-    if (!existsSync(candidate)) return candidate;
+    if (!lstatEntry(candidate)) return candidate;
     attempt += 1;
   }
 }
@@ -342,15 +371,30 @@ function restoreTransaction({ changed, snapshots, createdDirectories, temporaryP
   }
   for (const row of [...changed].reverse()) {
     try {
-      assertDestinationSafe(destination, [row.path]);
       const target = join(destination, ...row.path.split('/'));
       const snapshot = snapshots.get(row.path);
       if (snapshot === null) {
-        removeIfPresent(target);
+        removeDestinationLeaf(target, destination);
       } else {
         const rollback = uniqueTemporaryPath(target, `rollback-${row.index}`);
-        writeFileSync(rollback, snapshot);
-        renameSync(rollback, target);
+        temporaryPaths.push(rollback);
+        try {
+          writeFileSync(rollback, snapshot, { flag: 'wx' });
+          assertIndependentBytes(rollback, snapshot, 'transaction rollback temporary');
+          removeDestinationLeaf(target, destination);
+          assertSafeDestinationParent(destination, target);
+          assertIndependentBytes(rollback, snapshot, 'transaction rollback temporary');
+          renameSync(rollback, target);
+          temporaryPaths.splice(temporaryPaths.indexOf(rollback), 1);
+          assertIndependentBytes(target, snapshot, 'restored bundle file');
+        } catch (error) {
+          try {
+            removeTransactionTemporary(rollback, destination);
+          } catch (cleanupError) {
+            throw new AggregateError([error, cleanupError], 'bundle restoration and temporary cleanup failed');
+          }
+          throw error;
+        }
       }
     } catch (error) {
       rollbackError ??= error;
@@ -358,9 +402,11 @@ function restoreTransaction({ changed, snapshots, createdDirectories, temporaryP
   }
   for (const directory of [...createdDirectories].reverse()) {
     try {
-      if (!existsSync(directory)) continue;
-      const metadata = lstatSync(directory);
-      if (!metadata.isSymbolicLink() && metadata.isDirectory() && readdirSync(directory).length === 0) rmdirSync(directory);
+      if (normalized(directory) !== normalized(destination)) assertSafeDestinationParent(destination, directory);
+      const metadata = lstatEntry(directory);
+      if (!metadata) continue;
+      if (metadata.isSymbolicLink()) unlinkSync(directory);
+      else if (metadata.isDirectory() && readdirSync(directory).length === 0) rmdirSync(directory);
     } catch (error) {
       rollbackError ??= error;
     }
@@ -376,6 +422,7 @@ export function copyVerifiedMaintenanceBundle({ verifiedBundle, destinationRoot,
   const { manifest } = verifiedBundle;
   if (operations === null || typeof operations !== 'object' || Array.isArray(operations)
       || (operations.beforeReplace !== undefined && typeof operations.beforeReplace !== 'function')
+      || (operations.afterInstall !== undefined && typeof operations.afterInstall !== 'function')
       || (operations.writeTemporary !== undefined && typeof operations.writeTemporary !== 'function')) {
     throw new Error('bundle transaction operations are invalid');
   }
@@ -388,14 +435,18 @@ export function copyVerifiedMaintenanceBundle({ verifiedBundle, destinationRoot,
   try {
     for (const [index, row] of manifest.files.entries()) {
       const target = join(destination, ...row.path.split('/'));
-      snapshots.set(row.path, existsSync(target) ? Buffer.from(readFileSync(target)) : null);
+      const targetMetadata = lstatEntry(target);
+      if (targetMetadata && (targetMetadata.isSymbolicLink() || !targetMetadata.isFile())) {
+        throw new Error(`bundle destination is not a regular file: ${row.path}`);
+      }
+      snapshots.set(row.path, targetMetadata ? Buffer.from(readFileSync(target)) : null);
       ensureSafeDirectoryChain(destination, dirname(target), createdDirectories);
       assertDestinationSafe(destination, [row.path]);
       const temporary = uniqueTemporaryPath(target, index);
       const bytes = buffers.get(row.path);
       temporaryPaths.push(temporary);
       if (operations.writeTemporary) operations.writeTemporary({ temporaryPath: temporary, bytes: Buffer.from(bytes), relativePath: row.path });
-      else writeFileSync(temporary, bytes);
+      else writeFileSync(temporary, bytes, { flag: 'wx' });
       assertIndependentExpectedFile(temporary, row, 'transaction temporary');
       plan.push({ ...row, index, target, temporary });
     }
@@ -406,6 +457,7 @@ export function copyVerifiedMaintenanceBundle({ verifiedBundle, destinationRoot,
       renameSync(row.temporary, row.target);
       temporaryPaths.splice(temporaryPaths.indexOf(row.temporary), 1);
       changed.push(row);
+      operations.afterInstall?.({ relativePath: row.path, index: row.index, destinationRoot: destination });
       assertIndependentExpectedFile(row.target, row, 'installed bundle file');
     }
   } catch (error) {
