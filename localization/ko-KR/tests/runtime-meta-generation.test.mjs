@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 import { cpSync, existsSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { dirname, join, resolve } from 'node:path';
+import { dirname, join, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const repositoryRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..', '..');
@@ -19,6 +19,26 @@ function runTrusted(script, engineRoot, reportRoot) {
     '--report-root', reportRoot,
   ], { cwd: repositoryRoot, encoding: 'utf8' });
 }
+
+test('canonical runtime metadata matches retained metadata after an auto-CRLF checkout', (t) => {
+  const checkoutRoot = mkdtempSync(join(tmpdir(), 'pobtools-ko-runtime-meta-checkout-'));
+  t.after(() => rmSync(checkoutRoot, { recursive: true, force: true }));
+  const checkout = spawnSync('git', [
+    '-c',
+    'core.autocrlf=true',
+    'checkout-index',
+    `--prefix=${checkoutRoot}${sep}`,
+    '--',
+    'localization/ko-KR/runtime-meta.json',
+    'pob-zh-engine/dist/Data/poe1/ko-KR/meta.json',
+  ], { cwd: repositoryRoot, encoding: 'utf8' });
+  assert.equal(checkout.status, 0, checkout.stderr);
+
+  assert.deepEqual(
+    readFileSync(join(checkoutRoot, 'localization', 'ko-KR', 'runtime-meta.json')),
+    readFileSync(join(checkoutRoot, 'pob-zh-engine', 'dist', 'Data', 'poe1', 'ko-KR', 'meta.json')),
+  );
+});
 
 test('real runtime generation writes exact canonical metadata and passes its audit from a clean engine', (t) => {
   assert.equal(existsSync(canonicalMetaPath), true, 'canonical trusted runtime metadata must exist');
