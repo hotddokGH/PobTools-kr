@@ -175,6 +175,11 @@ test('validate-ko workflow is a semantic read-only pinned validation contract', 
   assert.match(text, /node --test localization\/ko-KR\/tests\/\*\.test\.mjs/u);
   assert.match(text, /Test-KoreanLocale\.ps1 -EngineRoot \$engineRoot/u);
   assert.match(text, /Test-OfficialTerms\.ps1 -EngineRoot \$engineRoot -ReportRoot \$reportRoot/u);
+  const powerShellContracts = text.slice(
+    text.indexOf('- name: Run PowerShell contracts against the detached engine'),
+    text.indexOf('- name: Upload validation evidence only'),
+  );
+  assert.doesNotMatch(powerShellContracts, /\$LASTEXITCODE/u);
 
   assert.match(text, /\$\{\{ runner\.temp \}\}\/ko-validation-evidence/u);
   assert.match(text, /git restore --worktree -- reports\/display-closure\/locale-audit-summary\.json/u);

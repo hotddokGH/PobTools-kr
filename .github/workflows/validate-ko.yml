@@ -155,10 +155,12 @@ jobs:
           $reportRoot = Join-Path '${{ github.workspace }}' 'reports'
           & tests/ko-KR/Test-KoreanLocale.ps1 -EngineRoot $engineRoot *>&1 |
             Tee-Object -FilePath (Join-Path $env:EVIDENCE_ROOT 'logs/korean-locale.log')
-          if ($LASTEXITCODE -ne 0) { throw 'Korean locale contract failed' }
+          $localeSucceeded = $?
+          if (-not $localeSucceeded) { throw 'Korean locale contract failed' }
           & tests/ko-KR/Test-OfficialTerms.ps1 -EngineRoot $engineRoot -ReportRoot $reportRoot *>&1 |
             Tee-Object -FilePath (Join-Path $env:EVIDENCE_ROOT 'logs/official-terms.log')
-          if ($LASTEXITCODE -ne 0) { throw 'Official terms contract failed' }
+          $termsSucceeded = $?
+          if (-not $termsSucceeded) { throw 'Official terms contract failed' }
 
       - name: Upload validation evidence only
         if: always()
