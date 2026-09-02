@@ -28,6 +28,6 @@ pob-zh-engine/dist/Data/**/*.json -text
 # host/data/fonts/ 這條線。
 *.ttf binary
 
-localization/ko-KR/compat/pobtools-ko.patch -whitespace
+localization/ko-KR/compat/pobtools-ko.patch -text -whitespace
 pob-zh-engine/dist/Fonts/OFL-NotoSansKR.txt -whitespace
 pob-zh-engine/dist/pob-zh.ini -text -whitespace

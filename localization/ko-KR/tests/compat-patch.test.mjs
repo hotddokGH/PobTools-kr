@@ -2,8 +2,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { readFileSync } from 'node:fs';
-import { dirname, join, resolve } from 'node:path';
+import { mkdtempSync, readFileSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { dirname, join, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const repositoryRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..', '..');
@@ -97,4 +98,33 @@ test('compatibility patch alone opts out of whitespace checking', () => {
     'localization/ko-KR/compat/pobtools-ko.patch: whitespace: unset',
     'localization/ko-KR/compat/manifest.json: whitespace: unspecified',
   ]);
+});
+
+test('compatibility patch stays byte-identical when Git checks it out with auto-CRLF enabled', () => {
+  const checkoutRoot = mkdtempSync(join(tmpdir(), 'pobtools-patch-checkout-'));
+  try {
+    execFileSync(
+      'git',
+      [
+        '-c',
+        'core.autocrlf=true',
+        'checkout-index',
+        `--prefix=${checkoutRoot}${sep}`,
+        '--',
+        'localization/ko-KR/compat/pobtools-ko.patch',
+      ],
+      { cwd: repositoryRoot },
+    );
+    const checkedOutPatch = readFileSync(join(
+      checkoutRoot,
+      'localization',
+      'ko-KR',
+      'compat',
+      'pobtools-ko.patch',
+    ));
+
+    assert.equal(sha256(checkedOutPatch), APPROVED_PATCH_SHA256);
+  } finally {
+    rmSync(checkoutRoot, { recursive: true, force: true });
+  }
 });
