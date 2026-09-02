@@ -206,11 +206,12 @@ jobs:
               '194018E6B2B293A7964F037B25C0249CE1418BC9AB3C971060A03AA57861E252') {
             throw 'Installed Korean font hash mismatch'
           }
-          & (Join-Path $installRoot 'pob-zh.exe') --font-coverage-selftest
-          if ($LASTEXITCODE -ne 0) { throw 'font coverage self-test failed' }
-          & (Join-Path $installRoot 'pob-zh.exe') --app-update-selftest
-          if ($LASTEXITCODE -ne 0) { throw 'offline updater self-test failed' }
-          $signature = Get-AuthenticodeSignature -LiteralPath (Join-Path $installRoot 'pob-zh.exe')
+          $installedExe = Join-Path $installRoot 'pob-zh.exe'
+          $fontTest = Start-Process -FilePath $installedExe -ArgumentList '--font-coverage-selftest' -NoNewWindow -Wait -PassThru
+          if ($fontTest.ExitCode -ne 0) { throw 'font coverage self-test failed' }
+          $updateTest = Start-Process -FilePath $installedExe -ArgumentList '--app-update-selftest' -NoNewWindow -Wait -PassThru
+          if ($updateTest.ExitCode -ne 0) { throw 'offline updater self-test failed' }
+          $signature = Get-AuthenticodeSignature -LiteralPath $installedExe
           if ($signature.Status -ne 'NotSigned') { throw "unexpected Authenticode status: $($signature.Status)" }
 
       - name: Assemble, provenance-bind, and retest the extracted package
