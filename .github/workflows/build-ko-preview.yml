@@ -198,6 +198,14 @@ jobs:
         run: |
           $ErrorActionPreference = 'Stop'
           $installRoot = $env:INSTALL_ROOT
+          $koreanFontSource = Join-Path $env:ENGINE_ROOT 'dist/Fonts/NotoSansKR-Variable.ttf'
+          $installedFonts = Join-Path $installRoot 'Fonts'
+          New-Item -ItemType Directory -Force -Path $installedFonts | Out-Null
+          Copy-Item -LiteralPath $koreanFontSource -Destination $installedFonts -Force
+          if ((Get-FileHash -LiteralPath (Join-Path $installedFonts 'NotoSansKR-Variable.ttf') -Algorithm SHA256).Hash -cne
+              '194018E6B2B293A7964F037B25C0249CE1418BC9AB3C971060A03AA57861E252') {
+            throw 'Installed Korean font hash mismatch'
+          }
           & (Join-Path $installRoot 'pob-zh.exe') --font-coverage-selftest
           if ($LASTEXITCODE -ne 0) { throw 'font coverage self-test failed' }
           & (Join-Path $installRoot 'pob-zh.exe') --app-update-selftest

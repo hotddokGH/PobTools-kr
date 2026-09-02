@@ -78,6 +78,11 @@ test('preview workflow verifies offline unsigned executable, generated assets, p
     'dist/Fonts/NotoSansKR-Variable.ttf', 'dist/Fonts/OFL-NotoSansKR.txt', 'dist/pob-zh.ini',
   ]) assert.match(workflow, new RegExp(path.replaceAll('/', '\\/'), 'u'));
   assert.match(workflow, /A75345BD3CC9AB480BD55C5B10B35364160EA426D21BFA65C2870E08982E7669/u);
+  const fontStage = workflow.indexOf("Copy-Item -LiteralPath $koreanFontSource -Destination $installedFonts -Force");
+  const fontSelfTest = workflow.indexOf("& (Join-Path $installRoot 'pob-zh.exe') --font-coverage-selftest");
+  assert.notEqual(fontStage, -1, 'Korean font must be staged into the executable install tree');
+  assert.ok(fontStage < fontSelfTest, 'Korean font must be staged before the font coverage self-test');
+  assert.match(workflow, /Get-FileHash -LiteralPath \(Join-Path \$installedFonts 'NotoSansKR-Variable\.ttf'\)[\s\S]*194018E6B2B293A7964F037B25C0249CE1418BC9AB3C971060A03AA57861E252/u);
   assert.match(workflow, /& \(Join-Path \$installRoot 'pob-zh\.exe'\) --font-coverage-selftest/u);
   assert.match(workflow, /font coverage self-test failed/u);
   assert.match(workflow, /& \(Join-Path \$installRoot 'pob-zh\.exe'\) --app-update-selftest/u);
