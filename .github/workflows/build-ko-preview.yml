@@ -170,7 +170,7 @@ jobs:
         run: |
           $ErrorActionPreference = 'Stop'
           $vcpkgRoot = Join-Path $env:ENGINE_ROOT 'vcpkg'
-          git clone --filter=blob:none https://github.com/microsoft/vcpkg .ko-worktrees/release/pob-zh-engine/vcpkg
+          git clone --no-tags https://github.com/microsoft/vcpkg .ko-worktrees/release/pob-zh-engine/vcpkg
           if ($LASTEXITCODE -ne 0) { throw 'vcpkg clone failed' }
           git -C $vcpkgRoot checkout 30ef65cad98f08e7197c9a1656fbd871bcb72f2d
           if ($LASTEXITCODE -ne 0) { throw 'vcpkg checkout failed' }

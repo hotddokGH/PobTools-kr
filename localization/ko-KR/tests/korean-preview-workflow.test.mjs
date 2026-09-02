@@ -53,7 +53,8 @@ test('preview workflow prepares and gates the reviewed detached engine before na
   assert.match(workflow, /\$report\.\$arrayName -isnot \[array\]/u);
   assert.match(workflow, /git -C \$engineRoot rev-parse HEAD/u);
   assert.doesNotMatch(workflow, /cmake\s+(?:-S|--build|--install)\s+pob-zh-engine(?:\s|$)/u);
-  assert.match(workflow, /git clone[^\n]*microsoft\/vcpkg[^\n]*\.ko-worktrees\/release\/pob-zh-engine\/vcpkg/u);
+  assert.match(workflow, /git clone --no-tags https:\/\/github\.com\/microsoft\/vcpkg \.ko-worktrees\/release\/pob-zh-engine\/vcpkg/u);
+  assert.doesNotMatch(workflow, /git clone[^\n]*--filter[^\n]*microsoft\/vcpkg/u);
   assert.equal(workflow.match(new RegExp(VCPKG_TOOLCHAIN_COMMIT, 'gu'))?.length, 2);
   assert.match(workflow, /cmake -S \$engineRoot -B \$buildRoot[\s\S]*-DPOBTOOLS_KOREAN_RELEASE=ON/u);
   assert.match(workflow, /cmake --build \$buildRoot --config Release/u);

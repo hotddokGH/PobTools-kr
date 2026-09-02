@@ -47,6 +47,7 @@
 - Actions는 40자리 SHA로 고정: checkout `3d3c42e5aac5ba805825da76410c181273ba90b1`, setup-node `820762786026740c76f36085b0efc47a31fe5020`, setup-python `5fda3b95a4ea91299a34e894583c3862153e4b97`, upload-artifact `043fb46d1a93c77aae656e7c1c64a875d1fc6a0a`.
 - vcpkg toolchain commit: `30ef65cad98f08e7197c9a1656fbd871bcb72f2d`.
 - reviewed vcpkg dependency baseline: `3d72d8c930e1b6a1b2432b262c61af7d3287dcd0`.
+- vcpkg clone은 과거 기준선의 포트 객체를 빌드 도중 다시 요청하지 않도록 `--no-tags` 완전 클론을 사용한다.
 - configure: `cmake -S $engineRoot -B $buildRoot -G "Visual Studio 18 2026" -A x64 -DPOBTOOLS_KOREAN_RELEASE=ON`
 - build/install: `cmake --build $buildRoot --config Release`, `cmake --install $buildRoot --config Release --prefix $installRoot`
 - 트리거: `workflow_dispatch`만 사용. 권한: `contents: read`만 사용. Release 작업 없음.
