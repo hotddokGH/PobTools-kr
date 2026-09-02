@@ -1,39 +1,90 @@
 name: Build Korean preview
+
 on:
   workflow_dispatch:
+
 permissions:
   contents: read
+
 jobs:
   build:
+    if: github.ref == 'refs/heads/ko/main'
     runs-on: windows-2025-vs2026
+    timeout-minutes: 120
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Check out the exact dispatched commit
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
-          lfs: true
+          ref: ${{ github.sha }}
           fetch-depth: 0
-      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+          lfs: true
+
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
         with:
           node-version: '22'
-      - name: Bootstrap pinned vcpkg
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+        with:
+          python-version: '3.13'
+
+      - name: Bind event, checkout, and remote ko/main identities
         shell: pwsh
         run: |
-          git clone --filter=blob:none https://github.com/microsoft/vcpkg pob-zh-engine/vcpkg
-          git -C pob-zh-engine/vcpkg checkout 3d72d8c930e1b6a1b2432b262c61af7d3287dcd0
-          & pob-zh-engine/vcpkg/bootstrap-vcpkg.bat -disableMetrics
-      - name: Configure, build, and install
-        shell: pwsh
-        run: |
-          cmake -S pob-zh-engine -B pob-zh-engine/build-ko -G "Visual Studio 18 2026" -A x64 -DPOBTOOLS_KOREAN_RELEASE=ON
-          cmake --build pob-zh-engine/build-ko --config Release
-          cmake --install pob-zh-engine/build-ko --config Release --prefix pob-zh-engine/install-ko
-      - name: Assemble and test
-        shell: pwsh
-        run: |
+          $ErrorActionPreference = 'Stop'
           $PSNativeCommandUseErrorActionPreference = $false
-          $zip = 'pob-zh-engine/PobTools-Korean-preview.zip'
-          $manifest = "$zip.sha256.json"
+          function Assert-NativeSuccess([string]$operation) {
+            if ($LASTEXITCODE -ne 0) { throw "$operation failed with exit code $LASTEXITCODE" }
+          }
+          git fetch --no-tags origin refs/heads/ko/main:refs/remotes/origin/ko/main
+          Assert-NativeSuccess 'git fetch'
+          $eventCommit = '${{ github.sha }}'.Trim().ToLowerInvariant()
+          $headCommit = (git rev-parse HEAD).Trim().ToLowerInvariant()
+          Assert-NativeSuccess 'git rev-parse HEAD'
+          $remoteCommit = (git rev-parse origin/ko/main).Trim().ToLowerInvariant()
+          Assert-NativeSuccess 'git rev-parse origin/ko/main'
+          foreach ($commit in @($eventCommit, $headCommit, $remoteCommit)) {
+            if ($commit -cnotmatch '^[0-9a-f]{40}$') { throw "Malformed trusted ko/main commit: $commit" }
+          }
+          if ($eventCommit -cne $headCommit -or $eventCommit -cne $remoteCommit) {
+            throw "Event, checked-out HEAD, and remote ko/main must match exactly"
+          }
+          "KO_AUTOMATION_COMMIT=$eventCommit" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
+      - name: Validate reviewed upstream state and initialize artifact paths
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $statePath = 'localization/ko-KR/upstream-state.json'
+          $state = Get-Content -LiteralPath $statePath -Raw -Encoding UTF8 | ConvertFrom-Json
+          $stateKeys = @($state.PSObject.Properties.Name)
+          if ($stateKeys.Count -ne 3 -or $stateKeys[0] -cne 'schemaVersion' -or
+              $stateKeys[1] -cne 'lastReviewedCommit' -or $stateKeys[2] -cne 'officialPoePatch') {
+            throw 'upstream-state.json has an unexpected schema'
+          }
+          if ($state.schemaVersion -ne 1 -or $state.lastReviewedCommit -cnotmatch '^[0-9a-f]{40}$' -or
+              $state.officialPoePatch -cnotmatch '^[0-9]+(?:\.[0-9]+){2,3}$') {
+            throw 'upstream-state.json has malformed values'
+          }
+          $engineRoot = Join-Path '${{ github.workspace }}' '.ko-worktrees/release/pob-zh-engine'
+          $artifactRoot = Join-Path '${{ github.workspace }}' '.ko-artifacts'
+          "REVIEWED_UPSTREAM_COMMIT=$($state.lastReviewedCommit)" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "OFFICIAL_POE_PATCH=$($state.officialPoePatch)" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "ENGINE_ROOT=$engineRoot" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "BUILD_ROOT=$(Join-Path $engineRoot 'build-ko')" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "INSTALL_ROOT=$(Join-Path $engineRoot 'install-ko')" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "PACKAGE_ROOT=$(Join-Path $artifactRoot 'staging')" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "PREVIEW_ZIP=$(Join-Path $artifactRoot 'PobTools-Korean-preview.zip')" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "PREVIEW_MANIFEST=$(Join-Path $artifactRoot 'PobTools-Korean-preview.zip.sha256.json')" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "PREVIEW_PROVENANCE=$(Join-Path '${{ github.workspace }}' 'reports/build/preview-provenance.json')" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
+      - name: Remove stale preview evidence
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
           function Remove-PreviewArtifacts {
-            foreach ($artifact in @($zip, $manifest)) {
+            foreach ($artifact in @($env:PREVIEW_ZIP, $env:PREVIEW_MANIFEST, $env:PREVIEW_PROVENANCE)) {
               if (-not (Test-Path -LiteralPath $artifact)) { continue }
               if (-not (Test-Path -LiteralPath $artifact -PathType Leaf)) {
                 throw "Preview artifact path must be a file: $artifact"
@@ -42,19 +93,178 @@ jobs:
             }
           }
           Remove-PreviewArtifacts
-          pwsh -NoProfile -File localization/ko-KR/Assemble-KoreanPackage.ps1 -InstallRoot pob-zh-engine/install-ko -OutputRoot pob-zh-engine/dist-ko -ZipPath pob-zh-engine/PobTools-Korean-preview.zip
-          if ($LASTEXITCODE -ne 0) {
-            Remove-PreviewArtifacts
-            exit $LASTEXITCODE
+
+      - name: Install trusted overlay requirements
+        shell: pwsh
+        run: |
+          python -m pip install -r localization/ko-KR/requirements-overlay.txt
+          if ($LASTEXITCODE -ne 0) { throw 'Python dependency installation failed' }
+
+      - name: Prepare and gate the reviewed detached engine
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $PSNativeCommandUseErrorActionPreference = $false
+          $maintenanceReport = Join-Path '${{ runner.temp }}' 'ko-preview-maintenance.json'
+          node localization/ko-KR/update-upstream.mjs `
+            --repository-root '${{ github.workspace }}' `
+            --upstream-ref $env:REVIEWED_UPSTREAM_COMMIT `
+            --workspace .ko-worktrees/release `
+            --report $maintenanceReport `
+            --force-prepare
+          if ($LASTEXITCODE -ne 0) { throw 'Reviewed maintenance preparation failed' }
+          $report = Get-Content -LiteralPath $maintenanceReport -Raw -Encoding UTF8 | ConvertFrom-Json
+          $requiredReportProperties = @(
+            'classification', 'commit', 'phases',
+            'newStrings', 'suggestedStrings', 'ambiguousStrings', 'officialDataChanges',
+            'compatibilityFailures', 'deterministicFailures', 'commandFailures', 'auditFailures'
+          )
+          $reportProperties = @($report.PSObject.Properties.Name)
+          foreach ($propertyName in $requiredReportProperties) {
+            if ($reportProperties -cnotcontains $propertyName) { throw "Maintenance report is missing $propertyName" }
           }
-          pwsh -NoProfile -File tests/ko-KR/Test-KoreanPackage.ps1 -PackageRoot pob-zh-engine/dist-ko
-          if ($LASTEXITCODE -ne 0) {
-            Remove-PreviewArtifacts
-            exit $LASTEXITCODE
+          if ($report.classification -notin @('already-processed','ready')) { throw "Unexpected classification: $($report.classification)" }
+          if ($report.commit -cne $env:REVIEWED_UPSTREAM_COMMIT) { throw 'Maintenance report commit does not match reviewed state' }
+          if ($report.phases -isnot [array]) { throw 'Maintenance report phases must be an array' }
+          if ($report.phases.Count -ne 12) { throw "Expected 12 phases, found $($report.phases.Count)" }
+          if (@($report.phases | Where-Object exitCode -ne 0).Count -ne 0) { throw 'A maintenance phase failed' }
+          foreach ($arrayName in @(
+            'newStrings', 'suggestedStrings', 'ambiguousStrings', 'officialDataChanges',
+            'compatibilityFailures', 'deterministicFailures', 'commandFailures', 'auditFailures'
+          )) {
+            if ($report.$arrayName -isnot [array]) { throw "$arrayName must be an array" }
+            if (@($report.$arrayName).Count -ne 0) { throw "$arrayName must be empty" }
           }
-      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+          $engineRoot = $env:ENGINE_ROOT
+          $engineCommit = (git -C $engineRoot rev-parse HEAD).Trim().ToLowerInvariant()
+          if ($LASTEXITCODE -ne 0) { throw 'Generated engine Git identity lookup failed' }
+          if ($engineCommit -cne $env:REVIEWED_UPSTREAM_COMMIT) { throw 'Generated engine commit does not match reviewed state' }
+
+      - name: Stage exact retained Korean distribution inputs
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $engineRoot = $env:ENGINE_ROOT
+          $retainedAssets = [ordered]@{
+            'dist/Data/launcher/ko-KR/launcher.json' = '83401B058CD4F93029C5C87EE633DCE21D8A006357A1E02C483DD3E67ECCBBB0'
+            'dist/Data/launcher/ko-KR/meta.json' = 'D7B59E5EB50FAA03877FC401393B18572AB89C7A296125D0D0D8B9751E3D790A'
+            'dist/Fonts/NotoSansKR-Variable.ttf' = '194018E6B2B293A7964F037B25C0249CE1418BC9AB3C971060A03AA57861E252'
+            'dist/Fonts/OFL-NotoSansKR.txt' = '1C05C68C34F9708415AADA51F17E1B0092D2CEA709BF4A94CD38114F9E73D7D9'
+            'dist/pob-zh.ini' = 'A75345BD3CC9AB480BD55C5B10B35364160EA426D21BFA65C2870E08982E7669'
+          }
+          foreach ($relativePath in $retainedAssets.Keys) {
+            $source = Join-Path '${{ github.workspace }}/pob-zh-engine' $relativePath
+            $destination = Join-Path $engineRoot $relativePath
+            if ((Get-FileHash -LiteralPath $source -Algorithm SHA256).Hash -cne $retainedAssets[$relativePath]) {
+              throw "Retained source hash mismatch: $relativePath"
+            }
+            New-Item -ItemType Directory -Force -Path (Split-Path -Parent $destination) | Out-Null
+            Copy-Item -LiteralPath $source -Destination $destination -Force
+            if ((Get-FileHash -LiteralPath $destination -Algorithm SHA256).Hash -cne $retainedAssets[$relativePath]) {
+              throw "Staged asset hash mismatch: $relativePath"
+            }
+          }
+
+      - name: Bootstrap pinned vcpkg below the generated engine
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $vcpkgRoot = Join-Path $env:ENGINE_ROOT 'vcpkg'
+          git clone --filter=blob:none https://github.com/microsoft/vcpkg .ko-worktrees/release/pob-zh-engine/vcpkg
+          if ($LASTEXITCODE -ne 0) { throw 'vcpkg clone failed' }
+          git -C $vcpkgRoot checkout 3d72d8c930e1b6a1b2432b262c61af7d3287dcd0
+          if ($LASTEXITCODE -ne 0) { throw 'vcpkg checkout failed' }
+          $vcpkgCommit = (git -C $vcpkgRoot rev-parse HEAD).Trim().ToLowerInvariant()
+          if ($LASTEXITCODE -ne 0 -or $vcpkgCommit -cne '3d72d8c930e1b6a1b2432b262c61af7d3287dcd0') { throw 'vcpkg identity mismatch' }
+          & (Join-Path $vcpkgRoot 'bootstrap-vcpkg.bat') -disableMetrics
+          if ($LASTEXITCODE -ne 0) { throw 'vcpkg bootstrap failed' }
+
+      - name: Configure, build, and install only the generated engine
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $engineRoot = $env:ENGINE_ROOT
+          $buildRoot = $env:BUILD_ROOT
+          $installRoot = $env:INSTALL_ROOT
+          cmake -S $engineRoot -B $buildRoot -G "Visual Studio 18 2026" -A x64 -DPOBTOOLS_KOREAN_RELEASE=ON
+          if ($LASTEXITCODE -ne 0) { throw 'CMake configure failed' }
+          cmake --build $buildRoot --config Release
+          if ($LASTEXITCODE -ne 0) { throw 'CMake build failed' }
+          cmake --install $buildRoot --config Release --prefix $installRoot
+          if ($LASTEXITCODE -ne 0) { throw 'CMake install failed' }
+
+      - name: Run offline executable self-tests and unsigned gate
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $installRoot = $env:INSTALL_ROOT
+          & (Join-Path $installRoot 'pob-zh.exe') --font-coverage-selftest
+          if ($LASTEXITCODE -ne 0) { throw 'font coverage self-test failed' }
+          & (Join-Path $installRoot 'pob-zh.exe') --app-update-selftest
+          if ($LASTEXITCODE -ne 0) { throw 'offline updater self-test failed' }
+          $signature = Get-AuthenticodeSignature -LiteralPath (Join-Path $installRoot 'pob-zh.exe')
+          if ($signature.Status -ne 'NotSigned') { throw "unexpected Authenticode status: $($signature.Status)" }
+
+      - name: Assemble, provenance-bind, and retest the extracted package
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $engineRoot = $env:ENGINE_ROOT
+          $installRoot = $env:INSTALL_ROOT
+          pwsh -NoProfile -File localization/ko-KR/Assemble-KoreanPackage.ps1 `
+            -InstallRoot $installRoot `
+            -AssetRoot $engineRoot `
+            -OutputRoot $env:PACKAGE_ROOT `
+            -ZipPath $env:PREVIEW_ZIP
+          if ($LASTEXITCODE -ne 0) { throw 'Korean package assembly failed' }
+          pwsh -NoProfile -File tests/ko-KR/Test-KoreanPackage.ps1 -PackageRoot $env:PACKAGE_ROOT
+          if ($LASTEXITCODE -ne 0) { throw 'Korean staging package contract failed' }
+          node localization/ko-KR/write-build-provenance.mjs `
+            --repository-root '${{ github.workspace }}' `
+            --engine-root $engineRoot `
+            --reviewed-upstream-commit $env:REVIEWED_UPSTREAM_COMMIT `
+            --korean-automation-commit '${{ github.sha }}' `
+            --runner-image-label 'windows-2025-vs2026' `
+            --runner-image "$env:ImageOS-$env:ImageVersion" `
+            --workflow-run-id '${{ github.run_id }}' `
+            --workflow-run-attempt '${{ github.run_attempt }}' `
+            --configuration Release `
+            --korean-release-cmake ON `
+            --output $env:PREVIEW_PROVENANCE
+          if ($LASTEXITCODE -ne 0) { throw 'Build provenance generation failed' }
+          pwsh -NoProfile -File tests/ko-KR/Verify-KoreanPackageArchive.ps1 `
+            -ZipPath $env:PREVIEW_ZIP `
+            -ManifestPath $env:PREVIEW_MANIFEST `
+            -RunnerTemp '${{ runner.temp }}'
+          if ($LASTEXITCODE -ne 0) { throw 'Extracted Korean package verification failed' }
+
+      - name: Remove preview evidence after any failure
+        if: failure()
+        shell: pwsh
+        run: |
+          function Remove-PreviewArtifacts {
+            foreach ($artifact in @(
+              '.ko-artifacts/PobTools-Korean-preview.zip',
+              '.ko-artifacts/PobTools-Korean-preview.zip.sha256.json',
+              'reports/build/preview-provenance.json'
+            )) {
+              if (-not (Test-Path -LiteralPath $artifact)) { continue }
+              if (-not (Test-Path -LiteralPath $artifact -PathType Leaf)) {
+                throw "Preview artifact path must be a file: $artifact"
+              }
+              Remove-Item -LiteralPath $artifact -Force
+            }
+          }
+          Remove-PreviewArtifacts
+
+      - name: Upload the verified unsigned preview evidence
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
           name: PobTools-Korean-preview
           path: |
-            pob-zh-engine/PobTools-Korean-preview.zip
-            pob-zh-engine/PobTools-Korean-preview.zip.sha256.json
+            .ko-artifacts/PobTools-Korean-preview.zip
+            .ko-artifacts/PobTools-Korean-preview.zip.sha256.json
+            reports/build/preview-provenance.json
+            docs/ko-KR/PREVIEW-NOTES.md
+          if-no-files-found: error
+          retention-days: 14

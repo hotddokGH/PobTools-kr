@@ -30,6 +30,8 @@ Require-File 'Fonts/OFL-NotoSansKR.txt' 1
 Require-File 'pob-zh.ini' 1
 Require-File 'LICENSE' 1
 Require-File 'NOTICE.md' 1
+Require-File 'INSTALL-KO.md' 1
+Require-File 'PREVIEW-NOTES-KO.md' 1
 foreach ($forbidden in 'Data/poe2','Path of Building Community','PobTools','tools','reports','tests','node_modules','cache','logs','translate_misses.log','MalgunGothic-TestOnly.ttf') {
     if (Test-Path -LiteralPath (Join-Path $root $forbidden)) { $failures.Add("forbidden $forbidden") }
 }

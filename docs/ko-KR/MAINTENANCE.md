@@ -74,3 +74,13 @@ node --test localization/ko-KR/tests/*.test.mjs
 검증 산출물과 이후의 미리보기 패키지는 코드 서명되지 않은 비공식 팬 제작물이다. 자동 검증 성공은 배포 승인이나 공식 지원을 뜻하지 않는다. 현재 `validate-ko.yml`은 저장소 쓰기 권한이 없는 검증 정의이며, 이 변경은 로컬 커밋까지만 준비한다. 별도 push 승인 전에는 hosted 실행 결과가 없으므로 이 문서는 GitHub 실행이 green이라고 주장하지 않는다.
 
 `check-upstream.yml`도 Release를 만들거나 실행 파일을 배포하지 않는다. 제안 PR의 JSON·사전·보고서 역시 서명된 배포물이 아니며, 현재 hosted 수동 실행과 PR 생성은 수행하지 않은 상태다.
+
+## 한국어 미리보기 빌드
+
+`.github/workflows/build-ko-preview.yml`은 `ko/main`에서만 수동 실행할 수 있는 읽기 전용 미리보기 빌드다. 실행 이벤트 SHA, checkout HEAD, 원격 `ko/main` SHA가 모두 같을 때만 `upstream-state.json`의 `lastReviewedCommit`을 `.ko-worktrees/release`에 다시 준비한다. 보고서가 `ready` 또는 `already-processed`, 12/12 성공, 8개 검토·실패 배열 0이고 생성 엔진 HEAD가 검토 커밋과 같아야 다음 단계로 간다.
+
+빌드와 설치는 추적 중인 `pob-zh-engine`이 아니라 생성된 `.ko-worktrees/release/pob-zh-engine` 아래에서만 수행한다. 핀 고정된 launcher 사전, 글꼴/OFL, `pob-zh.ini`를 복사하기 전후로 SHA-256을 확인하고, `Release` 및 `POBTOOLS_KOREAN_RELEASE=ON`으로 빌드한다. 네트워크 업데이트 명령은 실행하지 않으며 `--font-coverage-selftest`, `--app-update-selftest`, `NotSigned` 확인이 모두 통과해야 한다.
+
+패키지는 생성 엔진을 명시적인 `AssetRoot`로 사용한다. staging 계약 후 ZIP을 검증된 runner 임시 디렉터리에 풀어 같은 패키지 계약을 다시 실행하고, 매니페스트의 모든 경로·파일 SHA-256·ZIP 바이트 수·ZIP SHA-256을 비교한다. 업로드 대상은 ZIP, `.sha256.json`, `preview-provenance.json`, `PREVIEW-NOTES.md` 네 파일뿐이다.
+
+이 워크플로에는 write 권한, schedule, tag/Release 작업, 서명 비밀이 없다. 로컬 검증은 CMake, vcpkg bootstrap, 생성 EXE 실행을 포함하지 않는다. 별도 push와 hosted 수동 dispatch 승인을 받은 뒤에만 네이티브 빌드 및 두 자체 점검 결과를 증거 문서에 추가한다. 그 후에도 실행기, 설정, 필터 편집기, 아틀라스 플래너, 패시브 도구, 아이템 붙여넣기, 오류 대화상자를 사람이 확인하고 별도 배포 설계를 승인하기 전에는 Release를 만들지 않는다.

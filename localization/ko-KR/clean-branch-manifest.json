@@ -43,6 +43,10 @@
       "kind": "file"
     },
     {
+      "path": "docs/verification/2026-09-01-ko-maintenance-automation.md",
+      "kind": "file"
+    },
+    {
       "path": "docs/ko-KR",
       "kind": "tree",
       "required": false

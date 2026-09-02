@@ -30,6 +30,7 @@ const exactAuthorizedPaths = new Set([
   'LICENSE',
   'docs/superpowers/plans/2026-09-01-pobtools-ko-maintenance-automation.md',
   'docs/superpowers/specs/2026-09-01-pobtools-ko-maintenance-automation-design.md',
+  'docs/verification/2026-09-01-ko-maintenance-automation.md',
   'pob-zh-engine/dist/Fonts/NotoSansKR-Variable.ttf',
   'pob-zh-engine/dist/Fonts/OFL-NotoSansKR.txt',
   'pob-zh-engine/dist/pob-zh.ini',
