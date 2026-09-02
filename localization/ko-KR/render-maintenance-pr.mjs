@@ -103,6 +103,8 @@ function compareRows(left, right) {
     const compared = String(left[key] ?? '').localeCompare(String(right[key] ?? ''), 'en');
     if (compared !== 0) return compared;
   }
+  const occurrence = Number(left.occurrenceIndex ?? 0) - Number(right.occurrenceIndex ?? 0);
+  if (occurrence !== 0) return occurrence;
   const line = Number(left.line ?? 0) - Number(right.line ?? 0);
   if (line !== 0) return line;
   return String(left.source ?? '').localeCompare(String(right.source ?? ''), 'en');
@@ -150,9 +152,9 @@ export function renderMaintenancePr(input) {
   const groups = reviewGroups(report);
   if (groups.length === 0) lines.push('- 없음', '');
   for (const [code, rows] of groups) {
-    lines.push(`### \`${code}\` (${rows.length}개)`, '', '| 경로 | 함수 | 줄 | 원문 |', '| --- | --- | ---: | --- |');
+    lines.push(`### \`${code}\` (${rows.length}개)`, '', '| 경로 | 함수 | 발생 | 줄 | 원문 |', '| --- | --- | ---: | ---: | --- |');
     for (const row of rows) {
-      lines.push(`| ${markdown(row.path ?? '')} | ${markdown(row.function ?? '')} | ${row.line ?? ''} | ${markdown(row.source ?? '')} |`);
+      lines.push(`| ${markdown(row.path ?? '')} | ${markdown(row.function ?? '')} | ${row.occurrenceIndex ?? ''} | ${row.line ?? ''} | ${markdown(row.source ?? '')} |`);
     }
     lines.push('');
   }

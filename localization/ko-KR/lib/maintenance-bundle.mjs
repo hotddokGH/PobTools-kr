@@ -1,13 +1,14 @@
 import { createHash } from 'node:crypto';
 import {
-  copyFileSync,
   existsSync,
   lstatSync,
   mkdirSync,
   readFileSync,
   readdirSync,
   realpathSync,
-  statSync,
+  renameSync,
+  rmdirSync,
+  unlinkSync,
   writeFileSync,
 } from 'node:fs';
 import { dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
@@ -25,6 +26,7 @@ const PREFIXES = [
   'reports/display-closure/',
   'reports/official-terms/',
 ];
+const VERIFIED_BYTES = new WeakMap();
 
 function compare(left, right) {
   return left.localeCompare(right, 'en');
@@ -224,7 +226,13 @@ export function verifyMaintenanceBundle({ bundleRoot, stagingRoot }) {
     mkdirSync(staging, { recursive: true });
     writeBundle(manifest.files.map((row) => ({ path: row.path, bytes: buffers.get(row.path) })), staging);
   }
-  return manifest;
+  const immutableManifest = Object.freeze({
+    schemaVersion: manifest.schemaVersion,
+    files: Object.freeze(manifest.files.map((row) => Object.freeze({ ...row }))),
+  });
+  const verifiedBundle = Object.freeze({ manifest: immutableManifest });
+  VERIFIED_BYTES.set(verifiedBundle, new Map([...buffers].map(([path, bytes]) => [path, Buffer.from(bytes)])));
+  return verifiedBundle;
 }
 
 function assertDestinationSafe(destinationRoot, paths) {
@@ -246,29 +254,139 @@ function assertDestinationSafe(destinationRoot, paths) {
   }
 }
 
-export function copyVerifiedMaintenanceBundle({ stagingRoot, destinationRoot }) {
-  const staging = resolve(stagingRoot);
-  const destination = resolve(destinationRoot);
-  if (normalized(staging) === normalized(destination)) throw new Error('staging root must differ from destination root');
-  const manifest = readManifest(staging);
-  const buffers = verifyPayload(staging, manifest);
-  assertDestinationSafe(destination, manifest.files.map((row) => row.path));
-  mkdirSync(destination, { recursive: true });
-  for (const row of manifest.files) {
-    const target = join(destination, ...row.path.split('/'));
-    mkdirSync(dirname(target), { recursive: true });
-    copyFileSync(join(staging, PAYLOAD_NAME, ...row.path.split('/')), target);
-    const bytes = readFileSync(target);
-    if (bytes.length !== row.size || sha256(bytes) !== row.sha256 || !buffers.has(row.path)) {
-      throw new Error(`copied bundle file failed verification: ${row.path}`);
+function ensureSafeDirectoryChain(root, parent, createdDirectories) {
+  const relativeParent = relative(root, parent);
+  let cursor = root;
+  if (!existsSync(root)) {
+    mkdirSync(root);
+    createdDirectories.push(root);
+  }
+  assertRegularRoot(root, 'destination root');
+  if (!relativeParent) return;
+  for (const segment of relativeParent.split(sep)) {
+    cursor = join(cursor, segment);
+    if (!existsSync(cursor)) {
+      mkdirSync(cursor);
+      createdDirectories.push(cursor);
     }
+    const metadata = lstatSync(cursor);
+    if (metadata.isSymbolicLink() || !metadata.isDirectory()) {
+      throw new Error(`bundle destination ancestor is not a regular directory: ${relativeParent.split(sep).join('/')}`);
+    }
+    if (!isInside(realpathSync(cursor), realpathSync(root))) {
+      throw new Error(`bundle destination ancestor resolves outside its root: ${relativeParent.split(sep).join('/')}`);
+    }
+  }
+}
+
+function removeIfPresent(path) {
+  if (!existsSync(path)) return;
+  const metadata = lstatSync(path);
+  if (metadata.isSymbolicLink() || !metadata.isFile()) {
+    throw new Error(`transaction entry is no longer a regular file: ${path}`);
+  }
+  unlinkSync(path);
+}
+
+function uniqueTemporaryPath(target, index) {
+  let attempt = 0;
+  while (true) {
+    const candidate = join(dirname(target), `.${target.split(sep).at(-1)}.pobtools-${process.pid}-${index}-${attempt}.tmp`);
+    if (!existsSync(candidate)) return candidate;
+    attempt += 1;
+  }
+}
+
+function restoreTransaction({ changed, snapshots, createdDirectories, temporaryPaths, destination, originalError }) {
+  let rollbackError;
+  for (const path of temporaryPaths) {
+    try {
+      const relativePath = relative(destination, path).split(sep).join('/');
+      if (!isInside(path, destination)) throw new Error('transaction temporary path escapes the destination root');
+      assertDestinationSafe(destination, [relativePath]);
+      removeIfPresent(path);
+    } catch (error) { rollbackError ??= error; }
+  }
+  for (const row of [...changed].reverse()) {
+    try {
+      assertDestinationSafe(destination, [row.path]);
+      const target = join(destination, ...row.path.split('/'));
+      const snapshot = snapshots.get(row.path);
+      if (snapshot === null) {
+        removeIfPresent(target);
+      } else {
+        const rollback = uniqueTemporaryPath(target, `rollback-${row.index}`);
+        writeFileSync(rollback, snapshot);
+        renameSync(rollback, target);
+      }
+    } catch (error) {
+      rollbackError ??= error;
+    }
+  }
+  for (const directory of [...createdDirectories].reverse()) {
+    try {
+      if (!existsSync(directory)) continue;
+      const metadata = lstatSync(directory);
+      if (!metadata.isSymbolicLink() && metadata.isDirectory() && readdirSync(directory).length === 0) rmdirSync(directory);
+    } catch (error) {
+      rollbackError ??= error;
+    }
+  }
+  if (rollbackError) throw new AggregateError([originalError, rollbackError], 'bundle transaction and rollback failed');
+  throw originalError;
+}
+
+export function copyVerifiedMaintenanceBundle({ verifiedBundle, destinationRoot, operations = {} }) {
+  const destination = resolve(destinationRoot);
+  const buffers = VERIFIED_BYTES.get(verifiedBundle);
+  if (!buffers) throw new Error('verified bundle token is invalid or was not created by this process');
+  const { manifest } = verifiedBundle;
+  if (operations === null || typeof operations !== 'object' || Array.isArray(operations)
+      || (operations.beforeReplace !== undefined && typeof operations.beforeReplace !== 'function')) {
+    throw new Error('bundle transaction operations are invalid');
+  }
+  assertDestinationSafe(destination, manifest.files.map((row) => row.path));
+  const snapshots = new Map();
+  const createdDirectories = [];
+  const temporaryPaths = [];
+  const plan = [];
+  const changed = [];
+  try {
+    for (const [index, row] of manifest.files.entries()) {
+      const target = join(destination, ...row.path.split('/'));
+      snapshots.set(row.path, existsSync(target) ? Buffer.from(readFileSync(target)) : null);
+      ensureSafeDirectoryChain(destination, dirname(target), createdDirectories);
+      assertDestinationSafe(destination, [row.path]);
+      const temporary = uniqueTemporaryPath(target, index);
+      const bytes = buffers.get(row.path);
+      writeFileSync(temporary, bytes);
+      temporaryPaths.push(temporary);
+      const written = readFileSync(temporary);
+      if (written.length !== row.size || sha256(written) !== row.sha256) {
+        throw new Error(`transaction temporary file failed verification: ${row.path}`);
+      }
+      plan.push({ ...row, index, target, temporary });
+    }
+    for (const row of plan) {
+      operations.beforeReplace?.({ relativePath: row.path, index: row.index, destinationRoot: destination });
+      assertDestinationSafe(destination, [row.path]);
+      renameSync(row.temporary, row.target);
+      temporaryPaths.splice(temporaryPaths.indexOf(row.temporary), 1);
+      changed.push(row);
+      const bytes = readFileSync(row.target);
+      if (bytes.length !== row.size || sha256(bytes) !== row.sha256) {
+        throw new Error(`copied bundle file failed verification: ${row.path}`);
+      }
+    }
+  } catch (error) {
+    restoreTransaction({ changed, snapshots, createdDirectories, temporaryPaths, destination, originalError: error });
   }
   return manifest;
 }
 
 function parseArguments(arguments_) {
   const [command, ...rest] = arguments_;
-  if (!['create', 'verify', 'copy'].includes(command)) throw new Error('bundle command must be create, verify, or copy');
+  if (!['create', 'verify', 'apply'].includes(command)) throw new Error('bundle command must be create, verify, or apply');
   const values = new Map();
   for (let index = 0; index < rest.length; index += 2) {
     const key = rest[index];
@@ -288,8 +406,11 @@ function main() {
   const { command, values } = parseArguments(process.argv.slice(2));
   let manifest;
   if (command === 'create') manifest = createMaintenanceBundle({ sourceRoot: required(values, '--source'), bundleRoot: required(values, '--bundle') });
-  if (command === 'verify') manifest = verifyMaintenanceBundle({ bundleRoot: required(values, '--bundle'), stagingRoot: required(values, '--staging') });
-  if (command === 'copy') manifest = copyVerifiedMaintenanceBundle({ stagingRoot: required(values, '--staging'), destinationRoot: required(values, '--destination') });
+  if (command === 'verify') manifest = verifyMaintenanceBundle({ bundleRoot: required(values, '--bundle'), stagingRoot: required(values, '--staging') }).manifest;
+  if (command === 'apply') {
+    const verifiedBundle = verifyMaintenanceBundle({ bundleRoot: required(values, '--bundle'), stagingRoot: required(values, '--staging') });
+    manifest = copyVerifiedMaintenanceBundle({ verifiedBundle, destinationRoot: required(values, '--destination') });
+  }
   process.stdout.write(`${JSON.stringify({ schemaVersion: manifest.schemaVersion, files: manifest.files.length })}\n`);
 }
 

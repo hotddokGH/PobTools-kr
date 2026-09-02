@@ -272,7 +272,12 @@ report = {
     "issues": issues,
 }
 args.report.parent.mkdir(parents=True, exist_ok=True)
-args.report.write_text(json.dumps(report, ensure_ascii=False, sort_keys=True) + "\n", encoding="utf-8")
+if fixture_config.get("omitOverlayReport"):
+    pass
+elif fixture_config.get("malformedOverlayReport"):
+    args.report.write_text("{malformed", encoding="utf-8")
+else:
+    args.report.write_text(json.dumps(report, ensure_ascii=False, sort_keys=True) + "\n", encoding="utf-8")
 if not issues and args.mode == "apply":
     for path, source, target in plans:
         path.write_text(path.read_text(encoding="utf-8").replace('u8"' + source + '"', 'u8"' + target + '"'), encoding="utf-8")
@@ -398,6 +403,8 @@ async function makeUpstreamFixture(t, {
   coreAutocrlf = false,
   unsafeTrustedIniDestination = false,
   malformedOverlaySummary = false,
+  omitOverlayReport = false,
+  malformedOverlayReport = false,
 } = {}) {
   const temporaryRoot = mkdtempSync(join(tmpdir(), 'pobtools-ko-maintenance-'));
   t.after(() => rmSync(temporaryRoot, { recursive: true, force: true }));
@@ -463,6 +470,8 @@ async function makeUpstreamFixture(t, {
     unsafeTrustedIniDestination,
     unsafeTrustedIniTarget,
     malformedOverlaySummary,
+    omitOverlayReport,
+    malformedOverlayReport,
   })}\n`);
   write(join(koRoot, 'localization', 'ko-KR', 'lib', 'source_overlay.py'), overlayScript);
   write(join(koRoot, 'localization', 'ko-KR', 'build-runtime-locale.mjs'), runtimeBuilder);
@@ -549,6 +558,49 @@ test('malformed source-overlay summary blocks before apply and is never used as 
     phase: 'source-overlay-audit',
     detail: 'source overlay report reused must be a non-negative safe integer',
   }]);
+});
+
+test('a stale overlay report is removed and cannot substitute for missing fresh audit evidence', async (t) => {
+  const fixture = await makeUpstreamFixture(t, { omitOverlayReport: true });
+  const stalePath = join(fixture.koRoot, 'reports', 'maintenance', 'source-overlay.json');
+  write(stalePath, JSON.stringify({
+    filesScanned: 99, displayLiterals: 99, reused: 99, official: 99, reviewed: 0, intentional: 0, issues: [],
+  }));
+  const result = await prepareMaintenanceRun({
+    repositoryRoot: fixture.koRoot,
+    upstreamRef: fixture.secondCommit,
+    workspaceRoot: fixture.workspace,
+  });
+  assert.equal(result.report.classification, 'blocked');
+  assert.equal(result.report.sourceSummary.reused, 0);
+  assert.equal(result.report.phases.some((row) => row.name === 'source-overlay-apply'), false);
+  assert.deepEqual(result.report.auditFailures.map((row) => row.phase), ['source-overlay-report-read']);
+});
+
+test('malformed fresh overlay JSON blocks deterministically before apply', async (t) => {
+  const fixture = await makeUpstreamFixture(t, { malformedOverlayReport: true });
+  const result = await prepareMaintenanceRun({
+    repositoryRoot: fixture.koRoot,
+    upstreamRef: fixture.secondCommit,
+    workspaceRoot: fixture.workspace,
+  });
+  assert.equal(result.report.classification, 'blocked');
+  assert.equal(result.report.phases.some((row) => row.name === 'source-overlay-apply'), false);
+  assert.deepEqual(result.report.auditFailures.map((row) => row.phase), ['source-overlay-report-read']);
+});
+
+test('a non-regular stale overlay report blocks before audit execution', async (t) => {
+  const fixture = await makeUpstreamFixture(t);
+  const stalePath = join(fixture.koRoot, 'reports', 'maintenance', 'source-overlay.json');
+  mkdirSync(stalePath, { recursive: true });
+  const result = await prepareMaintenanceRun({
+    repositoryRoot: fixture.koRoot,
+    upstreamRef: fixture.secondCommit,
+    workspaceRoot: fixture.workspace,
+  });
+  assert.equal(result.report.classification, 'blocked');
+  assert.equal(result.report.phases.some((row) => row.name === 'source-overlay-audit'), false);
+  assert.deepEqual(result.report.auditFailures.map((row) => row.phase), ['source-overlay-report-preflight']);
 });
 
 test('unchanged upstream prepares a reusable detached workspace and a ready report', async (t) => {

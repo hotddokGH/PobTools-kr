@@ -9,6 +9,7 @@ import {
   readdirSync,
   realpathSync,
   statSync,
+  unlinkSync,
   writeFileSync,
 } from 'node:fs';
 import { promisify } from 'node:util';
@@ -528,13 +529,71 @@ function collectOverlayRows(report, overlayReport) {
     summary[key] = value;
   }
   report.sourceSummary = summary;
-  for (const row of overlayReport.issues ?? []) {
+  if (!Array.isArray(overlayReport.issues)) {
+    report.auditFailures.push({
+      path: 'reports/maintenance/source-overlay.json',
+      phase: 'source-overlay-audit',
+      detail: 'source overlay report issues must be an array',
+    });
+    return false;
+  }
+  for (const row of overlayReport.issues) {
     if (row.code === 'SUGGESTION_ONLY' || row.code === 'SUGGESTED') report.suggestedStrings.push(row);
     else if (row.code === 'AMBIGUOUS') report.ambiguousStrings.push(row);
     else if (row.code === 'MISSING_MAPPING' || row.code === 'MISSING_COMPONENT_MAPPING') report.newStrings.push(row);
     else report.auditFailures.push(row);
   }
   return true;
+}
+
+function recordOverlayEvidenceFailure(report, phaseName, detail) {
+  const safeDetail = bounded(detail);
+  report.phases.push({ name: phaseName, command: [], exitCode: 1, stderr: safeDetail });
+  report.auditFailures.push({
+    path: 'reports/maintenance/source-overlay.json',
+    phase: phaseName,
+    detail: safeDetail,
+  });
+}
+
+function removeStaleOverlayEvidence(report, overlayReportPath, reportsRoot) {
+  try {
+    preflightExistingScope(overlayReportPath, reportsRoot);
+    if (!existsSync(overlayReportPath)) return true;
+    const metadata = lstatSync(overlayReportPath);
+    if (metadata.isSymbolicLink() || !metadata.isFile()) {
+      throw new Error('pre-existing source overlay report must be a regular file');
+    }
+    unlinkSync(overlayReportPath);
+    preflightExistingScope(overlayReportPath, reportsRoot);
+    if (existsSync(overlayReportPath)) throw new Error('pre-existing source overlay report could not be removed');
+    return true;
+  } catch (error) {
+    recordOverlayEvidenceFailure(report, 'source-overlay-report-preflight', error.message);
+    return false;
+  }
+}
+
+function readFreshOverlayEvidence(report, overlayReportPath, reportsRoot) {
+  try {
+    preflightExistingScope(overlayReportPath, reportsRoot);
+    if (!existsSync(overlayReportPath)) throw new Error('fresh source overlay report is missing');
+    const metadata = lstatSync(overlayReportPath);
+    if (metadata.isSymbolicLink() || !metadata.isFile()) throw new Error('fresh source overlay report must be a regular file');
+    let overlayReport;
+    try {
+      overlayReport = readJson(overlayReportPath);
+    } catch {
+      throw new Error('fresh source overlay report is not valid JSON');
+    }
+    if (overlayReport === null || typeof overlayReport !== 'object' || Array.isArray(overlayReport)) {
+      throw new Error('fresh source overlay report must be an object');
+    }
+    return { valid: collectOverlayRows(report, overlayReport) };
+  } catch (error) {
+    recordOverlayEvidenceFailure(report, 'source-overlay-report-read', error.message);
+    return { valid: false };
+  }
 }
 
 async function runTrusted(report, name, command, arguments_, options = {}) {
@@ -610,6 +669,7 @@ export async function prepareMaintenanceRun({
   const engineRoot = join(workspace, 'pob-zh-engine');
   const reportsRoot = join(trustedRoot, 'reports');
   assertNotReparse(engineRoot, 'engine root');
+  if (!existsSync(reportsRoot)) mkdirSync(reportsRoot);
   assertNotReparse(reportsRoot, 'report root');
 
   if (!await applyCompatibilityPatch({ repositoryRoot: trustedRoot, workspace, report })) {
@@ -617,6 +677,9 @@ export async function prepareMaintenanceRun({
   }
 
   const overlayReportPath = join(reportsRoot, 'maintenance', 'source-overlay.json');
+  if (!removeStaleOverlayEvidence(report, overlayReportPath, reportsRoot)) {
+    return { commit, workspace, report: finishReport() };
+  }
   const overlayBase = [
     '--source-root', engineRoot,
     '--mapping', join(localeRoot, 'source-translations.json'),
@@ -626,8 +689,8 @@ export async function prepareMaintenanceRun({
   ];
   const overlayScript = join(localeRoot, 'lib', 'source_overlay.py');
   const audit = await runTrusted(report, 'source-overlay-audit', 'python', [overlayScript, 'audit', ...overlayBase], { cwd: trustedRoot });
-  const overlayReportValid = !existsSync(overlayReportPath) || collectOverlayRows(report, readJson(overlayReportPath));
-  if (!overlayReportValid) return { commit, workspace, report: finishReport() };
+  const overlayEvidence = readFreshOverlayEvidence(report, overlayReportPath, reportsRoot);
+  if (!overlayEvidence.valid) return { commit, workspace, report: finishReport() };
   if (audit.exitCode !== 0) {
     if (report.newStrings.length + report.suggestedStrings.length + report.ambiguousStrings.length === 0) {
       report.commandFailures.push({ path: 'localization/ko-KR/lib/source_overlay.py', phase: 'source-overlay-audit', detail: audit.stderr });

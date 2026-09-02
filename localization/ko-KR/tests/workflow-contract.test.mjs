@@ -220,6 +220,7 @@ test('check-upstream workflow splits read-only analysis from a fixed-branch veri
 
   const analyze = jobBlock('analyze');
   const propose = jobBlock('propose');
+  assert.match(analyze, /if: github\.ref == 'refs\/heads\/ko\/main'/u);
   assert.match(analyze, /permissions:\n      contents: read/u);
   assert.doesNotMatch(analyze, /(?:contents|pull-requests): write/u);
   assert.match(propose, /permissions:\n      contents: write\n      pull-requests: write/u);
@@ -238,8 +239,13 @@ test('check-upstream workflow splits read-only analysis from a fixed-branch veri
   const actions = [...text.matchAll(/^\s*uses:\s*([^\s]+)\s*$/gmu)].map((match) => match[1]);
   assert.deepEqual(actions, expectedActions);
   for (const action of actions) assert.match(action, /^[^@]+@[0-9a-f]{40}$/u);
-  assert.equal((text.match(/ref: \$\{\{ github\.sha \}\}/gu) ?? []).length, 2);
-  assert.equal((text.match(/ref: \$\{\{ github\.sha \}\}/gu) ?? []).length, 2);
+  assert.match(analyze, /ref: refs\/heads\/ko\/main/u);
+  assert.match(propose, /ref: \$\{\{ needs\.analyze\.outputs\.trusted_commit \}\}/u);
+  assert.match(analyze, /git ls-remote --exit-code origin refs\/heads\/ko\/main/u);
+  assert.match(analyze, /github\.sha[\s\S]*trusted ko\/main commit/u);
+  assert.match(propose, /git ls-remote --exit-code origin refs\/heads\/ko\/main/u);
+  assert.match(propose, /git switch -C automation\/upstream-ko \$\{\{ needs\.analyze\.outputs\.trusted_commit \}\}/u);
+  assert.equal((text.match(/ref: \$\{\{ github\.sha \}\}/gu) ?? []).length, 0);
 
   assert.match(analyze, /git remote add upstream https:\/\/github\.com\/Hsiung-Shao\/PobTools-zh\.git/u);
   assert.match(analyze, /git fetch --no-tags upstream main/u);
@@ -252,14 +258,14 @@ test('check-upstream workflow splits read-only analysis from a fixed-branch veri
   assert.match(analyze, /if: always\(\)/u);
   assert.match(analyze, /exit 1/u);
 
-  const verifyIndex = propose.indexOf('maintenance-bundle.mjs verify');
-  const copyIndex = propose.indexOf('maintenance-bundle.mjs copy');
+  const verifyIndex = propose.indexOf('maintenance-bundle.mjs apply');
+  const copyIndex = propose.indexOf('Copy only the transactionally verified allowlist');
   const renderIndex = propose.indexOf('render-maintenance-pr.mjs');
   const branchIndex = propose.indexOf('automation/upstream-ko');
   const pushIndex = propose.indexOf('git push');
   const ghIndex = propose.indexOf('gh pr');
-  assert.ok(verifyIndex >= 0 && verifyIndex < copyIndex);
-  assert.ok(copyIndex < renderIndex && renderIndex < branchIndex && branchIndex < pushIndex && pushIndex < ghIndex);
+  assert.ok(verifyIndex >= 0 && copyIndex >= 0 && copyIndex < verifyIndex);
+  assert.ok(verifyIndex < renderIndex && renderIndex < branchIndex && branchIndex < pushIndex && pushIndex < ghIndex);
   assert.match(propose, /\$\{\{ runner\.temp \}\}\/ko-maintenance-download/u);
   assert.match(propose, /\$\{\{ runner\.temp \}\}\/ko-maintenance-verified/u);
   assert.match(propose, /--body-file/u);
@@ -269,5 +275,12 @@ test('check-upstream workflow splits read-only analysis from a fixed-branch veri
   assert.match(propose, /gh pr edit .* --base ko\/main --title .* --body-file/u);
   assert.match(propose, /GH_TOKEN: \$\{\{ github\.token \}\}/u);
   assert.doesNotMatch(propose, /gh label create/u);
+  for (const operation of [
+    'git switch', 'git config user.name', 'git config user.email', 'git add', 'git diff', 'git commit', 'git push',
+    'gh pr list', 'gh pr edit', 'gh pr create', 'gh post-create list', 'gh label list', 'gh label edit',
+  ]) assert.match(propose, new RegExp(`Assert-NativeSuccess '${operation.replaceAll('.', '\\.')}'`, 'u'));
+  for (const operation of ['git remote add', 'git fetch', 'git rev-parse', 'git ls-remote']) {
+    assert.match(analyze, new RegExp(`Assert-NativeSuccess '${operation.replaceAll('.', '\\.')}'`, 'u'));
+  }
   assert.doesNotMatch(text, /(?:gh\s+release|softprops\/action-gh-release|pull_request_target|repository_dispatch|cmake|msbuild|\.exe\b)/iu);
 });

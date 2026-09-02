@@ -14,18 +14,35 @@ concurrency:
 
 jobs:
   analyze:
+    if: github.ref == 'refs/heads/ko/main'
     runs-on: windows-2025-vs2026
     permissions:
       contents: read
     outputs:
       classification: ${{ steps.report.outputs.classification }}
       commit: ${{ steps.report.outputs.commit }}
+      trusted_commit: ${{ steps.trusted.outputs.trusted_commit }}
     steps:
       - name: Check out trusted Korean automation
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
-          ref: ${{ github.sha }}
+          ref: refs/heads/ko/main
           fetch-depth: 0
+      - name: Verify the trusted ko/main workflow identity
+        id: trusted
+        shell: pwsh
+        run: |
+          function Assert-NativeSuccess([string]$Operation) {
+            if ($LASTEXITCODE -ne 0) { throw "$Operation failed with exit code $LASTEXITCODE" }
+          }
+          $head = (git rev-parse HEAD).Trim()
+          Assert-NativeSuccess 'git rev-parse'
+          $remote = @(git ls-remote --exit-code origin refs/heads/ko/main)
+          Assert-NativeSuccess 'git ls-remote'
+          if ($remote.Count -ne 1) { throw 'origin ko/main did not resolve exactly once' }
+          $remoteCommit = ($remote[0] -split '\s+')[0]
+          if ('${{ github.sha }}' -ne $head -or $remoteCommit -ne $head) { throw 'workflow invocation is not the trusted ko/main commit' }
+          "trusted_commit=$head" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
       - name: Set up Node.js
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
         with:
@@ -40,12 +57,20 @@ jobs:
       - name: Fetch upstream main
         shell: pwsh
         run: |
+          function Assert-NativeSuccess([string]$Operation) {
+            if ($LASTEXITCODE -ne 0) { throw "$Operation failed with exit code $LASTEXITCODE" }
+          }
           git remote add upstream https://github.com/Hsiung-Shao/PobTools-zh.git
+          Assert-NativeSuccess 'git remote add'
           git fetch --no-tags upstream main
+          Assert-NativeSuccess 'git fetch'
       - name: Analyze upstream and capture expected exits
         id: analyze
         shell: pwsh
         run: |
+          function Assert-NativeSuccess([string]$Operation) {
+            if ($LASTEXITCODE -ne 0) { throw "$Operation failed with exit code $LASTEXITCODE" }
+          }
           $report = Join-Path $env:RUNNER_TEMP 'upstream-update.json'
           $workspace = Join-Path $env:GITHUB_WORKSPACE '.ko-worktrees/upstream-maintenance'
           node localization/ko-KR/update-upstream.mjs --repository-root $env:GITHUB_WORKSPACE --upstream-ref upstream/main --workspace $workspace --report $report --force-prepare
@@ -54,6 +79,7 @@ jobs:
           "exit_code=$code" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
           if (-not (Test-Path -LiteralPath $report -PathType Leaf)) {
             $commit = (git rev-parse --verify 'upstream/main^{commit}').Trim()
+            Assert-NativeSuccess 'git rev-parse'
             $fallback = [ordered]@{
               schemaVersion = 1
               commit = $commit
@@ -128,19 +154,29 @@ jobs:
       - name: Check out trusted Korean automation
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
-          ref: ${{ github.sha }}
+          ref: ${{ needs.analyze.outputs.trusted_commit }}
           fetch-depth: 0
+      - name: Reverify the proposal checkout identity
+        shell: pwsh
+        run: |
+          function Assert-NativeSuccess([string]$Operation) {
+            if ($LASTEXITCODE -ne 0) { throw "$Operation failed with exit code $LASTEXITCODE" }
+          }
+          $head = (git rev-parse HEAD).Trim()
+          Assert-NativeSuccess 'git rev-parse'
+          $remote = @(git ls-remote --exit-code origin refs/heads/ko/main)
+          Assert-NativeSuccess 'git ls-remote'
+          if ($remote.Count -ne 1) { throw 'origin ko/main did not resolve exactly once' }
+          $remoteCommit = ($remote[0] -split '\s+')[0]
+          if ($head -ne '${{ needs.analyze.outputs.trusted_commit }}' -or $remoteCommit -ne $head) { throw 'proposal checkout is not the trusted ko/main commit' }
       - name: Download analysis artifact outside the repository
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
         with:
           name: ko-maintenance-analysis
           path: ${{ runner.temp }}/ko-maintenance-download
-      - name: Verify into external staging
+      - name: Copy only the transactionally verified allowlist
         shell: pwsh
-        run: node localization/ko-KR/lib/maintenance-bundle.mjs verify --bundle "${{ runner.temp }}/ko-maintenance-download/maintenance-bundle" --staging "${{ runner.temp }}/ko-maintenance-verified"
-      - name: Copy only the verified allowlist
-        shell: pwsh
-        run: node localization/ko-KR/lib/maintenance-bundle.mjs copy --staging "${{ runner.temp }}/ko-maintenance-verified" --destination $env:GITHUB_WORKSPACE
+        run: node localization/ko-KR/lib/maintenance-bundle.mjs apply --bundle "${{ runner.temp }}/ko-maintenance-download/maintenance-bundle" --staging "${{ runner.temp }}/ko-maintenance-verified" --destination $env:GITHUB_WORKSPACE
       - name: Render trusted PR files
         shell: pwsh
         run: |
@@ -149,33 +185,54 @@ jobs:
       - name: Commit and push the fixed maintenance branch
         shell: pwsh
         run: |
-          git switch -C automation/upstream-ko
+          function Assert-NativeSuccess([string]$Operation) {
+            if ($LASTEXITCODE -ne 0) { throw "$Operation failed with exit code $LASTEXITCODE" }
+          }
+          git switch -C automation/upstream-ko ${{ needs.analyze.outputs.trusted_commit }}
+          Assert-NativeSuccess 'git switch'
           git config user.name 'github-actions[bot]'
+          Assert-NativeSuccess 'git config user.name'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          Assert-NativeSuccess 'git config user.email'
           git add -A -- reports/maintenance/upstream-update.json localization/ko-KR/source-translation-suggestions.json pob-zh-engine/dist/Data/launcher/ko-KR pob-zh-engine/dist/Data/poe1/ko-KR reports/display-closure reports/official-terms
+          Assert-NativeSuccess 'git add'
           $staged = git diff --cached --name-only
+          Assert-NativeSuccess 'git diff'
           if ($staged.Count -eq 0) { throw 'verified maintenance bundle produced no repository changes' }
           git commit -m "chore: propose Korean upstream maintenance ${{ needs.analyze.outputs.commit }}"
+          Assert-NativeSuccess 'git commit'
           git push --force-with-lease origin HEAD:automation/upstream-ko
+          Assert-NativeSuccess 'git push'
       - name: Create or update exactly one maintenance PR
         shell: pwsh
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          function Assert-NativeSuccess([string]$Operation) {
+            if ($LASTEXITCODE -ne 0) { throw "$Operation failed with exit code $LASTEXITCODE" }
+          }
           $title = (Get-Content -Raw -LiteralPath (Join-Path $env:RUNNER_TEMP 'pr-title.txt')).Trim()
           $body = Join-Path $env:RUNNER_TEMP 'pr-body.md'
           $open = @(gh pr list --head automation/upstream-ko --state open --json number,baseRefName | ConvertFrom-Json)
+          Assert-NativeSuccess 'gh pr list'
           if ($open.Count -gt 1) { throw 'more than one maintenance PR is open' }
           if ($open.Count -eq 1) {
             gh pr edit $($open[0].number) --base ko/main --title $title --body-file $body
+            Assert-NativeSuccess 'gh pr edit'
             $number = $open[0].number
           } else {
             gh pr create --head automation/upstream-ko --base ko/main --title $title --body-file $body
+            Assert-NativeSuccess 'gh pr create'
             $created = @(gh pr list --head automation/upstream-ko --base ko/main --state open --json number | ConvertFrom-Json)
+            Assert-NativeSuccess 'gh post-create list'
             if ($created.Count -ne 1) { throw 'maintenance PR creation did not produce exactly one open PR' }
             $number = $created[0].number
           }
           $existingLabels = @(gh label list --limit 1000 --json name | ConvertFrom-Json | ForEach-Object { $_.name })
+          Assert-NativeSuccess 'gh label list'
           foreach ($label in Get-Content -LiteralPath (Join-Path $env:RUNNER_TEMP 'pr-labels.txt')) {
-            if ($existingLabels -contains $label) { gh pr edit $number --add-label $label }
+            if ($existingLabels -contains $label) {
+              gh pr edit $number --add-label $label
+              Assert-NativeSuccess 'gh label edit'
+            }
           }

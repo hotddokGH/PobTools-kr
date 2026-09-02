@@ -53,28 +53,28 @@ test('renders the complete deterministic Korean maintenance PR snapshot', () => 
 
 ### \`AMBIGUOUS\` (1개)
 
-| 경로 | 함수 | 줄 | 원문 |
-| --- | --- | ---: | --- |
-| c/view.cpp | Draw | 3 | 模糊 |
+| 경로 | 함수 | 발생 | 줄 | 원문 |
+| --- | --- | ---: | ---: | --- |
+| c/view.cpp | Draw | 2 | 3 | 模糊 |
 
 ### \`MISSING_MAPPING\` (2개)
 
-| 경로 | 함수 | 줄 | 원문 |
-| --- | --- | ---: | --- |
-| a/view.cpp | Open | 4 | 新規 |
-| z/view.cpp | Draw | 9 | 新增 |
+| 경로 | 함수 | 발생 | 줄 | 원문 |
+| --- | --- | ---: | ---: | --- |
+| a/view.cpp | Open | 1 | 4 | 新規 |
+| z/view.cpp | Draw | 1 | 9 | 新增 |
 
 ### \`OFFICIAL_DATA_CHANGE\` (1개)
 
-| 경로 | 함수 | 줄 | 원문 |
-| --- | --- | ---: | --- |
-| pob-zh-engine/host/data/atlas_maps_poe1.json |  |  |  |
+| 경로 | 함수 | 발생 | 줄 | 원문 |
+| --- | --- | ---: | ---: | --- |
+| pob-zh-engine/host/data/atlas_maps_poe1.json |  |  |  |  |
 
 ### \`SUGGESTED\` (1개)
 
-| 경로 | 함수 | 줄 | 원문 |
-| --- | --- | ---: | --- |
-| b/view.cpp | Draw | 2 | 建議 |
+| 경로 | 함수 | 발생 | 줄 | 원문 |
+| --- | --- | ---: | ---: | --- |
+| b/view.cpp | Draw | 1 | 2 | 建議 |
 
 ## 차단 진단
 
@@ -131,6 +131,19 @@ test('sorts review rows and escapes Markdown and HTML without emitting executabl
   assert.match(rendered.body, /\\`\$\(Remove-Item \\\*\)\\`/u);
   assert.equal(rendered.body.includes('<script>'), false);
   assert.equal(rendered.body.includes('node localization/ko-KR/update-upstream.mjs --repository-root . --upstream-ref evil'), false);
+});
+
+test('sorts otherwise identical review locations by occurrenceIndex and renders the index', () => {
+  const report = fixtureReport({
+    newStrings: [
+      { code: 'MISSING_MAPPING', path: 'same.cpp', function: 'Draw', occurrenceIndex: 2, line: 5, source: '가' },
+      { code: 'MISSING_MAPPING', path: 'same.cpp', function: 'Draw', occurrenceIndex: 1, line: 5, source: '나' },
+    ],
+    suggestedStrings: [], ambiguousStrings: [], officialDataChanges: [],
+    compatibilityFailures: [], deterministicFailures: [], commandFailures: [], auditFailures: [],
+  });
+  const body = renderMaintenancePr(report).body;
+  assert.ok(body.indexOf('| same.cpp | Draw | 1 | 5 | 나 |') < body.indexOf('| same.cpp | Draw | 2 | 5 | 가 |'));
 });
 
 test('rejects malformed reports, controls, unknown top-level fields, and unsafe classifications', () => {

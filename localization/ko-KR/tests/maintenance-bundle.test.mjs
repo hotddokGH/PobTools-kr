@@ -3,9 +3,11 @@ import { createHash } from 'node:crypto';
 import {
   cpSync,
   existsSync,
+  lstatSync,
   mkdirSync,
   mkdtempSync,
   readFileSync,
+  readdirSync,
   rmSync,
   symlinkSync,
   writeFileSync,
@@ -48,6 +50,24 @@ function readManifest(bundleRoot) {
   return JSON.parse(readFileSync(join(bundleRoot, manifestName), 'utf8'));
 }
 
+function snapshotTree(root, relativeRoot = '') {
+  if (!existsSync(root)) return [];
+  const output = [];
+  const visit = (absolute, relative) => {
+    const metadata = lstatSync(absolute);
+    if (metadata.isDirectory()) {
+      output.push(['directory', relative]);
+      for (const name of readdirSync(absolute).sort()) visit(join(absolute, name), relative ? `${relative}/${name}` : name);
+    } else if (metadata.isFile()) {
+      output.push(['file', relative, readFileSync(absolute).toString('base64')]);
+    } else if (metadata.isSymbolicLink()) {
+      output.push(['link', relative]);
+    }
+  };
+  visit(root, relativeRoot);
+  return output;
+}
+
 test('creates a deterministic sorted data-only bundle and reproduces it across roots', (t) => {
   const first = fixture(t);
   const second = fixture(t);
@@ -65,16 +85,17 @@ test('creates a deterministic sorted data-only bundle and reproduces it across r
     assert.equal(row.sha256, sha256(bytes));
     assert.equal(row.size, bytes.length);
   }
-  assert.deepEqual(verifyMaintenanceBundle({ bundleRoot: first.bundleRoot }), manifest);
+  assert.deepEqual(verifyMaintenanceBundle({ bundleRoot: first.bundleRoot }).manifest, manifest);
 });
 
 test('stages a fully verified bundle before copying only allowlisted files to a destination', (t) => {
   const item = fixture(t);
   const stagingRoot = join(item.root, 'verified-staging');
   createMaintenanceBundle({ sourceRoot: item.sourceRoot, bundleRoot: item.bundleRoot });
-  const manifest = verifyMaintenanceBundle({ bundleRoot: item.bundleRoot, stagingRoot });
+  const verifiedBundle = verifyMaintenanceBundle({ bundleRoot: item.bundleRoot, stagingRoot });
+  const { manifest } = verifiedBundle;
   assert.deepEqual(readManifest(stagingRoot), manifest);
-  copyVerifiedMaintenanceBundle({ stagingRoot, destinationRoot: item.destinationRoot });
+  copyVerifiedMaintenanceBundle({ verifiedBundle, destinationRoot: item.destinationRoot });
   for (const row of manifest.files) {
     assert.deepEqual(
       readFileSync(join(item.destinationRoot, ...row.path.split('/'))),
@@ -136,27 +157,72 @@ test('rejects source and payload links or non-regular entries', (t) => {
   assert.throws(() => verifyMaintenanceBundle({ bundleRoot: payload.bundleRoot }), { name: 'Error' });
 });
 
-test('any failed verification leaves destination bytes unchanged and rejects destination reparse ancestors', (t) => {
+test('copy consumes immutable verified bytes even when staged bytes mutate afterward', (t) => {
+  const item = fixture(t);
+  const stagingRoot = join(item.root, 'staging');
+  createMaintenanceBundle({ sourceRoot: item.sourceRoot, bundleRoot: item.bundleRoot });
+  const verifiedBundle = verifyMaintenanceBundle({ bundleRoot: item.bundleRoot, stagingRoot });
+  write(join(stagingRoot, 'payload', 'reports', 'maintenance', 'upstream-update.json'), 'tampered after verification');
+  copyVerifiedMaintenanceBundle({ verifiedBundle, destinationRoot: item.destinationRoot });
+  assert.equal(
+    readFileSync(join(item.destinationRoot, 'reports', 'maintenance', 'upstream-update.json'), 'utf8'),
+    '{"classification":"ready"}\n',
+  );
+});
+
+test('a later replacement failure rolls back every earlier file and created directory', (t) => {
   const damaged = fixture(t);
   createMaintenanceBundle({ sourceRoot: damaged.sourceRoot, bundleRoot: damaged.bundleRoot });
   const stagingRoot = join(damaged.root, 'staging');
-  verifyMaintenanceBundle({ bundleRoot: damaged.bundleRoot, stagingRoot });
+  const verifiedBundle = verifyMaintenanceBundle({ bundleRoot: damaged.bundleRoot, stagingRoot });
   write(join(damaged.destinationRoot, 'sentinel.txt'), 'unchanged');
-  write(join(stagingRoot, 'payload', 'reports', 'maintenance', 'upstream-update.json'), 'tampered');
-  assert.throws(() => copyVerifiedMaintenanceBundle({ stagingRoot, destinationRoot: damaged.destinationRoot }), { name: 'Error' });
-  assert.equal(readFileSync(join(damaged.destinationRoot, 'sentinel.txt'), 'utf8'), 'unchanged');
-  assert.equal(existsSync(join(damaged.destinationRoot, 'reports')), false);
+  write(join(damaged.destinationRoot, 'localization', 'ko-KR', 'source-translation-suggestions.json'), 'pre-existing destination bytes');
+  const before = snapshotTree(damaged.destinationRoot);
+  let replacements = 0;
+  assert.throws(() => copyVerifiedMaintenanceBundle({
+    verifiedBundle,
+    destinationRoot: damaged.destinationRoot,
+    operations: {
+      beforeReplace() {
+        replacements += 1;
+        if (replacements === 2) throw new Error('injected later replacement failure');
+      },
+    },
+  }), /injected later replacement failure/u);
+  assert.deepEqual(snapshotTree(damaged.destinationRoot), before);
+});
 
+test('an ancestor replacement race is caught immediately and leaves destination and external bytes unchanged', (t) => {
   const redirected = fixture(t);
   createMaintenanceBundle({ sourceRoot: redirected.sourceRoot, bundleRoot: redirected.bundleRoot });
   const redirectedStaging = join(redirected.root, 'staging');
-  verifyMaintenanceBundle({ bundleRoot: redirected.bundleRoot, stagingRoot: redirectedStaging });
+  const verifiedBundle = verifyMaintenanceBundle({ bundleRoot: redirected.bundleRoot, stagingRoot: redirectedStaging });
   const outside = join(redirected.root, 'outside');
   mkdirSync(outside);
+  write(join(outside, 'sentinel.txt'), 'external-original');
   mkdirSync(redirected.destinationRoot);
-  symlinkSync(outside, join(redirected.destinationRoot, 'reports'), process.platform === 'win32' ? 'junction' : 'dir');
-  assert.throws(() => copyVerifiedMaintenanceBundle({ stagingRoot: redirectedStaging, destinationRoot: redirected.destinationRoot }), { name: 'Error' });
-  assert.deepEqual(existsSync(join(outside, 'maintenance', 'upstream-update.json')), false);
+  write(join(redirected.destinationRoot, 'sentinel.txt'), 'destination-original');
+  const before = snapshotTree(redirected.destinationRoot);
+  let raced = false;
+  assert.throws(() => copyVerifiedMaintenanceBundle({
+    verifiedBundle,
+    destinationRoot: redirected.destinationRoot,
+    operations: {
+      beforeReplace({ relativePath }) {
+        if (!raced && relativePath.startsWith('reports/')) {
+          raced = true;
+          const reports = join(redirected.destinationRoot, 'reports');
+          rmSync(reports, { recursive: true, force: true });
+          symlinkSync(outside, reports, process.platform === 'win32' ? 'junction' : 'dir');
+        }
+      },
+    },
+  }), /bundle transaction/u);
+  assert.equal(readFileSync(join(outside, 'sentinel.txt'), 'utf8'), 'external-original');
+  assert.equal(existsSync(join(outside, 'maintenance', 'upstream-update.json')), false);
+  const reports = join(redirected.destinationRoot, 'reports');
+  if (existsSync(reports)) rmSync(reports, { recursive: true, force: true });
+  assert.deepEqual(snapshotTree(redirected.destinationRoot), before);
 });
 
 test('rejects non-empty output directories instead of overwriting existing bundle or staging data', (t) => {
