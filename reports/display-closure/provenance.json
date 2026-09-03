@@ -36440,6 +36440,10 @@
         "layer": "official-exact",
         "source": "ClientStrings:HUDAtlasPassivePoints"
       },
+      "{0} Avg. Mines per Throw": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
       "{0} becomes leader of {2}. {0} and {1} become Rivals": {
         "layer": "official-exact",
         "source": "ClientStrings:BetrayalChoiceActionSwapLeader"
@@ -36527,6 +36531,10 @@
       "{0} gained {2} {1} experience": {
         "layer": "official-exact",
         "source": "ClientStrings:HeistNPCGainExperience"
+      },
+      "{0} Gold required to unallocate this node": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
       },
       "{0} Guild Invitation Sent": {
         "layer": "official-exact",
@@ -36752,6 +36760,10 @@
         "layer": "official-exact",
         "source": "stat-descriptions:melee_range_+_with_sword#BEB0B0F8AAC40CBBAFE51E0FC2006DA7887EF555DE58037B019B9A0E8DAC268B"
       },
+      "{0} metres to radius": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
       "{0} minutes": {
         "layer": "official-exact",
         "source": "ClientStrings:TimeMinutesN"
@@ -36904,6 +36916,10 @@
         "layer": "official-exact",
         "source": "ClientStrings:RecycleResourceText"
       },
+      "{0} points to node": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
       "{0} Rage": {
         "layer": "official-exact",
         "source": "ClientStrings:SkillPopupCostValueRage"
@@ -37007,6 +37023,10 @@
       "{0} to {1} (base damage from skill)": {
         "layer": "machine-assisted-pob-ui",
         "source": "manual/machine-fallback.json"
+      },
+      "{0} to Area of Effect length": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
       },
       "{0} to attack.": {
         "layer": "official-exact",
@@ -37244,6 +37264,10 @@
         "layer": "official-exact",
         "source": "ClientStrings:KalguurShipRisksInfo"
       },
+      "{0}% chance to Shock enemies": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
       "{0}% Complete": {
         "layer": "official-exact",
         "source": "ClientStrings:KalguurMappingMapCompleteHover"
@@ -37267,6 +37291,14 @@
       "{0}% more Damage for each different type of Mastery you have Allocated": {
         "layer": "official-exact",
         "source": "stat-descriptions:trickster_damage_+%_final_per_different_mastery#24410A44B39CC1470F89B0AA18B0B26976049DF8E166CBF61FDBA645677B66E9"
+      },
+      "{0}% more Damage with Hits against Burning enemies": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
+      "{0}% more Damage with Hits and Ailments for each remaining Chain": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
       },
       "{0}% more DPS": {
         "layer": "machine-assisted-pob-ui",
@@ -37316,9 +37348,17 @@
         "layer": "official-exact",
         "source": "ClientStrings:RoyaleDistanceFormat"
       },
+      "{0}m AoE Radius": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
       "{0}ms": {
         "layer": "official-exact",
         "source": "ClientStrings:LoginScreenGatewayListPing"
+      },
+      "{0}s Mine Throwing Time": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
       },
       "{0}x Anisotropic Filtering": {
         "layer": "official-exact",
@@ -113779,6 +113819,14 @@
         "layer": "official-exact",
         "source": "ClientStrings:BlightAnointErrorBlightedMapMaxMods"
       },
+      "A bloody scythe swipes across a selected area, applying a physical damage over time debuff and hitting enemies with physical damage. If any survive, you gain a blood charge which raises the damage and cost of the skill. Players can have 5 maximum blood charges.": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
+      "A bloody scythe swipes around you, applying a physical damage over time debuff and hitting enemies with physical damage. If any survive, you gain a blood charge which raises the damage and cost of the skill. Players can have 5 maximum blood charges.": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
       "A Book of Reform. Use to gain Alira's favour.": {
         "layer": "official-exact",
         "source": "ClientStrings:ItemDescriptionBanditRespecAlira"
@@ -114134,6 +114182,10 @@
       "A section of Path of Exile's main story. Each act has a Town, quests, and a story arc contained within it.": {
         "layer": "official-exact",
         "source": "ClientStrings:TutorialPanelGlossaryContent1"
+      },
+      "A shocking arc of lightning reaches from the caster to a targeted enemy and chains to other enemies. Each time the arc chains from an enemy, it will do so simultaneously to two further enemies, but never to enemies that have already been hit by any of these chains. Also grants a buff making your Arc damage lucky for a short duration.": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
       },
       "A Silver Coin is required for Match entry": {
         "layer": "official-exact",
@@ -114902,6 +114954,10 @@
       "Additional Audio": {
         "layer": "official-exact",
         "source": "ClientStrings:CreditsAdditionalAudio"
+      },
+      "Additional Debuff stages add {0}% of Damage": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
       },
       "Additional Design": {
         "layer": "official-exact",
@@ -117457,6 +117513,18 @@
         "layer": "official-exact",
         "source": "ClientStrings:TutorialPanelGlossaryContent22"
       },
+      "An arc of lightning reaches from the caster to a targeted enemy and chains to other enemies, but not immediately back. Each time the arc chains, it will also chain a secondary arc to another enemy that the main arc has not already hit, which cannot chain further.": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
+      "An arc of lightning reaches from the caster to a targeted enemy and chains to other enemies. Each time the arc chains, it will also chain a secondary arc to another enemy, but this secondary arc cannot chain further.": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
+      "An arc of lightning reaches from the caster to a targeted enemy and splits to simultaneously hit several other enemies.": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
       "An area owned by the player that can house Masters and crafting benches, and can be decorated and altered by the player. Hideouts are shared across all characters on the same league and account.": {
         "layer": "official-exact",
         "source": "ClientStrings:TutorialPanelGlossaryContent37"
@@ -117484,6 +117552,10 @@
       "An enemy, usually clad in Microtransactions, that attacks with skills commonly used by players. Rogue Exiles drop an item from each equipment slot.": {
         "layer": "official-exact",
         "source": "ClientStrings:TutorialPanelGlossaryContent82"
+      },
+      "An expanding wave of energy surges forward, damaging enemies in a cone-shaped area over a duration. Each enemy hit is inflicted with Exposure matching the element of which they took the highest damage. Only one Wave of Conviction can be active at a time": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
       },
       "An icy wind whips up around you": {
         "layer": "official-exact",
@@ -118183,6 +118255,10 @@
       "Application options": {
         "layer": "machine-assisted-pob-ui",
         "source": "manual/machine-fallback.json"
+      },
+      "Applies a buff boosting chance to shock. When you shock an enemy while you have this buff, creates a spherical field of energy attached to the shocked enemy for a duration, which will damage it and other nearby enemies with beams of lightning.": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
       },
       "Applies a Memory Modifier to Memories placed on or next to this location": {
         "layer": "official-exact",
@@ -122971,6 +123047,14 @@
         "layer": "machine-assisted-pob-ui",
         "source": "manual/machine-fallback.json"
       },
+      "Base duration is {0} second": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
+      "Base duration is {0} seconds": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
       "Base from Armours": {
         "layer": "machine-assisted-pob-ui",
         "source": "manual/machine-fallback.json"
@@ -122994,6 +123078,26 @@
       "Base maximum Gale Force is 10.": {
         "layer": "machine-assisted-pob-ui",
         "source": "manual/machine-fallback.json"
+      },
+      "Base Mine Detonation Time is {0} seconds": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
+      "Base Mine Detonation Time is {0} seconds (Not supported in PoB yet)": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
+      "Base radius is {0}": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
+      "Base radius is {0} metres": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
+      "Base secondary duration is {0} seconds": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
       },
       "Base Type": {
         "layer": "official-exact",
@@ -123190,6 +123294,10 @@
       "Beam Blast": {
         "layer": "machine-assisted-pob-ui",
         "source": "manual/machine-fallback.json"
+      },
+      "Beam Splits towards {0} additional targets": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
       },
       "Beam Sweep": {
         "layer": "machine-assisted-pob-ui",
@@ -124151,6 +124259,10 @@
       "Bloodthirst": {
         "layer": "machine-assisted-pob-ui",
         "source": "manual/machine-fallback.json"
+      },
+      "Bloody scythes swipe around a selected area, hitting enemies with physical damage. An area of boiling blood is left beneath them for a duration which deals physical damage over time. Also gives a bonus to maximum Blood Charges for a secondary duration.": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
       },
       "Bloody Vengeance": {
         "layer": "official-exact",
@@ -125155,6 +125267,14 @@
         "layer": "machine-assisted-pob-ui",
         "source": "manual/machine-fallback.json"
       },
+      "Buff grants {0} to {1} Added Attack Lightning Damage": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
+      "Buff grants {0}% chance to Shock enemies": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
       "Buff grants Immunity to Bleeding": {
         "layer": "machine-assisted-pob-ui",
         "source": "manual/machine-fallback.json"
@@ -125331,10 +125451,18 @@
         "layer": "official-exact",
         "source": "PassiveSkills:fire_dot_multi_with_attacks2864 | PassiveSkills:fire_dot_multi_with_attacks2865 | PassiveSkills:ignite_attacks2688"
       },
+      "Burning Debuff can have a maximum of {0} stages": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
       "Burning Enemies you kill have a 3% chance to Explode, dealing a tenth of their maximum Life as Fire Damage": {
         "layer": "official-structural-pattern",
         "source": "explode_burning_enemies_for_10%_life_as_fire_on_kill_chance_%#24410A44B39CC1470F89B0AA18B0B26976049DF8E166CBF61FDBA645677B66E9",
         "patch": "3.29.3.2"
+      },
+      "Burning Ground deals {0}% of Fire Damage per second of Ignite affecting Enemy": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
       },
       "Burning Hoofprints": {
         "layer": "official-exact",
@@ -125840,6 +125968,10 @@
         "layer": "official-exact",
         "source": "stat-descriptions:heist_nenet_scouts_nearby_patrols_and_mini_bosses#96BAC324933F7ECB0C159001981D379962D2EF24DEDCB11ECACCB56F72D0392B"
       },
+      "Can Store": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
       "Can Store {0} Use": {
         "layer": "official-exact",
         "source": "ClientStrings:ItemDisplaySkillGemSoulsCanStoreUse"
@@ -125859,6 +125991,10 @@
       "Can support Strength threshold jewels": {
         "layer": "machine-assisted-pob-ui",
         "source": "manual/machine-fallback.json"
+      },
+      "Can target each enemy only once every {0} seconds": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
       },
       "Can you be Tempted?": {
         "layer": "official-exact",
@@ -127383,6 +127519,10 @@
       "Chainmail Vest": {
         "layer": "official-exact",
         "source": "BaseItemTypes:Metadata/Items/Armours/BodyArmours/BodyStrInt1"
+      },
+      "Chains {0} times": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
       },
       "Chains of Command": {
         "layer": "official-exact",
@@ -131464,6 +131604,10 @@
         "layer": "official-exact",
         "source": "ClientStrings:MarketTabCostLabel"
       },
+      "Costs {0}% more Life per Blood Charge": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
       "Costs and Effects of a Supported Skill": {
         "layer": "machine-assisted-pob-ui",
         "source": "manual/machine-fallback.json"
@@ -133927,6 +134071,22 @@
       "Dealing with Ailments:": {
         "layer": "official-exact",
         "source": "ClientStrings:TutorialPanelStatusAilmentsSubtitle1"
+      },
+      "Deals {0} Base Fire Damage per second": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
+      "Deals {0} Base Physical Damage per second": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
+      "Deals {0}% more damage": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
+      "Deals {0}% more Damage per Blood Charge": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
       },
       "Deals Damage without removing Charges": {
         "layer": "machine-assisted-pob-ui",
@@ -136724,6 +136884,14 @@
         "layer": "official-exact",
         "source": "ClientStrings:MercenaryAttributeInfoHover"
       },
+      "Each Mine applies {0}% increased Critical Strike Chance to Hits against Enemies near it, up to a maximum of {1}%": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
+      "Each Mine applies {0}% increased Damage Taken to Enemies near it, up\nto a maximum of 150%": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
       "Each Mine applies 2% increased Damage taken to Enemies near it, up to 10%": {
         "layer": "official-structural-pattern",
         "source": "sabotuer_mines_apply_damage_taken_+%_to_nearby_enemies_up_to_10%#24410A44B39CC1470F89B0AA18B0B26976049DF8E166CBF61FDBA645677B66E9",
@@ -137126,6 +137294,14 @@
       "Effectiveness of Added Damage": {
         "layer": "official-exact",
         "source": "ClientStrings:ItemDisplaySkillGemDamageEffectiveness"
+      },
+      "Effects of Boiling Blood Linger for {0} seconds": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
+      "Effects of Boiling Blood Linger for {0} seconds (Not supported in PoB yet)": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
       },
       "Effects of Consecrated Ground you create Linger for 4 seconds": {
         "layer": "official-structural-pattern",
@@ -140290,6 +140466,10 @@
         "layer": "manual-pob-ui",
         "source": "manual/pob-ui.json"
       },
+      "Exposure applies {0}% to Elemental Resistance matching highest Damage taken": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
       "Exposure Effect": {
         "layer": "machine-assisted-pob-ui",
         "source": "manual/machine-fallback.json"
@@ -141549,6 +141729,18 @@
         "layer": "machine-assisted-pob-ui",
         "source": "manual/machine-fallback.json"
       },
+      "Fire Exposure": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
+      "Fire Exposure applies {0}% to Fire Resistance": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
+      "Fire Exposure Aura applies {0}% to Fire Resistance": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
       "Fire Hellions": {
         "layer": "official-exact",
         "source": "ClientStrings:MenagerieFireHellion"
@@ -141676,6 +141868,14 @@
         "layer": "machine-assisted-pob-ui",
         "source": "manual/machine-fallback.json"
       },
+      "Fires {0} Projectiles": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
+      "Fires a beam every {0} seconds": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
       "Fires a Payload Arrow into the air": {
         "layer": "machine-assisted-pob-ui",
         "source": "manual/machine-fallback.json"
@@ -141691,6 +141891,18 @@
       "Fires an additional Projectile for each prior Mine in Detonation Sequence": {
         "layer": "machine-assisted-pob-ui",
         "source": "manual/machine-fallback.json"
+      },
+      "Fires an additional Projectile for every {0} prior Mines in Detonation Sequence (Not supported in PoB yet)": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
+      "Fires an additional Projectile for every 2 prior Mines in Detonation Sequence": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
+      "Fires an additional Projectile for every 3 prior Mines in Detonation Sequence": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
       },
       "Fires an additional Projectile per Intensity": {
         "layer": "machine-assisted-pob-ui",
@@ -143577,8 +143789,8 @@
         "source": "stat-descriptions:gain_blitz_charge_%_chance_on_crit#28389EDE644EE575745C5E9D8A036A2B75561ED2A401C5539D45A5B8FF214E23"
       },
       "Gain a Blood Charge if this Skill Hits Enemies and none of them Die": {
-        "layer": "machine-assisted-pob-ui",
-        "source": "manual/machine-fallback.json"
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
       },
       "Gain a Challenger Charge when you Hit a Rare or Unique Enemy while in Blood Stance": {
         "layer": "official-exact",
@@ -145163,6 +145375,10 @@
         "layer": "official-exact",
         "source": "ClientStrings:PassiveNodeGrantsPassivePoints"
       },
+      "Grants {0} to maximum Blood Charges": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
       "Grants 1 Passive Skill Point": {
         "layer": "manual-pob-ui",
         "source": "manual/pob-ui.json"
@@ -145170,6 +145386,10 @@
       "Grants 2 Passive Skill Points": {
         "layer": "machine-assisted-pob-ui",
         "source": "manual/machine-fallback.json"
+      },
+      "Grants a buff which adds lightning damage to spells and attacks. If you kill a shocked enemy, this skill will create a storm, causing lightning bolts to strike enemies around you for a duration. The damage inflicted by this skill is not affected by modifiers to spell damage.": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
       },
       "Grants a Passive Skill Point": {
         "layer": "official-exact",
@@ -145348,6 +145568,14 @@
       "Grants two Passive Skill Points": {
         "layer": "official-exact",
         "source": "ClientStrings:ItemFunction2PassivePoints"
+      },
+      "Grants up to maximum Blood Charges": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
+      "Grants up to maximum Blood Charges (Not supported in PoB yet)": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
       },
       "Grants Virulence when you Poison an Enemy": {
         "layer": "machine-assisted-pob-ui",
@@ -147764,6 +147992,14 @@
       "Hits ignore Enemy Monster Resistances": {
         "layer": "machine-assisted-pob-ui",
         "source": "manual/machine-fallback.json"
+      },
+      "Hits on Ignited Enemies create Burning Ground, no more than once every {0} seconds": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
+      "Hits on Ignited Enemies create Burning Ground, no more than once every {0} seconds (Not supported in PoB yet)": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
       },
       "Hits that deal Elemental Damage remove Exposure to those Elements and inflict Exposure to other Elements": {
         "layer": "machine-assisted-pob-ui",
@@ -155769,8 +156005,8 @@
         "patch": "3.29.3.2"
       },
       "Lose a Blood Charge when an Enemy Dies while affected by this Skill's Debuff": {
-        "layer": "machine-assisted-pob-ui",
-        "source": "manual/machine-fallback.json"
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
       },
       "Lose a Frenzy Charge when you use a Travel Skill": {
         "layer": "official-exact",
@@ -157580,6 +157816,14 @@
         "layer": "official-exact",
         "source": "ClientStrings:ItemDisplayTattooRequirementMaximum"
       },
+      "Maximum {0} Field": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
+      "Maximum {0} Field (Not supported in PoB yet)": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
       "Maximum Absorption Charges is equal to Maximum Power Charges": {
         "layer": "official-exact",
         "source": "stat-descriptions:maximum_absorption_charges_is_equal_to_maximum_power_charges#96BAC324933F7ECB0C159001981D379962D2EF24DEDCB11ECACCB56F72D0392B"
@@ -158721,6 +158965,14 @@
       "Mine Encampment": {
         "layer": "official-exact",
         "source": "ClientStrings:DelveMapButtonEnterDelveMine"
+      },
+      "Mine lasts {0} seconds": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
+      "Mine lasts {0} seconds (Not supported in PoB yet)": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
       },
       "Mine Laying Time": {
         "layer": "machine-assisted-pob-ui",
@@ -160392,6 +160644,10 @@
       "Modifiers to Spell Damage apply to this Skill's Damage Over Time effect": {
         "layer": "machine-assisted-pob-ui",
         "source": "manual/machine-fallback.json"
+      },
+      "Modifiers to the number of times to Chain instead apply\nto the number of targets Beam Splits towards": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
       },
       "Modifiers which would cause projectiles to Fork instead cause them to change direction additional times": {
         "layer": "machine-assisted-pob-ui",
@@ -178398,6 +178654,10 @@
         "layer": "official-exact",
         "source": "ClientStrings:MtxPanelSortLabel"
       },
+      "Sorting {0}%": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
       "Soul": {
         "layer": "machine-assisted-pob-ui",
         "source": "manual/machine-fallback.json"
@@ -180447,6 +180707,10 @@
         "layer": "official-exact",
         "source": "PassiveSkills:affliction_notable_storm_drinker"
       },
+      "Storm Hits an Enemy every {0} Seconds": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
       "Storm of Judgement": {
         "layer": "official-exact",
         "source": "ActiveSkills:atziri_unique_staff_storm_call"
@@ -180690,6 +180954,10 @@
       "Strike Targets:": {
         "layer": "machine-assisted-pob-ui",
         "source": "manual/machine-fallback.json"
+      },
+      "Strikes enemies in front of you with a surge of flame. Burning enemies are dealt more damage. If you hit an ignited enemy, will create burning ground under them. Your damage modifiers don't apply to this burning ground.": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
       },
       "Strikes Mastery": {
         "layer": "machine-assisted-pob-ui",
@@ -187843,6 +188111,22 @@
         "layer": "official-exact",
         "source": "ClientStrings:ActionThrowNet"
       },
+      "Throws a mine that deals damage in an area when detonated, then launches fiery projectiles that rain down around it, each exploding to deal damage in a smaller area. Placed mines apply a fire exposure aura to nearby enemies.": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
+      "Throws a mine that deals damage in an area when detonated.": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
+      "Throws a mine that fires projectiles around it when detonated. These projectiles quickly dissipate as they travel, before disappearing.": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
+      "Throws a mine that fires projectiles at enemies when detonated. These projectiles quickly dissipate as they travel, before disappearing.": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
       "Throws a Remote Mine which uses the Supported Skill when detonated": {
         "layer": "machine-assisted-pob-ui",
         "source": "manual/machine-fallback.json"
@@ -188119,6 +188403,10 @@
         "layer": "machine-assisted-pob-ui",
         "source": "manual/machine-fallback.json"
       },
+      "Tip: Hold Ctrl to hide this tooltip.": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
       "Tip: Hold Shift or Ctrl to hide this tooltip.": {
         "layer": "machine-assisted-pob-ui",
         "source": "manual/machine-fallback.json"
@@ -188135,6 +188423,10 @@
         "layer": "machine-assisted-pob-ui",
         "source": "manual/machine-fallback.json"
       },
+      "Tip: Press Ctrl+C to copy this node's text.": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
+      },
       "Tip: Press Ctrl+D to disable the display of stat differences.": {
         "layer": "machine-assisted-pob-ui",
         "source": "manual/machine-fallback.json"
@@ -188146,6 +188438,10 @@
       "Tip: Right click this socket to go to the items page and choose the jewel for this socket.": {
         "layer": "machine-assisted-pob-ui",
         "source": "manual/machine-fallback.json"
+      },
+      "Tip: Right click to edit the tattoo for this node": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
       },
       "Tip: To reach this node by a different path, hold Shift, then trace the path and click this node": {
         "layer": "machine-assisted-pob-ui",
@@ -188202,6 +188498,10 @@
       "to 50% increased Damage with Hits to targets": {
         "layer": "machine-assisted-pob-ui",
         "source": "manual/machine-fallback.json"
+      },
+      "to a maximum of {0}%": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
       },
       "To access": {
         "layer": "machine-assisted-pob-ui",
@@ -191769,6 +192069,10 @@
       "Unleash": {
         "layer": "machine-assisted-pob-ui",
         "source": "manual/machine-fallback.json"
+      },
+      "Unleash a beam of fire that burns enemies it touches. Remaining in the beam raises the burning, adding a portion of the beam's damage in stages. Inflicts Fire Exposure at maximum stages. Enemies who leave the beam continue to burn for a duration. Increasing cast speed also increases the rate at which the beam turns.": {
+        "layer": "reviewed-machine-override",
+        "source": "manual/machine-fallback-overrides.json"
       },
       "Unleashed Potential": {
         "layer": "official-exact",

@@ -1,24 +1,24 @@
 {
-  "total": 26791,
-  "resolved": 26791,
+  "total": 26867,
+  "resolved": 26867,
   "excluded": 0,
   "issues": 0,
   "issueCodes": {},
   "dictionaries": [
     {
       "dictionary": "runtime",
-      "total": 26791,
-      "resolved": 26791,
+      "total": 26867,
+      "resolved": 26867,
       "excluded": 0,
       "issues": 0
     }
   ],
   "scope": "observed-current-runtime",
   "inventory": {
-    "source": "merged runtime miss captures and reference UI key inventory",
+    "source": "merged canonicalized runtime miss captures and reference inventories",
     "sourceLocale": "ko-KR,zh-rCN",
-    "sha256": "2C42B7B5C8F874B452CF872A4A61C413CA77F3BD1CECEAA2AA46D7BB617E2570",
-    "captureLastWriteTime": "2026-09-03T00:19:14.115Z"
+    "sha256": "07288E4FA11C4C16AA17B1DB551FA25C3EB17816F965550AEB6EFF5226680A3D",
+    "captureLastWriteTime": "2026-09-03T02:35:51.019Z"
   },
   "legacyReferenceInventory": {
     "status": "non-blocking historical inventory; current reachability is established by the captured runtime miss set",

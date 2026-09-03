@@ -4,6 +4,77 @@ const sortEntries = (entries) => [...new Set(entries.filter((entry) => (
   typeof entry === 'string' && entry.length > 0
 )))].sort((left, right) => left.localeCompare(right, 'en'));
 
+const stripRuntimeColourCodes = (value) => String(value).replace(/\^(?:x.{6}|[0-9])/giu, '');
+
+const runtimePatternShape = (value) => stripRuntimeColourCodes(value)
+  .toLowerCase()
+  .replace(/\{\d+\}/gu, '#')
+  .replace(/[+-]?\d+(?:[.,]\d+)?/gu, '#');
+
+const canonicalCandidateRank = (value) => {
+  if (/\{\d+\}/u.test(value)) return 0;
+  if (value.includes('#')) return 1;
+  return 2;
+};
+
+const runtimeNumericTemplate = (value) => {
+  let index = 0;
+  return value.replace(/(?<![A-Za-z])[+-]?\d+(?:[.,]\d+)?/gu, () => `{${index++}}`);
+};
+
+export function luaDisplayStringCandidates(text) {
+  const entries = [];
+  const pattern = /\b(?:description|text)\s*=\s*("(?:\\.|[^"\\])*")/gu;
+  for (const match of String(text).matchAll(pattern)) {
+    try {
+      const value = JSON.parse(match[1]);
+      if (/[A-Za-z]{3}/u.test(value)) entries.push(value);
+    } catch {
+      // A Lua-only escape is not a JSON string literal; skip it conservatively.
+    }
+  }
+  return sortEntries(entries);
+}
+
+export function canonicalizeRuntimeMissEntries(entries, candidates) {
+  const canonicalCandidates = sortEntries(candidates);
+  const exact = new Set(canonicalCandidates);
+  const byShape = new Map();
+  for (const candidate of canonicalCandidates) {
+    const shape = runtimePatternShape(candidate);
+    const values = byShape.get(shape) ?? [];
+    values.push(candidate);
+    values.sort((left, right) => (
+      canonicalCandidateRank(left) - canonicalCandidateRank(right)
+      || left.localeCompare(right, 'en')
+    ));
+    byShape.set(shape, values);
+  }
+
+  const plainEntries = sortEntries(entries.map(stripRuntimeColourCodes));
+  const resolved = new Map();
+  for (const entry of plainEntries) {
+    if (exact.has(entry)) {
+      resolved.set(entry, entry);
+      continue;
+    }
+    const matches = byShape.get(runtimePatternShape(entry));
+    if (matches?.length) resolved.set(entry, matches[0]);
+  }
+
+  const canonical = [...resolved.values()];
+  for (const entry of plainEntries) {
+    if (resolved.has(entry)) continue;
+    const foldedEntry = entry.toLowerCase();
+    const isWrappingFragment = plainEntries.some((complete) => (
+      complete.length > entry.length
+      && complete.toLowerCase().includes(foldedEntry)
+    ));
+    if (!isWrappingFragment) canonical.push(runtimeNumericTemplate(entry));
+  }
+  return sortEntries(canonical);
+}
+
 export function parseRuntimeMissLog(text) {
   const source = String(text).replaceAll('\r\n', '\n');
   const entries = [];
