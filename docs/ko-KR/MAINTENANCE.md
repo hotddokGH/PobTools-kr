@@ -12,7 +12,7 @@
 
 ```powershell
 python -m pip install -r localization/ko-KR/requirements-overlay.txt
-python -m unittest localization/ko-KR/tests/test_source_overlay.py localization/ko-KR/tests/test_overlay_remediation.py
+python -m unittest localization/ko-KR/tests/test_source_overlay.py localization/ko-KR/tests/test_overlay_remediation.py localization/ko-KR/tests/test_machine_fallback_resume.py
 node localization/ko-KR/update-upstream.mjs --repository-root . --upstream-ref ba33ed80de67d8301baad930456131d581df6ae1 --workspace .ko-worktrees/validate-ko --report reports/maintenance/ba33ed8-review.json --force-prepare
 
 $engineRoot = (Resolve-Path .ko-worktrees/validate-ko/pob-zh-engine).Path
@@ -51,6 +51,22 @@ node --test localization/ko-KR/tests/*.test.mjs
 - `blocked`: 패치, 결정성, 명령 또는 감사 실패가 하나라도 있다. 오래된 성공 보고서를 유지하지 않고 실패 보고서로 교체한다.
 
 소스 오버레이에서 자동 적용할 수 있는 상태는 `official`, `reviewed`, `intentional`뿐이다. `suggested`와 모호하거나 알 수 없는 상태는 자동 승격하지 않으며 검토 항목 또는 차단 사유로 남긴다.
+
+## 런타임 UI 누락 갱신
+
+실행 중 `translate_misses.log`가 생기면 기존 목록을 버리지 말고 현재 한국어 사전과 중국어 참조 사전의 공백까지 함께 병합한다.
+
+```powershell
+node localization/ko-KR/import-runtime-misses.mjs `
+  --reference-ui pob-zh-engine/dist/Data/poe1/zh-rTW/ui.json `
+  --target-ui pob-zh-engine/dist/Data/poe1/ko-KR/ui.json `
+  C:/path/to/translate_misses.log
+
+C:/path/to/.venv-translation/Scripts/python.exe `
+  localization/ko-KR/machine_translate_runtime.py --resume --batch-size 32
+```
+
+가져오기는 줄바꿈이 포함된 `MISS|` 레코드를 한 항목으로 보존하고 기존 인벤토리에 새 항목만 추가한다. 번역기는 이전 결과를 재사용하며, 내부 보호 표식이나 서식이 깨진 결과는 거부한다. 거부 항목은 `manual/machine-fallback-overrides.json`에서 사람이 문맥과 공식 용어를 확인해 보정한다. 이후 `build-runtime-locale.mjs`와 `audit-display-closure.mjs`를 실행하고, 실행 로그 및 참조 UI 범위가 모두 0 issues인지 확인한다.
 
 ## 업스트림 확인 워크플로
 

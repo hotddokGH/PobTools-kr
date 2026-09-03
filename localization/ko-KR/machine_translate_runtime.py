@@ -8,6 +8,8 @@ import sentencepiece as spm
 from huggingface_hub import snapshot_download
 from transformers import AutoModelForSeq2SeqLM
 
+from runtime_machine_state import has_unrestored_marker, resume_machine_fallback
+
 
 MODEL_ID = "Helsinki-NLP/opus-mt-tc-big-en-ko"
 MODEL_REVISION = "main"
@@ -233,15 +235,11 @@ def main() -> None:
     output_path = locale_root / "manual" / "machine-fallback.json"
     if args.resume and output_path.exists():
         existing = json.loads(output_path.read_text(encoding="utf-8"))
-        if existing.get("inventorySha256") != inventory["sha256"]:
-            raise RuntimeError("machine fallback inventory hash does not match")
-        entries = dict(existing.get("entries", {}))
-        rejected = dict(existing.get("rejected", {}))
+        entries, rejected, pending = resume_machine_fallback(inventory, existing)
     else:
         entries = {}
         rejected = {}
-
-    pending = [source for source in inventory["entries"] if source not in entries]
+        pending = list(inventory["entries"])
     if args.limit is not None:
         pending = pending[: args.limit]
 
@@ -296,6 +294,8 @@ def main() -> None:
                 target = apply_glossary(restore(translated, protected_tokens))
                 if HAN.search(target):
                     raise ValueError("target contains Han characters")
+                if has_unrestored_marker(target):
+                    raise ValueError("target contains unrestored machine marker")
                 if format_signature(source) != format_signature(target):
                     raise ValueError("format signature mismatch")
                 if not target:

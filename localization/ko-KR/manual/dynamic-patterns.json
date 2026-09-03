@@ -22,6 +22,237 @@
     },
     {
       "dictionary": "ui",
+      "source": "Shocked",
+      "target": "감전",
+      "identity": "reviewed display correction for official runtime identity stat-descriptions:is_shocked",
+      "patch": "3.29.3.2"
+    },
+    {
+      "dictionary": "ui",
+      "source": "Anarchy",
+      "target": "무정부",
+      "identity": "reviewed Korean league name",
+      "patch": "3.29.3.2"
+    },
+    {
+      "dictionary": "ui",
+      "source": "Ambush",
+      "target": "매복",
+      "identity": "reviewed official league terminology",
+      "patch": "3.29.3.2"
+    },
+    {
+      "dictionary": "ui",
+      "source": "And",
+      "target": "그리고",
+      "identity": "reviewed UI conjunction",
+      "patch": "3.29.3.2"
+    },
+    {
+      "dictionary": "ui",
+      "source": "Beyond",
+      "target": "이계",
+      "identity": "reviewed official league terminology",
+      "patch": "3.29.3.2"
+    },
+    {
+      "dictionary": "ui",
+      "source": "Bloodlines",
+      "target": "혈맹",
+      "identity": "reviewed official league terminology",
+      "patch": "3.29.3.2"
+    },
+    {
+      "dictionary": "ui",
+      "source": "Chilled",
+      "target": "냉각",
+      "identity": "reviewed official ailment terminology",
+      "patch": "3.29.3.2"
+    },
+    {
+      "dictionary": "ui",
+      "source": "Cursed",
+      "target": "저주받음",
+      "identity": "reviewed official condition terminology",
+      "patch": "3.29.3.2"
+    },
+    {
+      "dictionary": "ui",
+      "source": "Domination",
+      "target": "지배",
+      "identity": "reviewed official league terminology",
+      "patch": "3.29.3.2"
+    },
+    {
+      "dictionary": "ui",
+      "source": "Essence",
+      "target": "에센스",
+      "identity": "reviewed official game terminology",
+      "patch": "3.29.3.2"
+    },
+    {
+      "dictionary": "ui",
+      "source": "Harbinger",
+      "target": "선구자",
+      "identity": "reviewed official league terminology",
+      "patch": "3.29.3.2"
+    },
+    {
+      "dictionary": "ui",
+      "source": "If",
+      "target": "조건",
+      "identity": "reviewed UI condition label",
+      "patch": "3.29.3.2"
+    },
+    {
+      "dictionary": "ui",
+      "source": "Incursion",
+      "target": "기습",
+      "identity": "reviewed official league terminology",
+      "patch": "3.29.3.2"
+    },
+    {
+      "dictionary": "ui",
+      "source": "Invasion",
+      "target": "침공",
+      "identity": "reviewed official league terminology",
+      "patch": "3.29.3.2"
+    },
+    {
+      "dictionary": "ui",
+      "source": "Level {0}",
+      "target": "레벨 {0}",
+      "identity": "reviewed official level label",
+      "patch": "3.29.3.2"
+    },
+    {
+      "dictionary": "ui",
+      "source": "Limited to {0}",
+      "target": "{0}개로 제한",
+      "identity": "reviewed limit label",
+      "patch": "3.29.3.2"
+    },
+    {
+      "dictionary": "ui",
+      "source": "Magic Monster Packs each have a Bloodline Mod",
+      "target": "마법 몬스터 무리마다 혈맹 속성 하나 보유",
+      "identity": "reviewed official Bloodlines modifier wording",
+      "patch": "3.29.3.2"
+    },
+    {
+      "dictionary": "ui",
+      "source": "Nemesis",
+      "target": "천벌",
+      "identity": "reviewed official league terminology",
+      "patch": "3.29.3.2"
+    },
+    {
+      "dictionary": "ui",
+      "source": "Not",
+      "target": "아님",
+      "identity": "reviewed UI negation label",
+      "patch": "3.29.3.2"
+    },
+    {
+      "dictionary": "ui",
+      "source": "Perandus",
+      "target": "페란두스",
+      "identity": "reviewed official league terminology",
+      "patch": "3.29.3.2"
+    },
+    {
+      "dictionary": "ui",
+      "source": "Rare Monsters each have a Nemesis Mod",
+      "target": "희귀 몬스터마다 천벌 속성 하나 보유",
+      "identity": "reviewed official Nemesis modifier wording",
+      "patch": "3.29.3.2"
+    },
+    {
+      "dictionary": "ui",
+      "source": "Standard",
+      "target": "스탠다드",
+      "identity": "reviewed official league terminology",
+      "patch": "3.29.3.2"
+    },
+    {
+      "dictionary": "ui",
+      "source": "Talisman",
+      "target": "부적",
+      "identity": "reviewed official league terminology",
+      "patch": "3.29.3.2"
+    },
+    {
+      "dictionary": "ui",
+      "source": "Tempest",
+      "target": "폭풍",
+      "identity": "reviewed official league terminology",
+      "patch": "3.29.3.2"
+    },
+    {
+      "dictionary": "ui",
+      "source": "Torment",
+      "target": "고통",
+      "identity": "reviewed official league terminology",
+      "patch": "3.29.3.2"
+    },
+    {
+      "dictionary": "ui",
+      "source": "Warbands",
+      "target": "전쟁군주",
+      "identity": "reviewed official league terminology",
+      "patch": "3.29.3.2"
+    },
+    {
+      "dictionary": "ui",
+      "source": "[DNT] <size:29>{<size:3>{\n}\r\n<b>{NVIDIA DLAA:} An AI-based anti-aliasing mode to provide great image quality. This mode is not available when using dynamic resolution.}",
+      "target": "[DNT] <size:29>{<size:3>{\n}\r\n<b>{NVIDIA DLAA:} 뛰어난 화질을 제공하는 AI 기반 안티앨리어싱 모드입니다. 동적 해상도를 사용할 때는 이 모드를 사용할 수 없습니다.}",
+      "identity": "reviewed Korean graphics setting description",
+      "patch": "3.29.3.2"
+    },
+    {
+      "dictionary": "ui",
+      "source": "[DNT] Dynamic (Default)",
+      "target": "[DNT] 동적(기본값)",
+      "identity": "reviewed Korean graphics setting label",
+      "patch": "3.29.3.2"
+    },
+    {
+      "dictionary": "ui",
+      "source": "[DNT] Healthy gaming statutory declaration text",
+      "target": "[DNT] 건전한 게임 이용 법정 고지문",
+      "identity": "reviewed Korean internal display label",
+      "patch": "3.29.3.2"
+    },
+    {
+      "dictionary": "ui",
+      "source": "[DNT] NVIDIA Reflex reduces system latency and increases PC\r\nresponsiveness.\r\n",
+      "target": "[DNT] NVIDIA Reflex는 시스템 지연 시간을 줄이고 PC\r\n응답성을 높입니다.\r\n",
+      "identity": "reviewed Korean graphics setting description",
+      "patch": "3.29.3.2"
+    },
+    {
+      "dictionary": "ui",
+      "source": "[DNT]Accessable Rooms",
+      "target": "[DNT]접근 가능한 방",
+      "identity": "reviewed Korean internal display label",
+      "patch": "3.29.3.2"
+    },
+    {
+      "dictionary": "ui",
+      "source": "[DNT]Inaccessible Rooms",
+      "target": "[DNT]접근할 수 없는 방",
+      "identity": "reviewed Korean internal display label",
+      "patch": "3.29.3.2"
+    },
+    {
+      "dictionary": "ui",
+      "source": "[DNT]Players playing in the current challenge league can purchase Kirac's Vault Pass, which unlocks exclusive cosmetic rewards for you as you complete the bonus objective of maps.",
+      "target": "[DNT]현재 도전 리그를 플레이하는 이용자는 키락의 금고 패스를 구매할 수 있습니다. 지도의 보너스 목표를 완료하면 전용 꾸미기 보상이 잠금 해제됩니다.",
+      "identity": "reviewed Korean Kirac Vault Pass description",
+      "patch": "3.29.3.2"
+    },
+    {
+      "dictionary": "ui",
       "source": "Path of Exile's customer support team is available 24 hours a day, 7 days a week. If you experience abuse or harassment while playing Path of Exile, you can report the abusive players by right-clicking their name in the chat window, and the support team will investigate the issue.\r\n\r\nIf you have a question or problem, try searching the Path of Exile forums to see if someone else has had a similar experience that has been resolved before you contact support. If you cannot find a resolution to the problem you are facing, please email support@grindinggear.com.\r\n\r\nIf you're experiencing payment or microtransaction problems or account issues, please email support@grindinggear.com. Someone will be in contact with you as soon as they can. We aim to have an extremely quick response time, but rest assured if there's any delay we're working to respond as soon as we can.\r\n\r\nIf you're experiencing technical issues, please try searching the Technical Support section of the Path of Exile forums for possible solutions.",
       "target": "패스 오브 엑자일을 플레이하는 도중 타인에 의해 불편을 겪으셨다면, 채팅창에서 위반한 플레이어의 이름을 우클릭하여 신고할 수 있습니다.\r\n\r\n게임 이용 중 궁금하신 내용은 다음게임 패스 오브 엑자일 FAQ를 이용해주시기 바라며, 문의 유형에 따라 고객센터가 구분되오니 문의 접수 시 아래 내용을 참고해주시기 바랍니다.\r\n\r\n다음게임 고객센터에서는 홈페이지 이벤트, 다음게임 계정, 청약철회 및 환불, 설치 및 실행, 게임 한글화 관련 문의를 도와드릴 수 있습니다.\r\n\r\n게임 내용과 게임 내 이벤트 문의는 GGG 고객센터(support@grindinggear.com)로 자세히 접수해 주세요. 한글과 영문 모두 사용할 수 있습니다.",
       "identity": "ClientStrings:TutorialPanelCustomerSupportContent1",

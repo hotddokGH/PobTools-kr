@@ -50,7 +50,8 @@ jobs:
         run: |
           python -m unittest `
             localization/ko-KR/tests/test_source_overlay.py `
-            localization/ko-KR/tests/test_overlay_remediation.py *>&1 |
+            localization/ko-KR/tests/test_overlay_remediation.py `
+            localization/ko-KR/tests/test_machine_fallback_resume.py *>&1 |
             Tee-Object -FilePath (Join-Path $env:EVIDENCE_ROOT 'logs/python-tests.log')
           if ($LASTEXITCODE -ne 0) { throw 'Python validation failed' }
 

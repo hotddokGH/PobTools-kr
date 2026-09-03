@@ -3,7 +3,31 @@
     "ui": {
       "Path of Building": "upstream product name",
       "PoB": "standard product abbreviation",
-      "DPS": "standard game-community acronym"
+      "DPS": "standard game-community acronym",
+      " — {0}": "punctuation and runtime placeholder only",
+      "(#{0})": "runtime placeholders only",
+      "(#{1}) {0}": "runtime placeholders only",
+      ", ": "punctuation only",
+      "<Default>": "renderer markup token",
+      "Alt + ": "standard keyboard key prefix",
+      "Control + ": "standard keyboard key prefix",
+      "DirectX 11": "graphics API product name",
+      "FSR": "graphics technology product abbreviation",
+      "MTX:": "standard Path of Exile abbreviation",
+      "NPC:": "standard game abbreviation",
+      "NVIDIA DLAA": "graphics technology product name",
+      "NVIDIA DLSS": "graphics technology product name",
+      "Shift + ": "standard keyboard key prefix",
+      "UI": "standard interface abbreviation",
+      "{0}": "runtime placeholder only",
+      "{0} ({1})": "runtime placeholders only",
+      "{0} <kalguurlightgrey>{{{1}}} : <kalguurlightgrey>{{{2}}}": "runtime placeholders and renderer markup only",
+      "{0} {1}": "runtime placeholders only",
+      "{0}/{1}": "runtime placeholders only",
+      "{0}m": "runtime placeholder with metre unit",
+      "{0}ms": "runtime placeholder with millisecond unit",
+      "{1} {0}": "runtime placeholders only",
+      "{1} {0} {2}": "runtime placeholders only"
     }
   },
   "excluded": {}

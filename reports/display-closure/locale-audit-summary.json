@@ -1,34 +1,34 @@
 {
-  "total": 20371,
-  "resolved": 20371,
+  "total": 26791,
+  "resolved": 26791,
   "excluded": 0,
   "issues": 0,
   "issueCodes": {},
   "dictionaries": [
     {
       "dictionary": "runtime",
-      "total": 20371,
-      "resolved": 20371,
+      "total": 26791,
+      "resolved": 26791,
       "excluded": 0,
       "issues": 0
     }
   ],
   "scope": "observed-current-runtime",
   "inventory": {
-    "source": "PobTools-1.1.0/translate_misses.log",
-    "sourceLocale": "zh-rCN",
-    "sha256": "D2DB8A3DFA05F9E614014783BE412523274C71A09C063CA2B92CF952FCBAE6AB",
-    "captureLastWriteTime": "2026-09-01T12:36:25+09:00"
+    "source": "merged runtime miss captures and reference UI key inventory",
+    "sourceLocale": "ko-KR,zh-rCN",
+    "sha256": "2C42B7B5C8F874B452CF872A4A61C413CA77F3BD1CECEAA2AA46D7BB617E2570",
+    "captureLastWriteTime": "2026-09-03T00:19:14.115Z"
   },
   "legacyReferenceInventory": {
     "status": "non-blocking historical inventory; current reachability is established by the captured runtime miss set",
     "total": 111806,
-    "resolved": 47704,
+    "resolved": 53523,
     "excluded": 0,
-    "issues": 64102,
+    "issues": 58283,
     "issueCodes": {
-      "MISSING_KEY": 64020,
-      "UNRESOLVED_ENGLISH": 82
+      "MISSING_KEY": 58257,
+      "UNRESOLVED_ENGLISH": 26
     },
     "dictionaries": [
       {
@@ -55,9 +55,9 @@
       {
         "dictionary": "ui",
         "total": 22652,
-        "resolved": 16833,
+        "resolved": 22652,
         "excluded": 0,
-        "issues": 5819
+        "issues": 0
       },
       {
         "dictionary": "stats",
