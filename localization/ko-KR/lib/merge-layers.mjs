@@ -1,6 +1,6 @@
 import { formatSignature } from './format-signature.mjs';
 
-const PLACEHOLDER_PATTERN = /\{(\d+)\}/g;
+const PLACEHOLDER_PATTERN = /\{(\d*)(?::[^{}\s]+)?\}/g;
 const NUMBER_PATTERN = '[+-]?(?:\\d+(?:\\.\\d+)?|\\.\\d+)(?:\\s*(?:-|–|to)\\s*[+-]?(?:\\d+(?:\\.\\d+)?|\\.\\d+))?';
 
 function escapeRegExp(text) {
@@ -11,7 +11,7 @@ export function normalizeStructuralText(text) {
   return String(text)
     .replace(/\r\n|\r|\n/g, '<LF>')
     .replace(/\^(?:x[0-9A-Fa-f]{6}|\d)/g, '<COLOR>')
-    .replace(/[+-]?\{\d+\}/g, '<N>')
+    .replace(/[+-]?\{\d*(?::[^{}\s]+)?\}/g, '<N>')
     .replace(/[+-]?(?:\d+(?:\.\d+)?|\.\d+)/g, '<N>');
 }
 
@@ -56,15 +56,16 @@ function compileStructuralPattern(pattern, dictionary) {
   }
 
   const seenSlots = new Set();
+  let anonymousIndex = 0;
   let expression = '^';
   let cursor = 0;
   for (const match of pattern.source.matchAll(PLACEHOLDER_PATTERN)) {
     expression += escapeRegExp(pattern.source.slice(cursor, match.index));
-    const slot = `slot${match[1]}`;
+    const slot = `slot${match[1] === '' ? anonymousIndex++ : match[1]}`;
     if (seenSlots.has(slot)) {
       expression += `\\k<${slot}>`;
     } else {
-      expression += `(?<${slot}>${NUMBER_PATTERN}|\\{\\d+\\})`;
+      expression += `(?<${slot}>${NUMBER_PATTERN}|\\{\\d*(?::[^{}\\s]+)?\\})`;
       seenSlots.add(slot);
     }
     cursor = match.index + match[0].length;
@@ -95,8 +96,9 @@ function applyStructuralPatterns(key, patternIndex, dictionary) {
   for (const pattern of patternIndex.get(structure) ?? []) {
     const match = pattern.expression.exec(key);
     if (!match) continue;
+    let anonymousIndex = 0;
     const value = pattern.target.replace(PLACEHOLDER_PATTERN, (placeholder, index) => (
-      match.groups?.[`slot${index}`] ?? placeholder
+      match.groups?.[`slot${index === '' ? anonymousIndex++ : index}`] ?? placeholder
     ));
     matches.push({ pattern, value });
   }
@@ -210,4 +212,10 @@ export function mergeLayers({
   }
 
   return { entries, provenance, conflicts: [] };
+}
+
+export function unresolvedReferenceKeys(reference, entries) {
+  return Object.keys(reference)
+    .filter((key) => !Object.hasOwn(entries, key))
+    .sort((left, right) => left.localeCompare(right, 'en'));
 }

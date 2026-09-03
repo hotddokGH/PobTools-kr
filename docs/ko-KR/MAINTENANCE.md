@@ -62,13 +62,22 @@ node localization/ko-KR/import-runtime-misses.mjs `
   --target-ui pob-zh-engine/dist/Data/poe1/ko-KR/ui.json `
   --reference-root pob-zh-engine/dist/Data/poe1/zh-rTW `
   --pob-data-root C:/path/to/Path-of-Building-Community/Data `
+  --include-skill-gem-data `
   C:/path/to/translate_misses.log
 
 C:/path/to/.venv-translation/Scripts/python.exe `
+  localization/ko-KR/machine_translate_runtime.py --resume --numeric-markers --batch-size 32
+
+# 숫자 표식 복원에 실패한 항목만 기본 보호 방식으로 재시도
+C:/path/to/.venv-translation/Scripts/python.exe `
   localization/ko-KR/machine_translate_runtime.py --resume --batch-size 32
+
+# 공식 용어 표식이 많은 긴 설명문은 실행 서식만 보호해 마지막으로 재시도
+C:/path/to/.venv-translation/Scripts/python.exe `
+  localization/ko-KR/machine_translate_runtime.py --resume --syntax-only --batch-size 32
 ```
 
-가져오기는 줄바꿈이 포함된 `MISS|` 레코드를 한 항목으로 보존하고 기존 인벤토리에 새 항목만 추가한다. `--reference-root`와 `--pob-data-root`를 함께 주면 화면에서 잘린 문구를 전체 Lua 설명으로 복원하고, 레벨별 숫자를 `{0}` 형태의 재사용 가능한 템플릿으로 정규화한다. 번역기는 이전 결과를 재사용하며, 내부 보호 표식이나 서식이 깨진 결과는 거부한다. 거부 항목은 `manual/machine-fallback-overrides.json`에서 사람이 문맥과 공식 용어를 확인해 보정한다. 이후 `build-runtime-locale.mjs`와 `audit-display-closure.mjs`를 실행하고, 실행 로그 및 참조 UI 범위가 모두 0 issues인지 확인한다.
+가져오기는 줄바꿈이 포함된 `MISS|` 레코드를 한 항목으로 보존하고 기존 인벤토리에 새 항목만 추가한다. `--reference-root`와 `--pob-data-root`를 함께 주면 화면에서 잘린 문구를 전체 Lua 설명으로 복원하고, 레벨별 숫자를 `{0}` 형태의 재사용 가능한 템플릿으로 정규화한다. `--include-skill-gem-data`는 실행 중 열어 본 젬에만 의존하지 않고 `Data/Skills`의 모든 설명과 `gem_stat_descriptions.lua`, `skill_stat_descriptions.lua`의 모든 스킬젬 능력치 템플릿을 추가한다. 번역기는 이전 결과를 재사용하며, 내부 보호 표식이나 서식이 깨진 결과는 거부한다. 거부 항목은 `manual/machine-fallback-overrides.json`에서 사람이 문맥과 공식 용어를 확인해 보정한다. 이후 `build-runtime-locale.mjs`와 `audit-display-closure.mjs`를 실행하고, 실행 로그 및 참조 UI 범위가 모두 0 issues인지 확인한다.
 
 ## 업스트림 확인 워크플로
 

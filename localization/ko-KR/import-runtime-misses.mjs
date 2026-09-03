@@ -8,6 +8,7 @@ import {
   parseRuntimeMissLog,
   referenceUiKeys,
   runtimeInventorySha256,
+  skillGemDisplayCandidates,
   untranslatedReferenceUiKeys,
 } from './lib/runtime-misses.mjs';
 
@@ -17,6 +18,7 @@ let referenceUiPath;
 let targetUiPath;
 let referenceRootPath;
 let pobDataRootPath;
+let includeSkillGemData = false;
 const inputArguments = process.argv.slice(2);
 for (let index = 0; index < inputArguments.length; index += 1) {
   if (inputArguments[index] === '--reference-ui') {
@@ -43,14 +45,18 @@ for (let index = 0; index < inputArguments.length; index += 1) {
     }
     pobDataRootPath = resolve(inputArguments[index + 1]);
     index += 1;
+  } else if (inputArguments[index] === '--include-skill-gem-data') {
+    if (includeSkillGemData) throw new Error('--include-skill-gem-data may only be specified once');
+    includeSkillGemData = true;
   } else {
     sourcePaths.push(resolve(inputArguments[index]));
   }
 }
-if (sourcePaths.length === 0 && referenceUiPath === undefined) {
-  throw new Error('usage: node import-runtime-misses.mjs [--reference-ui ui.json --target-ui ui.json] [--reference-root locale-directory --pob-data-root Data] [translate_misses.log ...]');
+if (sourcePaths.length === 0 && referenceUiPath === undefined && !includeSkillGemData) {
+  throw new Error('usage: node import-runtime-misses.mjs [--reference-ui ui.json --target-ui ui.json] [--reference-root locale-directory --pob-data-root Data] [--include-skill-gem-data] [translate_misses.log ...]');
 }
 if (targetUiPath !== undefined && referenceUiPath === undefined) throw new Error('--target-ui requires --reference-ui');
+if (includeSkillGemData && pobDataRootPath === undefined) throw new Error('--include-skill-gem-data requires --pob-data-root');
 
 const outputPath = join(localeRoot, 'runtime-inventory.json');
 const existing = existsSync(outputPath)
@@ -61,6 +67,19 @@ const captures = sourcePaths.map((path) => ({
   ...parseRuntimeMissLog(readFileSync(path, 'utf8')),
 }));
 const canonicalCandidates = [];
+const readLuaFilesRecursively = (rootPath) => {
+  const texts = [];
+  const directories = [rootPath];
+  while (directories.length > 0) {
+    const directory = directories.pop();
+    for (const item of readdirSync(directory, { withFileTypes: true })) {
+      const path = join(directory, item.name);
+      if (item.isDirectory()) directories.push(path);
+      else if (item.isFile() && item.name.endsWith('.lua')) texts.push(readFileSync(path, 'utf8'));
+    }
+  }
+  return texts;
+};
 if (referenceRootPath !== undefined) {
   for (const name of readdirSync(referenceRootPath)) {
     if (!name.endsWith('.json')) continue;
@@ -71,18 +90,13 @@ if (referenceRootPath !== undefined) {
   }
 }
 if (pobDataRootPath !== undefined) {
-  const directories = [pobDataRootPath];
-  while (directories.length > 0) {
-    const directory = directories.pop();
-    for (const item of readdirSync(directory, { withFileTypes: true })) {
-      const path = join(directory, item.name);
-      if (item.isDirectory()) directories.push(path);
-      else if (item.isFile() && item.name.endsWith('.lua')) {
-        canonicalCandidates.push(...luaDisplayStringCandidates(readFileSync(path, 'utf8')));
-      }
-    }
-  }
+  canonicalCandidates.push(...readLuaFilesRecursively(pobDataRootPath).flatMap(luaDisplayStringCandidates));
 }
+const skillGemEntries = includeSkillGemData ? skillGemDisplayCandidates(
+  readLuaFilesRecursively(join(pobDataRootPath, 'Skills')),
+  readFileSync(join(pobDataRootPath, 'StatDescriptions', 'gem_stat_descriptions.lua'), 'utf8'),
+  readFileSync(join(pobDataRootPath, 'StatDescriptions', 'skill_stat_descriptions.lua'), 'utf8'),
+) : [];
 const capturedEntries = captures.flatMap((capture) => capture.entries);
 const normalizedCaptureEntries = canonicalCandidates.length === 0
   ? capturedEntries
@@ -100,12 +114,15 @@ const entries = mergeRuntimeMissEntries(
   Array.isArray(existing.entries) ? existing.entries : [],
   normalizedCaptureEntries,
   referenceEntries,
+  skillGemEntries,
 );
 const sourceLocales = new Set(String(existing.sourceLocale ?? '').split(',').filter(Boolean));
 for (const { locale } of captures) sourceLocales.add(locale);
 
 const output = {
-  source: canonicalCandidates.length > 0
+  source: includeSkillGemData
+    ? 'merged full skill gem data, canonicalized runtime miss captures, and reference inventories'
+    : canonicalCandidates.length > 0
     ? 'merged canonicalized runtime miss captures and reference inventories'
     : referenceUiPath === undefined
       ? 'merged runtime miss captures'
@@ -117,4 +134,4 @@ const output = {
 };
 writeFileSync(outputPath, `${JSON.stringify(output, null, 2)}\n`, 'utf8');
 const added = entries.length - new Set(existing.entries ?? []).size;
-console.log(`wrote ${entries.length} observed runtime display keys (${added} new) to ${outputPath}`);
+console.log(`wrote ${entries.length} runtime display keys (${added} new) to ${outputPath}`);

@@ -2,7 +2,7 @@ import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { formatSignature } from './lib/format-signature.mjs';
-import { mergeLayers, reflowLineBreaks } from './lib/merge-layers.mjs';
+import { mergeLayers, reflowLineBreaks, unresolvedReferenceKeys } from './lib/merge-layers.mjs';
 import { deriveUnambiguousPatterns } from './lib/official-patterns.mjs';
 import { buildKoreanItemMetadata } from './lib/item-metadata.mjs';
 
@@ -171,12 +171,6 @@ if (dynamicDocument.patch !== patch) throw new Error(`unexpected dynamic pattern
 if (machineDocument.inventorySha256 !== runtimeInventory.sha256) {
   throw new Error('machine fallback inventory hash does not match current runtime inventory');
 }
-const unresolvedMachineRows = runtimeInventory.entries.filter((key) => (
-  !Object.hasOwn(machineDocument.entries, key) && !Object.hasOwn(machineOverrides.entries, key)
-));
-if (unresolvedMachineRows.length > 0) {
-  throw new Error(`runtime machine fallback has ${unresolvedMachineRows.length} unresolved rows`);
-}
 const derivedOfficialPatterns = deriveUnambiguousPatterns({ rows: reports.stats.report.rows, patch });
 const officialStatDictionaries = new Set(dynamicDocument.officialStatDictionaries ?? []);
 
@@ -275,6 +269,12 @@ for (const dictionary of dictionaries) {
     ] : [],
     literals: policy.literalAllowlist?.[dictionary] ?? {},
   });
+  if (dictionary === 'ui') {
+    const unresolved = unresolvedReferenceKeys(referenceEntries, result.entries);
+    if (unresolved.length > 0) {
+      throw new Error(`runtime UI has ${unresolved.length} unresolved rows after all layers\n${unresolved.join('\n')}`);
+    }
+  }
 
   const output = {
     source_files: sourceFiles[dictionary],

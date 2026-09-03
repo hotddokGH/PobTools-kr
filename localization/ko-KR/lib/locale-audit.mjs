@@ -20,6 +20,7 @@ export function auditEntries({ dictionary, reference, target, policy }) {
   let excluded = 0;
   const literalPolicy = policy?.literalAllowlist?.[dictionary] ?? {};
   const excludedPolicy = policy?.excluded?.[dictionary] ?? {};
+  const officialTermRules = policy?.officialTermRules ?? [];
 
   for (const key of Object.keys(reference).sort()) {
     if (hasOwn(excludedPolicy, key)) {
@@ -43,6 +44,14 @@ export function auditEntries({ dictionary, reference, target, policy }) {
     const keyIssues = [];
     if (/\p{Script=Han}/u.test(value)) {
       keyIssues.push(issue(dictionary, key, 'CHINESE_DISPLAY', value));
+    }
+    for (const rule of officialTermRules) {
+      const sourceTerm = String(rule?.source ?? '');
+      const forbidden = String(rule?.forbidden ?? '');
+      const official = String(rule?.official ?? '');
+      if (sourceTerm && forbidden && key.toLowerCase().includes(sourceTerm.toLowerCase()) && value.includes(forbidden)) {
+        keyIssues.push(issue(dictionary, key, 'NON_OFFICIAL_TERM', `${forbidden} -> ${official}`));
+      }
     }
 
     const sourceSignature = formatSignature(key);
@@ -96,6 +105,7 @@ export function auditRuntimeEntries({ inventory, dictionaries, loadOrder, policy
     policy: {
       literalAllowlist: { runtime: literalAllowlist },
       excluded: { runtime: excluded },
+      officialTermRules: policy?.officialTermRules ?? [],
     },
   });
 }

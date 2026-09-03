@@ -9,18 +9,37 @@ import {
   mergeRuntimeMissEntries,
   parseRuntimeMissLog,
   runtimeInventorySha256,
+  skillGemDisplayCandidates,
 } from '../lib/runtime-misses.mjs';
 
 test('Lua display extraction returns complete descriptions and stat templates', () => {
   const source = [
     'description = "Bloody scythes swipe around a selected area.",',
     'text="Deals {0} Base Physical Damage per second"',
+    'text="Grants Minions {:+d}% to Critical Strike Multiplier"',
     'internalCode = "DoNotTranslate",',
   ].join('\n');
 
   assert.deepEqual(luaDisplayStringCandidates(source), [
     'Bloody scythes swipe around a selected area.',
     'Deals {0} Base Physical Damage per second',
+    'Grants Minions {0:+d}% to Critical Strike Multiplier',
+  ]);
+});
+
+test('skill gem inventory includes unopened skill descriptions and both scoped stat files', () => {
+  assert.deepEqual(skillGemDisplayCandidates(
+    [
+      'description = "Create a sphere of water."',
+      'description = "Bloody scythes swipe around a selected area."',
+    ],
+    'text = "Supported Skills deal {0}% more Damage"',
+    'text = "Pulses every {0} seconds while Frozen, Shocked, Brittle or Sapped"',
+  ), [
+    'Bloody scythes swipe around a selected area.',
+    'Create a sphere of water.',
+    'Pulses every {0} seconds while Frozen, Shocked, Brittle or Sapped',
+    'Supported Skills deal {0}% more Damage',
   ]);
 });
 
@@ -40,6 +59,7 @@ test('runtime miss canonicalization removes colour and wrapping fragments and re
     'Each Mine applies 25% increased Damage Taken to Enemies near it, up\nto a maximum of 150%',
     'Sorting 13%',
     'Sorting 60%',
+    'Drenched Enemies have Cold and Lightning Exposure, applying -10% to Resistances',
     '+1.9m AoE Radius',
   ];
 
@@ -49,11 +69,13 @@ test('runtime miss canonicalization removes colour and wrapping fragments and re
     'Base radius is # metres',
     'Base radius is {0} metres',
     'Each Mine applies {0}% increased Damage Taken to Enemies near it, up\nto a maximum of 150%',
+    'Drenched Enemies have Cold and Lightning Exposure, applying {0:+d}% to Resistances',
   ]), [
     '{0}m AoE Radius',
     'Base radius is {0} metres',
     description,
     'Deals {0} Base Physical Damage per second',
+    'Drenched Enemies have Cold and Lightning Exposure, applying {0:+d}% to Resistances',
     'Each Mine applies {0}% increased Damage Taken to Enemies near it, up\nto a maximum of 150%',
     'Runtime composed status with value',
     'Sorting {0}%',

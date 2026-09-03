@@ -8,11 +8,11 @@ const stripRuntimeColourCodes = (value) => String(value).replace(/\^(?:x.{6}|[0-
 
 const runtimePatternShape = (value) => stripRuntimeColourCodes(value)
   .toLowerCase()
-  .replace(/\{\d+\}/gu, '#')
+  .replace(/\{\d*(?::[^{}\s]+)?\}/gu, '#')
   .replace(/[+-]?\d+(?:[.,]\d+)?/gu, '#');
 
 const canonicalCandidateRank = (value) => {
-  if (/\{\d+\}/u.test(value)) return 0;
+  if (/\{\d*(?::[^{}\s]+)?\}/u.test(value)) return 0;
   if (value.includes('#')) return 1;
   return 2;
 };
@@ -27,13 +27,24 @@ export function luaDisplayStringCandidates(text) {
   const pattern = /\b(?:description|text)\s*=\s*("(?:\\.|[^"\\])*")/gu;
   for (const match of String(text).matchAll(pattern)) {
     try {
-      const value = JSON.parse(match[1]);
+      let anonymousIndex = 0;
+      const value = JSON.parse(match[1]).replace(/\{(?::([^{}\s]+))?\}/gu, (_, format) => (
+        `{${anonymousIndex++}${format === undefined ? '' : `:${format}`}}`
+      ));
       if (/[A-Za-z]{3}/u.test(value)) entries.push(value);
     } catch {
       // A Lua-only escape is not a JSON string literal; skip it conservatively.
     }
   }
   return sortEntries(entries);
+}
+
+export function skillGemDisplayCandidates(skillLuaTexts, gemStatLuaText, skillStatLuaText) {
+  return sortEntries([
+    ...skillLuaTexts.flatMap(luaDisplayStringCandidates),
+    ...luaDisplayStringCandidates(gemStatLuaText),
+    ...luaDisplayStringCandidates(skillStatLuaText),
+  ]);
 }
 
 export function canonicalizeRuntimeMissEntries(entries, candidates) {

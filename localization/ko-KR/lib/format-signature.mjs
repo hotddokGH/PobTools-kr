@@ -3,7 +3,7 @@ export function formatSignature(text) {
   for (const match of String(text).matchAll(/%(?:[-+0 #]*\d*(?:\.\d+)?)?[A-Za-z](?![A-Za-z])/g)) {
     tokens.push(`PRINTF:${match[0]}`);
   }
-  for (const match of String(text).matchAll(/\{\d+\}/g)) {
+  for (const match of String(text).matchAll(/\{\d*(?::[^{}\s]+)?\}/g)) {
     tokens.push(`SLOT:${match[0]}`);
   }
   for (const match of String(text).matchAll(/\^(?:x[0-9A-Fa-f]{6}|\d)/g)) {

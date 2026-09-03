@@ -30,5 +30,22 @@
       "{1} {0} {2}": "runtime placeholders only"
     }
   },
-  "excluded": {}
+  "excluded": {},
+  "officialTermRules": [
+    {
+      "source": "Ailment",
+      "forbidden": "질병",
+      "official": "상태 이상"
+    },
+    {
+      "source": "Unique Enemy",
+      "forbidden": "독특한 적",
+      "official": "고유 적"
+    },
+    {
+      "source": "Unique Enemies",
+      "forbidden": "독특한 적",
+      "official": "고유 적"
+    }
+  ]
 }

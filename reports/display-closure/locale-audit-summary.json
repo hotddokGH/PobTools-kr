@@ -1,33 +1,33 @@
 {
-  "total": 26867,
-  "resolved": 26867,
+  "total": 31512,
+  "resolved": 31512,
   "excluded": 0,
   "issues": 0,
   "issueCodes": {},
   "dictionaries": [
     {
       "dictionary": "runtime",
-      "total": 26867,
-      "resolved": 26867,
+      "total": 31512,
+      "resolved": 31512,
       "excluded": 0,
       "issues": 0
     }
   ],
   "scope": "observed-current-runtime",
   "inventory": {
-    "source": "merged canonicalized runtime miss captures and reference inventories",
+    "source": "merged full skill gem data, canonicalized runtime miss captures, and reference inventories",
     "sourceLocale": "ko-KR,zh-rCN",
-    "sha256": "07288E4FA11C4C16AA17B1DB551FA25C3EB17816F965550AEB6EFF5226680A3D",
-    "captureLastWriteTime": "2026-09-03T02:35:51.019Z"
+    "sha256": "B32BAB9E85ACDE3FA5531594F6767FA45F7B45D5B70F388A7AF61F8804D1E12C",
+    "captureLastWriteTime": "2026-09-03T04:50:48.342Z"
   },
   "legacyReferenceInventory": {
     "status": "non-blocking historical inventory; current reachability is established by the captured runtime miss set",
     "total": 111806,
-    "resolved": 53523,
+    "resolved": 54606,
     "excluded": 0,
-    "issues": 58283,
+    "issues": 57200,
     "issueCodes": {
-      "MISSING_KEY": 58257,
+      "MISSING_KEY": 57174,
       "UNRESOLVED_ENGLISH": 26
     },
     "dictionaries": [
@@ -62,9 +62,9 @@
       {
         "dictionary": "stats",
         "total": 61304,
-        "resolved": 14567,
+        "resolved": 15650,
         "excluded": 0,
-        "issues": 46737
+        "issues": 45654
       },
       {
         "dictionary": "passives",

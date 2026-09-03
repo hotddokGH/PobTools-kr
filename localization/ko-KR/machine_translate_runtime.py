@@ -9,20 +9,20 @@ from huggingface_hub import snapshot_download
 from transformers import AutoModelForSeq2SeqLM
 
 from runtime_machine_state import has_unrestored_marker, resume_machine_fallback
+from runtime_machine_syntax import (
+    apply_source_glossary,
+    apply_source_scoped_replacements,
+    format_signature,
+    protect_syntax,
+    protect_with_numeric_markers,
+    restore,
+    restore_numeric_markers,
+)
 
 
 MODEL_ID = "Helsinki-NLP/opus-mt-tc-big-en-ko"
 MODEL_REVISION = "main"
-PROTECTED_SYNTAX = re.compile(
-    r"(?:https?|file)://[^\s]+|##[^\s]*|<[^>\r\n]+>|\r\n|\r|\n|"
-    r"%(?:[-+0 #]*\d*(?:\.\d+)?)?[A-Za-z](?![A-Za-z])|\{\d+\}|"
-    r"\^(?:x[0-9A-Fa-f]{6}|\d)"
-)
-RESTORE_MARKER = re.compile(r"ZXQPH\s*(\d+)\s*QXZ", re.IGNORECASE)
 HAN = re.compile(r"[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]")
-PRINTF = re.compile(r"%(?:[-+0 #]*\d*(?:\.\d+)?)?[A-Za-z](?![A-Za-z])")
-SLOT = re.compile(r"\{\d+\}")
-TAG = re.compile(r"\^(?:x[0-9A-Fa-f]{6}|\d)")
 GLOSSARY_REPLACEMENTS = (
     ("크리티컬", "치명타"),
     ("하수인", "소환수"),
@@ -36,11 +36,18 @@ GLOSSARY_REPLACEMENTS = (
     ("번개 저항력", "번개 저항"),
     ("데미지", "피해"),
 )
+SOURCE_SCOPED_REPLACEMENTS = (
+    ("Ailment", "질병", "상태 이상"),
+    ("Unique Enemy", "독특한 적", "고유 적"),
+    ("Unique Enemies", "독특한 적", "고유 적"),
+)
 SOURCE_GLOSSARY = {
     "Critical Strike Multiplier": "치명타 피해 배율",
     "Critical Strike Chance": "치명타 확률",
     "Critical Strike": "치명타",
     "Damage over Time": "지속 피해",
+    "Unique Enemies": "고유 적",
+    "Unique Enemy": "고유 적",
     "Physical Damage": "물리 피해",
     "Lightning Damage": "번개 피해",
     "Elemental Damage": "원소 피해",
@@ -79,6 +86,8 @@ SOURCE_GLOSSARY = {
     "Duration": "지속시간",
     "Onslaught": "맹공",
     "Adrenaline": "아드레날린",
+    "Ailments": "상태 이상",
+    "Ailment": "상태 이상",
     "Bleeding": "출혈",
     "Ignite": "점화",
     "Scorch": "그을림",
@@ -154,14 +163,7 @@ SOURCE_GLOSSARY_PATTERN = re.compile(
 
 
 def protect(text: str, *, include_glossary: bool = True) -> tuple[str, list[str]]:
-    tokens: list[str] = []
-
-    def replace(match: re.Match[str]) -> str:
-        index = len(tokens)
-        tokens.append(match.group(0))
-        return f" ZXQPH{index}QXZ "
-
-    masked = PROTECTED_SYNTAX.sub(replace, text)
+    masked, tokens = protect_syntax(text)
 
     def replace_term(match: re.Match[str]) -> str:
         index = len(tokens)
@@ -175,34 +177,11 @@ def protect(text: str, *, include_glossary: bool = True) -> tuple[str, list[str]
     return SOURCE_GLOSSARY_PATTERN.sub(replace_term, masked), tokens
 
 
-def restore(text: str, tokens: list[str]) -> str:
-    used: set[int] = set()
-
-    def replace(match: re.Match[str]) -> str:
-        index = int(match.group(1))
-        if index >= len(tokens):
-            raise ValueError(f"unknown protected marker {index}")
-        used.add(index)
-        return tokens[index]
-
-    restored = RESTORE_MARKER.sub(replace, text)
-    if used != set(range(len(tokens))):
-        raise ValueError(f"protected markers missing: {sorted(set(range(len(tokens))) - used)}")
-    return restored.strip()
-
-
-def format_signature(text: str) -> list[str]:
-    tokens = [f"PRINTF:{match.group(0)}" for match in PRINTF.finditer(text)]
-    tokens += [f"SLOT:{match.group(0)}" for match in SLOT.finditer(text)]
-    tokens += [f"TAG:{match.group(0)}" for match in TAG.finditer(text)]
-    tokens += ["LF"] * text.count("\n")
-    return sorted(tokens)
-
-
-def apply_glossary(text: str) -> str:
-    for source, target in GLOSSARY_REPLACEMENTS:
-        text = text.replace(source, target)
-    return text
+def apply_glossary(source: str, text: str) -> str:
+    for replacement_source, replacement_target in GLOSSARY_REPLACEMENTS:
+        text = text.replace(replacement_source, replacement_target)
+    text = apply_source_scoped_replacements(source, text, SOURCE_SCOPED_REPLACEMENTS)
+    return apply_source_glossary(text, SOURCE_GLOSSARY)
 
 
 def save_output(path: Path, inventory: dict, entries: dict[str, str], rejected: dict[str, str]) -> None:
@@ -227,6 +206,11 @@ def main() -> None:
         "--syntax-only",
         action="store_true",
         help="protect only executable display syntax; useful when retrying rows where many glossary markers were dropped",
+    )
+    parser.add_argument(
+        "--numeric-markers",
+        action="store_true",
+        help="retry pending rows with copy-friendly numeric markers for placeholders and line breaks",
     )
     args = parser.parse_args()
 
@@ -269,7 +253,12 @@ def main() -> None:
     print(f"offline fallback: {len(entries)} cached; {len(pending)} pending in {total_batches} batches", flush=True)
     for batch_index in range(total_batches):
         sources = pending[batch_index * args.batch_size : (batch_index + 1) * args.batch_size]
-        protected = [protect(source, include_glossary=not args.syntax_only) for source in sources]
+        protected = [
+            protect_with_numeric_markers(source, glossary=SOURCE_GLOSSARY)
+            if args.numeric_markers
+            else protect(source, include_glossary=not args.syntax_only)
+            for source in sources
+        ]
         rows = [source_spm.encode(text)[:511] + [2] for text, _ in protected]
         maximum_length = max(len(row) for row in rows)
         input_ids = torch.tensor(
@@ -291,7 +280,12 @@ def main() -> None:
 
         for source, translated, (_, protected_tokens) in zip(sources, translations, protected, strict=True):
             try:
-                target = apply_glossary(restore(translated, protected_tokens))
+                restored = (
+                    restore_numeric_markers(translated, protected_tokens)
+                    if args.numeric_markers
+                    else restore(translated, protected_tokens)
+                )
+                target = apply_glossary(source, restored)
                 if HAN.search(target):
                     raise ValueError("target contains Han characters")
                 if has_unrestored_marker(target):
